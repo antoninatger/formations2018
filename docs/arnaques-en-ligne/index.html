@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formation contre les arnaques en ligne</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared-deck.css">
+<style>
+/* Propre à cette intervention. Le reste vient de ../shared-deck.css.
+   Ajoutez ici ce qui ne concerne qu'elle. */
+:root{--acc:#1f9ad6}
+.illu-frame{width:min(760px,calc(92 * var(--vw1)));height:min(calc(72 * var(--vh1)),640px);border-radius:18px;overflow:hidden;border:1px solid var(--bord);
+  box-shadow:0 20px 50px rgba(0,0,0,.4);background:#fff;margin:16px auto 0;}
+.illu-frame iframe{width:100%;height:100%;border:0;}
+.illu-frame:fullscreen{width:100vw;height:100vh;border-radius:0;}
+.video-frame{width:min(940px,calc(90 * var(--vw1)));height:auto;aspect-ratio:16/9;background:#000;margin-top:10px}
+.slide p.video-source{font-size:.95rem;margin-top:8px}
+.slide p.video-source a{color:var(--acc2)}
+.radar-frame{width:min(1100px,calc(90 * var(--vw1)));height:calc(64 * var(--vh1));margin-top:10px}
+/* Jeu « Vraie photo ou IA ? » (18 octobre), juste après « Repérer une image en IA ».
+   Antonin : « le jeu pour deviner quelle photo est vraie, quelle photo est IA (on finit par les
+   deux vidéos de Will Smith) ». Dessiné directement à la taille du grand écran : pas d'agrandissement. */
+.slide.jeu-ia{padding:40px 90px 80px}
+.slide.jeu-ia h2{font-size:60px;max-width:none}
+.duel-ia{display:flex;gap:56px;justify-content:center;align-items:center;margin-top:22px}
+.duel-ia figure{position:relative;margin:0}
+.duel-carte img{display:block;height:560px;width:auto;max-width:840px;border-radius:16px;border:1px solid var(--bord);box-shadow:0 16px 40px rgba(0,0,0,.35)}
+.duel-portraits .duel-carte img{height:580px}
+.duel-carte .lettre,.duel-carte .verdict,.duel-video figcaption{font-family:'Baloo 2',sans-serif;line-height:1.15}
+.duel-carte .lettre{position:absolute;top:14px;left:14px;width:68px;height:68px;border-radius:50%;display:grid;place-items:center;background:var(--acc);color:#fff;font-size:42px;font-weight:800;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+.duel-carte .verdict{position:absolute;left:0;right:0;bottom:20px;margin:auto;width:max-content;padding:8px 24px;border-radius:12px;font-size:40px;font-weight:800;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.45)}
+.duel-carte .verdict.vraie{background:#21a35b}
+.duel-carte .verdict.ia{background:#d93a40}
+.duel-video figcaption{font-size:44px;font-weight:800;color:var(--acc);margin-bottom:10px}
+.duel-video video{display:block;height:580px;width:auto;border-radius:16px;background:#000;box-shadow:0 16px 40px rgba(0,0,0,.35)}
+.duel-video.carre video{width:580px}
+.slide p.lead.jeu-ia-reponse{font-size:38px;max-width:none;margin-top:22px;line-height:1.3;color:var(--txt,inherit)}
+/* Diapo « L’URL ne correspond pas » : l’adresse du lien apparaît quand on passe la souris
+   sur le bouton, comme dans un vrai mail (18 octobre). */
+.survol-url{display:inline-block}
+.survol-url img{display:block;height:150px;width:auto;cursor:pointer}
+.survol-url-bulle{display:none;position:absolute;left:50%;top:calc(100% + 14px);translate:-50% 0;width:900px;padding:12px 16px;
+  background:#fff;color:#1a1a1a;border:1px solid #999;border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,.45);
+  font:15px/1.4 'Segoe UI',Arial,sans-serif;word-break:break-all;text-align:left;z-index:40}
+.survol-url:hover .survol-url-bulle{display:block}
+/* Chronologie de l’affaire du faux Brad Pitt, compteur des virements, citation, article,
+   faux mail et faux chat de sextorsion (18 octobre). */
+.chrono{display:flex;gap:28px;margin-top:40px;position:relative;width:1600px;max-width:none}
+.chrono::before{content:"";position:absolute;left:0;right:0;top:27px;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--acc2),var(--acc))}
+.chrono-etape{flex:1;position:relative;padding-top:58px;text-align:left}
+.chrono-etape::before{content:"";position:absolute;left:0;top:17px;width:24px;height:24px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 5px rgba(255,255,255,.12)}
+.chrono-date{display:block;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:38px;color:var(--acc2);line-height:1.1;margin-bottom:8px}
+.chrono-etape p{font-size:30px;line-height:1.35;margin:0}
+.compteur{display:flex;gap:90px;justify-content:center;align-items:center;margin-top:30px}
+.compteur-montants{position:relative;width:640px;height:230px}
+.compteur-montant{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.compteur-montant b{font-family:'Baloo 2',sans-serif;font-size:120px;line-height:1;color:var(--acc)}
+.compteur-total{font-size:34px;font-weight:700;margin-top:10px}
+.compteur-final b{font-size:140px}
+.compteur-montants:has(.step.shown) .compteur-zero,
+.compteur-montant.step.shown:has(~ .compteur-montant.step.shown){visibility:hidden}
+.jauge{position:relative;width:120px;height:440px;border:4px solid var(--bord,#fff);border-radius:18px;overflow:hidden;background:rgba(255,255,255,.06)}
+.jauge-niveau{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(0deg,#d93a40,#ff7a59);transition:opacity .5s ease}
+.jauge-niveau.step{transform:none}
+.jauge-max{position:absolute;top:8px;left:0;right:0;text-align:center;font-size:18px;font-weight:800;z-index:2}
+.citation-fille{max-width:1200px;width:1200px;font-size:44px;line-height:1.45;margin-top:50px}
+.citation-fille .citation-source{font-size:24px;font-style:normal;font-weight:600;margin-top:18px;opacity:.8}
+.article-carte{display:block;width:1100px;margin-top:50px;padding:34px 40px;background:#fff;color:#1a1a1a;border-radius:14px;text-align:left;text-decoration:none;box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.article-source{display:block;font:700 24px Arial,sans-serif;color:#b3261e;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.article-titre{display:block;font:800 52px/1.2 Georgia,'Times New Roman',serif}
+.faux-mail{width:1150px;margin-top:24px;background:#fff;color:#1f1f1f;border-radius:12px;overflow:hidden;text-align:left;font-family:'Segoe UI',Arial,sans-serif;box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.faux-mail-entete{background:#f1f3f4;padding:18px 28px;font-size:24px;line-height:1.5;border-bottom:1px solid #ddd}
+.faux-mail-entete p,.faux-mail-corps p{margin:0}
+.faux-mail-corps{padding:22px 28px;font-size:28px;line-height:1.45}
+.faux-mail-corps p+p{margin-top:12px}
+.faux-chat{width:820px;margin-top:20px;background:#0b141a;border-radius:18px;padding:0 0 22px;text-align:left;font-family:'Segoe UI',Arial,sans-serif;box-shadow:0 16px 40px rgba(0,0,0,.4);overflow:hidden}
+.faux-chat-entete{display:flex;align-items:center;gap:16px;padding:16px 22px;background:#202c33;color:#e9edef;font-size:28px}
+.faux-chat-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#f6a5c0,#c06c84)}
+.faux-chat-bulle{max-width:640px;margin:16px 22px 0;padding:12px 18px;border-radius:14px;background:#202c33;color:#e9edef;font-size:30px;line-height:1.35;width:fit-content}
+.faux-chat-info{margin:16px auto 0;background:#182229;color:#8696a0;font-size:24px}
+.faux-chat-menace{background:#5c1e22;color:#fff}
+/* Chronologie à curseur de l’affaire du faux Brad Pitt : à chaque clic le curseur avance
+   d’un événement et seul le message du moment reste affiché (18 octobre). */
+.chrono2{width:1500px;max-width:none;margin-top:30px}
+.chrono2-piste{position:relative;height:110px;margin:0 60px}
+.chrono2-fond,.chrono2-rempli{position:absolute;left:0;top:30px;height:8px;border-radius:4px}
+.chrono2-fond{right:0;background:rgba(255,255,255,.18)}
+.chrono2-rempli{background:linear-gradient(90deg,var(--acc2),var(--acc))}
+.chrono2-rempli.step{transform:none;transition:width .6s ease,opacity .4s ease}
+.chrono2-point{position:absolute;top:24px;width:20px;height:20px;margin-left:-10px;border-radius:50%;background:#3a4560;border:3px solid rgba(255,255,255,.35)}
+.chrono2-date{position:absolute;top:34px;left:50%;translate:-50% 0;white-space:nowrap;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:30px;color:var(--acc2)}
+.chrono2-curseur{position:absolute;top:12px;width:44px;height:44px;margin-left:-22px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 8px rgba(255,255,255,.15),0 6px 18px rgba(0,0,0,.5)}
+.chrono2-curseur.step{transform:none}
+.chrono2-curseur.step.shown:has(~ .chrono2-curseur.step.shown),
+.chrono2-message.step.shown:has(~ .chrono2-message.step.shown){visibility:hidden}
+.chrono2-messages{position:relative;height:330px;margin-top:40px}
+.chrono2-message{position:absolute;left:50%;top:0;translate:-50% 0;width:1100px;padding:28px 36px;border-radius:22px;text-align:left;box-shadow:0 16px 40px rgba(0,0,0,.45)}
+.chrono2-message p{margin:0;font-size:46px;line-height:1.3;font-weight:700}
+.chrono2-qui{display:block;font-size:26px;font-weight:800;margin-bottom:12px;opacity:.75}
+.chrono2-msg{background:#fff;color:#1a1a1a;border-bottom-left-radius:6px}
+.chrono2-evt{background:var(--panel);border:2px solid var(--acc2);color:inherit}
+/* « Plus on a donné » : chaque clic ajoute un virement à gauche (barre proportionnelle au
+   montant) et remplit la cagnotte de droite, dont le total grossit (18 octobre). */
+.cagnotte{display:flex;gap:70px;justify-content:center;align-items:flex-end;margin-top:26px;width:1500px;max-width:none}
+.cagnotte-virements{width:820px;height:520px;display:flex;flex-direction:column;justify-content:flex-end;gap:10px}
+.cagnotte-virement{display:flex;align-items:center;gap:18px}
+.cagnotte-barre{display:block;height:44px;border-radius:10px;background:linear-gradient(90deg,#f5c542,#e08a1e);box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.cagnotte-virement b{font-family:'Baloo 2',sans-serif;font-size:38px;white-space:nowrap}
+.cagnotte-encore .cagnotte-barre{background:repeating-linear-gradient(90deg,#d93a40 0 30px,#b02a30 30px 60px)}
+.cagnotte-encore b{color:#ff6b6b}
+.cagnotte-pot{display:flex;flex-direction:column;align-items:center}
+.cagnotte-col{width:200px;height:34px;border:6px solid rgba(255,255,255,.75);border-bottom:none;border-radius:14px 14px 0 0}
+.cagnotte-bocal{position:relative;width:440px;height:500px;border:6px solid rgba(255,255,255,.75);border-radius:40px 40px 70px 70px;overflow:hidden;background:rgba(255,255,255,.05)}
+.cagnotte-niveau{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(0deg,#e08a1e,#f5c542);transition:height .7s ease,opacity .4s ease}
+.cagnotte-niveau.step{transform:none}
+.cagnotte-pleine{background:linear-gradient(0deg,#b02a30,#ff6b6b)}
+.cagnotte-totaux{position:absolute;inset:0;display:grid;place-items:center}
+.cagnotte-total{grid-area:1/1;font-family:'Baloo 2',sans-serif;font-weight:800;color:#fff;text-shadow:0 4px 14px rgba(0,0,0,.6);white-space:nowrap}
+.cagnotte-total.step{transform:none}
+.cagnotte-totaux:has(.step.shown) .cagnotte-zero,
+.cagnotte-total.step.shown:has(~ .cagnotte-total.step.shown){visibility:hidden}
+.slide p.lead.dissonance-brad{font-size:40px;max-width:1300px;line-height:1.45;margin-top:40px}
+/* « Et pour les arnaques ? » : le SMS reçu, puis au clic le même SMS dans des dizaines
+   d’autres téléphones tout autour ; cas réels de sextorsion (18 octobre). */
+.slide .survivant-label{width:100%;max-width:none;text-align:center;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:44px;color:var(--acc2);margin:0}
+.slide .foule-sms{width:100%;height:100%;max-width:none;pointer-events:none}
+.foule-sms img{position:absolute;width:150px;height:auto;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.5);opacity:0}
+.foule-sms.shown img{animation:foule-sms-apparait .35s ease forwards}
+.slide.editing .foule-sms img{opacity:1}
+@keyframes foule-sms-apparait{from{opacity:0;scale:.6}to{opacity:1;scale:1}}
+.cas-reels{display:flex;flex-direction:column;gap:30px;margin-top:20px}
+.cas-reels .article-carte{margin-top:0}
+/* Étiquettes du verdict sur les vidéos Will Smith, comme sur les photos (18 octobre). */
+.duel-video{position:relative}
+.duel-video .verdict{position:absolute;left:0;right:0;top:90px;margin:auto;width:max-content;padding:8px 24px;border-radius:12px;font-family:'Baloo 2',sans-serif;font-size:40px;font-weight:800;line-height:1.15;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.45);z-index:2}
+.duel-video .verdict.vraie{background:#21a35b}
+.duel-video .verdict.ia{background:#d93a40}
+/* Diapo 44 : le mail de chantage recopié en texte, sur deux colonnes (18 octobre). */
+.slide .faux-mail-long{width:1810px;max-width:none;margin:0}
+.faux-mail-long .faux-mail-entete{font-size:22px;padding:12px 26px}
+.faux-mail-long .faux-mail-corps{display:grid;grid-template-columns:1fr 1fr;gap:40px;font-size:23px;line-height:1.36;padding:18px 26px}
+.faux-mail-long .faux-mail-corps p+p{margin-top:10px}
+.mail-bitcoin{font-size:27px;letter-spacing:.5px}
+/* Diapos 52 à 54 : d’abord la notification qui arrive, puis au clic le message ouvert (18 octobre). */
+.notif-anim{position:absolute;inset:0}
+.notif{position:absolute;left:50%;top:70px;translate:-50% 0;width:1150px;padding:26px 34px;border-radius:30px;background:rgba(245,245,247,.97);color:#111;text-align:left;font-family:-apple-system,'Segoe UI',Arial,sans-serif;box-shadow:0 20px 50px rgba(0,0,0,.55)}
+.notif.step{transform:translateY(-140px)}
+.notif.step.shown{transform:none;transition:opacity .4s ease,transform .5s cubic-bezier(.2,1.3,.4,1)}
+.notif-haut{display:flex;align-items:center;gap:14px;font-size:26px;color:#666;text-transform:uppercase;letter-spacing:.5px}
+.notif-icone{font-size:34px}
+.notif-quand{margin-left:auto;text-transform:none}
+.notif-qui{margin:14px 0 0;font-size:40px;font-weight:700}
+.notif-objet{margin:6px 0 0;font-size:34px;font-weight:600}
+.notif-apercu{margin:8px 0 0;font-size:32px;line-height:1.3;color:#333;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.notif-anim:has(.notif-ouvert.shown) .notif{visibility:hidden}
+.slide .notif-ouvert{border-radius:14px;box-shadow:0 16px 40px rgba(0,0,0,.5);object-fit:contain}
+.slide.editing .notif{position:relative;left:auto;top:auto;translate:none;margin:20px auto}
+/* Diapos 34 et 35 : double peine (article) et moquerie (tweet puis citation d’Anne) (18 octobre). */
+.double-peine{display:flex;flex-direction:column;align-items:center;gap:30px;margin-top:10px}
+.double-peine h3{font-size:34px;margin:0}
+.double-peine .lead{max-width:1150px;margin:0;font-size:30px}
+.double-peine .article-carte{margin-top:10px}
+.moquerie{display:flex;flex-direction:column;align-items:center;gap:40px;margin-top:20px}
+.tweet-carte{width:1050px;padding:30px 36px;background:#fff;color:#0f1419;border-radius:18px;text-align:left;font-family:Arial,sans-serif;box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.tweet-tete{display:flex;align-items:center;gap:18px;margin-bottom:18px}
+.tweet-avatar{flex:none;width:70px;height:70px;border-radius:50%;background:#5b2a86;color:#fff;font:800 22px Arial,sans-serif;display:flex;align-items:center;justify-content:center}
+.tweet-ident{display:flex;flex-direction:column}
+.tweet-nom{font:700 30px Arial,sans-serif}
+.tweet-pseudo{font:400 26px Arial,sans-serif;color:#536471}
+.tweet-texte{margin:0;font:400 40px/1.35 Arial,sans-serif}
+.moquerie .citation-fille{margin-top:0;width:1100px;font-size:40px}
+/* Diapo 34 : extrait d’article ; bibliographie en fin de formation (18 octobre). */
+.article-titre.article-extrait{font:italic 600 40px/1.35 Georgia,'Times New Roman',serif}
+.biblio{display:grid;grid-template-columns:repeat(3,1fr);gap:50px;width:1500px!important;max-width:none!important;margin:20px 0 0 calc(50% - 750px);text-align:left}
+.biblio-groupe h3{font-size:28px;margin:0 0 14px}
+.biblio-groupe ul{margin:0;padding-left:24px;font-size:22px;line-height:1.45}
+/* Diapo 58 : l’extrait BFM Tech est lu depuis le PC, sans Internet (18 octobre). */
+#video-voix-clonee video{display:block;width:100%;height:100%;object-fit:contain;background:#000}
+/* Diapo 23 : la prise de conscience d’Anne sous la dernière étape (18 octobre). */
+.chrono2-message .chrono2-suite{margin-top:14px;font-weight:700}
+/* Diapo « Chercher la photo » : recherche par image animée (18 octobre). */
+.lens-demo{position:absolute;left:0;right:0;top:170px;margin:auto;display:flex;justify-content:center;align-items:center;gap:60px}
+.lens-photo{position:relative;flex:none}
+.lens-photo img{display:block;height:620px;width:auto;max-width:none;border-radius:16px}
+.lens-coins{position:absolute;inset:-14px;border-radius:24px;opacity:0;pointer-events:none;
+  background:linear-gradient(#fff,#fff) top left/60px 6px,linear-gradient(#fff,#fff) top left/6px 60px,linear-gradient(#fff,#fff) top right/60px 6px,linear-gradient(#fff,#fff) top right/6px 60px,
+  linear-gradient(#fff,#fff) bottom left/60px 6px,linear-gradient(#fff,#fff) bottom left/6px 60px,linear-gradient(#fff,#fff) bottom right/60px 6px,linear-gradient(#fff,#fff) bottom right/6px 60px;background-repeat:no-repeat;transition:opacity .4s}
+.lens-photo::after{content:"";position:absolute;left:0;right:0;top:0;height:6px;border-radius:3px;background:#4f8cff;box-shadow:0 0 24px 8px rgba(79,140,255,.7);opacity:0}
+.lens-demo:has(.lens-panel.shown) .lens-coins{opacity:1}
+.lens-demo:has(.lens-panel.shown) .lens-photo::after{animation:lens-scan 1.4s ease-in-out infinite alternate}
+.lens-demo:has(.lens-resultat.shown) .lens-photo::after{animation:none;opacity:0}
+@keyframes lens-scan{0%{top:0;opacity:1}100%{top:calc(100% - 6px);opacity:1}}
+.lens-panel{width:760px;min-height:470px;box-sizing:border-box;padding:30px 34px;border-radius:24px;background:#fff;color:#202124;text-align:left;font-family:Arial,sans-serif;box-shadow:0 18px 44px rgba(0,0,0,.5)}
+.lens-barre{display:flex;align-items:center;gap:16px;padding:16px 24px;border:2px solid #dfe1e5;border-radius:40px;font-size:30px;color:#5f6368}
+.lens-loupe{font-size:30px}
+.lens-onglets{display:flex;gap:30px;margin:26px 0 0;font-size:26px;color:#5f6368;border-bottom:2px solid #e8eaed}
+.lens-onglet{padding-bottom:12px}
+.lens-onglet.actif{color:#1a73e8;font-weight:700;border-bottom:4px solid #1a73e8}
+.lens-attente{margin-top:40px;font-size:30px;color:#5f6368;animation:lens-clign 1s ease-in-out infinite alternate}
+@keyframes lens-clign{to{opacity:.35}}
+.lens-panel:has(.lens-resultat.shown) .lens-attente{display:none}
+.lens-resultat{display:flex;flex-direction:column;align-items:center;text-align:center;margin-top:30px}
+.lens-zero{font:800 120px/1 Arial,sans-serif;color:#d93a40}
+.lens-res-titre{margin-top:10px;font:700 38px/1.2 Arial,sans-serif}
+.lens-res-texte{margin-top:12px;font:400 28px/1.35 Arial,sans-serif;color:#5f6368}
+.lens-verdict{position:absolute;left:0;right:0;bottom:30px;margin:auto;width:max-content;padding:8px 24px;border-radius:12px;background:#d93a40;color:#fff;font-family:'Baloo 2',sans-serif;font-size:44px;font-weight:800;box-shadow:0 6px 18px rgba(0,0,0,.45)}
+.slide.editing .lens-demo{position:relative;top:auto}
+/* Faux proche en conversation animée, appel du faux conseiller (18 octobre). */
+.wa-demo{display:flex;justify-content:center;align-items:flex-start;gap:50px;margin-top:20px}
+.sms-carte{flex:none;width:520px;padding:24px 30px;border-radius:28px;background:rgba(245,245,247,.97);color:#111;text-align:left;font-family:-apple-system,'Segoe UI',Arial,sans-serif;box-shadow:0 18px 44px rgba(0,0,0,.5)}
+.sms-haut{display:flex;align-items:center;gap:12px;font-size:22px;color:#666;text-transform:uppercase;letter-spacing:.5px}
+.sms-icone{font-size:28px}
+.sms-quand{margin-left:auto;text-transform:none}
+.sms-num{margin:12px 0 0;font-size:34px;font-weight:700}
+.sms-texte{margin:8px 0 0;font-size:28px;line-height:1.35;color:#222}
+.wa-carte{flex:none;width:760px;height:600px;display:flex;flex-direction:column;border-radius:24px;overflow:hidden;background:#efe7de;text-align:left;font-family:'Segoe UI',Arial,sans-serif;box-shadow:0 18px 44px rgba(0,0,0,.5)}
+.wa-tete{display:flex;align-items:center;gap:16px;padding:16px 22px;background:#075e54;color:#fff}
+.wa-avatar{width:54px;height:54px;border-radius:50%;background:#cfd8dc;display:flex;align-items:center;justify-content:center;font-size:30px}
+.wa-ident{display:flex;flex-direction:column}
+.wa-nom{font-size:28px;font-weight:700}
+.wa-statut{font-size:20px;opacity:.85}
+.wa-fil{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:12px;padding:18px 22px;overflow:hidden}
+.wa-bulle{max-width:78%;padding:12px 18px;border-radius:14px;font-size:27px;line-height:1.3;color:#111;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.wa-bulle.moi{align-self:flex-end;background:#d9fdd3}
+.wa-bulle.lui{align-self:flex-start;background:#fff}
+.wa-bulle.step:not(.shown),.wa-separateur.step:not(.shown){display:none}
+.wa-separateur{align-self:center;padding:6px 16px;border-radius:10px;background:#e1f2fb;color:#54656f;font-size:22px;font-weight:600;text-transform:uppercase}
+.slide.editing .wa-bulle.step,.slide.editing .wa-separateur.step{display:block}
+.appel-banque{display:flex;align-items:center;gap:22px;width:900px;margin:10px auto 30px;padding:18px 26px;border-radius:30px;background:#1c1c1e;color:#fff;text-align:left;font-family:-apple-system,'Segoe UI',Arial,sans-serif;box-shadow:0 14px 36px rgba(0,0,0,.5)}
+.appel-avatar{flex:none;width:76px;height:76px;border-radius:50%;background:#3a3a3c;display:flex;align-items:center;justify-content:center;font-size:40px}
+.appel-ident{flex:1;display:flex;flex-direction:column}
+.appel-quoi{font-size:20px;color:#a1a1a6}
+.appel-nom{font-size:32px;font-weight:700}
+.appel-num{font-size:22px;color:#a1a1a6}
+.appel-btn{flex:none;width:70px;height:70px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px}
+.appel-btn.refuser{background:#ff3b30;transform:rotate(135deg)}
+.appel-btn.accepter{background:#34c759}
+/* Diapo « Le colis arrivé » (2) : liste plus grande, alignée à gauche (18 octobre). */
+.liste-colis{width:1300px;max-width:none;text-align:left;font-size:40px;line-height:1.45}
+.liste-colis li{margin-bottom:18px}
+/* Moyens de paiement inhabituels : liste plus grande (18 octobre). */
+.liste-paiements{font-size:56px;line-height:1.5;text-align:left;width:max-content;max-width:none}
+/* Faux conseiller, Est lyonnais : les articles (18 octobre). */
+.cas-lyon{gap:24px}
+.cas-lyon .article-carte{padding:26px 36px}
+.cas-lyon .article-titre{font-size:42px}
+/* Bibliographie : liens cliquables (18 octobre). */
+.biblio a{color:inherit;text-decoration:underline;text-decoration-color:rgba(255,255,255,.4);text-underline-offset:4px}
+.biblio a:hover{color:#9ec5ff;text-decoration-color:currentColor}
+.biblio-pile{display:flex;flex-direction:column;gap:30px}
+/* Faux sites administratifs (exemples, trois diapos « Comment reconnaître le vrai site ? »),
+   QR code collé sur l’horodateur, QR code avec son adresse au survol (18 octobre). */
+.ex-mock{display:flex;flex-direction:column;gap:6px;margin:0 0 18px;padding:16px 20px;border-radius:16px;text-align:left;font-family:Arial,sans-serif;box-shadow:0 10px 26px rgba(0,0,0,.4)}
+.ex-sms{background:rgba(245,245,247,.97);color:#111}
+.ex-sms-num{font-weight:700;font-size:20px}
+.ex-sms-txt{font-size:19px;line-height:1.35}
+.ex-pub{background:#fff;color:#202124}
+.ex-spons,.g-spons{font-weight:700;font-size:15px;color:#202124}
+.ex-url,.g-url{font-size:16px;color:#4d5156}
+.ex-titre{font-size:21px;color:#1a0dab}
+.ex-prix{font-size:17px;color:#4d5156}
+.ex-mail{background:#fff;color:#202124;border-left:6px solid #1a73e8}
+.ex-mail-de{font-weight:700;font-size:19px}
+.ex-mail-obj{font-size:18px}
+.ex-mail-txt{font-size:18px;color:#5f6368}
+.reperer{display:flex;flex-direction:column;align-items:center;gap:40px;margin-top:20px}
+.reperer .lead{max-width:1150px;margin:0}
+.adr-comp{display:flex;flex-direction:column;gap:26px}
+.adr-ligne{display:flex;align-items:center;gap:22px}
+.adr-marque{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:800 38px Arial,sans-serif;color:#fff}
+.adr-ligne.bon .adr-marque{background:#21a35b}
+.adr-ligne.mauvais .adr-marque{background:#d93a40}
+.adr-barre{display:flex;align-items:center;gap:16px;width:900px;padding:16px 28px;border-radius:40px;background:#fff;color:#3c4043;font:28px Arial,sans-serif;text-align:left}
+.adr-barre b{color:#111}
+.adr-badge{margin-left:auto;padding:4px 12px;border-radius:8px;background:#e8f0fe;color:#1a73e8;font:700 20px Arial,sans-serif}
+.g-mock{width:1000px;padding:26px 34px;border-radius:20px;background:#fff;color:#202124;text-align:left;font-family:Arial,sans-serif;box-shadow:0 16px 40px rgba(0,0,0,.45)}
+.g-barre{padding:14px 24px;border:2px solid #dfe1e5;border-radius:30px;font-size:26px;color:#3c4043}
+.g-res{display:flex;flex-direction:column;gap:4px;margin-top:24px}
+.g-res .g-spons{font-size:20px}
+.g-res .g-url{font-size:20px}
+.g-titre{font-size:30px;color:#1a0dab}
+.g-vrai{padding-top:20px;border-top:2px solid #e8eaed}
+.pl-mock{position:relative;width:820px;padding:30px 40px;border-radius:20px;background:#fff;color:#202124;text-align:center;font-family:Arial,sans-serif;box-shadow:0 16px 40px rgba(0,0,0,.45)}
+.pl-titre{font:700 34px Arial,sans-serif}
+.pl-prix{margin-top:10px;font:800 60px Arial,sans-serif;color:#1a73e8}
+.pl-btn{display:inline-block;margin-top:16px;padding:14px 34px;border-radius:12px;background:#21a35b;color:#fff;font:700 28px Arial,sans-serif}
+.pl-petit{margin:18px 0 0;font-size:11px;line-height:1.3;color:#80868b;text-align:left;transform-origin:top center}
+.pl-petit.step{opacity:1;visibility:visible}
+.pl-petit.step.shown{font-size:26px;color:#d93a40;background:#fff4f4;padding:12px 16px;border-radius:10px;transition:font-size .6s ease}
+.quish-rang{display:flex;align-items:center;justify-content:center;gap:50px;margin-top:10px}
+.quish-rang .compare{width:820px;max-width:none;margin:0}
+.qr-horo{flex:none;width:420px;margin:0;padding:22px;border-radius:24px;background:#3a4250;box-shadow:0 16px 40px rgba(0,0,0,.45);text-align:center}
+.qr-horo-ecran{padding:12px;border-radius:10px;background:#b9e3c6;color:#123;font:700 24px Arial,sans-serif}
+.qr-horo-zone{position:relative;width:240px;height:240px;margin:20px auto 10px}
+.qr-horo-zone img{position:absolute;inset:0;width:240px;height:240px;border-radius:6px}
+.qr-horo-zone .qr-faux{inset:-8px auto auto 6px;width:244px;height:244px;rotate:-4deg;box-shadow:4px 6px 10px rgba(0,0,0,.45);clip-path:polygon(0 0,100% 0,100% 88%,88% 100%,0 100%)}
+.qr-horo-zone .qr-faux.step{transform:translateY(-60px)}
+.qr-horo-zone .qr-faux.step.shown{transform:none;transition:opacity .3s ease,transform .5s cubic-bezier(.2,1.3,.4,1)}
+.qr-horo-legende{color:#e6e9ef;font:600 22px Arial,sans-serif}
+.survol-qr{position:relative;margin-top:20px}
+.survol-qr img{height:200px;border-radius:8px}
+.survol-qr .survol-url-bulle{width:620px;font-size:20px}
+/* QR code collé : les articles (18 octobre). */
+.quish-articles{display:flex;flex-direction:column;gap:24px;align-items:center;margin-top:20px}
+.quish-articles .article-carte{width:1100px;margin:0;padding:26px 36px}
+.quish-articles .article-titre{font-size:42px}
+/* Dissonance : définition et dialogue en bulles (18 octobre). */
+.slide p.lead.dissonance-def{position:absolute;left:0;right:0;top:44%;margin:auto;width:1250px;max-width:none;font-size:48px;line-height:1.4;text-align:center}
+.bd-dialogue{display:flex;flex-direction:column;gap:16px;width:1300px;margin:10px auto 0}
+.bd-bulle{position:relative;max-width:1100px;padding:16px 32px;border:4px solid #111;border-radius:40px;background:#fff;color:#111;font-size:34px;line-height:1.25;font-weight:600;text-align:left;box-shadow:0 10px 28px rgba(0,0,0,.4)}
+.bd-bulle::after{content:"";position:absolute;bottom:-30px;width:0;height:0;border-top:34px solid #fff}
+.bd-bulle.gauche{align-self:flex-start}
+.bd-bulle.gauche::after{left:50px;border-right:28px solid transparent}
+.bd-bulle.droite{align-self:flex-end}
+.bd-bulle.droite::after{right:50px;border-left:28px solid transparent}
+.bd-bulle img{display:block;height:250px;width:auto;border-radius:20px}
+.bd-bulle:has(img){padding:16px}
+/* Surlignage du mail de chantage, Laura en photos, faux mails gendarmerie et Microsoft (18 octobre). */
+.slide mark.surligne.step{opacity:1;transform:none;max-height:none;overflow:visible;pointer-events:auto;color:inherit;background:transparent;border-radius:4px;padding:0 2px;transition:background-color .5s ease}
+.slide mark.surligne.step.shown{background:#fde047}
+.faux-chat-moi{margin-left:auto!important;background:#005c4b}
+.faux-chat-photo{padding:8px!important}
+.faux-photo{display:flex;align-items:center;justify-content:center;width:210px;height:140px;border-radius:10px;font-size:54px}
+#s-sextorsion-exemple-profil .faux-chat{margin-top:6px}
+.faux-chat-fil{height:560px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.faux-chat-fil .faux-chat-bulle.step:not(.shown){display:none}
+.slide.editing .faux-chat-fil{height:auto}
+.slide.editing .faux-chat-fil .faux-chat-bulle.step{display:block}
+#s-sextorsion-exemple-profil .faux-chat-bulle{font-size:27px;margin-top:12px;padding:10px 16px}
+.faux-photo.elle{background:linear-gradient(160deg,#f9a8d4,#be185d)}
+.faux-photo.lui{background:linear-gradient(160deg,#93c5fd,#1e40af)}
+.faux-doc{position:absolute;left:0;right:0;top:20px;margin:auto;width:1700px;background:#fff;color:#1f1f1f;border-radius:12px;text-align:left;font-family:Calibri,'Segoe UI',Arial,sans-serif;box-shadow:0 16px 40px rgba(0,0,0,.45);padding:20px 40px 26px}
+.faux-doc-tete{display:flex;align-items:center;gap:60px;margin-bottom:14px}
+.faux-doc-logo{height:150px;width:auto}
+.faux-doc-titre{margin:0;font-size:30px;font-weight:700}
+.faux-doc-corps{display:grid;grid-template-columns:1fr 1fr;gap:44px;font-size:25px;line-height:1.4}
+.faux-doc-corps p{margin:0 0 12px}
+.faux-doc-corps ul{margin:0 0 12px;padding-left:30px;list-style:"* "}
+.faux-doc-signe{text-align:center}
+.faux-doc-pied{border-top:2px dashed #333;padding-top:10px;text-align:center;font-weight:700;font-family:Arial,sans-serif;font-size:22px}
+.faux-ms{position:absolute;left:0;right:0;top:30px;margin:auto;width:1350px;background:#fff;color:#1b1b1b;border-radius:12px;text-align:left;font-family:'Segoe UI',Arial,sans-serif;box-shadow:0 16px 40px rgba(0,0,0,.45);overflow:hidden}
+.faux-ms-haut{display:flex;align-items:center;justify-content:space-between;padding:28px 44px;border-bottom:1px solid #ddd}
+.ms-logo{display:flex;align-items:center;gap:22px;font-size:62px;font-weight:600;color:#737373;letter-spacing:-1px}
+.ms-carres{display:grid;grid-template-columns:31px 31px;gap:4px}
+.ms-carres i{width:31px;height:31px}
+.ms-carres i:nth-child(1){background:#f25022}.ms-carres i:nth-child(2){background:#7fba00}.ms-carres i:nth-child(3){background:#00a4ef}.ms-carres i:nth-child(4){background:#ffb900}
+.ms-lien{font-size:26px;color:#0b3d91;text-decoration:underline}
+.faux-ms-titre{display:flex;align-items:flex-start;justify-content:space-between;padding:30px 44px 10px}
+.ms-titre{margin:0;font-size:44px;font-weight:600}
+.ms-date{margin:6px 0 0;font-size:26px;color:#666}
+.ms-alerte{padding:14px 26px;border-radius:8px;background:#fde8e8;color:#c50f1f;font-size:28px;font-weight:600;animation:ms-clignote 1s ease-in-out infinite alternate}
+@keyframes ms-clignote{to{background:#c50f1f;color:#fff}}
+.faux-ms-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:24px 44px}
+.ms-stat{border:1px solid #ddd;border-radius:10px;background:#f8f9fb;padding:24px 28px;display:flex;flex-direction:column;gap:10px;font-size:26px;color:#555}
+@property --n{syntax:'<integer>';inherits:false;initial-value:0}
+.ms-n{font-size:64px;color:#c50f1f;font-weight:600;counter-reset:n var(--n)}
+.ms-n::after{content:counter(n)}
+.ms-n.ms-pc::after{content:counter(n) "%"}
+.faux-ms-stats.shown .ms-n{animation:ms-compte 2.2s ease-out forwards}
+@keyframes ms-compte{from{--n:0}to{--n:var(--fin)}}
+.faux-ms-texte{padding:4px 44px 34px;font-size:30px;line-height:1.5}
+.faux-ms-texte p{margin:0 0 14px}
+.slide.editing .faux-doc,.slide.editing .faux-ms{position:relative;top:auto}
+/* Faux sites administratifs : les trois faux, puis la réalité (18 octobre). */
+#s-faux-sites-demarches .ex-sms-num,#s-faux-sites-demarches .ex-mail-de{font-size:26px}
+#s-faux-sites-demarches .ex-sms-txt,#s-faux-sites-demarches .ex-mail-obj,#s-faux-sites-demarches .ex-mail-txt{font-size:25px}
+#s-faux-sites-demarches .ex-spons{font-size:20px}
+#s-faux-sites-demarches .ex-url,#s-faux-sites-demarches .ex-prix{font-size:22px}
+#s-faux-sites-demarches .ex-titre{font-size:27px}
+#s-faux-sites-demarches .compare .col{width:480px}
+#s-faux-sites-demarches .ex-realite h3{font-size:28px;margin:0 0 6px;color:#fff}
+#s-faux-sites-demarches .ex-realite .lead{font-size:28px;line-height:1.3;margin:0}
+.ex-realite{margin-top:8px;padding:14px 18px;border-radius:14px;background:rgba(34,197,94,.14);border:2px solid rgba(34,197,94,.6)}
+.ex-realite-titre{margin:0 0 4px;font-size:20px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#4ade80}
+/* Faux conseiller : l'appel à écouter (18 octobre). */
+.slide audio.appel-audio{display:block;width:900px;height:54px;margin:-14px auto 22px}
+/* Projection sur grand écran (17 octobre). Antonin : « assure-toi que les photos, les vidéos
+   et les textes soient assez gros pour être vus [...] sans que ce soit difforme ». Chaque diapo
+   est agrandie D’UN SEUL BLOC (même facteur pour le texte, les images et leurs positions), donc
+   rien ne se déforme ni ne se chevauche, puis recentrée. Le facteur est calculé pour que le contenu
+   tienne dans la diapo, marges des boutons comprises. En mode Édition, la diapo reprend sa taille. */
+.slide.editing{scale:none!important;translate:none!important}
+#s0{scale:1.60;translate:0px -28px}
+#s-reperer-une-image-en-ia{scale:1.60;translate:0px -27px}
+#s-d4{scale:1.80;translate:0px 214px}
+#s-d5{scale:1.80;translate:0px 379px}
+#s-d6{scale:1.80;translate:0px 214px}
+#s-d7{scale:1.80;translate:0px 379px}
+#s-mais{scale:1.80;translate:0px 281px}
+#s-ces-photos-vont-devenir-de-plu{scale:1.60;translate:27px -104px}
+#s5{scale:1.10;translate:0px 22px}
+#s-d11{scale:1.80;translate:0px 308px}
+#s-pourquoi-peut-on-se-faire-nean{scale:1.60;translate:0px -27px}
+#s-lappel-a-lemotion{scale:1.60;translate:0px -22px}
+#s-ia-facebook{scale:1.11;translate:0px -14px}
+#s-d16{scale:1.03;translate:0px -20px}
+#s-quest-ce-quun-brouteur{scale:1.60;translate:1px 200px}
+#s-faux-brad-pitt{scale:1.12;translate:-6px -26px}
+#s-brad-pitt-deroule{scale:1.14;translate:11px 68px}
+#s31{scale:1.60;translate:0px 482px}
+#s-brad-pitt-terrain{scale:1.60;translate:50px 156px}
+#s32{scale:1.80;translate:0px 363px}
+#s-couts-irrecuperables{scale:1.10;translate:-48px -24px}
+#s-dissonnance-cognitive{scale:1.06;translate:0px -29px}
+#s-dissonnance-cognitive-2{scale:1.40;translate:0px 11px}
+#s-brad-pitt-doute{scale:1.23;translate:10px 34px}
+#s-brad-pitt-double-peine{scale:1.40;translate:0px 82px}
+#s-que-faire-sentimentale{scale:1.60;translate:0px -26px}
+#s-arnaque-sentimentale-reflexes{scale:1.00;translate:0px 0px}
+#s-radar-faux-profil{scale:1.08;translate:0px -33px}
+#s-pourquoi-ca-tombe-sur-moi-ca-n{scale:1.60;translate:0px -27px}
+#s41{scale:1.80;translate:-14px 237px}
+#s-survivant-arnaques{scale:1.00;translate:0px 0px}
+#s-le-chantage-sexuel-sextorsion{scale:1.60;translate:0px -27px}
+#s-d30{scale:1.80;translate:0px 319px}
+#s-d31{scale:1.00;translate:0px 34px}
+#s-d32{scale:1.80;translate:0px 379px}
+#s-que-faire-sextorsion{scale:1.60;translate:0px -26px}
+#s-ne-surtout-pas-faire{scale:1.46;translate:9px 117px}
+#s-le-phishing-hammeconnage{scale:1.60;translate:0px -22px}
+#s-d35{scale:1.08;translate:9px 81px}
+#s-d36{scale:1.22;translate:0px 70px}
+#s-d37{scale:1.00;translate:0px -20px}
+#s-faux-proche{scale:1.18;translate:6px 5px}
+#s-voix-clonee{scale:1.20;translate:0px 23px}
+#s-voix-clonee-cas{scale:1.58;translate:0px 280px}
+#s-que-faire-faux-proche{scale:1.60;translate:0px -26px}
+#s-voix-clonee-reflexes{scale:1.59;translate:0px 219px}
+#s-radar-faux-proche{scale:1.08;translate:0px -33px}
+#s-faux-conseiller{scale:1.12;translate:0px -14px}
+#s-faux-conseiller-cas{scale:1.08;translate:0px -32px}
+#s-que-faire-faux-conseiller{scale:1.60;translate:0px -26px}
+#s-faux-conseiller-reflexes{scale:1.60;translate:0px 297px}
+#s-radar-faux-conseiller{scale:1.01;translate:0px -58px}
+#s-le-colis-arrive{scale:1.01;translate:0px -50px}
+#s-que-faire-colis{scale:1.60;translate:0px -26px}
+#s-le-colis-arrive-2{scale:1.54;translate:129px 264px}
+#s-radar-colis{scale:1.08;translate:0px -33px}
+#s-linginerie-sociale{scale:1.60;translate:0px -22px}
+#s-comment-ne-pas-se-faire-avoir{scale:1.60;translate:0px -27px}
+#s-les-fautes-dorthographe{scale:1.80;translate:0px 495px}
+#s-les-adresses-emails-etranges{scale:1.80;translate:0px 431px}
+#s-lurl-ne-correspond-pas{scale:1.80;translate:0px 299px}
+#s-faux-sites-demarches{scale:1.18;translate:0px 49px}
+#s-que-faire-faux-sites{scale:1.60;translate:0px -26px}
+#s-faux-sites-demarches-reperer{scale:1.60;translate:20px 252px}
+#s-radar-faux-site-officiel{scale:1.01;translate:0px -58px}
+#s-quishing{scale:1.50;translate:62px 120px}
+#s-que-faire-qr{scale:1.60;translate:0px -26px}
+#s-quishing-reflexes{scale:1.35;translate:0px 66px}
+#s-les-moyens-de-paiements-inhabi{scale:1.60;translate:0px 200px}
+#s13{scale:1.60;translate:0px -34px}
+#s-fausses-pubs-celebrites{scale:1.60;translate:0px 220px}
+#s-que-faire-fausses-pubs{scale:1.60;translate:0px -26px}
+#s-fausses-pubs-reflexes{scale:1.60;translate:0px 241px}
+#s-radar-faux-placement{scale:1.08;translate:0px -33px}
+#s-si-on-vous-dit-que-quelque-cho{scale:1.60;translate:0px -22px}
+#s-essayons-de-traquer-les-faux-e{scale:1.60;translate:0px -27px}
+#s-d51{scale:1.80;translate:0px 424px}
+#s-d52{scale:1.80;translate:0px 379px}
+#s-d53{scale:1.80;translate:0px 394px}
+#s-d54{scale:1.80;translate:0px 342px}
+#s38{scale:1.60;translate:0px -27px}
+#s-merci{scale:1.80;translate:0px 281px}
+#s-bilan-qr{scale:1.80;translate:0px -25px}
+#s-faux-brad-pitt-video{scale:1.35;translate:0px 51px}
+#s-jeu-ia-flamants{scale:1.00;translate:0px 71px}
+#s-jeu-ia-portraits{scale:1.14;translate:0px 72px}
+#s-jeu-ia-will-smith{scale:1.00;translate:0px 0px}
+#s-brad-pitt-isolement{scale:1.45;translate:0px 222px}
+#s-arnaque-sentimentale-reflexes-2{scale:1.60;translate:1px 279px}
+#s-sextorsion-exemple-mail{scale:1.39;translate:0px 91px}
+#s-sextorsion-exemple-profil{scale:1.07;translate:0px -24px}
+#s-lurl-ne-correspond-pas-2{scale:1.60;translate:-11px 237px}
+#s-brad-pitt-rassurer{scale:1.60;translate:192px 215px}
+#s-la-flatterie{scale:1.09;translate:0px -18px}
+#s-sextorsion-cas-reels{scale:1.35;translate:0px 78px}
+#s-brad-pitt-moquerie{scale:1.31;translate:0px 52px}
+#s-bibliographie{scale:1.24;translate:36px 37px}
+#s-deni-plausible{scale:1.35;translate:0px 297px}
+#s-faux-sites-demarches-reperer-2{scale:1.19;translate:67px 10px}
+#s-faux-sites-demarches-reperer-3{scale:1.22;translate:6px 20px}
+#s-quishing-presse{scale:1.08;translate:0px -32px}
+#s-panthere-rose-ia{scale:1.80;translate:0px 308px}
+#s-fausses-pubs-presse{scale:1.08;translate:0px -32px}
+/* fin projection */
+  </style>
+</head>
+<body>
+
+<div id="topbar">
+  <span class="brand">🛡️ Formation contre les arnaques en ligne</span>
+  <div class="tools">
+    <button id="btn-admin-grid" title="Toutes les diapos" onclick="Deck.openAdmin()">Toutes les diapos</button>
+    <button id="btn-dossier" hidden title="Donner au navigateur l’accès au dossier Cours : nécessaire pour les séries, les diapos liées et les médias" onclick="Deck.connecterDossier()">🔌 Connecter le dossier</button>
+    <button id="btn-fullscreen" title="Plein écran"><span class="t-fr">Plein écran</span><span class="t-en" hidden>Fullscreen</span></button>
+    <button id="btn-lang" title="Switch to English" onclick="Deck.toggleLang()">EN</button>
+  </div>
+</div>
+
+<div id="deck" data-edite-en-page="1792325828941">
+
+  
+
+  <section id="s0" class="slide short cover"><h1 data-pose="" data-off-x="249.64" data-off-y="457.05" style="left:24.964%;top:45.705%"><span class="t-fr">Formation contre les arnaques en ligne</span><span class="t-en" hidden=""></span></h1></section>
+
+  <section id="s-quel-est-le-point-comment-entr" class="slide"><h2 data-pose="" data-off-x="261.04" data-off-y="110.13" style="left:26.104%;top:11.013%"><span class="t-fr">Quel est le point comment entre toutes ces personnes ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard step" data-order="3" data-pose="" data-off-x="346.5" data-off-y="304.0" style="left:34.7%;top:30.4%;width:17.6%"><img src="../medias/images/arnaques-quel-est-le-point-comment-entre-tout-2.jpg" alt="" loading="lazy"></div><div class="imgcard step" data-order="5" data-pose="" data-off-x="639.2" data-off-y="304.0" style="left:63.9%;top:30.4%;width:15.9%"><img src="../medias/images/arnaques-quel-est-le-point-comment-entre-tout-2-2.jpg" alt="" loading="lazy"></div><div class="imgcard step" data-order="1" data-pose="" data-off-x="92.5" data-off-y="305.0" style="left:9.2%;top:30.5%;width:15.3%"><img src="../medias/images/arnaques-quel-est-le-point-comment-entre-tout-2-3.jpg" alt="" loading="lazy"></div><div class="imgcard step" data-order="2" data-pose="" data-off-x="216.6" data-off-y="335.0" style="left:21.7%;top:33.5%;width:15.6%"><img src="../medias/images/arnaques-quel-est-le-point-comment-entre-tout-2-4.jpg" alt="" loading="lazy"></div><div class="imgcard step" data-order="4" data-pose="" data-off-x="500.0" data-off-y="343.0" style="left:50%;top:34.3%;width:15.6%"><img src="../medias/images/arnaques-quel-est-le-point-comment-entre-tout-2-5.jpg" alt="" loading="lazy"></div><div class="imgcard step" data-order="10" data-pose="" data-off-x="651.8" data-off-y="606.0" style="left:65.2%;top:60.6%;width:15.6%"><img src="../medias/images/arnaques-quel-est-le-point-comment-entre-tout-2-6.jpg" alt="" loading="lazy"></div><div class="imgcard step" data-order="7" data-pose="" data-off-x="222.4" data-off-y="627.0" style="left:22.2%;top:62.7%;width:16.9%"><img src="../medias/images/arnaques-quel-est-le-point-comment-entre-tout-2-7.jpg" alt="" loading="lazy"></div><div class="imgcard step" data-order="8" data-pose="" data-off-x="374.2" data-off-y="634.0" style="left:37.4%;top:63.4%;width:16.9%"><img src="../medias/images/arnaques-quel-est-le-point-comment-entre-tout-2-8.jpg" alt="" loading="lazy"></div><div class="imgcard step" data-order="6" data-pose="" data-off-x="93.3" data-off-y="644.0" style="left:9.3%;top:64.4%;width:15.3%"><img src="../medias/images/arnaques-quel-est-le-point-comment-entre-tout-2-9.jpg" alt="" loading="lazy"></div><div class="imgcard step" data-order="9" data-pose="" data-off-x="528.5" data-off-y="663.0" style="left:52.9%;top:66.3%;width:15.6%"><img src="../medias/images/arnaques-quel-est-le-point-comment-entre-tout-2-10.jpg" alt="" loading="lazy"></div><div class="speaker-notes" hidden="">https://thispersondoesnotexist.com/</div></section>
+
+  <section id="s-reperer-une-image-en-ia" class="slide short"><h2 data-pose="" data-off-x="382.76" data-off-y="476.87" style="left:38.276%;top:47.687%"><span class="t-fr">Repérer une image en IA</span><span class="t-en" hidden=""></span></h2></section>
+  <section class="slide jeu-ia" id="s-jeu-ia-flamants"><h2><span class="t-fr">Laquelle est générée par IA ?</span><span class="t-en" hidden="">Which one is AI-generated?</span></h2><div class="duel-ia"><figure class="duel-carte"><img src="../medias/images/quiz-ia-flamant-rose-beach.png" alt="Photo A : un flamant rose sur une plage, la tête cachée" loading="lazy"><span class="lettre">A</span><span class="verdict vraie step" data-order="1"><span class="t-fr">Vraie photo</span><span class="t-en" hidden="">Real photo</span></span></figure><figure class="duel-carte"><img src="../medias/images/quiz-ia-flamant-rose.jpg" alt="Photo B : un flamant rose dans l’eau, la tête cachée" loading="lazy"><span class="lettre">B</span><span class="verdict ia step" data-order="1"><span class="t-fr">Générée par IA</span><span class="t-en" hidden="">AI-generated</span></span></figure></div></section>
+  <section class="slide jeu-ia" id="s-jeu-ia-portraits"><h2><span class="t-fr">Laquelle est générée par IA ?</span><span class="t-en" hidden="">Which one is AI-generated?</span></h2><div class="duel-ia duel-portraits"><figure class="duel-carte"><img src="../medias/images/masni-photo-ia-1.png" alt="Photo A : un portrait ancien de deux femmes" loading="lazy"><span class="lettre">A</span><span class="verdict ia step" data-order="1"><span class="t-fr">Générée par IA</span><span class="t-en" hidden="">AI-generated</span></span></figure><figure class="duel-carte"><img src="../medias/images/masni-photo-ia-2.jpg" alt="Photo B : des acteurs sur un tournage, devant un fond vert" loading="lazy"><span class="lettre">B</span><span class="verdict ia step" data-order="1"><span class="t-fr">Générée par IA</span><span class="t-en" hidden="">AI-generated</span></span></figure></div></section>
+  <section class="slide jeu-ia" id="s-jeu-ia-will-smith"><h2 class="" style=""><span class="t-fr">Et en vidéo ? « Will Smith mange des spaghettis »</span><span class="t-en" hidden="">And on video? “Will Smith eating spaghetti”</span></h2><div class="duel-ia"><figure class="duel-video carre"><figcaption><span class="t-fr">2023</span><span class="t-en" hidden="">2023</span></figcaption><video src="../medias/video/will-smith-spaghetti-ia-2023.mp4" controls="" playsinline="" preload="metadata" class="" style=""></video><span class="verdict ia step" data-order="1"><span class="t-fr">Générée par IA</span><span class="t-en" hidden="">AI-generated</span></span></figure><figure class="duel-video portrait"><figcaption><span class="t-fr">Aujourd’hui</span><span class="t-en" hidden="">Today</span></figcaption><video src="../medias/video/will-smith-spaghetti-ia-recente.mp4" controls="" playsinline="" preload="metadata" class="" style="transform: translate(0px, -7.43px); object-view-box: inset(19.1% 0% 19.8%);" data-off-x="0" data-off-y="-7.43" data-recadre-video="19.1 0 19.8 0"></video><span class="verdict vraie step" data-order="1"><span class="t-fr">Vraie vidéo</span><span class="t-en" hidden="">Real video</span></span></figure></div></section>
+
+  <section id="s-d4" class="slide"><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="125.55" style="left:39.091%;top:12.555%"><img src="../medias/images/arnaques-diapo-4.jpg" alt="" loading="lazy"></div></section>
+
+  <section id="s-d5" class="slide"><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="125.55" style="left:39.091%;top:12.555%"><img src="../medias/images/arnaques-diapo-5.jpg" alt="" loading="lazy"></div></section>
+
+  <section id="s-d6" class="slide"><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="125.55" style="left:39.091%;top:12.555%"><img src="../medias/images/macron-alien-ia.jpg" alt="" loading="lazy"></div></section>
+
+  <section id="s-d7" class="slide"><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="125.55" style="left:39.091%;top:12.555%"><img src="../medias/images/pape-francois-fausse-image.jpeg" alt="" loading="lazy"></div></section>
+
+  <section id="s-mais" class="slide"><h2 data-pose="" data-off-x="470.42" data-off-y="110.13" style="left:47.042%;top:11.013%"><span class="t-fr">Mais…</span><span class="t-en" hidden=""></span></h2><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="182.8" style="left:39.091%;top:18.28%"><img src="../medias/images/arnaques-mais-8.jpg" alt="" loading="lazy"></div></section>
+
+  <section id="s-panthere-rose-ia" class="slide"><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="125.55" style="left:39.091%;top:12.555%"><img src="../medias/images/panthere-rose-ia.jpg" alt="Image générée par IA : une personne déguisée en Panthère rose sous un canon à eau, pendant une manifestation lycéenne à Paris" loading="lazy"></div>
+  <div class="speaker-notes" hidden="">Image générée par IA, virale pendant la mobilisation lycéenne d’octobre 2026 : une personne déguisée en Panthère rose, prise sous le canon à eau d’un camion de police à Paris. Démentie par SIC Verifica (Portugal) et Newtral (Espagne, 16 octobre 2026) : texte déformé sur un panneau, objets distordus, jet d’eau incohérent. France 24 (9 octobre 2026) a recensé d’autres contenus IA autour des blocus lycéens.</div>
+  </section>
+
+  <section id="s-ces-photos-vont-devenir-de-plu" class="slide short"><h2 data-pose="" data-off-x="261.92" data-off-y="452.64" style="left:26.192%;top:45.264%"><span class="t-fr">Ces photos vont devenir de plus en plus réalistes.</span><span class="t-en" hidden=""></span></h2><ul data-pose="" data-off-x="231.7" data-off-y="509.89" style="left:23.17%;top:50.989%;font-size:36px;width:1150px;max-width:none;text-align:left"><li class="step" data-order="1"><span class="t-fr">On ne peut donc pas se baser (uniquement) sur le fait qu’elles «&nbsp;paraissent vraies !&nbsp;»</span><span class="t-en" hidden=""></span></li><li class="step" data-order="2"><span class="t-fr">Dans ce cas, comment ne plus se faire avoir ?</span><span class="t-en" hidden=""></span></li></ul></section>
+
+  <section class="slide" id="s5" data-serie="serie_043e4a77-7a07-444d-9646-de128a43839f">
+    <style>
+#s5 .crit-roue{position:absolute;left:0;right:0;top:40px;margin:auto;width:1300px;height:790px}
+#s5 .crit-traits{position:absolute;inset:0;width:100%;height:100%}
+#s5 .crit-traits line{stroke:#7dd3fc;stroke-width:5;stroke-linecap:round;opacity:.7}
+#s5 .crit-centre{position:absolute;left:490px;top:235px;width:320px;height:320px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 35% 30%,#3b82f6,#1e3a8a);box-shadow:0 18px 50px rgba(0,0,0,.5);text-align:center}
+#s5 .crit-centre h2{position:static;margin:0;padding:0 34px;font-size:34px;line-height:1.2;color:#fff}
+#s5 .crit-cercle{position:absolute;width:216px;height:216px;perspective:900px}
+#s5 .crit-face,#s5 .crit-dos{position:absolute;inset:0;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;backface-visibility:hidden;transition:transform .7s ease}
+#s5 .crit-face{background:radial-gradient(circle at 35% 30%,#64748b,#1e293b);color:#fff;font-size:84px;font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+#s5 .crit-dos.step{opacity:1;pointer-events:auto;transform:rotateY(180deg);background:radial-gradient(circle at 35% 30%,#fde68a,#f59e0b);color:#1c1917;font-size:24px;font-weight:700;line-height:1.15;padding:0 18px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+#s5 .crit-dos.step.shown{transform:rotateY(0)}
+#s5 .crit-cercle:has(.crit-dos.shown) .crit-face{transform:rotateY(-180deg)}
+#s5 .attention{position:absolute;left:auto;right:150px;top:auto;bottom:120px}
+.slide.editing#s5 .crit-roue{position:relative;top:auto}
+</style>
+    <div class="crit-roue"><svg class="crit-traits" viewBox="0 0 1300 790" aria-hidden="true"><line x1="650" y1="395" x2="650" y2="105"/><line x1="650" y1="395" x2="1083" y2="250"/><line x1="650" y1="395" x2="1083" y2="540"/><line x1="650" y1="395" x2="650" y2="685"/><line x1="650" y1="395" x2="217" y2="540"/><line x1="650" y1="395" x2="217" y2="250"/></svg><div class="crit-centre"><h2><span class="t-fr">Quels sont les critères pour valider l'information&nbsp;?</span><span class="t-en" hidden="">What criteria help us validate information?</span></h2></div><div class="crit-cercle" style="left:542px;top:-3px"><span class="crit-face">1</span><span class="crit-dos step" data-order="1"><span class="t-fr">Fiabilité de la source</span><span class="t-en" hidden="">Reliability of the source</span></span></div><div class="crit-cercle" style="left:975px;top:142px"><span class="crit-face">2</span><span class="crit-dos step" data-order="2"><span class="t-fr">Fiabilité de l'interlocuteur</span><span class="t-en" hidden="">Reliability of the speaker</span></span></div><div class="crit-cercle" style="left:975px;top:432px"><span class="crit-face">3</span><span class="crit-dos step" data-order="3"><span class="t-fr">Niveau de preuves</span><span class="t-en" hidden="">Level of evidence</span></span></div><div class="crit-cercle" style="left:542px;top:577px"><span class="crit-face">4</span><span class="crit-dos step" data-order="4"><span class="t-fr">Plusieurs sources fiables en parlent</span><span class="t-en" hidden="">Several reliable sources report it</span></span></div><div class="crit-cercle" style="left:109px;top:432px"><span class="crit-face">5</span><span class="crit-dos step" data-order="5"><span class="t-fr">Crédibilité de l'information</span><span class="t-en" hidden="">Credibility of the information</span></span></div><div class="crit-cercle" style="left:109px;top:142px"><span class="crit-face">6</span><span class="crit-dos step" data-order="6"><span class="t-fr">Commentaires et critiques de l'information</span><span class="t-en" hidden="">Comments and criticism of the information</span></span></div></div>
+    <p class="attention step" id="attention-txt" data-order="7"><span class="t-fr">Mais attention…</span><span class="t-en" hidden="">But be careful…</span></p>
+  <div class="speaker-notes" hidden=""></div></section>
+
+  
+
+  <section id="s-pourquoi-peut-on-se-faire-nean" class="slide short"><h2 data-pose="" data-off-x="261.04" data-off-y="448.26" style="left:26.104%;top:44.826%"><span class="t-fr">Pourquoi peut-on se faire néanmoins piéger par ces images ?</span><span class="t-en" hidden=""></span></h2></section>
+
+  <section id="s-lappel-a-lemotion" class="slide short"><h2 data-pose="" data-off-x="410.86" data-off-y="464.76" style="left:41.086%;top:46.476%"><span class="t-fr">L’appel à l’émotion</span><span class="t-en" hidden=""></span></h2><ul data-pose="" data-off-x="293.37" data-off-y="522" style="left:29.337%;top:52.2%"><li><span class="t-fr">Si nous sommes émus par une information, nous avons davantage tendance à y croire, MÊME si elle est fausse !</span><span class="t-en" hidden=""></span></li></ul></section>
+
+  <section class="slide reponse-compacte" id="s-ia-facebook" data-serie="serie_ef4e6cef-f509-4bfd-b2e5-e2f5e622bc1e">
+    <h2 data-pose="" data-off-x="350.41" data-off-y="113.5" style="left: 35.041%; top: 11.35%;"><span class="t-fr">Le pouvoir de l'IA sur Facebook</span><span class="t-en" hidden="">The power of AI on Facebook</span></h2>
+  <img src="../medias/images/ia-facebook-bebe-boue.jpg" alt="Photo générée par IA d'un bébé dans la boue, publication engagement bait" data-pose="" data-off-x="221.8" data-off-y="200" style="left:22.18%;top:20%;height:620px;width:auto;max-width:none;border-radius:12px">
+  <img class="step" id="ia-reveal" src="../medias/images/ia-facebook-sept-bebes.jpg" alt="Photo générée par IA de sept bébés identiques dans les bras d'une femme" data-pose="" data-off-x="571.4" data-off-y="200" style="left:57.14%;top:20%;height:620px;width:auto;max-width:none;border-radius:12px"></section>
+
+  <section id="s-d16" data-serie="serie_79f0958f-f8cc-443d-a66e-bb486e68ac24" class="slide"><img src="../medias/images/arnaques-diapo-16.jpg" alt="" loading="lazy" data-pose="" data-off-x="411.2" data-off-y="81.5" style="left:41.12%;top:8.15%;height:760px;width:auto;max-width:none;border-radius:16px"></section>
+
+  <section id="s-d17" class="slide"><div class="imgcard step" data-order="4" data-pose="" data-off-x="713.0" data-off-y="0.0" style="left:71.3%;top:0.0%;width:22.8%"><img src="../medias/images/arnaques-diapo-17.jpg" alt="" loading="lazy"></div><div class="imgcard step" data-order="3" data-pose="" data-off-x="488.3" data-off-y="0.0" style="left:48.8%;top:0.0%;width:22.5%"><img src="../medias/images/arnaques-diapo-17-2.jpg" alt="" loading="lazy"></div><div class="imgcard step" data-order="2" data-pose="" data-off-x="281.1" data-off-y="18.0" style="left:28.1%;top:1.8%;width:21.2%"><img src="../medias/images/arnaques-diapo-17-3.jpg" alt="" loading="lazy"></div><div class="imgcard step" data-order="1" data-pose="" data-off-x="80.7" data-off-y="54.0" style="left:8.1%;top:5.4%;width:20.9%"><img src="../medias/images/arnaques-diapo-17-4.jpg" alt="" loading="lazy"></div></section>
+
+  <section id="s-quest-ce-quun-brouteur" class="slide"><h2 data-pose="" data-off-x="302" data-off-y="90" style="left:30.2%;top:9%;text-align:left"><span class="t-fr">Qu’est-ce qu’un brouteur ?</span><span class="t-en" hidden=""></span></h2><div data-pose="" data-off-x="302" data-off-y="167.38" style="left:30.2%;top:16.738%;text-align:left"><ul style="font-size:36px"><li class="step" data-order="1"><span class="t-fr">Personne qui va créer une arnaque sur Internet.</span><span class="t-en" hidden=""></span></li></ul><h3 class="step" data-order="2" style="font-size:42px;margin:36px 0 10px"><span class="t-fr">Plusieurs types d’arnaque</span><span class="t-en" hidden=""></span></h3><ul style="font-size:36px"><li class="step" data-order="3"><span class="t-fr">Sentimentale</span><span class="t-en" hidden=""></span></li><li class="step" data-order="4"><span class="t-fr">Chantage sexuel</span><span class="t-en" hidden=""></span></li><li class="step" data-order="5"><span class="t-fr">Fausse convocation judiciaire</span><span class="t-en" hidden=""></span></li><li class="step" data-order="6"><span class="t-fr">Se faire passer pour une administration</span><span class="t-en" hidden=""></span></li><li class="step" data-order="7"><span class="t-fr">Faux compte de star</span><span class="t-en" hidden=""></span></li></ul></div></section>
+
+  <section class="slide" id="s-faux-brad-pitt" data-serie="serie_4dcb0c00-f2f5-4378-af49-2964b837dd68">
+    <img src="../medias/images/faux-brad-pitt.jpg" alt="Anne et une fausse photo de Brad Pitt" data-pose="" data-off-x="210" data-off-y="120" style="left:21%;top:12%;height:700px;width:auto;max-width:none;border-radius:16px">
+  </section>
+
+  <section class="slide" id="s-faux-brad-pitt-video">
+    
+    <div class="illu-frame video-frame" id="video-faux-brad-pitt"><iframe src="https://www.youtube-nocookie.com/embed/iY2niQaN6iI?rel=0" title="Un faux Brad Pitt arnaque une femme de 830 000 euros (La Provence)" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen="" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+    <button type="button" class="reveal-btn illu-fs-btn" data-target="#video-faux-brad-pitt"><span class="t-fr">Plein écran</span><span class="t-en" hidden="">Fullscreen</span></button>
+  <div class="speaker-notes" hidden="">Vidéo de La Provence, 14 janvier 2025. Si elle ne se lance pas : https://www.youtube.com/watch?v=iY2niQaN6iI</div>
+  </section>
+  <section class="slide" id="s-brad-pitt-deroule">
+    <h2><span class="t-fr">Anne, 53 ans, 830 000 € envolés</span><span class="t-en" hidden="">Anne, 53, €830,000 gone</span></h2>
+    <div class="chrono2"><div class="chrono2-piste"><div class="chrono2-fond"></div><div class="chrono2-rempli step" data-order="1" style="width:0.0%"></div><div class="chrono2-rempli step" data-order="2" style="width:25.0%"></div><div class="chrono2-rempli step" data-order="3" style="width:50.0%"></div><div class="chrono2-rempli step" data-order="4" style="width:75.0%"></div><div class="chrono2-rempli step" data-order="5" style="width:100.0%"></div><div class="chrono2-point" style="left:0.0%"><span class="chrono2-date"><span class="t-fr">Février 2023</span><span class="t-en" hidden=""></span></span></div><div class="chrono2-point" style="left:25.0%"><span class="chrono2-date"><span class="t-fr">Le lendemain</span><span class="t-en" hidden=""></span></span></div><div class="chrono2-point" style="left:50.0%"><span class="chrono2-date"><span class="t-fr">Mi-2023</span><span class="t-en" hidden=""></span></span></div><div class="chrono2-point" style="left:75.0%"><span class="chrono2-date"><span class="t-fr">Automne 2023</span><span class="t-en" hidden=""></span></span></div><div class="chrono2-point" style="left:100.0%"><span class="chrono2-date"><span class="t-fr">Juin 2024</span><span class="t-en" hidden=""></span></span></div><div class="chrono2-curseur step" data-order="1" style="left:0.0%"></div><div class="chrono2-curseur step" data-order="2" style="left:25.0%"></div><div class="chrono2-curseur step" data-order="3" style="left:50.0%"></div><div class="chrono2-curseur step" data-order="4" style="left:75.0%"></div><div class="chrono2-curseur step" data-order="5" style="left:100.0%"></div></div><div class="chrono2-messages"><div class="chrono2-message chrono2-msg step" data-order="1"><span class="chrono2-qui"><span class="t-fr">Instagram · « Jane Etta Pitt »</span><span class="t-en" hidden=""></span></span><p><span class="t-fr">« C’est une femme comme vous qu’il faut à mon fils. »</span><span class="t-en" hidden=""></span></p></div><div class="chrono2-message chrono2-msg step" data-order="2"><span class="chrono2-qui"><span class="t-fr">« Brad Pitt »</span><span class="t-en" hidden=""></span></span><p><span class="t-fr">« Hello Anne, ma mère m’a beaucoup parlé de vous. J’aimerais en savoir plus. »</span><span class="t-en" hidden=""></span></p></div><div class="chrono2-message chrono2-msg step" data-order="3"><span class="chrono2-qui"><span class="t-fr">« Brad Pitt »</span><span class="t-en" hidden=""></span></span><p><span class="t-fr">« Je suis hospitalisé. On m’a trouvé un cancer du rein. »</span><span class="t-en" hidden=""></span></p></div><div class="chrono2-message chrono2-evt step" data-order="4"><span class="chrono2-qui"><span class="t-fr">Dans la presse</span><span class="t-en" hidden=""></span></span><p><span class="t-fr">Une photo du vrai Brad Pitt avec sa compagne, Inès de Ramon.</span><span class="t-en" hidden=""></span></p></div><div class="chrono2-message chrono2-evt step" data-order="5"><span class="chrono2-qui"><span class="t-fr">Dans la presse</span><span class="t-en" hidden=""></span></span><p><span class="t-fr">Le vrai couple officialise sa relation.</span><span class="t-en" hidden=""></span></p><p class="chrono2-suite"><span class="t-fr">Anne réalise qu’elle se fait tromper depuis plus d’un an.</span><span class="t-en" hidden=""></span></p></div></div></div>
+  <div class="speaker-notes" hidden="">Sources : Europe 1 et Fox News (premier message de la fausse mère, février 2023), graphic.com.gh (premier message de « Brad » le lendemain, traduit de l’anglais), Paris Match Belgique (13 janvier 2025), INCYBER (fin de l’arnaque en juin 2024). Le message de l’hôpital est une reconstitution : les sources racontent le faux cancer du rein sans citer le message exact.
+Suite de l’histoire : les cadeaux bloqués en douane, la demande en mariage, l’argent du divorce (environ 775 000 €), le faux journal télévisé fait par IA qui dément la photo du couple, la plainte à l’été 2024. Au total, 830 000 € perdus.
+
+« Mi-2023 » pour le faux cancer : les sources ne donnent pas de date précise pour ce message.</div>
+  </section>
+
+  <section class="slide" id="s31" data-serie="serie_674638d9-5109-4a35-a423-bd122b4ae99f">
+    <h2 data-pose="" data-off-x="266.99" data-off-y="110.13" style="left:26.699%;top:11.013%"><span class="t-fr">Comment expliquer qu'on ait pu se faire piéger ?</span><span class="t-en" hidden="">How can we explain falling for it?</span></h2>
+    <p class="lead" style="color:var(--acc);font-weight:800;margin-top:10px;left:43.665%;top:17.839%" data-pose="" data-off-x="436.65" data-off-y="178.39"><span class="t-fr">Ce n'est PAS la stupidité !</span><span class="t-en" hidden="">It's NOT stupidity!</span></p>
+  </section>
+  <section class="slide" id="s-brad-pitt-terrain">
+    <h2 data-pose="" data-off-x="330" data-off-y="200" style="left:33%;top:20%;text-align:left"><span class="t-fr">La solitude</span><span class="t-en" hidden=""></span></h2>
+    <ul data-pose="" data-off-x="330" data-off-y="330" style="left:33%;top:33%;font-size:46px;text-align:left;line-height:1.6"><li class="step" data-order="1"><span class="t-fr">En plein divorce</span><span class="t-en" hidden=""></span></li><li class="step" data-order="2"><span class="t-fr">Fragilité psychologique</span><span class="t-en" hidden=""></span></li><li class="step" data-order="3"><span class="t-fr">Quelqu’un s’intéresse à nous</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="s-brad-pitt-rassurer">
+    <h2 data-pose="" data-off-x="330" data-off-y="200" style="left:33%;top:20%;text-align:left"><span class="t-fr">Rassurer la victime</span><span class="t-en" hidden=""></span></h2>
+    <ul data-pose="" data-off-x="330" data-off-y="330" style="left:33%;top:33%;font-size:46px;text-align:left;line-height:1.6"><li class="step" data-order="1"><span class="t-fr">La caution d’un tiers</span><span class="t-en" hidden=""></span></li><li class="step" data-order="2"><span class="t-fr">Les fausses preuves</span><span class="t-en" hidden=""></span></li></ul>
+  <div class="speaker-notes" hidden="">La caution d’un tiers : le premier contact n’est pas « Brad », c’est sa « mère ». Quand il arrive, il est déjà recommandé.
+Les fausses preuves : selfies et photos d’hôpital générés par IA, faux papiers d’identité, faux documents médicaux, faux relevés bancaires.</div>
+  </section>
+
+  <section class="slide" id="s32" data-serie="serie_f8804daf-f84a-43f6-ab9f-1acb164980d1">
+    <p class="kicker" data-pose="" data-off-x="447.53" data-off-y="110.13" style="left:44.753%;top:11.013%"><span class="t-fr">Biais de l'engagement</span><span class="t-en" hidden="">Commitment bias</span></p>
+    <h2 data-pose="" data-off-x="274.17" data-off-y="140.97" style="left:27.417%;top:14.097%"><span class="t-fr">Lorsqu'on s'est « engagé » dans une croyance…</span><span class="t-en" hidden="">Once you've "committed" to a belief…</span></h2>
+    <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="213.63" style="left:42.208%;top:21.363%"><img src="../medias/images/biais-engagement-submarine.jpg" alt="Sous-marin plongeant, symbole du point de non-retour"></div>
+    <p class="lead" data-pose="" data-off-x="394.62" data-off-y="389.14" style="left:39.462%;top:38.914%"><span class="t-fr">…il est TRÈS compliqué de revenir en arrière.</span><span class="t-en" hidden="">…it's VERY hard to turn back.</span></p>
+  </section>
+  <section class="slide" id="s-couts-irrecuperables">
+    <p class="kicker"><span class="t-fr">Biais des coûts irrécupérables</span><span class="t-en" hidden="">Sunk cost bias</span></p>
+    <h2><span class="t-fr">Plus on a donné, plus il est dur d’arrêter</span><span class="t-en" hidden="">The more you’ve given, the harder it is to stop</span></h2>
+    <p class="lead"><span class="t-fr">On continue d’investir pour ne pas avoir à admettre que ce qu’on a déjà perdu est perdu.</span><span class="t-en" hidden="">We keep investing so we don’t have to admit that what we’ve already lost is gone.</span></p>
+    <div class="cagnotte"><div class="cagnotte-virements"><div class="cagnotte-virement step" data-order="1"><span class="cagnotte-barre" style="width:110px"></span><b><span class="t-fr">+ 5 000 €</span><span class="t-en" hidden=""></span></b></div><div class="cagnotte-virement step" data-order="2"><span class="cagnotte-barre" style="width:110px"></span><b><span class="t-fr">+ 9 000 €</span><span class="t-en" hidden=""></span></b></div><div class="cagnotte-virement step" data-order="3"><span class="cagnotte-barre" style="width:110px"></span><b><span class="t-fr">+ 10 000 €</span><span class="t-en" hidden=""></span></b></div><div class="cagnotte-virement step" data-order="4"><span class="cagnotte-barre" style="width:188px"></span><b><span class="t-fr">+ 35 000 €</span><span class="t-en" hidden=""></span></b></div><div class="cagnotte-virement step" data-order="5"><span class="cagnotte-barre" style="width:318px"></span><b><span class="t-fr">+ 59 000 €</span><span class="t-en" hidden=""></span></b></div><div class="cagnotte-virement step" data-order="6"><span class="cagnotte-barre" style="width:318px"></span><b><span class="t-fr">+ 59 000 €</span><span class="t-en" hidden=""></span></b></div><div class="cagnotte-virement step" data-order="7"><span class="cagnotte-barre" style="width:620px"></span><b><span class="t-fr">+ 115 000 €</span><span class="t-en" hidden=""></span></b></div><div class="cagnotte-virement cagnotte-encore step" data-order="8"><span class="cagnotte-barre" style="width:620px"></span><b><span class="t-fr">+ 538 000 € encore</span><span class="t-en" hidden=""></span></b></div></div><div class="cagnotte-pot"><div class="cagnotte-col"></div><div class="cagnotte-bocal"><div class="cagnotte-niveau step" data-order="1" style="height:2.5%"></div><div class="cagnotte-niveau step" data-order="2" style="height:2.5%"></div><div class="cagnotte-niveau step" data-order="3" style="height:2.9%"></div><div class="cagnotte-niveau step" data-order="4" style="height:7.1%"></div><div class="cagnotte-niveau step" data-order="5" style="height:14.2%"></div><div class="cagnotte-niveau step" data-order="6" style="height:21.3%"></div><div class="cagnotte-niveau step" data-order="7" style="height:35.2%"></div><div class="cagnotte-niveau cagnotte-pleine step" data-order="8" style="height:100%"></div><div class="cagnotte-totaux"><div class="cagnotte-total cagnotte-zero" style="font-size:52px"><span class="t-fr">0 €</span><span class="t-en" hidden=""></span></div><div class="cagnotte-total step" data-order="1" style="font-size:48px"><span class="t-fr">5 000 €</span><span class="t-en" hidden=""></span></div><div class="cagnotte-total step" data-order="2" style="font-size:52px"><span class="t-fr">14 000 €</span><span class="t-en" hidden=""></span></div><div class="cagnotte-total step" data-order="3" style="font-size:56px"><span class="t-fr">24 000 €</span><span class="t-en" hidden=""></span></div><div class="cagnotte-total step" data-order="4" style="font-size:60px"><span class="t-fr">59 000 €</span><span class="t-en" hidden=""></span></div><div class="cagnotte-total step" data-order="5" style="font-size:64px"><span class="t-fr">118 000 €</span><span class="t-en" hidden=""></span></div><div class="cagnotte-total step" data-order="6" style="font-size:68px"><span class="t-fr">177 000 €</span><span class="t-en" hidden=""></span></div><div class="cagnotte-total step" data-order="7" style="font-size:72px"><span class="t-fr">292 000 €</span><span class="t-en" hidden=""></span></div><div class="cagnotte-total cagnotte-final step" data-order="8" style="font-size:80px"><span class="t-fr">830 000 €</span><span class="t-en" hidden=""></span></div></div></div></div></div><div class="speaker-notes" hidden="">Montants publiés, ordre reconstitué (les sources ne datent pas chaque virement) : environ 5 000 € de « taxes » sur un colis (Grazia, Paris Match), environ 9 000 € de frais de douane (Europe 1, Fox News), des virements répétés de 600 à 10 000 €, puis 35 000 €, 59 000 € et 59 000 € (Ozap), 58 700 € vers la Turquie « greffe du rein gauche » (Ozap), un virement maximal de 115 000 € (INCYBER). Au total 830 000 €, presque tout l’argent de son divorce.</div>
+  </section>
+
+  <section id="s-dissonnance-cognitive" class="slide"><h2 data-pose="" data-off-x="390.45" data-off-y="110.13" style="left:39.045%;top:11.013%"><span class="t-fr">Dissonnance cognitive</span><span class="t-en" hidden=""></span></h2><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="182.8" style="left:39.091%;top:18.28%"><img src="../medias/images/arnaques-dissonnance-cognitive-24.jpg" alt="" loading="lazy"></div></section>
+
+  <section id="s-dissonnance-cognitive-2" class="slide short"><h2 data-pose="" data-off-x="390.45" data-off-y="300" style="left:39.045%;top:30%"><span class="t-fr">Dissonance cognitive</span><span class="t-en" hidden="">Cognitive dissonance</span></h2><p class="lead step dissonance-def" data-order="1"><span class="t-fr">Lorsqu’un fait arrive en contradiction avec nos croyances, on va éprouver un inconfort mental et tenter de l’apaiser en réinterprétant les faits.</span><span class="t-en" hidden="">When a fact contradicts our beliefs, we feel mental discomfort and try to ease it by reinterpreting the facts.</span></p></section>
+  <section class="slide" id="s-brad-pitt-doute">
+    <h2><span class="t-fr">La dissonance cognitive</span><span class="t-en" hidden="">Cognitive dissonance</span></h2>
+    <div class="bd-dialogue"><div class="bd-bulle gauche step" data-order="1"><img src="../medias/images/brad-pitt-ines-de-ramon.jpg" alt="Brad Pitt et sa compagne Inès de Ramon"></div><div class="bd-bulle droite step" data-order="2"><span class="t-fr">Non, mais c’est sorti de son contexte.</span><span class="t-en" hidden="">No, it’s taken out of context.</span></div><div class="bd-bulle gauche step" data-order="3"><span class="t-fr">Brad Pitt ne répond plus.</span><span class="t-en" hidden="">Brad Pitt isn’t answering anymore.</span></div><div class="bd-bulle droite step" data-order="4"><span class="t-fr">Il est dans le coma, c’est ce qu’un médecin vient de me dire.</span><span class="t-en" hidden="">He’s in a coma, a doctor just told me.</span></div></div>
+  <div class="speaker-notes" hidden="">À gauche, un proche d’Anne ; à droite, Anne. Ancien texte de la diapo : La photo du vrai Brad Pitt avec sa compagne ? « Sortie de son contexte. » Il ne répond plus ? Un faux médecin explique qu’il est dans le coma. Chaque preuve contraire reçoit une explication.
+
+Photo : Brad Pitt et Inès de Ramon à l’avant-première de « F1 » à Londres (Getty Images, via InStyle / AOL).</div>
+  </section>
+
+  <section class="slide" id="s-deni-plausible">
+    <h2><span class="t-fr">Le déni plausible</span><span class="t-en" hidden="">Plausible deniability</span></h2>
+    <p class="lead dissonance-brad"><span class="t-fr">Tant qu’on peut encore douter, on s’accroche à ce doute.</span><span class="t-en" hidden="">As long as there is still room for doubt, we cling to it.</span></p>
+    <p class="lead dissonance-brad step" data-order="1"><span class="t-fr">Il faut qu’il n’y ait plus aucun doute pour admettre qu’on s’est fait avoir.</span><span class="t-en" hidden="">Only when no doubt is left do we admit we have been fooled.</span></p>
+  </section>
+
+  <section class="slide" id="s-brad-pitt-isolement">
+    <h2><span class="t-fr">L’isolement</span><span class="t-en" hidden="">Isolation</span></h2>
+    <div class="quote-block citation-fille"><p><span class="t-fr">« En fait, elle était tellement embrigadée dans cette relation irréelle que notre relation à nous s’est dégradée. »</span><span class="t-en" hidden=""></span></p><p class="citation-source"><span class="t-fr">Sa fille, dans Paris Match Belgique, 13 janvier 2025</span><span class="t-en" hidden=""></span></p></div>
+  <div class="speaker-notes" hidden="">Source : https://www.parismatch.be/actualites/people/2025/01/13/anne-pensait-avoir-une-relation-avec-brad-pitt-elle-divorce-et-se-fait-escroquer-de-830-000-euros-4PRKTEXB4JAZFG36JEFN7BWDTI/ . Dans le même article, Anne : « C’est comme si je vivais seule ».</div>
+  </section>
+
+  <section id="s-la-flatterie" class="slide"><h2 data-pose="" data-off-x="445.95" data-off-y="110.13" style="left:44.595%;top:11.013%"><span class="t-fr">La flatterie</span><span class="t-en" hidden=""></span></h2><div class="lead" data-pose="" data-off-x="100" data-off-y="190" style="left:10%;top:19%;width:80%;max-width:none;font-size:58px;font-weight:800;text-align:center;line-height:1.2"><p><span class="t-fr">C’est Brad Pitt qui me parle, quand même !</span><span class="t-en" hidden=""></span></p></div><img src="../medias/images/arnaques-la-flatterie-26.jpg" alt="Photo de Brad Pitt générée par IA, un bouquet de roses à la main" loading="lazy" data-pose="" data-off-x="313" data-off-y="300" style="left:31.3%;top:30%;height:540px;width:auto;max-width:none;border-radius:16px"></section>
+  <section class="slide" id="s-brad-pitt-double-peine">
+    <p class="kicker"><span class="t-fr">Après l’arnaque</span><span class="t-en" hidden="">After the scam</span></p>
+    <h2><span class="t-fr">La double peine</span><span class="t-en" hidden="">The double punishment</span></h2>
+    <div class="double-peine"><h3><span class="t-fr">L’arnaque à la récupération</span><span class="t-en" hidden="">The recovery scam</span></h3><p class="lead"><span class="t-fr">Un faux « agent du FBI » la contacte pour l’aider à récupérer son argent… contre paiement. Une victime est une cible repérée.</span><span class="t-en" hidden="">A fake “FBI agent” contacts her to help get her money back… for a fee. A victim is a target that has been spotted.</span></p><a class="article-carte step" data-order="1" href="https://www.bitdefender.com/fr-fr/blog/hotforsecurity/non-brad-pitt-nest-pas-amoureux-de-vous" target="_blank" rel="noopener"><span class="article-source"><span class="t-fr">Bitdefender · 17 janvier 2025</span><span class="t-en" hidden=""></span></span><span class="article-titre article-extrait"><span class="t-fr">« …les escrocs, qui ont encore essayé de lui soutirer de l’argent en se faisant passer pour “l’agent spécial du FBI John Smith”, qui s’est proposé de traquer les responsables. »</span><span class="t-en" hidden=""></span></span></a></div>
+  <div class="speaker-notes" hidden="">Bitdefender (17 janvier 2025) : après qu’Anne a coupé le contact en juin 2024, les mêmes escrocs reviennent en se faisant passer pour « l’agent spécial du FBI John Smith », qui propose de retrouver les coupables… contre de l’argent. INCYBER (20 janvier 2025) mentionne aussi « un agent du FBI ». Cette tentative a eu lieu avant le reportage télévisé, pas après.
+Source : https://www.bitdefender.com/fr-fr/blog/hotforsecurity/non-brad-pitt-nest-pas-amoureux-de-vous
+
+L’extrait affiché vient de l’article « Non, Brad Pitt n’est pas amoureux de vous ». Aucun article français ne titre sur le faux agent du FBI.</div>
+  </section>
+
+  <section class="slide" id="s-brad-pitt-moquerie">
+    <p class="kicker"><span class="t-fr">Après l’arnaque</span><span class="t-en" hidden="">After the scam</span></p>
+    <h2><span class="t-fr">La moquerie</span><span class="t-en" hidden="">Mockery</span></h2>
+    <div class="moquerie"><div class="tweet-carte step" data-order="1"><div class="tweet-tete"><span class="tweet-avatar">TFC</span><span class="tweet-ident"><span class="tweet-nom">Toulouse FC</span><span class="tweet-pseudo">@ToulouseFC</span></span></div><p class="tweet-texte"><span class="t-fr">Bonjour Anne, Brad nous a dit qu’il serait au stade mercredi pour Toulouse-Laval. Et vous ?</span><span class="t-en" hidden=""></span></p></div><div class="quote-block citation-fille step" data-order="2"><p><span class="t-fr">« Arrêtez de vous moquer ! Et je ne dis pas ça que pour moi mais pour toutes les victimes. »</span><span class="t-en" hidden=""></span></p><p class="citation-source"><span class="t-fr">Anne, dans C l’hebdo (France 5), 25 janvier 2025</span><span class="t-en" hidden=""></span></p></div></div>
+  <div class="speaker-notes" hidden="">Après son témoignage dans Sept à huit (TF1, 12 janvier 2025), Anne est moquée sur les réseaux sociaux. TF1 retire le replay le 14 janvier face au harcèlement.
+Le Toulouse FC publie ce tweet, puis le supprime et s’excuse : « Nous comprenons que notre tweet a pu être mal interprété, et nous nous en excusons profondément. » (Goal, 15 janvier 2025 : https://www.goal.com/fr/listes/un-club-de-ligue-1-presente-ses-excuses-pour-s-etre-moque-d-une-francaise-arnaquee-par-un-faux-brad-pitt/blta9942d2d3de85740). Netflix France tweete aussi une liste de films « pour voir Brad Pitt (vraiment) gratuitement » (CBS, AFP).
+Anne, le 14 janvier (Paris Match Belgique) : « voir ces commentaires humiliants me dévaste car les gens ne savent pas de quoi ils parlent ».
+Citation affichée : https://www.parismatch.be/actualites/monde/2025/01/25/arretez-de-vous-moquer-anne-victime-dun-faux-brad-pitt-et-escroquee-de-830-000-euros-prend-la-parole-a-la-television-C7EEE2ZF6VEN7EY436MIR7NTNQ/
+Contre-exemple : le chanteur Vianney, le 14 janvier : « Je n’arrive pas à me moquer d’une femme qui, vulnérable, s’est faite arnaquer ».</div>
+  </section>
+
+  <section class="slide short" id="s-que-faire-sentimentale">
+    <p class="kicker"><span class="t-fr">Arnaque sentimentale</span><span class="t-en" hidden="">Romance scam</span></p>
+    <h2><span class="t-fr">Que faire ?</span><span class="t-en" hidden="">What should you do?</span></h2>
+    <p class="lead"><span class="t-fr">À vous : quels réflexes proposez-vous ?</span><span class="t-en" hidden="">Over to you: what would you do?</span></p>
+  </section>
+
+  <section class="slide" id="s-arnaque-sentimentale-reflexes">
+    <h2 data-pose="" data-off-x="413.5" data-off-y="70" style="left:41.35%;top:7%"><span class="t-fr">Chercher la photo</span><span class="t-en" hidden="">Search the photo</span></h2>
+    <div class="lens-demo"><div class="lens-photo"><img src="../medias/images/arnaques-la-flatterie-26.jpg" alt="Photo de Brad Pitt générée par IA, un bouquet de roses à la main"><span class="lens-coins"></span><span class="lens-verdict step" data-order="3"><span class="t-fr">Générée par IA</span><span class="t-en" hidden="">AI-generated</span></span></div><div class="lens-panel step" data-order="1"><div class="lens-barre"><span class="lens-loupe">🔍</span><span class="t-fr">Recherche par image</span><span class="t-en" hidden="">Image search</span></div><div class="lens-onglets"><span class="lens-onglet"><span class="t-fr">Tous</span><span class="t-en" hidden="">All</span></span><span class="lens-onglet actif"><span class="t-fr">Correspondances exactes</span><span class="t-en" hidden="">Exact matches</span></span></div><div class="lens-attente"><span class="t-fr">Recherche en cours…</span><span class="t-en" hidden="">Searching…</span></div><div class="lens-resultat step" data-order="2"><span class="lens-zero">0</span><span class="lens-res-titre"><span class="t-fr">Aucune correspondance exacte</span><span class="t-en" hidden="">No exact match</span></span><span class="lens-res-texte"><span class="t-fr">Cette photo n’apparaît nulle part ailleurs sur Internet.</span><span class="t-en" hidden="">This photo appears nowhere else online.</span></span></div></div></div>
+  <div class="speaker-notes" hidden="">Animation : 1er clic, la photo passe dans une recherche par image (Google Lens, ou Bing, TinEye) ; 2e clic, aucune correspondance exacte ; 3e clic, verdict.
+Comment faire en vrai : sur téléphone, appui long sur la photo puis « Rechercher avec Google » ; sur ordinateur, clic droit puis « Rechercher l’image avec Google ». Ouvrir l’onglet « Correspondances exactes ».
+Le raisonnement : une vraie photo de star circule partout (agences, presse, réseaux). Une photo de Brad Pitt que personne d’autre n’a publiée, c’est qu’elle a été fabriquée pour vous. Pour une personne inconnue, l’absence de résultat ne prouve rien : c’est l’inverse, si la photo apparaît sous un autre nom, c’est une photo volée.</div>
+  </section>
+
+  <section class="slide" id="s-arnaque-sentimentale-reflexes-2">
+    <h2 data-pose="" data-off-x="380" data-off-y="110" style="left:38%;top:11%"><span class="t-fr">Comment s’en protéger ?</span><span class="t-en" hidden="">How to protect yourself?</span></h2>
+    <ul data-pose="" data-off-x="360" data-off-y="260" style="left:36%;top:26%;font-size:44px;text-align:left;line-height:1.6"><li class="step" data-order="1"><span class="t-fr">Un appel vidéo</span><span class="t-en" hidden="">A video call</span></li><li class="step" data-order="2"><span class="t-fr">Jamais d’argent</span><span class="t-en" hidden="">Never any money</span></li><li class="step" data-order="3"><span class="t-fr">En parler, briser l’isolement</span><span class="t-en" hidden="">Talk about it, break the isolation</span></li></ul>
+  </section>
+  <section class="slide" id="s-radar-faux-profil">
+    <p class="kicker"><span class="t-fr">Radar’naque</span><span class="t-en" hidden="">Radar’naque</span></p>
+    <h2><span class="t-fr">À vous de jouer : arnaque ou message fiable ?</span><span class="t-en" hidden="">Your turn: scam or genuine message?</span></h2>
+    <div class="illu-frame radar-frame" id="radar-s-radar-faux-profil"><iframe src="https://antoninatger.github.io/jeux/radarnaque/index.html?carte=chat-celebrite,chat-faux-profil-rencontre&amp;taille=1.4" title="Radar’naque" loading="lazy"></iframe></div>
+    <button type="button" class="reveal-btn illu-fs-btn" data-target="#radar-s-radar-faux-profil"><span class="t-fr">Plein écran</span><span class="t-en" hidden="">Fullscreen</span></button>
+  </section>
+
+  <section id="s-pourquoi-ca-tombe-sur-moi-ca-n" class="slide short"><h2 data-pose="" data-off-x="261.04" data-off-y="448.26" style="left:26.104%;top:44.826%"><span class="t-fr">Pourquoi ça tombe sur moi ? Ça ne tombe PAS sur vous !</span><span class="t-en" hidden=""></span></h2></section>
+
+  <section class="slide" id="s41" data-serie="group_5768bec5-1f75-404b-89eb-e06eda7635b3">
+  <h2 data-pose="" data-off-x="399.78" data-off-y="140.97" style="left:39.978%;top:14.097%"><span class="t-fr">Où blinder les avions ?</span><span class="t-en" hidden="">Where to armour the planes?</span></h2>
+  <div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="209.25" style="left:39.091%;top:20.925%"><img src="../medias/images/wald-avion.svg" alt="Schéma d'un bombardier vu de dessus"><img class="step" data-anim="fondu" src="../medias/images/wald-impacts.svg" alt="Les impacts relevés sur les avions revenus de mission" style="position:absolute;left:0;top:0;width:100%;height:100%"></div>
+  <div class="speaker-notes" hidden="">Seconde Guerre mondiale. Le statisticien Abraham Wald étudie les avions revenus de mission : les impacts se concentrent sur les ailes et la queue. Faut-il blinder ces zones ? Wald répond l’inverse : ce sont les zones sans impact qu’il faut blinder, car les avions touchés là ne sont jamais revenus pour être comptés. On ne voit que les survivants.</div>
+  </section>
+
+  <section class="slide" id="s-survivant-arnaques">
+    <p class="kicker"><span class="t-fr">Biais du survivant</span><span class="t-en" hidden="">Survivorship bias</span></p>
+    <h2><span class="t-fr">Et pour les arnaques ?</span><span class="t-en" hidden="">And for scams?</span></h2>
+    <p class="survivant-label" data-pose="" data-off-x="0" data-off-y="200" style="left:0;top:20%"><span class="t-fr">Ce qu’on voit</span><span class="t-en" hidden="">What we see</span></p>
+    <img src="../medias/images/phishing-sms-chronopost.jpg" alt="Faux SMS Chronopost : votre colis est en attente d’instruction" data-pose="" data-off-x="333.5" data-off-y="270" style="left:33.35%;top:27%;width:640px;height:auto;max-width:none;border-radius:16px;box-shadow:0 16px 40px rgba(0,0,0,.5)">
+    <div class="foule-sms step" data-order="1" data-pose="" data-off-x="0" data-off-y="0" style="left:0;top:0"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:73.19%;top:58.92%;rotate:-8deg;animation-delay:0.00s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:90.49%;top:17.40%;rotate:8deg;animation-delay:0.04s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:72.47%;top:45.15%;rotate:4deg;animation-delay:0.08s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:90.34%;top:71.37%;rotate:9deg;animation-delay:0.12s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:10.18%;top:31.28%;rotate:-6deg;animation-delay:0.16s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:82.13%;top:71.70%;rotate:2deg;animation-delay:0.20s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:72.42%;top:30.95%;rotate:9deg;animation-delay:0.24s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:0.83%;top:17.95%;rotate:6deg;animation-delay:0.28s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:10.60%;top:45.59%;rotate:1deg;animation-delay:0.32s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:19.38%;top:32.27%;rotate:2deg;animation-delay:0.36s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:72.73%;top:71.81%;rotate:-4deg;animation-delay:0.40s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:81.56%;top:57.82%;rotate:9deg;animation-delay:0.44s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:19.12%;top:72.80%;rotate:6deg;animation-delay:0.48s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:19.17%;top:45.70%;rotate:0deg;animation-delay:0.52s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:91.12%;top:57.82%;rotate:-6deg;animation-delay:0.56s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:1.61%;top:72.47%;rotate:-4deg;animation-delay:0.60s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:10.23%;top:58.04%;rotate:6deg;animation-delay:0.64s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:1.45%;top:30.84%;rotate:-7deg;animation-delay:0.68s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:82.08%;top:45.26%;rotate:1deg;animation-delay:0.72s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:10.29%;top:72.69%;rotate:9deg;animation-delay:0.76s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:1.51%;top:57.82%;rotate:-7deg;animation-delay:0.80s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:90.55%;top:32.38%;rotate:-7deg;animation-delay:0.84s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:72.31%;top:18.28%;rotate:9deg;animation-delay:0.88s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:90.86%;top:45.15%;rotate:3deg;animation-delay:0.92s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:19.22%;top:17.29%;rotate:5deg;animation-delay:0.96s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:10.29%;top:17.84%;rotate:-6deg;animation-delay:1.00s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:19.43%;top:57.71%;rotate:-3deg;animation-delay:1.04s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:1.25%;top:44.60%;rotate:-2deg;animation-delay:1.08s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:81.82%;top:18.61%;rotate:6deg;animation-delay:1.12s"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="" style="left:81.30%;top:31.28%;rotate:5deg;animation-delay:1.16s"></div>
+    <p class="survivant-label step" data-order="1" data-pose="" data-off-x="0" data-off-y="760" style="left:0;top:76%"><span class="t-fr">Ce qu’on ne voit pas</span><span class="t-en" hidden="">What we don’t see</span></p>
+  <div class="speaker-notes" hidden="">Le même SMS est envoyé au hasard à des milliers de personnes le même jour. Il tombe pile pour celles qui attendent justement un colis ; pour les autres, il tombe à côté et il est effacé.</div>
+  </section>
+
+  <section id="s-le-chantage-sexuel-sextorsion" class="slide short"><h2 data-pose="" data-off-x="346.95" data-off-y="476.87" style="left:34.695%;top:47.687%"><span class="t-fr">Le chantage sexuel (sextorsion)</span><span class="t-en" hidden=""></span></h2></section>
+
+  <section id="s-d30" class="slide"><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="125.55" style="left: 39.091%; top: 12.555%;"><img src="../medias/images/arnaques-diapo-30.png" alt="" loading="lazy"></div></section>
+
+  <section id="s-d31" class="slide">
+    <div class="faux-mail faux-mail-long" data-pose="" data-off-x="30" data-off-y="25" style="left:3%;top:2.5%">
+      <div class="faux-mail-entete"><p><b>De :</b> vous@votre-adresse.fr</p><p><b>À :</b> vous@votre-adresse.fr</p></div>
+      <div class="faux-mail-corps"><div><p><span class="t-fr">Vous vous demandez probablement pourquoi vous recevez un mail depuis VOTRE propre adresse, n’est-ce pas ? Je vais tout vous expliquer.</span><span class="t-en" hidden=""></span></p><p><span class="t-fr">Je suis un hackeur et j’ai piraté vos appareils il y a quelques mois, j’ai mis en place un virus sur un site pour adulte que VOUS avez visité et j’ai réussi à avoir la main sur votre appareil. Seulement, <mark class="surligne step" data-order="1">j’ai remarqué que vous aviez des goûts très… particuliers en matière de « pornographie »</mark>.</span><span class="t-en" hidden=""></span></p><p><span class="t-fr">J’ai donc abusé de votre appareil pour le transformer en <mark class="surligne step" data-order="2">serveur RDP</mark> (<mark class="surligne step" data-order="3">contrôle à distance</mark>) et devinez ce que j’ai bien pu faire</span><span class="t-en" hidden=""></span></p><p><span class="t-fr">J’ai tout simplement enregistré une vidéo en écran scindé avec d’un côté votre navigateur sur le « site » et de l’autre votre webcam vous enregistrant en train de vous… amuser. C’est comme cela que j’ai pu vous envoyer cet email depuis VOTRE adresse compromise. Suite à cela, j’ai fait une copie de vos contacts, photos, mots de passes, données bancaires et bien d’autre.</span><span class="t-en" hidden=""></span></p><p><span class="t-fr"><mark class="surligne step" data-order="4">Je vous promets que je ne vous dérangerai plus après votre paiement, car vous n’êtes pas ma seule victime</mark>. C’est le code d’honneur des hackeurs. Ne m’en voulez pas, chacun son travail après tout… Vous voulez savoir ce que vous pouvez faire</span><span class="t-en" hidden=""></span></p></div><div><p><span class="t-fr">Et bien, je pense que <b>750 €</b> est un juste prix pour notre petit secret. <mark class="surligne step" data-order="5">Vous effectuerez le paiement par Bitcoin</mark> (Si vous n’en avez pas entendu parler, recherchez « comment acheter des bitcoins » sur Google).</span><span class="t-en" hidden=""></span></p><p><span class="t-fr">L’adresse de mon portefeuille Bitcoin :<br><b class="mail-bitcoin">1EsECgo58y2DqHZPuFT3P4Dm4adUcP3Y5F</b><br>(Respectez les majuscules et les minuscules)</span><span class="t-en" hidden=""></span></p><p><span class="t-fr">Si votre application le supporte, vous pouvez utiliser le code QR pour payer rapidement. Dans le cas échéant, recopiez l’adresse à la main en respectant soigneusement les majuscules et minuscules.</span><span class="t-en" hidden=""></span></p><p><span class="t-fr"><b>Important : <mark class="surligne step" data-order="6">vous avez 72 heures pour effectuer le paiement</mark>.</b> (J’ai un traqueur dans ce mail et je sais que vous l’avez ouvert.)</span><span class="t-en" hidden=""></span></p><p><span class="t-fr">La vidéo ainsi que la copie de toutes ces données sont déjà de mon côté et si vous ne coopérez pas, je serai dans l’obligation d’envoyer la vidéo à vos contacts les plus importants, à votre famille, à vos collègues, sur facebook, twitter et bien d’autres…</span><span class="t-en" hidden=""></span></p><p><span class="t-fr">Vous avez été infecté par le malware Varenyky. Ceci est votre dernière chance pour vous en sortir !</span><span class="t-en" hidden=""></span></p><p><span class="t-fr"><b>Fichiers à envoyer si vous ne coopérez pas : <mark class="surligne step" data-order="7">masturbation_webcam.mp4</mark></b></span><span class="t-en" hidden=""></span></p></div></div>
+    </div>
+  <div class="speaker-notes" hidden="">Texte recopié de la capture d’origine (arnaques-diapo-31.jpg), en vrai texte pour qu’il soit lisible.</div>
+  </section>
+
+  <section id="s-d32" class="slide"><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="125.55" style="left:39.091%;top:12.555%"><img src="../medias/images/arnaques-diapo-32.jpg" alt="" loading="lazy"></div></section>
+
+  
+
+  <section class="slide" id="s-sextorsion-exemple-profil">
+    <h2><span class="t-fr">Exemple : le faux profil</span><span class="t-en" hidden="">Example: the fake profile</span></h2>
+    <div class="faux-chat">
+      <div class="faux-chat-entete"><span class="faux-chat-avatar"></span><b>Laura</b></div>
+      <div class="faux-chat-fil"><p class="faux-chat-bulle  step" data-order="1">Coucou 😊 ton profil m’a tapé dans l’œil</p><p class="faux-chat-bulle faux-chat-photo step" data-order="2"><span class="faux-photo elle">📷</span></p><p class="faux-chat-bulle  step" data-order="3">À toi maintenant 😏</p><p class="faux-chat-bulle faux-chat-moi faux-chat-photo step" data-order="4"><span class="faux-photo lui">📷</span></p><p class="faux-chat-bulle faux-chat-menace step" data-order="5">J’ai tes photos. 2 000 € ou je les envoie à toute ta liste d’amis.</p><p class="faux-chat-bulle faux-chat-menace step" data-order="6">Tu as 24 heures.</p></div>
+    </div>
+  <div class="speaker-notes" hidden="">Reconstitution du scénario type (faux profil séduisant, appel vidéo enregistré, menace d’envoi aux contacts). Cas réel : Castelsarrasin, juin 2015, un lycéen de 18 ans piégé sur Skype par une fausse jeune femme se suicide le soir même (Europe 1). Doubs, procès en mars 2026 : un homme de 25 ans, faux profil « Aurélie », a piégé 39 garçons de 13 à 19 ans entre 2018 et 2023, condamné à 18 ans de prison (CNews).
+Chiffres : cas traités par le 3018 en hausse de 74 % en 2024, les 11-17 ans sont les plus touchés ; en 2025, plus d’un tiers des signalements de faits sexuels sur mineurs reçus par le 3018 relèvent de la sextorsion.
+Conseils officiels : ne pas payer, ne rien envoyer de plus, bloquer et signaler le compte, garder les preuves, en parler et appeler le 3018, signaler sur Pharos et porter plainte.
+
+Version échange de photos (18 octobre) : Laura envoie des photos générées par IA, la victime envoie les siennes, qui servent au chantage. Variante réelle : l’appel vidéo où l’escroc passe une vidéo préenregistrée de femme. Ancien déroulé de la diapo : « Tu veux qu’on passe en appel vidéo ? 😏 », « Appel vidéo terminé », « J’ai tout enregistré. 2 000 € ou j’envoie la vidéo à toute ta liste d’amis. »</div>
+  </section>
+
+  <section class="slide" id="s-sextorsion-cas-reels">
+    <h2><span class="t-fr">Des cas réels</span><span class="t-en" hidden="">Real cases</span></h2>
+    <div class="cas-reels"><a class="article-carte step" data-order="1" href="https://www.europe1.fr/faits-divers/victime-dun-chantage-a-la-webcam-un-adolescent-se-suicide-1351818" target="_blank" rel="noopener"><span class="article-source"><span class="t-fr">Europe 1 · 5 juin 2015</span><span class="t-en" hidden=""></span></span><span class="article-titre"><span class="t-fr">Victime d’un chantage à la webcam, un adolescent se suicide</span><span class="t-en" hidden=""></span></span></a><a class="article-carte step" data-order="2" href="https://www.cnews.fr/france/2026-03-08/doubs-un-jeune-bucheron-de-besancon-juge-des-lundi-pour-des-chantages-la-sextape" target="_blank" rel="noopener"><span class="article-source"><span class="t-fr">CNews · 8 mars 2026</span><span class="t-en" hidden=""></span></span><span class="article-titre"><span class="t-fr">Doubs : un jeune bûcheron de Besançon jugé pour des chantages à la sextape</span><span class="t-en" hidden=""></span></span></a></div>
+  <div class="speaker-notes" hidden="">Castelsarrasin (Tarn-et-Garonne), juin 2015 : un lycéen de terminale de 18 ans rencontre en ligne une « jeune femme » (faux profil). Échanges intimes par webcam sur Skype, puis menace de publier la vidéo. Il se donne la mort le soir même. Ce type d’escroquerie réclamait alors « plusieurs milliers d’euros » (Europe 1, AFP, RTL).
+Doubs, procès en mars 2026 : un homme de 25 ans crée un faux profil féminin, « Aurélie », sur Facebook et Snapchat. De 2018 à 2023, il piège 39 garçons de 13 à 19 ans, obtient des photos et vidéos intimes, puis les contraint sous menace de diffusion. Condamné à 18 ans de prison par la cour criminelle du Doubs (CNews, franceinfo).
+Les titres affichés reprennent ceux des articles, légèrement raccourcis pour le second.</div>
+  </section>
+
+  <section class="slide short" id="s-que-faire-sextorsion">
+    <p class="kicker"><span class="t-fr">Chantage sexuel</span><span class="t-en" hidden="">Sextortion</span></p>
+    <h2><span class="t-fr">Que faire ?</span><span class="t-en" hidden="">What should you do?</span></h2>
+    <p class="lead"><span class="t-fr">À vous : quels réflexes proposez-vous ?</span><span class="t-en" hidden="">Over to you: what would you do?</span></p>
+  </section>
+
+  <section id="s-ne-surtout-pas-faire" class="slide"><h2 data-pose="" data-off-x="398.73" data-off-y="110.13" style="left:39.873%;top:11.013%"><span class="t-fr">Ne surtout pas faire :</span><span class="t-en" hidden=""></span></h2><ul data-pose="" data-off-x="330" data-off-y="230" style="left:33%;top:23%;font-size:44px;text-align:left;line-height:1.6"><li class="step" data-order="1"><span class="t-fr">Ne JAMAIS payer ! </span><span class="t-en" hidden=""></span></li><li class="step" data-order="2"><span class="t-fr">Car ils ne vont JAMAIS s’arrêter ! </span><span class="t-en" hidden=""></span></li></ul><img class="step" data-order="3" src="../medias/images/biais-engagement-submarine.jpg" alt="Sous-marin plongeant, symbole du point de non-retour (biais d’engagement)" data-pose="" data-off-x="381" data-off-y="450" style="left:38.1%;top:45%;height:220px;width:auto;max-width:none;border-radius:12px"></section>
+
+  <section id="s-le-phishing-hammeconnage" class="slide short"><h2 data-pose="" data-off-x="359.22" data-off-y="464.76" style="left:35.922%;top:46.476%"><span class="t-fr">Le phishing / hammeçonnage</span><span class="t-en" hidden=""></span></h2><ul data-pose="" data-off-x="330.86" data-off-y="522" style="left:33.086%;top:52.2%"><li><span class="t-fr">L’escroc se fait passer pour un organisme que l’on connait, pour nous demander de l’argent.</span><span class="t-en" hidden=""></span></li></ul></section>
+
+  <section id="s-d35" class="slide">
+    <div class="faux-doc gendarmerie"><div class="faux-doc-tete"><img class="faux-doc-logo" src="../medias/images/faux-logo-gendarmerie.png" alt="Faux logo « Gendarmerie nationale »"><p class="faux-doc-titre"><span class="t-fr">DIRECTION GÉNÉRALE DE LA GENDARMERIE</span><span class="t-en" hidden=""></span></p></div><div class="faux-doc-corps"><div><p><span class="t-fr">Je suis Mr Christian RODRIGUEZ, directeur général de la gendarmerie nationale. Je vous contacte peu après une saisie informatique de cyber-infiltration (Autorisée, notamment en matière de pédopornographie, Site Pornographique, Cyber pornographie, pour vous informer que vous faites l’objet de plusieurs poursuites judiciaires en vigueur :</span><span class="t-en" hidden=""></span></p><ul><li><span class="t-fr">LA PÉDOPORNOGRAPHIE</span><span class="t-en" hidden=""></span></li><li><span class="t-fr">SITE PORNOGRAPHIQUE</span><span class="t-en" hidden=""></span></li><li><span class="t-fr">CYBER PORNOGRAPHIE</span><span class="t-en" hidden=""></span></li><li><span class="t-fr">DÉTOURNEMENT DE MINEURS</span><span class="t-en" hidden=""></span></li></ul><p><span class="t-fr">Vous êtes prié de vous faire entendre par mail en nous écrivant vos justifications afin qu’elles soient mises en examen et vérifiées de sorte à évaluer les sanctions ; cela dans un délai strict de 72 heures. Passé ce délai, nous nous verrons dans l’obligation de transmettre notre rapport</span><span class="t-en" hidden=""></span></p></div><div><p><span class="t-fr">À Mme Mélanie BRIARD, substitute du procureur de la République près le tribunal de grande instance de Créteil et spécialiste de cybercriminalité pour établir un mandat d’arrêt à votre encontre, et vous serez fiché comme délinquant sexuel. Votre dossier sera également transmis aux médias pour une diffusion où votre famille, vos proches et toute l’Europe entière verront ce que vous faites devant votre ordinateur.</span><span class="t-en" hidden=""></span></p><p><span class="t-fr">Maintenant vous êtes avertis.</span><span class="t-en" hidden=""></span></p><p class="faux-doc-signe"><span class="t-fr">Cordialement,<br><b>Directeur général de la gendarmerie nationale.</b></span><span class="t-en" hidden=""></span></p><p class="faux-doc-pied"><span class="t-fr">DIRECTION CENTRALE DE LA GENDARMERIE<br>BRIGADE DE PROTECTION DES MINEURS<br>Adresse : 4 rue Claude-Bernard 92130 Issy-les-Moulineaux</span><span class="t-en" hidden=""></span></p></div></div></div>
+  <div class="speaker-notes" hidden="">Texte et faux logo recopiés de la capture d’origine (arnaques-diapo-35.png), en vrai texte pour qu’il soit lisible. Les fautes sont celles du faux mail.</div>
+  </section>
+
+  <section id="s-d36" class="slide">
+    <div class="faux-ms"><div class="faux-ms-haut"><span class="ms-logo" aria-label="Microsoft"><span class="ms-carres"><i></i><i></i><i></i><i></i></span>Microsoft</span><span class="ms-lien"><span class="t-fr">Centre de Service en Ligne</span><span class="t-en" hidden=""></span></span></div><div class="faux-ms-titre"><div><p class="ms-titre"><span class="t-fr">Virus sur Votre Appareil 01/02/2025</span><span class="t-en" hidden=""></span></p><p class="ms-date"><span class="t-fr">Rapport d’alerte créé Sat, 01 Feb 2025 21:20:25 +0100</span><span class="t-en" hidden=""></span></p></div><span class="ms-alerte"><span class="t-fr">Alerte à Haut Risque</span><span class="t-en" hidden=""></span></span></div><div class="faux-ms-stats step" data-order="1"><div class="ms-stat"><b class="ms-n" style="--fin:30"></b><span><span class="t-fr">Menaces Actives</span><span class="t-en" hidden=""></span></span></div><div class="ms-stat"><b class="ms-n" style="--fin:11"></b><span><span class="t-fr">Fichiers Affectés</span><span class="t-en" hidden=""></span></span></div><div class="ms-stat"><b class="ms-n ms-pc" style="--fin:95"></b><span><span class="t-fr">Niveau de Risque</span><span class="t-en" hidden=""></span></span></div></div><div class="faux-ms-texte step" data-order="2"><p><span class="t-fr">Cher antoninatger,</span><span class="t-en" hidden=""></span></p><p><span class="t-fr">Notre système de sécurité a détecté plusieurs menaces critiques sur votre appareil. Ces menaces représentent un risque immédiat pour vos données personnelles et la sécurité de votre système. Une action immédiate est requise.</span><span class="t-en" hidden=""></span></p></div></div>
+  <div class="speaker-notes" hidden="">Recréé d’après la capture d’origine (arnaques-diapo-36.png), reçu le 1er février 2025. Clic 1 : les compteurs s’emballent. Clic 2 : le message.</div>
+  </section>
+
+  <section id="s-d37" class="slide">
+    <div class="notif-anim"><img class="notif-ouvert" src="../medias/images/arnaques-diapo-37.jpg" alt="SMS « Salut maman c’est mon nouveau numéro »" data-pose="" data-off-x="188.3" data-off-y="59.5" style="left:18.83%;top:5.95%;width:1200px;height:800px;max-width:none"></div>
+  </section>
+  <section class="slide" id="s-faux-proche">
+    <p class="kicker"><span class="t-fr">L’arnaque au faux proche</span><span class="t-en" hidden="">The fake relative scam</span></p>
+    <h2><span class="t-fr">« Salut papa, c’est mon nouveau numéro »</span><span class="t-en" hidden="">“Hi Dad, this is my new number”</span></h2>
+    <div class="wa-demo"><div class="sms-carte step" data-order="1"><div class="sms-haut"><span class="sms-icone">💬</span><span class="t-fr">Messages</span><span class="t-en" hidden=""></span><span class="sms-quand"><span class="t-fr">maintenant</span><span class="t-en" hidden=""></span></span></div><p class="sms-num">06 39 98 57 18</p><p class="sms-texte"><span class="t-fr">Salut papa, c’est moi. J’ai cassé mon téléphone 😩 Voici mon nouveau numéro WhatsApp&nbsp;: 06 39 98 41 27. Écris-moi là-dessus&nbsp;!</span><span class="t-en" hidden=""></span></p></div><div class="wa-carte step" data-order="2"><div class="wa-tete"><span class="wa-avatar">👤</span><span class="wa-ident"><span class="wa-nom">+33 6 39 98 41 27</span><span class="wa-statut"><span class="t-fr">en ligne</span><span class="t-en" hidden=""></span></span></span></div><div class="wa-fil"><div class="wa-bulle moi step" data-order="3"><span class="t-fr">Coucou ma puce, c’est bien toi&nbsp;?</span><span class="t-en" hidden=""></span></div><div class="wa-bulle lui step" data-order="4"><span class="t-fr">Oui papa c’est moi ❤️ Enregistre ce numéro, l’autre ne marche plus.</span><span class="t-en" hidden=""></span></div><div class="wa-separateur step" data-order="5"><span class="t-fr">Quelques mois plus tard</span><span class="t-en" hidden=""></span></div><div class="wa-bulle lui step" data-order="6"><span class="t-fr">Papa j’ai un gros souci 😢 Je dois payer une facture avant ce soir, sinon je suis dans la galère. J’ai trop honte de te demander…</span><span class="t-en" hidden=""></span></div><div class="wa-bulle lui step" data-order="7"><span class="t-fr">Tu peux me faire un virement de 1 450 €&nbsp;? Ou des recharges Transcash ou Neosurf, c’est plus rapide. Je te rembourse vite, promis ❤️</span><span class="t-en" hidden=""></span></div></div></div></div>
+  <div class="speaker-notes" hidden="">Animation : le SMS d’un numéro inconnu donne un deuxième numéro, sur WhatsApp. La relation s’installe, puis, quelques mois plus tard, la demande d’argent : urgence, sentiments, honte, et des moyens de paiement difficiles à annuler (virement, recharges Transcash ou Neosurf).
+Les numéros 06 39 98 xx xx sont réservés par l’ARCEP à la fiction : ils n’appartiennent à personne.
+Ancien texte de la diapo : 1. Le SMS Un numéro inconnu. Votre « enfant » a cassé ou perdu son téléphone et vous donne son nouveau numéro. 2. WhatsApp On vous demande d’enregistrer ce numéro et d’écrire sur WhatsApp. Le ton est affectueux, familier. 3. L’urgence Une facture à payer tout de suite, un loyer, une amende. Par virement, recharge Transcash ou Neosurf.</div>
+  </section>
+
+  <section class="slide" id="s-radar-faux-proche">
+    <p class="kicker"><span class="t-fr">Radar’naque</span><span class="t-en" hidden="">Radar’naque</span></p>
+    <h2><span class="t-fr">À vous de jouer : arnaque ou message fiable ?</span><span class="t-en" hidden="">Your turn: scam or genuine message?</span></h2>
+    <div class="illu-frame radar-frame" id="radar-s-radar-faux-proche"><iframe src="https://antoninatger.github.io/jeux/radarnaque/index.html?carte=chat-faux-proche,chat-famille-ok&amp;taille=1.4" title="Radar’naque" loading="lazy"></iframe></div>
+    <button type="button" class="reveal-btn illu-fs-btn" data-target="#radar-s-radar-faux-proche"><span class="t-fr">Plein écran</span><span class="t-en" hidden="">Fullscreen</span></button>
+  </section>
+  <section class="slide" id="s-voix-clonee">
+    <h2><span class="t-fr">Peut-on vraiment cloner une voix ?</span><span class="t-en" hidden="">Can a voice really be cloned?</span></h2>
+    <div class="illu-frame video-frame" id="video-voix-clonee"><video src="../medias/video/voix-clonee-bfm.mp4" controls="" playsinline="" preload="metadata"></video></div>
+    <button type="button" class="reveal-btn illu-fs-btn" data-target="#video-voix-clonee"><span class="t-fr">Plein écran</span><span class="t-en" hidden="">Full screen</span></button>
+  <div class="speaker-notes" hidden="">Vidéo : BFM Tech, 11 juillet 2023, « ElevenLabs : le clonage de voix à portée de main », un journaliste clone une voix en direct. Extrait de 2:47 à 4:32, enregistré dans medias/video/voix-clonee-bfm.mp4. En ligne : https://www.youtube.com/watch?v=OBD2I1hlDFU&amp;t=167
+Autres vidéos possibles : BFM Business, 10 septembre 2025 https://www.youtube.com/watch?v=mxes6qz2RbQ ; Le Parisien, 6 juin 2026, « Ma voix a été volée par une IA » https://www.youtube.com/watch?v=5LGuwPLCKg4
+
+Ancien texte de la diapo : Oui. En 2023, Microsoft annonçait qu’3 secondes d’enregistrement suffisaient à son outil pour imiter une voix, avec son intonation. Vos vidéosUne vidéo publique sur les réseaux sociaux suffit à récupérer votre voix, ou celle de vos enfants. Votre messagerieLe message d’accueil de votre répondeur est un enregistrement de votre voix. Les appels silencieuxPersonne ne parle au bout du fil : le robot attend que vous disiez « Allô ? Qui est-ce ? » pour vous enregistrer.</div>
+  </section>
+  <section class="slide" id="s-voix-clonee-cas">
+    <h2><span class="t-fr">Ça s’est déjà produit</span><span class="t-en" hidden="">It has already happened</span></h2>
+    <a class="article-carte" href="https://www.mac4ever.com/ia/187174-arnaque-a-l-italienne-ils-se-font-passer-pour-le-ministre-de-la-defense-grace-a-l-ia" target="_blank" rel="noopener"><span class="article-source"><span class="t-fr">Mac4Ever · 13 février 2025</span><span class="t-en" hidden=""></span></span><span class="article-titre"><span class="t-fr">Arnaque à l’Italienne ! Ils se font passer pour le ministre de la défense grâce à l’IA</span><span class="t-en" hidden=""></span></span></a>
+  <div class="speaker-notes" hidden="">Italie, février 2025. Un faux « Dr Giovanni Montalbano » appelle de grands patrons (Armani, Bertelli de Prada, Moratti, Beretta, Menarini, Pirelli) depuis des numéros qui semblent être ceux du ministère. Puis la voix clonée du ministre de la Défense Guido Crosetto demande de l’argent pour libérer des journalistes enlevés au Moyen-Orient (juste après la libération de Cecilia Sala, le 8 janvier). Seul Massimo Moratti paie : deux virements, environ 1 million d’euros vers Hong Kong. Le 6 février, Crosetto rend l’affaire publique. Vers le 12 février, environ 980 000 € sont gelés aux Pays-Bas. Moratti : « Tout cela semblait absolument vrai. » Chez Armani, le personnel a exigé une confirmation écrite.
+Sources : Mac4Ever 13/02/2025, Clubic 17/02/2025 https://www.clubic.com/actualite-553797-arnaque-au-president-l-ia-pousse-l-escroquerie-encore-plus-loin.html , FashionUnited 11/02/2025, Reuters 12/02/2025, Euronews 10/02/2025.
+
+Anciens exemples retirés de la diapo : Arizona 2023 (Jennifer DeStefano, fausse voix de sa fille, 1 million de dollars demandés) ; Hong Kong 2024 (Arup, visioconférence deepfake, 25 millions de dollars) ; France 2026 (fausses vidéos du gouverneur de la Banque de France).</div>
+  </section>
+  <section class="slide short" id="s-que-faire-faux-proche">
+    <p class="kicker"><span class="t-fr">Faux proche et voix clonée</span><span class="t-en" hidden="">Fake relative and cloned voice</span></p>
+    <h2><span class="t-fr">Que faire ?</span><span class="t-en" hidden="">What should you do?</span></h2>
+    <p class="lead"><span class="t-fr">À vous : quels réflexes proposez-vous ?</span><span class="t-en" hidden="">Over to you: what would you do?</span></p>
+  </section>
+
+  <section class="slide" id="s-voix-clonee-reflexes">
+    <p class="kicker"><span class="t-fr">Voix clonée</span><span class="t-en" hidden="">Cloned voice</span></p>
+    <h2><span class="t-fr">Comment s’en protéger ?</span><span class="t-en" hidden="">How to protect yourself?</span></h2>
+    <div class="compare">
+      <div class="col step" data-order="1"><h3><span class="t-fr">Un mot de passe familial</span><span class="t-en" hidden="">A family password</span></h3><p class="lead"><span class="t-fr">«&nbsp;Tartiflette&nbsp;»<br>Pas de mot, pas d’argent.</span><span class="t-en" hidden="">“Tartiflette”<br>No word, no money.</span></p></div>
+      <div class="col step" data-order="2"><h3><span class="t-fr">Raccrocher et rappeler</span><span class="t-en" hidden="">Hang up and call back</span></h3><p class="lead"><span class="t-fr">Rappelez la personne sur son numéro habituel, même s’il « ne marche plus ». Le numéro affiché ne prouve rien : il peut être usurpé.</span><span class="t-en" hidden="">Call the person back on their usual number, even if it “no longer works”. The number displayed proves nothing: it can be spoofed.</span></p></div>
+      <div class="col step" data-order="3"><h3><span class="t-fr">Une question piège</span><span class="t-en" hidden="">A trick question</span></h3><p class="lead"><span class="t-fr">Demandez un souvenir que l’escroc ne peut pas connaître.</span><span class="t-en" hidden="">Ask about a memory the scammer can’t know.</span></p></div>
+      <div class="col step" data-order="4"><h3><span class="t-fr">Se taire</span><span class="t-en" hidden="">Stay silent</span></h3><p class="lead"><span class="t-fr">Face à un appel silencieux, ne parlez pas en premier : raccrochez.</span><span class="t-en" hidden="">When a call is silent, don’t speak first: hang up.</span></p></div>
+    </div>
+  <div class="speaker-notes" hidden="">Mot de passe familial : ancien texte « Un mot que seuls vos proches connaissent. Pas de mot, pas d’argent. »</div>
+  </section>
+  <section class="slide" id="s-faux-conseiller">
+    <p class="kicker"><span class="t-fr">L’arnaque au faux conseiller</span><span class="t-en" hidden="">The fake bank adviser scam</span></p>
+    <h2><span class="t-fr">« Votre compte est piraté, un coursier passe chercher votre carte »</span><span class="t-en" hidden="">“Your account has been hacked, a courier is coming for your card”</span></h2>
+    <div class="appel-banque"><span class="appel-avatar">🏦</span><span class="appel-ident"><span class="appel-quoi"><span class="t-fr">Appel entrant</span><span class="t-en" hidden="">Incoming call</span></span><span class="appel-nom"><span class="t-fr">Ma Banque · Service fraude</span><span class="t-en" hidden="">My Bank · Fraud department</span></span><span class="appel-num">01 99 00 41 27</span></span><span class="appel-btn refuser">📞</span><span class="appel-btn accepter">📞</span></div>
+    <audio class="appel-audio" controls preload="metadata" src="../medias/audio/faux-conseiller.mp3"></audio>
+    <div class="compare">
+      <div class="col"><h3><span class="t-fr">1. L’appel</span><span class="t-en" hidden="">1. The call</span></h3><p class="lead"><span class="t-fr">Le numéro affiché est celui de votre banque : il est usurpé. Un « conseiller » signale un virement suspect. Il faut agir vite.</span><span class="t-en" hidden="">The number displayed is your bank’s: it is spoofed. An “adviser” reports a suspicious transfer. You have to act fast.</span></p></div>
+      <div class="col"><h3><span class="t-fr">2. Le code</span><span class="t-en" hidden="">2. The PIN</span></h3><p class="lead"><span class="t-fr">Pour « bloquer la fraude », il vous demande votre code de carte ou de valider une opération sur votre appli.</span><span class="t-en" hidden="">To “block the fraud”, he asks for your card PIN or to approve an operation in your banking app.</span></p></div>
+      <div class="col"><h3><span class="t-fr">3. Le coursier</span><span class="t-en" hidden="">3. The courier</span></h3><p class="lead"><span class="t-fr">Un coursier sonne et récupère la carte « pour la détruire ». Parfois, il la coupe devant vous en laissant la puce intacte.</span><span class="t-en" hidden="">A courier rings the bell and takes the card “to destroy it”. Sometimes he cuts it in front of you, leaving the chip intact.</span></p></div>
+    </div>
+    <p class="lead"><span class="t-fr">Ensuite, les escrocs retirent et dépensent jusqu’au plafond de la carte.</span><span class="t-en" hidden="">Then the scammers withdraw and spend up to the card’s limit.</span></p>
+  <div class="speaker-notes" hidden="">Le visuel est une reconstitution : le nom et le numéro de la banque s’affichent comme si c’était elle (usurpation du numéro). Le numéro 01 99 00 xx xx est réservé par l’ARCEP à la fiction.
+
+Audio : appel reconstitué (texte d’Antonin, voix de synthèse Henri et Denise, son de téléphone), fichier medias/audio/faux-conseiller.mp3, environ 1 min 15.</div>
+  </section>
+  <section class="slide" id="s-faux-conseiller-cas">
+    <p class="kicker"><span class="t-fr">Près de chez nous</span><span class="t-en" hidden="">Close to home</span></p>
+    <h2><span class="t-fr">Est lyonnais, 2025-2026</span><span class="t-en" hidden="">East of Lyon, 2025-2026</span></h2>
+    <div class="cas-reels cas-lyon"><a class="article-carte step" data-order="1" href="https://www.lyoncapitale.fr/actualite/rhone-plus-de-20-plaintes-enregistrees-face-a-une-recrudescence-darnaques-aux-faux-coursiers" target="_blank" rel="noopener"><span class="article-source"><span class="t-fr">Lyon Capitale · 31 janvier 2026</span><span class="t-en" hidden=""></span></span><span class="article-titre"><span class="t-fr">Rhône : plus de 20 plaintes enregistrées face à une recrudescence d’arnaques aux faux coursiers</span><span class="t-en" hidden=""></span></span></a><a class="article-carte step" data-order="2" href="https://www.lyonmag.com/article/149870/ils-se-font-passer-pour-votre-banque-l-arnaque-aux-faux-coursiers-explose-dans-ce-secteur-pres-de-lyon" target="_blank" rel="noopener"><span class="article-source"><span class="t-fr">Lyon Mag · 31 janvier 2026</span><span class="t-en" hidden=""></span></span><span class="article-titre"><span class="t-fr">Ils se font passer pour votre banque : l’arnaque aux faux coursiers explose dans ce secteur près de Lyon</span><span class="t-en" hidden=""></span></span></a><a class="article-carte step" data-order="3" href="https://www.lyoncapitale.fr/actualite/rhone-il-se-fait-passer-pour-un-coursier-et-derobe-plus-de-3-000-euros-a-sa-victime" target="_blank" rel="noopener"><span class="article-source"><span class="t-fr">Lyon Capitale · 31 juillet 2026</span><span class="t-en" hidden=""></span></span><span class="article-titre"><span class="t-fr">Rhône : il se fait passer pour un coursier et dérobe plus de 3 000 euros à sa victime</span><span class="t-en" hidden=""></span></span></a></div>
+  <div class="speaker-notes" hidden="">Lyon Mag (31 janvier 2026) : « un peu plus de vingt plaintes » depuis août 2025 sur le territoire de la compagnie de gendarmerie de Bron (Est lyonnais) ; un faux coursier pris en flagrant délit à Saint-Laurent-de-Mure, enquête ouverte. Selon les gendarmes, pas un réseau structuré mais « de multiples petits entrepreneurs du crime ». « Les forces de l’ordre rappellent qu’aucune banque ne mandate de coursier pour récupérer une carte bancaire. » Lyon Capitale et Le Progrès parlent d’« une vingtaine » de plaintes.
+Lyon Capitale (31 juillet 2026) : le 15 septembre 2025 à Porte des Pierres Dorées, un faux conseiller bancaire puis un faux coursier qui vient chercher les cartes ; 3 250 € retirés. Condamné à 4 mois ferme (tribunal de Villefranche-sur-Saône).
+Ancien texte de la diapo : Plus de 20 plaintes, depuis août 2025, rien que dans le secteur de la gendarmerie de Bron. Un coursier arrêté en flagrant délit à Saint-Laurent-de-Mure. Souvent de petits exécutants, payés à la course. « Aucune banque ne mandate de coursier pour récupérer une carte bancaire. » La gendarmerie</div>
+  </section>
+  <section class="slide short" id="s-que-faire-faux-conseiller">
+    <p class="kicker"><span class="t-fr">Faux conseiller</span><span class="t-en" hidden="">Fake adviser</span></p>
+    <h2><span class="t-fr">Que faire ?</span><span class="t-en" hidden="">What should you do?</span></h2>
+    <p class="lead"><span class="t-fr">À vous : quels réflexes proposez-vous ?</span><span class="t-en" hidden="">Over to you: what would you do?</span></p>
+  </section>
+
+  <section class="slide" id="s-faux-conseiller-reflexes">
+    <p class="kicker"><span class="t-fr">Faux conseiller</span><span class="t-en" hidden="">Fake adviser</span></p>
+    <h2><span class="t-fr">Les bons réflexes</span><span class="t-en" hidden="">The right reflexes</span></h2>
+    <div class="compare">
+      <div class="col step" data-order="1"><h3><span class="t-fr">Raccrocher</span><span class="t-en" hidden="">Hang up</span></h3><p class="lead"><span class="t-fr">Une vraie banque comprend très bien que vous raccrochiez.</span><span class="t-en" hidden="">A real bank fully understands if you hang up.</span></p></div>
+      <div class="col step" data-order="2"><h3><span class="t-fr">Rappeler soi-même</span><span class="t-en" hidden="">Call back yourself</span></h3><p class="lead"><span class="t-fr">Au numéro inscrit au dos de votre carte, de préférence depuis un autre téléphone.</span><span class="t-en" hidden="">On the number printed on the back of your card, ideally from another phone.</span></p></div>
+      <div class="col step" data-order="3"><h3><span class="t-fr">Ne rien donner</span><span class="t-en" hidden="">Give nothing</span></h3><p class="lead"><span class="t-fr">Ni code, ni carte, ni validation dans l’appli. Votre banque ne vous les demandera jamais.</span><span class="t-en" hidden="">No PIN, no card, no approval in the app. Your bank will never ask you for them.</span></p></div>
+    </div>
+  </section>
+  <section class="slide" id="s-radar-faux-conseiller">
+    <p class="kicker"><span class="t-fr">Radar’naque</span><span class="t-en" hidden="">Radar’naque</span></p>
+    <h2><span class="t-fr">À vous de jouer : vraie banque ou faux conseiller ?</span><span class="t-en" hidden="">Your turn: real bank or fake adviser?</span></h2>
+    <div class="illu-frame radar-frame" id="radar-s-radar-faux-conseiller"><iframe src="https://antoninatger.github.io/jeux/radarnaque/index.html?carte=appel-banque,appel-banque-fraude-ok&amp;taille=1.4" title="Radar’naque" loading="lazy"></iframe></div>
+    <button type="button" class="reveal-btn illu-fs-btn" data-target="#radar-s-radar-faux-conseiller"><span class="t-fr">Plein écran</span><span class="t-en" hidden="">Fullscreen</span></button>
+  </section>
+
+  <section id="s-le-colis-arrive" class="slide"><h2 data-pose="" data-off-x="416.88" data-off-y="110.13" style="left:41.688%;top:11.013%"><span class="t-fr">Le «&nbsp;colis arrivé&nbsp;»</span><span class="t-en" hidden=""></span></h2><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="182.8" style="left:39.091%;top:18.28%"><img src="../medias/images/arnaques-le-colis-arrive-38.jpg" alt="" loading="lazy"></div></section>
+
+  <section class="slide short" id="s-que-faire-colis">
+    <p class="kicker"><span class="t-fr">Le « colis arrivé »</span><span class="t-en" hidden="">The “parcel delivered” scam</span></p>
+    <h2><span class="t-fr">Que faire ?</span><span class="t-en" hidden="">What should you do?</span></h2>
+    <p class="lead"><span class="t-fr">À vous : quels réflexes proposez-vous ?</span><span class="t-en" hidden="">Over to you: what would you do?</span></p>
+  </section>
+
+  <section id="s-le-colis-arrive-2" class="slide"><h2 data-pose="" data-off-x="162.3" data-off-y="110.13" style="left:16.23%;top:11.013%"><span class="t-fr">Le «&nbsp;colis arrivé&nbsp;»</span><span class="t-en" hidden=""></span></h2><ul class="liste-colis" data-pose="" data-off-x="162.3" data-off-y="200" style="left:16.23%;top:20%"><li class="step" data-order="1"><span class="t-fr">Vérifiez BIEN que vous avez un colis, que c’est le bon service de livraison.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="2"><span class="t-fr">Attention en période de fêtes !</span><span class="t-en" hidden=""></span></li><li class="step" data-order="3"><span class="t-fr">N’oubliez pas le biais du survivant !</span><span class="t-en" hidden=""></span></li></ul></section>
+  <section class="slide" id="s-radar-colis">
+    <p class="kicker"><span class="t-fr">Radar’naque</span><span class="t-en" hidden="">Radar’naque</span></p>
+    <h2><span class="t-fr">À vous de jouer : arnaque ou message fiable ?</span><span class="t-en" hidden="">Your turn: scam or genuine message?</span></h2>
+    <div class="illu-frame radar-frame" id="radar-s-radar-colis"><iframe src="https://antoninatger.github.io/jeux/radarnaque/index.html?carte=sms-colis,sms-livraison-ok&amp;taille=1.4" title="Radar’naque" loading="lazy"></iframe></div>
+    <button type="button" class="reveal-btn illu-fs-btn" data-target="#radar-s-radar-colis"><span class="t-fr">Plein écran</span><span class="t-en" hidden="">Fullscreen</span></button>
+  </section>
+
+  <section id="s-linginerie-sociale" class="slide short"><h2 data-pose="" data-off-x="413.2" data-off-y="464.76" style="left:41.32%;top:46.476%"><span class="t-fr">L’inginérie sociale</span><span class="t-en" hidden=""></span></h2><ul data-pose="" data-off-x="402.18" data-off-y="522" style="left:40.218%;top:52.2%"><li><span class="t-fr">Manipulation psychologique dans le but d’escroquer.</span><span class="t-en" hidden=""></span></li></ul></section>
+
+  <section id="s-comment-ne-pas-se-faire-avoir" class="slide short"><h2 data-pose="" data-off-x="352.83" data-off-y="476.87" style="left:35.283%;top:47.687%"><span class="t-fr">Comment ne PAS se faire avoir</span><span class="t-en" hidden=""></span></h2></section>
+
+  <section id="s-les-fautes-dorthographe" class="slide"><h2 data-pose="" data-off-x="378.14" data-off-y="110.13" style="left:37.814%;top:11.013%"><span class="t-fr">Les fautes d’orthographe</span><span class="t-en" hidden=""></span></h2><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="182.8" style="left:39.091%;top:18.28%"><img src="../medias/images/arnaques-les-fautes-dorthographe-42.png" alt="" loading="lazy"></div></section>
+
+  <section id="s-les-adresses-emails-etranges" class="slide"><h2 data-pose="" data-off-x="358.29" data-off-y="110.13" style="left:35.829%;top:11.013%"><span class="t-fr">Les adresses emails étranges</span><span class="t-en" hidden=""></span></h2><p class="lead step" data-order="1" data-pose="" data-off-x="432.35" data-off-y="182.8" style="left:43.235%;top:18.28%"><span class="t-fr">s807962@charterschools.ae</span><span class="t-en" hidden=""></span></p><p class="lead step" data-order="2" data-pose="" data-off-x="427.38" data-off-y="233.46" style="left:42.738%;top:23.346%"><span class="t-fr">banqueDefrance@c0mpte.com</span><span class="t-en" hidden=""></span></p><div class="imgcard step" data-order="3" data-pose="" data-off-x="390.91" data-off-y="284.12" style="left:39.091%;top:28.412%"><img src="../medias/images/arnaques-les-adresses-emails-etranges-43.png" alt="" loading="lazy"></div></section>
+
+  <section id="s-lurl-ne-correspond-pas" class="slide"><h2 data-pose="" data-off-x="382.28" data-off-y="110.13" style="left:38.228%;top:11.013%"><span class="t-fr">L’URL ne correspond pas</span><span class="t-en" hidden=""></span></h2><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="182.8" style="left:39.091%;top:18.28%"><img src="../medias/images/arnaques-lurl-ne-correspond-pas-44.png" alt="" loading="lazy"></div></section>
+
+  <section id="s-lurl-ne-correspond-pas-2" class="slide"><h2 data-pose="" data-off-x="382.28" data-off-y="110.13" style="left:38.228%;top:11.013%"><span class="t-fr">L’URL ne correspond pas</span><span class="t-en" hidden=""></span></h2><p class="lead step" data-order="1" data-pose="" data-off-x="381.03" data-off-y="268.7" style="left:38.103%;top:26.87%"><span class="t-fr"><b>Quand on passe la souris dessus (sans cliquer ! )</b></span><span class="t-en" hidden=""></span></p><div class="survol-url" data-pose="" data-off-x="390.91" data-off-y="380" style="left:39.091%;top:38%"><img src="../medias/images/arnaques-lurl-ne-correspond-pas-45.png" alt="Bouton « En savoir plus »" loading="lazy"><span class="survol-url-bulle">https://emea01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fpetrageuting.de%2Ffwd%2FP2Q9MTMzODcmZWk9NDAyMDE0NiZpZj0yMzI2MiZsaT0zMSZzaT02&amp;data=05%7C02%7C%7C0ff66fa716c04cf23f2708dd36f279fc%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C638727137240307452%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=aeHHqWAv2hnHY50CGyGUwFWphwqCN%2BiYuRrnA%2Bgq6kY%3D&amp;reserved=0</span></div></section>
+  <section class="slide" id="s-faux-sites-demarches">
+    <p class="kicker"><span class="t-fr">Faux sites administratifs</span><span class="t-en" hidden="">Fake government websites</span></p>
+    <h2><span class="t-fr">Payer pour une démarche gratuite</span><span class="t-en" hidden="">Paying for a free procedure</span></h2>
+    <div class="compare">
+      <div class="col"><div class="ex-mock ex-sms"><span class="ex-sms-num"><span class="t-fr">CRITAIR</span><span class="t-en" hidden=""></span></span><span class="ex-sms-txt"><span class="t-fr">Votre vignette n’est plus valide. Évitez une amende de 68&nbsp;€, commandez-la ici&nbsp;: critair-vignette-fr.com</span><span class="t-en" hidden=""></span></span></div><div class="ex-realite step" data-order="1"><p class="ex-realite-titre"><span class="t-fr">La réalité</span><span class="t-en" hidden="">The reality</span></p><h3><span class="t-fr">La vignette Crit’Air</span><span class="t-en" hidden="">The Crit’Air sticker</span></h3><p class="lead"><span class="t-fr">3,72&nbsp;€ sur le seul site officiel, certificat-air.gouv.fr.</span><span class="t-en" hidden="">€3.72 on the only official website, certificat-air.gouv.fr.</span></p></div></div>
+      <div class="col"><div class="ex-mock ex-pub"><span class="ex-spons"><span class="t-fr">Sponsorisé</span><span class="t-en" hidden=""></span></span><span class="ex-url">carte-grise-express.fr</span><span class="ex-titre"><span class="t-fr">Changement d’adresse carte grise en 24&nbsp;h</span><span class="t-en" hidden=""></span></span><span class="ex-prix"><span class="t-fr">À partir de 39,90&nbsp;€</span><span class="t-en" hidden=""></span></span></div><div class="ex-realite step" data-order="2"><p class="ex-realite-titre"><span class="t-fr">La réalité</span><span class="t-en" hidden="">The reality</span></p><h3><span class="t-fr">La carte grise</span><span class="t-en" hidden="">The vehicle registration</span></h3><p class="lead"><span class="t-fr">C’est gratuit sur ants.gouv.fr.</span><span class="t-en" hidden="">It’s free on ants.gouv.fr.</span></p></div></div>
+      <div class="col"><div class="ex-mock ex-mail"><span class="ex-mail-de"><span class="t-fr">Service État civil en ligne</span><span class="t-en" hidden=""></span></span><span class="ex-mail-obj"><span class="t-fr">Votre demande d’acte de naissance</span><span class="t-en" hidden=""></span></span><span class="ex-mail-txt"><span class="t-fr">Réglez 24,90&nbsp;€ de frais de dossier pour finaliser votre demande.</span><span class="t-en" hidden=""></span></span></div><div class="ex-realite step" data-order="3"><p class="ex-realite-titre"><span class="t-fr">La réalité</span><span class="t-en" hidden="">The reality</span></p><h3><span class="t-fr">L’acte de naissance</span><span class="t-en" hidden="">The birth certificate</span></h3><p class="lead"><span class="t-fr">C’est gratuit sur service-public.fr.</span><span class="t-en" hidden="">It’s free on service-public.fr.</span></p></div></div>
+    </div>
+    <p class="lead step" data-order="4"><span class="t-fr">Ce n’est pas toujours illégal, mais vous payez pour ce qui était gratuit.</span><span class="t-en" hidden="">It isn’t always illegal, but you pay for something that was free.</span></p>
+  <div class="speaker-notes" hidden="">Les trois visuels sont des reconstitutions (SMS, publicité, mail), avec des adresses inventées : ils reprennent la forme des messages signalés, pas un message précis.
+
+Diapo en deux temps (18 octobre) : d’abord les trois faux messages, puis « La réalité » colonne par colonne. Attention : la vignette Crit’Air n’est pas gratuite, elle coûte 3,72 € sur le site officiel. Anciens textes : « 3,72 € sur le seul site officiel, certificat-air.gouv.fr. Des sites et des SMS la revendent bien plus cher. » ; « Les démarches se font sur ants.gouv.fr. Le changement d’adresse y est gratuit. » ; « Gratuit sur service-public.fr. D’autres sites le facturent, parfois avec un abonnement caché. »</div>
+  </section>
+  <section class="slide short" id="s-que-faire-faux-sites">
+    <p class="kicker"><span class="t-fr">Faux sites administratifs</span><span class="t-en" hidden="">Fake government websites</span></p>
+    <h2><span class="t-fr">Que faire ?</span><span class="t-en" hidden="">What should you do?</span></h2>
+    <p class="lead"><span class="t-fr">À vous : quels réflexes proposez-vous ?</span><span class="t-en" hidden="">Over to you: what would you do?</span></p>
+  </section>
+
+  <section class="slide" id="s-faux-sites-demarches-reperer">
+    <p class="kicker"><span class="t-fr">Comment reconnaître le vrai site ?</span><span class="t-en" hidden="">How to recognise the real website?</span></p>
+    <h2><span class="t-fr">Le .gouv.fr</span><span class="t-en" hidden="">The .gouv.fr</span></h2>
+    <div class="reperer"><div class="adr-comp"><div class="adr-ligne bon"><span class="adr-marque">✓</span><span class="adr-barre">🔒 https://<b>certificat-air.gouv.fr</b></span></div><div class="adr-ligne mauvais step" data-order="1"><span class="adr-marque">✗</span><span class="adr-barre">🔒 https://<b>certificat-air-officiel.fr</b><span class="adr-badge">🇫🇷 <span class="t-fr">Site officiel</span><span class="t-en" hidden=""></span></span></span></div></div><p class="lead"><span class="t-fr">Les sites de l’État finissent par .gouv.fr. Un drapeau tricolore ou le mot « officiel » ne prouvent rien.</span><span class="t-en" hidden="">State websites end in .gouv.fr. A French flag or the word “official” proves nothing.</span></p></div>
+  <div class="speaker-notes" hidden="">Au clic, la fausse adresse apparaît. Les adresses fausses de ces trois diapos sont inventées.</div>
+  </section>
+
+  <section class="slide" id="s-faux-sites-demarches-reperer-2">
+    <p class="kicker"><span class="t-fr">Comment reconnaître le vrai site ?</span><span class="t-en" hidden="">How to recognise the real website?</span></p>
+    <h2><span class="t-fr">Les premiers résultats</span><span class="t-en" hidden="">The top results</span></h2>
+    <div class="reperer"><div class="g-mock"><div class="g-barre">🔍 <span class="t-fr">vignette crit’air</span><span class="t-en" hidden=""></span></div><div class="g-res"><span class="g-spons"><span class="t-fr">Sponsorisé</span><span class="t-en" hidden=""></span></span><span class="g-url">critair-vignette-service.fr</span><span class="g-titre"><span class="t-fr">Vignette Crit’Air officielle : commande en 2 minutes</span><span class="t-en" hidden=""></span></span></div><div class="g-res"><span class="g-spons"><span class="t-fr">Sponsorisé</span><span class="t-en" hidden=""></span></span><span class="g-url">ma-vignette-critair.com</span><span class="g-titre"><span class="t-fr">Commandez votre certificat Crit’Air en ligne</span><span class="t-en" hidden=""></span></span></div><div class="g-res g-vrai step" data-order="1"><span class="g-url">certificat-air.gouv.fr</span><span class="g-titre"><span class="t-fr">Le site officiel des certificats qualité de l’air</span><span class="t-en" hidden=""></span></span></div></div><p class="lead"><span class="t-fr">Ces sites achètent les premières places sur Google. Passez plutôt par service-public.fr.</span><span class="t-en" hidden="">These websites buy the top spots on Google. Go through service-public.fr instead.</span></p></div>
+  <div class="speaker-notes" hidden="">Au clic, le site officiel apparaît, sous les annonces. Reconstitution : les annonces sont inventées, la présentation reprend celle de Google (« Sponsorisé »). Même principe sur YouTube, avec les vidéos et annonces marquées « Sponsorisé ».</div>
+  </section>
+
+  <section class="slide" id="s-faux-sites-demarches-reperer-3">
+    <p class="kicker"><span class="t-fr">Comment reconnaître le vrai site ?</span><span class="t-en" hidden="">How to recognise the real website?</span></p>
+    <h2><span class="t-fr">Les petites lignes</span><span class="t-en" hidden="">The small print</span></h2>
+    <div class="reperer"><div class="pl-mock"><div class="pl-titre"><span class="t-fr">Votre acte de naissance</span><span class="t-en" hidden=""></span></div><div class="pl-prix">29,90&nbsp;€</div><div class="pl-btn"><span class="t-fr">Payer et recevoir mon acte</span><span class="t-en" hidden=""></span></div><p class="pl-petit step" data-order="1"><span class="t-fr">En validant, vous souscrivez à un abonnement « Premium » de 49,90&nbsp;€ par mois, sans engagement. Ce site n’est pas affilié à l’administration. Les frais de traitement du dossier ne sont pas remboursables.</span><span class="t-en" hidden=""></span></p></div><p class="lead"><span class="t-fr">Frais de « traitement du dossier », « assistance », pas de mentions légales : méfiance.</span><span class="t-en" hidden="">“Processing fees”, “assistance”, no legal notice: be wary.</span></p></div>
+  <div class="speaker-notes" hidden="">Au clic, les petites lignes grossissent. Reconstitution d’après les mentions relevées sur ces sites : abonnement caché, « non affilié à l’administration », frais de traitement.</div>
+  </section>
+  <section class="slide" id="s-radar-faux-site-officiel">
+    <p class="kicker"><span class="t-fr">Radar’naque</span><span class="t-en" hidden="">Radar’naque</span></p>
+    <h2><span class="t-fr">À vous de jouer : vrai ou faux message des impôts ?</span><span class="t-en" hidden="">Your turn: real or fake tax message?</span></h2>
+    <div class="illu-frame radar-frame" id="radar-s-radar-faux-site-officiel"><iframe src="https://antoninatger.github.io/jeux/radarnaque/index.html?carte=sms-remboursement-impots,email-impots-ok&amp;taille=1.4" title="Radar’naque" loading="lazy"></iframe></div>
+    <button type="button" class="reveal-btn illu-fs-btn" data-target="#radar-s-radar-faux-site-officiel"><span class="t-fr">Plein écran</span><span class="t-en" hidden="">Fullscreen</span></button>
+  </section>
+  <section class="slide" id="s-quishing">
+    <p class="kicker"><span class="t-fr">Le « quishing » : l’hameçonnage par QR code</span><span class="t-en" hidden="">“Quishing”: QR code phishing</span></p>
+    <h2><span class="t-fr">Le QR code collé par-dessus le vrai</span><span class="t-en" hidden="">The QR code stuck over the real one</span></h2>
+    <div class="quish-rang"><div class="qr-horo"><div class="qr-horo-ecran"><span class="t-fr">Payez votre stationnement</span><span class="t-en" hidden=""></span></div><div class="qr-horo-zone"><img class="qr-vrai" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNzAiIGhlaWdodD0iMzcwIiBjbGFzcz0ic2Vnbm8iPjxnIHRyYW5zZm9ybT0ic2NhbGUoMTApIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMCAwaDM3djM3aC0zN3oiLz48cGF0aCBjbGFzcz0icXJsaW5lIiBzdHJva2U9IiMxMTEiIGQ9Ik0yIDIuNWg3bTEgMGgzbTEgMGgzbTIgMGgxbTIgMGgybTQgMGg3bS0zMyAxaDFtNSAwaDFtNCAwaDFtNCAwaDFtMSAwaDFtMiAwaDJtMSAwaDFtMSAwaDFtNSAwaDFtLTMzIDFoMW0xIDBoM20xIDBoMW0xIDBoMm0zIDBoMW0xIDBoM20xIDBoNG0zIDBoMW0xIDBoM20xIDBoMW0tMzMgMWgxbTEgMGgzbTEgMGgxbTIgMGgzbTUgMGgybTIgMGgzbTIgMGgxbTEgMGgzbTEgMGgxbS0zMyAxaDFtMSAwaDNtMSAwaDFtMyAwaDFtNCAwaDFtNSAwaDJtMyAwaDFtMSAwaDNtMSAwaDFtLTMzIDFoMW01IDBoMW0xIDBoMm0xIDBoMm0yIDBoMW0xIDBoMW0zIDBoMW0yIDBoMW0xIDBoMW01IDBoMW0tMzMgMWg3bTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGg3bS0yNCAxaDNtMiAwaDNtMyAwaDFtLTIxIDFoMW0xIDBoMW0zIDBoMm0xIDBoMW0xIDBoMm0xIDBoMW0xIDBoMW0xIDBoM20yIDBoMm0yIDBoMW0yIDBoMW0xIDBoMW0tMzEgMWgxbTEgMGgybTEgMGgxbTIgMGgybTEgMGgxbTEgMGgybTIgMGgxbTEgMGgxbTEgMGgybTEgMGgxbTMgMGgxbTEgMGgxbS0zMyAxaDFtMiAwaDFtMSAwaDRtMSAwaDFtMSAwaDFtMiAwaDNtMSAwaDhtMSAwaDVtLTMzIDFoMW0xIDBoMm03IDBoM20xIDBoMW0yIDBoM20yIDBoMm0yIDBoMW0xIDBoMW0yIDBoMW0tMzAgMWgxbTIgMGgxbTMgMGgybTEgMGgxbTEgMGgxbTcgMGgybTEgMGgybTEgMGgxbTEgMGgybS0zMSAxaDFtNCAwaDJtMSAwaDFtMSAwaDFtNSAwaDRtNCAwaDFtNCAwaDJtLTMzIDFoMm0xIDBoMW0xIDBoM20xIDBoNG0yIDBoMW0xIDBoM20xIDBoMW0yIDBoM20xIDBoM20xIDBoMW0tMzMgMWgzbTYgMGgxbTMgMGgxbTggMGgxbTEgMGgxbTIgMGgxbTEgMGgxbTEgMGgxbS0zMiAxaDFtMyAwaDFtMSAwaDNtMyAwaDJtMSAwaDFtMyAwaDJtMyAwaDFtMSAwaDJtMSAwaDFtMiAwaDFtLTMwIDFoMm0zIDBoMW0xIDBoMW0xIDBoMW0xIDBoM20yIDBoM20xIDBoMm0xIDBoMm0xIDBoMW0xIDBoMW0tMzIgMWgxbTEgMGgybTIgMGgxbTIgMGgybTEgMGgxbTEgMGgzbTEgMGgybTMgMGgybTEgMGgzbTEgMGgxbTEgMGgxbS0zMyAxaDNtMSAwaDFtMiAwaDFtNiAwaDNtMiAwaDJtMSAwaDFtNCAwaDNtMSAwaDFtLTMyIDFoMW0xIDBoMm0xIDBoM20xIDBoMW0xIDBoMW0zIDBoMm0xIDBoMW0xIDBoMW0yIDBoMm0xIDBoMm0xIDBoMW0xIDBoMm0tMzEgMWgybTEgMGgxbTIgMGgxbTEgMGgybTQgMGgybTEgMGgybTEgMGgzbTEgMGgybS0yOCAxaDNtMSAwaDRtMyAwaDFtNCAwaDJtMSAwaDZtMSAwaDNtMyAwaDFtLTMxIDFoMW00IDBoMW0xIDBoMm0xIDBoMW0yIDBoMm0zIDBoMW0xIDBoMW00IDBoMW0xIDBoMW0tMzAgMWgybTEgMGg1bTQgMGgxbTYgMGgybTIgMGg3bTEgMGgxbS0yNCAxaDRtMyAwaDNtMSAwaDJtMSAwaDFtMSAwaDFtMyAwaDRtLTMyIDFoN20xIDBoMm0xIDBoMW0xIDBoNG0yIDBoMW0yIDBoMW0xIDBoMW0xIDBoMW0xIDBoMW0xIDBoMW0xIDBoMW0tMzMgMWgxbTUgMGgxbTQgMGgxbTEyIDBoMW0zIDBoMm0tMzAgMWgxbTEgMGgzbTEgMGgxbTIgMGg1bTEgMGg0bTEgMGgxbTIgMGg2bTIgMGgybS0zMyAxaDFtMSAwaDNtMSAwaDFtMiAwaDFtMSAwaDRtNCAwaDJtMiAwaDFtMSAwaDFtMiAwaDVtLTMzIDFoMW0xIDBoM20xIDBoMW0xIDBoMW0xIDBoMW0yIDBoMW0xIDBoM20xIDBoMW0xIDBoMW0yIDBoMm0yIDBoMW0yIDBoMm0tMzMgMWgxbTUgMGgxbTIgMGgybTIgMGgybTMgMGgzbTMgMGgybTMgMGgxbS0zMCAxaDdtMSAwaDFtMiAwaDFtMSAwaDFtMSAwaDJtMSAwaDFtMSAwaDFtMiAwaDJtMSAwaDRtMiAwaDEiLz48L2c+PC9zdmc+Cg==" alt="Vrai QR code"><img class="qr-faux step" data-order="1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MTAiIGhlaWdodD0iNDEwIiBjbGFzcz0ic2Vnbm8iPjxnIHRyYW5zZm9ybT0ic2NhbGUoMTApIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMCAwaDQxdjQxaC00MXoiLz48cGF0aCBjbGFzcz0icXJsaW5lIiBzdHJva2U9IiMxMTEiIGQ9Ik0yIDIuNWg3bTEgMGgxbTMgMGgybTQgMGgybTEgMGgybTEgMGg0bTIgMGg3bS0zNyAxaDFtNSAwaDFtMyAwaDJtMiAwaDJtMiAwaDFtMSAwaDNtMiAwaDJtMSAwaDFtMSAwaDFtNSAwaDFtLTM3IDFoMW0xIDBoM20xIDBoMW0zIDBoMW0yIDBoNW0xIDBoNW0yIDBoMm0yIDBoMW0xIDBoM20xIDBoMW0tMzcgMWgxbTEgMGgzbTEgMGgxbTEgMGgxbTMgMGgxbTUgMGgybTIgMGgybTEgMGg0bTEgMGgxbTEgMGgzbTEgMGgxbS0zNyAxaDFtMSAwaDNtMSAwaDFtMSAwaDFtMiAwaDJtMiAwaDJtMSAwaDFtMSAwaDJtMSAwaDFtMSAwaDFtMSAwaDJtMSAwaDFtMSAwaDNtMSAwaDFtLTM3IDFoMW01IDBoMW0xIDBoMW0xIDBoMW00IDBoMm0xIDBoNW0yIDBoMm0xIDBoMW0xIDBoMW01IDBoMW0tMzcgMWg3bTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGg3bS0yOSAxaDJtMiAwaDFtNCAwaDNtMiAwaDNtMiAwaDFtLTI4IDFoMW0zIDBoMW0xIDBoM20zIDBoMW0yIDBoMW0yIDBoMm0yIDBoMW0xIDBoMW0yIDBoMW0xIDBoNW0yIDBoMW0tMzQgMWgzbTQgMGgxbTIgMGgybTEgMGgxbTIgMGgybTQgMGgxbTEgMGgzbTIgMGgxbS0zMSAxaDJtMiAwaDFtMiAwaDJtMSAwaDFtMSAwaDFtMSAwaDFtMyAwaDNtMyAwaDNtMiAwaDFtMSAwaDJtLTM1IDFoMW0zIDBoMW0yIDBoMW0xIDBoMW0yIDBoMm0zIDBoMm0yIDBoMm0xIDBoMW0yIDBoMW0xIDBoMW0xIDBoMW0yIDBoMm0tMzMgMWg0bTMgMGgybTIgMGgybTEgMGgxbTEgMGgxbTEgMGgzbTMgMGgxbTEgMGgzbTEgMGgybS0zNCAxaDFtMiAwaDJtNiAwaDFtMiAwaDVtMyAwaDFtMSAwaDRtMyAwaDJtLTMxIDFoMW0yIDBoMW0xIDBoMm0zIDBoM20yIDBoMW0xIDBoNG0xIDBoNW00IDBoMm0tMzQgMWgybTggMGgxbTggMGgxbTEgMGgxbTQgMGgxbTEgMGgxbTMgMGgxbS0zNCAxaDFtMSAwaDJtMSAwaDFtMSAwaDFtMSAwaDJtMSAwaDRtMiAwaDJtMyAwaDFtNCAwaDNtMiAwaDFtLTM1IDFoMW0zIDBoMm0zIDBoMW0xIDBoMW0xIDBoMW0zIDBoM20yIDBoMW0xIDBoMW0yIDBoM20yIDBoMW0yIDBoMW0tMzYgMWgzbTMgMGgzbTEgMGgxbTEgMGgxbTIgMGgxbTIgMGgybTMgMGgxbTMgMGgybTQgMGgybS0zMiAxaDFtNCAwaDNtNCAwaDltMiAwaDNtMiAwaDFtMiAwaDFtLTM0IDFoMm0xIDBoMW0xIDBoNG0xIDBoMm0xIDBoMW0yIDBoMW0zIDBoMm0xIDBoMW0zIDBoMW0xIDBoMm0yIDBoM20tMzcgMWgxbTQgMGgxbTEgMGgzbTMgMGgxbTEgMGgybTEgMGgybTEgMGgxbTEgMGg2bTIgMGg0bS0zMyAxaDFtMSAwaDFtMSAwaDFtNCAwaDNtMSAwaDFtMSAwaDFtNSAwaDFtMSAwaDFtMSAwaDFtMSAwaDFtMSAwaDFtMiAwaDFtMSAwaDFtLTM0IDFoMW0xIDBoMW0yIDBoMW0xIDBoMm00IDBoM20zIDBoMW03IDBoMm0yIDBoMm0tMzYgMWgxbTEgMGgybTEgMGgybTIgMGgzbTEgMGgxbTQgMGgybTIgMGgzbTIgMGgxbTEgMGgzbTEgMGgzbS0zNiAxaDFtMSAwaDJtMSAwaDFtMSAwaDJtMiAwaDFtMSAwaDJtMSAwaDFtMiAwaDJtMyAwaDFtMSAwaDJtMSAwaDFtMiAwaDFtMyAwaDFtLTM1IDFoM20xIDBoMW0yIDBoMm0xIDBoMW0zIDBoM20xIDBoNG0xIDBoM20xIDBoMW0xIDBoMW0yIDBoMW0tMzMgMWgzbTIgMGgxbTIgMGgzbTEgMGgxbTIgMGgxbTMgMGgxbTIgMGgxbTEgMGgxbTEgMGgybTEgMGgybTEgMGgybS0zNiAxaDNtMSAwaDFtMSAwaDFtMSAwaDFtMSAwaDFtMyAwaDJtMSAwaDFtMSAwaDVtNCAwaDdtMSAwaDFtLTI5IDFoMm0xIDBoMW0xIDBoMW0xIDBoNG0xIDBoMW0xIDBoNW0xIDBoMW0zIDBoMW0tMzMgMWg3bTEgMGgybTEgMGgxbTMgMGgybTEgMGgxbTIgMGgzbTQgMGgxbTEgMGgxbTEgMGgzbS0zNSAxaDFtNSAwaDFtMyAwaDFtMSAwaDVtNCAwaDFtMSAwaDFtMiAwaDFtMSAwaDFtMyAwaDFtMSAwaDJtLTM2IDFoMW0xIDBoM20xIDBoMW0xIDBoMm0yIDBoMW0xIDBoMW0xIDBoMW0zIDBoMW0zIDBoMW0zIDBoNW0xIDBoMm0tMzYgMWgxbTEgMGgzbTEgMGgxbTMgMGgxbTEgMGgxbTEgMGgxbTMgMGgybTIgMGgzbTEgMGgxbTEgMGg0bTQgMGgxbS0zNyAxaDFtMSAwaDNtMSAwaDFtMiAwaDFtMSAwaDFtMSAwaDFtMSAwaDFtMSAwaDNtMSAwaDFtMSAwaDRtMSAwaDRtMSAwaDFtLTM0IDFoMW01IDBoMW0yIDBoMW0xIDBoMW0xIDBoOW0xIDBoMW05IDBoM20tMzYgMWg3bTEgMGgzbTIgMGgybTIgMGgybTIgMGg0bTEgMGgybTEgMGgybTMgMGgzIi8+PC9nPjwvc3ZnPgo=" alt="Faux QR code collé par-dessus"></div><div class="qr-horo-legende"><span class="t-fr">Scannez pour payer</span><span class="t-en" hidden=""></span></div></div>
+    <div class="compare">
+      <div class="col"><h3><span class="t-fr">Les horodateurs</span><span class="t-en" hidden="">Parking meters</span></h3><p class="lead"><span class="t-fr">Nice dès 2024, puis Marseille et Bergerac en 2025. À Bergerac, un vacancier se retrouve abonné à 34 € par mois, sans avoir payé son stationnement.</span><span class="t-en" hidden="">Nice, Marseille, Bergerac in 2025. In Bergerac, a holidaymaker ends up subscribed to €34 a month, without having paid for parking.</span></p></div>
+      <div class="col"><h3><span class="t-fr">Les bornes de recharge</span><span class="t-en" hidden="">EV charging points</span></h3><p class="lead"><span class="t-fr">Lyon, août 2026 : un homme de 27 ans est arrêté. Son faux site de paiement finissait en « .site » au lieu de « .com ».</span><span class="t-en" hidden="">Lyon, August 2026: a 27-year-old man is arrested. His fake payment site ended in “.site” instead of “.com”.</span></p></div>
+    </div></div>
+    <p class="lead"><span class="t-fr">Un QR code cache l’adresse du site : on ne voit pas où l’on va avant d’y être.</span><span class="t-en" hidden="">A QR code hides the website address: you can’t see where you’re going until you’re there.</span></p>
+  <div class="speaker-notes" hidden="">Visuel : au clic, un faux QR code autocollant vient se coller sur le vrai. Les deux QR codes de la diapo ne mènent à aucun site : ils contiennent seulement une phrase d’exemple.</div>
+  </section>
+
+  <section class="slide" id="s-quishing-presse">
+    <p class="kicker"><span class="t-fr">Le « quishing » : l’hameçonnage par QR code</span><span class="t-en" hidden="">“Quishing”: QR code phishing</span></p>
+    <h2><span class="t-fr">Dans la presse</span><span class="t-en" hidden="">In the press</span></h2>
+    <div class="quish-articles"><a class="article-carte step" data-order="1" href="https://www.clubic.com/actualite-562779-arnaque-a-marseille-mefiez-vous-des-faux-qr-codes-sur-les-horodateurs.html" target="_blank" rel="noopener"><span class="article-source"><span class="t-fr">Clubic · 21 avril 2025</span><span class="t-en" hidden=""></span></span><span class="article-titre"><span class="t-fr">Arnaque à Marseille : méfiez-vous des faux QR codes sur les horodateurs</span><span class="t-en" hidden=""></span></span></a><a class="article-carte step" data-order="2" href="https://actu.orange.fr/france/bergerac-des-qr-codes-d-horodateurs-pirates-renvoient-vers-un-site-frauduleux-magic-CNT000002k9VX5.html" target="_blank" rel="noopener"><span class="article-source"><span class="t-fr">Orange Actualités · 12 août 2025</span><span class="t-en" hidden=""></span></span><span class="article-titre"><span class="t-fr">Bergerac : des QR codes d’horodateurs piratés renvoient vers un site frauduleux</span><span class="t-en" hidden=""></span></span></a><a class="article-carte step" data-order="3" href="https://www.mac4ever.com/auto/197675-faux-qr-codes-sur-les-bornes-de-recharge-l-arnaque-qui-piege-les-automobilistes-a-lyon" target="_blank" rel="noopener"><span class="article-source"><span class="t-fr">Mac4Ever · 24 août 2026</span><span class="t-en" hidden=""></span></span><span class="article-titre"><span class="t-fr">Faux QR codes sur les bornes de recharge : l’arnaque qui piège les automobilistes à Lyon</span><span class="t-en" hidden=""></span></span></a></div>
+  <div class="speaker-notes" hidden="">Sources : Nice, Le Singulier (AFP, 25 mars 2025) et Clubic (16 juillet 2024) : l’arnaque y existe depuis au moins 2024, imitation de PayByPhone. Marseille, Clubic (21 avril 2025) : faux QR codes au logo Q-Park dans le 7e, retirés le 14 avril, plainte de l’exploitant. Bergerac, Orange Actualités (12 août 2025) : un vacancier abonné à 34 € par mois à une plateforme de jeux ; Q-Park retire les QR codes des 40 horodateurs. Lyon, Mac4Ever (24 août 2026, d’après Le Progrès) et Roole Média (4 septembre 2026) : homme de 27 ans interpellé mi-août au parking des Célestins, au moins 4 bornes ; faux site en « .site » au lieu de « .com » selon Roole, de « .fr » selon Mac4Ever.
+Aucun article ne montre de vraie photo d’un faux QR code collé (images de banques d’images). Seule vraie photo trouvée : Ville de Genève, https://www.geneve.ch/actualites/faux-codes-colles-certains-horodateurs-geneve (droits réservés).</div>
+  </section>
+  <section class="slide short" id="s-que-faire-qr">
+    <p class="kicker"><span class="t-fr">Faux QR codes</span><span class="t-en" hidden="">Fake QR codes</span></p>
+    <h2><span class="t-fr">Que faire ?</span><span class="t-en" hidden="">What should you do?</span></h2>
+    <p class="lead"><span class="t-fr">À vous : quels réflexes proposez-vous ?</span><span class="t-en" hidden="">Over to you: what would you do?</span></p>
+  </section>
+
+  <section class="slide" id="s-quishing-reflexes">
+    <p class="kicker"><span class="t-fr">Faux QR codes</span><span class="t-en" hidden="">Fake QR codes</span></p>
+    <h2><span class="t-fr">Avant de scanner</span><span class="t-en" hidden="">Before you scan</span></h2>
+    <div class="compare">
+      <div class="col"><h3><span class="t-fr">Toucher</span><span class="t-en" hidden="">Touch it</span></h3><p class="lead"><span class="t-fr">Un autocollant, un relief, un bord qui se décolle : méfiance.</span><span class="t-en" hidden="">A sticker, a raised edge, a corner peeling off: be wary.</span></p></div>
+      <div class="col"><h3><span class="t-fr">Lire l’adresse</span><span class="t-en" hidden="">Read the address</span></h3><p class="lead"><span class="t-fr">Le téléphone affiche le lien avant de l’ouvrir. Ne l’ouvrez que s’il correspond au service.</span><span class="t-en" hidden="">The phone shows the link before opening it. Only open it if it matches the service.</span></p><div class="survol-url survol-qr"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MTAiIGhlaWdodD0iNDEwIiBjbGFzcz0ic2Vnbm8iPjxnIHRyYW5zZm9ybT0ic2NhbGUoMTApIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMCAwaDQxdjQxaC00MXoiLz48cGF0aCBjbGFzcz0icXJsaW5lIiBzdHJva2U9IiMxMTEiIGQ9Ik0yIDIuNWg3bTEgMGgxbTMgMGgybTQgMGgybTEgMGgybTEgMGg0bTIgMGg3bS0zNyAxaDFtNSAwaDFtMyAwaDJtMiAwaDJtMiAwaDFtMSAwaDNtMiAwaDJtMSAwaDFtMSAwaDFtNSAwaDFtLTM3IDFoMW0xIDBoM20xIDBoMW0zIDBoMW0yIDBoNW0xIDBoNW0yIDBoMm0yIDBoMW0xIDBoM20xIDBoMW0tMzcgMWgxbTEgMGgzbTEgMGgxbTEgMGgxbTMgMGgxbTUgMGgybTIgMGgybTEgMGg0bTEgMGgxbTEgMGgzbTEgMGgxbS0zNyAxaDFtMSAwaDNtMSAwaDFtMSAwaDFtMiAwaDJtMiAwaDJtMSAwaDFtMSAwaDJtMSAwaDFtMSAwaDFtMSAwaDJtMSAwaDFtMSAwaDNtMSAwaDFtLTM3IDFoMW01IDBoMW0xIDBoMW0xIDBoMW00IDBoMm0xIDBoNW0yIDBoMm0xIDBoMW0xIDBoMW01IDBoMW0tMzcgMWg3bTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGgxbTEgMGg3bS0yOSAxaDJtMiAwaDFtNCAwaDNtMiAwaDNtMiAwaDFtLTI4IDFoMW0zIDBoMW0xIDBoM20zIDBoMW0yIDBoMW0yIDBoMm0yIDBoMW0xIDBoMW0yIDBoMW0xIDBoNW0yIDBoMW0tMzQgMWgzbTQgMGgxbTIgMGgybTEgMGgxbTIgMGgybTQgMGgxbTEgMGgzbTIgMGgxbS0zMSAxaDJtMiAwaDFtMiAwaDJtMSAwaDFtMSAwaDFtMSAwaDFtMyAwaDNtMyAwaDNtMiAwaDFtMSAwaDJtLTM1IDFoMW0zIDBoMW0yIDBoMW0xIDBoMW0yIDBoMm0zIDBoMm0yIDBoMm0xIDBoMW0yIDBoMW0xIDBoMW0xIDBoMW0yIDBoMm0tMzMgMWg0bTMgMGgybTIgMGgybTEgMGgxbTEgMGgxbTEgMGgzbTMgMGgxbTEgMGgzbTEgMGgybS0zNCAxaDFtMiAwaDJtNiAwaDFtMiAwaDVtMyAwaDFtMSAwaDRtMyAwaDJtLTMxIDFoMW0yIDBoMW0xIDBoMm0zIDBoM20yIDBoMW0xIDBoNG0xIDBoNW00IDBoMm0tMzQgMWgybTggMGgxbTggMGgxbTEgMGgxbTQgMGgxbTEgMGgxbTMgMGgxbS0zNCAxaDFtMSAwaDJtMSAwaDFtMSAwaDFtMSAwaDJtMSAwaDRtMiAwaDJtMyAwaDFtNCAwaDNtMiAwaDFtLTM1IDFoMW0zIDBoMm0zIDBoMW0xIDBoMW0xIDBoMW0zIDBoM20yIDBoMW0xIDBoMW0yIDBoM20yIDBoMW0yIDBoMW0tMzYgMWgzbTMgMGgzbTEgMGgxbTEgMGgxbTIgMGgxbTIgMGgybTMgMGgxbTMgMGgybTQgMGgybS0zMiAxaDFtNCAwaDNtNCAwaDltMiAwaDNtMiAwaDFtMiAwaDFtLTM0IDFoMm0xIDBoMW0xIDBoNG0xIDBoMm0xIDBoMW0yIDBoMW0zIDBoMm0xIDBoMW0zIDBoMW0xIDBoMm0yIDBoM20tMzcgMWgxbTQgMGgxbTEgMGgzbTMgMGgxbTEgMGgybTEgMGgybTEgMGgxbTEgMGg2bTIgMGg0bS0zMyAxaDFtMSAwaDFtMSAwaDFtNCAwaDNtMSAwaDFtMSAwaDFtNSAwaDFtMSAwaDFtMSAwaDFtMSAwaDFtMSAwaDFtMiAwaDFtMSAwaDFtLTM0IDFoMW0xIDBoMW0yIDBoMW0xIDBoMm00IDBoM20zIDBoMW03IDBoMm0yIDBoMm0tMzYgMWgxbTEgMGgybTEgMGgybTIgMGgzbTEgMGgxbTQgMGgybTIgMGgzbTIgMGgxbTEgMGgzbTEgMGgzbS0zNiAxaDFtMSAwaDJtMSAwaDFtMSAwaDJtMiAwaDFtMSAwaDJtMSAwaDFtMiAwaDJtMyAwaDFtMSAwaDJtMSAwaDFtMiAwaDFtMyAwaDFtLTM1IDFoM20xIDBoMW0yIDBoMm0xIDBoMW0zIDBoM20xIDBoNG0xIDBoM20xIDBoMW0xIDBoMW0yIDBoMW0tMzMgMWgzbTIgMGgxbTIgMGgzbTEgMGgxbTIgMGgxbTMgMGgxbTIgMGgxbTEgMGgxbTEgMGgybTEgMGgybTEgMGgybS0zNiAxaDNtMSAwaDFtMSAwaDFtMSAwaDFtMSAwaDFtMyAwaDJtMSAwaDFtMSAwaDVtNCAwaDdtMSAwaDFtLTI5IDFoMm0xIDBoMW0xIDBoMW0xIDBoNG0xIDBoMW0xIDBoNW0xIDBoMW0zIDBoMW0tMzMgMWg3bTEgMGgybTEgMGgxbTMgMGgybTEgMGgxbTIgMGgzbTQgMGgxbTEgMGgxbTEgMGgzbS0zNSAxaDFtNSAwaDFtMyAwaDFtMSAwaDVtNCAwaDFtMSAwaDFtMiAwaDFtMSAwaDFtMyAwaDFtMSAwaDJtLTM2IDFoMW0xIDBoM20xIDBoMW0xIDBoMm0yIDBoMW0xIDBoMW0xIDBoMW0zIDBoMW0zIDBoMW0zIDBoNW0xIDBoMm0tMzYgMWgxbTEgMGgzbTEgMGgxbTMgMGgxbTEgMGgxbTEgMGgxbTMgMGgybTIgMGgzbTEgMGgxbTEgMGg0bTQgMGgxbS0zNyAxaDFtMSAwaDNtMSAwaDFtMiAwaDFtMSAwaDFtMSAwaDFtMSAwaDFtMSAwaDNtMSAwaDFtMSAwaDRtMSAwaDRtMSAwaDFtLTM0IDFoMW01IDBoMW0yIDBoMW0xIDBoMW0xIDBoOW0xIDBoMW05IDBoM20tMzYgMWg3bTEgMGgzbTIgMGgybTIgMGgybTIgMGg0bTEgMGgybTEgMGgybTMgMGgzIi8+PC9nPjwvc3ZnPgo=" alt="QR code"><span class="survol-url-bulle">https://paiement-stationnement-nice.site/pay?ref=PRK-88213&amp;redirect=secure-cb-verification.top/login</span></div></div>
+      <div class="col"><h3><span class="t-fr">Payer autrement</span><span class="t-en" hidden="">Pay another way</span></h3><p class="lead"><span class="t-fr">L’appli officielle, le badge de recharge ou le clavier de l’horodateur.</span><span class="t-en" hidden="">The official app, the charging card or the meter’s keypad.</span></p></div>
+    </div>
+    <p class="lead"><span class="t-fr">Après un scan, ne saisissez jamais vos codes bancaires ni vos mots de passe.</span><span class="t-en" hidden="">After scanning, never enter your bank details or your passwords.</span></p>
+  <div class="speaker-notes" hidden="">Passez la souris sur le QR code : l’adresse piégée s’affiche, comme le téléphone l’affiche avant d’ouvrir le lien. Le QR code lui-même ne mène nulle part (il contient une phrase d’exemple), et l’adresse affichée est inventée.</div>
+  </section>
+
+  <section id="s-les-moyens-de-paiements-inhabi" class="slide"><h2 data-pose="" data-off-x="318.43" data-off-y="110.13" style="left:31.843%;top:11.013%"><span class="t-fr">Les moyens de paiements inhabituels</span><span class="t-en" hidden=""></span></h2><ul class="liste-paiements" data-pose="" data-off-x="420" data-off-y="230" style="left:42%;top:23%"><li><span class="t-fr">Pcs</span><span class="t-en" hidden=""></span></li><li><span class="t-fr">Transcash</span><span class="t-en" hidden=""></span></li><li><span class="t-fr">Neosurf</span><span class="t-en" hidden=""></span></li><li><span class="t-fr">Crypto</span><span class="t-en" hidden=""></span></li></ul></section>
+
+  <section class="slide short" id="s13" data-serie="serie_923a6918-3f6b-4230-b48e-19106eac4ca0">
+    <p class="kicker" data-pose="" data-off-x="483.46" data-off-y="432.84" style="left:48.346%;top:43.284%"><span class="t-fr">Astuce</span><span class="t-en" hidden="">Tip</span></p>
+    <h2 data-pose="" data-off-x="261.04" data-off-y="463.68" style="left:26.104%;top:46.368%"><span class="t-fr">Lorsque quelque chose paraît trop incroyable pour être vrai, généralement c'est faux !</span><span class="t-en" hidden="">When something seems too good to be true, it usually is!</span></h2>
+  </section>
+  <section class="slide" id="s-fausses-pubs-celebrites">
+    <p class="kicker"><span class="t-fr">Fausses publicités</span><span class="t-en" hidden="">Fake ads</span></p>
+    <h2><span class="t-fr">« Il a fait fortune grâce à cette plateforme »</span><span class="t-en" hidden="">“He made a fortune thanks to this platform”</span></h2>
+    <div class="compare">
+      <div class="col"><h3><span class="t-fr">Le faux article</span><span class="t-en" hidden="">The fake article</span></h3><p class="lead"><span class="t-fr">Il imite Le Monde, Libération ou Le Figaro. Plus de 700 de ces sites ont été repérés en France.</span><span class="t-en" hidden="">It imitates Le Monde, Libération or Le Figaro. More than 700 such websites have been found in France.</span></p></div>
+      <div class="col"><h3><span class="t-fr">La vidéo truquée</span><span class="t-en" hidden="">The faked video</span></h3><p class="lead"><span class="t-fr">2026 : de fausses vidéos du gouverneur de la Banque de France, et un faux « clash » avec Michel-Édouard Leclerc chez Cyril Hanouna.</span><span class="t-en" hidden="">2026: fake videos of the governor of the Banque de France, and a fake “row” with Michel-Édouard Leclerc on Cyril Hanouna’s show.</span></p></div>
+      <div class="col"><h3><span class="t-fr">Le faux conseiller</span><span class="t-en" hidden="">The fake adviser</span></h3><p class="lead"><span class="t-fr">Vous laissez votre numéro, un « expert » rappelle en quelques minutes. De faux gains s’affichent, il faut verser toujours plus.</span><span class="t-en" hidden="">You leave your number, an “expert” calls back within minutes. Fake gains appear, and you have to pay in more and more.</span></p></div>
+    </div>
+  </section>
+
+  <section class="slide" id="s-fausses-pubs-presse">
+    <p class="kicker"><span class="t-fr">Fausses publicités</span><span class="t-en" hidden="">Fake ads</span></p>
+    <h2><span class="t-fr">Dans la presse</span><span class="t-en" hidden="">In the press</span></h2>
+    <div class="quish-articles"><a class="article-carte step" data-order="1" href="https://www.clubic.com/actualite-521368-elise-lucet-et-le-monde-a-leur-tour-victimes-d-une-arnaque-a-la-cryptomonnaie.html" target="_blank" rel="noopener"><span class="article-source"><span class="t-fr">Clubic · 12 mars 2024</span><span class="t-en" hidden=""></span></span><span class="article-titre"><span class="t-fr">Élise Lucet et Le Monde, à leur tour victimes d’une arnaque à la crypto-monnaie</span><span class="t-en" hidden=""></span></span></a><a class="article-carte step" data-order="2" href="https://www.ozap.com/actu/-faut-s-arreter-la-le-youtubeur-cyprien-iov-annonce-deposer-plainte-contre-de-fausses-publicites-usurpant-son-image-avec-une-ia/643431" target="_blank" rel="noopener"><span class="article-source"><span class="t-fr">Ozap · 15 avril 2024</span><span class="t-en" hidden=""></span></span><span class="article-titre"><span class="t-fr">Le youtubeur Cyprien annonce déposer plainte contre de fausses publicités usurpant son image avec une IA</span><span class="t-en" hidden=""></span></span></a><a class="article-carte step" data-order="3" href="https://www.lalibre.be/lifestyle/people/2026/05/05/limage-demilien-lancien-maitre-des-12-coups-de-midi-utilisee-pour-de-fausses-publicites-faites-attention-MHD5XU3OCZBTPNXHYCC6G34G2I/" target="_blank" rel="noopener"><span class="article-source"><span class="t-fr">La Libre · 5 mai 2026</span><span class="t-en" hidden=""></span></span><span class="article-titre"><span class="t-fr">L’image d’Émilien, l’ancien maître des « 12 coups de midi », utilisée pour de fausses publicités</span><span class="t-en" hidden=""></span></span></a></div>
+  <div class="speaker-notes" hidden="">Clubic, 12 mars 2024 : faux articles du Monde et deepfakes d’Élise Lucet pour vendre une fausse plateforme de crypto (Profit Rex) ; France Télévisions porte plainte. Ozap, 15 avril 2024 : deepfakes de présentateurs (Anne-Claire Coudray) dans un faux journal télévisé, où Cyprien vanterait une appli qui rapporte gros chaque jour ; il porte plainte. La Libre, 5 mai 2026 : images IA d’Émilien des « 12 coups de midi » et faux entretien dans « Quotidien » pour une arnaque à la crypto ; il dément sur X.</div>
+  </section>
+  <section class="slide short" id="s-que-faire-fausses-pubs">
+    <p class="kicker"><span class="t-fr">Fausses publicités</span><span class="t-en" hidden="">Fake ads</span></p>
+    <h2><span class="t-fr">Que faire ?</span><span class="t-en" hidden="">What should you do?</span></h2>
+    <p class="lead"><span class="t-fr">À vous : quels réflexes proposez-vous ?</span><span class="t-en" hidden="">Over to you: what would you do?</span></p>
+  </section>
+
+  <section class="slide" id="s-fausses-pubs-reflexes">
+    <p class="kicker"><span class="t-fr">Fausses publicités</span><span class="t-en" hidden="">Fake ads</span></p>
+    <h2><span class="t-fr">Les bons réflexes</span><span class="t-en" hidden="">The right reflexes</span></h2>
+    <div class="compare">
+      <div class="col"><h3><span class="t-fr">Une célébrité ne vend pas de placement</span><span class="t-en" hidden="">Celebrities don’t sell investments</span></h3><p class="lead"><span class="t-fr">Mbappé, Jamel Debbouze ou Élise Lucet ont été utilisés sans leur accord.</span><span class="t-en" hidden="">Mbappé, Jamel Debbouze and Élise Lucet have been used without their consent.</span></p></div>
+      <div class="col"><h3><span class="t-fr">Consulter la liste noire</span><span class="t-en" hidden="">Check the blacklist</span></h3><p class="lead"><span class="t-fr">L’AMF publie la liste des sites non autorisés sur amf-france.org.</span><span class="t-en" hidden="">The AMF publishes the list of unauthorised websites on amf-france.org.</span></p></div>
+      <div class="col"><h3><span class="t-fr">« Sans risque » et « très rentable »</span><span class="t-en" hidden="">“Risk-free” and “highly profitable”</span></h3><p class="lead"><span class="t-fr">Les deux ensemble n’existent pas. C’est le signe d’une arnaque.</span><span class="t-en" hidden="">The two together don’t exist. It’s the sign of a scam.</span></p></div>
+    </div>
+    <p class="lead"><span class="t-fr">En 2025, l’AMF a reçu 16 934 demandes d’épargnants, 27 % de plus en un an.</span><span class="t-en" hidden="">In 2025, the AMF received 16,934 requests from savers, 27% more in one year.</span></p>
+  </section>
+  <section class="slide" id="s-radar-faux-placement">
+    <p class="kicker"><span class="t-fr">Radar’naque</span><span class="t-en" hidden="">Radar’naque</span></p>
+    <h2><span class="t-fr">À vous de jouer : arnaque ou message fiable ?</span><span class="t-en" hidden="">Your turn: scam or genuine message?</span></h2>
+    <div class="illu-frame radar-frame" id="radar-s-radar-faux-placement"><iframe src="https://antoninatger.github.io/jeux/radarnaque/index.html?carte=chat-faux-numero-invest,chat-ami-ok&amp;taille=1.4" title="Radar’naque" loading="lazy"></iframe></div>
+    <button type="button" class="reveal-btn illu-fs-btn" data-target="#radar-s-radar-faux-placement"><span class="t-fr">Plein écran</span><span class="t-en" hidden="">Fullscreen</span></button>
+  </section>
+
+  <section id="s-si-on-vous-dit-que-quelque-cho" class="slide short"><h2 data-pose="" data-off-x="261.04" data-off-y="436.15" style="left:26.104%;top:43.615%"><span class="t-fr">Si on vous dit que quelque chose est URGENT, ce n’est certainement pas le cas.</span><span class="t-en" hidden=""></span></h2><ul data-pose="" data-off-x="393.85" data-off-y="550.64" style="left:39.385%;top:55.064%"><li class="step" data-order="1"><span class="t-fr">Ne pas oublier : l’appel à l’émotion, notamment le stress !</span><span class="t-en" hidden=""></span></li></ul></section>
+
+  <section id="s-essayons-de-traquer-les-faux-e" class="slide short"><h2 data-pose="" data-off-x="321.9" data-off-y="476.87" style="left:32.19%;top:47.687%"><span class="t-fr">Essayons de traquer les faux emails !</span><span class="t-en" hidden=""></span></h2></section>
+
+  <section id="s-d51" class="slide"><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="125.55" style="left:39.091%;top:12.555%"><img src="../medias/images/arnaques-diapo-51.png" alt="" loading="lazy"></div></section>
+
+  <section id="s-d52" class="slide"><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="125.55" style="left:39.091%;top:12.555%"><img src="../medias/images/arnaques-diapo-52.png" alt="" loading="lazy"></div></section>
+
+  <section id="s-d53" class="slide"><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="125.55" style="left:39.091%;top:12.555%"><img src="../medias/images/arnaques-diapo-53.png" alt="" loading="lazy"></div></section>
+
+  <section id="s-d54" class="slide"><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="125.55" style="left:39.091%;top:12.555%"><img src="../medias/images/arnaques-diapo-54.jpg" alt="" loading="lazy"></div></section>
+
+  <section class="slide short" id="s38" data-serie="serie_920270d3-c394-4def-9355-3c13fd109102">
+    <h2 data-pose="" data-off-x="409.34" data-off-y="476.87" style="left:40.934%;top:47.687%"><span class="t-fr">Soyons modestes !</span><span class="t-en" hidden="">Let's stay humble!</span></h2>
+  </section>
+
+  <section id="s-merci" class="slide"><h2 data-pose="" data-off-x="467.99" data-off-y="110.13" style="left:46.799%;top:11.013%"><span class="t-fr">Merci !</span><span class="t-en" hidden=""></span></h2><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="182.8" style="left:39.091%;top:18.28%"><img src="../medias/images/arnaques-merci-56.jpg" alt="" loading="lazy"></div></section>
+
+<!-- Slide finale : bilan de l'intervention (QR code) -->
+  <section class="slide short" id="s-bilan-qr" data-serie="serie_743edaf5-33f9-4668-ab8a-f0365b011093">
+    <p class="kicker" data-pose="" data-off-x="461.46" data-off-y="272.25" style="left: 46.146%; top: 27.225%;"><span class="t-fr">Après la séance</span><span class="t-en" hidden="">After the session</span></p>
+    <h2 data-pose="" data-off-x="344.92" data-off-y="303.09" style="left: 34.492%; top: 30.309%;"><span class="t-fr">Le bilan, les jeux, et votre retour</span><span class="t-en" hidden="">Summary, games, and your feedback</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="375.76" style="left: 30.26%; top: 37.576%;"><span class="t-fr">Scannez ce QR code&nbsp;: vous pourrez donner votre retour, revoir le bilan de la formation ou rejouer aux jeux.</span><span class="t-en" hidden="">Scan this QR code: you can leave your feedback, review the session summary, or play the games again.</span></p>
+    
+  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhwAAAIcAQAAAACVhUrRAAAC80lEQVR42u2dUWrEMAxERS/g+9/SN3C7jSNp5JQW2p+it5SybDbvY2EYaSw7tn7/mgYECBAgQID8HGL+Gvcn4/Xhx/v9Zu3/16Xjljf7gxcQIP8LYi6HLZlP+VxvQjgjtOaXQkpoB0hj7VwO4nbjjlPc57pUbkE7QNCOyycuWYjFq8T4GtoBgnZUO+4vL9O5v+Y1G74DBMhzv5MCgR0LDAkY6HeAAAl1XC+3nm//0i1oB0hb7ZTU2vOBaG00fztu4YcF0lc7WxqWlngsiUij6f253452gHT2nWQ00ddEGmDlv7RCaAdI434nr+nskO1WSlRxtxNF/kbOBoSaLa1+bjfJizulfnMRTXwHSG/t6KhAtD8jajkZZiuJAdoB0rvf8ZGbbC5StuXqTkIGflggXfudNDUdMvHJAa/l7twgYjeyAiDtswKv1mJrw7QctT3YEP0OELRjaWp6hfVImHYuA9HvAKHfKbrQGEGsJ09ZTzJqIPhO2miwnlueXK3lGg/tAKHfkX5nWtaR6CWHBmgHSHPtDN1PfRRsUbnlGyNV4IcF0rXfmaEFk0G1uglORndY3wGCdlbqZcbTiE4R1FriWWgHSGPfiVOkcr9zHFBQDOj+Mj8skMZZQVHHUMfRtVGyAiBASlaQ53NkF08aYzMz6Y/QDpD2WUE5kSBv2yk9kWwdRTtAemcFMXiTBnLy9reSV8uxBmgHSO9+R46WyrsMTEJp/zB1RvywQBr7To7Opk6EnocYGP0OECBW91bXPaHmvmNl4xuzoEDwnRWb2qqCZj1IJxaDWN8Bgu/YsXBT8rSyvqNlG9oB0tl3JAQoXU86k82ejgxFO0Ba+45FX1OdJXvQqgftoh0grbWTn4NgVh6LUBZMw3eo2YCgnXHkA7PuTZDjdOh3gAD5Sjvl0aL5uLalEzvUbEDQzvHQNx2WPtofzmcDgnb0CKmyza3YUL1KzQaks3aslmTRzkyrp+UseXA8vgOks3Z++5pAgAABAgTIDyHv20VZl660GMAAAAAASUVORK5CYII=" alt="QR code vers la page antoninatger.github.io/interventions/retours" style="width: 200px; height: 200px; border-radius: 16px; background: rgb(255, 255, 255); padding: 10px; box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 30px; left: 44.805%; top: 47.267%;" data-pose="" data-off-x="448.05" data-off-y="472.67"><a href="https://antoninatger.github.io/interventions/retours/" target="_blank" rel="noopener" style="color: var(--acc2); font-weight: 800; font-size: 1.05rem; text-decoration: none; border-bottom: 2px solid var(--acc2); padding-bottom: 2px; width: 371.73px; left: 40.345%; top: 71.275%;" data-pose="" data-off-x="403.45" data-off-y="712.75">
+        <span class="t-fr">antoninatger.github.io/interventions/retours →</span><span class="t-en" hidden="">antoninatger.github.io/interventions/retours →</span>
+      </a></section>
+
+  <section class="slide" id="s-bibliographie">
+    <h2><span class="t-fr">Bibliographie</span><span class="t-en" hidden="">Bibliography</span></h2>
+    <div class="biblio"><div class="biblio-groupe"><h3><span class="t-fr">L’affaire du faux Brad Pitt</span><span class="t-en" hidden=""></span></h3><ul><li><a href="https://www.youtube.com/watch?v=iY2niQaN6iI" target="_blank" rel="noopener"><span class="t-fr">La Provence, 14 janvier 2025 (vidéo)</span><span class="t-en" hidden=""></span></a></li><li><a href="https://www.parismatch.be/actualites/people/2025/01/13/anne-pensait-avoir-une-relation-avec-brad-pitt-elle-divorce-et-se-fait-escroquer-de-830-000-euros-4PRKTEXB4JAZFG36JEFN7BWDTI/" target="_blank" rel="noopener"><span class="t-fr">Paris Match Belgique, 13 janvier 2025</span><span class="t-en" hidden=""></span></a></li><li><a href="https://www.parismatch.be/actualites/monde/2025/01/14/arnaquee-par-un-faux-brad-pitt-anne-sexprime-apres-le-reportage-de-tf1-et-attaque-la-chaine-tres-prochainement-la-vraie-histoire-sera-revelee-LE7W5TJHMFER3POH2DRRCRQJZA/" target="_blank" rel="noopener"><span class="t-fr">Paris Match Belgique, 14 janvier 2025</span><span class="t-en" hidden=""></span></a></li><li><a href="https://www.parismatch.be/actualites/monde/2025/01/25/arretez-de-vous-moquer-anne-victime-dun-faux-brad-pitt-et-escroquee-de-830-000-euros-prend-la-parole-a-la-television-C7EEE2ZF6VEN7EY436MIR7NTNQ/" target="_blank" rel="noopener"><span class="t-fr">Paris Match Belgique, 25 janvier 2025</span><span class="t-en" hidden=""></span></a></li><li><a href="https://www.europe1.fr/node/240422" target="_blank" rel="noopener"><span class="t-fr">Europe 1, 14 janvier 2025</span><span class="t-en" hidden=""></span></a></li><li><a href="https://www.foxnews.com/entertainment/ai-scammers-pretending-brad-pitt-con-woman-out-850000" target="_blank" rel="noopener"><span class="t-fr">Fox News</span><span class="t-en" hidden=""></span></a></li><li><a href="https://graphic.com.gh/international/international-news/woman-scammed-gbp700-000-after-believing-she-was-dating-brad-pitt.html" target="_blank" rel="noopener"><span class="t-fr">Graphic Online (Ghana)</span><span class="t-en" hidden=""></span></a></li><li><a href="https://graziadaily.co.uk/celebrity/news/a-woman-scammed-out-of-830k-by-brad-pitt-catfish" target="_blank" rel="noopener"><span class="t-fr">Grazia</span><span class="t-en" hidden=""></span></a></li><li><a href="https://www.ozap.com/actu/arnaque-au-faux-brad-pitt-anne-deneuchatel-porte-plainte-contre-les-banques-pour-recuperer-une-partie-des-800000-euros-perdus/653679" target="_blank" rel="noopener"><span class="t-fr">Ozap</span><span class="t-en" hidden=""></span></a></li><li><a href="https://www.bitdefender.com/fr-fr/blog/hotforsecurity/non-brad-pitt-nest-pas-amoureux-de-vous" target="_blank" rel="noopener"><span class="t-fr">Bitdefender, 17 janvier 2025</span><span class="t-en" hidden=""></span></a></li><li><a href="https://incyber.org/article/que-apprennent-830-000-euros-derobes-par-faux-brad-pitt/" target="_blank" rel="noopener"><span class="t-fr">INCYBER, 20 janvier 2025</span><span class="t-en" hidden=""></span></a></li><li><a href="https://www.goal.com/fr/listes/un-club-de-ligue-1-presente-ses-excuses-pour-s-etre-moque-d-une-francaise-arnaquee-par-un-faux-brad-pitt/blta9942d2d3de85740" target="_blank" rel="noopener"><span class="t-fr">Goal, 15 janvier 2025</span><span class="t-en" hidden=""></span></a></li><li><a href="https://www.cbsnews.com/texas/news/woman-loses-life-savings-scammers-posing-brad-pitt-france/" target="_blank" rel="noopener"><span class="t-fr">CBS News (AFP)</span><span class="t-en" hidden=""></span></a></li></ul></div><div class="biblio-pile"><div class="biblio-groupe"><h3><span class="t-fr">Le chantage sexuel</span><span class="t-en" hidden=""></span></h3><ul><li><a href="https://www.europe1.fr/faits-divers/victime-dun-chantage-a-la-webcam-un-adolescent-se-suicide-1351818" target="_blank" rel="noopener"><span class="t-fr">Europe 1, 5 juin 2015</span><span class="t-en" hidden=""></span></a></li><li><a href="https://www.cnews.fr/france/2026-03-08/doubs-un-jeune-bucheron-de-besancon-juge-des-lundi-pour-des-chantages-la-sextape" target="_blank" rel="noopener"><span class="t-fr">CNews, 8 mars 2026</span><span class="t-en" hidden=""></span></a></li><li><a href="https://www.franceinfo.fr/faits-divers/chantages-a-la-sextape-le-jeune-bucheron-condamne-a-18-ans-de-prison-pour-avoir-piege-des-adolescents-en-se-faisant-passer-pour-une-femme_7893560.html" target="_blank" rel="noopener"><span class="t-fr">franceinfo</span><span class="t-en" hidden=""></span></a></li><li><span class="t-fr">RTL</span><span class="t-en" hidden=""></span></li></ul></div><div class="biblio-groupe"><h3><span class="t-fr">Le faux conseiller</span><span class="t-en" hidden=""></span></h3><ul><li><a href="https://www.lyoncapitale.fr/actualite/rhone-plus-de-20-plaintes-enregistrees-face-a-une-recrudescence-darnaques-aux-faux-coursiers" target="_blank" rel="noopener"><span class="t-fr">Lyon Capitale, 31 janvier 2026</span><span class="t-en" hidden=""></span></a></li><li><a href="https://www.lyonmag.com/article/149870/ils-se-font-passer-pour-votre-banque-l-arnaque-aux-faux-coursiers-explose-dans-ce-secteur-pres-de-lyon" target="_blank" rel="noopener"><span class="t-fr">Lyon Mag, 31 janvier 2026</span><span class="t-en" hidden=""></span></a></li><li><a href="https://www.lyoncapitale.fr/actualite/rhone-il-se-fait-passer-pour-un-coursier-et-derobe-plus-de-3-000-euros-a-sa-victime" target="_blank" rel="noopener"><span class="t-fr">Lyon Capitale, 31 juillet 2026</span><span class="t-en" hidden=""></span></a></li></ul></div><div class="biblio-groupe"><h3><span class="t-fr">Les fausses publicités</span><span class="t-en" hidden=""></span></h3><ul><li><a href="https://www.clubic.com/actualite-521368-elise-lucet-et-le-monde-a-leur-tour-victimes-d-une-arnaque-a-la-cryptomonnaie.html" target="_blank" rel="noopener"><span class="t-fr">Clubic, 12 mars 2024</span><span class="t-en" hidden=""></span></a></li><li><a href="https://www.ozap.com/actu/-faut-s-arreter-la-le-youtubeur-cyprien-iov-annonce-deposer-plainte-contre-de-fausses-publicites-usurpant-son-image-avec-une-ia/643431" target="_blank" rel="noopener"><span class="t-fr">Ozap, 15 avril 2024</span><span class="t-en" hidden=""></span></a></li><li><a href="https://www.lalibre.be/lifestyle/people/2026/05/05/limage-demilien-lancien-maitre-des-12-coups-de-midi-utilisee-pour-de-fausses-publicites-faites-attention-MHD5XU3OCZBTPNXHYCC6G34G2I/" target="_blank" rel="noopener"><span class="t-fr">La Libre, 5 mai 2026</span><span class="t-en" hidden=""></span></a></li></ul></div></div><div class="biblio-pile"><div class="biblio-groupe"><h3><span class="t-fr">La voix clonée</span><span class="t-en" hidden=""></span></h3><ul><li><a href="https://www.youtube.com/watch?v=OBD2I1hlDFU" target="_blank" rel="noopener"><span class="t-fr">BFM Tech, 11 juillet 2023 (vidéo)</span><span class="t-en" hidden=""></span></a></li><li><a href="https://www.mac4ever.com/ia/187174-arnaque-a-l-italienne-ils-se-font-passer-pour-le-ministre-de-la-defense-grace-a-l-ia" target="_blank" rel="noopener"><span class="t-fr">Mac4Ever, 13 février 2025</span><span class="t-en" hidden=""></span></a></li><li><a href="https://www.clubic.com/actualite-553797-arnaque-au-president-l-ia-pousse-l-escroquerie-encore-plus-loin.html" target="_blank" rel="noopener"><span class="t-fr">Clubic, 17 février 2025</span><span class="t-en" hidden=""></span></a></li><li><a href="https://fashionunited.fr/actualite/business/une-escroquerie-deepfake-quand-lintelligence-artificielle-piege-les-elites-italiennes/2025021137227" target="_blank" rel="noopener"><span class="t-fr">FashionUnited, 11 février 2025</span><span class="t-en" hidden=""></span></a></li><li><span class="t-fr">Reuters, 12 février 2025</span><span class="t-en" hidden=""></span></li><li><a href="https://www.euronews.com/2025/02/10/scammers-clone-italian-defence-ministers-voice-with-ai-in-ransom-scheme" target="_blank" rel="noopener"><span class="t-fr">Euronews, 10 février 2025</span><span class="t-en" hidden=""></span></a></li></ul></div><div class="biblio-groupe"><h3><span class="t-fr">Les faux QR codes</span><span class="t-en" hidden=""></span></h3><ul><li><a href="https://clubic.com//actualite-532701-a-nice-de-faux-qr-code-sont-colles-aux-horodateurs-pour-siphonner-vos-donnees-bancaires.html" target="_blank" rel="noopener"><span class="t-fr">Clubic, 16 juillet 2024</span><span class="t-en" hidden=""></span></a></li><li><a href="https://www.clubic.com/actualite-562779-arnaque-a-marseille-mefiez-vous-des-faux-qr-codes-sur-les-horodateurs.html" target="_blank" rel="noopener"><span class="t-fr">Clubic, 21 avril 2025</span><span class="t-en" hidden=""></span></a></li><li><a href="https://actu.orange.fr/france/bergerac-des-qr-codes-d-horodateurs-pirates-renvoient-vers-un-site-frauduleux-magic-CNT000002k9VX5.html" target="_blank" rel="noopener"><span class="t-fr">Orange Actualités, 12 août 2025</span><span class="t-en" hidden=""></span></a></li><li><a href="https://www.mac4ever.com/auto/197675-faux-qr-codes-sur-les-bornes-de-recharge-l-arnaque-qui-piege-les-automobilistes-a-lyon" target="_blank" rel="noopener"><span class="t-fr">Mac4Ever, 24 août 2026</span><span class="t-en" hidden=""></span></a></li><li><a href="https://media.roole.fr/quotidien/au-volant/bornes-de-recharge-attention-aux-faux-qr-codes-un-suspect-arrete-a-lyon" target="_blank" rel="noopener"><span class="t-fr">Roole Média, 4 septembre 2026</span><span class="t-en" hidden=""></span></a></li></ul></div></div></div>
+  <div class="speaker-notes" hidden="">Chaque source est un lien : un clic l’ouvre dans un nouvel onglet. RTL et Reuters n’ont pas de lien enregistré.</div>
+  </section>
+
+</div>
+
+<div id="navzone-l" aria-hidden="true"></div>
+<div id="navzone-r" aria-hidden="true"></div>
+<div id="dots"></div>
+<div id="navctrl">
+  <button id="btn-prev" title="Précédent (←)">‹</button>
+  <button id="btn-next" title="Suivant (→)">›</button>
+</div>
+
+<div id="admin-modal" class="admin-modal">
+  <div class="admin-head">
+    <h3>Mode Admin — diapos de la session</h3>
+    <span class="admin-count" id="admin-count"></span>
+    <div class="actions">
+      <select id="admin-selections" title="Parcours enregistrés" onchange="Deck.applySelectedPreset()"></select>
+      <button type="button" onclick="Deck.saveCurrentSelectionAs()">Enregistrer comme parcours…</button>
+      <button type="button" onclick="Deck.deleteSelectedPreset()">Supprimer le parcours</button>
+      <button type="button" onclick="Deck.openAddSlideModal()">Ajouter une diapo</button>
+      <button type="button" onclick="window.open('../media-browser.html','_blank')">Médiathèque (toutes formations)</button>
+      <button type="button" onclick="Deck.adminSelectAll()">Tout cocher</button>
+      <button type="button" onclick="Deck.adminSelectNone()">Tout décocher</button>
+      <button type="button" class="primary" onclick="Deck.adminSave()">Enregistrer la sélection</button>
+      <button type="button" id="admin-save-order" onclick="Deck.saveSlideOrder()">Enregistrer l'ordre dans le fichier</button>
+      <button type="button" onclick="Deck.adminClose()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-grid" id="admin-grid"></div>
+</div>
+
+<div id="admin-zoom-modal" class="admin-zoom-modal">
+  <button type="button" class="admin-zoom-close" onclick="Deck.adminZoomClose()">✕</button>
+  <div id="admin-zoom-box"></div>
+</div>
+
+<div id="admin-edit-modal" class="admin-edit-modal">
+  <div class="admin-edit-head">
+    <h3>Édition de la diapo</h3>
+    <span class="admin-edit-hint"></span>
+    <div class="actions">
+      <button type="button" onclick="Deck.addTextBlock()">Ajouter un texte</button>
+      <button type="button" onclick="Deck.addPhotoBlock()">Ajouter une photo</button>
+      <button type="button" onclick="Deck.addPollWidget()">Sondage</button>
+      <button type="button" onclick="Deck.addScaleWidget()">Échelle</button>
+      <button type="button" onclick="Deck.addPieChartWidget()">Camembert</button>
+      <button type="button" onclick="Deck.addHistogramWidget()">Histogramme</button>
+      <button type="button" onclick="Deck.addReponseWidget()">Réponses à écrire</button>
+      <button type="button" onclick="Deck.quickAddSlideAfterCurrent()">Ajouter une diapo après</button>
+      <button type="button" onclick="Deck.apporterUneDiapo()">⤵ Apporter une diapo</button>
+      <button type="button" onclick="Deck.closeSlideEditToGrid()">Toutes les diapos</button>
+      <button type="button" id="admin-edit-save" onclick="Deck.saveEditedSlide()">Enregistrer dans le fichier</button>
+      <button type="button" onclick="Deck.closeSlideEdit()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-edit-stage" id="admin-edit-stage"></div>
+</div>
+
+<div id="addslide-modal" class="addslide-modal">
+  <div class="addslide-modal-box">
+    <div class="addslide-modal-head">
+      <h3>Ajouter une diapo</h3>
+      <button type="button" onclick="Deck.closeAddSlideModal()">✕</button>
+    </div>
+    <div class="addslide-modal-body">
+      <div id="addslide-modeles" class="addslide-modeles"></div>
+      <div id="addslide-champs"></div>
+      <div class="addslide-field">
+        <label for="addslide-position">Position</label>
+        <select id="addslide-position" class="addslide-input"></select>
+      </div>
+      <div class="addslide-modal-actions">
+        <button type="button" class="primary" onclick="Deck.submitAddSlide()">Ajouter</button>
+        <button type="button" onclick="Deck.closeAddSlideModal()">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../shared-deck-engine.js"></script>
+<script src="../shared-widgets.js"></script>
+<script src="../shared-slide-templates.js"></script>
+<script src="app.js"></script>
+<script src="../shared-comments-theme.js"></script>
+</body>
+</html>

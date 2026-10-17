@@ -1,0 +1,87 @@
+
+
+</div>
+
+<div id="navzone-l" aria-hidden="true"></div>
+<div id="navzone-r" aria-hidden="true"></div>
+<div id="dots"></div>
+<div id="navctrl">
+  <button id="btn-prev" title="Précédent (←)">‹</button>
+  <button id="btn-next" title="Suivant (→)">›</button>
+</div>
+
+<div id="admin-modal" class="admin-modal">
+  <div class="admin-head">
+    <h3>Mode Admin — diapos de la session</h3>
+    <span class="admin-count" id="admin-count"></span>
+    <div class="actions">
+      <select id="admin-selections" title="Parcours enregistrés" onchange="Deck.applySelectedPreset()"></select>
+      <button type="button" onclick="Deck.saveCurrentSelectionAs()">Enregistrer comme parcours…</button>
+      <button type="button" onclick="Deck.deleteSelectedPreset()">Supprimer le parcours</button>
+      <button type="button" onclick="Deck.openAddSlideModal()">Ajouter une diapo</button>
+      <button type="button" onclick="window.open('../media-browser.html','_blank')">Médiathèque (toutes formations)</button>
+      <button type="button" onclick="Deck.adminSelectAll()">Tout cocher</button>
+      <button type="button" onclick="Deck.adminSelectNone()">Tout décocher</button>
+      <button type="button" class="primary" onclick="Deck.adminSave()">Enregistrer la sélection</button>
+      <button type="button" id="admin-save-order" onclick="Deck.saveSlideOrder()">Enregistrer l'ordre dans le fichier</button>
+      <button type="button" onclick="Deck.adminClose()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-grid" id="admin-grid"></div>
+</div>
+
+<div id="admin-zoom-modal" class="admin-zoom-modal">
+  <button type="button" class="admin-zoom-close" onclick="Deck.adminZoomClose()">✕</button>
+  <div id="admin-zoom-box"></div>
+</div>
+
+<div id="admin-edit-modal" class="admin-edit-modal">
+  <div class="admin-edit-head">
+    <h3>Édition de la diapo</h3>
+    <span class="admin-edit-hint"></span>
+    <div class="actions">
+      <button type="button" onclick="Deck.addTextBlock()">Ajouter un texte</button>
+      <button type="button" onclick="Deck.addPhotoBlock()">Ajouter une photo</button>
+      <button type="button" onclick="Deck.addPollWidget()">Sondage</button>
+      <button type="button" onclick="Deck.addScaleWidget()">Échelle</button>
+      <button type="button" onclick="Deck.addPieChartWidget()">Camembert</button>
+      <button type="button" onclick="Deck.addHistogramWidget()">Histogramme</button>
+      <button type="button" onclick="Deck.addReponseWidget()">Réponses à écrire</button>
+      <button type="button" onclick="Deck.quickAddSlideAfterCurrent()">Ajouter une diapo après</button>
+      <button type="button" onclick="Deck.apporterUneDiapo()">⤵ Apporter une diapo</button>
+      <button type="button" onclick="Deck.closeSlideEditToGrid()">Toutes les diapos</button>
+      <button type="button" id="admin-edit-save" onclick="Deck.saveEditedSlide()">Enregistrer dans le fichier</button>
+      <button type="button" onclick="Deck.closeSlideEdit()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-edit-stage" id="admin-edit-stage"></div>
+</div>
+
+<div id="addslide-modal" class="addslide-modal">
+  <div class="addslide-modal-box">
+    <div class="addslide-modal-head">
+      <h3>Ajouter une diapo</h3>
+      <button type="button" onclick="Deck.closeAddSlideModal()">✕</button>
+    </div>
+    <div class="addslide-modal-body">
+      <div id="addslide-modeles" class="addslide-modeles"></div>
+      <div id="addslide-champs"></div>
+      <div class="addslide-field">
+        <label for="addslide-position">Position</label>
+        <select id="addslide-position" class="addslide-input"></select>
+      </div>
+      <div class="addslide-modal-actions">
+        <button type="button" class="primary" onclick="Deck.submitAddSlide()">Ajouter</button>
+        <button type="button" onclick="Deck.closeAddSlideModal()">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../shared-deck-engine.js"></script>
+<script src="../shared-widgets.js"></script>
+<script src="../shared-slide-templates.js"></script>
+<script src="app.js"></script>
+<script src="../shared-comments-theme.js"></script>
+</body>
+</html>

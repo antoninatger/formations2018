@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IA et désinformation, entre crainte et espoir.</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared-deck.css">
+<style>
+/* Propre à cette intervention. Le reste vient de ../shared-deck.css.
+   3 octobre 2026 : toutes les diapos sont reprises du PowerPoint « IA, entre peur et espoir »,
+   chaque élément à sa place et à sa taille (la diapo 16:9 est centrée sur la toile 1925 x 908,
+   1 point PowerPoint = 1,68 px de toile). Police du PowerPoint : Trebuchet MS.
+   Les classes ppt-* ne servent qu'ici. */
+:root{--acc:#5FCBEF;--ppt-police:'Trebuchet MS','Nunito',sans-serif}
+:root[data-theme="light"]{--acc:#1f9ad6}
+.slide .ppt-titre{font-family:var(--ppt-police);font-weight:400;line-height:1.2;max-width:none;color:var(--acc);text-align:left}
+.cover h1.ppt-titre{background:none;-webkit-background-clip:border-box;background-clip:border-box}
+.slide ul.ppt-texte{font-family:var(--ppt-police);list-style:none;text-align:left;color:var(--tx);font-weight:400;max-width:none}
+.slide ul.ppt-texte li{margin:0;max-width:none;list-style:none}
+.slide ul.ppt-texte li[data-puce]::before{content:attr(data-puce);display:inline-block;width:var(--retrait);text-indent:0;color:var(--puce,currentColor);font-size:.8em}
+.slide ul.ppt-texte a{color:var(--acc)}
+.slide .imgcard.ppt-img{margin:0;border-radius:2px;background:#fff;border:0;box-shadow:0 8px 26px rgba(0,0,0,.28)}
+.slide .imgcard.ppt-img img{max-height:none;width:100%;height:auto;object-fit:fill}
+.slide .imgcard.ppt-recadre{overflow:hidden}
+.slide .imgcard.ppt-recadre img{position:absolute}
+.slide .imgcard.ppt-sans-fond{background:none;box-shadow:none;border-radius:0}
+.slide .vidwrap.ppt-video{margin:0;border-radius:2px;border:0;max-width:none;background:#000}
+.slide .vidwrap.ppt-video video{max-height:none;width:100%;height:100%;object-fit:contain}
+.slide .forme.ppt-forme{isolation:isolate}
+/* Ce qui dépasse de la diapo dans le PowerPoint y est coupé : pareil ici. */
+#deck > .slide.ppt-rogne{overflow:hidden}
+.slide .forme .ppt-forme-texte{font-family:var(--ppt-police);display:flex;flex-direction:column;align-items:stretch;justify-content:center;text-align:center;font-weight:400;line-height:1.2}
+.slide .forme .ppt-forme-texte>span{display:block}
+
+  </style>
+</head>
+<body>
+
+<div id="topbar">
+  <span class="brand">🤖 IA et désinformation, entre crainte et espoir.</span>
+  <div class="tools">
+    <button id="btn-admin-grid" title="Toutes les diapos" onclick="Deck.openAdmin()">Toutes les diapos</button>
+    <button id="btn-dossier" hidden title="Donner au navigateur l’accès au dossier Cours : nécessaire pour les séries, les diapos liées et les médias" onclick="Deck.connecterDossier()">🔌 Connecter le dossier</button>
+    <button id="btn-fullscreen" title="Plein écran"><span class="t-fr">Plein écran</span><span class="t-en" hidden>Fullscreen</span></button>
+    <button id="btn-lang" title="Switch to English" onclick="Deck.toggleLang()">EN</button>
+  </div>
+</div>
+
+<div id="deck" data-edite-en-page="1790979411663">
+
+  <section class="slide cover" id="s0">
+    <h1 class="ppt-titre" data-pose="" data-off-x="184.376" data-off-y="350.617" style="left:18.438%;top:35.062%;width:53.42%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:90.8px;line-height:1.2;text-align:left;color:var(--acc);height:24.006%;display:flex;flex-direction:column;justify-content:flex-end;"><span class="ppt-l"><span class="t-fr">IA et désinformation, entre crainte et espoir.</span><span class="t-en" hidden=""></span></span></h1>
+    <ul class="ppt-texte" data-pose="" data-off-x="184.376" data-off-y="590.673" style="left:18.438%;top:59.067%;width:53.42%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:left;color:#808080"><span class="t-fr">Antonin Atger</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="s-dou-vient-le-mot-desinformatio">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="96.296" style="left:12.731%;top:9.63%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">D’où vient le mot « désinformation » ?</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="1" data-puce="▸" style="font-size:40.356px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Probablement d'origine russe "dezinformacija".</span><span class="t-en" hidden=""></span></li><li class="step" data-order="2" data-puce="▸" style="font-size:40.356px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Du département de propagande de l'Union soviétique dans les années 50.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="3" data-puce="▸" style="font-size:40.356px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Puis il est passé en français.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="4" data-puce="▸" style="font-size:40.356px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Puis en anglais.</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="s-desinformation">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Désinformation</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="217.062" style="left:12.731%;top:21.706%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="1" data-puce="▸" style="font-size:37.329px;line-height:1.08;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">URSS :</span><span class="t-en" hidden=""></span></li><li class="step" data-order="2" data-puce="▸" style="font-size:34.218px;line-height:1.08;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">« Diffusion (dans la presse, à la radio, etc.) de fausses informations destinées à induire l’opinion publique en erreur. »</span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:37.329px;line-height:1.08;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="step" data-order="3" data-puce="▸" style="font-size:37.329px;line-height:1.08;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Commission européenne :</span><span class="t-en" hidden=""></span></li><li class="step" data-order="4" data-puce="▸" style="font-size:34.218px;line-height:1.08;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">« Informations fausses, inexactes ou trompeuses conçues, présentées et diffusées dans le but de nuire intentionnellement au public ou à des fins lucratives. »</span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:34.218px;line-height:1.08;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="step" data-order="5" data-puce="▸" style="font-size:37.329px;line-height:1.08;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">La désinformation a <b>toujours </b>eu un but politique.</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="ia-d4">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Qu’est-ce que l’intelligence ?</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="227.778" style="left:12.731%;top:22.778%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="1" style="font-size:53.807px;line-height:1.2;text-align:left"><span class="t-fr"><i>American Psychological Association (APA)</i></span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:40.356px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="step" data-order="2" data-puce="▸" style="font-size:40.356px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">« La capacité à déduire des informations, apprendre de l'expérience, s'adapter à l'environnement, comprendre et utiliser correctement la pensée et la raison. »</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="speaker-notes" hidden="">https://dictionary.apa.org/intelligence</div>
+  </section>
+
+  <section class="slide" id="ia-d5">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:63.037%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Qu'est-ce que l’intelligence “artificielle” ?</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="1" data-puce="▸" style="font-size:40.356px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">La capacité d'un système à réaliser des activités liées à l'intelligence humaine, notamment l'apprentissage et la prise de décision.</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="speaker-notes" hidden="">https://pmc.ncbi.nlm.nih.gov/articles/PMC10916499/
+
+L’IA désigne la possibilité pour une machine de reproduire des comportements liés aux humains, tels que le raisonnement, la planification et la créativité.
+
+L’IA permet à des systèmes techniques de percevoir leur environnement, gérer ces perceptions, résoudre des problèmes et entreprendre des actions pour atteindre un but précis.</div>
+  </section>
+
+  <section class="slide" id="s-comment-lia-impacte-les-reseau">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Comment l’IA impacte les réseaux sociaux ?</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li data-puce="▸" style="font-size:47.081px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Via la génération de texte, d’images, de vidéos.</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="ia-d7">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Quelle image est générée par l'IA, et laquelle ne l'est pas ?</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="127.308" data-off-y="372.686" style="left:12.731%;top:37.269%;width:29.298%;max-width:none;"><img src="../medias/images/quiz-ia-flamant-rose-beach.png" alt="" loading="lazy" style="aspect-ratio:4259726/2843367"></div>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="520.964" data-off-y="363.681" style="left:52.096%;top:36.368%;width:29.972%;max-width:none;"><img src="../medias/images/quiz-ia-flamant-rose.jpg" alt="" loading="lazy" style="aspect-ratio:4357683/2905122"></div>
+  </section>
+
+  <section class="slide" id="ia-d8">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Quelle image est générée par l'IA, et laquelle ne l'est pas ?</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="169.547" data-off-y="281.481" style="left:16.955%;top:28.148%;width:18.927%;max-width:none;"><img src="../medias/images/masni-photo-ia-1.png" alt="" loading="lazy" style="aspect-ratio:2751900/4697411"></div>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="508.875" data-off-y="281.481" style="left:50.888%;top:28.148%;width:20.971%;max-width:none;"><img src="../medias/images/masni-photo-ia-2.jpg" alt="" loading="lazy" style="aspect-ratio:3048962/4787900"></div>
+  </section>
+
+  <section class="slide" id="ia-d9">
+    <div class="vidwrap ppt-video" data-pose="" data-off-x="114.939" data-off-y="205.219" style="left:11.494%;top:20.522%;width:33.296%;max-width:none;aspect-ratio:4841009/4841008;"><video src="../medias/video/will-smith-spaghetti-ia-2023.mp4" controls="" playsinline="" preload="metadata"></video></div>
+    <div class="vidwrap ppt-video" data-pose="" data-off-x="525.402" data-off-y="205.219" style="left:52.54%;top:20.522%;width:32.019%;max-width:none;aspect-ratio:4655389/4995881;"><video src="../medias/video/will-smith-spaghetti-ia-recente.mp4" controls="" playsinline="" preload="metadata"></video></div>
+  </section>
+
+  <section class="slide" id="ia-d10">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Quel texte est réel, quel texte est généré par l’IA ?</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard ppt-img step" data-order="1" data-pose="" data-off-x="134.775" data-off-y="310.675" style="left:13.478%;top:31.068%;width:60.621%;max-width:none;"><img src="../medias/images/quiz-texte-ia-1.jpg" alt="" loading="lazy" style="aspect-ratio:8813800/1477843"></div>
+    <div class="imgcard ppt-img ppt-recadre step" data-order="2" data-pose="" data-off-x="134.775" data-off-y="655.664" style="left:13.478%;top:65.566%;width:59.127%;max-width:none;aspect-ratio:8596668/1651001;"><img src="../medias/images/quiz-texte-ia-2.jpg" alt="" loading="lazy" style="position:absolute;max-width:none;max-height:none;width:100.0%;height:173.563%;left:-0.0%;top:-38.869%"></div>
+  </section>
+
+  <section class="slide" id="ia-d11">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Ce qui change n’est pas la Fake News, mais la facilité de création.</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+  <section class="slide" id="ia-d12">
+    <div class="imgcard ppt-img step" data-order="2" data-pose="" data-off-x="484.1" data-off-y="281.481" style="left:48.41%;top:28.148%;width:38.859%;max-width:none;"><img src="../medias/images/actu-2025-12-18-video-coup-d-etat-ia.jpg" alt="" loading="lazy" style="aspect-ratio:5649835/3881437"></div>
+    <div class="vidwrap ppt-video" data-pose="" data-off-x="137.993" data-off-y="281.481" style="left:13.799%;top:28.148%;width:33.542%;max-width:none;aspect-ratio:4876800/2743200;"><video src="../medias/video/rtbf-coup-etat-ia-reportage.mp4" controls="" playsinline="" preload="metadata"></video></div>
+  </section>
+
+  <section class="slide" id="ia-d13">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Les humains se font-ils avoir par l’IA ?</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="399.835" style="left:12.731%;top:39.984%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="2" style="font-size:174.874px;line-height:1.2;padding-left:60.533px;text-align:center"><span class="t-fr">OUI</span><span class="t-en" hidden=""></span></li><li class="step" data-order="3" data-puce="▸" style="font-size:33.63px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">L’étude date de 2022 avec Chat GPT 2</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="imgcard ppt-img step" data-order="1" data-pose="" data-off-x="146.735" data-off-y="207.242" style="left:14.673%;top:20.724%;width:58.922%;max-width:none;"><img src="../medias/images/etude-ia-texte-fabrique.jpg" alt="" loading="lazy" style="aspect-ratio:8566856/1018261"></div>
+  </section>
+
+  <section class="slide" id="ia-d14">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Quel est selon vous le plus grand facteur prédictif ?</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard ppt-img step" data-order="1" data-pose="" data-off-x="212.054" data-off-y="295.396" style="left:21.205%;top:29.54%;width:48.726%;max-width:none;"><img src="../medias/images/trump-biden-sabre-laser-ia.jpg" alt="" loading="lazy" style="aspect-ratio:7084359/4400177"></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="160.047" data-off-y="295.396" style="left:16.005%;top:29.54%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="2" style="font-size:53.807px;line-height:1.2;text-align:center"><span class="t-fr">Le biais partisan</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="ia-d15">
+    <div class="imgcard ppt-img step" data-order="2" data-pose="" data-off-x="177.309" data-off-y="419.909" style="left:17.731%;top:41.991%;width:55.431%;max-width:none;"><img src="../medias/images/etude-instagram-ia-1.jpg" alt="" loading="lazy" style="aspect-ratio:8059275/2172003"></div>
+    <div class="imgcard ppt-img step" data-order="1" data-pose="" data-off-x="200.132" data-off-y="52.861" style="left:20.013%;top:5.286%;width:51.565%;max-width:none;"><img src="../medias/images/ia-crainte-espoir-015-titre-etude-instagram.png" alt="" loading="lazy" style="aspect-ratio:7497221/1590897"></div>
+    <div class="speaker-notes" hidden="">https://www.sciencedirect.com/science/article/pii/S0160791X24002537</div>
+  </section>
+
+  <section class="slide" id="ia-d16">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Quelles conséquences ?</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="1" data-puce="▸" style="font-size:40.356px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Les fausses informations générées par l'IA ne sont pas plus convaincantes que les véritables fausses informations.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="2" data-puce="▸" style="font-size:40.356px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Donc tout va bien ?</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="ia-d17">
+    <div class="imgcard ppt-img step" data-order="3" data-pose="" data-off-x="300.843" data-off-y="652.997" style="left:30.084%;top:65.3%;width:33.801%;max-width:none;"><img src="../medias/images/actu-2025-11-25-insultes-extreme-droite.png" alt="" loading="lazy" style="aspect-ratio:4914362/2259801"></div>
+    <div class="imgcard ppt-img step" data-order="1" data-pose="" data-off-x="93.781" data-off-y="198.995" style="left:9.378%;top:19.9%;width:37.967%;max-width:none;"><img src="../medias/images/mcdo-osaka-foule.jpg" alt="" loading="lazy" style="aspect-ratio:5520049/3113541"></div>
+    <div class="imgcard ppt-img step" data-order="2" data-pose="" data-off-x="550.853" data-off-y="185.591" style="left:55.085%;top:18.559%;width:24.777%;max-width:none;"><img src="../medias/images/lloyd-bentsen.jpg" alt="" loading="lazy" style="aspect-ratio:3602345/4495727"></div>
+    <div class="imgcard ppt-img step" data-order="5" data-pose="" data-off-x="503.712" data-off-y="216.864" style="left:50.371%;top:21.686%;width:35.359%;max-width:none;"><img src="../medias/images/astroturf-lettre-pere-noel.jpg" alt="" loading="lazy" style="aspect-ratio:5140960/3855720"></div>
+    <div class="imgcard ppt-img step" data-order="4" data-pose="" data-off-x="104.074" data-off-y="216.864" style="left:10.407%;top:21.686%;width:36.937%;max-width:none;"><img src="../medias/images/mcdo-osaka-titre.jpg" alt="" loading="lazy" style="aspect-ratio:5370388/2219573"></div>
+    <div class="imgcard ppt-img step" data-order="6" data-pose="" data-off-x="304.443" data-off-y="577.546" style="left:30.444%;top:57.755%;width:33.801%;max-width:none;"><img src="../medias/images/telegram-silhouette.jpg" alt="" loading="lazy" style="aspect-ratio:4914361/2764328"></div>
+    <div class="speaker-notes" hidden="">Lloyd Bentsen[2] in 1985 sénateur Texan</div>
+  </section>
+
+  <section class="slide" id="ia-d18">
+    <div class="imgcard ppt-img ppt-recadre" data-pose="" data-off-x="374.399" data-off-y="-0.0" style="left:37.44%;top:-0.0%;width:54.488%;max-width:none;aspect-ratio:7922146/6858001;"><img src="../medias/images/astroturfing-illustration.jpg" alt="" loading="lazy" style="position:absolute;max-width:none;max-height:none;width:119.816%;height:100.0%;left:-19.816%;top:-0.0%"></div>
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:26.488%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Astroturfing</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:26.488%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li data-puce="▸" style="font-size:40.356px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">L'astroturfing est une technique qui consiste à simuler un mouvement spontané ou populaire à des fins politiques ou économiques afin d'influencer l'opinion publique.</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="speaker-notes" hidden="">C’est le sénateur texan Lloyd Bentsen qui a utilisé pour la première fois le terme astroturfing en 1986. Il affirme que de nombreuses lettres qui lui sont soi-disant envoyées par des citoyens sont en fait une campagne de lobbying menée par une compagnie d’assurance5.
+L'origine du terme « astroturfing » fait référence au gazon artificiel de la marque AstroTurf utilisé dans les stades. C'est un jeu de mots avec l'expression « grassroots movement » en anglais américain. Grassroots, qui signifie littéralement « racine de l'herbe », exprime l'idée d'authenticité, d'ancrage dans le peuple. Ainsi, la référence à un gazon synthétique dénonce par analogie l'artificialité de ces pseudo-mouvements citoyens.
+C'est du militantisme de façade.</div>
+  </section>
+
+  <section class="slide" id="s-comment-lia-impacte-les-reseau-2">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Comment l’IA impacte les réseaux sociaux.</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li data-puce="▸" style="font-size:47.081px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Via la génération de texte, d’images, de vidéos.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="1" data-puce="▸" style="font-size:47.081px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Via la création de faux profils.</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide ppt-rogne" id="s-d20">
+    <div class="imgcard ppt-img step" data-order="1" data-pose="" data-off-x="91.94" data-off-y="36.185" style="left:9.194%;top:3.619%;width:71.549%;max-width:none;"><img src="../medias/images/ia-desinfo-diapo-20.png" alt="" loading="lazy" style="aspect-ratio:10402752/1810003"></div>
+    <div class="imgcard ppt-img step" data-order="2" data-pose="" data-off-x="180.741" data-off-y="352.815" style="left:18.074%;top:35.281%;width:57.004%;max-width:none;"><img src="../medias/images/ia-desinfo-diapo-20-2.png" alt="" loading="lazy" style="aspect-ratio:8287907/2219635"></div>
+    <div class="imgcard ppt-img step" data-order="3" data-pose="" data-off-x="80.722" data-off-y="658.814" style="left:8.072%;top:65.881%;width:83.856%;max-width:none;"><img src="../medias/images/ia-desinfo-diapo-20-3.png" alt="" loading="lazy" style="aspect-ratio:12192000/2355091"></div>
+    <div class="speaker-notes" hidden="">https://www.basicthinking.com/bots-instagram-accounts-fake/</div>
+  </section>
+
+  <section class="slide" id="s-d21">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="281.419" data-off-y="73.243" style="left:28.142%;top:7.324%;width:37.01%;max-width:none;"><img src="../medias/images/ia-desinfo-diapo-21.png" alt="" loading="lazy" style="aspect-ratio:5381050/6049794"></div>
+  </section>
+
+  <section class="slide" id="s-d22">
+    <div class="vidwrap ppt-video" data-pose="" data-off-x="137.796" data-off-y="194.436" style="left:13.78%;top:19.444%;width:76.529%;max-width:none;aspect-ratio:11126822/4547305;"><video src="../medias/video/ia-desinfo-video-22.mp4" controls="" playsinline="" preload="metadata"></video></div>
+  </section>
+
+  <section class="slide" id="s-d23">
+    <div class="imgcard ppt-img step" data-order="1" data-pose="" data-off-x="321.52" data-off-y="10.711" style="left:32.152%;top:1.071%;width:33.516%;max-width:none;"><img src="../medias/images/ia-desinfo-diapo-23.png" alt="" loading="lazy" style="aspect-ratio:4873013/1627386"></div>
+    <div class="imgcard ppt-img step" data-order="3" data-pose="" data-off-x="656.683" data-off-y="233.25" style="left:65.668%;top:23.325%;width:25.403%;max-width:none;"><img src="../medias/images/ia-desinfo-diapo-23-2.png" alt="" loading="lazy" style="aspect-ratio:3693458/5167892"></div>
+    <div class="imgcard ppt-img step" data-order="2" data-pose="" data-off-x="89.284" data-off-y="353.45" style="left:8.928%;top:35.345%;width:53.201%;max-width:none;"><img src="../medias/images/ia-desinfo-diapo-23-3.png" alt="" loading="lazy" style="aspect-ratio:7734994/4343566"></div>
+    <div class="speaker-notes" hidden="">https://archive.ph/TIru6</div>
+  </section>
+
+  <section class="slide" id="s-consequence-de-la-proliferatio">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Conséquence de la prolifération de fausses informations et de faux profils.</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="364.815" style="left:12.731%;top:36.481%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="1" data-puce="▸" style="font-size:40.356px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr"><b>Dépend de beaucoup de paramètres. Mais résultats mitigés.</b></span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:40.356px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="step" data-order="2" data-puce="▸" style="font-size:40.356px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr"><b>Bruit (psychologie) :</b>Tout ce qui interfère avec, obscurcit, réduit ou affecte de quelque manière que ce soit la clarté ou la précision d'un processus en cours, comme la communication d'un message ou d'un signal.</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="speaker-notes" hidden="">https://dictionary.apa.org/noise
+
+https://informationmatters.org/2022/02/social-noise-what-is-it-and-why-should-we-care/</div>
+  </section>
+
+  <section class="slide" id="ia-d25">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="443.14" data-off-y="226.523" style="left:44.314%;top:22.652%;width:45.985%;max-width:none;"><img src="../medias/images/affiche-tabac-lucky-strike.png" alt="" loading="lazy" style="aspect-ratio:6685935/4596581"></div>
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Création de doute.</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="97.006" data-off-y="343.3" style="left:9.701%;top:34.33%;width:31.392%;max-width:none;padding:0.0px 0.0px 0.0px 0.0px;"><li style="font-size:47.081px;line-height:1.0;text-align:left"><span class="t-fr">Une technique initialement utilisée par les industriels pour défendre leurs activités, mais pas seulement. Elle est également très populaire en politique.</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="speaker-notes" hidden="">Fumer, une habitude cool :
+Connaissance des risques du tabac : occultée. Négation.
+Lobbying ET influence douce auprès des jeunes.</div>
+  </section>
+
+  <section class="slide" id="ia-d26">
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc)"><span class="t-fr">Création du doute</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="forme ppt-forme forme-ovale step" data-order="1" data-pose="" data-off-x="166.456" data-off-y="194.624" style="left:16.646%;top:19.462%;background-color:#5FCBEF;border:2.522px solid #0E1E24;width:11.496%;height:22.509%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Invasion</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-ovale step" data-order="2" data-pose="" data-off-x="223.938" data-off-y="464.158" style="left:22.394%;top:46.416%;background-color:#5FCBEF;border:2.522px solid #0E1E24;width:16.974%;height:30.538%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Attaque contre un pays souverain</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-ovale step" data-order="3" data-pose="" data-off-x="161.722" data-off-y="780.645" style="left:16.172%;top:78.065%;background-color:#5FCBEF;border:2.522px solid #0E1E24;width:10.091%;height:20.502%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Premier à frapper</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-ovale step" data-order="5" data-pose="" data-off-x="478.641" data-off-y="489.606" style="left:47.864%;top:48.961%;background-color:#FF0000;border:2.522px solid #0E1E24;width:16.136%;height:30.538%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Historiquement partie du même pays</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-ovale step" data-order="6" data-pose="" data-off-x="617.669" data-off-y="780.645" style="left:61.767%;top:78.065%;background-color:#FF0000;border:2.522px solid #0E1E24;width:10.091%;height:20.502%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Autodéfense</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-ovale step" data-order="4" data-pose="" data-off-x="606.322" data-off-y="202.867" style="left:60.632%;top:20.287%;background-color:#FF0000;border:2.522px solid #0E1E24;width:12.781%;height:26.129%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Libération du peuple</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-rectangle step" data-order="7" data-pose="" data-off-x="253.311" data-off-y="430.824" style="left:25.331%;top:43.082%;background-color:#FFC000;border:2.522px solid #0E1E24;border-radius:0;width:45.066%;height:19.259%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF;inset:6.053px 12.107px 6.053px 12.107px"><span style="font-size:53.807px;line-height:1.2;text-align:center"><span class="t-fr">Contre-récit</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="speaker-notes" hidden="">Russie : Déni des violations des droits de l'homme.
+https://www.politico.eu/article/russia-ukraine-disinformation-nato-united-states-special-forces-winter-olympics-moscow-kremlin-kyiv/
+L'OTAN devrait attaquer la Russie lors des prochains Jeux olympiques d'hiver.
+https://news-front.info/2022/01/14/ukraina-gotovit-vooruzhennuyu-provokatsiyu-v-donbasse-vo-vremiya-olimpiady-dmitriy-solonnikov/
+Débat autour de RT et de Russia Today.</div>
+  </section>
+
+  <section class="slide" id="s-comment-lia-impacte-les-reseau-3">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Comment l’IA impacte les réseaux sociaux.</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li data-puce="▸" style="font-size:47.081px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Via la génération de texte, d’images, de vidéos.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="1" data-puce="▸" style="font-size:47.081px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Via la création de faux profils.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="2" data-puce="▸" style="font-size:47.081px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Via le micro-targeting</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="ia-d28">
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="254.594" style="left:12.731%;top:25.459%;width:55.966%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="1" style="font-size:40.356px;line-height:1.2;text-align:left"><span class="t-fr">Segmentation psychographique avancée et précise, utilisant des algorithmes pour combiner : </span><span class="t-en" hidden=""></span></li><li class="step" data-order="2" data-puce="-" style="font-size:40.356px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--retrait:45.4px"><span class="t-fr">Les données démographiques (âge, sexe, localisation)</span><span class="t-en" hidden=""></span></li><li class="step" data-order="3" data-puce="-" style="font-size:40.356px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--retrait:45.4px"><span class="t-fr">Les attitudes comportementales (intérêts, opinions, habitudes)</span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:40.356px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="step" data-order="4" style="font-size:40.356px;line-height:1.2;text-align:left"><span class="t-fr">Afin d’assigner chaque personne à un segment étroit et d’adapter le message à ce segment.</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc)"><span class="t-fr">Micro-targeting</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="ia-d29">
+    <ul class="ppt-texte" data-pose="" data-off-x="158.948" data-off-y="281.481" style="left:15.895%;top:28.148%;width:50.393%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="1" style="font-size:53.807px;line-height:1.2;text-align:left"><span class="t-fr">L’engagement.</span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:40.356px;line-height:1.2;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="step" data-order="2" style="font-size:40.356px;line-height:1.2;text-align:left"><span class="t-fr">Sont recommandés sur les réseaux les contenus :</span><span class="t-en" hidden=""></span></li><li class="step" data-order="3" data-puce="-" style="font-size:40.356px;line-height:1.2;padding-left:37.833px;text-indent:-37.833px;text-align:left;--retrait:37.833px"><span class="t-fr">Polarisants</span><span class="t-en" hidden=""></span></li><li class="step" data-order="4" data-puce="-" style="font-size:40.356px;line-height:1.2;padding-left:37.833px;text-indent:-37.833px;text-align:left;--retrait:37.833px"><span class="t-fr">Jouant sur les émotions.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="5" data-puce="-" style="font-size:40.356px;line-height:1.2;padding-left:37.833px;text-indent:-37.833px;text-align:left;--retrait:37.833px"><span class="t-fr">Provoquant de l’engagement.</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc)"><span class="t-fr">Quel est le but du micro-targeting ?</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="speaker-notes" hidden="">https://academic.oup.com/pnasnexus/article/3/2/pgae035/7591134</div>
+  </section>
+
+  <section class="slide" id="s-d30" data-serie="serie_cffefd4d-3855-4807-a0b3-b37b07ddbfaa">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="170.471" data-off-y="34.256" style="left:17.047%;top:3.426%;width:65.906%;max-width:none;"><img src="../medias/images/ia-desinfo-diapo-30.png" alt="" loading="lazy" style="aspect-ratio:9582210/6388141"></div>
+  </section>
+
+  <section class="slide" id="s-d31">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="263.285" data-off-y="253.665" style="left:26.328%;top:25.366%;width:40.254%;max-width:none;"><img src="../medias/images/ia-desinfo-diapo-31-2.png" alt="" loading="lazy" style="aspect-ratio:5852667/4427604"></div>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="200.341" data-off-y="63.469" style="left:20.034%;top:6.347%;width:52.843%;max-width:none;"><img src="../medias/images/ia-desinfo-diapo-31.png" alt="" loading="lazy" style="aspect-ratio:7682972/948966"></div>
+  </section>
+
+  <section class="slide ppt-rogne" id="s-d32">
+    <div class="imgcard ppt-img step" data-order="5" data-pose="" data-off-x="423.804" data-off-y="487.185" style="left:42.38%;top:48.718%;width:38.702%;max-width:none;"><img src="../medias/images/ia-desinfo-diapo-32-5.jpg" alt="" loading="lazy" style="aspect-ratio:5627045/3191160"></div>
+    <div class="imgcard ppt-img step" data-order="1" data-pose="" data-off-x="98.582" data-off-y="65.918" style="left:9.858%;top:6.592%;width:30.769%;max-width:none;"><img src="../medias/images/ia-desinfo-diapo-32-3.jpg" alt="" loading="lazy" style="aspect-ratio:4473537/2976936"></div>
+    <div class="imgcard ppt-img step" data-order="2" data-pose="" data-off-x="253.674" data-off-y="-10.014" style="left:25.367%;top:-1.001%;width:26.358%;max-width:none;"><img src="../medias/images/ia-desinfo-diapo-32.png" alt="" loading="lazy" style="aspect-ratio:3832218/4225266"></div>
+    <div class="imgcard ppt-img step" data-order="3" data-pose="" data-off-x="463.91" data-off-y="34.681" style="left:46.391%;top:3.468%;width:32.99%;max-width:none;"><img src="../medias/images/ia-desinfo-diapo-32-2.png" alt="" loading="lazy" style="aspect-ratio:4796469/3191160"></div>
+    <div class="imgcard ppt-img step" data-order="4" data-pose="" data-off-x="206.192" data-off-y="353.497" style="left:20.619%;top:35.35%;width:24.018%;max-width:none;"><img src="../medias/images/ia-desinfo-diapo-32-4.jpg" alt="" loading="lazy" style="aspect-ratio:3492078/4657540"></div>
+  </section>
+
+  <section class="slide ppt-rogne" id="s-d33">
+    <div class="forme ppt-forme forme-rectangle step" data-order="1" data-pose="" data-off-x="233.724" data-off-y="125.448" style="left:23.372%;top:12.545%;background-color:#FFFFFF;border:2.522px solid #000000;width:17.853%;height:19.785%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF;inset:6.053px 12.107px 6.053px 12.107px"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr"><span style="color:#000000">Un évènement se produit</span></span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-rectangle step" data-order="2" data-pose="" data-off-x="475.317" data-off-y="125.448" style="left:47.532%;top:12.545%;background-color:#FFFFFF;border:2.522px solid #000000;width:17.853%;height:19.785%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF;inset:6.053px 12.107px 6.053px 12.107px"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr"><span style="color:#000000">Réactions des politiciens et des médias</span></span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-rectangle step" data-order="3" data-pose="" data-off-x="586.561" data-off-y="415.405" style="left:58.656%;top:41.54%;background-color:#FFFFFF;border:2.522px solid #000000;width:17.853%;height:19.785%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF;inset:6.053px 12.107px 6.053px 12.107px"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr"><span style="color:#000000">Réaction des réseaux sociaux</span></span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-rectangle step" data-order="5" data-pose="" data-off-x="233.893" data-off-y="687.367" style="left:23.389%;top:68.737%;background-color:#FFFFFF;border:2.522px solid #000000;width:17.853%;height:19.785%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF;inset:6.053px 12.107px 6.053px 12.107px"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr"><span style="color:#000000">Les trolls</span><span style="color:#000000">, </span><span style="color:#000000">les bots d’IA, le micro-</span><span style="color:#000000">targeting</span><span style="color:#000000">, amplifient l'impact de ce phénomène.</span></span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-rectangle step" data-order="4" data-pose="" data-off-x="485.799" data-off-y="684.954" style="left:48.58%;top:68.495%;background-color:#FFFFFF;border:2.522px solid #000000;width:17.853%;height:19.785%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF;inset:6.053px 12.107px 6.053px 12.107px"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr"><span style="color:#000000">Les médias sociaux accentuent la polarisation et la radicalisation des opinions</span></span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-rectangle step" data-order="6" data-pose="" data-off-x="144.628" data-off-y="401.075" style="left:14.463%;top:40.108%;background-color:#FFFFFF;border:2.522px solid #000000;width:17.853%;height:19.785%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF;inset:6.053px 12.107px 6.053px 12.107px"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr"><span style="color:#000000">La société est devenue plus divisée.</span></span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="imgcard ppt-img step ppt-sans-fond" data-order="7" data-pose="" data-off-x="213.067" data-off-y="41.695" style="left:21.307%;top:4.17%;width:44.458%;max-width:none;transform:rotate(9.773deg);opacity:0.59;"><img src="../medias/images/ia-crainte-espoir-033-recolore.png" alt="" loading="lazy" style="aspect-ratio:6463878/6482650"></div>
+  </section>
+
+  <section class="slide" id="s-espoir">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Espoir</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+  <section class="slide" id="s-l-ia-peut-etre-utilisee-pour-t">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">L'IA peut être utilisée pour traquer la désinformation</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+  <section class="slide" id="s-traitement-automatique-du-lang">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Traitement automatique du langage naturel (TALN)</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:67.317%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="1" data-puce="▸" style="font-size:40.356px;line-height:1.08;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Repérer les erreurs dans les textes qui sont liées à la désinformation.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="2" data-puce="▸" style="font-size:33.63px;line-height:1.08;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">Langage, grammaire et contexte du texte inappropriés.</span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:33.63px;line-height:1.08;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:33.63px;line-height:1.08;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:33.63px;line-height:1.08;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="step" data-order="3" data-puce="▸" style="font-size:40.356px;line-height:1.08;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Limites</span><span class="t-en" hidden=""></span></li><li class="step" data-order="4" data-puce="▸" style="font-size:33.63px;line-height:1.08;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">Il ne comprend pas le sarcasme ou le double sens.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="5" data-puce="▸" style="font-size:33.63px;line-height:1.08;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">Les posts IA ne font pas forcément de fautes d’orthographe.</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="s-d37">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="196.198" data-off-y="71.91" style="left:19.62%;top:7.191%;width:56.396%;max-width:none;"><img src="../medias/images/trump-photo.jpg" alt="" loading="lazy" style="aspect-ratio:8199544/4612243"></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="196.198" data-off-y="814.815" style="left:19.62%;top:81.481%;width:55.991%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:40.356px;line-height:1.2;text-align:left"><span class="t-fr">« There are eating the pets! They are eating the dogs ! »</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="s-analyse-des-sentiments">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Analyse des sentiments</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="235.185" style="left:12.731%;top:23.519%;width:64.173%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="1" data-puce="▸" style="font-size:47.081px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Les fausses informations sont généralement <b>plus polarisées</b>, elles s'appuient davantage sur les <b>sentiments, surtout sur les émotions négatives.</b></span><span class="t-en" hidden=""></span></li><li class="step" data-order="2" data-puce="▸" style="font-size:40.356px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">C’est donc un élément que peut utiliser l’IA pour cibler les Fake News.</span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:40.356px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:40.356px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="step" data-order="3" data-puce="▸" style="font-size:47.081px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Limites</span><span class="t-en" hidden=""></span></li><li class="step" data-order="4" data-puce="▸" style="font-size:43.719px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:39.347px"><span class="t-fr">« Généralement »</span><span class="t-en" hidden=""></span></li><li class="step" data-order="5" data-puce="▸" style="font-size:40.356px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">L’émotion n’est pas l’apanage de la Fake News.</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="s-traitement-reseau">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Traitement réseau</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="1" data-puce="▸" style="font-size:47.081px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">En analysant la manière dont une information est partagée en ligne, il est possible d'évaluer s'il s'agit d'une information réelle ou d'une fausse information.</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="s-d40">
+    <div class="imgcard ppt-img ppt-recadre" data-pose="" data-off-x="190.906" data-off-y="113.133" style="left:19.091%;top:11.313%;width:51.826%;max-width:none;aspect-ratio:7535123/5723030;"><img src="../medias/images/ia-desinfo-diapo-40.png" alt="" loading="lazy" style="position:absolute;max-width:none;max-height:none;width:100.761%;height:102.537%;left:0.001%;top:-0.0%"></div>
+    <ul class="ppt-texte step" data-order="1" data-pose="" data-off-x="390.988" data-off-y="71.111" style="left:39.099%;top:7.111%;width:11.81%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:40.356px;line-height:1.2;text-align:center"><span class="t-fr">Weibo</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte step" data-order="4" data-pose="" data-off-x="400.421" data-off-y="531.852" style="left:40.042%;top:53.185%;width:11.81%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:40.356px;line-height:1.2;text-align:center;color:#000000"><span class="t-fr">Twitter</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte step" data-order="2" data-pose="" data-off-x="259.388" data-off-y="96.331" style="left:25.939%;top:9.633%;width:11.81%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Fausses nouvelles</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte step" data-order="5" data-pose="" data-off-x="259.388" data-off-y="548.578" style="left:25.939%;top:54.858%;width:11.81%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:center;color:#000000"><span class="t-fr">Fausses nouvelles</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte step" data-order="9" data-pose="" data-off-x="515.723" data-off-y="531.852" style="left:51.572%;top:53.185%;width:11.81%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:center;color:#000000"><span class="t-fr">Actualités réelles</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte step" data-order="7" data-pose="" data-off-x="509.084" data-off-y="113.133" style="left:50.908%;top:11.313%;width:11.81%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:center;color:#000000"><span class="t-fr">Actualités réelles</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="forme ppt-forme forme-rectangle" data-sortie="7" data-pose="" data-off-x="459.47" data-off-y="216.427" style="left:45.947%;top:21.643%;background-color:#FFFFFF;border-radius:0;width:24.97%;height:30.196%;max-width:none;"></div>
+    <div class="forme ppt-forme forme-rectangle" data-sortie="9" data-pose="" data-off-x="450.036" data-off-y="662.479" style="left:45.004%;top:66.248%;background-color:#FFFFFF;border-radius:0;width:25.913%;height:28.516%;max-width:none;"></div>
+    <div class="forme ppt-forme forme-rectangle" data-sortie="5" data-pose="" data-off-x="190.906" data-off-y="655.366" style="left:19.091%;top:65.537%;background-color:#FFFFFF;border-radius:0;width:25.913%;height:29.227%;max-width:none;"></div>
+    <div class="forme ppt-forme forme-rectangle" data-sortie="2" data-pose="" data-off-x="190.906" data-off-y="193.684" style="left:19.091%;top:19.368%;background-color:#FFFFFF;border-radius:0;width:29.271%;height:30.196%;max-width:none;"></div>
+  </section>
+
+  <section class="slide" id="s-limites">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Limites</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+  <section class="slide" id="s-l-ia-est-biaisee-en-fonction-d">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">L'IA est biaisée (en fonction des données et de la programmation).</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+  <section class="slide" id="ia-d43">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Limites</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard ppt-img ppt-recadre" data-pose="" data-off-x="132.575" data-off-y="185.185" style="left:13.258%;top:18.519%;width:32.899%;max-width:none;aspect-ratio:4783282/4920053;"><img src="../medias/images/ia-deblur-pixelise.jpg" alt="" loading="lazy" style="position:absolute;max-width:none;max-height:none;width:201.584%;height:100.0%;left:-0.0%;top:-0.0%"></div>
+  </section>
+
+  <section class="slide" id="ia-d44">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="132.575" data-off-y="185.185" style="left:13.258%;top:18.519%;width:66.319%;max-width:none;"><img src="../medias/images/ia-deblur-pixelise.jpg" alt="" loading="lazy" style="aspect-ratio:9642316/4920053"></div>
+  </section>
+
+  <section class="slide" id="ia-d45">
+    <div class="imgcard ppt-img step" data-order="2" data-pose="" data-off-x="422.944" data-off-y="0.0" style="left:42.294%;top:0.0%;width:23.064%;max-width:none;"><img src="../medias/images/enhanced-photo-meme-1.jpg" alt="" loading="lazy" style="aspect-ratio:3353268/6792273"></div>
+    <div class="imgcard ppt-img step" data-order="1" data-pose="" data-off-x="204.119" data-off-y="0.0" style="left:20.412%;top:0.0%;width:22.736%;max-width:none;"><img src="../medias/images/enhanced-photo-meme-2.jpg" alt="" loading="lazy" style="aspect-ratio:3305636/6725589"></div>
+  </section>
+
+  <section class="slide" id="s-la-veracite-dune-information-d">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">La véracité d’une information dépend du contexte.</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+  <section class="slide" id="s-une-information-peut-etre-vrai">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Une information peut être vraie mais trompeuse</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="161.209" data-off-y="281.481" style="left:16.121%;top:28.148%;width:53.924%;max-width:none;"><img src="../medias/images/ia-desinfo-une-information-peut-etre-vraie-mais-47.png" alt="" loading="lazy" style="aspect-ratio:7840169/1600423"></div>
+  </section>
+
+  <section class="slide" id="ia-d48">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">L’IA est, hum, super balèze pour repérer l’ironie</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard ppt-img step" data-order="1" data-pose="" data-off-x="147.788" data-off-y="323.874" style="left:14.779%;top:32.387%;width:57.079%;max-width:none;"><img src="../medias/images/gorafi-radars-patriotisme.jpg" alt="" loading="lazy" style="aspect-ratio:8298899/2415749"></div>
+  </section>
+
+  <section class="slide" id="ia-d49">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">On ne sait pas « vraiment » comment fonctionne une IA</span><span class="t-en" hidden=""></span></h2>
+    <div class="forme ppt-forme forme-rectangle step" data-order="1" data-pose="" data-off-x="305.467" data-off-y="331.373" style="left:30.547%;top:33.137%;background-color:#000000;border:2.522px solid #000000;border-radius:0;width:26.729%;height:54.955%;max-width:none;"></div>
+  </section>
+
+  <section class="slide" id="ia-d50">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Problème éthique</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="281.481" style="left:12.731%;top:28.148%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="1" data-puce="▸" style="font-size:40.356px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">L’IA agissant « en masse », peut faire des erreurs, et limiter la liberté d’expression.</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="ia-d51">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">La collaboration IA-humain demeure importante</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="1" data-puce="▸" style="font-size:40.019px;line-height:0.96;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr"><b>Efficacité</b>.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="4" data-puce="▸" style="font-size:31.444px;line-height:0.96;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">Des études montrent que c'est la meilleure combinaison pour lutter contre la désinformation en ligne.</span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:34.302px;line-height:0.96;margin-top:16.815px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="step" data-order="2" data-puce="▸" style="font-size:40.019px;line-height:0.96;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr"><b>Raisons éthiques</b>.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="5" data-puce="▸" style="font-size:31.444px;line-height:0.96;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">Limitation des préjugés, protection de la vie privée, responsabilités.</span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:34.302px;line-height:0.96;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="step" data-order="3" data-puce="▸" style="font-size:40.019px;line-height:0.96;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr"><b>Raisons légales</b>.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="6" data-puce="▸" style="font-size:31.444px;line-height:0.96;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">Le RGPD (Règlement général sur la protection des données, relatif au cadre européen de protection des données) permet aux citoyens de savoir comment leurs données sont utilisées.</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="speaker-notes" hidden="">L'intégration d'une supervision humaine aux systèmes d'IA est essentielle pour garantir leur efficacité à long terme dans la lutte contre la désinformation. La recherche appuie cette idée ; des études ont montré que la combinaison du jugement humain et des outils d'IA améliore significativement la précision de la détection de la désinformation [105]. Cette synergie entre l'expertise humaine et les technologies d'IA est cruciale pour appréhender la complexité de la désinformation.</div>
+  </section>
+
+  <section class="slide" id="s-au-dela-de-la-desinformation">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Au-delà de la désinformation</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="198.63" data-off-y="218.325" style="left:19.863%;top:21.832%;width:51.995%;max-width:none;"><img src="../medias/images/ia-desinfo-au-dela-de-la-desinformation-52.png" alt="" loading="lazy" style="aspect-ratio:7559695/1737511"></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="198.63" data-off-y="500.0" style="left:19.863%;top:50.0%;width:56.167%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="1" data-puce="•" style="font-size:40.356px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--retrait:45.4px"><span class="t-fr">Les gens écrivent sur un sujet plus ou moins polémique (peine de mort, etc.)</span><span class="t-en" hidden=""></span></li><li class="step" data-order="2" data-puce="•" style="font-size:40.356px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--retrait:45.4px"><span class="t-fr">L’IA propose des suggestions biaisées (pour ou contre).</span><span class="t-en" hidden=""></span></li><li class="step" data-order="3" data-puce="•" style="font-size:40.356px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--retrait:45.4px"><span class="t-fr">Les participants modifient leurs opinions dans le sens de l’IA.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="4" data-puce="•" style="font-size:40.356px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--retrait:45.4px"><span class="t-fr">Ils ne réalisent pas qu’ils sont influencés.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="5" data-puce="•" style="font-size:40.356px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--retrait:45.4px"><span class="t-fr">Le fait qu’ils savent qu’ils peuvent se faire influencer n’a qu’un impact minime sur les résultats.</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="speaker-notes" hidden="">https://www.science.org/doi/10.1126/sciadv.adw5578?utm_source=chatgpt.com
+
+🔬 Méthode
+2 expériences avec 2 582 participants 
+Les gens écrivent sur des sujets (peine de mort, fracturation hydraulique, etc.) 
+L’IA propose des suggestions biaisées (pro ou contre) 
+📊 Résultats principaux
+Les participants modifient leurs opinions dans le sens du biais de l’IA 
+Plus ils acceptent les suggestions, plus leur opinion change 
+La majorité ne réalise pas qu’ils sont influencés 
+Les avertissements sur le biais ne réduisent presque pas cet effet</div>
+  </section>
+
+  <section class="slide" id="ia-d53">
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="41.177" style="left:12.731%;top:4.118%;width:62.077%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="1" style="font-size:40.356px;line-height:1.2;text-align:left"><span class="t-fr"><b>« Les dinosaures n’ont jamais existé, c’est un complot !</b></span><span class="t-en" hidden=""></span></li><li class="step" data-order="2" style="font-size:33.63px;line-height:1.2;margin-top:16.815px;text-align:left"><span class="t-fr">- Les fossiles prouvent l’existence des dinosaures.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="3" style="font-size:33.63px;line-height:1.2;margin-top:16.815px;text-align:left"><span class="t-fr"><b>- Les fossiles ont été placés volontairement pour nous piéger ! </b></span><span class="t-en" hidden=""></span></li><li class="step" data-order="4" style="font-size:33.63px;line-height:1.2;margin-top:16.815px;text-align:left"><span class="t-fr">- Certains « dinosaures » sont encore parmi nous.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="5" style="font-size:33.63px;line-height:1.2;margin-top:16.815px;text-align:left"><span class="t-fr"><b>- Parce que tu crois vraiment qu’une poule est un dinosaure ? ?</b></span><span class="t-en" hidden=""></span></li></ul>
+    <div class="imgcard ppt-img step" data-order="6" data-pose="" data-off-x="383.581" data-off-y="376.364" style="left:38.358%;top:37.636%;width:23.284%;max-width:none;"><img src="../medias/images/colere-dinosaures-gif.jpg" alt="" loading="lazy" style="aspect-ratio:3385298/4187997"></div>
+  </section>
+
+  <section class="slide" id="ia-d54">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Vous savez qui ne s’énerve jamais ? </span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="159.727" data-off-y="225.289" style="left:15.973%;top:22.529%;width:17.219%;max-width:none;"><img src="../medias/images/logo-chatgpt.png" alt="" loading="lazy" style="aspect-ratio:2503568/2492442"></div>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="388.107" data-off-y="281.481" style="left:38.811%;top:28.148%;width:12.762%;max-width:none;"><img src="../medias/images/logo-claude.png" alt="" loading="lazy" style="aspect-ratio:1855438/1855438"></div>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="571.951" data-off-y="223.343" style="left:57.195%;top:22.334%;width:19.226%;max-width:none;"><img src="../medias/images/logo-gemini.png" alt="" loading="lazy" style="aspect-ratio:2795288/2795288"></div>
+  </section>
+
+  <section class="slide" id="ia-d55">
+    <ul class="ppt-texte" data-pose="" data-off-x="129.055" data-off-y="389.121" style="left:12.906%;top:38.912%;width:62.339%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="1" data-puce="▸" style="font-size:40.356px;line-height:1.08;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Discussion précise (et préparée) avec Chat GPT sur UNE théorie du complot.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="2" data-puce="▸" style="font-size:40.356px;line-height:1.08;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Réduction de la croyance de 20%.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="3" data-puce="▸" style="font-size:40.356px;line-height:1.08;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Effet durable deux mois après.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="4" data-puce="▸" style="font-size:40.356px;line-height:1.08;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Impact les AUTRES croyances complotistes aussi.</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="imgcard ppt-img ppt-recadre" data-pose="" data-off-x="101.928" data-off-y="31.674" style="left:10.193%;top:3.167%;width:66.135%;max-width:none;aspect-ratio:9615596/1692264;"><img src="../medias/images/etude-science-conspi-1.jpg" alt="" loading="lazy" style="position:absolute;max-width:none;max-height:none;width:104.916%;height:114.838%;left:-0.0%;top:-0.0%"></div>
+    <div class="speaker-notes" hidden="">https://www.science.org/doi/10.1126/science.adq1814</div>
+  </section>
+
+  <section class="slide" id="ia-d56">
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="1" data-puce="▸" style="font-size:30.267px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Limites</span><span class="t-en" hidden=""></span></li><li class="step" data-order="2" data-puce="▸" style="font-size:30.267px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">Cela concerne des théories du complot avant tout « crédibles » (JFK, 11 septembre).</span><span class="t-en" hidden=""></span></li><li class="step" data-order="3" data-puce="▸" style="font-size:30.267px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">L’IA doit être bien promptée.</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="imgcard ppt-img step" data-order="4" data-pose="" data-off-x="116.826" data-off-y="588.889" style="left:11.683%;top:58.889%;width:58.961%;max-width:none;"><img src="../medias/images/etude-science-conspi-2.jpg" alt="" loading="lazy" style="aspect-ratio:8572500/885825"></div>
+    <ul class="ppt-texte step" data-order="5" data-pose="" data-off-x="138.664" data-off-y="718.056" style="left:13.866%;top:71.806%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li data-puce="▸" style="font-size:30.267px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Ce n’est PAS parce que l’interloctueur est une IA (dans une étude, certains savaient qu’ils parlaient à une IA, d’autres pas, mais réduction dans les deux cas).</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="imgcard ppt-img ppt-recadre" data-pose="" data-off-x="101.928" data-off-y="31.674" style="left:10.193%;top:3.167%;width:66.135%;max-width:none;aspect-ratio:9615596/1692264;"><img src="../medias/images/etude-science-conspi-1.jpg" alt="" loading="lazy" style="position:absolute;max-width:none;max-height:none;width:104.916%;height:114.838%;left:-0.0%;top:-0.0%"></div>
+    <div class="speaker-notes" hidden="">Durably reducing conspiracy beliefs through dialogues with AI | Science</div>
+  </section>
+
+  <section class="slide" id="ia-d57">
+    <div class="vidwrap ppt-video" data-pose="" data-off-x="318.724" data-off-y="88.889" style="left:31.872%;top:8.889%;width:36.255%;max-width:none;aspect-ratio:5271247/4972006;"><video src="../medias/video/avion-video-virale-elysee.mp4" controls="" playsinline="" preload="metadata"></video></div>
+  </section>
+
+  <section class="slide" id="ia-d58">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="113.875" data-off-y="302.036" style="left:11.388%;top:30.204%;width:55.959%;max-width:none;"><img src="../medias/images/brigitte-macron-elysee-texte.jpg" alt="" loading="lazy" style="aspect-ratio:8135953/2715276"></div>
+    <div class="speaker-notes" hidden="">https://www.franceinfo.fr/politique/emmanuel-macron/brigitte-macron/video-la-video-virale-qui-embarrasse-l-elysee_7274202.html</div>
+  </section>
+
+  <section class="slide" id="ia-d59">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:62.395%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">L’un des problèmes de l'IA n'est pas qu'elle puisse générer de fausses informations.</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="1" data-puce="▸" style="font-size:40.356px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Cela deviendra le prétexte idéal pour nier les informations réelles.</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="ia-d60">
+    <div class="vidwrap ppt-video" data-pose="" data-off-x="348.012" data-off-y="18.213" style="left:34.801%;top:1.821%;width:24.196%;max-width:none;aspect-ratio:3517900/6260018;"><video src="../medias/video/spotted-white-house-hoax.mp4" controls="" playsinline="" preload="metadata"></video></div>
+  </section>
+
+  <section class="slide" id="ia-d61">
+    <div class="vidwrap ppt-video" data-pose="" data-off-x="167.852" data-off-y="50.0" style="left:16.785%;top:5.0%;width:66.43%;max-width:none;aspect-ratio:9658386/5432425;"><video src="../medias/video/trump-huit-jeunes-doute-ia.mp4" controls="" playsinline="" preload="metadata"></video></div>
+  </section>
+
+<!-- À la frontière du vrai et du faux : photo générée par IA, événement réel (15 octobre) -->
+  <section class="slide" id="ia-frontiere-vrai-faux">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:74%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:56px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">À la frontière du vrai et du faux</span><span class="t-en" hidden="">On the border between true and false</span></h2>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="120" data-off-y="250" style="left:12%;top:25%;width:32%;max-width:none;"><img src="../medias/images/ia-frontiere-epstein-photo-ia.png" alt="Photo générée par IA : une femme portant un t-shirt « Release the Epstein files » frappée dans une foule de partisans de Trump" loading="lazy" style="aspect-ratio:1061/829"></div>
+    <div class="vidwrap" data-pose="" data-off-x="530" data-off-y="250" style="left:53%;top:25%;width:500px;max-width:500px"><video src="../medias/video/ia-frontiere-epstein-video-reelle.mp4" controls="" playsinline="" preload="metadata"></video></div>
+    <p class="lead step" data-order="1" data-pose="" data-off-x="120" data-off-y="780" style="left:12%;top:78%;width:32%;max-width:none;text-align:center;font-weight:800;color:var(--ko)"><span class="t-fr">Photo : générée par IA</span><span class="t-en" hidden="">Photo: AI-generated</span></p>
+    <p class="lead step" data-order="1" data-pose="" data-off-x="530" data-off-y="780" style="left:53%;top:78%;width:26%;max-width:none;text-align:center;font-weight:800;color:var(--ok)"><span class="t-fr">Vidéo : réelle</span><span class="t-en" hidden="">Video: real</span></p>
+  <div class="speaker-notes" hidden="">La photo qui a circulé est générée par IA, mais l'événement qu'elle illustre est bien réel : la vidéo montre une femme bousculée et frappée dans un meeting. Une image fausse n'implique pas un fait faux, et l'IA devient un prétexte pour nier un fait réel. Vidéo : HibouxDunet (Antonin Atger).</div></section>
+
+  <section class="slide" id="ia-d62">
+    <div class="imgcard ppt-img step" data-order="1" data-pose="" data-off-x="146.707" data-off-y="272.513" style="left:14.671%;top:27.251%;width:62.813%;max-width:none;"><img src="../medias/images/deepfake-panic-1.jpg" alt="" loading="lazy" style="aspect-ratio:9132496/1167311"></div>
+    <div class="imgcard ppt-img step" data-order="2" data-pose="" data-off-x="181.047" data-off-y="509.378" style="left:18.105%;top:50.938%;width:55.804%;max-width:none;"><img src="../medias/images/deepfake-panic-2.jpg" alt="" loading="lazy" style="aspect-ratio:8113480/971111"></div>
+    <div class="imgcard ppt-img step" data-order="3" data-pose="" data-off-x="119.271" data-off-y="756.909" style="left:11.927%;top:75.691%;width:70.782%;max-width:none;"><img src="../medias/images/deepfake-panic-3.jpg" alt="" loading="lazy" style="aspect-ratio:10291245/971110"></div>
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.344" data-off-y="88.889" style="left:12.734%;top:8.889%;width:59.125%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Petit rappel, à l’époque des Deepfake</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard ppt-img step" data-order="4" data-pose="" data-off-x="225.167" data-off-y="387.41" style="left:22.517%;top:38.741%;width:60.884%;max-width:none;"><img src="../medias/images/deepfake-panic-4.jpg" alt="" loading="lazy" style="aspect-ratio:8852029/3043139"></div>
+    <div class="imgcard ppt-img step" data-order="5" data-pose="" data-off-x="121.878" data-off-y="320.044" style="left:12.188%;top:32.004%;width:38.984%;max-width:none;"><img src="../medias/images/deepfake-panic-5.jpg" alt="" loading="lazy" style="aspect-ratio:5667973/3476431"></div>
+    <div class="imgcard ppt-img step" data-order="6" data-pose="" data-off-x="224.352" data-off-y="288.433" style="left:22.435%;top:28.843%;width:38.573%;max-width:none;"><img src="../medias/images/deepfake-panic-6.jpg" alt="" loading="lazy" style="aspect-ratio:5608301/2304026"></div>
+  </section>
+
+  <section class="slide" id="ia-d63">
+    <div class="imgcard ppt-img step" data-order="1" data-pose="" data-off-x="87.477" data-off-y="186.78" style="left:8.748%;top:18.678%;width:59.125%;max-width:none;"><img src="../medias/images/photoshop-panic-1.jpg" alt="" loading="lazy" style="aspect-ratio:8596312/2692991"></div>
+    <div class="imgcard ppt-img step" data-order="2" data-pose="" data-off-x="383.101" data-off-y="467.403" style="left:38.31%;top:46.74%;width:36.6%;max-width:none;"><img src="../medias/images/photoshop-panic-2.jpg" alt="" loading="lazy" style="aspect-ratio:5321406/3066099"></div>
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.344" data-off-y="88.889" style="left:12.734%;top:8.889%;width:59.125%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Petit rappel, à l’époque de Photoshop</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+  <section class="slide" id="ia-d64">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Peut-être est-ce dans notre nature humaine de beaucoup s'inquiéter.</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+  <section class="slide" id="ia-d65">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Loi d'Amara</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="127.308" data-off-y="231.111" style="left:12.731%;top:23.111%;width:25.419%;max-width:none;"><img src="../medias/images/roy-amara-portrait.jpg" alt="" loading="lazy" style="aspect-ratio:3695700/4927600"></div>
+    <ul class="ppt-texte step" data-order="1" data-pose="" data-off-x="430.819" data-off-y="231.111" style="left:43.082%;top:23.111%;width:33.612%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:40.356px;line-height:1.2;text-align:left"><span class="t-fr">« Nous avons tendance à surestimer l’effet d’une technologie à court terme et à le sous-estimer à long terme. »</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="ia-d66">
+    <div class="vidwrap ppt-video" data-pose="" data-off-x="281.298" data-off-y="54.902" style="left:28.13%;top:5.49%;width:41.358%;max-width:none;aspect-ratio:6013084/5665507;"><video src="../medias/video/avion-video-source-iran.mp4" controls="" playsinline="" preload="metadata"></video></div>
+  </section>
+
+  <section class="slide ppt-rogne" id="ia-d67">
+    <div class="imgcard ppt-img ppt-recadre" data-pose="" data-off-x="310.293" data-off-y="-23.529" style="left:31.029%;top:-2.353%;width:40.829%;max-width:none;aspect-ratio:5936207/7019364;"><img src="../medias/images/trump-iran-8-femmes-tweet.jpg" alt="" loading="lazy" style="position:absolute;max-width:none;max-height:none;width:136.268%;height:181.495%;left:-0.0%;top:-81.495%"></div>
+  </section>
+
+  <section class="slide" id="ia-d68">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="236.648" data-off-y="119.078" style="left:23.665%;top:11.908%;width:52.67%;max-width:none;"><img src="../medias/images/iran-embassy-intox-tweet.jpg" alt="" loading="lazy" style="aspect-ratio:7657901/2112029"></div>
+  </section>
+
+  <section class="slide ppt-rogne" id="ia-d69">
+    <div class="imgcard ppt-img ppt-recadre" data-pose="" data-off-x="314.358" data-off-y="-46.924" style="left:31.436%;top:-4.692%;width:29.909%;max-width:none;aspect-ratio:4348607/7148523;"><img src="../medias/images/iran-embassy-factcheck-2026.jpg" alt="" loading="lazy" style="position:absolute;max-width:none;max-height:none;width:100.0%;height:132.125%;left:-0.0%;top:-9.845%"></div>
+  </section>
+
+  <section class="slide" id="ia-d70">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="297.267" data-off-y="42.017" style="left:29.727%;top:4.202%;width:40.497%;max-width:none;"><img src="../medias/images/femmes-reelles-identites-tweet.jpg" alt="" loading="lazy" style="aspect-ratio:5888008/6254291"></div>
+  </section>
+
+  <section class="slide" id="ia-d71">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="162.298" data-off-y="194.771" style="left:16.23%;top:19.477%;width:36.376%;max-width:none;"><img src="../medias/images/compte-annaj-profil.jpg" alt="" loading="lazy" style="aspect-ratio:5288738/3962743"></div>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="561.043" data-off-y="205.907" style="left:56.104%;top:20.591%;width:26.205%;max-width:none;"><img src="../medias/images/compte-annaj-avatar.jpg" alt="" loading="lazy" style="aspect-ratio:3810000/3810000"></div>
+  </section>
+
+  <section class="slide" id="s-d72">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="300.285" data-off-y="28.522" style="left:30.028%;top:2.852%;width:36.958%;max-width:none;"><img src="../medias/images/ia-desinfo-diapo-72.png" alt="" loading="lazy" style="aspect-ratio:5373486/5846419"></div>
+  </section>
+
+  <section class="slide" id="ia-d73">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="232.163" data-off-y="199.974" style="left:23.216%;top:19.997%;width:53.567%;max-width:none;"><img src="../medias/images/france24-femmes-accusees-ia.jpg" alt="" loading="lazy" style="aspect-ratio:7788315/4115157"></div>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="455.713" data-off-y="25.813" style="left:45.571%;top:2.581%;width:8.857%;max-width:none;"><img src="../medias/images/ia-crainte-espoir-073-logo-france24.png" alt="" loading="lazy" style="aspect-ratio:1287806/1353846"></div>
+  </section>
+
+  <section class="slide" id="ia-d74">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="213.904" data-off-y="74.154" style="left:21.39%;top:7.415%;width:46.116%;max-width:none;"><img src="../medias/images/tweet-debunk-intox-france24.jpg" alt="" loading="lazy" style="aspect-ratio:6704924/4707500"></div>
+    <div class="speaker-notes" hidden="">https://x.com/FabriceN_perso/status/2047564168711033258</div>
+  </section>
+
+  <section class="slide" id="s-merci">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Merci !</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="183.649" data-off-y="718.519" style="left:18.365%;top:71.852%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Pour me contacter :</span><span class="t-en" hidden=""></span></li><li data-puce="▸" style="font-size:30.267px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr"><a href="mailto:contact@antoninatger.com" target="_blank" rel="noopener">contact@antoninatger.com</a></span><span class="t-en" hidden=""></span></li></ul>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="410.48" data-off-y="328.772" style="left:41.048%;top:32.877%;width:14.413%;max-width:none;"><img src="../medias/images/ia-desinfo-merci-75.png" alt="" loading="lazy" style="aspect-ratio:2095500/2095500"></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="118.642" data-off-y="220.003" style="left:11.864%;top:22.0%;width:72.78%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:40.356px;line-height:1.2;text-align:center"><span class="t-fr">Bibliographie</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+<!-- Slide finale : bilan de l'intervention (QR code) -->
+  <section class="slide short" id="s-bilan-qr" data-serie="serie_743edaf5-33f9-4668-ab8a-f0365b011093">
+    <p class="kicker" data-pose="" data-off-x="461.46" data-off-y="272.25" style="left: 46.146%; top: 27.225%;"><span class="t-fr">Après la séance</span><span class="t-en" hidden="">After the session</span></p>
+    <h2 data-pose="" data-off-x="344.92" data-off-y="303.09" style="left: 34.492%; top: 30.309%;"><span class="t-fr">Le bilan, les jeux, et votre retour</span><span class="t-en" hidden="">Summary, games, and your feedback</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="375.76" style="left: 30.26%; top: 37.576%;"><span class="t-fr">Scannez ce QR code&nbsp;: vous pourrez donner votre retour, revoir le bilan de la formation ou rejouer aux jeux.</span><span class="t-en" hidden="">Scan this QR code: you can leave your feedback, review the session summary, or play the games again.</span></p>
+    
+  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhwAAAIcAQAAAACVhUrRAAAC80lEQVR42u2dUWrEMAxERS/g+9/SN3C7jSNp5JQW2p+it5SybDbvY2EYaSw7tn7/mgYECBAgQID8HGL+Gvcn4/Xhx/v9Zu3/16Xjljf7gxcQIP8LYi6HLZlP+VxvQjgjtOaXQkpoB0hj7VwO4nbjjlPc57pUbkE7QNCOyycuWYjFq8T4GtoBgnZUO+4vL9O5v+Y1G74DBMhzv5MCgR0LDAkY6HeAAAl1XC+3nm//0i1oB0hb7ZTU2vOBaG00fztu4YcF0lc7WxqWlngsiUij6f253452gHT2nWQ00ddEGmDlv7RCaAdI434nr+nskO1WSlRxtxNF/kbOBoSaLa1+bjfJizulfnMRTXwHSG/t6KhAtD8jajkZZiuJAdoB0rvf8ZGbbC5StuXqTkIGflggXfudNDUdMvHJAa/l7twgYjeyAiDtswKv1mJrw7QctT3YEP0OELRjaWp6hfVImHYuA9HvAKHfKbrQGEGsJ09ZTzJqIPhO2miwnlueXK3lGg/tAKHfkX5nWtaR6CWHBmgHSHPtDN1PfRRsUbnlGyNV4IcF0rXfmaEFk0G1uglORndY3wGCdlbqZcbTiE4R1FriWWgHSGPfiVOkcr9zHFBQDOj+Mj8skMZZQVHHUMfRtVGyAiBASlaQ53NkF08aYzMz6Y/QDpD2WUE5kSBv2yk9kWwdRTtAemcFMXiTBnLy9reSV8uxBmgHSO9+R46WyrsMTEJp/zB1RvywQBr7To7Opk6EnocYGP0OECBW91bXPaHmvmNl4xuzoEDwnRWb2qqCZj1IJxaDWN8Bgu/YsXBT8rSyvqNlG9oB0tl3JAQoXU86k82ejgxFO0Ba+45FX1OdJXvQqgftoh0grbWTn4NgVh6LUBZMw3eo2YCgnXHkA7PuTZDjdOh3gAD5Sjvl0aL5uLalEzvUbEDQzvHQNx2WPtofzmcDgnb0CKmyza3YUL1KzQaks3aslmTRzkyrp+UseXA8vgOks3Z++5pAgAABAgTIDyHv20VZl660GMAAAAAASUVORK5CYII=" alt="QR code vers la page antoninatger.github.io/interventions/retours" style="width: 200px; height: 200px; border-radius: 16px; background: rgb(255, 255, 255); padding: 10px; box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 30px; left: 44.805%; top: 47.267%;" data-pose="" data-off-x="448.05" data-off-y="472.67"><a href="https://antoninatger.github.io/interventions/retours/" target="_blank" rel="noopener" style="color: var(--acc2); font-weight: 800; font-size: 1.05rem; text-decoration: none; border-bottom: 2px solid var(--acc2); padding-bottom: 2px; width: 371.73px; left: 40.345%; top: 71.275%;" data-pose="" data-off-x="403.45" data-off-y="712.75">
+        <span class="t-fr">antoninatger.github.io/interventions/retours →</span><span class="t-en" hidden="">antoninatger.github.io/interventions/retours →</span>
+      </a></section>
+
+</div>
+
+<div id="navzone-l" aria-hidden="true"></div>
+<div id="navzone-r" aria-hidden="true"></div>
+<div id="dots"></div>
+<div id="navctrl">
+  <button id="btn-prev" title="Précédent (←)">‹</button>
+  <button id="btn-next" title="Suivant (→)">›</button>
+</div>
+
+<div id="admin-modal" class="admin-modal">
+  <div class="admin-head">
+    <h3>Mode Admin — diapos de la session</h3>
+    <span class="admin-count" id="admin-count"></span>
+    <div class="actions">
+      <select id="admin-selections" title="Parcours enregistrés" onchange="Deck.applySelectedPreset()"></select>
+      <button type="button" onclick="Deck.saveCurrentSelectionAs()">Enregistrer comme parcours…</button>
+      <button type="button" onclick="Deck.deleteSelectedPreset()">Supprimer le parcours</button>
+      <button type="button" onclick="Deck.openAddSlideModal()">Ajouter une diapo</button>
+      <button type="button" onclick="window.open('../media-browser.html','_blank')">Médiathèque (toutes formations)</button>
+      <button type="button" onclick="Deck.adminSelectAll()">Tout cocher</button>
+      <button type="button" onclick="Deck.adminSelectNone()">Tout décocher</button>
+      <button type="button" class="primary" onclick="Deck.adminSave()">Enregistrer la sélection</button>
+      <button type="button" id="admin-save-order" onclick="Deck.saveSlideOrder()">Enregistrer l'ordre dans le fichier</button>
+      <button type="button" onclick="Deck.adminClose()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-grid" id="admin-grid"></div>
+</div>
+
+<div id="admin-zoom-modal" class="admin-zoom-modal">
+  <button type="button" class="admin-zoom-close" onclick="Deck.adminZoomClose()">✕</button>
+  <div id="admin-zoom-box"></div>
+</div>
+
+<div id="admin-edit-modal" class="admin-edit-modal">
+  <div class="admin-edit-head">
+    <h3>Édition de la diapo</h3>
+    <span class="admin-edit-hint"></span>
+    <div class="actions">
+      <button type="button" onclick="Deck.addTextBlock()">Ajouter un texte</button>
+      <button type="button" onclick="Deck.addPhotoBlock()">Ajouter une photo</button>
+      <button type="button" onclick="Deck.addPollWidget()">Sondage</button>
+      <button type="button" onclick="Deck.addScaleWidget()">Échelle</button>
+      <button type="button" onclick="Deck.addPieChartWidget()">Camembert</button>
+      <button type="button" onclick="Deck.addHistogramWidget()">Histogramme</button>
+      <button type="button" onclick="Deck.addReponseWidget()">Réponses à écrire</button>
+      <button type="button" onclick="Deck.quickAddSlideAfterCurrent()">Ajouter une diapo après</button>
+      <button type="button" onclick="Deck.apporterUneDiapo()">⤵ Apporter une diapo</button>
+      <button type="button" onclick="Deck.closeSlideEditToGrid()">Toutes les diapos</button>
+      <button type="button" id="admin-edit-save" onclick="Deck.saveEditedSlide()">Enregistrer dans le fichier</button>
+      <button type="button" onclick="Deck.closeSlideEdit()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-edit-stage" id="admin-edit-stage"></div>
+</div>
+
+<div id="addslide-modal" class="addslide-modal">
+  <div class="addslide-modal-box">
+    <div class="addslide-modal-head">
+      <h3>Ajouter une diapo</h3>
+      <button type="button" onclick="Deck.closeAddSlideModal()">✕</button>
+    </div>
+    <div class="addslide-modal-body">
+      <div id="addslide-modeles" class="addslide-modeles"></div>
+      <div id="addslide-champs"></div>
+      <div class="addslide-field">
+        <label for="addslide-position">Position</label>
+        <select id="addslide-position" class="addslide-input"></select>
+      </div>
+      <div class="addslide-modal-actions">
+        <button type="button" class="primary" onclick="Deck.submitAddSlide()">Ajouter</button>
+        <button type="button" onclick="Deck.closeAddSlideModal()">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../shared-deck-engine.js"></script>
+<script src="../shared-widgets.js"></script>
+<script src="../shared-slide-templates.js"></script>
+<script src="app.js"></script>
+<script src="../shared-comments-theme.js"></script>
+</body>
+</html>

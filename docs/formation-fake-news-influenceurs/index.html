@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fake News et esprit critique : Les influenceurs</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared-deck.css">
+<style>
+/* Propre à « formation-fake-news-influenceurs » : 59 règles.
+ * Le socle commun est dans ../shared-deck.css, chargé juste avant ;
+ * ce qui suit le complète ou le surcharge. */
+.slide p.note{font-size:.8rem;color:var(--mu-diapo);margin-top:10px;font-weight:600;}
+/* ── Cover ── */
+.cover .logo{font-size:3rem;margin-bottom:6px;}
+.cover h1{font-size:clamp(2rem,calc(6 * var(--vw1)),3.4rem);font-weight:800;
+  background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.cover .objectifs{list-style:none;margin-top:26px;display:flex;flex-direction:column;gap:10px;text-align:left;max-width:520px;}
+.cover .objectifs li{background:var(--panel);border:1px solid var(--bord);border-radius:14px;padding:12px 18px;font-weight:700;
+  display:flex;align-items:center;gap:12px;}
+.cover .objectifs li b{color:var(--acc);font-family:'Baloo 2',cursive;font-size:1.1rem;}
+/* ── Boutons génériques ── */
+.bigbtn{color:#2a0715}
+/* ── Vidéos ── */
+.vidwrap{position:relative;max-width:420px;width:calc(70 * var(--vw1));border-radius:20px;overflow:hidden;border:1px solid var(--bord);
+  box-shadow:0 20px 50px rgba(0,0,0,.4);margin-top:10px;background:#000;}
+.vidwrap.wide{max-width:640px;width:calc(80 * var(--vw1));}
+/* ── Sondage ── */
+.poll{display:flex;gap:20px;margin-top:30px;flex-wrap:wrap;justify-content:center;}
+.poll button{font-size:1.15rem;padding:22px 36px}
+.poll button:hover{transform:translateY(-3px);}
+.poll button.oui:hover,.poll button.oui.picked{border-color:var(--ok);background:rgba(62,207,142,.14);}
+.poll button.non:hover,.poll button.non.picked{border-color:var(--ko);background:rgba(247,95,95,.14);}
+.pbar-row{font-size:.9rem}
+/* ── Quiz ── */
+.quiz-slide{padding-top:70px;}
+.quiz-grid{grid-template-columns:repeat(auto-fit,minmax(190px,1fr));margin-top:20px}
+.qcard{min-height:150px;justify-content:space-between}
+.qcard:hover{border-color:var(--acc2);transform:translateY(-2px);}
+.qcard img{object-fit:cover}
+.qcard .badge{font-size:.72rem}
+.qcard.revealed.vrai{border-color:var(--ok);}
+.qcard.revealed.faux{border-color:var(--ko);}
+.qcard .badge.vrai{background:rgba(62,207,142,.18);color:var(--ok);border:1px solid var(--ok);}
+.qcard .badge.faux{background:rgba(247,95,95,.18);color:var(--ko);border:1px solid var(--ko);}
+/* ── Navigation ── */
+#navzone-l,#navzone-r{position:fixed;top:52px;bottom:0;width:12%;z-index:10;cursor:pointer;background:transparent;}
+#navzone-l{left:0;}
+#navzone-r{right:0;}
+#dots{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:20;max-width:70vw;flex-wrap:wrap;justify-content:center;}
+#dots button{width:9px;height:9px;border-radius:50%;border:none;background:var(--bord);cursor:pointer;padding:0;}
+#dots button.active{background:var(--acc);width:22px;border-radius:6px;}
+#navctrl{position:fixed;bottom:14px;right:18px;display:flex;gap:8px;z-index:20;}
+#navctrl button{background:var(--panel);border:1px solid var(--bord);color:var(--tx);border-radius:10px;
+  width:38px;height:38px;font-size:1.1rem;cursor:pointer;}
+#navctrl button:hover{border-color:var(--acc2);}
+/* ── Flip cards drapeaux ── */
+.flag-grid{display:flex;gap:20px;margin-top:24px;flex-wrap:wrap;justify-content:center;}
+.flagcard:hover{border-color:var(--acc2);}
+.flagcard .swatches{display:flex;justify-content:center;gap:6px;margin-top:8px;}
+.flagcard .sw{width:22px;height:16px;border-radius:3px;border:1px solid var(--bord);}
+/* ── Contenu sensible (gate) ── */
+.sensitive-gate{max-width:480px;width:calc(85 * var(--vw1));background:var(--panel);border:1px solid var(--ko);border-radius:16px;
+  padding:26px 24px;margin-top:16px;}
+.sensitive-gate img,.sensitive-gate video{display:none;width:100%;border-radius:10px;margin-top:10px;}
+.sensitive-gate.open img,.sensitive-gate.open video{display:block;}
+.compare .col h3{margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.compare .col h3 img{width:34px;height:auto;}
+.compare .col ul{color:var(--mu-diapo);font-size:.88rem;line-height:1.7;font-weight:600;margin-top:8px}
+/* ── Liens vers d'autres jeux ── */
+.gamelink{color:#160b30;font-size:.95rem}
+/* ── Personas / types cliquables ── */
+.persona-grid{display:flex;gap:20px;margin-top:22px;flex-wrap:wrap;justify-content:center;}
+.persona{padding:14px;width:220px}
+.persona:hover{border-color:var(--acc2);}
+.persona img{width:100%;height:130px;object-fit:cover;border-radius:10px;margin-bottom:8px;}
+.persona .pname{font-size:.95rem}
+.persona .tap{font-size:.68rem;color:var(--mu-diapo);text-transform:uppercase;letter-spacing:1px;font-weight:800;}
+.persona.open .tap{display:none;}
+/* ── Conclusion ── */
+.concl-box{background:var(--panel);border:1px solid var(--bord);border-radius:20px;padding:34px 36px;max-width:680px;margin-top:10px;}
+.concl-box p{font-size:1.15rem;font-weight:700;line-height:1.6;}
+.admin-head button.primary{color:#2a0715}
+/* ── Formulaire "Ajouter une diapo" (autonome, pas de dépendance à un autre composant) ── */
+.addslide-modal{display:none;position:fixed;inset:0;z-index:410;background:rgba(0,0,0,.6);
+  align-items:center;justify-content:center;padding:20px;}
+.addslide-input:focus-visible{outline:2px solid var(--acc2);outline-offset:2px;}
+.admin-edit-head button.primary{background:linear-gradient(135deg,var(--acc),#b8235f);color:#2a0715}
+@media(max-width:640px){
+  .slide{padding:70px calc(6 * var(--vw1)) 90px;}
+  .poll{gap:12px;}
+  .poll button{padding:18px 26px;font-size:1rem;min-width:120px;}
+  .compare{gap:12px;}
+  .compare .col{width:100%;max-width:320px;}
+  .admin-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));}
+  .admin-head{flex-wrap:wrap;height:auto;padding:10px;gap:8px;}
+  .admin-modal{padding:110px 12px 20px;}
+}
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <span class="brand">Fake News et esprit critique : Les influenceurs</span>
+  <div class="tools">
+    <button id="btn-admin-grid" title="Toutes les diapos" onclick="Deck.openAdmin()">Toutes les diapos</button>
+    <button id="btn-dossier" hidden title="Donner au navigateur l’accès au dossier Cours : nécessaire pour les séries, les diapos liées et les médias" onclick="Deck.connecterDossier()">🔌 Connecter le dossier</button>
+    <button id="btn-fullscreen" title="Plein écran"><span class="t-fr">Plein écran</span><span class="t-en" hidden>Fullscreen</span></button>
+    <button id="btn-lang" title="Switch to English" onclick="Deck.toggleLang()">EN</button>
+  </div>
+</div>
+
+<div id="deck" data-edite-en-page="1792351474132" data-registry-build="1788779325854">
+
+  
+
+  
+
+  
+
+  <!-- 0. Couverture -->
+  <section class="slide short cover" id="s0">
+    <h1 data-pose="" data-off-x="393.42" data-off-y="342.51" style="left:39.342%;top:34.251%"><span class="t-fr">Les influenceurs</span><span class="t-en" hidden="">Influencers</span></h1>
+    <ul class="objectifs" data-pose="" data-off-x="426.01" data-off-y="468.06" style="left:42.601%;top:46.806%">
+      <li><span class="t-fr"><b>1.</b> Pourquoi on les aime ?</span><span class="t-en" hidden=""><b>1.</b> Why do we love them?</span></li>
+      <li><span class="t-fr"><b>2.</b> Est-ce que c'est grave ?</span><span class="t-en" hidden=""><b>2.</b> Is that a problem?</span></li>
+      <li><span class="t-fr"><b>3.</b> Comment faire plus attention ?</span><span class="t-en" hidden=""><b>3.</b> How can we be more careful?</span></li>
+    </ul>
+  </section>
+
+  <!-- 1. Vidéo danse -->
+  <section class="slide" id="s1" data-serie="group_968f5f23-576e-4b3a-93c0-3ed28daf35b3">
+    
+    <div class="vidwrap" style="max-width: 405.346px; left: 40.87%; top: 12.115%; width: 405.346px; max-height: none;" data-pose="" data-off-x="408.7" data-off-y="121.15">
+      <video src="../medias/video/danse-dupliquee.mp4" controls="" playsinline="" style="width: 100%; height: auto; max-width: none; max-height: none;"></video>
+    </div>
+    <p class="lead" style="transform: translate(0px, 0px);" data-off-x="0" data-off-y="0"><span class="t-fr"></span><span class="t-en" hidden="">Click to play the video.</span></p>
+  </section>
+
+  <!-- 2. Quiz vrai/faux -->
+  <section class="slide quiz-slide" id="s2">
+    <h2><span class="t-fr">Qu'est-ce qui est une Fake News ?</span><span class="t-en" hidden>Which of these is fake news?</span></h2>
+    <p class="lead" style="margin-top:6px;"><span class="t-fr">Cliquez sur chaque affirmation pour découvrir la réponse.</span><span class="t-en" hidden>Click each statement to reveal the answer.</span></p>
+    <div class="retourne" data-pose="" data-off-x="120.00" data-off-y="300.00" style="left:12.000%;top:30.000%;width:18.100%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><div class="imgcard" style="margin:0 0 6px;width:100%;max-height:130px;overflow:hidden"><img src="../medias/images/macron-president.jpg" alt="" style="width:100%;height:130px;object-fit:cover"></div><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">Emmanuel Macron est président de la République.</span><span class="t-en" hidden="">Emmanuel Macron is President of the Republic.</span></p></div><div class="retourne-face retourne-verso" style="border-color:var(--ok)"><p class="kicker" style="color:var(--ok);font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">VRAI</span><span class="t-en" hidden="">TRUE</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">Vrai. Facile à vérifier : source officielle, plusieurs médias fiables le confirment.</span><span class="t-en" hidden="">True. Easy to check: official source, confirmed by several reliable media.</span></p></div></div></div><div class="retourne" data-pose="" data-off-x="313.00" data-off-y="300.00" style="left:31.300%;top:30.000%;width:18.100%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><div class="imgcard" style="margin:0 0 6px;width:100%;max-height:130px;overflow:hidden"><img src="../medias/images/pyramides-gizeh.jpg" alt="" style="width:100%;height:130px;object-fit:cover"></div><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">La pyramide de Gizeh se trouve en Égypte.</span><span class="t-en" hidden="">The Giza pyramid is located in Egypt.</span></p></div><div class="retourne-face retourne-verso" style="border-color:var(--ok)"><p class="kicker" style="color:var(--ok);font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">VRAI</span><span class="t-en" hidden="">TRUE</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">Vrai. Fait géographique établi, vérifiable en quelques secondes.</span><span class="t-en" hidden="">True. An established geographical fact, verifiable in seconds.</span></p></div></div></div><div class="retourne" data-pose="" data-off-x="506.00" data-off-y="300.00" style="left:50.600%;top:30.000%;width:18.100%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><div class="imgcard" style="margin:0 0 6px;width:100%;max-height:130px;overflow:hidden"><img src="../medias/images/macron-alien-ia.jpg" alt="" style="width:100%;height:130px;object-fit:cover"></div><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">Le président a rencontré un alien.</span><span class="t-en" hidden="">The president met an alien.</span></p></div><div class="retourne-face retourne-verso" style="border-color:var(--ko)"><p class="kicker" style="color:var(--ko);font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">FAUX</span><span class="t-en" hidden="">FALSE</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">Faux. Une image spectaculaire, même très réaliste (parfois générée par IA), ne remplace pas une source fiable. Une affirmation extraordinaire demande des preuves extraordinaires.</span><span class="t-en" hidden="">False. A spectacular image, even a very realistic one (sometimes AI-generated), doesn't replace a reliable source. An extraordinary claim requires extraordinary evidence.</span></p></div></div></div><div class="retourne" data-pose="" data-off-x="699.00" data-off-y="300.00" style="left:69.900%;top:30.000%;width:18.100%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><div class="imgcard" style="margin:0 0 6px;width:100%;max-height:130px;overflow:hidden"><img src="../medias/images/soleil-etoile.jpg" alt="" style="width:100%;height:130px;object-fit:cover"></div><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">Le soleil est une étoile.</span><span class="t-en" hidden="">The sun is a star.</span></p></div><div class="retourne-face retourne-verso" style="border-color:var(--ok)"><p class="kicker" style="color:var(--ok);font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">VRAI</span><span class="t-en" hidden="">TRUE</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">Vrai. Fait scientifique établi depuis longtemps.</span><span class="t-en" hidden="">True. A long-established scientific fact.</span></p></div></div></div><div class="retourne" data-pose="" data-off-x="120.00" data-off-y="642.28" style="left:12.000%;top:64.228%;width:18.100%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><div class="imgcard" style="margin:0 0 6px;width:100%;max-height:130px;overflow:hidden"><img src="../medias/images/etoile-berger-venus.jpg" alt="" style="width:100%;height:130px;object-fit:cover"></div><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">L'étoile du berger est une étoile.</span><span class="t-en" hidden="">The "shepherd's star" is a star.</span></p></div><div class="retourne-face retourne-verso" style="border-color:var(--ko)"><p class="kicker" style="color:var(--ko);font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">FAUX</span><span class="t-en" hidden="">FALSE</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">Faux. C'est en réalité la planète Vénus, malgré son nom trompeur.</span><span class="t-en" hidden="">False. It's actually the planet Venus, despite its misleading name.</span></p></div></div></div><div class="retourne" data-pose="" data-off-x="313.00" data-off-y="642.28" style="left:31.300%;top:64.228%;width:18.100%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><div class="imgcard" style="margin:0 0 6px;width:100%;max-height:130px;overflow:hidden"><img src="../medias/images/biscuits-vegan-hoax.jpg" alt="" style="width:100%;height:130px;object-fit:cover"></div><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">L'association des Végans demande la fin des biscuits en forme d'animaux.</span><span class="t-en" hidden="">A vegan association is demanding an end to animal-shaped biscuits.</span></p></div><div class="retourne-face retourne-verso" style="border-color:var(--ko)"><p class="kicker" style="color:var(--ko);font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">FAUX</span><span class="t-en" hidden="">FALSE</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">Faux. Un canular qui a beaucoup circulé sur les réseaux, jamais confirmé par une source sérieuse.</span><span class="t-en" hidden="">False. A hoax that spread widely online, never confirmed by a serious source.</span></p></div></div></div><div class="retourne" data-pose="" data-off-x="506.00" data-off-y="642.28" style="left:50.600%;top:64.228%;width:18.100%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><div class="imgcard" style="margin:0 0 6px;width:100%;max-height:130px;overflow:hidden"><img src="../medias/images/meduse-immortelle.jpg" alt="" style="width:100%;height:130px;object-fit:cover"></div><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">Il existe une espèce de méduse immortelle.</span><span class="t-en" hidden="">There is a species of immortal jellyfish.</span></p></div><div class="retourne-face retourne-verso" style="border-color:var(--ok)"><p class="kicker" style="color:var(--ok);font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">VRAI</span><span class="t-en" hidden="">TRUE</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">Vrai. Turritopsis dohrnii peut revenir à un stade juvénile et recommencer son cycle de vie.</span><span class="t-en" hidden="">True. Turritopsis dohrnii can revert to a juvenile stage and restart its life cycle.</span></p></div></div></div>
+    
+  </section>
+
+  <!-- 3. Divider - Êtes-vous influençable -->
+  <section class="slide short divider-slide" id="s3">
+    <h2 data-pose="" data-off-x="362.63" data-off-y="373.35" style="left:36.263%;top:37.335%"><span class="t-fr">Êtes-vous influençable ?</span><span class="t-en" hidden="">Are you easily influenced?</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="454.85" style="left:30.26%;top:45.485%"><span class="t-fr">L'expérience d'Asch (1951) : des participants donnent volontairement une mauvaise réponse à une question simple, uniquement parce que tout le groupe la donne avant eux.</span><span class="t-en" hidden="">Asch's experiment (1951): participants knowingly give a wrong answer to a simple question, purely because the whole group gave it before them.</span></p>
+    <a class="gamelink" href="https://antoninatger.github.io/jeux/cobaye/index.html" target="_blank" data-pose="" data-off-x="418.34" data-off-y="584.8" style="left:41.834%;top:58.48%"><span class="t-fr">Revivre l'expérience d'Asch sur Cobaye</span><span class="t-en" hidden="">Relive Asch's experiment on Cobaye</span></a>
+  </section>
+
+  <!-- 4. Définition influenceur -->
+  <section class="slide short" id="s4">
+    <p class="kicker" data-pose="" data-off-x="475.6" data-off-y="418.5" style="left:47.56%;top:41.85%"><span class="t-fr">Définition</span><span class="t-en" hidden="">Definition</span></p>
+    <h2 data-pose="" data-off-x="358.95" data-off-y="449.34" style="left:35.895%;top:44.934%"><span class="t-fr">Qu'est-ce qu'un influenceur ?</span><span class="t-en" hidden="">What is an influencer?</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="522" style="left:30.26%;top:52.2%"><span class="t-fr">Personne qui influence l'opinion, la consommation de son audience sur les réseaux sociaux.</span><span class="t-en" hidden="">A person who influences the opinions and consumption habits of their audience on social media.</span></p>
+  </section>
+
+<section class="slide" id="inf-loi-2023">
+  <p class="kicker" data-pose="" data-off-x="460.6" data-off-y="110.13" style="left:46.06%;top:11.013%"><span class="t-fr">Ce que dit la loi</span><span class="t-en" hidden="">What the law says</span></p>
+  <h2 data-pose="" data-off-x="342.61" data-off-y="140.97" style="left:34.261%;top:14.097%"><span class="t-fr">Influenceur, qu’est-ce que c’est ?</span><span class="t-en" hidden="">What is an influencer?</span></h2>
+  <p class="lead" data-pose="" data-off-x="306.64" data-off-y="213.63" style="left:30.664%;top:21.363%"><span class="t-fr">La loi du 9 juin 2023 définit une catégorie d’influenceur : l’influenceur commercial.</span><span class="t-en" hidden="">The French law of 9 June 2023 defines one kind of influencer: the commercial influencer.</span></p>
+  <div class="quote-block" data-pose="" data-off-x="333.77" data-off-y="270.9" style="left:33.377%;top:27.09%"><span class="t-fr">« Les personnes physiques ou morales qui, à titre onéreux, mobilisent leur notoriété auprès de leur audience pour communiquer au public, par voie électronique, des contenus visant à faire la promotion, directement ou indirectement, de biens, de services ou d’une cause quelconque exercent l’activité d’influence commerciale par voie électronique. »</span><span class="t-en" hidden="">"Natural or legal persons who, for payment, use their reputation with their audience to communicate to the public, electronically, content aimed at promoting, directly or indirectly, goods, services or any cause, carry out the activity of commercial influence by electronic means."</span></div>
+  <p class="lead step" data-pose="" data-off-x="302.6" data-off-y="469.66" style="left:30.26%;top:46.966%"><span class="t-fr">Pour que cette activité soit lucrative, l’influenceur doit <b>créer</b>, <b>fédérer</b> et <b>fidéliser</b> son audience. Pour cela, il utilise des méthodes de communication… dont il faut parfois se méfier.</span><span class="t-en" hidden="">For this to pay, the influencer has to <b>build</b>, <b>unite</b> and <b>retain</b> an audience. To do so, they use communication techniques… some of which call for caution.</span></p>
+</section>
+
+  <!-- 5. Poll + vidéo "ça dépend" -->
+  <section class="slide reponse-compacte" id="s5">
+    <h2><span class="t-fr">C'est bien, un influenceur ?</span><span class="t-en" hidden>Are influencers a good thing?</span></h2>
+    <div class="poll" data-sondage="">
+      <button class="oui" onclick="Deck.vote('oui')"><span class="t-fr">Plutôt positif</span><span class="t-en" hidden>Rather positive</span></button>
+      <button class="non" onclick="Deck.vote('non')"><span class="t-fr">Plutôt négatif</span><span class="t-en" hidden>Rather negative</span></button>
+    </div>
+    <div id="poll-bars">
+      <div class="pbar-row"><span style="width:110px"><span class="t-fr">Positif</span><span class="t-en" hidden>Positive</span></span><div class="pbar-track"><div class="pbar-fill oui" id="bar-oui"></div></div><span id="cnt-oui">0</span></div>
+      <div class="pbar-row"><span style="width:110px"><span class="t-fr">Négatif</span><span class="t-en" hidden>Negative</span></span><div class="pbar-track"><div class="pbar-fill non" id="bar-non"></div></div><span id="cnt-non">0</span></div>
+    </div>
+    <div class="step" id="depend-reveal">
+      <p class="lead" style="color:var(--acc);font-weight:800;"><span class="t-fr">Ça dépend !</span><span class="t-en" hidden>It depends!</span></p>
+      <div class="vidwrap"><video src="../medias/video/zevent-influenceur-don.mp4" controls playsinline></video></div>
+      <p class="lead" style="margin-top:10px;"><span class="t-fr">Le ZEvent : des créateurs de contenu réunis pour collecter des dons pour des associations : plus de 10 millions d'euros récoltés en 2024.</span><span class="t-en" hidden>The ZEvent: content creators team up to raise donations for charities: over €10 million raised in 2024.</span></p>
+    </div>
+  </section>
+
+  <!-- 6. Arnaque NFT -->
+  <section class="slide" id="s6">
+    <p class="kicker" data-pose="" data-off-x="461.58" data-off-y="110.13" style="left:46.158%;top:11.013%"><span class="t-fr">…et parfois non</span><span class="t-en" hidden="">…and sometimes not</span></p>
+    <h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">Un influenceur « trading » sanctionné par la répression des fraudes</span><span class="t-en" hidden="">A "trading" influencer sanctioned by the fraud watchdog</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="270.89" style="left:39.091%;top:27.089%"><img src="../medias/images/arnaque-nft-influenceur.jpg" alt="Article : arnaque aux NFT, influenceur sanctionné"></div>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="442.48" style="left:30.26%;top:44.248%"><span class="t-fr">150 000 € d'amende pour pratique commerciale trompeuse, épinglé par la DGCCRF.</span><span class="t-en" hidden="">A €150,000 fine for misleading commercial practice, flagged by France's consumer-fraud watchdog (DGCCRF).</span></p>
+  </section>
+
+  <!-- 7. Types d'influenceurs -->
+  <section class="slide" id="s7">
+    <h2 data-pose="" data-off-x="330.05" data-off-y="110.13" style="left:33.005%;top:11.013%"><span class="t-fr">Les différents types d'influenceurs</span><span class="t-en" hidden="">The different types of influencers</span></h2>
+    <p class="lead" style="margin-top:6px;left:44.009%;top:17.399%" data-pose="" data-off-x="440.09" data-off-y="173.99"><span class="t-fr">Cliquez sur chaque profil.</span><span class="t-en" hidden="">Click each profile.</span></p>
+    <div class="persona-grid" data-pose="" data-off-x="318.18" data-off-y="233.46" style="left:31.818%;top:23.346%">
+      <div class="persona" data-p="1">
+        <img src="../medias/images/influenceur-type1.jpg" alt="Influenceur lifestyle">
+        <div class="pname"><span class="t-fr">Divertissement</span><span class="t-en" hidden="">Entertainment</span></div>
+        <div class="tap"><span class="t-fr">Cliquez</span><span class="t-en" hidden="">Click</span></div>
+        <div class="pexpl"><span class="t-fr">Humour, quotidien, lifestyle : l'audience vient pour se détendre et se reconnaître.</span><span class="t-en" hidden="">Comedy, daily life, lifestyle: the audience comes to unwind and relate.</span></div>
+      </div>
+      <div class="persona" data-p="2">
+        <img src="../medias/images/influenceur-type2.jpg" alt="Influenceur célébrité">
+        <div class="pname"><span class="t-fr">Célébrité / musique</span><span class="t-en" hidden="">Celebrity / music</span></div>
+        <div class="tap"><span class="t-fr">Cliquez</span><span class="t-en" hidden="">Click</span></div>
+        <div class="pexpl"><span class="t-fr">Une notoriété déjà construite ailleurs (musique, sport, TV) qui se prolonge sur les réseaux.</span><span class="t-en" hidden="">Fame already built elsewhere (music, sport, TV) that carries over onto social media.</span></div>
+      </div>
+      <div class="persona" data-p="3">
+        <img src="../medias/images/influenceur-type3.jpg" alt="Influenceur finance">
+        <div class="pname"><span class="t-fr">Argent facile</span><span class="t-en" hidden="">Easy money</span></div>
+        <div class="tap"><span class="t-fr">Cliquez</span><span class="t-en" hidden="">Click</span></div>
+        <div class="pexpl"><span class="t-fr">Trading, crypto, NFT : une promesse d'enrichissement rapide. On y reviendra en détail.</span><span class="t-en" hidden="">Trading, crypto, NFTs: a promise of quick riches. We'll come back to this in detail.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Pourquoi on les aime -->
+  <section class="slide" id="s8">
+    <h2 data-pose="" data-off-x="304.36" data-off-y="110.13" style="left:30.436%;top:11.013%"><span class="t-fr">Pourquoi on aime bien les influenceurs ?</span><span class="t-en" hidden="">Why do we like influencers?</span></h2>
+    <ol class="tips-list" data-pose="" data-off-x="344.16" data-off-y="193.81" style="left:34.416%;top:19.381%">
+      <li><span class="t-fr">Ils nous procurent des émotions (on rigole, on est bien).</span><span class="t-en" hidden="">They give us emotions (we laugh, we feel good).</span></li>
+      <li><span class="t-fr">Ils créent un sentiment de proximité.</span><span class="t-en" hidden="">They create a sense of closeness.</span></li>
+      <li><span class="t-fr">Ils nous font rêver.</span><span class="t-en" hidden="">They make us dream.</span></li>
+    </ol>
+  </section>
+
+  <!-- 9. Pourquoi proche + vidéo -->
+  <section class="slide" id="s9">
+    <p class="kicker" data-pose="" data-off-x="477.6" data-off-y="110.13" style="left:47.76%;top:11.013%"><span class="t-fr">Regardez</span><span class="t-en" hidden="">Watch</span></p>
+    <h2 data-pose="" data-off-x="286.02" data-off-y="140.97" style="left:28.602%;top:14.097%"><span class="t-fr">Pourquoi est-ce qu'on se sent proche d'eux ?</span><span class="t-en" hidden="">Why do we feel close to them?</span></h2>
+    <div class="vidwrap" style="max-width: 395px;left:39.74%;top:20.923%;width:395px" data-pose="" data-off-x="397.4" data-off-y="209.23">
+      <video src="../medias/video/influenceur-proximite.mp4" controls="" playsinline=""></video>
+    </div>
+  </section>
+
+  <!-- 10. Relations parasociales -->
+  <section class="slide short" id="s10">
+    <p class="kicker" data-pose="" data-off-x="443.07" data-off-y="418.5" style="left:44.307%;top:41.85%"><span class="t-fr">Relations parasociales</span><span class="t-en" hidden="">Parasocial relationships</span></p>
+    <h2 data-pose="" data-off-x="398.11" data-off-y="449.34" style="left:39.811%;top:44.934%"><span class="t-fr">Un lien à sens unique</span><span class="t-en" hidden="">A one-way bond</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="522" style="left:30.26%;top:52.2%"><span class="t-fr">Type de relation dans une seule direction : tu connais toutes les facettes de la vie d'une personne. Mais cette personne, elle, ne te connaît pas.</span><span class="t-en" hidden="">A one-directional kind of relationship: you know every facet of a person's life. But that person doesn't know you at all.</span></p>
+  </section>
+
+<section class="slide" id="inf-yomi">
+  <p class="kicker" data-pose="" data-off-x="477.6" data-off-y="110.13" style="left:47.76%;top:11.013%"><span class="t-fr">Regardez</span><span class="t-en" hidden="">Watch</span></p>
+  <h2 data-pose="" data-off-x="263.94" data-off-y="140.97" style="left:26.394%;top:14.097%"><span class="t-fr">Yomi Denzel : « d’étudiant fauché à millionnaire »</span><span class="t-en" hidden="">Yomi Denzel: "from broke student to millionaire"</span></h2>
+  <div class="vidwrap" data-pose="" data-off-x="390.91" data-off-y="209.23" style="left:39.091%;top:20.923%"><video src="../medias/video/inf-yomi-denzel-etudiant-fauche.mp4" controls="" playsinline=""></video></div>
+  <p class="lead media-note t-en" hidden="">This video is in French.</p>
+</section>
+
+<section class="slide" id="inf-yomi-points">
+  <h2 data-pose="" data-off-x="395.96" data-off-y="110.13" style="left:39.596%;top:11.013%"><span class="t-fr">Les points de la vidéo</span><span class="t-en" hidden="">What the video does</span></h2>
+  <p class="lead" data-pose="" data-off-x="429.84" data-off-y="182.8" style="left:42.984%;top:18.28%"><span class="t-fr">Le storytelling méritocratique</span><span class="t-en" hidden="">Meritocratic storytelling</span></p>
+  <p class="lead step" data-pose="" data-off-x="401.74" data-off-y="233.46" style="left:40.174%;top:23.346%"><span class="t-fr">« Si je le fais, tout le monde peut le faire »</span><span class="t-en" hidden="">"If I can do it, anyone can"</span></p>
+  <p class="lead step" data-pose="" data-off-x="465.43" data-off-y="284.12" style="left:46.543%;top:28.412%"><span class="t-fr">L’effet Barnum</span><span class="t-en" hidden="">The Barnum effect</span></p>
+  <p class="lead step" data-pose="" data-off-x="434.66" data-off-y="334.78" style="left:43.466%;top:33.478%"><span class="t-fr">La création de communauté</span><span class="t-en" hidden="">Building a community</span></p>
+  <p class="lead step" data-pose="" data-off-x="437.28" data-off-y="385.44" style="left:43.728%;top:38.544%"><span class="t-fr">L’anticipation des critiques</span><span class="t-en" hidden="">Pre-empting criticism</span></p>
+  <p class="lead step" data-pose="" data-off-x="455.65" data-off-y="436.1" style="left:45.565%;top:43.61%"><span class="t-fr">L’appel à l’émotion</span><span class="t-en" hidden="">Appeal to emotion</span></p>
+</section>
+
+<section class="slide" id="inf-empathie-video">
+  <p class="kicker" data-pose="" data-off-x="477.6" data-off-y="110.13" style="left:47.76%;top:11.013%"><span class="t-fr">Regardez</span><span class="t-en" hidden="">Watch</span></p>
+  <h2 data-pose="" data-off-x="370.14" data-off-y="140.97" style="left:37.014%;top:14.097%"><span class="t-fr">Les émotions et l’empathie</span><span class="t-en" hidden="">Emotions and empathy</span></h2>
+  <div class="vidwrap" data-pose="" data-off-x="390.91" data-off-y="209.23" style="left:39.091%;top:20.923%"><video src="../medias/video/inf-emotions-empathie.mp4" controls="" playsinline=""></video></div>
+  <p class="lead media-note t-en" hidden="">This video is in French.</p>
+</section>
+
+<section class="slide" id="inf-video-nostalgie">
+  <p class="kicker" data-pose="" data-off-x="477.6" data-off-y="110.13" style="left:47.76%;top:11.013%"><span class="t-fr">Regardez</span><span class="t-en" hidden="">Watch</span></p>
+  <div class="vidwrap" data-pose="" data-off-x="390.91" data-off-y="151.98" style="left:39.091%;top:15.198%"><video src="../medias/video/inf-video-nostalgie-communaute.mp4" controls="" playsinline=""></video></div>
+  <p class="lead media-note t-en" hidden="">This video is in French.</p>
+</section>
+
+<section class="slide" id="inf-video-nostalgie-points">
+  <h2 data-pose="" data-off-x="395.96" data-off-y="110.13" style="left:39.596%;top:11.013%"><span class="t-fr">Les points de la vidéo</span><span class="t-en" hidden="">What the video does</span></h2>
+  <p class="lead" data-pose="" data-off-x="455.65" data-off-y="182.8" style="left:45.565%;top:18.28%"><span class="t-fr">L’appel à l’émotion</span><span class="t-en" hidden="">Appeal to emotion</span></p>
+  <p class="lead step" data-pose="" data-off-x="401.08" data-off-y="233.46" style="left:40.108%;top:23.346%"><span class="t-fr">Le côté « naturel »… parfaitement travaillé</span><span class="t-en" hidden="">The "natural" look… carefully crafted</span></p>
+  <p class="lead step" data-pose="" data-off-x="440.98" data-off-y="284.12" style="left:44.098%;top:28.412%"><span class="t-fr">L’appel à la communauté</span><span class="t-en" hidden="">Appeal to the community</span></p>
+  <p class="lead step" data-pose="" data-off-x="449.83" data-off-y="334.78" style="left:44.983%;top:33.478%"><span class="t-fr">L’appel à la nostalgie</span><span class="t-en" hidden="">Appeal to nostalgia</span></p>
+  <p class="lead step" data-pose="" data-off-x="429.34" data-off-y="385.44" style="left:42.934%;top:38.544%"><span class="t-fr">La diabolisation de l’opposant</span><span class="t-en" hidden="">Demonising the opponent</span></p>
+  <p class="lead step" data-pose="" data-off-x="464.56" data-off-y="436.1" style="left:46.456%;top:43.61%"><span class="t-fr">La méritocratie</span><span class="t-en" hidden="">Meritocracy</span></p>
+</section>
+
+  <!-- 11. Pub 1 : paris sportifs / casino -->
+  <section class="slide" id="s11">
+    <p class="kicker" data-pose="" data-off-x="432.61" data-off-y="110.13" style="left:43.261%;top:11.013%"><span class="t-fr">Collaboration commerciale</span><span class="t-en" hidden="">Paid partnership</span></p>
+    <h2 data-pose="" data-off-x="285.78" data-off-y="140.97" style="left:28.578%;top:14.097%"><span class="t-fr">Que remarquez-vous dans ce type de story ?</span><span class="t-en" hidden="">What do you notice in this type of story?</span></h2>
+    <div class="vidwrap" style="max-width: 395px;left:39.74%;top:20.923%;width:395px" data-pose="" data-off-x="397.4" data-off-y="209.23">
+      <video src="../medias/video/pub-paris-sportifs-casino.mp4" controls="" playsinline=""></video>
+    </div>
+  </section>
+
+  <!-- 12. Pub 2 : metaverse -->
+  <section class="slide" id="s12">
+    <p class="kicker" data-pose="" data-off-x="432.61" data-off-y="110.13" style="left:43.261%;top:11.013%"><span class="t-fr">Collaboration commerciale</span><span class="t-en" hidden="">Paid partnership</span></p>
+    <h2 data-pose="" data-off-x="284.71" data-off-y="140.97" style="left:28.471%;top:14.097%"><span class="t-fr">« Le premier télé-réalité dans le metaverse »</span><span class="t-en" hidden="">"The first reality show in the metaverse"</span></h2>
+    <div class="vidwrap" style="max-width: 395px;left:39.74%;top:20.923%;width:395px" data-pose="" data-off-x="397.4" data-off-y="209.23">
+      <video src="../medias/video/pub-metaverse-secret.mp4" controls="" playsinline=""></video>
+    </div>
+  </section>
+
+  <!-- 13. Astuce -->
+  <section class="slide short" id="s13" data-serie="serie_923a6918-3f6b-4230-b48e-19106eac4ca0">
+    <p class="kicker" data-pose="" data-off-x="483.46" data-off-y="432.84" style="left:48.346%;top:43.284%"><span class="t-fr">Astuce</span><span class="t-en" hidden="">Tip</span></p>
+    <h2 data-pose="" data-off-x="261.04" data-off-y="463.68" style="left:26.104%;top:46.368%"><span class="t-fr">Lorsque quelque chose paraît trop incroyable pour être vrai, généralement c'est faux !</span><span class="t-en" hidden="">When something seems too good to be true, it usually is!</span></h2>
+  </section>
+
+  <!-- 14. Pub 3 : soin avant/après -->
+  <section class="slide" id="s14">
+    <p class="kicker" data-pose="" data-off-x="403.88" data-off-y="110.13" style="left:40.388%;top:11.013%"><span class="t-fr">Collaboration commerciale · #publicité</span><span class="t-en" hidden="">Paid partnership · #ad</span></p>
+    <h2 data-pose="" data-off-x="369.83" data-off-y="140.97" style="left:36.983%;top:14.097%"><span class="t-fr">« Avant / Après 5 minutes »</span><span class="t-en" hidden="">"Before / After 5 minutes"</span></h2>
+    <div class="vidwrap" style="max-width: 395px;left:39.74%;top:20.923%;width:395px" data-pose="" data-off-x="397.4" data-off-y="209.23">
+      <video src="../medias/video/pub-soin-avant-apres.mp4" controls="" playsinline=""></video>
+    </div>
+  </section>
+
+  <!-- 15. Pub 4 : gant exfoliant -->
+  <section class="slide" id="s15">
+    <p class="kicker" data-pose="" data-off-x="432.61" data-off-y="110.13" style="left:43.261%;top:11.013%"><span class="t-fr">Collaboration commerciale</span><span class="t-en" hidden="">Paid partnership</span></p>
+    <h2 data-pose="" data-off-x="311.88" data-off-y="140.97" style="left:31.188%;top:14.097%"><span class="t-fr">« Traite plus de 15 problèmes de peau »</span><span class="t-en" hidden="">"Treats over 15 skin issues"</span></h2>
+    <div class="vidwrap" style="max-width: 395px;left:39.74%;top:20.923%;width:395px" data-pose="" data-off-x="397.4" data-off-y="209.23">
+      <video src="../medias/video/pub-gant-exfoliant.mp4" controls="" playsinline=""></video>
+    </div>
+  </section>
+
+  <!-- 16. Pub 5 : NFT celestials -->
+  <section class="slide" id="s16">
+    <p class="kicker" data-pose="" data-off-x="432.61" data-off-y="110.13" style="left:43.261%;top:11.013%"><span class="t-fr">Collaboration commerciale</span><span class="t-en" hidden="">Paid partnership</span></p>
+    <h2 data-pose="" data-off-x="378.73" data-off-y="140.97" style="left:37.873%;top:14.097%"><span class="t-fr">« Je vous parle de NFT… »</span><span class="t-en" hidden="">"Let me tell you about NFTs…"</span></h2>
+    <div class="vidwrap" data-pose="" data-off-x="390.91" data-off-y="209.23" style="left:39.091%;top:20.923%">
+      <video src="../medias/video/pub-nft-celestials-club.mp4" controls="" playsinline=""></video>
+    </div>
+  </section>
+
+<section class="slide" id="inf-lien-medias-1">
+  <h2 data-pose="" data-off-x="285.45" data-off-y="110.13" style="left:28.545%;top:11.013%"><span class="t-fr">Quel est le lien entre ces différents médias ?</span><span class="t-en" hidden="">What do these posts have in common?</span></h2>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="182.8" style="left:42.208%;top:18.28%"><img src="../medias/images/inf-lien-medias-cochon-dinde.jpg" alt="Publication Instagram de Bruno Le Maire : un cochon d’Inde" loading="lazy"></div>
+</section>
+
+<section class="slide" id="inf-lien-medias-2">
+  <h2 data-pose="" data-off-x="285.45" data-off-y="110.13" style="left:28.545%;top:11.013%"><span class="t-fr">Quel est le lien entre ces différents médias ?</span><span class="t-en" hidden="">What do these posts have in common?</span></h2>
+  <div class="vidwrap" data-pose="" data-off-x="390.91" data-off-y="178.39" style="left:39.091%;top:17.839%"><video src="../medias/video/inf-lien-medias-2.mp4" controls="" playsinline=""></video></div>
+</section>
+
+<section class="slide" id="inf-lien-medias-3">
+  <h2 data-pose="" data-off-x="285.45" data-off-y="110.13" style="left:28.545%;top:11.013%"><span class="t-fr">Quel est le lien entre ces différents médias ?</span><span class="t-en" hidden="">What do these posts have in common?</span></h2>
+  <div class="vidwrap" data-pose="" data-off-x="390.91" data-off-y="178.39" style="left:39.091%;top:17.839%"><video src="../medias/video/inf-lien-medias-3.mp4" controls="" playsinline=""></video></div>
+</section>
+
+  <!-- 17. Effet de cadrage - rocketman -->
+  <section class="slide" id="s17">
+    <p class="kicker" data-pose="" data-off-x="466.26" data-off-y="110.13" style="left:46.626%;top:11.013%"><span class="t-fr">Regardez bien</span><span class="t-en" hidden="">Watch closely</span></p>
+    <h2 data-pose="" data-off-x="419.53" data-off-y="140.97" style="left:41.953%;top:14.097%"><span class="t-fr">Effet de cadrage</span><span class="t-en" hidden="">Framing effect</span></h2>
+    <div class="vidwrap" data-pose="" data-off-x="390.91" data-off-y="209.23" style="left:39.091%;top:20.923%">
+      <video src="../medias/video/cadrage-rocketman.mp4" controls="" playsinline=""></video>
+    </div>
+    <div class="step" id="cadrage-reveal" data-pose="" data-off-x="317.35" data-off-y="647.76" style="left:31.735%;top:64.776%">
+      <p class="lead" style="color:var(--acc);font-weight:800;"><span class="t-fr">« C'est VOLONTAIREMENT mal cadré »</span><span class="t-en" hidden="">"It's DELIBERATELY badly framed"</span></p>
+      <p class="lead"><span class="t-fr">Un simple choix de cadrage suffit à changer complètement ce qu'on croit voir.</span><span class="t-en" hidden="">A simple framing choice is enough to completely change what we think we're seeing.</span></p>
+    </div>
+  </section>
+
+  <!-- 18. Drapeaux -->
+  <section class="slide" id="s18">
+    <h2 data-pose="" data-off-x="307.36" data-off-y="110.13" style="left:30.736%;top:11.013%"><span class="t-fr">De quelles couleurs sont ces drapeaux ?</span><span class="t-en" hidden="">What colours are these flags?</span></h2>
+    <div class="flag-grid" id="flag-grid" data-pose="" data-off-x="380.52" data-off-y="193.81" style="left:38.052%;top:19.381%">
+      <div class="flagcard" data-flag="fr">
+        <div class="fname"><span class="t-fr">Drapeau français</span><span class="t-en" hidden="">French flag</span></div>
+        <div class="tap"><span class="t-fr">Cliquez</span><span class="t-en" hidden="">Click</span></div>
+        <div class="fans">
+          <div class="swatches"><span class="sw" style="background:#0055A4"></span><span class="sw" style="background:#fff"></span><span class="sw" style="background:#EF4135"></span></div>
+          <span class="t-fr">Bleu, Blanc, Rouge</span><span class="t-en" hidden="">Blue, White, Red</span>
+          <video src="../medias/video/patrouille-france-marseille.mp4" controls="" playsinline="" muted=""></video>
+        </div>
+      </div>
+      <div class="flagcard" data-flag="ru">
+        <div class="fname"><span class="t-fr">Et cette patrouille ?</span><span class="t-en" hidden="">And this squadron?</span></div>
+        <div class="tap"><span class="t-fr">Cliquez</span><span class="t-en" hidden="">Click</span></div>
+        <div class="fans">
+          <span class="t-fr">Une autre patrouille aérienne, avec d'autres couleurs : l'angle et le cadrage changent toute la lecture de l'image.</span><span class="t-en" hidden="">Another aerobatic squadron, with different colours: the angle and framing completely change how the image reads.</span>
+          <video src="../medias/video/drapeau-avions-1.mp4" controls="" playsinline="" muted=""></video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13. Piège du recadrage -->
+  <section class="slide short" id="s-cadrage-piege" data-serie="group_cd381830-6469-4831-b4da-b4ad5e7a17a2">
+    <div class="imgcard-full" style="max-width: 644.451px; width: 644.451px; left: 34.791%; top: 16.29%;" data-pose="" data-off-x="347.91" data-off-y="162.9"><img src="../medias/images/cadrage-piege-recadre-2.jpg" alt="Deux photos du même instant, cadrées différemment" data-recadre-source="../medias/images/cadrage-piege.jpg" data-recadre="12.7 0 0 0"></div>
+  <div class="forme forme-rectangle" style="background-color: rgb(0, 0, 0); max-width: 654px; width: 654px; height: 321px; left: 34.607%; top: 51.323%; border: 3px solid rgb(0, 0, 0);" data-pose="" data-off-x="346.07" data-off-y="513.23" data-animation="{&quot;effet&quot;:&quot;disparaitre&quot;,&quot;duree&quot;:700,&quot;declencheur&quot;:&quot;clic&quot;}"></div></section>
+
+  <!-- 14. Une histoire à deux versions - partie 1 -->
+  <section class="slide" id="s-paul-1" data-serie="group_b7609409-f9cb-4eb7-82a3-7afa3bad2ea2">
+    <div class="imgcard-full" style="max-width: 455.733px;left:38.163%;top:12.115%;width:455.733px" data-pose="" data-off-x="381.63" data-off-y="121.15"><img src="../medias/images/paul-histoire-1--niveau1.jpg" alt="Article : Paul, 82 ans, expulsé de sa maison"></div>
+    <p class="lead media-note t-en" hidden="" style="">This newspaper clipping is in French.</p>
+  </section>
+
+  <!-- 14b. Une histoire à deux versions - partie 2 -->
+  <section class="slide" id="s-paul-2" data-serie="group_b7609409-f9cb-4eb7-82a3-7afa3bad2ea2">
+    <div class="imgcard-full" data-pose="" data-off-x="410.74" data-off-y="121.15" style="left:41.074%;top:12.115%"><img src="../medias/images/paul-histoire-2--niveau1.jpg" alt="Suite : le point de vue des filles de Paul"></div>
+    <p class="lead media-note t-en" hidden="">This newspaper clipping is in French.</p>
+  </section>
+
+  <!-- 21. Contenu sensible Ukraine -->
+  <section class="slide" id="s21">
+    <h2 data-pose="" data-off-x="264.17" data-off-y="110.13" style="left:26.417%;top:11.013%"><span class="t-fr">Une image peut aussi être sortie de son contexte</span><span class="t-en" hidden="">An image can also be taken out of context</span></h2>
+    <div class="sensitive-gate" id="sensitive-gate" data-sensible="" data-pose="" data-off-x="375.32" data-off-y="185" style="left:37.532%;top:18.5%">
+      <div class="warn"><span class="t-fr">Contenu sensible : âmes sensibles s'abstenir</span><span class="t-en" hidden="">Sensitive content: viewer discretion advised</span></div>
+      <p><span class="t-fr">Ce tweet, partagé massivement avec une légende alarmante (« ALERTE »), montre des images de guerre présentées hors de leur contexte réel.</span><span class="t-en" hidden="">This tweet, shared massively with an alarming caption ("ALERT"), shows war footage presented outside its real context.</span></p>
+      <button class="gate-btn"><span class="t-fr">Afficher quand même</span><span class="t-en" hidden="">Show anyway</span></button>
+      <img src="../medias/images/alerte-ukraine-sensible.jpg" alt="Tweet alarmiste sur des frappes en Ukraine">
+      <video src="../medias/video/alerte-ukraine-sensible.mp4" controls="" playsinline=""></video>
+    </div>
+  </section>
+
+  <!-- 22. Ce qu'on voit n'est pas la réalité -->
+  <section class="slide" id="s22">
+    <h2 data-pose="" data-off-x="347.32" data-off-y="110.13" style="left:34.732%;top:11.013%"><span class="t-fr">Ce qu'on voit n'est PAS la réalité</span><span class="t-en" hidden="">What we see is NOT reality</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="182.8" style="left:39.091%;top:18.28%"><img src="../medias/images/photo-groupe-souvenir.jpg" alt="Photo de groupe souriante lors d'un événement"></div>
+    <p class="lead" data-pose="" data-off-x="312.29" data-off-y="507.47" style="left:31.229%;top:50.747%"><span class="t-fr">Une photo heureuse ne montre qu'un instant choisi, jamais tout ce qui l'entoure.</span><span class="t-en" hidden="">A happy photo only shows one chosen instant, never everything around it.</span></p>
+  </section>
+
+  <!-- 21. Biais cognitifs intro -->
+  <section class="slide short" id="s-biais-cognitifs" data-serie="group_80e1db91-d6bd-4905-8962-3ef737f591f4">
+    <h2 data-pose="" data-off-x="407.56" data-off-y="413" style="left:40.756%;top:41.3%"><span class="t-fr">Les biais cognitifs !</span><span class="t-en" hidden="">Cognitive biases!</span></h2>
+    <p class="lead" style="color:var(--acc);font-weight:800;left:34.249%;top:48.566%" data-pose="" data-off-x="342.49" data-off-y="485.66"><span class="t-fr">Une distorsion dans le traitement « cognitif » d'une information.</span><span class="t-en" hidden="">A distortion in how our brain "cognitively" processes information.</span></p>
+    <a class="gamelink" href="https://antoninatger.github.io/jeux/Biais%20cognitifs/index.html" target="_blank" data-pose="" data-off-x="406.48" data-off-y="545.13" style="left:40.648%;top:54.513%"><span class="t-fr">Explorer tous les biais cognitifs sur Perceptio</span><span class="t-en" hidden="">Explore all cognitive biases on Perceptio</span></a>
+  </section>
+
+  <!-- 24. Biais popularité / Halo -->
+  <section class="slide" id="s24">
+    <p class="kicker" data-pose="" data-off-x="416.56" data-off-y="113.06" style="left: 41.656%; top: 11.306%;"><span class="t-fr">Biais de popularité · Effet de Halo</span><span class="t-en" hidden="">Popularity bias · Halo effect</span></p>
+    <h2 data-pose="" data-off-x="261.04" data-off-y="143.88" style="left: 26.104%; top: 14.388%;"><span class="t-fr">Une personne aimée nous influence sur tout le reste</span><span class="t-en" hidden="">A person we love influences us on everything else</span></h2>
+    <div class="imgcard small" style="max-width: 190px; width: 190px; left: 45.065%; top: 27.382%;" data-pose="" data-off-x="450.65" data-off-y="273.82"><img src="../medias/images/teddy-riner.jpg" alt="Teddy Riner, champion de judo"></div>
+    
+    <p class="lead" style="margin-top: 14px; left: 30.26%; top: 91.25%;" data-pose="" data-off-x="302.6" data-off-y="912.5"><span class="t-fr">Un champion ou des youtubeurs adorés vendent… autre chose que leur domaine d'expertise. Ce n'est pas leur compétence qui convainc, c'est la sympathie qu'ils inspirent.</span><span class="t-en" hidden="">A champion or beloved YouTubers sell… something outside their field of expertise. It's not their competence that convinces us, it's the likeability they inspire.</span></p>
+  <div class="imgcard small" style="max-width: 190px; width: 190px; left: 39.715%; top: 59.729%;" data-pose="" data-off-x="397.15" data-off-y="597.29"><img src="../medias/images/ford-teddy-riner-pub.jpg" alt="Publicité Ford avec Teddy Riner"></div><div class="imgcard small" style="max-width: 190px; width: 190px; left: 50.416%; top: 59.729%;" data-pose="" data-off-x="504.16" data-off-y="597.29"><img src="../medias/images/mcfly-carlito-pub.jpg" alt="Sélection produits par McFly et Carlito"></div></section>
+
+<section class="slide" id="inf-simple-exposition">
+  <p class="kicker" data-pose="" data-off-x="467.1" data-off-y="110.13" style="left:46.71%;top:11.013%"><span class="t-fr">Biais cognitif</span><span class="t-en" hidden="">Cognitive bias</span></p>
+  <h2 data-pose="" data-off-x="366.13" data-off-y="140.97" style="left:36.613%;top:14.097%"><span class="t-fr">L’effet de simple exposition</span><span class="t-en" hidden="">The mere-exposure effect</span></h2>
+  <p class="lead" data-pose="" data-off-x="302.6" data-off-y="213.63" style="left:30.26%;top:21.363%"><span class="t-fr">Plus nous voyons un produit, plus nous avons tendance à avoir un jugement positif sur lui.</span><span class="t-en" hidden="">The more often we see a product, the more positively we tend to judge it.</span></p>
+  <div class="two-imgs" data-pose="" data-off-x="164.42" data-off-y="299.54" style="left:16.442%;top:29.954%"><div class="imgcard"><img src="../medias/images/inf-simple-exposition-1.jpg" alt="" loading="lazy"></div><div class="imgcard"><img src="../medias/images/inf-simple-exposition-2.jpg" alt="" loading="lazy"></div><div class="imgcard"><img src="../medias/images/inf-simple-exposition-3.jpg" alt="" loading="lazy"></div></div>
+</section>
+
+  <!-- 25. Témoignage vidéo halo -->
+  <section class="slide" id="s25">
+    <p class="kicker" data-pose="" data-off-x="472.25" data-off-y="110.13" style="left:47.225%;top:11.013%"><span class="t-fr">Témoignage</span><span class="t-en" hidden="">Testimony</span></p>
+    <h2 data-pose="" data-off-x="304.12" data-off-y="140.97" style="left:30.412%;top:14.097%"><span class="t-fr">« Combien de sweats noirs t'as vendu ? »</span><span class="t-en" hidden="">"How many black hoodies did you sell?"</span></h2>
+    <div class="vidwrap" style="max-width: 370px;left:40.39%;top:20.923%;width:370px" data-pose="" data-off-x="403.9" data-off-y="209.23">
+      <video src="../medias/video/temoignage-halo-populaire.mp4" controls="" playsinline=""></video>
+    </div>
+    <p class="lead" data-pose="" data-off-x="347.83" data-off-y="942.85" style="left:34.783%;top:94.285%"><span class="t-fr">Un journaliste interroge la mécanique de la vente par popularité.</span><span class="t-en" hidden="">A journalist probes the mechanics of selling through popularity.</span></p>
+  </section>
+
+  <!-- 23. Biais émotionnel -->
+  <section class="slide" id="s-imaginez" data-serie="group_7a4943ec-3d5d-4e5e-ab2d-d1f8a6d4c028">
+    <p class="kicker" data-pose="" data-off-x="476.34" data-off-y="112.56" style="left: 47.634%; top: 11.256%;"><span class="t-fr">Imaginez…</span><span class="t-en" hidden="">Imagine…</span></p>
+    <h2 data-pose="" data-off-x="261.04" data-off-y="143.39" style="left: 26.104%; top: 14.339%;"><span class="t-fr">Il est tard, vous êtes chez vous, et vous allez sur les réseaux sociaux pour vous détendre…</span><span class="t-en" hidden="">It's late, you're at home, and you open social media to unwind…</span></h2>
+    <p class="lead" data-pose="" data-off-x="365.82" data-off-y="273.32" style="left: 36.582%; top: 27.332%;"><span class="t-fr">Deux publications s'affichent. Sur laquelle cliquez-vous ?</span><span class="t-en" hidden="">Two posts show up. Which one do you click?</span></p>
+    
+  <div class="imgcard step" data-order="1" data-pose="" data-off-x="277.67" data-off-y="348.21" style="width: 420px; left: 27.767%; top: 34.821%;"><img src="../medias/images/equation.jpg" alt="Solution générale des équations non homogènes"></div><div class="imgcard step" data-order="1" data-pose="" data-off-x="504.16" data-off-y="348.21" style="width: 420px; left: 50.416%; top: 34.821%;"><img src="../medias/images/chaton-choix.jpg" alt="Photo d'un chaton"></div></section>
+
+  <!-- 27. Vidéo Norman -->
+  <section class="slide" id="s27">
+    <p class="kicker" data-pose="" data-off-x="426.76" data-off-y="110.13" style="left:42.676%;top:11.013%"><span class="t-fr">Un créateur en parle lui-même</span><span class="t-en" hidden="">A creator talks about it himself</span></p>
+    <h2 data-pose="" data-off-x="342.75" data-off-y="140.97" style="left:34.275%;top:14.097%"><span class="t-fr">Norman a des choses à vous dire</span><span class="t-en" hidden="">Norman has some things to tell you</span></h2>
+    <div class="vidwrap wide" data-pose="" data-off-x="333.77" data-off-y="209.23" style="left:33.377%;top:20.923%">
+      <video src="../medias/video/norman-video-longue.mp4" controls="" playsinline=""></video>
+    </div>
+    <p class="note" data-pose="" data-off-x="371.39" data-off-y="617.69" style="left:37.139%;top:61.769%"><span class="t-fr">Vidéo longue (≈16 min) : le formateur peut avancer directement au passage souhaité.</span><span class="t-en" hidden="">Long video, in French (≈16 min): the trainer can jump straight to the relevant part.</span></p>
+  </section>
+
+  <!-- 28. J'AI RAISON -->
+  <section class="slide" id="s28">
+    <p class="kicker" data-pose="" data-off-x="469" data-off-y="110.13" style="left:46.9%;top:11.013%">Welcome to…</p>
+    <h2 data-pose="" data-off-x="444.88" data-off-y="140.97" style="left:44.488%;top:14.097%"><span class="t-fr">J'AI RAISON</span><span class="t-en" hidden="">I'M RIGHT</span></h2>
+    <p class="lead" style="color:var(--acc);font-weight:800;left:43.834%;top:21.363%" data-pose="" data-off-x="438.34" data-off-y="213.63"><span class="t-fr">Le biais de confirmation !</span><span class="t-en" hidden="">Confirmation bias!</span></p>
+  </section>
+
+  <!-- 29. Quel rapport avec influenceurs -->
+  <section class="slide" id="s29">
+    <h2 data-pose="" data-off-x="325.89" data-off-y="110.13" style="left:32.589%;top:11.013%"><span class="t-fr">Quel rapport avec les influenceurs ?</span><span class="t-en" hidden="">What does this have to do with influencers?</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="182.8" style="left:30.26%;top:18.28%"><span class="t-fr">Si vous aimez un influenceur, il est difficile de ne pas le croire quand il vous vend quelque chose.</span><span class="t-en" hidden="">If you like an influencer, it's hard not to believe them when they're selling you something.</span></p>
+    <div class="vidwrap" style="margin-top:16px;left:39.091%;top:27.09%" data-pose="" data-off-x="390.91" data-off-y="270.9">
+      <video src="../medias/video/pub-nft-celestials-club.mp4" controls="" playsinline=""></video>
+    </div>
+  </section>
+
+  <!-- 30. Faux Brad Pitt -->
+  <section class="slide" id="s-faux-brad-pitt" data-serie="serie_4dcb0c00-f2f5-4378-af49-2964b837dd68">
+    <img src="../medias/images/faux-brad-pitt.jpg" alt="Anne et une fausse photo de Brad Pitt" data-pose="" data-off-x="210" data-off-y="120" style="left:21%;top:12%;height:700px;width:auto;max-width:none;border-radius:16px">
+  </section>
+
+  <!-- 31. Comment expliquer / pas la stupidité -->
+  <section class="slide" id="s31" data-serie="serie_674638d9-5109-4a35-a423-bd122b4ae99f">
+    <h2 data-pose="" data-off-x="266.99" data-off-y="110.13" style="left:26.699%;top:11.013%"><span class="t-fr">Comment expliquer qu'on ait pu se faire piéger ?</span><span class="t-en" hidden="">How can we explain falling for it?</span></h2>
+    <p class="lead" style="color:var(--acc);font-weight:800;margin-top:10px;left:43.665%;top:17.839%" data-pose="" data-off-x="436.65" data-off-y="178.39"><span class="t-fr">Ce n'est PAS la stupidité !</span><span class="t-en" hidden="">It's NOT stupidity!</span></p>
+  </section>
+
+  <!-- 32. Biais engagement -->
+  <section class="slide" id="s32" data-serie="serie_f8804daf-f84a-43f6-ab9f-1acb164980d1">
+    <p class="kicker" data-pose="" data-off-x="447.53" data-off-y="110.13" style="left:44.753%;top:11.013%"><span class="t-fr">Biais de l'engagement</span><span class="t-en" hidden="">Commitment bias</span></p>
+    <h2 data-pose="" data-off-x="274.17" data-off-y="140.97" style="left:27.417%;top:14.097%"><span class="t-fr">Lorsqu'on s'est « engagé » dans une croyance…</span><span class="t-en" hidden="">Once you've "committed" to a belief…</span></h2>
+    <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="213.63" style="left:42.208%;top:21.363%"><img src="../medias/images/biais-engagement-submarine.jpg" alt="Sous-marin plongeant, symbole du point de non-retour"></div>
+    <p class="lead" data-pose="" data-off-x="394.62" data-off-y="389.14" style="left:39.462%;top:38.914%"><span class="t-fr">…il est TRÈS compliqué de revenir en arrière.</span><span class="t-en" hidden="">…it's VERY hard to turn back.</span></p>
+  </section>
+
+  <!-- 17. Devinette -->
+  <section class="slide" id="s-devinette-eclair" data-serie="group_fbc5eb40-3af3-46ba-af5c-a406d71170a4">
+    <p class="kicker" style="left: 46.004%; top: 11.013%;" data-pose="" data-off-x="460.04" data-off-y="110.13"><span class="t-fr">Devinette éclair</span><span class="t-en" hidden="">Quick riddle</span></p>
+    <h2 class="" style="left: 35.308%; top: 14.097%;" data-pose="" data-off-x="353.08" data-off-y="140.97"><span class="t-fr">Répondez vite, sans réfléchir…</span><span class="t-en" hidden="">Answer fast, without thinking…</span></h2>
+    <div class="riddle-visual" data-pose="" data-off-x="297.46" data-off-y="198.22" style="left:29.746%;top:19.822%">
+      <img src="../medias/images/raquette.png" alt="Raquette de tennis" class="" style="max-height: none; max-width: 415.012px; width: 415.012px; height: 337px; transform: translate(-34.06px, 7.5px);" data-off-x="-34.06" data-off-y="7.5">
+      <img src="../medias/images/balle-tennis.png" alt="Balle de tennis" class="" style="max-height: none; max-width: 350.795px; width: 350.795px; height: 352px; transform: translate(71.69px, 9.56px);" data-off-x="71.69" data-off-y="9.56">
+    </div>
+    <p class="lead" style="left: 38.756%; top: 71.662%;" data-off-x="387.56" data-off-y="716.62" data-pose="" data-animation="{&quot;effet&quot;:&quot;apparaitre&quot;,&quot;duree&quot;:700,&quot;declencheur&quot;:&quot;apparition&quot;}"><span class="t-fr">Une raquette et une balle coûtent <b>12 €</b> au total.<br>La raquette coûte <b>10 €</b> de plus que la balle.<br>Combien coûte la balle ?</span><span class="t-en" hidden="">A bat and a ball cost <b>€12</b> in total.<br>The bat costs <b>€10</b> more than the ball.<br>How much does the ball cost?</span></p>
+    
+    
+    
+  </section>
+
+  <!-- 18. Système 1 / Système 2 -->
+  <section class="slide colonnes-nues" id="s-deux-facons-penser" data-serie="group_3a36f822-9c07-43cd-bbfa-3205f17ba315">
+    <h2 class="" style="left:39.003%;top:11.013%" data-pose="" data-off-x="390.03" data-off-y="110.13"><span class="t-fr">Deux façons de penser</span><span class="t-en" hidden="">Two ways of thinking</span></h2>
+    <div class="compare" data-pose="" data-off-x="308.31" data-off-y="193.81" style="left:30.831%;top:19.381%">
+      <div class="col sys1">
+        <img class="compare-img" src="../medias/images/lievre.png" alt="Lièvre" style="">
+        <p class="lead taille-l step" data-order="1" style="color:var(--acc2);font-weight:800;"><span class="t-fr">Le système intuitif</span><span class="t-en" hidden="">The intuitive system</span></p>
+        <p class="lead step" data-order="2"><span class="t-fr">Fonctionne vite !<br>Consomme peu d'énergie.<br>Peut faire des erreurs.</span><span class="t-en" hidden="">Works fast!<br>Uses little energy.<br>Can make mistakes.</span></p>
+      </div>
+      <div class="col sys2">
+        <img class="compare-img" src="../medias/images/tortue.png" alt="Tortue" style="">
+        <p class="lead taille-l step" data-order="1" style="color:var(--acc);font-weight:800;"><span class="t-fr">Le système analytique</span><span class="t-en" hidden="">The analytical system</span></p>
+        <p class="lead step" data-order="3"><span class="t-fr">Fonctionne lentement.<br>Consomme beaucoup d'énergie.<br>Est plus rationnel, plus analytique.</span><span class="t-en" hidden="">Works slowly.<br>Uses a lot of energy.<br>Is more rational, more analytical.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 35. Illusion audio -->
+  <section class="slide" id="s35">
+    <p class="kicker" data-pose="" data-off-x="426.16" data-off-y="110.13" style="left:42.616%;top:11.013%"><span class="t-fr">À votre avis, sur les réseaux…</span><span class="t-en" hidden="">What do you think, on social media…</span></p>
+    <h2 data-pose="" data-off-x="276.24" data-off-y="140.97" style="left:27.624%;top:14.097%"><span class="t-fr">Vos oreilles peuvent, elles aussi, vous tromper</span><span class="t-en" hidden="">Your ears can fool you too</span></h2>
+    <div class="vidwrap" data-pose="" data-off-x="390.91" data-off-y="209.23" style="left:39.091%;top:20.923%">
+      <video src="../medias/video/illusion-eau-robinet.mp4" controls="" playsinline=""></video>
+    </div>
+    <p class="lead media-note t-en" hidden="">This audio illusion relies on French words and may not work the same way in English.</p>
+  </section>
+
+<section class="slide" id="inf-piege-empathie">
+  <h2 data-pose="" data-off-x="392.43" data-off-y="110.13" style="left:39.243%;top:11.013%"><span class="t-fr">Le piège de l’empathie</span><span class="t-en" hidden="">The empathy trap</span></h2>
+  <p class="lead" data-pose="" data-off-x="418.75" data-off-y="182.8" style="left:41.875%;top:18.28%"><span class="t-fr">L’empathie n’est pas QUE positive.</span><span class="t-en" hidden="">Empathy is not ONLY positive.</span></p>
+  <p class="lead step" data-pose="" data-off-x="324.6" data-off-y="233.46" style="left:32.46%;top:23.346%"><span class="t-fr">Elle est utilisée pour FÉDÉRER un groupe… et l’opposer à un autre groupe.</span><span class="t-en" hidden="">It is used to UNITE a group… and set it against another group.</span></p>
+  <div class="imgcard small step" data-pose="" data-off-x="422.08" data-off-y="284.12" style="left:42.208%;top:28.412%"><img src="../medias/images/inf-empathie-conflit.jpg" alt="Deux influenceurs en conflit public" loading="lazy"></div>
+</section>
+
+  <!-- 36. Polarisation -->
+  <section class="slide" id="s36">
+    <p class="kicker" data-pose="" data-off-x="468.67" data-off-y="112.39" style="left: 46.867%; top: 11.239%;"><span class="t-fr">Polarisation</span><span class="t-en" hidden="">Polarisation</span></p>
+    <h2 data-pose="" data-off-x="298.91" data-off-y="143.22" style="left: 29.891%; top: 14.322%;"><span class="t-fr">Les désaccords publics deviennent viraux</span><span class="t-en" hidden="">Public disagreements go viral</span></h2>
+    
+    <p class="lead" style="margin-top: 14px; left: 30.26%; top: 49.871%;" data-pose="" data-off-x="302.6" data-off-y="498.71"><span class="t-fr">Vie privée, couples, clashs : ces sujets génèrent énormément d'engagement, et donc de visibilité algorithmique.</span><span class="t-en" hidden="">Private life, couples, feuds: these topics generate huge engagement, and therefore algorithmic visibility.</span></p>
+  <div class="imgcard small" data-pose="" data-off-x="340" data-off-y="230.69" style="width: 300px; left: 34%; top: 23.069%;"><img src="../medias/images/polarisation-booba.jpg" alt="Un influenceur et une journaliste, désaccord public"></div><div class="imgcard small" data-pose="" data-off-x="504.16" data-off-y="230.69" style="width: 300px; left: 50.416%; top: 23.069%;"><img src="../medias/images/gossip-michou-manaudou.jpg" alt="Actualité people relayée sur les réseaux"></div></section>
+
+  <!-- 37. Pensée de groupe -->
+  <section class="slide short" id="s37">
+    <p class="kicker" data-pose="" data-off-x="458.27" data-off-y="418.5" style="left:45.827%;top:41.85%"><span class="t-fr">Pensée de groupe</span><span class="t-en" hidden="">Groupthink</span></p>
+    <h2 data-pose="" data-off-x="367.47" data-off-y="449.34" style="left:36.747%;top:44.934%"><span class="t-fr">Radicalité</span><span class="t-en" hidden="">Radicalisation</span> <span style="color:var(--mu-diapo);">↔</span> <span class="t-fr">Esprit critique</span><span class="t-en" hidden="">Critical thinking</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="522" style="left:30.26%;top:52.2%"><span class="t-fr">Dans un groupe très soudé autour d'un influenceur, la critique devient difficile à exprimer, et le groupe peut se radicaliser sans s'en rendre compte.</span><span class="t-en" hidden="">In a tight-knit group built around an influencer, criticism becomes hard to voice, and the group can radicalise without realising it.</span></p>
+  </section>
+
+<section class="slide" id="inf-match-tiktok-1">
+  <h2 data-pose="" data-off-x="411.76" data-off-y="110.13" style="left:41.176%;top:11.013%"><span class="t-fr">Les matchs TikTok</span><span class="t-en" hidden="">TikTok battles</span></h2>
+  <div class="vidwrap" data-pose="" data-off-x="390.91" data-off-y="178.39" style="left:39.091%;top:17.839%"><video src="../medias/video/inf-match-tiktok-1.mp4" controls="" playsinline=""></video></div>
+</section>
+
+<section class="slide" id="inf-match-tiktok-2">
+  <h2 data-pose="" data-off-x="411.76" data-off-y="110.13" style="left:41.176%;top:11.013%"><span class="t-fr">Les matchs TikTok</span><span class="t-en" hidden="">TikTok battles</span></h2>
+  <div class="vidwrap" data-pose="" data-off-x="390.91" data-off-y="178.39" style="left:39.091%;top:17.839%"><video src="../medias/video/inf-match-tiktok-2.mp4" controls="" playsinline=""></video></div>
+</section>
+
+<section class="slide short" id="inf-emprise">
+  <h2 data-pose="" data-off-x="453.91" data-off-y="261.01" style="left:45.391%;top:26.101%"><span class="t-fr">L’emprise</span><span class="t-en" hidden="">Psychological control</span></h2>
+  <p class="lead" data-pose="" data-off-x="302.6" data-off-y="333.68" style="left:30.26%;top:33.368%"><span class="t-fr">Domination intellectuelle ou morale d’une personne sur une autre, ou sur un groupe.</span><span class="t-en" hidden="">Intellectual or moral domination of one person over another, or over a group.</span></p>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="419.58" style="left:42.208%;top:41.958%"><img src="../medias/images/inf-emprise.jpg" alt="" loading="lazy"></div>
+</section>
+
+  <!-- 38. Influenceurs financiers intro -->
+  <section class="slide short divider-slide" id="s38">
+    <h2 data-pose="" data-off-x="329.32" data-off-y="472.47" style="left:32.932%;top:47.247%"><span class="t-fr">Les influenceurs « financiers »</span><span class="t-en" hidden="">"Finance" influencers</span></h2>
+  </section>
+
+  <!-- 39. Vidéo finance lac -->
+  <section class="slide" id="s39-2">
+    <p class="kicker" data-pose="" data-off-x="427.03" data-off-y="110.13" style="left:42.703%;top:11.013%"><span class="t-fr">La question est vite répondue</span><span class="t-en" hidden="">The question is quickly answered</span></p>
+    <h2 data-pose="" data-off-x="309.29" data-off-y="140.97" style="left:30.929%;top:14.097%"><span class="t-fr">Le lifestyle comme preuve de réussite ?</span><span class="t-en" hidden="">Lifestyle as proof of success?</span></h2>
+    <div class="vidwrap" style="max-width: 395px;left:39.74%;top:20.923%;width:395px" data-pose="" data-off-x="397.4" data-off-y="209.23">
+      <video src="../medias/video/influenceur-finance-lac.mp4" controls="" playsinline=""></video>
+    </div>
+  </section>
+
+  <!-- 40. Enquête Melius -->
+  <section class="slide" id="s40">
+    <p class="kicker" data-pose="" data-off-x="450.36" data-off-y="110.13" style="left:45.036%;top:11.013%"><span class="t-fr">Enquête · Le Parisien</span><span class="t-en" hidden="">Investigation · Le Parisien</span></p>
+    <h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">Melius, la société qui se cache derrière les promesses de fortune des traders des réseaux sociaux</span><span class="t-en" hidden="">Melius, the company behind social media traders' promises of fortune</span></h2>
+    <div class="vidwrap wide" data-pose="" data-off-x="333.77" data-off-y="323.73" style="left:33.377%;top:32.373%">
+      <video src="../medias/video/enquete-melius-leparisien.mp4" controls="" playsinline=""></video>
+    </div>
+    <p class="note" data-pose="" data-off-x="373.38" data-off-y="732.19" style="left:37.338%;top:73.219%"><span class="t-fr">Vidéo longue (≈8 min) : le formateur peut avancer directement au passage souhaité.</span><span class="t-en" hidden="">Long video, in French (≈8 min): the trainer can jump straight to the relevant part.</span></p>
+    <a class="gamelink" href="https://antoninatger.github.io/jeux/radarnaque/index.html" target="_blank" data-pose="" data-off-x="397.08" data-off-y="776.24" style="left:39.708%;top:77.624%"><span class="t-fr">S'entraîner à repérer les arnaques sur Radar'naque</span><span class="t-en" hidden="">Practise spotting scams on Radar'naque</span></a>
+  </section>
+
+  <!-- 41. Système pyramidal -->
+  <section class="slide short" id="s41">
+    <h2 data-pose="" data-off-x="323.51" data-off-y="433.92" style="left:32.351%;top:43.392%"><span class="t-fr">Qu'est-ce qu'un système pyramidal ?</span><span class="t-en" hidden="">What is a pyramid scheme?</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="506.59" style="left:30.26%;top:50.659%"><span class="t-fr">Les premiers entrants sont payés par l'argent des suivants, pas par une vraie activité, jusqu'à l'effondrement, quand plus personne ne rejoint.</span><span class="t-en" hidden="">Early joiners are paid with money from later joiners, not from any real activity, until it collapses, once no one else joins.</span></p>
+  </section>
+
+  <!-- 42. Ethos -->
+  <section class="slide" id="s42">
+    <p class="kicker" data-pose="" data-off-x="485.92" data-off-y="110.13" style="left:48.592%;top:11.013%">Ethos</p>
+    <h2 data-pose="" data-off-x="328.05" data-off-y="140.97" style="left:32.805%;top:14.097%"><span class="t-fr">Construire sa crédibilité par l'image</span><span class="t-en" hidden="">Building credibility through image</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="213.63" style="left:39.091%;top:21.363%"><img src="../medias/images/ethos-influenceur-finance.jpg" alt="Influenceur mettant en scène sa réussite financière"></div>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="538.15" style="left:30.26%;top:53.815%"><span class="t-fr">Costume, voiture, montre : l'image de réussite sert de preuve, sans qu'aucune compétence ne soit démontrée.</span><span class="t-en" hidden="">Suit, car, watch: the image of success serves as proof, without any competence actually being demonstrated.</span></p>
+  </section>
+
+  <!-- 43. Storytelling -->
+  <section class="slide" id="s43">
+    <p class="kicker" data-pose="" data-off-x="468.75" data-off-y="110.13" style="left:46.875%;top:11.013%">Storytelling</p>
+    <h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">Raconter une histoire plutôt que prouver un résultat</span><span class="t-en" hidden="">Telling a story rather than proving a result</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="270.89" style="left:39.091%;top:27.089%"><img src="../medias/images/storytelling-dubai.jpg" alt="Influenceur mettant en scène un lifestyle à Dubaï"></div>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="547.53" style="left:30.26%;top:54.753%"><span class="t-fr">« De rien à tout » : le récit personnel capte l'attention bien mieux qu'un chiffre ou une preuve.</span><span class="t-en" hidden="">"From nothing to everything": the personal narrative grabs attention far better than a figure or a proof.</span></p>
+  </section>
+
+  <!-- 44. Pubs sponsoring -->
+  <section class="slide" id="s44">
+    <h2 data-pose="" data-off-x="346.84" data-off-y="112.56" style="left: 34.684%; top: 11.256%;"><span class="t-fr">Publicité et contenu sponsorisé</span><span class="t-en" hidden="">Advertising and sponsored content</span></h2>
+    
+    <p class="lead" style="margin-top: 14px; left: 30.26%; top: 79.629%;" data-pose="" data-off-x="302.6" data-off-y="796.29"><span class="t-fr">Codes promo, liens d'affiliation, « annonces » : la frontière entre conseil sincère et publicité rémunérée est souvent floue.</span><span class="t-en" hidden="">Promo codes, affiliate links, "ads": the line between sincere advice and paid promotion is often blurry.</span></p>
+  <div class="imgcard small" data-pose="" data-off-x="340" data-off-y="200.65" style="width: 300px; left: 34%; top: 20.065%;"><img src="../medias/images/pub-black-friday-maillots.jpg" alt="Publicité Black Friday -40% avec code promo"></div><div class="imgcard small" data-pose="" data-off-x="504.16" data-off-y="200.65" style="width: 300px; left: 50.416%; top: 20.065%;"><img src="../medias/images/pub-nft-whale.jpg" alt="Publicité NFT promettant 10 000€ par mois"></div></section>
+
+  <!-- 45. Comment faire attention -->
+  <section class="slide short" id="s45">
+    <h2 data-pose="" data-off-x="372.64" data-off-y="476.87" style="left:37.264%;top:47.687%"><span class="t-fr">Comment faire attention ?</span><span class="t-en" hidden="">How can we be careful?</span></h2>
+  </section>
+
+  <!-- 46. Intérêt financier -->
+  <section class="slide short" id="s46">
+    <h2 data-pose="" data-off-x="261.04" data-off-y="448.26" style="left:26.104%;top:44.826%"><span class="t-fr">Ne pas oublier que les influenceurs ont un intérêt financier</span><span class="t-en" hidden="">Remember that influencers have a financial interest</span></h2>
+  </section>
+
+  <!-- 47. Pas vos amis + vidéo -->
+  <section class="slide" id="s47">
+    <h2 data-pose="" data-off-x="261.04" data-off-y="110.13" style="left:26.104%;top:11.013%"><span class="t-fr">Ne pas oublier que les influenceurs ne sont PAS vos amis<br>(même s'ils et elles sont très sympas)</span><span class="t-en" hidden="">Remember that influencers are NOT your friends<br>(even if they're very likeable)</span></h2>
+    <div class="vidwrap" style="margin-top:14px;left:39.091%;top:29.73%" data-pose="" data-off-x="390.91" data-off-y="297.3">
+      <video src="../medias/video/antoine-relations-parasociales.mp4" controls="" playsinline=""></video>
+    </div>
+  </section>
+
+  <!-- 48. Une partie de leur vie -->
+  <section class="slide" id="s48">
+    <h2 data-pose="" data-off-x="261.04" data-off-y="110.13" style="left:26.104%;top:11.013%"><span class="t-fr">Les influenceurs n'affichent qu'une partie de leur vie</span><span class="t-en" hidden="">Influencers only show part of their life</span></h2>
+    <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="240.06" style="left:42.208%;top:24.006%"><img src="../medias/images/vie-curatee-photo.jpg" alt="Photo soignée et mise en scène"></div>
+  </section>
+
+  <!-- 49. Payés pour vie de rêve -->
+  <section class="slide" id="s49">
+    <h2 data-pose="" data-off-x="261.04" data-off-y="110.13" style="left:26.104%;top:11.013%"><span class="t-fr">Les influenceurs sont PAYÉS pour vous proposer une vie de rêve</span><span class="t-en" hidden="">Influencers are PAID to sell you a dream lifestyle</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="240.06" style="left:39.091%;top:24.006%"><img src="../medias/images/vie-de-reve-lamborghini.jpg" alt="Voiture de luxe mise en scène"></div>
+  </section>
+
+<section class="slide short" id="inf-que-faire">
+  <h2 data-pose="" data-off-x="368.29" data-off-y="400.88" style="left:36.829%;top:40.088%"><span class="t-fr">Qu’est-ce qu’on peut faire ?</span><span class="t-en" hidden="">What can we do?</span></h2>
+  <p class="lead" data-pose="" data-off-x="390.91" data-off-y="473.55" style="left:39.091%;top:47.355%"><span class="t-fr">Connaître ces mécanismes pour s’en prémunir.</span><span class="t-en" hidden="">Know these mechanisms to protect ourselves.</span></p>
+  <p class="lead step" data-pose="" data-off-x="382.93" data-off-y="524.21" style="left:38.293%;top:52.421%"><span class="t-fr">Au niveau global : qu’est-ce que vous en pensez ?</span><span class="t-en" hidden="">On a wider scale: what do you think?</span></p>
+  <p class="lead step" data-pose="" data-off-x="370.43" data-off-y="574.87" style="left:37.043%;top:57.487%"><span class="t-fr">Et comment concilier cela avec la liberté d’expression ?</span><span class="t-en" hidden="">And how do we reconcile this with freedom of speech?</span></p>
+</section>
+
+  <!-- 50. Bonus piéger les influenceurs -->
+  <section class="slide short" id="s50">
+    <p class="kicker" data-pose="" data-off-x="485.34" data-off-y="418.5" style="left:48.534%;top:41.85%">Bonus</p>
+    <h2 data-pose="" data-off-x="388.79" data-off-y="449.34" style="left:38.879%;top:44.934%"><span class="t-fr">Piéger les influenceurs</span><span class="t-en" hidden="">Trapping influencers</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="522" style="left:30.26%;top:52.2%"><span class="t-fr">Des journalistes et internautes testent parfois les influenceurs eux-mêmes, en leur proposant de vraies fausses promotions pour voir s'ils vérifient avant d'accepter.</span><span class="t-en" hidden="">Journalists and users sometimes test influencers themselves, by offering them real fake promotions to see if they check before accepting.</span></p>
+  </section>
+
+  <!-- 51. Conclusion / vigilance -->
+  <section class="slide" id="s51">
+    <p class="kicker" data-pose="" data-off-x="472.63" data-off-y="110.13" style="left:47.263%;top:11.013%"><span class="t-fr">Conclusion</span><span class="t-en" hidden="">Conclusion</span></p>
+    <h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">Nous pouvons profiter de leur contenu… en restant vigilant !</span><span class="t-en" hidden="">We can enjoy their content… while staying vigilant!</span></h2>
+    <ol class="tips-list" data-pose="" data-off-x="344.16" data-off-y="281.91" style="left:34.416%;top:28.191%">
+      <li><span class="n">1</span><span class="t-fr">Se demander quel est l'intérêt de la personne qui parle (financier, symbolique, réputationnel).</span><span class="t-en" hidden="">Ask what interest the speaker has (financial, symbolic, reputational).</span></li>
+      <li><span class="n">2</span><span class="t-fr">Prendre conscience que les influenceurs ne montrent qu'une partie de leur vie.</span><span class="t-en" hidden="">Remember that influencers only show part of their life.</span></li>
+      <li><span class="n">3</span><span class="t-fr">Identifier les contenus sponsorisés et les partenariats commerciaux.</span><span class="t-en" hidden="">Identify sponsored content and commercial partnerships.</span></li>
+      <li><span class="n">4</span><span class="t-fr">Activer une posture analytique avant de croire ou de partager une information.</span><span class="t-en" hidden="">Switch on an analytical mindset before believing or sharing information.</span></li>
+      <li><span class="n">5</span><span class="t-fr">Se méfier des promesses simples à des problèmes complexes.</span><span class="t-en" hidden="">Be wary of simple promises to complex problems.</span></li>
+    </ol>
+  </section>
+
+  <!-- 52. Merci -->
+  <section class="slide short" id="s39" data-serie="serie_4876ce66-4e05-416a-ab6a-5ea953659741">
+    <h1 style="font-size:clamp(2rem,calc(6 * var(--vw1)),3rem);background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;left:46.307%;top:41.685%" data-pose="" data-off-x="463.07" data-off-y="416.85"><span class="t-fr">Merci !</span><span class="t-en" hidden="">Thank you!</span></h1>
+    <button class="bigbtn" onclick="Deck.restart()" data-pose="" data-off-x="436.56" data-off-y="532.49" style="left:43.656%;top:53.249%"><span class="t-fr">Revoir depuis le début</span><span class="t-en" hidden="">Watch again from the start</span></button>
+  </section>
+
+  <!-- Slide finale : bilan de l'intervention (QR code) -->
+  <section class="slide short" id="s-bilan-qr" data-serie="serie_743edaf5-33f9-4668-ab8a-f0365b011093">
+    <p class="kicker" data-pose="" data-off-x="461.46" data-off-y="272.25" style="left: 46.146%; top: 27.225%;"><span class="t-fr">Après la séance</span><span class="t-en" hidden="">After the session</span></p>
+    <h2 data-pose="" data-off-x="344.92" data-off-y="303.09" style="left: 34.492%; top: 30.309%;"><span class="t-fr">Le bilan, les jeux, et votre retour</span><span class="t-en" hidden="">Summary, games, and your feedback</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="375.76" style="left: 30.26%; top: 37.576%;"><span class="t-fr">Scannez ce QR code&nbsp;: vous pourrez donner votre retour, revoir le bilan de la formation ou rejouer aux jeux.</span><span class="t-en" hidden="">Scan this QR code: you can leave your feedback, review the session summary, or play the games again.</span></p>
+    
+  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhwAAAIcAQAAAACVhUrRAAAC80lEQVR42u2dUWrEMAxERS/g+9/SN3C7jSNp5JQW2p+it5SybDbvY2EYaSw7tn7/mgYECBAgQID8HGL+Gvcn4/Xhx/v9Zu3/16Xjljf7gxcQIP8LYi6HLZlP+VxvQjgjtOaXQkpoB0hj7VwO4nbjjlPc57pUbkE7QNCOyycuWYjFq8T4GtoBgnZUO+4vL9O5v+Y1G74DBMhzv5MCgR0LDAkY6HeAAAl1XC+3nm//0i1oB0hb7ZTU2vOBaG00fztu4YcF0lc7WxqWlngsiUij6f253452gHT2nWQ00ddEGmDlv7RCaAdI434nr+nskO1WSlRxtxNF/kbOBoSaLa1+bjfJizulfnMRTXwHSG/t6KhAtD8jajkZZiuJAdoB0rvf8ZGbbC5StuXqTkIGflggXfudNDUdMvHJAa/l7twgYjeyAiDtswKv1mJrw7QctT3YEP0OELRjaWp6hfVImHYuA9HvAKHfKbrQGEGsJ09ZTzJqIPhO2miwnlueXK3lGg/tAKHfkX5nWtaR6CWHBmgHSHPtDN1PfRRsUbnlGyNV4IcF0rXfmaEFk0G1uglORndY3wGCdlbqZcbTiE4R1FriWWgHSGPfiVOkcr9zHFBQDOj+Mj8skMZZQVHHUMfRtVGyAiBASlaQ53NkF08aYzMz6Y/QDpD2WUE5kSBv2yk9kWwdRTtAemcFMXiTBnLy9reSV8uxBmgHSO9+R46WyrsMTEJp/zB1RvywQBr7To7Opk6EnocYGP0OECBW91bXPaHmvmNl4xuzoEDwnRWb2qqCZj1IJxaDWN8Bgu/YsXBT8rSyvqNlG9oB0tl3JAQoXU86k82ejgxFO0Ba+45FX1OdJXvQqgftoh0grbWTn4NgVh6LUBZMw3eo2YCgnXHkA7PuTZDjdOh3gAD5Sjvl0aL5uLalEzvUbEDQzvHQNx2WPtofzmcDgnb0CKmyza3YUL1KzQaks3aslmTRzkyrp+UseXA8vgOks3Z++5pAgAABAgTIDyHv20VZl660GMAAAAAASUVORK5CYII=" alt="QR code vers la page antoninatger.github.io/interventions/retours" style="width: 200px; height: 200px; border-radius: 16px; background: rgb(255, 255, 255); padding: 10px; box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 30px; left: 44.805%; top: 47.267%;" data-pose="" data-off-x="448.05" data-off-y="472.67"><a href="https://antoninatger.github.io/interventions/retours/" target="_blank" rel="noopener" style="color: var(--acc2); font-weight: 800; font-size: 1.05rem; text-decoration: none; border-bottom: 2px solid var(--acc2); padding-bottom: 2px; width: 371.73px; left: 40.345%; top: 71.275%;" data-pose="" data-off-x="403.45" data-off-y="712.75">
+        <span class="t-fr">antoninatger.github.io/interventions/retours →</span><span class="t-en" hidden="">antoninatger.github.io/interventions/retours →</span>
+      </a></section>
+
+
+
+
+
+
+
+</div>
+
+<div id="navzone-l" aria-hidden="true"></div>
+<div id="navzone-r" aria-hidden="true"></div>
+<div id="dots"></div>
+<div id="navctrl">
+  <button id="btn-prev" title="Précédent (←)">‹</button>
+  <button id="btn-next" title="Suivant (→)">›</button>
+</div>
+
+<div id="admin-modal" class="admin-modal">
+  <div class="admin-head">
+    <h3>Mode Admin : diapos de la session</h3>
+    <span class="admin-count" id="admin-count"></span>
+    <div class="actions">
+      <select id="admin-selections" title="Parcours enregistrés" onchange="Deck.applySelectedPreset()"></select>
+      <button type="button" onclick="Deck.saveCurrentSelectionAs()">Enregistrer comme parcours…</button>
+      <button type="button" onclick="Deck.deleteSelectedPreset()">Supprimer le parcours</button>
+      <button type="button" onclick="Deck.openAddSlideModal()">Ajouter une diapo</button>
+      <button type="button" onclick="window.open('../media-browser.html','_blank')">Médiathèque (toutes formations)</button>
+      <button type="button" onclick="Deck.adminSelectAll()">Tout cocher</button>
+      <button type="button" onclick="Deck.adminSelectNone()">Tout décocher</button>
+      <button type="button" class="primary" onclick="Deck.adminSave()">Enregistrer la sélection</button>
+      <button type="button" id="admin-save-order" onclick="Deck.saveSlideOrder()">Enregistrer l'ordre dans le fichier</button>
+      <button type="button" onclick="Deck.adminClose()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-grid" id="admin-grid"></div>
+</div>
+
+<div id="admin-zoom-modal" class="admin-zoom-modal">
+  <button type="button" class="admin-zoom-close" onclick="Deck.adminZoomClose()">✕</button>
+  <div id="admin-zoom-box"></div>
+</div>
+
+<div id="admin-edit-modal" class="admin-edit-modal">
+  <div class="admin-edit-head">
+    <h3>Édition de la diapo</h3>
+    <span class="admin-edit-hint"></span>
+    <div class="actions">
+      <button type="button" onclick="Deck.addTextBlock()">Ajouter un texte</button>
+      <button type="button" onclick="Deck.addPhotoBlock()">Ajouter une photo</button>
+      <button type="button" onclick="Deck.addPollWidget()">Sondage</button>
+      <button type="button" onclick="Deck.addScaleWidget()">Échelle</button>
+      <button type="button" onclick="Deck.addPieChartWidget()">Camembert</button>
+      <button type="button" onclick="Deck.addHistogramWidget()">Histogramme</button>
+      <button type="button" onclick="Deck.addReponseWidget()">Réponses à écrire</button>
+      <button type="button" onclick="Deck.quickAddSlideAfterCurrent()">Ajouter une diapo après</button>
+      <button type="button" onclick="Deck.apporterUneDiapo()">⤵ Apporter une diapo</button>
+      <button type="button" onclick="Deck.closeSlideEditToGrid()">Toutes les diapos</button>
+      <button type="button" id="admin-edit-save" onclick="Deck.saveEditedSlide()">Enregistrer dans le fichier</button>
+      <button type="button" onclick="Deck.closeSlideEdit()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-edit-stage" id="admin-edit-stage"></div>
+</div>
+
+<div id="addslide-modal" class="addslide-modal">
+  <div class="addslide-modal-box">
+    <div class="addslide-modal-head">
+      <h3>Ajouter une diapo</h3>
+      <button type="button" onclick="Deck.closeAddSlideModal()">✕</button>
+    </div>
+    <div class="addslide-modal-body">
+      <div id="addslide-modeles" class="addslide-modeles"></div>
+      <div id="addslide-champs"></div>
+      <div class="addslide-field">
+        <label for="addslide-position">Position</label>
+        <select id="addslide-position" class="addslide-input"></select>
+      </div>
+      <div class="addslide-modal-actions">
+        <button type="button" class="primary" onclick="Deck.submitAddSlide()">Ajouter</button>
+        <button type="button" onclick="Deck.closeAddSlideModal()">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../shared-deck-engine.js"></script>
+<script src="../shared-widgets.js"></script>
+<script src="../shared-slide-templates.js"></script>
+<script src="app.js"></script>
+<script src="../shared-comments-theme.js"></script>
+</body>
+</html>

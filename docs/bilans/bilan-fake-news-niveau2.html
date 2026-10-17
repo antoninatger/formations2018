@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilan - Désinformation et IA</title>
+    <style>
+        :root {
+            --primary: #8b5cf6;
+            --primary-dark: #7c3aed;
+            --primary-light: #ede9fe;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #ffffff;
+            --bg-light: #f9fafb;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --accent: #ec4899;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 40px 20px;
+            margin: 0 0 40px 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+        }
+
+        header h1 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            opacity: 0.95;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .intro {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            font-size: 1rem;
+        }
+
+        .toc {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .toc h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin: 10px 0;
+        }
+
+        .toc a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            display: inline-block;
+            border-radius: 6px;
+        }
+
+        .toc a:hover {
+            background: var(--primary-light);
+            transform: translateX(5px);
+        }
+
+        .content {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .content h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .accordion-item {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.1);
+        }
+
+        .accordion-header {
+            background: var(--bg-light);
+            padding: 18px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text);
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-header {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .accordion-header:hover {
+            background: var(--primary-light);
+        }
+
+        .accordion-icon {
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: white;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 3000px;
+        }
+
+        .accordion-text {
+            padding: 20px;
+            line-height: 1.8;
+        }
+
+        .accordion-text p {
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .accordion-text ul, .accordion-text ol {
+            margin: 15px 0 15px 25px;
+        }
+
+        .accordion-text li {
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+                .section-image {
+            display: block;
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            max-height: 520px;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        th {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:hover {
+            background: var(--bg-light);
+        }
+
+        .games-section {
+            background: linear-gradient(135deg, var(--accent) 0%, #f472b6 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        .games-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--text);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .game-card h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .game-card p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .game-btn {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .game-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        .highlight {
+            background: #fef08a;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--border);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-light);
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .warning-box {
+            background: #fee2e2;
+            border-left: 4px solid #dc2626;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            color: #991b1b;
+        }
+
+        .info-box {
+            background: #dbeafe;
+            border-left: 4px solid #0284c7;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            color: #0c2340;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            header {
+                padding: 30px 15px;
+                margin: 0 0 30px 0;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
+
+                /* ===================================================================
+           MODULES INTERACTIFS
+           Chaque module est un bloc jouable (illusion, test, quiz). A
+           l'impression il disparait et laisse la place a son equivalent
+           texte (.module-papier), pour que le PDF reste un document lisible.
+           =================================================================== */
+        .module {
+            border: 2px solid var(--primary-light);
+            border-radius: 12px;
+            background: #fff;
+            margin: 22px 0;
+            overflow: hidden;
+        }
+
+        .module-titre {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: .95rem;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .module-corps { padding: 18px 16px; }
+
+        .module-consigne {
+            font-size: .95rem;
+            color: var(--text-light);
+            margin-bottom: 14px;
+        }
+
+        .module-papier { display: none; }
+
+        .illu-cadre {
+            position: relative;
+            aspect-ratio: 4 / 3;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #f3f4f6;
+            border: 1px solid var(--border);
+        }
+
+        .illu-cadre iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        a.m-btn { text-decoration: none; display: inline-block; }
+
+        .scene {
+            background: #f3f4f6;
+            border-radius: 10px;
+            padding: 10px;
+            touch-action: none;
+        }
+
+        .scene svg { display: block; width: 100%; height: auto; }
+
+        .module-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .m-btn {
+            font: inherit;
+            font-size: .9rem;
+            font-weight: 600;
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: 2px solid var(--primary);
+            background: var(--primary);
+            color: #fff;
+            cursor: pointer;
+            transition: background .2s, color .2s;
+        }
+
+        .m-btn:hover { background: var(--primary-dark); border-color: var(--primary-dark); }
+
+        .m-btn.secondaire { background: #fff; color: var(--primary); }
+        .m-btn.secondaire:hover { background: var(--primary-light); }
+
+        .m-reponse {
+            margin-top: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid var(--primary);
+            background: var(--bg-light);
+            border-radius: 0 8px 8px 0;
+            font-size: .95rem;
+        }
+
+        .m-reponse[hidden] { display: none; }
+
+        /* --- Questions a choix ------------------------------------------- */
+        .q-bloc + .q-bloc { margin-top: 20px; border-top: 1px solid var(--border); padding-top: 20px; }
+        .q-enonce { font-weight: 600; margin-bottom: 12px; }
+        .q-choix { display: grid; gap: 8px; }
+
+        .q-opt {
+            font: inherit;
+            font-size: .93rem;
+            text-align: left;
+            padding: 11px 14px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: #fff;
+            color: var(--text);
+            cursor: pointer;
+            transition: border-color .15s, background .15s;
+        }
+
+        .q-opt:hover:not(:disabled) { border-color: var(--primary); background: var(--primary-light); }
+        .q-opt:disabled { cursor: default; }
+        .q-opt.juste  { border-color: #16a34a; background: #dcfce7; font-weight: 600; }
+        .q-opt.faux   { border-color: #dc2626; background: #fee2e2; }
+
+        .q-retour {
+            margin-top: 10px;
+            font-size: .92rem;
+            padding: 10px 12px;
+            border-radius: 8px;
+            background: var(--bg-light);
+            border-left: 3px solid var(--primary);
+        }
+
+        .q-retour[hidden] { display: none; }
+
+        .m-score {
+            margin-top: 16px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        /* --- Cadrage : la photo qu'on recadre ----------------------------- */
+        .cadrage-zone { position: relative; max-width: 420px; margin: 0 auto; }
+        .cadrage-zone img { display: block; width: 100%; border-radius: 8px; }
+        .cadrage-cache {
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            background: #e5e7eb;
+            border-radius: 0 0 8px 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-light);
+            font-size: .85rem; font-weight: 600;
+            transition: height .5s ease;
+        }
+
+        /* --- Minuteur des 2 secondes -------------------------------------- */
+        .chrono {
+            font-size: 2.6rem;
+            font-weight: 800;
+            text-align: center;
+            color: var(--primary);
+            margin: 8px 0 4px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ===================================================================
+           IMPRESSION / EXPORT PDF
+           Le document papier n'est pas la page web en noir et blanc :
+           - tous les accordeons sont ouverts (sinon le PDF sort vide) ;
+           - les photos et l'habillage d'interface disparaissent ;
+           - typographie de document : serif, noir sur blanc, sans aplats.
+           =================================================================== */
+                /* ===================================================================
+           IMPRESSION / EXPORT PDF
+           Le document papier n'est pas la page web en noir et blanc :
+           - tous les accordeons sont ouverts (sinon le PDF sortait vide) ;
+           - les photos et l'habillage d'interface disparaissent ;
+           - typographie de document : serif, noir sur blanc, sans aplats.
+           =================================================================== */
+        @media print {
+            @page {
+                size: A4;
+                margin: 18mm 16mm 20mm 16mm;
+            }
+
+            body {
+                background: #fff !important;
+                color: #000 !important;
+                font-family: Georgia, 'Times New Roman', serif;
+                font-size: 10.5pt;
+                line-height: 1.55;
+            }
+
+            .container { max-width: none; padding: 0; }
+
+            /* Document monochrome. Beaucoup de couleurs et d'aplats sont poses
+               en style= directement dans le HTML : on les neutralise tous d'un
+               coup, les regles de classe ci-dessous reposent ensuite les filets. */
+            *, *::before, *::after {
+                color: #000 !important;
+                background: none !important;
+                background-color: transparent !important;
+                box-shadow: none !important;
+                text-shadow: none !important;
+            }
+
+            /* Tout element mis en avant par un aplat devient un filet a gauche. */
+            .accordion-text [style*="background"],
+            .content [style*="background"] {
+                border-left: 2pt solid #000 !important;
+                border-radius: 0 !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 7pt 0 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            table { border-collapse: collapse; width: 100%; font-size: 9.5pt; }
+            th, td { border: 0.5pt solid #666 !important; padding: 3pt 5pt !important; }
+            th { font-weight: 700; }
+            .table-responsive { overflow: visible !important; }
+
+            .content {
+                background: none !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            /* --- Modules interactifs : le jeu disparait, le texte reste --- */
+            .module {
+                border: none !important;
+                border-radius: 0 !important;
+                margin: 8pt 0 !important;
+            }
+            .module-titre,
+            .module-corps { display: none !important; }
+            .module-papier {
+                display: block !important;
+                border-left: 2pt solid #000 !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 0 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* --- Hors sujet sur papier ------------------------------------ */
+            .action-buttons,
+            .games-section,
+            .accordion-icon,
+            .hero-image,
+            .section-image,
+            header::after {
+                display: none !important;
+            }
+
+            /* --- Bandeau de titre remis a plat ---------------------------- */
+            header {
+                background: none !important;
+                color: #000 !important;
+                margin: 0 0 14pt 0 !important;
+                padding: 0 0 8pt 0 !important;
+                border-bottom: 2pt solid #000;
+                border-radius: 0 !important;
+                text-align: left;
+            }
+            header h1 { font-size: 19pt; margin-bottom: 4pt; }
+            header p  { font-size: 10.5pt; opacity: 1; margin: 0; max-width: none; }
+
+            /* --- Chapeau et sommaire -------------------------------------- */
+            .intro,
+            .toc {
+                background: none !important;
+                border: none !important;
+                border-left: 2pt solid #000 !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 0 0 14pt 0 !important;
+                font-size: 10.5pt;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            .toc h2 {
+                font-size: 11.5pt;
+                border: none !important;
+                margin: 0 0 5pt 0 !important;
+                padding: 0 !important;
+            }
+            .toc ul { margin: 0 !important; padding: 0 0 0 12pt !important; }
+            .toc li { margin: 2pt 0 !important; }
+
+            /* --- Titres de partie ----------------------------------------- */
+            h2, .content h2 {
+                font-size: 14pt;
+                color: #000 !important;
+                border-bottom: 1pt solid #000;
+                padding-bottom: 3pt;
+                margin: 18pt 0 9pt 0 !important;
+                break-after: avoid;
+                page-break-after: avoid;
+            }
+
+            /* --- Accordeons : TOUS ouverts, sans chrome ------------------- */
+            .accordion-content,
+            .accordion-item.active .accordion-content {
+                max-height: none !important;
+                overflow: visible !important;
+                display: block !important;
+                background: none !important;
+            }
+
+            .accordion-item,
+            .accordion-item.active {
+                border: none !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                margin: 0 0 11pt 0 !important;
+                overflow: visible !important;
+            }
+
+            .accordion-header,
+            .accordion-item.active .accordion-header {
+                background: none !important;
+                color: #000 !important;
+                cursor: default;
+                display: block;
+                font-family: Georgia, 'Times New Roman', serif;
+                font-size: 11.5pt;
+                font-weight: 700;
+                padding: 0 0 3pt 0 !important;
+                border-bottom: 0.5pt solid #888;
+                break-after: avoid;
+                page-break-after: avoid;
+            }
+
+            .accordion-text { padding: 5pt 0 0 0 !important; line-height: 1.55; }
+
+            /* --- Neutralise les couleurs posees en style= dans le HTML ----- */
+            .accordion-text p,
+            .accordion-text li,
+            .accordion-text span,
+            .accordion-text strong,
+            .accordion-text em,
+            .intro, .intro *,
+            .toc a {
+                color: #000 !important;
+                background: none !important;
+                font-size: inherit !important;
+            }
+
+            /* Les paragraphes mis en avant par un aplat deviennent un filet */
+            .accordion-text p[style*="background"] {
+                border-left: 2pt solid #000 !important;
+                border-radius: 0 !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 7pt 0 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* --- Encadres : un filet, pas un aplat ------------------------ */
+            .warning-box,
+            .info-box,
+            .highlight-box,
+            .definition-box,
+            .key-point,
+            .card {
+                background: none !important;
+                border: none !important;
+                border-left: 2pt solid #000 !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 7pt 0 !important;
+                color: #000 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* --- Liens : l'adresse imprimee entre parentheses ------------- */
+            a { color: #000 !important; text-decoration: none; }
+            a[href^="http"]::after {
+                content: " (" attr(href) ")";
+                font-size: 8.5pt;
+                word-break: break-all;
+            }
+            .toc a::after { content: ""; }
+
+            ul, ol { margin-left: 14pt; }
+            li { margin-bottom: 2pt; }
+            p  { orphans: 3; widows: 3; margin-bottom: 6pt; }
+            table { break-inside: avoid; page-break-inside: avoid; }
+
+            footer {
+                border-top: 0.5pt solid #888;
+                margin-top: 16pt;
+                padding-top: 6pt;
+                font-size: 9pt;
+                color: #000 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Désinformation et Intelligence Artificielle</h1>
+        <p>Au-delà de la Fake News - Niveau 2</p>
+    </header>
+
+    <div class="container">
+        <img src="images/biais-cognitifs-illustration.jpg" alt="Désinformation" class="hero-image">
+
+        <div class="intro">
+            <strong>Objectif :</strong> Dépasser le concept de Fake News pour explorer les véritables mécanismes de désinformation et l'impact croissant de l'IA.
+        </div>
+
+        <div class="toc">
+            <h2>Table des matières</h2>
+            <ul>
+                <li><a href="#section-1">1. Critères de validation de l'information</a></li>
+                <li><a href="#section-2">2. Biais de cadrage et techniques</a></li>
+                <li><a href="#section-2c">3. Usages politiques de la désinformation</a></li>
+                <li><a href="#section-3">4. L'IA comme accélérateur</a></li>
+                <li><a href="#section-4">5. Jeux interactifs</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <h2 id="section-1">Critères pour Valider une Information</h2>
+
+            <div class="accordion-item active">
+                <div class="accordion-header">
+                    <span>Les 6 critères essentiels</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Critère</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Fiabilité de la source</strong></td>
+                                        <td>Vérifier la réputation et la crédibilité de la source. L'interlocuteur doit être une personne ou une entité reconnue et fiable.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Auteur identifié</strong></td>
+                                        <td>L'information doit être attribuée à un auteur clairement identifié, pas à des sources anonymes ou vagues.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Concordance avec d'autres sources</strong></td>
+                                        <td>Vérifier que plusieurs sources fiables rapportent la même information de manière cohérente.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Arguments factuels</strong></td>
+                                        <td>L'information doit s'appuyer sur des preuves, des données vérifiables, pas seulement des opinions.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Absence de biais évident</strong></td>
+                                        <td>Évaluer si la source a des intérêts financiers ou politiques qui pourraient biaiser son discours.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Contexte préservé</strong></td>
+                                        <td>L'information est présentée avec son contexte complet, sans manipulation ou troncage.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>La limite de ces critères</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 12px 0;"><strong>Ces critères ne sont pas fiables à 100 %.</strong></p>
+                        <p>Il faut avoir conscience qu'il s'agit <strong>d'indices avant tout</strong>, pour établir ce qui est vrai ou faux. Ce ne sont pas des preuves absolues.</p>
+                        <p>Une source réputée peut se tromper. Une information reprise par dix médias peut venir d'une seule dépêche erronée. Un inconnu peut avoir raison contre tout le monde. Les critères font pencher la balance, ils ne la bloquent pas.</p>
+                        <p>C'est une nuance importante : elle empêche de transformer une méthode de vérification en argument d'autorité.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Les limites du concept de Fake News</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Le concept de « Fake News » est <strong>flou</strong>, et c'est un problème quand on veut s'en servir pour penser.</p>
+                        <p>Il englobe des choses qui n'ont rien à voir. Le <strong>canular</strong>, par exemple : un article du Gorafi est faux, mais il ne cherche à tromper personne. Il annonce sa propre fiction.</p>
+                        <p>Il est également difficile de distinguer :</p>
+                        <ul>
+                            <li>la <strong>désinformation</strong>, qui est volontaire : quelqu'un sait que c'est faux et le diffuse quand même ;</li>
+                            <li>la <strong>mésinformation</strong>, qui ne l'est pas : la personne croit ce qu'elle partage.</li>
+                        </ul>
+                        <p>Or dans la très grande majorité des cas, celui qui partage est de bonne foi. Le mot « Fake News » met les deux dans le même sac, et transforme une erreur en mensonge. C'est aussi ce qui rend la discussion impossible.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="section-2" style="margin-top: 40px;">Biais de cadrage</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Comment orienter l'information sans Fake News</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Il est tout à fait possible d'orienter l'information sans créer de Fake News :</p>
+                        <ul>
+                            <li>Ne présenter que les informations qui nous intéressent</li>
+                            <li>Supprimer le contexte d'une vidéo ou d'une photo</li>
+                            <li>Choisir un angle de présentation qui favorise une interprétation</li>
+                        </ul>
+                        <div class="warning-box"><strong>Attention :</strong> C'est une forme de manipulation très courante sur les réseaux sociaux !
+                        </div>
+                        <img src="images/cadrage-piege-recadre.jpg" alt="Cadrage piégé" class="section-image">
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="section-2b" style="margin-top: 40px;">Techniques de Désinformation</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>L'Astroturfing</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p><strong>Astroturfing :</strong> Simulation d'un mouvement populaire pour influencer l'opinion publique.</p>
+                        <p>Exemple : Créer de faux comptes sur les réseaux sociaux pour donner l'impression qu'une opinion est largement partagée.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>La Fabrique du Doute (Agnotologie)</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p><strong>Fabrique du doute :</strong> Technique utilisée pour semer la confusion et noyer le poisson sur des sujets spécifiques.</p>
+                        <p>Exemple : Créer du doute sur le réchauffement climatique en opposant des « experts » non qualifiés, même quand le consensus scientifique est établi.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Le Mute News (Censure douce)</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p><strong>Mute News :</strong> Ne pas partager une information gênante ou inconfortable.</p>
+                        <p>C'est une forme de censure passive : on ne censure pas, on ignore simplement l'information.</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="module" data-module="techniques">
+                <div class="module-titre">À reconnaître : quelle technique est employée ?</div>
+                <div class="module-corps">
+                    <p class="module-consigne">Quatre situations. Astroturfing, fabrique du doute ou mute news&nbsp;?</p>
+                    <div id="tech-questions"></div>
+                    <div class="m-score" id="tech-score" hidden></div>
+                </div>
+                <div class="module-papier">
+                    <p><strong>Exercice sur les techniques.</strong> Quatre situations à rattacher à l'astroturfing (simuler un mouvement populaire), à la fabrique du doute (empêcher la conclusion plutôt que la contredire) ou aux mute news (le silence sur ce qui dérange).</p>
+                </div>
+            </div>
+
+            <h2 id="section-2c" style="margin-top: 40px;">Usages politiques de la désinformation</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>La désinformation comme prétexte</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>La désinformation et les théories du complot peuvent être utilisées <strong>comme prétexte à des actions politiques</strong>.</p>
+                        <p>Il suffit à un pays d'imaginer une théorie du complot le menaçant pour limiter la liberté d'expression, ou pour justifier une attaque contre l'État voisin. Le récit n'a pas besoin d'être vrai. Il a besoin d'être utile.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Déstabiliser un pays de l'intérieur</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>La désinformation sert aussi à déstabiliser les pays adverses. De deux manières :</p>
+                        <ul>
+                            <li>en propageant de la fausse information ;</li>
+                            <li>en provoquant des <strong>événements choquants et polarisants</strong>, ensuite amplifiés sur les réseaux sociaux.</li>
+                        </ul>
+                        <p>Les étoiles de David taguées sur des murs, les têtes de cochon déposées devant des mosquées : l'acte lui-même est minuscule à l'échelle d'un pays. C'est son amplification qui fait le travail, en donnant à chacun l'impression que la société se fracture.</p>
+                        <p><strong>La cible n'est pas l'information, c'est la cohésion.</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Quand c'est le dirigeant qui y croit</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>La croyance complotiste d'un dirigeant a des conséquences géopolitiques directes.</p>
+                        <p>La théorie du complot dite du <strong>« milliard d'or »</strong> imagine que les Occidentaux veulent s'accaparer les richesses du globe au détriment du reste du monde. Cette croyance a des répercussions sur les relations internationales et la politique étrangère : elle est l'une des raisons de l'attaque de Poutine sur l'Ukraine.</p>
+                        <p>On a l'habitude de traiter les théories du complot comme un problème de crédulité individuelle. C'est aussi, parfois, un facteur de guerre.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="section-3" style="margin-top: 40px;">L'intelligence artificielle, accélérateur de désinformation</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>L'IA et la génération de contenu</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p><strong>L'intelligence artificielle représente une rupture majeure dans la capacité à produire de la désinformation à grande échelle.</strong></p>
+
+                        <p style="margin-top: 20px; font-weight: 600; color: var(--primary);">Deepfakes (vidéos manipulées)</p>
+                        <ul>
+                            <li>Il est désormais pratiquement <strong>impossible de distinguer à l'œil nu</strong> une photographie générée par IA d'une vraie photographie</li>
+                            <li>L'IA peut générer des vidéos convaincantes de personnalités publiques disant ou faisant des choses qu'elles n'ont jamais faites</li>
+                        </ul>
+
+                        <p style="margin-top: 20px; font-weight: 600; color: var(--primary);">Faux profils et comptes</p>
+                        <ul>
+                            <li>L'IA permet de générer automatiquement des profils crédibles (faux comptes dotés d'une identité, d'une histoire)</li>
+                            <li>Création de conversations et de commentaires automatisés qui semblent venir de vraies personnes</li>
+                        </ul>
+
+                        <div class="info-box">
+                            ℹ<strong>Impact :</strong> La désinformation peut être produite à grande échelle, très rapidement et avec un coût minimal.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>L'IA au service de l'astroturfing</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Au-delà de l'image fixe, l'IA permet de générer automatiquement des <strong>profils en ligne crédibles</strong> : de faux comptes dotés d'une identité, d'une histoire, et même d'un visage synthétique. En masse, et à moindre coût.</p>
+                        <p>Cela accélère considérablement l'<strong>astroturfing</strong>. Des milliers de faux comptes peuvent coordonner leurs actions pour faire croire qu'une opinion marginale est en réalité majoritaire, influencer les algorithmes, ou inonder les espaces de discussion.</p>
+                        <p>Ce n'est pas une technique nouvelle. C'est l'échelle qui change, et l'échelle change tout : ce qui demandait une équipe demande désormais un script.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Le dividende du menteur</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>L'IA introduit un problème symétrique, et tout aussi inquiétant : il est désormais possible de <strong>nier la réalité d'une vraie vidéo</strong> en affirmant qu'il s'agit d'un deepfake.</p>
+                        <p>Un dirigeant politique, une organisation ou un individu pris en flagrant délit peut se réfugier derrière le doute technologique pour rejeter des preuves authentiques.</p>
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 12px 0;">C'est ce que les chercheurs appellent le <strong>« dividende du menteur »</strong> : plus les faux deviennent crédibles, plus il devient facile de disqualifier les vrais.</p>
+                        <p>Le premier réflexe face aux deepfakes est de se dire qu'il faut douter de tout. C'est exactement ce que ce mécanisme exploite.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Ne pas basculer dans le relativisme</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Face à ces défis, il est essentiel de <strong>ne pas basculer dans un relativisme total</strong> où toute image et toute vidéo seraient par définition suspectes.</p>
+                        <p>Les vraies images et les vraies vidéos existent toujours. Une photographie authentique reste une photographie authentique, et le fait qu'un faux soit possible ne rend pas le vrai douteux.</p>
+                        <p>Le doute est un outil. Généralisé sans méthode, il ne protège de rien : il rend simplement toute preuve inutile, ce qui arrange précisément ceux qui mentent.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Comment se protéger de la désinformation par IA</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Stratégies de défense :</p>
+                        <ul>
+                            <li><strong>Vérifier les sources :</strong> Toujours vérifier d'où vient une information</li>
+                            <li><strong>Utiliser le fact-checking :</strong> Consulter des sites spécialisés qui vérifient les informations</li>
+                            <li><strong>Activer l'esprit critique :</strong> Reconsidérer avant de partager</li>
+                            <li><strong>Comprendre les mécanismes :</strong> Connaître les techniques de désinformation aide à les reconnaître</li>
+                            <li><strong>Éduquer son réseau :</strong> Partager cette connaissance avec nos proches</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="module" data-module="meso">
+                <div class="module-titre">À distinguer : désinformation ou mésinformation ?</div>
+                <div class="module-corps">
+                    <p class="module-consigne">La différence ne tient pas au contenu, elle tient à l'intention de celui qui partage.</p>
+                    <div id="meso-questions"></div>
+                    <div class="m-score" id="meso-score" hidden></div>
+                </div>
+                <div class="module-papier">
+                    <p><strong>Exercice désinformation ou mésinformation.</strong> Quatre cas où le contenu partagé est identique, et où seule change la connaissance qu'en avait celui qui l'a diffusé. C'est cette différence que le mot « Fake News » efface.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="games-section">
+            <h3 id="section-4">Mettez-Vous à l'Épreuve</h3>
+            <p style="margin-bottom: 20px;">Testez votre compréhension avec ces jeux interactifs :</p>
+
+            <div class="games-grid">
+                <div class="game-card">
+                    <h4>Brick Breaker Quiz</h4>
+                    <p>Casse-briques à thème : détruisez les blocs en répondant aux questions !</p>
+                    <a href="https://antoninatger.github.io/jeux/Arcade%20quizz/brick-breaker-quiz.html?serie=niveau2" class="game-btn" target="_blank" rel="noopener">Jouer </a>
+                </div>
+
+                <div class="game-card">
+                    <h4>Fake Blaster</h4>
+                    <p>Jeu de tir pour éliminer les Fake News et la désinformation !</p>
+                    <a href="https://antoninatger.github.io/jeux/Arcade%20quizz/fake-blaster.html?serie=niveau2" class="game-btn" target="_blank" rel="noopener">Jouer </a>
+                </div>
+
+                <div class="game-card">
+                    <h4>QCM Désinformation</h4>
+                    <p>Questions à choix multiples spécialisées dans ce niveau.</p>
+                    <a href="https://antoninatger.github.io/jeux/Arcade%20quizz/qcm-classique.html?serie=niveau2" class="game-btn" target="_blank" rel="noopener">Jouer </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="window.print()">Exporter en PDF</button>
+            <a href="index.html" class="btn btn-secondary">Les autres bilans</a>
+            <a href="../" class="btn btn-secondary">Menu principal</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>Créé par <strong>Antonin Atger</strong> | Collection de jeux pédagogiques sur l'esprit critique</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">Ressources : Jeux Arcade, Médiathèque du Cours</p>
+    </footer>
+
+    <script>
+        /* ===================================================================
+           MODULES INTERACTIFS
+           =================================================================== */
+
+        /* --- Boutons « Voir la reponse » ---------------------------------- */
+        document.querySelectorAll('[data-reveler]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var cible = document.getElementById(btn.dataset.reveler);
+                cible.hidden = !cible.hidden;
+                btn.textContent = cible.hidden ? 'Voir la réponse' : 'Masquer la réponse';
+            });
+        });
+
+
+
+        /* --- Questionnaires ------------------------------------------------ */
+        function construireQuiz(conteneurId, scoreId, questions, bilan) {
+            bilan = bilan || {
+                parfait: 'Sans faute. Le mode analytique a bien pris la main.',
+                imparfait: 'La réponse qui vient en premier n’est pas toujours la bonne : c’est tout le sujet.'
+            };
+            var zone = document.getElementById(conteneurId);
+            if (!zone) return;
+            var repondues = 0, justes = 0;
+
+            questions.forEach(function (q, i) {
+                var bloc = document.createElement('div');
+                bloc.className = 'q-bloc';
+
+                var enonce = document.createElement('p');
+                enonce.className = 'q-enonce';
+                enonce.textContent = (i + 1) + '. ' + q.enonce;
+                bloc.appendChild(enonce);
+
+                var choix = document.createElement('div');
+                choix.className = 'q-choix';
+
+                var retour = document.createElement('div');
+                retour.className = 'q-retour';
+                retour.hidden = true;
+
+                q.options.forEach(function (opt, j) {
+                    var b = document.createElement('button');
+                    b.type = 'button';
+                    b.className = 'q-opt';
+                    b.textContent = opt;
+                    b.addEventListener('click', function () {
+                        if (bloc.dataset.fait) return;
+                        bloc.dataset.fait = '1';
+                        repondues++;
+                        if (j === q.bonne) justes++;
+                        choix.querySelectorAll('.q-opt').forEach(function (autre, k) {
+                            autre.disabled = true;
+                            if (k === q.bonne) autre.classList.add('juste');
+                            else if (k === j) autre.classList.add('faux');
+                        });
+                        retour.innerHTML = q.explication;
+                        retour.hidden = false;
+                        if (repondues === questions.length) {
+                            var s = document.getElementById(scoreId);
+                            s.textContent = justes + ' / ' + questions.length + '. ' +
+                                (justes === questions.length ? bilan.parfait : bilan.imparfait);
+                            s.hidden = false;
+                        }
+                    });
+                    choix.appendChild(b);
+                });
+
+                bloc.appendChild(choix);
+                bloc.appendChild(retour);
+                zone.appendChild(bloc);
+            });
+        }
+
+
+        construireQuiz('tech-questions', 'tech-score', [
+            {
+                enonce: 'Trois mille comptes créés le même mois publient le même avis, avec des formulations légèrement différentes, sur un sujet de société.',
+                options: ['Astroturfing', 'Fabrique du doute', 'Mute news'],
+                bonne: 0,
+                explication: '<strong>Astroturfing.</strong> Simulation d’un mouvement populaire. Le but n’est pas de convaincre par l’argument, mais de faire croire qu’une opinion est déjà majoritaire, pour que chacun s’y rallie.'
+            },
+            {
+                enonce: 'Sur un sujet où le consensus scientifique est établi, un plateau invite systématiquement « un scientifique pour, un scientifique contre ».',
+                options: ['Astroturfing', 'Fabrique du doute', 'Mute news'],
+                bonne: 1,
+                explication: '<strong>Fabrique du doute.</strong> Personne n’affirme que le consensus est faux : on donne simplement l’image d’un débat encore ouvert. Il n’est pas nécessaire de gagner, il suffit d’empêcher de conclure.'
+            },
+            {
+                enonce: 'Un rapport important sort. Aucune rédaction ne le reprend. Rien n’est démenti, rien n’est censuré : il n’en est simplement pas question.',
+                options: ['Astroturfing', 'Fabrique du doute', 'Mute news'],
+                bonne: 2,
+                explication: '<strong>Mute news.</strong> Ne pas parler, ou peu parler, de certaines informations. C’est la plus discrète des trois, parce qu’il n’y a rien à démentir : il n’y a rien.'
+            },
+            {
+                enonce: 'Une entreprise finance des études aux protocoles faibles, puis les cite comme preuve que « la science est partagée » sur la nocivité de son produit.',
+                options: ['Astroturfing', 'Fabrique du doute', 'Mute news'],
+                bonne: 1,
+                explication: '<strong>Fabrique du doute.</strong> C’est le cas d’école, celui du tabac puis des pesticides. L’objectif n’est pas de prouver l’innocuité, il est de retarder la décision.'
+            }
+        ], {
+            parfait: 'Sans faute. Aucune de ces trois techniques n’a besoin de mentir pour fonctionner.',
+            imparfait: 'Le point commun des trois : aucune n’exige de produire un mensonge. Elles agissent sur le nombre, sur le doute, ou sur le silence.'
+        });
+
+        construireQuiz('meso-questions', 'meso-score', [
+            {
+                enonce: 'Une grand-mère partage un message alarmiste sur un médicament. Elle le croit vrai et veut protéger sa famille.',
+                options: ['Désinformation', 'Mésinformation'],
+                bonne: 1,
+                explication: '<strong>Mésinformation.</strong> Elle se trompe, elle ne ment pas. C’est le cas le plus fréquent, et de très loin. Le traiter comme un mensonge ferme la discussion au lieu de l’ouvrir.'
+            },
+            {
+                enonce: 'Une agence est payée pour diffuser un chiffre qu’elle sait faux, afin de faire baisser la confiance dans une institution.',
+                options: ['Désinformation', 'Mésinformation'],
+                bonne: 0,
+                explication: '<strong>Désinformation.</strong> L’intention est là : on sait que c’est faux, et c’est pour cela qu’on le diffuse.'
+            },
+            {
+                enonce: 'Un site parodique publie un article inventé, signalé comme tel. Un lecteur le partage sans voir la mention.',
+                options: ['Désinformation', 'Mésinformation'],
+                bonne: 1,
+                explication: '<strong>Mésinformation.</strong> Le site ne trompe personne, il annonce sa fiction. C’est le partage hors contexte qui crée l’erreur. Le canular montre bien pourquoi le mot « Fake News » est trop large.'
+            },
+            {
+                enonce: 'Un responsable relaie une information qu’un conseiller lui a signalée comme non vérifiée, parce qu’elle sert son propos.',
+                options: ['Désinformation', 'Mésinformation'],
+                bonne: 0,
+                explication: '<strong>Désinformation.</strong> Il ne sait pas que c’est faux, mais il sait que ce n’est pas vérifié, et il choisit de le dire quand même. L’indifférence à la vérité suffit.'
+            }
+        ], {
+            parfait: 'Sans faute. Le contenu ne dit rien de l’intention : c’est pourtant elle qui change tout.',
+            imparfait: 'Une même information peut être de la désinformation chez l’un et de la mésinformation chez l’autre. C’est la personne qui partage qui fait la différence, pas le message.'
+        });
+
+        /* --- Accordeons -----------------------------------------------------
+           La hauteur ouverte est mesuree puis relachee a « none » : les
+           modules interactifs font grandir leur contenu apres coup (reponse
+           depliee, retour d'un quiz) et un plafond fixe les couperait. */
+        const accordionItems = document.querySelectorAll('.accordion-item');
+
+        function ouvrirAccordeon(item) {
+            const c = item.querySelector('.accordion-content');
+            item.classList.add('active');
+            c.style.maxHeight = c.scrollHeight + 'px';
+            c.addEventListener('transitionend', function fini(e) {
+                if (e.propertyName !== 'max-height') return;
+                c.removeEventListener('transitionend', fini);
+                if (item.classList.contains('active')) c.style.maxHeight = 'none';
+            });
+        }
+
+        function fermerAccordeon(item) {
+            const c = item.querySelector('.accordion-content');
+            c.style.maxHeight = c.scrollHeight + 'px';
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                item.classList.remove('active');
+                c.style.maxHeight = '0px';
+            }));
+        }
+
+        accordionItems.forEach(item => {
+            item.querySelector('.accordion-header').addEventListener('click', () => {
+                /* Chaque accordeon est independant. Refermer automatiquement les
+                   autres faisait remonter d'un coup tout ce qui etait au-dessus,
+                   et la page paraissait sauter. Ici seul le bloc clique bouge,
+                   et il grandit sous son propre titre : rien ne se deplace. */
+                if (item.classList.contains('active')) fermerAccordeon(item);
+                else ouvrirAccordeon(item);
+            });
+        });
+
+
+        document.querySelectorAll('.toc a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Le premier accordeon est ouvert d'entree
+        if (accordionItems.length > 0) {
+            accordionItems[0].classList.remove('active');
+            ouvrirAccordeon(accordionItems[0]);
+        }
+    </script>
+</body>
+</html>

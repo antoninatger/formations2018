@@ -1,0 +1,13 @@
+# Ce depot est PUBLIC : seul docs\ (le site) part en ligne.
+# Garde-fous : meme deposes ici, ces fichiers ne partiront jamais.
+videos-legeres/
+*.bat
+*.ps1
+*.sh
+*.py
+*.env
+*.xlsx
+*.docx
+*.pptx
+preparer-le-site.js
+LISEZ-MOI.txt

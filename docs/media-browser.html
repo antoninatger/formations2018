@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Médiathèque — toutes les formations</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts/polices.css">
+<style>
+:root{
+  --bg:#111827; --bg2:#0b1220; --panel:#1c2536; --panel2:#232f45;
+  --acc:#a78bfa; --acc2:#22d3ee; --ok:#3ecf8e; --ko:#f75f5f;
+  --tx:#eef2fb; --mu:#93a1bd; --bord:rgba(255,255,255,.1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:'Nunito',sans-serif; color:var(--tx); background:var(--bg); min-height:100vh;
+  background-image:radial-gradient(ellipse at 20% -10%, rgba(34,211,238,.12) 0%, transparent 55%),
+                    radial-gradient(ellipse at 90% 110%, rgba(167,139,250,.12) 0%, transparent 55%);
+}
+h1,h2,h3{font-family:'Baloo 2',cursive;}
+a{color:inherit;}
+button{font-family:'Nunito',sans-serif;}
+
+header{position:sticky; top:0; z-index:5; background:rgba(11,18,32,.94); border-bottom:1px solid var(--bord);
+  backdrop-filter:blur(6px); padding:14px 20px;}
+header .row1{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+header h1{font-size:1.2rem;color:var(--acc);}
+header .back{font-size:.85rem;color:var(--mu);text-decoration:none;border:1px solid var(--bord);border-radius:10px;padding:6px 12px;}
+header .back:hover{border-color:var(--acc2);}
+
+/* Le bandeau du dossier : il NOMME le dossier connecté, il ne dit pas seulement qu'il y en
+   a un — même leçon que le bandeau de l'atelier, où « connecté » a un jour désigné l'autre
+   copie du dépôt. */
+.bandeau{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:12px;
+  background:var(--panel);border:1px solid var(--bord);border-radius:12px;padding:9px 14px;font-size:.85rem;}
+.bandeau .etat{font-weight:700;}
+.bandeau.vert .etat{color:var(--ok);}
+.bandeau.gris .etat{color:var(--mu);}
+.bandeau.orange{border-color:rgba(247,159,95,.5);}
+.bandeau.orange .etat{color:#f7a35f;}
+.bandeau .explique{color:var(--mu);flex:1;min-width:200px;}
+.bandeau button{background:var(--panel2);border:1px solid var(--bord);color:var(--tx);border-radius:10px;
+  padding:7px 14px;font-size:.85rem;font-weight:700;cursor:pointer;}
+.bandeau button:hover{border-color:var(--acc2);}
+
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;align-items:center;}
+.filters label{font-size:.78rem;color:var(--mu);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-right:2px;}
+.chip{background:var(--panel);border:1px solid var(--bord);color:var(--tx);border-radius:20px;padding:6px 14px;
+  font-size:.85rem;font-weight:700;cursor:pointer;user-select:none;}
+.chip.active{background:linear-gradient(135deg,var(--acc),#7c5ce0);color:#160a2e;border-color:transparent;}
+.chip:hover:not(.active){border-color:var(--acc2);}
+.search{flex:1;min-width:180px;}
+.search input{width:100%;background:var(--panel2);border:1px solid var(--bord);color:var(--tx);border-radius:10px;
+  padding:8px 12px;font-size:.9rem;font-family:'Nunito',sans-serif;}
+.barre-bas{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-top:10px;}
+.count{font-size:.78rem;color:var(--mu);}
+.ajouter{background:linear-gradient(135deg,var(--acc),#7c5ce0);border:none;color:#160a2e;border-radius:10px;
+  padding:9px 18px;font-size:.88rem;font-weight:800;cursor:pointer;}
+.ajouter[disabled]{background:var(--panel2);color:var(--mu);cursor:not-allowed;}
+/* Le message des actions : ce qui a été écrit, ou ce qui a été refusé et pourquoi. Une
+   action muette est une action qu'on refera. */
+.message{flex:1;min-width:240px;font-size:.85rem;color:var(--acc2);min-height:1.2em;}
+
+main{padding:20px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px;}
+.card{background:var(--panel);border:1px solid var(--bord);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;
+  /* Sans align-self, une palette depliee etirerait toutes les cartes de sa rangee. */
+  align-self:start;}
+.card.neuf{border-color:var(--ok);}
+.card .thumb,.sas-card .thumb{width:100%;aspect-ratio:4/3;background:#05070c;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.card .thumb img,.card .thumb video,
+.sas-card .thumb img,.sas-card .thumb video{width:100%;height:100%;object-fit:contain;}
+.card .meta{padding:10px 12px;display:flex;flex-direction:column;gap:6px;}
+.card .fname{font-size:.8rem;font-weight:700;word-break:break-all;}
+.card .flabel{font-size:.7rem;color:var(--acc2);font-weight:700;}
+.card .badge-neuf{font-size:.7rem;font-weight:800;color:var(--ok);}
+
+/* Les étiquettes d'un média : celles qu'il porte, puis « + » qui ouvre le vocabulaire
+   EXISTANT avant le champ libre. Un champ libre seul produit « IA », « ia generative » et
+   « images IA » en trois semaines, et le classement ne sert plus à rien. */
+.etiq-zone{display:flex;flex-wrap:wrap;gap:4px;align-items:center;}
+.etiq{background:rgba(167,139,250,.18);border:1px solid rgba(167,139,250,.45);color:var(--tx);
+  border-radius:14px;padding:2px 9px;font-size:.72rem;font-weight:700;cursor:pointer;}
+.etiq:hover{border-color:var(--ko);}
+.etiq-vide{font-size:.72rem;color:var(--mu);}
+.etiq-plus{background:var(--panel2);border:1px solid var(--bord);color:var(--tx);border-radius:14px;
+  padding:2px 9px;font-size:.72rem;font-weight:800;cursor:pointer;}
+.etiq-plus:hover{border-color:var(--acc2);}
+.palette{flex-basis:100%;display:flex;flex-wrap:wrap;gap:4px;padding-top:4px;border-top:1px dashed var(--bord);}
+/* display:flex l'emporterait sur le display:none que le navigateur donne a [hidden] : sans
+   cette ligne, toutes les palettes des 247 cartes s'ouvrent en meme temps. */
+.palette[hidden]{display:none;}
+.palette button{background:var(--panel2);border:1px solid var(--bord);color:var(--tx);border-radius:14px;
+  padding:2px 9px;font-size:.72rem;font-weight:700;cursor:pointer;}
+.palette button.allumee{background:rgba(167,139,250,.3);border-color:var(--acc);}
+.palette input{flex:1;min-width:110px;background:var(--panel2);border:1px solid var(--bord);color:var(--tx);
+  border-radius:10px;padding:3px 8px;font-size:.72rem;font-family:'Nunito',sans-serif;}
+/* Une étiquette que SEULS CERTAINS fichiers du lot portent : ni allumée ni éteinte. Sans
+   ce troisième état, le bouton mentirait dans un sens ou dans l'autre. */
+.palette button.partielle{border-style:dashed;border-color:var(--acc);}
+.empty{color:var(--mu);text-align:center;padding:60px 20px;font-size:1rem;}
+
+/* ── Le sas : ce qui vient d'être déposé, et n'est pas encore entré ──────────────────
+   Il occupe le haut de la page et se voit de loin : tant qu'il est là, rien n'a été
+   écrit, et c'est ce qu'on veut lire avant tout le reste. */
+.sas{border:2px solid rgba(34,211,238,.55);border-radius:16px;padding:16px 18px;margin-bottom:24px;
+  background:linear-gradient(180deg,rgba(34,211,238,.12),rgba(34,211,238,.02));
+  box-shadow:0 0 0 4px rgba(34,211,238,.06);}
+.sas[hidden]{display:none;}
+.sas-tete{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;}
+.sas-tete h2{font-size:1.05rem;color:var(--acc2);}
+.sas-boutons{display:flex;flex-wrap:wrap;gap:8px;}
+.sas-boutons .valider{background:linear-gradient(135deg,var(--acc2),#0ea5b7);border:none;color:#04222a;
+  border-radius:10px;padding:9px 18px;font-size:.88rem;font-weight:800;cursor:pointer;}
+.sas-boutons .annuler{background:var(--panel2);border:1px solid var(--bord);color:var(--tx);border-radius:10px;
+  padding:9px 16px;font-size:.88rem;font-weight:700;cursor:pointer;}
+.sas-boutons .annuler:hover{border-color:var(--ko);}
+.sas-explique{font-size:.85rem;color:var(--mu);margin-top:8px;}
+.sas-refus{font-size:.85rem;color:#f7a35f;margin-top:8px;}
+.sas-lot{margin-top:14px;background:var(--panel);border:1px solid var(--bord);border-radius:12px;padding:10px 14px;}
+.sas-lot .titre{font-size:.75rem;font-weight:800;color:var(--mu);text-transform:uppercase;letter-spacing:.5px;
+  margin-bottom:6px;}
+.sas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:14px;}
+.sas-card{background:var(--panel);border:1px solid rgba(34,211,238,.4);border-radius:14px;overflow:hidden;
+  display:flex;flex-direction:column;align-self:start;}
+.sas-card.refuse{border-color:var(--ko);}
+.sas-card .meta{padding:10px 12px;display:flex;flex-direction:column;gap:6px;}
+.sas-card .fname{font-size:.8rem;font-weight:700;word-break:break-all;}
+.sas-card .motif{font-size:.75rem;font-weight:700;color:var(--ko);}
+.sas-card .retirer{align-self:flex-start;background:none;border:none;color:var(--mu);font-size:.75rem;
+  font-weight:700;cursor:pointer;padding:0;text-decoration:underline;}
+.sas-card .retirer:hover{color:var(--ko);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="row1">
+    <h1>Médiathèque</h1>
+    <a class="back" href="index.html">← Retour à l'index des formations</a>
+  </div>
+
+  <div class="bandeau gris" id="bandeau">
+    <span class="etat" id="bandeau-etat">Dossier non connecté</span>
+    <span class="explique" id="bandeau-explique"></span>
+    <button type="button" id="btn-connect">Connecter le dossier Cours</button>
+  </div>
+
+  <div class="filters" id="filtres-formation">
+    <label>Formation</label>
+    <!-- pastilles injectées en JS -->
+  </div>
+  <div class="filters" id="filtres-etiquette">
+    <label>Étiquette</label>
+    <!-- pastilles injectées en JS -->
+  </div>
+  <div class="filters">
+    <label>Type</label>
+    <span class="chip active" data-type="tout">Tout</span>
+    <span class="chip" data-type="image">Images</span>
+    <span class="chip" data-type="video">Vidéos</span>
+    <div class="search"><input type="text" id="search-input" placeholder="Filtrer par nom de fichier…"></div>
+    <button type="button" class="ajouter" id="btn-ajouter" disabled>Ajouter des médias</button>
+    <input type="file" id="fichiers" multiple accept="image/*,video/*" hidden>
+  </div>
+  <div class="barre-bas">
+    <span class="count" id="count"></span>
+    <span class="message" id="message" role="status"></span>
+  </div>
+</header>
+
+<main>
+  <!-- Le sas. Vide, il n'existe pas ; plein, il passe avant la grille. -->
+  <section class="sas" id="sas" hidden aria-label="Fichiers en attente de classement">
+    <div class="sas-tete">
+      <h2 id="sas-titre"></h2>
+      <div class="sas-boutons">
+        <button type="button" class="valider" id="sas-valider"></button>
+        <button type="button" class="annuler" id="sas-annuler">Tout annuler</button>
+      </div>
+    </div>
+    <p class="sas-explique" id="sas-explique"></p>
+    <p class="sas-refus" id="sas-refus" hidden></p>
+    <div class="sas-lot" id="sas-lot" hidden><!-- étiquetage du lot entier, injecté en JS --></div>
+    <div class="sas-grid" id="sas-grid"></div>
+  </section>
+
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" style="display:none;">Aucun média ne correspond à ces filtres.</div>
+</main>
+
+<script src="media-manifest.js"></script>
+<script src="admin/storage.js"></script>
+<script>
+/* ═══ La médiathèque : la bibliothèque de médias, pas une vue sur les formations ═══
+   Avant le 6 septembre, cette page ne savait que MONTRER, et seulement ce que
+   media-manifest.js — engendré, donc parfois en retard — voulait bien lister formation par
+   formation. Pour ajouter une photo au fonds commun il fallait passer par l'éditeur d'une
+   diapo, ce qui la posait du même coup DANS une formation : impossible d'enrichir la
+   médiathèque sans décider tout de suite où le média servirait.
+
+   Trois règles, les mêmes que dans l'éditeur :
+     — le dossier connecté fait foi sur la liste ; le manifeste ne sert qu'à l'appoint et à
+       l'information « utilisée dans » ;
+     — AJOUTER N'ÉCRIT QUE DANS medias/. Aucune formation n'est touchée, aucun index.html
+       n'est réécrit : un média ajouté ici est disponible partout et engagé nulle part ;
+     — toute écriture est relue avant d'être annoncée, et tout refus dit son motif.
+
+   Depuis le 6 septembre, un fichier déposé ne file plus droit dans la liste : il s'arrête
+   dans le SAS, en haut de la page, où on le voit en grand et où on le classe — seul ou
+   avec tout son lot — avant de l'y faire entrer. Rien n'est écrit tant qu'on n'a pas
+   validé. */
+(function () {
+  var Storage = window.CoursAdmin && window.CoursAdmin.Storage;
+  var RACINE_MEDIAS = 'medias/';
+  var SOUS_DOSSIERS = [['images', 'image'], ['video', 'video']];
+  var CLE_DERNIER = 'cours-admin-dernier-dossier'; // la même que l'atelier : un seul dossier de référence
+
+  var etat = { recherche: '', type: 'tout', etiquette: '*', formation: '*' };
+  var medias = [];
+  var source = 'aucune';
+  var usagesConnus = false;
+  var formations = [];
+  var etiq = { obj: null, table: {}, lisible: false, inscriptible: false };
+  var vocabulaire = [];
+  var forcerDossier = false; // mis à vrai par « Je sais ce que je fais »
+  // Quelles palettes « + » sont dépliées, et quelle saisie libre reprendre la main après
+  // le redessin : sans ça, étiqueter un lot referme la palette à chaque étiquette posée.
+  var palettesOuvertes = new Set();
+  var refocaliser = '';
+
+  var el = function (id) { return document.getElementById(id); };
+  function dire(texte) { el('message').textContent = texte || ''; }
+
+  // ── La liste des médias ────────────────────────────────────────────────────────────
+  function nomCourtFormation(id) {
+    return String(id).replace(/^formation-fake-news-/, '').replace(/^formation-/, '');
+  }
+
+  // Un même fichier est listé sous chaque formation qui s'en sert : c'est le but du dossier
+  // commun. On le replie sur une seule entrée, en gardant la liste de ses utilisateurs.
+  function mediasDuManifeste(man) {
+    var par = new Map();
+    (man.formations || []).forEach(function (f) {
+      var ajouter = function (nom, sous, type) {
+        var cle = sous + '/' + nom;
+        var m = par.get(cle);
+        if (!m) { m = { nom: nom, type: type, cle: cle, chemin: RACINE_MEDIAS + cle, usages: [] }; par.set(cle, m); }
+        if (f.id !== '_orphelins' && m.usages.indexOf(nomCourtFormation(f.id)) === -1) {
+          m.usages.push(nomCourtFormation(f.id));
+        }
+      };
+      (f.images || []).forEach(function (n) { ajouter(n, 'images', 'image'); });
+      (f.videos || []).forEach(function (n) { ajouter(n, 'video', 'video'); });
+    });
+    return Array.from(par.values());
+  }
+
+  // Le dossier connecté, quand il l'est : listage réel, donc à jour pour un fichier ajouté
+  // il y a une minute — ce que le manifeste, engendré, ne peut pas savoir.
+  async function listerMediasDuDossier() {
+    if (!Storage || !Storage.isConnected()) return null;
+    var liste = [];
+    for (var i = 0; i < SOUS_DOSSIERS.length; i++) {
+      var sous = SOUS_DOSSIERS[i][0], type = SOUS_DOSSIERS[i][1];
+      var noms = await Storage.listFiles(['medias', sous]);
+      if (noms === null) return null; // navigateur sans entries() : on se rabat sur le manifeste
+      noms.forEach(function (nom) {
+        liste.push({ nom: nom, type: type, cle: sous + '/' + nom, chemin: RACINE_MEDIAS + sous + '/' + nom, usages: [] });
+      });
+    }
+    return liste;
+  }
+
+  async function chargerMedias() {
+    var man = window.COURS_MEDIA || null;
+    formations = man ? (man.formations || []).filter(function (f) { return f.id !== '_orphelins'; }) : [];
+    var duManifeste = man ? mediasDuManifeste(man) : [];
+    var usages = new Map(duManifeste.map(function (m) { return [m.cle, m.usages]; }));
+    var duDossier = await listerMediasDuDossier();
+    if (duDossier) duDossier.forEach(function (m) { m.usages = usages.get(m.cle) || []; });
+    medias = (duDossier && duDossier.length) ? duDossier : duManifeste;
+    medias.sort(function (a, b) { return a.cle.localeCompare(b.cle); });
+    source = (duDossier && duDossier.length) ? 'dossier' : (man ? 'manifeste' : 'aucune');
+    usagesConnus = !!man;
+  }
+
+  // ── Les étiquettes ─────────────────────────────────────────────────────────────────
+  // medias/etiquettes.json est LA source de vérité : versionnée, lisible à l'œil,
+  // indépendante de media-manifest.js — lequel reste engendré et ne doit jamais être édité
+  // à la main. En file:// il n'est lisible QUE par le dossier connecté : fetch y est interdit.
+  async function lireEtiquettes() {
+    if (Storage && Storage.isConnected()) {
+      try {
+        var texte = await Storage.readText(['medias', 'etiquettes.json']);
+        var obj = JSON.parse(texte);
+        return { obj: obj, table: obj.etiquettes || {}, lisible: true, inscriptible: true };
+      } catch (e) {
+        return { obj: null, table: {}, lisible: false, inscriptible: true };
+      }
+    }
+    if (location.protocol === 'file:') return { obj: null, table: {}, lisible: false, inscriptible: false };
+    try {
+      var r = await fetch(RACINE_MEDIAS + 'etiquettes.json', { cache: 'no-store' });
+      if (!r.ok) throw new Error('http ' + r.status);
+      var o = await r.json();
+      return { obj: o, table: o.etiquettes || {}, lisible: true, inscriptible: false };
+    } catch (e) {
+      return { obj: null, table: {}, lisible: false, inscriptible: false };
+    }
+  }
+
+  // Une écriture annoncée est une écriture relue : on repasse par le fichier et on compare
+  // avant de dire que l'étiquette est enregistrée.
+  async function ecrireEtiquettes(obj) {
+    if (!Storage || !Storage.isConnected()) return false;
+    try {
+      var texte = JSON.stringify(obj, null, 1);
+      await Storage.writeText(['medias', 'etiquettes.json'], texte);
+      var relu = await Storage.readText(['medias', 'etiquettes.json']);
+      return relu === texte;
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
+  }
+
+  function recalculerVocabulaire() {
+    var vus = new Set();
+    Object.keys(etiq.table).forEach(function (k) {
+      (etiq.table[k] || []).forEach(function (t) { vus.add(t); });
+    });
+    vocabulaire = Array.from(vus).sort(function (a, b) { return a.localeCompare(b); });
+  }
+
+  async function basculerEtiquette(m, nom) {
+    var propre = String(nom || '').trim();
+    if (!propre) return;
+    if (!etiq.inscriptible) {
+      dire('Le dossier Cours n’est pas connecté : le classement ne peut pas être enregistré. '
+        + 'Connectez-le d’abord. Rien n’a été modifié.');
+      return;
+    }
+    var obj = etiq.obj || { note: 'Etiquettes des medias. Un media peut porter plusieurs etiquettes, ou aucune.', etiquettes: {} };
+    if (!obj.etiquettes) obj.etiquettes = {};
+    var avant = (obj.etiquettes[m.cle] || []).slice();
+    var apres = avant.slice();
+    var i = apres.indexOf(propre);
+    if (i === -1) apres.push(propre); else apres.splice(i, 1);
+    obj.etiquettes[m.cle] = apres;
+    if (!(await ecrireEtiquettes(obj))) {
+      obj.etiquettes[m.cle] = avant;
+      dire('L’étiquette n’a PAS été enregistrée dans medias/etiquettes.json : rien n’a changé.');
+      return;
+    }
+    etiq.obj = obj;
+    etiq.table = obj.etiquettes;
+    recalculerVocabulaire();
+    dire('Étiquettes de « ' + m.nom + ' » enregistrées : ' + (apres.length ? apres.join(', ') : 'aucune') + '.');
+    rendreFiltreEtiquettes();
+    rendreSas(); // le vocabulaire vient de bouger : les palettes du sas aussi
+    rendre();
+  }
+
+  // ── Le sas : classer AVANT d'entrer dans la liste ──────────────────────────────────
+  // Choisir des fichiers ne les écrit plus tout de suite. Ils s'arrêtent dans un sas, en
+  // haut de la page et en grand, où on les étiquette — un par un, ou tout le lot d'un
+  // coup, ce qui est le geste réel quand on rentre douze photos d'une même séance. Tant
+  // que « Ajouter » n'est pas cliqué, RIEN n'est écrit : ni dans medias/, ni dans
+  // etiquettes.json. Une photo déposée par erreur se retire sans laisser de trace.
+  //
+  // C'est aussi ce qui permet d'écrire les étiquettes du lot EN UNE FOIS, au lieu d'une
+  // relecture complète de etiquettes.json par clic sur une pastille.
+  var EXT_IMAGE = /\.(jpe?g|png|gif|webp|avif|svg)$/i;
+  var EXT_VIDEO = /\.(mp4|webm|mov|m4v|ogv)$/i;
+
+  function typeDuFichier(f) {
+    if (/^image\//.test(f.type || '')) return 'image';
+    if (/^video\//.test(f.type || '')) return 'video';
+    // Un fichier venu d'un disque réseau arrive parfois sans type MIME : l'extension tranche.
+    if (EXT_IMAGE.test(f.name)) return 'image';
+    if (EXT_VIDEO.test(f.name)) return 'video';
+    return null;
+  }
+
+  var sas = [];        // { fichier, nom, type, sous, cle, apercu, etiquettes, refus }
+  var refusDepot = []; // ce que la dépose a écarté d'emblée, et pourquoi
+
+  function pluriel(n) { return n > 1 ? 's' : ''; }
+
+  // Déposer, c'est mettre en attente. Aucune écriture ici — les refus, eux, sont dits
+  // tout de suite : inutile de faire croire qu'un doublon entrera au moment du clic.
+  async function deposer(fichiers) {
+    if (!Storage || !Storage.isConnected()) {
+      dire('Le dossier Cours n’est pas connecté : aucun fichier ne peut être ajouté. Connectez-le d’abord. Rien n’a été écrit.');
+      return;
+    }
+    refusDepot = [];
+    var recus = 0;
+    for (var i = 0; i < fichiers.length; i++) {
+      var f = fichiers[i];
+      var type = typeDuFichier(f);
+      if (!type) { refusDepot.push('« ' + f.name + ' » n’est ni une image ni une vidéo'); continue; }
+      var sous = type === 'image' ? 'images' : 'video';
+      var cle = sous + '/' + f.name;
+      if (sas.some(function (s) { return s.cle === cle; })) {
+        refusDepot.push('« ' + f.name + ' » est déjà dans le sas');
+        continue;
+      }
+      // Jamais d'écrasement : le fichier de même nom peut être celui qu'une diapo affiche.
+      var deja = medias.some(function (m) { return m.cle === cle; }) || await Storage.exists(['medias', sous, f.name]);
+      if (deja) {
+        refusDepot.push('« ' + f.name + ' » existe déjà dans medias/' + sous + ' (renommez-le si c’est un autre fichier)');
+        continue;
+      }
+      sas.push({
+        fichier: f, nom: f.name, type: type, sous: sous, cle: cle,
+        // Le fichier n'est pas sur le disque : la vignette ne peut venir que de ce qu'on
+        // a en main. Elle servira telle quelle une fois le fichier écrit, car en file://
+        // le navigateur servirait sinon sa version en cache.
+        apercu: URL.createObjectURL(f), etiquettes: [], refus: '',
+      });
+      recus++;
+    }
+    sas.sort(function (a, b) { return a.cle.localeCompare(b.cle); });
+    rendreSas();
+    var phrases = [];
+    if (recus) {
+      phrases.push(recus + ' fichier' + pluriel(recus) + ' en attente en haut de la page : '
+        + 'étiquetez-' + (recus > 1 ? 'les' : 'la') + ', puis « Ajouter à la médiathèque ». Rien n’a encore été écrit.');
+    }
+    if (refusDepot.length) {
+      phrases.push('Refusé' + pluriel(refusDepot.length) + ' : ' + refusDepot.join(' ; ') + '.');
+    }
+    dire(phrases.join(' ') || 'Aucun fichier choisi : rien n’a été fait.');
+    // Le sas ouvre la page : on remonte tout en haut plutôt que de le caler au ras du
+    // cadre, où l'en-tête collant lui mangerait son titre et ses deux boutons.
+    if (recus) window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Le vocabulaire proposé dans le sas : celui du fichier d'étiquettes, plus ce que le
+  // lot en cours vient d'inventer — sinon une étiquette neuve ne serait plus proposée aux
+  // autres photos du même lot, qui sont justement celles qui la partagent.
+  function vocabulaireDuSas() {
+    var vus = new Set(vocabulaire);
+    sas.forEach(function (s) { s.etiquettes.forEach(function (t) { vus.add(t); }); });
+    return Array.from(vus).sort(function (a, b) { return a.localeCompare(b); });
+  }
+
+  function etiquettesDuLot() {
+    var communes = [], partielles = [];
+    vocabulaireDuSas().forEach(function (t) {
+      var n = sas.filter(function (s) { return s.etiquettes.indexOf(t) !== -1; }).length;
+      if (n === sas.length && n > 0) communes.push(t); else if (n > 0) partielles.push(t);
+    });
+    return { communes: communes, partielles: partielles };
+  }
+
+  function basculerSas(s, nom) {
+    var propre = String(nom || '').trim();
+    if (!propre) return;
+    var i = s.etiquettes.indexOf(propre);
+    if (i === -1) s.etiquettes.push(propre); else s.etiquettes.splice(i, 1);
+    s.etiquettes.sort(function (a, b) { return a.localeCompare(b); });
+    rendreSas();
+    dire('« ' + s.nom + ' » : ' + (s.etiquettes.length ? s.etiquettes.join(', ') : 'aucune étiquette')
+      + '. Rien n’est encore écrit — « Ajouter à la médiathèque » enregistre le tout.');
+  }
+
+  // Le lot d'un coup : si TOUS la portent, le clic la retire à tous ; sinon il la donne à
+  // tous. C'est la règle qui rend le bouton prévisible quand le lot est mi-figue mi-raisin.
+  function basculerLot(nom) {
+    var propre = String(nom || '').trim();
+    if (!propre || !sas.length) return;
+    var tous = sas.every(function (s) { return s.etiquettes.indexOf(propre) !== -1; });
+    sas.forEach(function (s) {
+      var i = s.etiquettes.indexOf(propre);
+      if (tous) { if (i !== -1) s.etiquettes.splice(i, 1); }
+      else if (i === -1) s.etiquettes.push(propre);
+      s.etiquettes.sort(function (a, b) { return a.localeCompare(b); });
+    });
+    rendreSas();
+    dire('« ' + propre + ' » ' + (tous ? 'retirée aux ' : 'donnée aux ') + sas.length + ' fichier'
+      + pluriel(sas.length) + ' du sas. Rien n’est encore écrit.');
+  }
+
+  function retirerDuSas(s) {
+    var i = sas.indexOf(s);
+    if (i === -1) return;
+    sas.splice(i, 1);
+    try { URL.revokeObjectURL(s.apercu); } catch (e) { /* déjà libéré */ }
+    palettesOuvertes.delete('sas:' + s.cle);
+    rendreSas();
+    dire('« ' + s.nom + ' » retirée du sas : elle n’a jamais été écrite dans medias/.');
+  }
+
+  function viderSas() {
+    sas.forEach(function (s) {
+      try { URL.revokeObjectURL(s.apercu); } catch (e) { /* déjà libéré */ }
+      palettesOuvertes.delete('sas:' + s.cle);
+    });
+    sas = [];
+    refusDepot = [];
+    palettesOuvertes.delete('lot');
+    rendreSas();
+    dire('Sas vidé : aucun fichier n’a été écrit dans medias/, aucune étiquette enregistrée.');
+  }
+
+  // Le passage à l'acte. Chaque fichier est réécrit puis RELU — un fichier annoncé est un
+  // fichier retrouvé à la bonne taille. Ceux qui échouent restent dans le sas avec leur
+  // motif : on ne perd pas le classement qu'on venait de leur donner.
+  async function validerSas() {
+    if (!sas.length) return;
+    if (!Storage || !Storage.isConnected()) {
+      dire('Le dossier Cours n’est pas connecté : rien ne peut être écrit. Le sas est intact.');
+      return;
+    }
+    var ajoutes = [], restants = [], motifs = [];
+    var obj = etiq.obj || { note: 'Etiquettes des medias. Un media peut porter plusieurs etiquettes, ou aucune.', etiquettes: {} };
+    if (!obj.etiquettes) obj.etiquettes = {};
+    var posees = [];
+    for (var i = 0; i < sas.length; i++) {
+      var s = sas[i];
+      s.refus = '';
+      // Le disque a pu changer depuis la dépose : on revérifie avant d'écraser quoi que ce soit.
+      if (await Storage.exists(['medias', s.sous, s.nom])) {
+        s.refus = 'existe désormais dans medias/' + s.sous + ' : rien n’a été écrasé';
+      } else {
+        try {
+          await Storage.writeBlob(['medias', s.sous, s.nom], s.fichier);
+          var taille = await Storage.fileSize(['medias', s.sous, s.nom]);
+          if (taille !== s.fichier.size) {
+            s.refus = 'n’a PAS été confirmée à la relecture (' + taille + ' octets au lieu de ' + s.fichier.size + ')';
+          }
+        } catch (e) {
+          s.refus = 'n’a pas pu être écrite : ' + (e && e.message ? e.message : e);
+        }
+      }
+      if (s.refus) { restants.push(s); motifs.push('« ' + s.nom + ' » ' + s.refus); continue; }
+      medias.push({
+        nom: s.nom, type: s.type, cle: s.cle, chemin: RACINE_MEDIAS + s.cle, usages: [],
+        apercu: s.apercu, neuf: true,
+      });
+      if (s.etiquettes.length) { obj.etiquettes[s.cle] = s.etiquettes.slice(); posees.push(s.cle); }
+      palettesOuvertes.delete('sas:' + s.cle);
+      ajoutes.push(s.nom);
+    }
+
+    // Les étiquettes du lot en UNE écriture, relue comme toutes les autres.
+    var etiquettesEcrites = true;
+    if (posees.length) {
+      etiquettesEcrites = await ecrireEtiquettes(obj);
+      if (etiquettesEcrites) {
+        etiq.obj = obj; etiq.table = obj.etiquettes; etiq.lisible = true;
+        recalculerVocabulaire();
+      } else {
+        posees.forEach(function (cle) { delete obj.etiquettes[cle]; });
+      }
+    }
+
+    sas = restants;
+    if (!sas.length) palettesOuvertes.delete('lot');
+    medias.sort(function (a, b) { return a.cle.localeCompare(b.cle); });
+    // Les nouveaux fichiers portent au plus les étiquettes du sas : un filtre encore
+    // actif les cacherait à l'instant même où on vient de les classer.
+    if (ajoutes.length) {
+      etat.recherche = ''; el('search-input').value = '';
+      etat.type = 'tout'; etat.etiquette = '*'; etat.formation = '*';
+      rendreFiltreFormations(); rendreFiltreEtiquettes(); rendreFiltreTypes();
+    }
+    rendreSas();
+    rendre();
+
+    var phrases = [];
+    if (ajoutes.length) {
+      phrases.push(ajoutes.length + ' fichier' + pluriel(ajoutes.length) + ' ajouté' + pluriel(ajoutes.length)
+        + ' au dossier medias/ : ' + ajoutes.join(', ')
+        + '. Aucune formation n’a été modifiée — disponibles partout, engagés nulle part.');
+    }
+    if (posees.length && etiquettesEcrites) {
+      phrases.push('Étiquettes enregistrées dans medias/etiquettes.json pour ' + posees.length
+        + ' fichier' + pluriel(posees.length) + '.');
+    }
+    if (posees.length && !etiquettesEcrites) {
+      phrases.push('Les étiquettes n’ont PAS pu être enregistrées dans medias/etiquettes.json : '
+        + 'les fichiers, eux, sont bien dans medias/, et restent à étiqueter depuis leur carte.');
+    }
+    if (motifs.length) phrases.push('Resté' + pluriel(motifs.length) + ' dans le sas : ' + motifs.join(' ; ') + '.');
+    dire(phrases.join(' '));
+    var premier = ajoutes.length ? document.querySelector('.card.neuf') : null;
+    if (premier) premier.scrollIntoView({ block: 'center' });
+  }
+
+  function carteSas(s) {
+    var c = document.createElement('div');
+    c.className = 'sas-card' + (s.refus ? ' refuse' : '');
+    c.setAttribute('data-cle', s.cle);
+
+    var thumb = document.createElement('div');
+    thumb.className = 'thumb';
+    if (s.type === 'image') {
+      var img = document.createElement('img');
+      img.src = s.apercu;
+      img.alt = '';
+      thumb.appendChild(img);
+    } else {
+      var vid = document.createElement('video');
+      vid.src = s.apercu + '#t=0.1';
+      vid.preload = 'metadata';
+      vid.muted = true;
+      vid.controls = true;
+      thumb.appendChild(vid);
+    }
+    c.appendChild(thumb);
+
+    var meta = document.createElement('div');
+    meta.className = 'meta';
+    var nom = document.createElement('div');
+    nom.className = 'fname';
+    nom.textContent = s.nom;
+    meta.appendChild(nom);
+    if (s.refus) {
+      var motif = document.createElement('div');
+      motif.className = 'motif';
+      motif.textContent = s.refus;
+      meta.appendChild(motif);
+    }
+    meta.appendChild(zoneEtiquettes({
+      cle: 'sas:' + s.cle,
+      titre: s.nom,
+      portees: s.etiquettes,
+      vide: 'sans étiquette',
+      vocabulaire: vocabulaireDuSas(),
+      basculer: function (nom) { basculerSas(s, nom); },
+    }));
+    var retirer = document.createElement('button');
+    retirer.type = 'button';
+    retirer.className = 'retirer';
+    retirer.textContent = 'Retirer du sas';
+    retirer.addEventListener('click', function () { retirerDuSas(s); });
+    meta.appendChild(retirer);
+
+    c.appendChild(meta);
+    return c;
+  }
+
+  function rendreSas() {
+    var panneau = el('sas');
+    panneau.hidden = !sas.length;
+    if (!sas.length) { el('sas-grid').innerHTML = ''; el('sas-lot').hidden = true; return; }
+
+    var n = sas.length;
+    el('sas-titre').textContent = n + ' fichier' + pluriel(n) + ' à classer avant d’entrer dans la médiathèque';
+    el('sas-valider').textContent = 'Ajouter ' + (n > 1 ? 'les ' + n + ' fichiers' : 'ce fichier') + ' à la médiathèque';
+    el('sas-explique').textContent = 'Rien n’est encore écrit sur le disque. Étiquetez '
+      + (n > 1 ? 'le lot entier ou chaque fichier, ' : 'ce fichier, ')
+      + 'puis validez : les fichiers iront dans medias/ et leurs étiquettes dans medias/etiquettes.json, '
+      + 'en une seule fois. « Tout annuler » ne laisse aucune trace.';
+    var refus = el('sas-refus');
+    refus.hidden = !refusDepot.length;
+    refus.textContent = refusDepot.length
+      ? 'Écarté' + pluriel(refusDepot.length) + ' à la dépose : ' + refusDepot.join(' ; ') + '.'
+      : '';
+
+    // L'étiquetage du lot n'a de sens qu'à plusieurs : à un seul fichier, sa carte suffit.
+    var lot = el('sas-lot');
+    lot.hidden = n < 2;
+    if (n >= 2) {
+      var duLot = etiquettesDuLot();
+      lot.innerHTML = '';
+      var titre = document.createElement('div');
+      titre.className = 'titre';
+      titre.textContent = 'Étiqueter les ' + n + ' fichiers d’un coup';
+      lot.appendChild(titre);
+      lot.appendChild(zoneEtiquettes({
+        cle: 'lot',
+        titre: 'les ' + n + ' fichiers',
+        portees: duLot.communes,
+        partielles: duLot.partielles,
+        vide: 'aucune étiquette commune aux ' + n + ' fichiers',
+        vocabulaire: vocabulaireDuSas(),
+        basculer: basculerLot,
+      }));
+    }
+
+    var grid = el('sas-grid');
+    grid.innerHTML = '';
+    var frag = document.createDocumentFragment();
+    sas.forEach(function (s) { frag.appendChild(carteSas(s)); });
+    grid.appendChild(frag);
+    restaurerFocus();
+  }
+
+  // ── Le dossier : la garde du tampon ────────────────────────────────────────────────
+  // Cette page n'invente pas de nom de dossier — c'est le travail de l'atelier. Elle
+  // vérifie seulement que le dossier retenu est bien celui de la dernière session, et
+  // demande confirmation sinon. Un dossier sans tampon est refusé : le nommer, c'est
+  // l'atelier qui le fait, et une seule maison pour cette décision suffit.
+  function dernierDossier() {
+    try { return JSON.parse(localStorage.getItem(CLE_DERNIER) || 'null'); } catch (e) { return null; }
+  }
+  function memoriserDossier(t) {
+    try { localStorage.setItem(CLE_DERNIER, JSON.stringify({ id: t.id, nom: t.nom })); } catch (e) { /* stockage indisponible */ }
+  }
+
+  var etatDossier = null; // { nom, alerte } — ce que le bandeau affiche
+  var refusDossier = '';  // pourquoi le dernier essai n'a rien retenu
+
+  async function validerDossier(info) {
+    var tampon = info.tampon;
+    var dernier = dernierDossier();
+    if (!tampon) {
+      refusDossier = 'Le dossier « ' + info.nom + ' » n’a pas de tampon : ouvrez l’atelier une fois '
+        + 'pour le nommer, c’est lui qui pose les tampons. Rien n’a été écrit.';
+      return false;
+    }
+    // Par le serveur des cours, c'est forcement le dossier d'ou la page est servie.
+    if (info.sur || (dernier && tampon.id === dernier.id)) {
+      etatDossier = { nom: tampon.nom || 'sans nom', alerte: false };
+      memoriserDossier(tampon);
+      return true;
+    }
+    if (!forcerDossier) {
+      refusDossier = 'Ce dossier (« ' + (tampon.nom || 'sans nom') + ' ») n’est pas celui de la dernière session'
+        + (dernier ? ' (« ' + (dernier.nom || 'sans nom') + ' »)' : '')
+        + '. Une autre copie du dépôt ? Rien n’a été écrit.';
+      return false;
+    }
+    etatDossier = { nom: tampon.nom || 'sans nom', alerte: true };
+    memoriserDossier(tampon);
+    return true;
+  }
+
+  function rendreBandeau() {
+    var b = el('bandeau');
+    var connecte = !!(Storage && Storage.isConnected());
+    b.className = 'bandeau ' + (connecte ? (etatDossier && etatDossier.alerte ? 'orange' : 'vert') : 'gris');
+    el('bandeau-etat').textContent = connecte
+      ? ((etatDossier && etatDossier.alerte ? '🟠 ' : '🟢 ') + (Storage.nomDossier() || 'Cours')
+         + ' · ' + ((etatDossier && etatDossier.nom) || 'dossier inconnu'))
+      : 'Dossier non connecté';
+    var explique = el('bandeau-explique');
+    if (connecte) {
+      explique.textContent = 'Liste lue sur le disque (medias/images et medias/video). '
+        + 'Vous pouvez ajouter des fichiers et les étiqueter.';
+    } else if (refusDossier) {
+      explique.textContent = refusDossier;
+    } else if (source === 'manifeste') {
+      explique.textContent = 'Liste issue de media-manifest.js, qui peut être en retard. '
+        + 'Connectez le dossier pour ajouter des médias et enregistrer les étiquettes.';
+    } else {
+      explique.textContent = 'Ni dossier connecté, ni media-manifest.js : rien à afficher.';
+    }
+    var bouton = el('btn-connect');
+    bouton.hidden = connecte;
+    // Le second clic est un aveu explicite, jamais un contournement silencieux.
+    bouton.textContent = refusDossier && /dernière session/.test(refusDossier)
+      ? 'Je sais ce que je fais, continuer'
+      : 'Connecter le dossier Cours';
+    el('btn-ajouter').disabled = !connecte;
+    el('btn-ajouter').title = connecte
+      ? 'Copier des fichiers dans medias/ — sans les poser dans une formation'
+      : 'Connectez le dossier Cours pour ajouter des médias';
+  }
+
+  async function connecter() {
+    try {
+      forcerDossier = /dernière session/.test(refusDossier);
+      refusDossier = '';
+      var retenu = await Storage.connect(validerDossier);
+      forcerDossier = false;
+      if (!retenu) { rendreBandeau(); dire(refusDossier || 'Dossier non retenu : rien n’a été écrit.'); return; }
+      await rechargerTout();
+      dire('Dossier connecté.');
+    } catch (e) {
+      forcerDossier = false;
+      if (e && (e.name === 'AbortError' || /aborted/i.test(e.message || ''))) {
+        dire('Aucun dossier choisi : rien n’a été fait.');
+      } else {
+        dire(e && e.message ? e.message : String(e));
+      }
+      rendreBandeau();
+    }
+  }
+
+  // ── L'affichage ────────────────────────────────────────────────────────────────────
+  function pastille(conteneur, cle, libelle, champ, infobulle) {
+    var b = document.createElement('span');
+    b.className = 'chip' + (etat[champ] === cle ? ' active' : '');
+    b.setAttribute('data-filtre', cle === '*' ? 'tout' : (cle === '' ? 'sans' : cle));
+    b.textContent = libelle;
+    if (infobulle) b.title = infobulle;
+    b.addEventListener('click', function () {
+      etat[champ] = cle;
+      if (champ === 'formation') rendreFiltreFormations(); else rendreFiltreEtiquettes();
+      rendre();
+    });
+    conteneur.appendChild(b);
+  }
+
+  function rendreFiltreFormations() {
+    var c = el('filtres-formation');
+    c.innerHTML = '<label>Formation</label>';
+    if (!usagesConnus) { c.style.display = 'none'; return; }
+    c.style.display = '';
+    pastille(c, '*', 'Toutes', 'formation');
+    // Le nom court, celui-la meme que la ligne « utilisee dans niveau2 » d'une carte : les
+    // intitules complets tenaient sur deux lignes et repoussaient la grille hors de l'ecran.
+    formations.forEach(function (f) {
+      pastille(c, nomCourtFormation(f.id), nomCourtFormation(f.id), 'formation', f.label);
+    });
+    pastille(c, '', 'Non utilisés', 'formation');
+  }
+
+  function rendreFiltreEtiquettes() {
+    var c = el('filtres-etiquette');
+    c.innerHTML = '<label>Étiquette</label>';
+    // Étiquettes illisibles (file:// sans dossier connecté) : pas de rangée du tout. Une
+    // pastille « Sans étiquette » affirmerait que 247 médias n'en portent aucune, ce qui
+    // est faux — on ne sait simplement pas.
+    if (!etiq.lisible && !vocabulaire.length) { c.style.display = 'none'; return; }
+    c.style.display = '';
+    pastille(c, '*', 'Toutes', 'etiquette');
+    pastille(c, '', 'Sans étiquette', 'etiquette');
+    vocabulaire.forEach(function (t) { pastille(c, t, t, 'etiquette'); });
+  }
+
+  function rendreFiltreTypes() {
+    document.querySelectorAll('.chip[data-type]').forEach(function (c) {
+      c.classList.toggle('active', c.dataset.type === etat.type);
+    });
+  }
+
+  // La zone d'étiquettes : ce qui est porté, puis « + » qui déplie le vocabulaire existant
+  // AVANT le champ libre. La même pour une carte de la médiathèque, pour un fichier du sas
+  // et pour le lot entier — seul change ce que « basculer » fait de l'étiquette cliquée.
+  //   { cle, titre, portees, partielles, vide, vocabulaire, basculer }
+  function zoneEtiquettes(opts) {
+    var z = document.createElement('div');
+    z.className = 'etiq-zone';
+    var portees = opts.portees || [];
+    var partielles = opts.partielles || [];
+    var mots = opts.vocabulaire || vocabulaire;
+    if (!portees.length) {
+      var vide = document.createElement('span');
+      vide.className = 'etiq-vide';
+      vide.textContent = opts.vide;
+      z.appendChild(vide);
+    }
+    portees.forEach(function (nom) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'etiq';
+      b.setAttribute('data-etiquette', nom);
+      b.textContent = nom + ' ✕';
+      b.title = 'Retirer « ' + nom + ' »';
+      b.addEventListener('click', function () { opts.basculer(nom); });
+      z.appendChild(b);
+    });
+
+    var plus = document.createElement('button');
+    plus.type = 'button';
+    plus.className = 'etiq-plus';
+    plus.textContent = '+';
+    plus.title = 'Étiqueter « ' + opts.titre + ' »';
+    z.appendChild(plus);
+
+    var palette = document.createElement('div');
+    palette.className = 'palette';
+    palette.setAttribute('data-palette', opts.cle);
+    palette.hidden = !palettesOuvertes.has(opts.cle);
+    plus.addEventListener('click', function () {
+      if (palettesOuvertes.has(opts.cle)) palettesOuvertes.delete(opts.cle);
+      else palettesOuvertes.add(opts.cle);
+      palette.hidden = !palettesOuvertes.has(opts.cle);
+      if (!palette.hidden) { var s = palette.querySelector('input'); if (s) s.focus(); }
+    });
+    mots.forEach(function (nom) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('data-etiquette', nom);
+      b.className = portees.indexOf(nom) !== -1 ? 'allumee'
+        : (partielles.indexOf(nom) !== -1 ? 'partielle' : '');
+      b.textContent = nom + (partielles.indexOf(nom) !== -1 ? ' (certains)' : '');
+      b.addEventListener('click', function () { opts.basculer(nom); });
+      palette.appendChild(b);
+    });
+    var saisie = document.createElement('input');
+    saisie.type = 'text';
+    saisie.className = 'etiq-neuve';
+    saisie.placeholder = 'Nouvelle étiquette…';
+    saisie.addEventListener('keydown', function (ev) {
+      if (ev.key !== 'Enter') return;
+      ev.preventDefault();
+      var v = saisie.value.trim();
+      saisie.value = '';
+      // La palette reste ouverte et la saisie reprend la main : on en pose souvent trois
+      // à la suite.
+      palettesOuvertes.add(opts.cle);
+      refocaliser = opts.cle;
+      opts.basculer(v);
+    });
+    palette.appendChild(saisie);
+    z.appendChild(palette);
+    return z;
+  }
+
+  function restaurerFocus() {
+    if (!refocaliser) return;
+    var champ = document.querySelector('[data-palette="' + refocaliser.replace(/"/g, '\\"') + '"] input');
+    refocaliser = '';
+    if (champ) champ.focus();
+  }
+
+  function carte(m) {
+    var c = document.createElement('div');
+    c.className = 'card' + (m.neuf ? ' neuf' : '');
+    c.setAttribute('data-cle', m.cle);
+
+    var thumb = document.createElement('div');
+    thumb.className = 'thumb';
+    if (m.type === 'image') {
+      var img = document.createElement('img');
+      img.loading = 'lazy';
+      img.src = m.apercu || m.chemin;
+      img.alt = '';
+      thumb.appendChild(img);
+    } else {
+      var vid = document.createElement('video');
+      // « #t=0.1 » demande la première image : sans elle, et sans préchargement, la vignette
+      // d'une vidéo reste un rectangle noir.
+      vid.src = (m.apercu || m.chemin) + '#t=0.1';
+      vid.preload = 'metadata';
+      vid.muted = true;
+      vid.controls = true;
+      thumb.appendChild(vid);
+    }
+
+    var meta = document.createElement('div');
+    meta.className = 'meta';
+    var nom = document.createElement('div');
+    nom.className = 'fname';
+    nom.textContent = m.nom;
+    meta.appendChild(nom);
+    if (m.neuf) {
+      var badge = document.createElement('div');
+      badge.className = 'badge-neuf';
+      badge.textContent = 'ajouté à l’instant';
+      meta.appendChild(badge);
+    }
+    var usage = document.createElement('div');
+    usage.className = 'flabel';
+    usage.textContent = usagesConnus
+      ? (m.usages && m.usages.length ? 'utilisée dans ' + m.usages.join(', ') : 'non utilisée')
+      : '';
+    meta.appendChild(usage);
+    meta.appendChild(zoneEtiquettes({
+      cle: m.cle,
+      titre: m.nom,
+      portees: etiq.table[m.cle] || [],
+      vide: etiq.lisible ? 'sans étiquette' : 'étiquettes non lisibles',
+      basculer: function (nom) { basculerEtiquette(m, nom); },
+    }));
+
+    c.appendChild(thumb);
+    c.appendChild(meta);
+    return c;
+  }
+
+  function rendre() {
+    var vus = medias.filter(function (m) {
+      if (etat.type !== 'tout' && m.type !== etat.type) return false;
+      if (etat.recherche && m.nom.toLowerCase().indexOf(etat.recherche) === -1) return false;
+      if (etat.formation === '') { if ((m.usages || []).length) return false; }
+      else if (etat.formation !== '*' && (m.usages || []).indexOf(etat.formation) === -1) return false;
+      var t = etiq.table[m.cle] || [];
+      if (etat.etiquette === '') return t.length === 0;
+      if (etat.etiquette !== '*' && t.indexOf(etat.etiquette) === -1) return false;
+      return true;
+    });
+    var grid = el('grid');
+    grid.innerHTML = '';
+    var frag = document.createDocumentFragment();
+    vus.forEach(function (m) { frag.appendChild(carte(m)); });
+    grid.appendChild(frag);
+    el('empty').style.display = vus.length ? 'none' : 'block';
+    el('count').textContent = vus.length + ' média' + (vus.length > 1 ? 's' : '') + ' sur ' + medias.length;
+    restaurerFocus();
+  }
+
+  async function rechargerTout() {
+    await chargerMedias();
+    etiq = await lireEtiquettes();
+    recalculerVocabulaire();
+    rendreBandeau();
+    rendreFiltreFormations();
+    rendreFiltreEtiquettes();
+    rendreFiltreTypes();
+    rendreSas();
+    rendre();
+  }
+
+  // ── Le câblage ─────────────────────────────────────────────────────────────────────
+  el('search-input').addEventListener('input', function (e) {
+    etat.recherche = e.target.value.trim().toLowerCase();
+    rendre();
+  });
+  document.querySelectorAll('.chip[data-type]').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      etat.type = chip.dataset.type;
+      rendreFiltreTypes();
+      rendre();
+    });
+  });
+  el('btn-connect').addEventListener('click', connecter);
+  el('btn-ajouter').addEventListener('click', function () { el('fichiers').click(); });
+  el('fichiers').addEventListener('change', async function (e) {
+    var liste = Array.from(e.target.files || []);
+    e.target.value = ''; // rechoisir le même fichier doit relancer l'événement
+    await deposer(liste);
+  });
+  el('sas-valider').addEventListener('click', validerSas);
+  el('sas-annuler').addEventListener('click', viderSas);
+
+  (async function demarrer() {
+    // Reprise silencieuse : queryPermission, pas requestPermission — au chargement il n'y a
+    // aucun geste utilisateur, et la demande échouerait. Un refus ici n'est pas une panne :
+    // la page se rabat sur le manifeste et le bandeau le dit.
+    if (Storage) { try { await Storage.tryRestore(validerDossier); } catch (e) { /* rien */ } }
+    refusDossier = ''; // ce qu'un essai silencieux a refusé ne s'affiche pas comme une erreur
+    await rechargerTout();
+  })();
+})();
+</script>
+</body>
+</html>

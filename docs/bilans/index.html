@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilans Pédagogiques - Collection de Jeux</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --primary-light: #dbeafe;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #ffffff;
+            --bg-light: #f9fafb;
+            --border: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 60px 20px;
+            margin: 0 0 40px 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+        }
+
+        header h1 {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .intro-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .intro-section h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .intro-section p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .bilans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .bilan-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bilan-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .bilan-header {
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .bilan-card:nth-child(1) .bilan-header {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+        }
+
+        .bilan-card:nth-child(2) .bilan-header {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+
+        .bilan-card:nth-child(3) .bilan-header {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+
+        .bilan-card:nth-child(4) .bilan-header {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+        }
+
+        .bilan-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .bilan-header h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .bilan-header p {
+            font-size: 0.9rem;
+            opacity: 0.95;
+        }
+
+        .bilan-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bilan-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .bilan-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .bilan-features li {
+            padding: 6px 0;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bilan-features li:before {
+            content: "";
+            color: #10b981;
+            font-weight: bold;
+            display: inline-block;
+            width: 20px;
+        }
+
+        .bilan-link {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .bilan-card:nth-child(2) .bilan-link {
+            background: #8b5cf6;
+        }
+
+        .bilan-card:nth-child(2) .bilan-link:hover {
+            background: #7c3aed;
+        }
+
+        .bilan-card:nth-child(3) .bilan-link {
+            background: #ef4444;
+        }
+
+        .bilan-card:nth-child(3) .bilan-link:hover {
+            background: #dc2626;
+        }
+
+        .bilan-card:nth-child(4) .bilan-link {
+            background: #1e40af;
+        }
+
+        .bilan-card:nth-child(4) .bilan-link:hover {
+            background: #1e3a8a;
+        }
+
+        .bilan-card:nth-child(5) .bilan-header {
+            background: linear-gradient(135deg, #15803d 0%, #166534 100%);
+        }
+
+        .bilan-card:nth-child(5) .bilan-link {
+            background: #15803d;
+        }
+
+        .bilan-card:nth-child(5) .bilan-link:hover {
+            background: #166534;
+        }
+
+        .bilan-link:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        .features-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .features-section h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        .feature-item h4 {
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .feature-item p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+            border-top: 2px solid var(--border);
+            margin-top: 40px;
+        }
+
+        footer strong {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 40px 20px;
+                margin: 0 0 30px 0;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .intro-section,
+            .features-section {
+                padding: 25px 20px;
+            }
+
+            .bilans-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bilans Pédagogiques</h1>
+        <p>Explorez les thèmes clés de l'esprit critique avec des pages interactives</p>
+    </header>
+
+    <div class="container">
+        <div class="intro-section">
+            <h2>Bienvenue !</h2>
+            <p>Cette collection regroupe <strong>5 bilans pédagogiques</strong> transformés en pages HTML dynamiques et interactives. Chaque bilan combine :</p>
+            <ul style="margin-left: 25px; margin-top: 15px;">
+                <li><strong>Contenu structuré</strong> en accordéons par chapitre</li>
+                <li><strong>Images pertinentes</strong> de la médiathèque</li>
+                <li><strong>Jeux Arcade intégrés</strong> pour tester vos connaissances</li>
+                <li><strong>Export PDF</strong> directement depuis le navigateur</li>
+                <li><strong>Design responsive</strong> pour tous les écrans</li>
+            </ul>
+        </div>
+
+        <div class="bilans-grid">
+            <!-- Bilan 1 -->
+            <div class="bilan-card">
+                <div class="bilan-header">
+                    <div class="bilan-icon"></div>
+                    <h3>Fake News & Esprit Critique</h3>
+                    <p>Niveau 1</p>
+                </div>
+                <div class="bilan-content">
+                    <p class="bilan-description">
+                        Apprenez à identifier les Fake News, comprendre l'effet de cadrage et développer des réflexes critiques face aux informations.
+                    </p>
+                    <ul class="bilan-features">
+                        <li>Définition des Fake News</li>
+                        <li>L'effet de cadrage</li>
+                        <li>Méthode des 2 secondes</li>
+                        <li>Jeux Arcade interactifs</li>
+                    </ul>
+                    <a href="bilan-fake-news-niveau1.html" class="bilan-link">Consulter </a>
+                </div>
+            </div>
+
+            <!-- Bilan 2 -->
+            <div class="bilan-card">
+                <div class="bilan-header">
+                    <div class="bilan-icon"></div>
+                    <h3>Désinformation & IA</h3>
+                    <p>Niveau 2</p>
+                </div>
+                <div class="bilan-content">
+                    <p class="bilan-description">
+                        Au-delà de la Fake News : explorez les techniques de désinformation et l'impact révolutionnaire de l'IA.
+                    </p>
+                    <ul class="bilan-features">
+                        <li>Critères de validation</li>
+                        <li>Techniques avancées</li>
+                        <li>Impact de l'IA</li>
+                        <li>Stratégies de défense</li>
+                    </ul>
+                    <a href="bilan-fake-news-niveau2.html" class="bilan-link">Consulter </a>
+                </div>
+            </div>
+
+            <!-- Bilan 3 -->
+            <div class="bilan-card">
+                <div class="bilan-header">
+                    <div class="bilan-icon"></div>
+                    <h3>Influenceurs & Réseaux</h3>
+                    <p>Formation</p>
+                </div>
+                <div class="bilan-content">
+                    <p class="bilan-description">
+                        Analysez le rôle des influenceurs, leurs mécanismes d'influence et comment cultiver un esprit critique.
+                    </p>
+                    <ul class="bilan-features">
+                        <li>Mécanismes d'influence</li>
+                        <li>Écosystème informationnel</li>
+                        <li>Compétences critiques</li>
+                        <li>Exercices pratiques</li>
+                    </ul>
+                    <a href="bilan-formation-influenceurs.html" class="bilan-link">Consulter </a>
+                </div>
+            </div>
+
+            <!-- Bilan 4 -->
+            <div class="bilan-card">
+                <div class="bilan-header">
+                    <div class="bilan-icon"></div>
+                    <h3>Rhétorique & Persuasion</h3>
+                    <p>Art du discours</p>
+                </div>
+                <div class="bilan-content">
+                    <p class="bilan-description">
+                        Maîtrisez l'art de convaincre par la parole, les techniques de rhétorique et comment vous en défendre.
+                    </p>
+                    <ul class="bilan-features">
+                        <li>Définition et principes</li>
+                        <li>4 formes de rhétorique</li>
+                        <li>Les 3 piliers d'Aristote</li>
+                        <li>Débats interactifs</li>
+                    </ul>
+                    <a href="bilan-rhetorique.html" class="bilan-link">Consulter </a>
+                </div>
+            </div>
+
+            <!-- Bilan 5 -->
+            <div class="bilan-card">
+                <div class="bilan-header">
+                    <div class="bilan-icon"></div>
+                    <h3>Fake News & Écologie</h3>
+                    <p>Climat et désinformation</p>
+                </div>
+                <div class="bilan-content">
+                    <p class="bilan-description">
+                        Comprenez comment on sait que le réchauffement est réel, comment la désinformation climatique circule, et comment en parler sans braquer.
+                    </p>
+                    <ul class="bilan-features">
+                        <li>Les preuves et leurs signatures</li>
+                        <li>La technique des 5 D</li>
+                        <li>Le raisonnement motivé</li>
+                        <li>Comment en parler</li>
+                    </ul>
+                    <a href="bilan-fake-news-ecologie.html" class="bilan-link">Consulter </a>
+                </div>
+            </div>
+
+            <!-- Bilan 6 -->
+            <div class="bilan-card">
+                <div class="bilan-header" style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);">
+                    <div class="bilan-icon"></div>
+                    <h3>Arnaques en ligne</h3>
+                    <p>Repérer les pièges et s'en protéger</p>
+                </div>
+                <div class="bilan-content">
+                    <p class="bilan-description">
+                        Comprenez comment fonctionnent les arnaques en ligne, pourquoi tout le monde peut s'y faire prendre, et adoptez les bons réflexes.
+                    </p>
+                    <ul class="bilan-features">
+                        <li>Les images générées par IA</li>
+                        <li>Les mécanismes qui nous piègent</li>
+                        <li>Les principales arnaques</li>
+                        <li>QCM et Radar'naque</li>
+                    </ul>
+                    <a href="bilan-arnaques-en-ligne.html" class="bilan-link" style="background: #dc2626;">Consulter </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="features-section">
+            <h2>Fonctionnalités Principales</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon"></div>
+                    <h4>Accordéons</h4>
+                    <p>Contenu organisé par sections pour une meilleure navigation</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon"></div>
+                    <h4>Images</h4>
+                    <p>Illustrations pertinentes de la médiathèque du cours</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon"></div>
+                    <h4>Jeux Intégrés</h4>
+                    <p>Jeux Arcade pour tester et pratiquer vos connaissances</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon"></div>
+                    <h4>Export PDF</h4>
+                    <p>Téléchargez et imprimez les bilans facilement</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon"></div>
+                    <h4>Responsive</h4>
+                    <p>Optimisé pour tous les appareils et tailles d'écran</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon"></div>
+                    <h4>Performant</h4>
+                    <p>Aucune dépendance externe, charge rapide</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align:center;margin:40px 0 10px">
+            <a href="../" style="display:inline-block;background:var(--primary);color:#fff;text-decoration:none;
+               font-weight:600;padding:14px 26px;border-radius:9px;box-shadow:0 2px 8px rgba(0,0,0,.12)">Menu principal</a>
+        </div>
+
+        <footer>
+            <p>Créé par <strong>Antonin Atger</strong> | Collection de jeux pédagogiques sur l'esprit critique</p>
+            <p style="margin-top: 15px; font-size: 0.95rem; color: var(--text-light);"><strong>Conseil :</strong> Commencez par le Niveau 1, progressez vers le Niveau 2, puis explorez les bilans thématiques.
+            </p>
+            <p style="margin-top: 15px; font-size: 0.9rem;">
+                Ressources utilisées : Jeux Arcade, Médiathèque du Cours | Années 2024-2026
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les raisonnements fallacieux</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared-deck.css">
+<style>
+/* Propre à « formation-raisonnements-fallacieux » : 69 règles.
+ * Le socle commun est dans ../shared-deck.css, chargé juste avant ;
+ * ce qui suit le complète ou le surcharge. */
+:root{--acc:#e0a537;--acc2:#7c5cff}
+body{background-image:radial-gradient(ellipse at 20% -10%, rgba(124,92,255,.12) 0%, transparent 55%), radial-gradient(ellipse at 90% 110%, rgba(224,165,55,.10) 0%, transparent 55%)}
+.slide h2{font-size:clamp(1.4rem,calc(4 * var(--vw1)),2.4rem)}
+.slide p.lead{font-size:clamp(1rem,calc(2 * var(--vw1)),1.2rem)}
+/* Cover */
+#s0 .logo{font-size:3rem;margin-bottom:6px;}
+#s0 h1{font-size:clamp(1.8rem,calc(5.6 * var(--vw1)),3.2rem);font-weight:800;
+  background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+#s0 .objectifs{list-style:none;margin-top:26px;display:flex;flex-direction:column;gap:10px;text-align:left;max-width:560px;}
+#s0 .objectifs li{background:var(--panel);border:1px solid var(--bord);border-radius:14px;padding:12px 18px;font-weight:700;
+  display:flex;align-items:center;gap:12px;}
+#s0 .objectifs li b{color:var(--acc);font-family:'Baloo 2',cursive;font-size:1.1rem;}
+/* Boutons génériques */
+.bigbtn{background:linear-gradient(135deg,var(--acc),#b9821f);box-shadow:0 6px 22px rgba(224,165,55,.3)}
+/* Sondage */
+.poll{display:flex;gap:20px;margin-top:30px;flex-wrap:wrap;justify-content:center;}
+.poll button:hover{transform:translateY(-3px);}
+.poll button.oui:hover,.poll button.oui.picked{border-color:var(--ok);background:rgba(62,207,142,.14);}
+.poll button.non:hover,.poll button.non.picked{border-color:var(--ko);background:rgba(247,95,95,.14);}
+/* Quiz cards */
+.quiz-grid{grid-template-columns:repeat(auto-fit,minmax(190px,1fr));margin-top:20px}
+.qcard{min-height:150px;justify-content:space-between}
+.qcard:hover{border-color:var(--acc2);transform:translateY(-2px);}
+.qcard img{object-fit:cover}
+.qcard .txt{font-size:.86rem}
+.qcard .badge{max-width:46%;text-align:right}
+.qcard.revealed{border-color:var(--acc);}
+.qcard .badge.tag{position:static;display:inline-block;max-width:100%;text-align:left;margin-top:10px;
+  background:rgba(224,165,55,.18);color:var(--acc);border:1px solid var(--acc);}
+.qcard.revealed .expl{max-height:140px}
+.reveal-btn:hover{background:rgba(124,92,255,.15)}
+.reveal-box.show{max-height:1600px}
+.imgcard figcaption{font-size:.72rem;color:var(--mu-diapo);padding:6px 10px;background:var(--panel);text-align:left;}
+/* Contenu sensible (gate) */
+.sensitive-gate{max-width:600px;width:calc(88 * var(--vw1));background:var(--panel);border:1px solid var(--ko);border-radius:16px;
+  padding:26px 24px;margin-top:16px;text-align:left;}
+.sensitive-gate .gate-content{display:none;}
+.sensitive-gate.open .gate-content{display:block;}
+/* Témoignages (dans le gate) */
+.testi{background:var(--bg2);border:1px solid var(--bord);border-radius:12px;padding:12px 16px;text-align:left;
+  margin-top:10px;font-size:.86rem;font-weight:600;line-height:1.5;}
+.testi .who{font-family:'Baloo 2',cursive;color:var(--ko);font-weight:700;font-size:.76rem;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px;}
+.warn-banner{background:rgba(247,95,95,.1);border:1px solid var(--ko);border-radius:14px;padding:16px 18px;margin-top:16px;text-align:left;}
+.warn-banner b{color:var(--ko);}
+/* Devinette */
+.riddle-box{max-width:600px;width:calc(88 * var(--vw1))}
+.riddle-box .q{font-size:1.02rem}
+.riddle-box .q i{color:var(--mu-diapo);font-weight:600;}
+.compare .col{width:250px}
+.compare .col h3{font-size:1.02rem}
+.compare .col.c2 h3{color:var(--acc);}
+.compare .col.c3 h3{color:var(--ok);}
+.compare .col p,.compare .col ul{color:var(--mu-diapo);font-size:.86rem;line-height:1.6;font-weight:600;}
+/* Diagramme causal */
+.causal-diagram{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:22px;flex-wrap:wrap;}
+.cnode{background:var(--panel);border:2px solid var(--bord);border-radius:50%;width:130px;height:130px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;
+  padding:10px;text-align:center;line-height:1.3;}
+.cnode .em{font-size:1.6rem;margin-bottom:4px;}
+.cnode.common{border-color:var(--acc);background:rgba(224,165,55,.1);}
+.carrow{font-size:1.6rem;color:var(--mu-diapo);}
+.causal-stack{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.causal-pair{display:flex;gap:40px;margin-top:6px;}
+/* Citation */
+.quote-block{background:var(--panel);border-left:4px solid var(--acc);border-radius:0 14px 14px 0;
+  padding:18px 24px;max-width:640px;width:calc(86 * var(--vw1));margin-top:20px;text-align:left;font-style:italic;font-weight:700;font-size:1.02rem;line-height:1.6;}
+.quote-block cite{display:block;margin-top:12px;font-style:normal;font-size:.8rem;color:var(--mu-diapo);font-weight:700;}
+/* Liens vers d'autres jeux */
+.gamelink{background:linear-gradient(135deg,var(--acc2),#5a3fd6);color:#fff}
+/* Section divider */
+.divider-slide h2{font-size:clamp(1.6rem,calc(4.6 * var(--vw1)),2.6rem)}
+/* Conclusion */
+.concl-box{background:var(--panel);border:1px solid var(--bord);border-radius:20px;padding:30px 34px;max-width:680px;margin-top:10px;}
+.concl-box p{font-size:1.1rem;font-weight:700;line-height:1.6;}
+.next-part{margin-top:24px;color:var(--mu-diapo);font-weight:700;font-size:.9rem;}
+/* Navigation */
+#navzone-l,#navzone-r{position:fixed;top:52px;bottom:0;width:12%;z-index:10;cursor:pointer;background:transparent;}
+#navzone-l{left:0;}
+#navzone-r{right:0;}
+#dots{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:20;flex-wrap:wrap;justify-content:center;max-width:70vw;}
+#dots button{width:8px;height:8px;border-radius:50%;border:none;background:var(--bord);cursor:pointer;padding:0;}
+#dots button.active{background:var(--acc);width:20px;border-radius:6px;}
+#navctrl{position:fixed;bottom:14px;right:18px;display:flex;gap:8px;z-index:20;}
+#navctrl button{background:var(--panel);border:1px solid var(--bord);color:var(--tx);border-radius:10px;
+  width:38px;height:38px;font-size:1.1rem;cursor:pointer;}
+#navctrl button:hover{border-color:var(--acc2);}
+.admin-head button.primary{background:linear-gradient(135deg,var(--acc),#b9821f)}
+/* ── Formulaire "Ajouter une diapo" (autonome, pas de dépendance à un autre composant) ── */
+.addslide-modal{display:none;position:fixed;inset:0;z-index:410;background:rgba(0,0,0,.6);
+  align-items:center;justify-content:center;padding:20px;}
+.addslide-input:focus-visible{outline:2px solid var(--acc2);outline-offset:2px;}
+.admin-edit-head button.primary{background:linear-gradient(135deg,var(--acc),#b9821f);color:#2a1c02}
+@media(max-width:640px){
+  .slide{padding:70px calc(6 * var(--vw1)) 90px;}
+  .poll{gap:12px;}
+  .poll button{padding:18px 26px;font-size:1.05rem;min-width:120px;}
+  .compare{gap:12px;}
+  .compare .col{width:100%;max-width:320px;}
+  #dots{max-width:90vw;}
+  .admin-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));}
+  .admin-head{flex-wrap:wrap;height:auto;padding:10px;gap:8px;}
+  .admin-modal{padding:110px 12px 20px;}
+}
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <span class="brand">Les raisonnements fallacieux</span>
+  <div class="tools">
+    <button id="btn-admin-grid" title="Toutes les diapos" onclick="Deck.openAdmin()">Toutes les diapos</button>
+    <button id="btn-dossier" hidden title="Donner au navigateur l’accès au dossier Cours : nécessaire pour les séries, les diapos liées et les médias" onclick="Deck.connecterDossier()">🔌 Connecter le dossier</button>
+    <button id="btn-fullscreen" title="Plein écran"><span class="t-fr">Plein écran</span><span class="t-en" hidden>Fullscreen</span></button>
+    <button id="btn-lang" title="Switch to English" onclick="Deck.toggleLang()">EN</button>
+  </div>
+</div>
+
+<div id="deck" data-registry-build="1788779326280">
+
+
+
+  
+
+  
+
+  <!-- 0. Couverture -->
+  <section class="slide short" id="s0">
+  <h1 data-pose="" data-off-x="322.82" data-off-y="310.57" style="left:32.282%;top:31.057%"><span class="t-fr">Les raisonnements fallacieux</span><span class="t-en" hidden="">Fallacious Reasoning</span></h1>
+  <ul class="objectifs" data-pose="" data-off-x="361.7" data-off-y="429.52" style="left:36.17%;top:42.952%">
+    <li><span class="t-fr"><b>1.</b> Corrélation, concomitance, causalité : ne pas confondre.</span><span class="t-en" hidden=""><b>1.</b> Correlation, coincidence, causation: not to be confused.</span></li>
+    <li><span class="t-fr"><b>2.</b> Le catalogue des sophismes les plus courants.</span><span class="t-en" hidden=""><b>2.</b> A catalogue of the most common fallacies.</span></li>
+    <li><span class="t-fr"><b>3.</b> Étude de cas : une arnaque construite sophisme après sophisme.</span><span class="t-en" hidden=""><b>3.</b> Case study: a scam built fallacy after fallacy.</span></li>
+    <li><span class="t-fr"><b>4.</b> Biais du survivant, rasoir d'Ockham, neutralité des médias.</span><span class="t-en" hidden=""><b>4.</b> Survivorship bias, Occam's razor, media neutrality.</span></li>
+  </ul>
+</section>
+
+  <!-- 1. Riddle chaussures -->
+  <section class="slide" id="s1-2" data-serie="serie_53afd62d-4a3f-49fc-a220-9457609e4cee">
+  <p class="kicker" data-pose="" data-off-x="430.75" data-off-y="110.13" style="left:43.075%;top:11.013%"><span class="t-fr">Un petit jeu pour commencer</span><span class="t-en" hidden="">A little game to start with</span></p>
+  <h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">Les gens qui s'endorment avec les chaussures aux pieds ont plus de chances d'avoir mal à la tête en se réveillant le lendemain.</span><span class="t-en" hidden="">People who fall asleep with their shoes on are more likely to wake up with a headache the next day.</span></h2>
+  <div class="riddle-box" data-pose="" data-off-x="344.16" data-off-y="321.59" style="left:34.416%;top:32.159%">
+    <p class="q"><span class="t-fr">Pourquoi ?</span><span class="t-en" hidden="">Why?</span></p>
+    <div class="step" id="riddle-chaussures">
+      <p><span class="t-fr">Est-ce que dormir avec ses chaussures <b>provoque</b> le mal de tête ? Ou bien y a-t-il autre chose qui explique les deux à la fois ?</span><span class="t-en" hidden="">Does sleeping with your shoes on <b>cause</b> the headache? Or is there something else that explains both at once?</span></p>
+    </div>
+  </div>
+</section>
+
+  <!-- 2. Diagramme causal -->
+  <section class="slide" id="s2" data-serie="serie_c4281b73-3d4e-42e1-a9b9-eb50687ddafc">
+  <h2 data-pose="" data-off-x="429.35" data-off-y="110.13" style="left:42.935%;top:11.013%"><span class="t-fr">La fausse cause</span><span class="t-en" hidden="">The false cause</span></h2>
+  <div class="causal-diagram" data-pose="" data-off-x="412.84" data-off-y="187.22" style="left:41.284%;top:18.722%">
+    <div class="cnode"><span class="t-fr">Chaussures aux pieds</span><span class="t-en" hidden="">Shoes on</span></div>
+    <div class="carrow">→ ?</div>
+    <div class="cnode"><span class="t-fr">Mal de tête</span><span class="t-en" hidden="">Headache</span></div>
+  </div>
+  <div class="step" id="causal-reveal" data-pose="" data-off-x="302.6" data-off-y="330.4" style="left:30.26%;top:33.04%">
+    <div class="causal-stack">
+      <div class="cnode common"><span class="t-fr">Alcool (la veille)</span><span class="t-en" hidden="">Alcohol (the night before)</span></div>
+      <div class="carrow">↙&nbsp;&nbsp;&nbsp;↘</div>
+      <div class="causal-pair">
+        <div class="cnode"><span class="t-fr">Chaussures aux pieds</span><span class="t-en" hidden="">Shoes on</span></div>
+        <div class="cnode"><span class="t-fr">Mal de tête</span><span class="t-en" hidden="">Headache</span></div>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:16px;"><span class="t-fr">Une personne qui s'endort tout habillée, chaussures comprises, a souvent trop bu la veille, ce qui explique aussi le mal de tête. Les chaussures ne causent rien : les deux ont une <b>cause commune</b>.</span><span class="t-en" hidden="">Someone who falls asleep fully dressed, shoes included, has often had too much to drink the night before, which also explains the headache. The shoes cause nothing: both share a <b>common cause</b>.</span></p>
+  </div>
+</section>
+
+  <!-- 3. 3 concepts clés -->
+  <section class="slide short" id="s3" data-serie="serie_a05873d8-0ff2-4d79-a004-f91f1cb41735">
+  <p class="kicker" data-pose="" data-off-x="425.71" data-off-y="370.56" style="left:42.571%;top:37.056%"><span class="t-fr">Trois mots à ne pas confondre</span><span class="t-en" hidden="">Three words not to confuse</span></p>
+  <h2 data-pose="" data-off-x="337.26" data-off-y="401.4" style="left:33.726%;top:40.14%"><span class="t-fr">Concomitance, corrélation, causalité</span><span class="t-en" hidden="">Coincidence, correlation, causation</span></h2>
+  <div class="compare" data-pose="" data-off-x="295.84" data-off-y="480.69" style="left:29.584%;top:48.069%">
+    <div class="col c1"><h3><span class="t-fr">Concomitance</span><span class="t-en" hidden="">Coincidence</span></h3><p><span class="t-fr">Deux évènements arrivent en même temps, sans lien entre eux.</span><span class="t-en" hidden="">Two events happen at the same time, with no link between them.</span></p></div>
+    <div class="col c2"><h3><span class="t-fr">Corrélation</span><span class="t-en" hidden="">Correlation</span></h3><p><span class="t-fr">Deux évènements sont liés statistiquement, sans que l'un provoque l'autre.</span><span class="t-en" hidden="">Two events are statistically linked, without one causing the other.</span></p></div>
+    <div class="col c3"><h3><span class="t-fr">Causalité</span><span class="t-en" hidden="">Causation</span></h3><p><span class="t-fr">L'un des évènements provoque réellement le second.</span><span class="t-en" hidden="">One of the events genuinely causes the other.</span></p></div>
+  </div>
+</section>
+
+  <!-- 4. Concomitance : Nicolas Cage -->
+  <section class="slide" id="s4-2" data-serie="serie_d4a85c0f-da79-44c2-a95f-eac1a05dcea5">
+  <p class="kicker" data-pose="" data-off-x="466.54" data-off-y="110.13" style="left:46.654%;top:11.013%"><span class="t-fr">Concomitance</span><span class="t-en" hidden="">Coincidence</span></p>
+  <h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">Plus Nicolas Cage sort de films, plus il y a de morts dans les piscines aux États-Unis.</span><span class="t-en" hidden="">The more films Nicolas Cage releases, the more people drown in swimming pools in the US.</span></h2>
+  <div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="262.11" style="left:39.091%;top:26.211%"><img src="../medias/images/concomitance-nicolas-cage.jpg" alt="Graphique montrant la corrélation absurde entre les films de Nicolas Cage et les noyades en piscine"></div>
+  <p class="lead" data-pose="" data-off-x="336.32" data-off-y="440.15" style="left:33.632%;top:44.015%"><span class="t-fr">Une coïncidence statistique amusante… mais aucun lien de cause à effet.</span><span class="t-en" hidden="">An amusing statistical coincidence… but no cause-and-effect link.</span></p>
+</section>
+
+  <!-- 5. Corrélation : aliments transformés -->
+  <section class="slide" id="s5-3" data-serie="serie_d4a85c0f-da79-44c2-a95f-eac1a05dcea5">
+  <p class="kicker" data-pose="" data-off-x="470.46" data-off-y="110.13" style="left:47.046%;top:11.013%"><span class="t-fr">Corrélation</span><span class="t-en" hidden="">Correlation</span></p>
+  <h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">Plus on consomme de produits transformés, plus il y a de cancers.</span><span class="t-en" hidden="">The more processed food we eat, the more cancer cases there are.</span></h2>
+  <div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="262.11" style="left:39.091%;top:26.211%"><img src="../medias/images/correlation-aliments-cancer.jpg" alt="Graphique de l'étude Nutrinet-Santé sur les aliments ultra-transformés et le cancer"></div>
+  <p class="lead" style="font-size:.8rem;left:34.994%;top:56.1%" data-pose="" data-off-x="349.94" data-off-y="561"><span class="t-fr">Source : étude Nutrinet-Santé, un lien statistique réel, mais qui ne prouve pas à lui seul la causalité.</span><span class="t-en" hidden="">Source: the Nutrinet-Santé study, a real statistical link, but one that alone doesn't prove causation.</span></p>
+</section>
+
+  <!-- 6. Causalité : groupe contrôle -->
+  <section class="slide" id="s6">
+  <p class="kicker" data-pose="" data-off-x="476.52" data-off-y="110.13" style="left:47.652%;top:11.013%"><span class="t-fr">Causalité</span><span class="t-en" hidden="">Causation</span></p>
+  <h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">Les médicaments et la guérison : comment prouver un vrai lien ?</span><span class="t-en" hidden="">Medicine and recovery: how do you prove a real link?</span></h2>
+  <div class="compare" data-pose="" data-off-x="365.45" data-off-y="273.13" style="left:36.545%;top:27.313%">
+    <div class="col c1"><h3><span class="t-fr">Groupe contrôle</span><span class="t-en" hidden="">Control group</span></h3><p><span class="t-fr">Ne reçoit pas le médicament (ou reçoit un placebo). Sert de référence.</span><span class="t-en" hidden="">Doesn't receive the drug (or receives a placebo). Serves as a baseline.</span></p></div>
+    <div class="col c2"><h3><span class="t-fr">Groupe test</span><span class="t-en" hidden="">Test group</span></h3><p><span class="t-fr">Reçoit le médicament. On compare son évolution à celle du groupe contrôle.</span><span class="t-en" hidden="">Receives the drug. Its progress is compared to the control group's.</span></p></div>
+  </div>
+  <p class="lead" style="margin-top:18px;left:30.26%;top:45.27%" data-pose="" data-off-x="302.6" data-off-y="452.7"><span class="t-fr">C'est la comparaison contrôlée, pas la simple observation, qui permet de parler de causalité.</span><span class="t-en" hidden="">It's the controlled comparison, not simple observation, that lets us talk about causation.</span></p>
+</section>
+
+  <!-- 7. Étude de cas chocolat/Nobel -->
+  <section class="slide" id="s7-2" data-serie="serie_4a16d8fe-e1b4-4e82-a382-3fda54d0e046">
+  <p class="kicker" data-pose="" data-off-x="469.32" data-off-y="110.13" style="left:46.932%;top:11.013%"><span class="t-fr">Étude de cas</span><span class="t-en" hidden="">Case study</span></p>
+  <h2 data-pose="" data-off-x="287.73" data-off-y="140.97" style="left:28.773%;top:14.097%"><span class="t-fr">Le chocolat aide-t-il à décrocher un prix Nobel ?</span><span class="t-en" hidden="">Does chocolate help you win a Nobel Prize?</span></h2>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="209.25" style="left:42.208%;top:20.925%"><img src="../medias/images/chocolat-nobel-lepoint.jpg" alt="Titre : plus un pays mange de chocolat, plus il a de prix Nobel"></div>
+  <div class="step" id="choc-reveal" data-pose="" data-off-x="302.6" data-off-y="539.27" style="left:30.26%;top:53.927%">
+    <div class="imgcard small"><img src="../medias/images/chocolat-nobel-debunk.jpg" alt="Le Monde Décodeurs : corrélation et causalité, peut-on décrocher un prix Nobel en mangeant du chocolat ?"></div>
+    <p class="lead" style="margin-top:14px;"><span class="t-fr">En mettant simplement deux courbes côte à côte, sans jamais affirmer de causalité, on peut quand même laisser le lien se former dans l'esprit du lecteur. Est-ce alors une Fake News… ou juste une présentation trompeuse ?</span><span class="t-en" hidden="">By simply putting two curves side by side, without ever claiming causation, you can still let the link form in the reader's mind. Is that fake news… or just a misleading presentation?</span></p>
+  </div>
+</section>
+
+  <!-- 8. Étude de cas vaccin -->
+  <section class="slide" id="s8" data-serie="serie_4a16d8fe-e1b4-4e82-a382-3fda54d0e046">
+  <p class="kicker" data-pose="" data-off-x="415.13" data-off-y="112.56" style="left: 41.513%; top: 11.256%;"><span class="t-fr">Étude de cas : le biais de causalité</span><span class="t-en" hidden="">Case study: the causality bias</span></p>
+  <h2 data-pose="" data-off-x="261.04" data-off-y="143.38" style="left: 26.104%; top: 14.338%;"><span class="t-fr">Un adolescent meurt après une vaccination contre le papillomavirus</span><span class="t-en" hidden="">A teenager dies after an HPV vaccination</span></h2>
+  
+  <div class="step" id="vaccin-reveal" data-pose="" data-off-x="302.6" data-off-y="588.71" style="left: 30.26%; top: 58.871%;">
+    <div class="quote-block"><span class="t-fr">« Le produit vaccinal ne serait pas en cause. »</span><span class="t-en" hidden="">"The vaccine itself does not appear to be at fault."</span><cite><span class="t-fr">Agence Régionale de Santé, conclusion de l'enquête</span><span class="t-en" hidden="">Regional Health Agency, investigation conclusion</span></cite></div>
+    <p class="lead" style="margin-top:14px;"><span class="t-fr">Deux évènements rapprochés dans le temps (concomitance) ont été lus comme une causalité, avant même la fin de l'enquête. C'est le <b>biais de causalité</b> : notre cerveau cherche toujours une explication, quitte à en inventer une trop vite.</span><span class="t-en" hidden="">Two events close together in time (coincidence) were read as causation, even before the investigation ended. This is the <b>causality bias</b>: our brain always looks for an explanation, even if it means inventing one too fast.</span></p>
+  </div>
+<div class="imgcard small" data-pose="" data-off-x="340" data-off-y="279.95" style="width: 300px; left: 34%; top: 27.995%;"><img src="../medias/images/vaccin-ado-tweet.jpg" alt="Tweet : un adolescent décède après une vaccination contre le papillomavirus"></div><div class="imgcard small" data-pose="" data-off-x="504.16" data-off-y="279.95" style="width: 300px; left: 50.416%; top: 27.995%;"><img src="../medias/images/vaccin-college-article.jpg" alt="Article : le collégien qui avait fait un malaise est décédé"></div></section>
+
+  <!-- 9. Généralisation abusive stat -->
+  <section class="slide" id="s9-2" data-serie="serie_4a16d8fe-e1b4-4e82-a382-3fda54d0e046">
+  <p class="kicker" data-pose="" data-off-x="447.23" data-off-y="110.13" style="left:44.723%;top:11.013%"><span class="t-fr">Le piège des moyennes</span><span class="t-en" hidden="">The trap of averages</span></p>
+  <h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">« Les ménages français détiennent en moyenne un patrimoine net de 446 000 € »</span><span class="t-en" hidden="">"French households hold an average net worth of €446,000"</span></h2>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="262.11" style="left:42.208%;top:26.211%"><img src="../medias/images/patrimoine-moyen-bfmtv.jpg" alt="Tweet BFMTV sur le patrimoine moyen des Français"></div>
+  <div class="riddle-box" data-pose="" data-off-x="344.16" data-off-y="611.91" style="left:34.416%;top:61.191%">
+    <p class="q"><span class="t-fr">« C'est bien la preuve que la plupart des Français sont riches ! »</span><span class="t-en" hidden="">"That's proof most French people are rich!"</span></p>
+    <div class="reveal-answer step" id="moyenne-reveal">
+      <p><span class="t-fr">Une <b>moyenne</b> peut être tirée vers le haut par une minorité très riche. Elle ne dit rien de la situation du Français « typique » : c'est la <b>médiane</b> qu'il faudrait regarder pour ça, et elle est bien plus basse.</span><span class="t-en" hidden="">An <b>average</b> can be pulled upward by a very wealthy minority. It says nothing about the "typical" French person's situation: you'd need to look at the <b>median</b> for that, and it's much lower.</span></p>
+    </div>
+  </div>
+</section>
+
+  <!-- 10. Biais d'autorité -->
+  <section class="slide" id="s10" data-serie="serie_4a16d8fe-e1b4-4e82-a382-3fda54d0e046">
+  <p class="kicker" data-pose="" data-off-x="478.22" data-off-y="110.13" style="left:47.822%;top:11.013%"><span class="t-fr">Sophisme</span><span class="t-en" hidden="">Fallacy</span></p>
+  <h2 data-pose="" data-off-x="420.24" data-off-y="140.97" style="left:42.024%;top:14.097%"><span class="t-fr">Le biais d'autorité</span><span class="t-en" hidden="">Appeal to authority</span></h2>
+  <p class="lead" data-pose="" data-off-x="351.12" data-off-y="209.25" style="left:35.112%;top:20.925%"><span class="t-fr">Considérer qu'une personne qui a de l'autorité a forcément raison.</span><span class="t-en" hidden="">Assuming that a person with authority must be right.</span></p>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="258.5" style="left:42.208%;top:25.85%"><img src="../medias/images/biais-autorite-portrait.jpg" alt="Portrait d'un scientifique très médiatisé"></div>
+  <div class="quote-block" data-pose="" data-off-x="333.77" data-off-y="473.17" style="left:33.377%;top:47.317%"><span class="t-fr">« Je suis le scientifique le plus cité au monde ! »</span><span class="t-en" hidden="">"I'm the most cited scientist in the world!"</span></div>
+  <p class="lead" style="margin-top:10px;font-size:.85rem;left:30.26%;top:55.257%" data-pose="" data-off-x="302.6" data-off-y="552.57"><span class="t-fr">Être très cité, très diplômé ou très suivi ne rend pas une affirmation vraie : l'autorité ne remplace jamais la preuve. (Voir aussi le schéma de l'expérience de Milgram sur l'obéissance à l'autorité.)</span><span class="t-en" hidden="">Being highly cited, highly qualified, or widely followed doesn't make a claim true: authority never replaces evidence. (See also Milgram's experiment on obedience to authority.)</span></p>
+  <a class="gamelink" href="https://antoninatger.github.io/jeux/Biais%20cognitifs/index.html#/biais/biais-autorite" target="_blank" data-pose="" data-off-x="416.88" data-off-y="624.7" style="left:41.688%;top:62.47%"><span class="t-fr">La fiche « Biais d'autorité » sur Perceptio</span><span class="t-en" hidden="">The "Appeal to Authority" entry on Perceptio</span></a>
+</section>
+
+  <!-- 11. Généralisation abusive -->
+  <section class="slide short" id="s11-2" data-serie="serie_4a16d8fe-e1b4-4e82-a382-3fda54d0e046">
+  <p class="kicker" data-pose="" data-off-x="478.22" data-off-y="379.46" style="left:47.822%;top:37.946%"><span class="t-fr">Sophisme</span><span class="t-en" hidden="">Fallacy</span></p>
+  <h2 data-pose="" data-off-x="385.48" data-off-y="410.3" style="left:38.548%;top:41.03%"><span class="t-fr">La généralisation abusive</span><span class="t-en" hidden="">Hasty generalisation</span></h2>
+  <div class="quote-block" data-pose="" data-off-x="333.77" data-off-y="485.19" style="left:33.377%;top:48.519%"><span class="t-fr">« Mon voisin est un idiot, et il a des moustaches. Donc tous les moustachus sont des idiots. »</span><span class="t-en" hidden="">"My neighbour is an idiot, and he has a moustache. So all men with moustaches are idiots."</span></div>
+  <p class="lead" style="margin-top:14px;left:30.332%;top:59.772%" data-pose="" data-off-x="303.32" data-off-y="597.72"><span class="t-fr">Généraliser à partir d'un seul cas (ou d'un tout petit nombre) à l'ensemble d'un groupe.</span><span class="t-en" hidden="">Generalising from a single case (or a tiny number) to an entire group.</span></p>
+</section>
+
+  <!-- 12. Le vrai écossais -->
+  <section class="slide" id="s12-2" data-serie="serie_4a16d8fe-e1b4-4e82-a382-3fda54d0e046">
+  <p class="kicker" data-pose="" data-off-x="478.22" data-off-y="110.13" style="left:47.822%;top:11.013%"><span class="t-fr">Sophisme</span><span class="t-en" hidden="">Fallacy</span></p>
+  <h2 data-pose="" data-off-x="415.1" data-off-y="140.97" style="left:41.51%;top:14.097%"><span class="t-fr">Le « vrai » écossais</span><span class="t-en" hidden="">The "true" Scotsman</span></h2>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="209.25" style="left:42.208%;top:20.925%"><img src="../medias/images/vrai-ecossais-roux.jpg" alt="Rassemblement de personnes rousses"></div>
+  <div class="quote-block" data-pose="" data-off-x="333.77" data-off-y="397.58" style="left:33.377%;top:39.758%"><span class="t-fr">« Tous les Écossais sont roux !<br>- Non, mon voisin est écossais, et il a les cheveux blonds.<br>- Alors ce n'est pas un <i>vrai</i> écossais ! »</span><span class="t-en" hidden="">"All Scotsmen have red hair!<br>- No, my neighbour is Scottish, and he has blond hair.<br>- Then he's not a <i>true</i> Scotsman!"</span></div>
+  <p class="lead" style="margin-top:10px;left:30.26%;top:53.445%" data-pose="" data-off-x="302.6" data-off-y="534.45"><span class="t-fr">Plutôt que d'admettre l'exception, on redéfinit la règle pour qu'elle reste vraie « par définition ».</span><span class="t-en" hidden="">Rather than admit the exception, the rule gets redefined so it stays true "by definition".</span></p>
+</section>
+
+  <!-- 13. Déshonneur par association -->
+  <section class="slide" id="s13-3" data-serie="serie_4a16d8fe-e1b4-4e82-a382-3fda54d0e046">
+  <p class="kicker" data-pose="" data-off-x="478.22" data-off-y="110.13" style="left:47.822%;top:11.013%"><span class="t-fr">Sophisme</span><span class="t-en" hidden="">Fallacy</span></p>
+  <h2 data-pose="" data-off-x="362.67" data-off-y="140.97" style="left:36.267%;top:14.097%"><span class="t-fr">Le déshonneur par association</span><span class="t-en" hidden="">Guilt by association</span></h2>
+  <p class="lead" data-pose="" data-off-x="346.87" data-off-y="209.25" style="left:34.687%;top:20.925%"><span class="t-fr">« Vous êtes végétariens ? Vous savez qui d'autre était végétarien ? »</span><span class="t-en" hidden="">"You're vegetarian? You know who else was vegetarian?"</span></p>
+  <div class="step" id="godwin-reveal" data-pose="" data-off-x="302.6" data-off-y="243.08" style="left:30.26%;top:24.308%">
+    <div class="imgcard small"><img src="../medias/images/godwin-portrait-historique.jpg" alt="Portrait historique d'Adolf Hitler"></div>
+    <p class="lead" style="margin-top:12px;"><span class="t-fr">Hitler ! Associer une idée à une personne détestable ne prouve rien sur la valeur de cette idée : c'est un raccourci rhétorique bien connu, popularisé sous le nom de « loi de Godwin ».</span><span class="t-en" hidden="">Hitler! Linking an idea to a hated person proves nothing about the idea's worth: it's a well-known rhetorical shortcut, popularised as "Godwin's law".</span></p>
+  </div>
+</section>
+
+  <!-- 14. Biais de popularité -->
+  <section class="slide" id="s14-2" data-serie="serie_4a16d8fe-e1b4-4e82-a382-3fda54d0e046">
+  <p class="kicker" data-pose="" data-off-x="478.23" data-off-y="114.45" style="left: 47.823%; top: 11.445%;"><span class="t-fr">Sophisme</span><span class="t-en" hidden="">Fallacy</span></p>
+  <h2 data-pose="" data-off-x="394.06" data-off-y="145.28" style="left: 39.406%; top: 14.528%;"><span class="t-fr">Le biais de la popularité</span><span class="t-en" hidden="">Popularity bias</span></h2>
+  
+  <p class="lead" style="margin-top: 14px; left: 30.26%; top: 70.606%;" data-pose="" data-off-x="302.6" data-off-y="706.06"><span class="t-fr">Un champion adoré du public vend… des voitures. Ce n'est pas son expertise automobile qui convainc, c'est la sympathie qu'il inspire.</span><span class="t-en" hidden="">A champion beloved by the public sells… cars. It's not his automotive expertise that convinces us, it's the likeability he inspires.</span></p>
+  <a class="gamelink" href="https://antoninatger.github.io/jeux/Biais%20cognitifs/index.html#/biais/effet-halo" target="_blank" data-pose="" data-off-x="420.7" data-off-y="797.96" style="left: 42.07%; top: 79.796%;"><span class="t-fr">La fiche « Effet de halo » sur Perceptio</span><span class="t-en" hidden="">The "Halo Effect" entry on Perceptio</span></a>
+<div class="imgcard small" data-pose="" data-off-x="340" data-off-y="228.38" style="width: 300px; left: 34%; top: 22.838%;"><img src="../medias/images/champion-podium.jpg" alt="Champion sportif sur un podium"></div><div class="imgcard small" data-pose="" data-off-x="504.16" data-off-y="228.38" style="width: 300px; left: 50.416%; top: 22.838%;"><img src="../medias/images/pub-voiture-champion.jpg" alt="Publicité automobile mettant en scène le champion"></div></section>
+
+  <!-- 15. Appel à l'ancienneté -->
+  <section class="slide" id="s15-2" data-serie="serie_4a16d8fe-e1b4-4e82-a382-3fda54d0e046">
+  <p class="kicker" data-pose="" data-off-x="478.22" data-off-y="110.13" style="left:47.822%;top:11.013%"><span class="t-fr">Sophisme</span><span class="t-en" hidden="">Fallacy</span></p>
+  <h2 data-pose="" data-off-x="410.33" data-off-y="140.97" style="left:41.033%;top:14.097%"><span class="t-fr">Appel à l'ancienneté</span><span class="t-en" hidden="">Appeal to tradition</span></h2>
+  <p class="lead" data-pose="" data-off-x="359.46" data-off-y="209.25" style="left:35.946%;top:20.925%"><span class="t-fr">Considérer qu'une chose est bonne parce qu'elle est ancienne.</span><span class="t-en" hidden="">Assuming that something is good because it's old.</span></p>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="258.5" style="left:42.208%;top:25.85%"><img src="../medias/images/anciennete-manuscrit.jpg" alt="Manuscrit médiéval représentant une scène de saignée"></div>
+  <div class="quote-block" data-pose="" data-off-x="333.77" data-off-y="648.47" style="left:33.377%;top:64.847%"><span class="t-fr">« Ma boulangerie existe depuis 1659, elle est donc forcément bonne ! »<br>« Cette technique de soin est utilisée depuis l'Antiquité ! »</span><span class="t-en" hidden="">"My bakery has existed since 1659, so it must be good!"<br>"This treatment has been used since Antiquity!"</span></div>
+</section>
+
+  <!-- 16. Appel à la nouveauté -->
+  <section class="slide short" id="s16-2" data-serie="serie_4a16d8fe-e1b4-4e82-a382-3fda54d0e046">
+  <p class="kicker" data-pose="" data-off-x="478.22" data-off-y="422.11" style="left:47.822%;top:42.211%"><span class="t-fr">Sophisme</span><span class="t-en" hidden="">Fallacy</span></p>
+  <h2 data-pose="" data-off-x="406.65" data-off-y="452.95" style="left:40.665%;top:45.295%"><span class="t-fr">Appel à la nouveauté</span><span class="t-en" hidden="">Appeal to novelty</span></h2>
+  <p class="lead" data-pose="" data-off-x="302.6" data-off-y="521.23" style="left:30.26%;top:52.123%"><span class="t-fr">Considérer qu'une chose est forcément meilleure parce qu'elle est nouvelle : le symétrique exact de l'appel à l'ancienneté.</span><span class="t-en" hidden="">Assuming something is necessarily better because it's new: the exact mirror of the appeal to tradition.</span></p>
+</section>
+
+  <!-- 17. Appel à la nature -->
+  <section class="slide" id="s17" data-serie="group_7d897318-838f-4da3-a154-afb2daf8ad2c">
+  <p class="kicker" data-pose="" data-off-x="478.22" data-off-y="110.13" style="left:47.822%;top:11.013%"><span class="t-fr">Sophisme</span><span class="t-en" hidden="">Fallacy</span></p>
+  <h2 data-pose="" data-off-x="419.5" data-off-y="140.97" style="left:41.95%;top:14.097%"><span class="t-fr">L'appel à la nature</span><span class="t-en" hidden="">Appeal to nature</span></h2>
+  <p class="lead" data-pose="" data-off-x="352.52" data-off-y="209.25" style="left:35.252%;top:20.925%"><span class="t-fr">Considérer que si quelque chose est naturel, c'est forcément bon.</span><span class="t-en" hidden="">Assuming that if something is natural, it must be good.</span></p>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="258.5" style="left:42.208%;top:25.85%"><img src="../medias/images/appel-nature-champignon.jpg" alt="Champignon sauvage"></div>
+  <div class="quote-block" data-pose="" data-off-x="333.77" data-off-y="506.3" style="left:33.377%;top:50.63%"><span class="t-fr">« Tu devrais goûter ce champignon, il est délicieux et 100 % naturel ! »</span><span class="t-en" hidden="">"You should try this mushroom, it's delicious and 100% natural!"</span></div>
+  <p class="lead" style="margin-top:8px;font-size:.85rem;left:38.181%;top:58.349%" data-pose="" data-off-x="381.81" data-off-y="583.49"><span class="t-fr">Les champignons les plus toxiques sont, eux aussi, parfaitement naturels.</span><span class="t-en" hidden="">The most toxic mushrooms are also perfectly natural.</span></p>
+</section>
+
+  <!-- 18. Pente savonneuse -->
+  <section class="slide" id="s18" data-serie="group_7d897318-838f-4da3-a154-afb2daf8ad2c">
+  <p class="kicker" data-pose="" data-off-x="478.22" data-off-y="110.13" style="left:47.822%;top:11.013%"><span class="t-fr">Sophisme</span><span class="t-en" hidden="">Fallacy</span></p>
+  <h2 data-pose="" data-off-x="405.5" data-off-y="140.97" style="left:40.55%;top:14.097%"><span class="t-fr">La pente savonneuse</span><span class="t-en" hidden="">The slippery slope</span></h2>
+  <p class="lead" data-pose="" data-off-x="302.6" data-off-y="209.25" style="left:30.26%;top:20.925%"><span class="t-fr">Considérer qu'un évènement entraînera forcément des conséquences bien plus graves par la suite.</span><span class="t-en" hidden="">Assuming that one event will necessarily lead to much more serious consequences down the line.</span></p>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="292.33" style="left:42.208%;top:29.233%"><img src="../medias/images/pente-savonneuse-panneau.jpg" alt="Panneau d'avertissement illustrant une pente glissante"></div>
+  <div class="quote-block" data-pose="" data-off-x="333.77" data-off-y="712.07" style="left:33.377%;top:71.207%"><span class="t-fr">« Si nous masquons les paquets de cigarettes, demain on nous demandera de masquer nos bouteilles de vin ! Et ce sera la fin de notre terroir ! »</span><span class="t-en" hidden="">"If we hide cigarette packs today, tomorrow they'll ask us to hide our wine bottles! And that'll be the end of our heritage!"</span></div>
+  <a class="gamelink" href="https://antoninatger.github.io/jeux/rhetor/index.html#/outils/pente-glissante" target="_blank" data-pose="" data-off-x="421.1" data-off-y="833.43" style="left:42.11%;top:83.343%"><span class="t-fr">La fiche « Pente glissante » sur Rhetor</span><span class="t-en" hidden="">The "Slippery Slope" entry on Rhetor</span></a>
+</section>
+
+  <!-- 19. Appel au bon sens -->
+  <section class="slide" id="s19-2" data-serie="group_7d897318-838f-4da3-a154-afb2daf8ad2c">
+  <p class="kicker" data-pose="" data-off-x="478.22" data-off-y="110.13" style="left:47.822%;top:11.013%"><span class="t-fr">Sophisme</span><span class="t-en" hidden="">Fallacy</span></p>
+  <h2 data-pose="" data-off-x="419.08" data-off-y="140.97" style="left:41.908%;top:14.097%"><span class="t-fr">Appel au bon sens</span><span class="t-en" hidden="">Appeal to common sense</span></h2>
+  <p class="lead" data-pose="" data-off-x="359.16" data-off-y="209.25" style="left:35.916%;top:20.925%"><span class="t-fr">Considérer que les choses « évidentes » sont forcément vraies.</span><span class="t-en" hidden="">Assuming that "obvious" things must be true.</span></p>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="258.5" style="left:42.208%;top:25.85%"><img src="../medias/images/flat-earth.jpg" alt="Illustration d'une Terre plate flottant dans l'espace"></div>
+  <div class="quote-block" data-pose="" data-off-x="333.77" data-off-y="467.48" style="left:33.377%;top:46.748%"><span class="t-fr">« La Terre est plate, c'est évident ! »</span><span class="t-en" hidden="">"The Earth is flat, it's obvious!"</span></div>
+</section>
+
+  <!-- 20. Sophisme du pire ailleurs -->
+  <section class="slide short" id="s20-2" data-serie="serie_b64d0319-6dcc-4e51-a540-d473de76cec8">
+  <p class="kicker" data-pose="" data-off-x="478.22" data-off-y="362.54" style="left:47.822%;top:36.254%"><span class="t-fr">Sophisme</span><span class="t-en" hidden="">Fallacy</span></p>
+  <h2 data-pose="" data-off-x="375.53" data-off-y="393.38" style="left:37.553%;top:39.338%"><span class="t-fr">Le sophisme du pire ailleurs</span><span class="t-en" hidden="">The "worse elsewhere" fallacy</span></h2>
+  <p class="lead" data-pose="" data-off-x="302.6" data-off-y="461.66" style="left:30.26%;top:46.166%"><span class="t-fr">Expliquer qu'il existe des situations plus graves ailleurs, pour justifier ou minimiser une situation présente.</span><span class="t-en" hidden="">Pointing to worse situations elsewhere, to justify or minimise a present one.</span></p>
+  <div class="quote-block" data-pose="" data-off-x="333.77" data-off-y="551.35" style="left:33.377%;top:55.135%"><span class="t-fr">« Pourquoi défendre le droit des femmes en France ? Allez donc en Afghanistan ! »</span><span class="t-en" hidden="">"Why defend women's rights in France? Go to Afghanistan instead!"</span></div>
+</section>
+
+  <!-- 21. Homme de paille -->
+  <section class="slide" id="s21">
+  <p class="kicker" data-pose="" data-off-x="478.22" data-off-y="110.13" style="left:47.822%;top:11.013%"><span class="t-fr">Sophisme</span><span class="t-en" hidden="">Fallacy</span></p>
+  <h2 data-pose="" data-off-x="350.78" data-off-y="140.97" style="left:35.078%;top:14.097%"><span class="t-fr">Le sophisme de l'homme de paille</span><span class="t-en" hidden="">The straw man fallacy</span></h2>
+  <p class="lead" data-pose="" data-off-x="302.6" data-off-y="209.25" style="left:30.26%;top:20.925%"><span class="t-fr">Déformer la position de l'adversaire pour la rendre plus facile à attaquer, puis attaquer cette version caricaturale plutôt que l'argument réel.</span><span class="t-en" hidden="">Distorting an opponent's position to make it easier to attack, then attacking that caricature instead of the real argument.</span></p>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="292.33" style="left:42.208%;top:29.233%"><img src="../medias/images/epouvantail.jpg" alt="Un épouvantail dans un jardin"></div>
+  <a class="gamelink" href="https://antoninatger.github.io/jeux/rhetor/index.html#/outils/homme-de-paille" target="_blank" data-pose="" data-off-x="419.01" data-off-y="816.77" style="left:41.901%;top:81.677%"><span class="t-fr">La fiche « Homme de paille » sur Rhetor</span><span class="t-en" hidden="">The "Straw Man" entry on Rhetor</span></a>
+</section>
+
+  <!-- 22. Appel à l'ignorance -->
+  <section class="slide" id="s22">
+  <p class="kicker" data-pose="" data-off-x="478.22" data-off-y="110.13" style="left:47.822%;top:11.013%"><span class="t-fr">Sophisme</span><span class="t-en" hidden="">Fallacy</span></p>
+  <h2 data-pose="" data-off-x="415.29" data-off-y="140.97" style="left:41.529%;top:14.097%"><span class="t-fr">Appel à l'ignorance</span><span class="t-en" hidden="">Appeal to ignorance</span></h2>
+  <p class="lead" data-pose="" data-off-x="313.42" data-off-y="209.25" style="left:31.342%;top:20.925%"><span class="t-fr">Considérer qu'une chose est vraie tant qu'on n'a pas démontré qu'elle était fausse.</span><span class="t-en" hidden="">Assuming something is true as long as it hasn't been proven false.</span></p>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="258.5" style="left:42.208%;top:25.85%"><img src="../medias/images/aliens-pyramides.jpg" alt="Illustration d'extraterrestres devant les pyramides d'Égypte"></div>
+  <p class="lead" style="margin-top:8px;font-size:.85rem;left:30.26%;top:43.361%" data-pose="" data-off-x="302.6" data-off-y="433.61"><span class="t-fr">« Personne n'a prouvé que ce ne sont pas des extraterrestres qui ont construit les pyramides. » L'absence de preuve n'est pas une preuve.</span><span class="t-en" hidden="">"No one has proven aliens didn't build the pyramids." Absence of evidence is not evidence.</span></p>
+</section>
+
+  <!-- 23. Faux dilemme -->
+  <section class="slide" id="s23-2" data-serie="serie_9b26fd5e-5704-4344-a008-122838880721">
+  <p class="kicker" data-pose="" data-off-x="478.22" data-off-y="110.13" style="left:47.822%;top:11.013%"><span class="t-fr">Sophisme</span><span class="t-en" hidden="">Fallacy</span></p>
+  <h2 data-pose="" data-off-x="426.66" data-off-y="140.97" style="left:42.666%;top:14.097%"><span class="t-fr">Le faux dilemme</span><span class="t-en" hidden="">The false dilemma</span></h2>
+  <p class="lead" data-pose="" data-off-x="328.4" data-off-y="209.25" style="left:32.84%;top:20.925%"><span class="t-fr">Ne présenter que deux options, alors que d'autres sont tout aussi possibles.</span><span class="t-en" hidden="">Presenting only two options, when other possibilities exist just as well.</span></p>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="258.5" style="left:42.208%;top:25.85%"><img src="../medias/images/anakin-faux-dilemme-meme.jpg" alt="Mème internet : si tu n'es pas avec moi, alors tu es contre moi"></div>
+  <div class="quote-block" data-pose="" data-off-x="333.77" data-off-y="610.93" style="left:33.377%;top:61.093%"><span class="t-fr">« Si vous êtes CONTRE cette loi, vous êtes POUR les assassins d'enfants ! »</span><span class="t-en" hidden="">"If you're AGAINST this law, you're FOR child murderers!"</span></div>
+  <a class="gamelink" href="https://antoninatger.github.io/jeux/rhetor/index.html#/outils/faux-dilemme" target="_blank" data-pose="" data-off-x="423.79" data-off-y="703.54" style="left:42.379%;top:70.354%"><span class="t-fr">La fiche « Faux dilemme » sur Rhetor</span><span class="t-en" hidden="">The "False Dilemma" entry on Rhetor</span></a>
+</section>
+
+  <!-- 24. Faux dilemme dans la vraie vie -->
+  <section class="slide" id="s24-2" data-serie="serie_9b26fd5e-5704-4344-a008-122838880721">
+  <p class="kicker" data-pose="" data-off-x="418.09" data-off-y="113.5" style="left: 41.809%; top: 11.35%;"><span class="t-fr">Le faux dilemme, dans la vraie vie</span><span class="t-en" hidden="">The false dilemma, in real life</span></p>
+  <h2 data-pose="" data-off-x="261.04" data-off-y="144.33" style="left: 26.104%; top: 14.433%;"><span class="t-fr">Un exemple observé sur les réseaux sociaux américains</span><span class="t-en" hidden="">An example observed on American social media</span></h2>
+  
+  <p class="lead" style="margin-top: 14px; left: 30.26%; top: 53.744%;" data-pose="" data-off-x="302.6" data-off-y="537.44"><span class="t-fr">Réduire tout un débat politique à deux camps opposés (ici « l'Amérique » contre « le communisme ») est un faux dilemme classique, quel que soit le bord politique qui l'utilise.</span><span class="t-en" hidden="">Reducing an entire political debate to two opposing camps (here "America" versus "communism") is a classic false dilemma, whichever political side uses it.</span></p>
+<div class="imgcard small" data-pose="" data-off-x="340" data-off-y="280.89" style="width: 300px; left: 34%; top: 28.089%;"><img src="../medias/images/tweet-politique-us.jpg" alt="Publication : ce n'est plus républicains contre démocrates, c'est l'Amérique contre le communisme"></div><div class="imgcard small" data-pose="" data-off-x="504.16" data-off-y="280.89" style="width: 300px; left: 50.416%; top: 28.089%;"><img src="../medias/images/flag-politique-us.jpg" alt="Image générée montrant un drapeau politique polarisant"></div></section>
+
+  <!-- Faux dilemme : citation de Sébastien Lecornu (18 oct. 2026) -->
+  <section class="slide" id="s24-3" data-serie="serie_9b26fd5e-5704-4344-a008-122838880721">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="350" data-off-y="80" style="left:35%;top:8%;width:30%;max-width:none;"><img src="../medias/images/actu-2026-10-18-faux-dilemme-lecornu.png" alt="" loading="lazy" style="aspect-ratio:512/640"></div>
+  </section>
+
+  <!-- 25. Sophisme du juste milieu -->
+  <section class="slide short" id="s25" data-serie="serie_0c9f26b7-8519-454b-abd6-35eea94b0dec">
+  <p class="kicker" data-pose="" data-off-x="478.22" data-off-y="379.46" style="left:47.822%;top:37.946%"><span class="t-fr">Sophisme</span><span class="t-en" hidden="">Fallacy</span></p>
+  <h2 data-pose="" data-off-x="376.54" data-off-y="410.3" style="left:37.654%;top:41.03%"><span class="t-fr">Le sophisme du juste milieu</span><span class="t-en" hidden="">The middle ground fallacy</span></h2>
+  <p class="lead" data-pose="" data-off-x="351.14" data-off-y="478.58" style="left:35.114%;top:47.858%"><span class="t-fr">Considérer que la solution intermédiaire est toujours la plus juste.</span><span class="t-en" hidden="">Assuming the middle-ground solution is always the fairest one.</span></p>
+  <div class="quote-block" data-pose="" data-off-x="333.77" data-off-y="534.44" style="left:33.377%;top:53.444%"><span class="t-fr">Maintien de l'esclavage, ou abolition totale de l'esclavage ? Le « compromis » entre les deux n'est pas plus juste que l'une des deux positions.</span><span class="t-en" hidden="">Keep slavery, or abolish it entirely? The "compromise" between the two is no fairer than either position.</span></div>
+</section>
+
+<section class="slide short" id="rf-gruyere">
+  <p class="kicker" data-pose="" data-off-x="478.22" data-off-y="404.09" style="left:47.822%;top:40.409%"><span class="t-fr">Sophisme</span><span class="t-en" hidden="">Fallacy</span></p>
+  <h2 data-pose="" data-off-x="393.45" data-off-y="434.92" style="left:39.345%;top:43.492%"><span class="t-fr">Le sophisme du gruyère</span><span class="t-en" hidden="">The Swiss cheese fallacy</span></h2>
+  <div class="quote-block" data-pose="" data-off-x="333.77" data-off-y="509.81" style="left:33.377%;top:50.981%"><span class="t-fr">« Plus il y a de gruyère, plus il y a de trous. Et plus il y a de trous, moins il y a de gruyère. Donc plus il y a de gruyère, moins il y a de gruyère ! »</span><span class="t-en" hidden="">"The more cheese, the more holes. And the more holes, the less cheese. So the more cheese, the less cheese!"</span></div>
+</section>
+
+<section class="slide" id="rf-test-maladie-1">
+  <p class="kicker" data-pose="" data-off-x="452.15" data-off-y="110.13" style="left:45.215%;top:11.013%"><span class="t-fr">Question pour vous</span><span class="t-en" hidden="">A question for you</span></p>
+  <p class="lead" data-pose="" data-off-x="302.6" data-off-y="156.39" style="left:30.26%;top:15.639%"><span class="t-fr">Il existe une maladie grave. Les scientifiques mettent au point un test. Si vous avez la maladie, le test sera positif à coup sûr.</span><span class="t-en" hidden="">There is a serious disease. Scientists develop a test. If you have the disease, the test will certainly be positive.</span></p>
+  <p class="lead" data-pose="" data-off-x="302.6" data-off-y="239.47" style="left:30.26%;top:23.947%"><span class="t-fr">Mais ce test peut aussi donner un « faux positif » : il peut dire que vous êtes malade alors que vous ne l’êtes pas. Il y a 5 % de chances que le test soit positif sans que vous soyez malade.</span><span class="t-en" hidden="">But the test can also give a "false positive": it can say you are ill when you are not. There is a 5% chance the test is positive although you are not ill.</span></p>
+  <div class="riddle-box" data-pose="" data-off-x="344.16" data-off-y="362.98" style="left:34.416%;top:36.298%"><p class="q"><span class="t-fr">Vous faites le test : il est positif. Êtes-vous inquiet ?</span><span class="t-en" hidden="">You take the test: it is positive. Are you worried?</span></p></div>
+</section>
+
+<section class="slide" id="rf-test-maladie-2">
+  <p class="kicker" data-pose="" data-off-x="447.1" data-off-y="110.13" style="left:44.71%;top:11.013%"><span class="t-fr">Nouvelle information</span><span class="t-en" hidden="">New information</span></p>
+  <p class="lead" data-pose="" data-off-x="302.6" data-off-y="156.39" style="left:30.26%;top:15.639%"><span class="t-fr">Vous apprenez que cette maladie est très rare : elle ne touche qu’une personne sur mille.</span><span class="t-en" hidden="">You learn that the disease is very rare: it affects only one person in a thousand.</span></p>
+  <div class="riddle-box" data-pose="" data-off-x="344.16" data-off-y="246.08" style="left:34.416%;top:24.608%"><p class="q"><span class="t-fr">Vous faites le test : il est positif. Êtes-vous inquiet ?</span><span class="t-en" hidden="">You take the test: it is positive. Are you worried?</span></p><div class="step"><p><span class="t-fr">Sur 1 000 personnes testées, 1 est malade… et environ 50 reçoivent un faux positif. Un test positif ne donne donc qu’environ 2 % de chances d’être malade.</span><span class="t-en" hidden="">Out of 1,000 people tested, 1 is ill… and about 50 get a false positive. A positive test therefore means only about a 2% chance of being ill.</span></p></div></div>
+</section>
+
+<section class="slide short" id="rf-procureur">
+  <p class="kicker" data-pose="" data-off-x="478.22" data-off-y="389.71" style="left:47.822%;top:38.971%"><span class="t-fr">Sophisme</span><span class="t-en" hidden="">Fallacy</span></p>
+  <h2 data-pose="" data-off-x="383.77" data-off-y="420.55" style="left:38.377%;top:42.055%"><span class="t-fr">Le sophisme du procureur</span><span class="t-en" hidden="">The prosecutor’s fallacy</span></h2>
+  <div class="quote-block" data-pose="" data-off-x="333.77" data-off-y="495.44" style="left:33.377%;top:49.544%"><span class="t-fr">« On sait que le coupable possède un trait génétique que l’on trouve chez seulement 10 % de la population. L’accusé possède ce trait. Il y a donc 90 % de chances que l’accusé soit coupable. »</span><span class="t-en" hidden="">"We know the culprit has a genetic trait found in only 10% of the population. The accused has this trait. So there is a 90% chance the accused is guilty."</span></div>
+</section>
+
+<section class="slide short" id="rf-sally-clark">
+  <p class="kicker" data-pose="" data-off-x="478.22" data-off-y="439.03" style="left:47.822%;top:43.903%"><span class="t-fr">Sophisme</span><span class="t-en" hidden="">Fallacy</span></p>
+  <h2 data-pose="" data-off-x="383.77" data-off-y="469.87" style="left:38.377%;top:46.987%"><span class="t-fr">Le sophisme du procureur</span><span class="t-en" hidden="">The prosecutor’s fallacy</span></h2>
+  <p class="lead" data-pose="" data-off-x="444.12" data-off-y="538.15" style="left:44.412%;top:53.815%"><span class="t-fr">Le procès de Sally Clark.</span><span class="t-en" hidden="">The trial of Sally Clark.</span></p>
+</section>
+
+<section class="slide" id="rf-theiere">
+  <p class="kicker" data-pose="" data-off-x="443.95" data-off-y="110.13" style="left:44.395%;top:11.013%"><span class="t-fr">La charge de la preuve</span><span class="t-en" hidden="">The burden of proof</span></p>
+  <h2 data-pose="" data-off-x="407.78" data-off-y="140.97" style="left:40.778%;top:14.097%"><span class="t-fr">La théière de Russell</span><span class="t-en" hidden="">Russell’s teapot</span></h2>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="209.25" style="left:42.208%;top:20.925%"><img src="../medias/images/theiere-russell.jpg" alt="Une théière en orbite entre la Terre et Mars" loading="lazy"></div>
+  <div class="quote-block" data-pose="" data-off-x="333.77" data-off-y="627.3" style="left:33.377%;top:62.73%"><span class="t-fr">« Si je suggérais qu’entre la Terre et Mars se trouve une théière de porcelaine en orbite elliptique autour du Soleil, personne ne serait capable de prouver le contraire pour peu que j’aie pris la précaution de préciser que la théière est trop petite pour être détectée par nos plus puissants télescopes. Mais si j’affirmais que, comme ma proposition ne peut être réfutée, il n’est pas tolérable pour la raison humaine d’en douter, on me considérerait aussitôt comme un illuminé. »</span><span class="t-en" hidden="">"If I were to suggest that between the Earth and Mars there is a china teapot revolving about the sun in an elliptical orbit, nobody would be able to disprove my assertion provided I were careful to add that the teapot is too small to be revealed even by our most powerful telescopes. But if I were to go on to say that, since my assertion cannot be disproved, it is intolerable presumption on the part of human reason to doubt it, I should rightly be thought to be talking nonsense."</span></div>
+</section>
+
+<section class="slide short" id="rf-charge-preuve">
+  <h2 data-pose="" data-off-x="400.2" data-off-y="437.53" style="left:40.02%;top:43.753%"><span class="t-fr">La charge de la preuve</span><span class="t-en" hidden="">The burden of proof</span></h2>
+  <p class="lead" data-pose="" data-off-x="302.6" data-off-y="505.81" style="left:30.26%;top:50.581%"><span class="t-fr">En science comme en droit, la charge de la preuve incombe à celui qui affirme quelque chose.</span><span class="t-en" hidden="">In science as in law, the burden of proof lies with whoever makes a claim.</span></p>
+</section>
+
+<section class="slide short" id="rf-sophisme-sophisme" data-serie="serie_82a38d2c-a72c-41fd-a3fe-627475cd6099">
+  <p class="kicker" data-pose="" data-off-x="478.22" data-off-y="389.78" style="left:47.822%;top:38.978%"><span class="t-fr">Sophisme</span><span class="t-en" hidden="">Fallacy</span></p>
+  <h2 data-pose="" data-off-x="385.32" data-off-y="420.62" style="left:38.532%;top:42.062%"><span class="t-fr">Le sophisme du sophisme</span><span class="t-en" hidden="">The fallacy fallacy</span></h2>
+  <p class="lead" data-pose="" data-off-x="310.17" data-off-y="488.9" style="left:31.017%;top:48.89%"><span class="t-fr">Ce n’est pas parce qu’une personne utilise des sophismes dans son argumentation…</span><span class="t-en" hidden="">Just because someone uses fallacies in their argument…</span></p>
+  <p class="lead step" data-pose="" data-off-x="448.07" data-off-y="538.15" style="left:44.807%;top:53.815%"><span class="t-fr">… qu’elle le fait exprès.</span><span class="t-en" hidden="">… doesn’t mean they are doing it on purpose.</span></p>
+  <p class="lead step" data-pose="" data-off-x="437.06" data-off-y="587.4" style="left:43.706%;top:58.74%"><span class="t-fr">… que ses propos sont faux.</span><span class="t-en" hidden="">… or that what they say is false.</span></p>
+</section>
+
+  <!-- 25b. Quiz repérage -->
+  <section class="slide" id="s25b" data-serie="serie_a37cd334-0447-4079-a8e7-0acbb7f73a88">
+  <h2><span class="t-fr">Quiz : repérez le sophisme</span><span class="t-en" hidden>Quiz: spot the fallacy</span></h2>
+  <p class="lead" style="margin-top:6px;"><span class="t-fr">Cliquez sur chaque carte pour découvrir la réponse.</span><span class="t-en" hidden>Click each card to reveal the answer.</span></p>
+  <div class="retourne" data-pose="" data-off-x="120.00" data-off-y="300.00" style="left:12.000%;top:30.000%;width:18.100%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">« Cette technique de soin est utilisée depuis l'Antiquité, elle doit forcément être efficace. »</span><span class="t-en" hidden="">"This treatment has been used since Antiquity, so it must be effective."</span></p></div><div class="retourne-face retourne-verso" style="border-color:var(--acc2)"><p class="kicker" style="color:var(--acc2);font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">Appel à l'ancienneté</span><span class="t-en" hidden="">Appeal to tradition</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">L'ancienneté d'une pratique ne dit rien de son efficacité réelle.</span><span class="t-en" hidden="">How old a practice is says nothing about how effective it actually is.</span></p></div></div></div><div class="retourne" data-pose="" data-off-x="313.00" data-off-y="300.00" style="left:31.300%;top:30.000%;width:18.100%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">« Si on commence à réguler ce produit, demain on interdira tout, et après-demain on nous enlèvera nos libertés ! »</span><span class="t-en" hidden="">"If we start regulating this product, tomorrow they'll ban everything, and the day after they'll take away our freedoms!"</span></p></div><div class="retourne-face retourne-verso" style="border-color:var(--acc2)"><p class="kicker" style="color:var(--acc2);font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">Pente savonneuse</span><span class="t-en" hidden="">Slippery slope</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">Une chaîne de conséquences de plus en plus graves, présentée comme inévitable sans le démontrer.</span><span class="t-en" hidden="">A chain of increasingly serious consequences, presented as inevitable without proving it.</span></p></div></div></div><div class="retourne" data-pose="" data-off-x="506.00" data-off-y="300.00" style="left:50.600%;top:30.000%;width:18.100%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">« Tu es contre cette loi ? Donc tu es pour les criminels ! »</span><span class="t-en" hidden="">"You're against this law? So you're for criminals!"</span></p></div><div class="retourne-face retourne-verso" style="border-color:var(--acc2)"><p class="kicker" style="color:var(--acc2);font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">Faux dilemme</span><span class="t-en" hidden="">False dilemma</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">Seulement deux options sont présentées, alors que d'autres positions nuancées existent.</span><span class="t-en" hidden="">Only two options are presented, when other nuanced positions exist.</span></p></div></div></div><div class="retourne" data-pose="" data-off-x="699.00" data-off-y="300.00" style="left:69.900%;top:30.000%;width:18.100%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">« Mon adversaire veut réguler un peu les banques : il veut donc détruire le capitalisme ! »</span><span class="t-en" hidden="">"My opponent wants some bank regulation: so he wants to destroy capitalism!"</span></p></div><div class="retourne-face retourne-verso" style="border-color:var(--acc2)"><p class="kicker" style="color:var(--acc2);font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">Homme de paille</span><span class="t-en" hidden="">Straw man</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">On déforme la position réelle de l'adversaire pour la rendre plus facile à attaquer.</span><span class="t-en" hidden="">The opponent's real position is distorted to make it easier to attack.</span></p></div></div></div><div class="retourne" data-pose="" data-off-x="120.00" data-off-y="642.28" style="left:12.000%;top:64.228%;width:18.100%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">« Personne n'a prouvé que les extraterrestres n'existent pas, donc ils existent. »</span><span class="t-en" hidden="">"No one has proven aliens don't exist, so they exist."</span></p></div><div class="retourne-face retourne-verso" style="border-color:var(--acc2)"><p class="kicker" style="color:var(--acc2);font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">Appel à l'ignorance</span><span class="t-en" hidden="">Appeal to ignorance</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">L'absence de preuve du contraire n'est pas une preuve.</span><span class="t-en" hidden="">Absence of evidence to the contrary is not evidence.</span></p></div></div></div><div class="retourne" data-pose="" data-off-x="313.00" data-off-y="642.28" style="left:31.300%;top:64.228%;width:18.100%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">« Ce produit est 100 % naturel, donc il ne peut pas être dangereux. »</span><span class="t-en" hidden="">"This product is 100% natural, so it can't be dangerous."</span></p></div><div class="retourne-face retourne-verso" style="border-color:var(--acc2)"><p class="kicker" style="color:var(--acc2);font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">Appel à la nature</span><span class="t-en" hidden="">Appeal to nature</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">Naturel ne veut pas dire inoffensif : de nombreux poisons sont parfaitement naturels.</span><span class="t-en" hidden="">Natural doesn't mean harmless: plenty of poisons are perfectly natural.</span></p></div></div></div><div class="retourne" data-pose="" data-off-x="506.00" data-off-y="642.28" style="left:50.600%;top:64.228%;width:18.100%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">« Un million de personnes ne peuvent pas se tromper ! »</span><span class="t-en" hidden="">"A million people can't be wrong!"</span></p></div><div class="retourne-face retourne-verso" style="border-color:var(--acc2)"><p class="kicker" style="color:var(--acc2);font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">Appel à la popularité</span><span class="t-en" hidden="">Appeal to popularity</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">Le nombre de personnes qui croient une chose ne la rend pas vraie pour autant.</span><span class="t-en" hidden="">The number of people who believe something doesn't make it true.</span></p></div></div></div><div class="retourne" data-pose="" data-off-x="699.00" data-off-y="642.28" style="left:69.900%;top:64.228%;width:18.100%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">« Trouvons un compromis : gardons l'esclavage un jour sur deux. »</span><span class="t-en" hidden="">"Let's find a compromise: keep slavery every other day."</span></p></div><div class="retourne-face retourne-verso" style="border-color:var(--acc2)"><p class="kicker" style="color:var(--acc2);font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">Sophisme du juste milieu</span><span class="t-en" hidden="">Middle ground fallacy</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">Le compromis entre une position juste et une position injuste n'est pas automatiquement le plus juste.</span><span class="t-en" hidden="">The compromise between a just position and an unjust one isn't automatically the fairest.</span></p></div></div></div>
+  
+</section>
+
+  <!-- 26. Divider étude de cas -->
+  <section class="slide divider-slide short" id="s26">
+  <h2 data-pose="" data-off-x="357.24" data-off-y="452.25" style="left:35.724%;top:45.225%"><span class="t-fr">Étude de cas : le moteur à eau</span><span class="t-en" hidden="">Case study: the water-powered engine</span></h2>
+  <p class="lead" data-pose="" data-off-x="359.61" data-off-y="524.92" style="left:35.961%;top:52.492%"><span class="t-fr">Une arnaque bien réelle, construite sophisme après sophisme.</span><span class="t-en" hidden="">A very real scam, built fallacy after fallacy.</span></p>
+</section>
+
+  <!-- 27. Moteur à eau - headline -->
+  <section class="slide" id="s27">
+  <p class="kicker" data-pose="" data-off-x="434.29" data-off-y="110.13" style="left:43.429%;top:11.013%"><span class="t-fr">Effet David contre Goliath</span><span class="t-en" hidden="">The David vs. Goliath effect</span></p>
+  <h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">« Avec la hausse des prix des carburants, le moteur à eau de Laurent cartonne »</span><span class="t-en" hidden="">"As fuel prices rise, Laurent's water-powered engine is a hit"</span></h2>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="262.11" style="left:42.208%;top:26.211%"><img src="../medias/images/moteur-eau-headline.jpg" alt="Article de presse locale sur un inventeur de moteur à eau"></div>
+  <div class="quote-block" data-pose="" data-off-x="333.77" data-off-y="522.17" style="left:33.377%;top:52.217%"><span class="t-fr">« 20 % de carburant en moins » : l'inventeur, présenté comme un David face aux Goliath de l'industrie automobile, inspire d'emblée la sympathie.</span><span class="t-en" hidden="">"20% less fuel": the inventor, presented as a David against the Goliaths of the car industry, instantly inspires sympathy.</span></div>
+</section>
+
+  <!-- 28. Moteur à eau - popularité -->
+  <section class="slide short" id="s28">
+  <p class="kicker" data-pose="" data-off-x="447.29" data-off-y="422.11" style="left:44.729%;top:42.211%"><span class="t-fr">Appel à la popularité</span><span class="t-en" hidden="">Appeal to popularity</span></p>
+  <h2 data-pose="" data-off-x="262.35" data-off-y="452.95" style="left:26.235%;top:45.295%"><span class="t-fr">« 50 % de croissance, 150 000 € de chiffre d'affaires »</span><span class="t-en" hidden="">"50% growth, €150,000 in revenue"</span></h2>
+  <p class="lead" data-pose="" data-off-x="302.6" data-off-y="521.23" style="left:30.26%;top:52.123%"><span class="t-fr">Le succès commercial est présenté comme une preuve d'efficacité, alors qu'il ne prouve que le succès commercial.</span><span class="t-en" hidden="">Commercial success is presented as proof of effectiveness, when it only proves commercial success.</span></p>
+</section>
+
+  <!-- 29. Moteur à eau - ancienneté -->
+  <section class="slide" id="s29">
+  <p class="kicker" data-pose="" data-off-x="450.24" data-off-y="110.13" style="left:45.024%;top:11.013%"><span class="t-fr">Appel à l'ancienneté</span><span class="t-en" hidden="">Appeal to tradition</span></p>
+  <h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">« Doper les moteurs avec de l'eau, une solution miracle… découverte il y a des siècles »</span><span class="t-en" hidden="">"Boosting engines with water, a miracle solution… discovered centuries ago"</span></h2>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="262.11" style="left:42.208%;top:26.211%"><img src="../medias/images/moteur-eau-miracle.jpg" alt="Article de presse évoquant une technique découverte il y a des siècles"></div>
+</section>
+
+  <!-- 30. Moteur à eau - témoignage -->
+  <section class="slide short" id="s30">
+  <p class="kicker" data-pose="" data-off-x="445.9" data-off-y="395.68" style="left:44.59%;top:39.568%"><span class="t-fr">Témoignage personnel</span><span class="t-en" hidden="">Personal testimony</span></p>
+  <h2 data-pose="" data-off-x="261.04" data-off-y="426.52" style="left:26.104%;top:42.652%"><span class="t-fr">« Avec un plein de 50 litres, je suis passé de 730 à plus de 1000 km »</span><span class="t-en" hidden="">"With a 50-litre tank, I went from 730 to over 1000 km"</span></h2>
+  <p class="lead" data-pose="" data-off-x="302.6" data-off-y="547.67" style="left:30.26%;top:54.767%"><span class="t-fr">Jean-Claude, client satisfait. Un témoignage isolé, même sincère, ne remplace jamais une mesure contrôlée.</span><span class="t-en" hidden="">Jean-Claude, satisfied customer. A single testimony, even a sincere one, never replaces a controlled measurement.</span></p>
+</section>
+
+  <!-- 31. Moteur à eau - Auto Plus -->
+  <section class="slide" id="s31">
+  <p class="kicker" data-pose="" data-off-x="427.18" data-off-y="110.13" style="left:42.718%;top:11.013%"><span class="t-fr">La presse spécialisée en parle</span><span class="t-en" hidden="">The trade press covers it</span></p>
+  <h2 data-pose="" data-off-x="319.89" data-off-y="140.97" style="left:31.989%;top:14.097%"><span class="t-fr">Le kit « Eco L'eau » couvert par Auto Plus</span><span class="t-en" hidden="">The "Eco L'eau" kit covered by Auto Plus</span></h2>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="209.25" style="left:42.208%;top:20.925%"><img src="../medias/images/moteur-eau-autoplus.jpg" alt="Couverture du kit Eco L'eau par le magazine Auto Plus"></div>
+  <p class="lead" data-pose="" data-off-x="302.6" data-off-y="407.37" style="left:30.26%;top:40.737%"><span class="t-fr">Chaque nouvel article renforce la crédibilité perçue, sans qu'aucun test technique indépendant n'ait encore rien prouvé.</span><span class="t-en" hidden="">Each new article boosts the perceived credibility, without any independent technical test having proven anything yet.</span></p>
+</section>
+
+  <!-- 32. Moteur à eau - résolution -->
+  <section class="slide" id="s32">
+  <p class="kicker" data-pose="" data-off-x="479.26" data-off-y="110.13" style="left:47.926%;top:11.013%"><span class="t-fr">Épilogue</span><span class="t-en" hidden="">Epilogue</span></p>
+  <h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">Le réseau anti-arnaques alerte sur de nouvelles escroqueries</span><span class="t-en" hidden="">The anti-scam network warns of new fraud cases</span></h2>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="262.11" style="left:42.208%;top:26.211%"><img src="../medias/images/moteur-eau-condamnation.jpg" alt="Article annonçant la condamnation de l'inventeur pour escroquerie"></div>
+  <div class="riddle-box" data-pose="" data-off-x="344.16" data-off-y="521.32" style="left:34.416%;top:52.132%">
+    <p class="q"><span class="t-fr">L'inventeur a été condamné à 2 ans de prison avec sursis et 10 ans d'interdiction de gérer. Est-ce que tout cela relevait de la désinformation ?</span><span class="t-en" hidden="">The inventor was sentenced to a 2-year suspended prison term and a 10-year ban on running a business. Was all of this really disinformation?</span></p>
+    <div class="step" id="moteur-riddle">
+      <p><span class="t-fr">Aucun article, pris isolément, ne mentait forcément de façon flagrante. Mais l'empilement de sophismes (David contre Goliath, popularité, ancienneté, témoignage personnel) a construit une fausse crédibilité, sophisme après sophisme, jusqu'à l'arnaque.</span><span class="t-en" hidden="">No single article, taken in isolation, was necessarily an outright lie. But the stacking of fallacies (David vs. Goliath, popularity, tradition, personal testimony) built up a false credibility, fallacy after fallacy, all the way to the scam.</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="rf-baleine-5">
+  <p class="kicker" data-pose="" data-off-x="452.15" data-off-y="110.13" style="left:45.215%;top:11.013%"><span class="t-fr">Question pour vous</span><span class="t-en" hidden="">A question for you</span></p>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="156.39" style="left:42.208%;top:15.639%"><img src="../medias/images/baleine-bleue-dessin.jpg" alt="Une baleine bleue, dessinée petite" loading="lazy"></div>
+  <p class="lead" data-pose="" data-off-x="372.36" data-off-y="292.89" style="left:37.236%;top:29.289%"><span class="t-fr">1) Une baleine bleue fait-elle plus de 5 mètres de long ?</span><span class="t-en" hidden="">1) Is a blue whale more than 5 metres long?</span></p>
+  <p class="lead" data-pose="" data-off-x="385.26" data-off-y="342.14" style="left:38.526%;top:34.214%"><span class="t-fr">2) Combien mesure selon vous une baleine bleue ?</span><span class="t-en" hidden="">2) How long do you think a blue whale is?</span></p>
+</section>
+
+<section class="slide" id="rf-baleine-100">
+  <p class="kicker" data-pose="" data-off-x="452.15" data-off-y="110.13" style="left:45.215%;top:11.013%"><span class="t-fr">Question pour vous</span><span class="t-en" hidden="">A question for you</span></p>
+  <div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="156.39" style="left:39.091%;top:15.639%"><img src="../medias/images/baleine-bleue-dessin.jpg" alt="Une baleine bleue, dessinée grande" loading="lazy"></div>
+  <p class="lead" data-pose="" data-off-x="366.38" data-off-y="340.76" style="left:36.638%;top:34.076%"><span class="t-fr">1) Une baleine bleue fait-elle plus de 100 mètres de long ?</span><span class="t-en" hidden="">1) Is a blue whale more than 100 metres long?</span></p>
+  <p class="lead" data-pose="" data-off-x="385.26" data-off-y="390.01" style="left:38.526%;top:39.001%"><span class="t-fr">2) Combien mesure selon vous une baleine bleue ?</span><span class="t-en" hidden="">2) How long do you think a blue whale is?</span></p>
+</section>
+
+<section class="slide short" id="rf-ancrage">
+  <p class="kicker" data-pose="" data-off-x="467.1" data-off-y="422.11" style="left:46.71%;top:42.211%"><span class="t-fr">Biais cognitif</span><span class="t-en" hidden="">Cognitive bias</span></p>
+  <h2 data-pose="" data-off-x="420.86" data-off-y="452.95" style="left:42.086%;top:45.295%"><span class="t-fr">Le biais d’ancrage</span><span class="t-en" hidden="">The anchoring bias</span></h2>
+  <p class="lead" data-pose="" data-off-x="302.6" data-off-y="521.23" style="left:30.26%;top:52.123%"><span class="t-fr">Tendance du cerveau humain à se baser sur les informations précédentes pour établir une estimation.</span><span class="t-en" hidden="">The human brain’s tendency to rely on earlier information to make an estimate.</span></p>
+</section>
+
+<section class="slide" id="rf-ancrage-prix">
+  <h2 data-pose="" data-off-x="316.26" data-off-y="110.13" style="left:31.626%;top:11.013%"><span class="t-fr">Exemples au quotidien du biais d’ancrage</span><span class="t-en" hidden="">Everyday examples of anchoring</span></h2>
+  <div class="quote-block" data-pose="" data-off-x="333.77" data-off-y="185.02" style="left:33.377%;top:18.502%"><span class="t-fr">« Ce produit est normalement à 150 euros, mais pour toi, je le fais à 90 euros ! »</span><span class="t-en" hidden="">"This is normally 150 euros, but for you, I’ll do it for 90!"</span></div>
+  <div class="quote-block step" data-pose="" data-off-x="333.77" data-off-y="304.17" style="left:33.377%;top:30.417%"><span class="t-fr">« Ce produit est normalement à 50 euros, mais je l’ai augmenté à 90 euros. »</span><span class="t-en" hidden="">"This is normally 50 euros, but I’ve raised it to 90."</span></div>
+  <p class="lead step" data-pose="" data-off-x="340.79" data-off-y="387.97" style="left:34.079%;top:38.797%"><span class="t-fr">La question à se poser : ce tarif est-il cher pour l’objet en tant que tel ?</span><span class="t-en" hidden="">The question to ask: is this price expensive for the item itself?</span></p>
+</section>
+
+<section class="slide short" id="rf-ancrage-tailles">
+  <h2 data-pose="" data-off-x="434.89" data-off-y="429.82" style="left:43.489%;top:42.982%"><span class="t-fr">Autre exemple</span><span class="t-en" hidden="">Another example</span></h2>
+  <p class="lead" data-pose="" data-off-x="419.21" data-off-y="498.11" style="left:41.921%;top:49.811%"><span class="t-fr">Petit : 5 € · Moyen : 8 € · Grand : 9 €</span><span class="t-en" hidden="">Small: €5 · Medium: €8 · Large: €9</span></p>
+  <p class="lead step" data-pose="" data-off-x="369.21" data-off-y="547.36" style="left:36.921%;top:54.736%"><span class="t-fr">Le « moyen » n’est là que pour rendre le grand irrésistible.</span><span class="t-en" hidden="">The "medium" is only there to make the large one irresistible.</span></p>
+</section>
+
+<section class="slide" id="rf-premiere-impression">
+  <h2 data-pose="" data-off-x="316.26" data-off-y="110.13" style="left:31.626%;top:11.013%"><span class="t-fr">Exemples au quotidien du biais d’ancrage</span><span class="t-en" hidden="">Everyday examples of anchoring</span></h2>
+  <div class="quote-block" data-pose="" data-off-x="333.77" data-off-y="185.02" style="left:33.377%;top:18.502%"><span class="t-fr">« La première impression est toujours la bonne ! »</span><span class="t-en" hidden="">"First impressions are always right!"</span></div>
+  <p class="lead step" data-pose="" data-off-x="302.6" data-off-y="268.82" style="left:30.26%;top:26.882%"><span class="t-fr">Un premier employé arrive en retard à son premier jour de travail, mais plus jamais après.</span><span class="t-en" hidden="">One employee is late on their first day at work, but never again.</span></p>
+  <p class="lead step" data-pose="" data-off-x="319.13" data-off-y="351.91" style="left:31.913%;top:35.191%"><span class="t-fr">Un second employé arrive en retard à son 90e jour de travail, mais jamais avant.</span><span class="t-en" hidden="">Another employee is late on their 90th day, but never before.</span></p>
+</section>
+
+<section class="slide short" id="rf-ancrage-rhetorique">
+  <h2 data-pose="" data-off-x="431.96" data-off-y="437.53" style="left:43.196%;top:43.753%"><span class="t-fr">En rhétorique…</span><span class="t-en" hidden="">In rhetoric…</span></h2>
+  <p class="lead" data-pose="" data-off-x="302.6" data-off-y="505.81" style="left:30.26%;top:50.581%"><span class="t-fr">Commencer par un argument impactant va davantage marquer l’auditoire que si vous le placez en milieu de discours.</span><span class="t-en" hidden="">Opening with a strong argument leaves a deeper mark on the audience than placing it in the middle of a speech.</span></p>
+</section>
+
+<section class="slide" id="rf-porte-au-nez-1">
+  <h2 data-pose="" data-off-x="371.92" data-off-y="110.13" style="left:37.192%;top:11.013%"><span class="t-fr">Dans la vie de tous les jours !</span><span class="t-en" hidden="">In everyday life!</span></h2>
+  <p class="lead" data-pose="" data-off-x="441.3" data-off-y="178.41" style="left:44.13%;top:17.841%"><span class="t-fr">Votre ami vous demande :</span><span class="t-en" hidden="">Your friend asks you:</span></p>
+  <div class="quote-block" data-pose="" data-off-x="333.77" data-off-y="234.27" style="left:33.377%;top:23.427%"><span class="t-fr">« Tu pourrais m’aider à déménager le samedi et le dimanche de la semaine prochaine ?<br>– Non !<br>– Bon… alors juste samedi matin, ça te va ? »</span><span class="t-en" hidden="">"Could you help me move next Saturday and Sunday?<br>– No!<br>– OK… just Saturday morning, then?"</span></div>
+</section>
+
+<section class="slide short" id="rf-porte-au-nez">
+  <h2 data-pose="" data-off-x="361.5" data-off-y="388.28" style="left:36.15%;top:38.828%"><span class="t-fr">La technique de la porte au nez</span><span class="t-en" hidden="">The door-in-the-face technique</span></h2>
+  <p class="lead" data-pose="" data-off-x="370.32" data-off-y="456.56" style="left:37.032%;top:45.656%"><span class="t-fr">Demandez quelque chose que l’autre ne va PAS accepter.</span><span class="t-en" hidden="">Ask for something the other person will NOT accept.</span></p>
+  <p class="lead step" data-pose="" data-off-x="393.7" data-off-y="505.81" style="left:39.37%;top:50.581%"><span class="t-fr">Puis demandez quelque chose de plus modéré.</span><span class="t-en" hidden="">Then ask for something more moderate.</span></p>
+  <p class="lead step" data-pose="" data-off-x="302.6" data-off-y="555.07" style="left:30.26%;top:55.507%"><span class="t-fr">À cause du biais d’ancrage, la seconde demande paraîtra bien plus acceptable qu’elle ne l’aurait été seule.</span><span class="t-en" hidden="">Because of anchoring, the second request will seem far more acceptable than it would have on its own.</span></p>
+</section>
+
+<section class="slide" id="rf-pied-porte-1">
+  <p class="lead" data-pose="" data-off-x="441.3" data-off-y="125.55" style="left:44.13%;top:12.555%"><span class="t-fr">Votre ami vous demande :</span><span class="t-en" hidden="">Your friend asks you:</span></p>
+  <div class="quote-block" data-pose="" data-off-x="333.77" data-off-y="181.41" style="left:33.377%;top:18.141%"><span class="t-fr">« Tu pourrais m’emmener quelque part samedi matin ?<br>– Bien sûr !<br>– Super ! J’emmène des meubles dans mon nouvel appart. D’ailleurs, tu pourrais venir plus tôt et m’aider à tout descendre aussi ? »</span><span class="t-en" hidden="">"Could you give me a lift somewhere on Saturday morning?<br>– Sure!<br>– Great! I’m taking furniture to my new flat. Actually, could you come earlier and help me carry it all down too?"</span></div>
+</section>
+
+<section class="slide short" id="rf-pied-porte">
+  <h2 data-pose="" data-off-x="407.56" data-off-y="429.82" style="left:40.756%;top:42.982%"><span class="t-fr">Le pied dans la porte</span><span class="t-en" hidden="">The foot-in-the-door technique</span></h2>
+  <p class="lead" data-pose="" data-off-x="361.83" data-off-y="498.11" style="left:36.183%;top:49.811%"><span class="t-fr">Commencez par demander un service facilement acceptable !</span><span class="t-en" hidden="">Start by asking for an easy favour!</span></p>
+  <p class="lead step" data-pose="" data-off-x="314.97" data-off-y="547.36" style="left:31.497%;top:54.736%"><span class="t-fr">Maintenant que vous avez reçu une première approbation, demandez un peu plus.</span><span class="t-en" hidden="">Once you have a first "yes", ask for a little more.</span></p>
+</section>
+
+<section class="slide short" id="rf-ancrage-solutions">
+  <h2 data-pose="" data-off-x="415.31" data-off-y="388.28" style="left:41.531%;top:38.828%"><span class="t-fr">Quelles solutions ?</span><span class="t-en" hidden="">What can we do?</span></h2>
+  <p class="lead" data-pose="" data-off-x="433.71" data-off-y="456.56" style="left:43.371%;top:45.656%"><span class="t-fr">Avoir conscience de ces biais.</span><span class="t-en" hidden="">Be aware of these biases.</span></p>
+  <p class="lead step" data-pose="" data-off-x="336.64" data-off-y="505.81" style="left:33.664%;top:50.581%"><span class="t-fr">Avoir conscience de la première impression que nous avons sur un sujet.</span><span class="t-en" hidden="">Be aware of our first impression of a subject.</span></p>
+  <p class="lead step" data-pose="" data-off-x="302.6" data-off-y="555.07" style="left:30.26%;top:55.507%"><span class="t-fr">Prêter davantage attention aux propositions nouvelles qui remettent en question notre première impression.</span><span class="t-en" hidden="">Pay more attention to new ideas that challenge our first impression.</span></p>
+</section>
+
+<section class="slide short" id="rf-couts-irrecuperables">
+  <p class="kicker" data-pose="" data-off-x="467.1" data-off-y="359.28" style="left:46.71%;top:35.928%"><span class="t-fr">Biais cognitif</span><span class="t-en" hidden="">Cognitive bias</span></p>
+  <h2 data-pose="" data-off-x="353.81" data-off-y="390.12" style="left:35.381%;top:39.012%"><span class="t-fr">Le biais des coûts irrécupérables</span><span class="t-en" hidden="">The sunk cost fallacy</span></h2>
+  <p class="lead" data-pose="" data-off-x="334.03" data-off-y="458.4" style="left:33.403%;top:45.84%"><span class="t-fr">Vous avez payé 200 euros (non remboursables) pour un week-end de ski.</span><span class="t-en" hidden="">You paid 200 euros (non-refundable) for a ski weekend.</span></p>
+  <p class="lead" data-pose="" data-off-x="308.97" data-off-y="507.65" style="left:30.897%;top:50.765%"><span class="t-fr">Le jour J, le temps est déplorable et vous seriez bien mieux chez vous devant Netflix.</span><span class="t-en" hidden="">On the day, the weather is awful and you’d be much better off at home watching Netflix.</span></p>
+  <div class="riddle-box" data-pose="" data-off-x="344.16" data-off-y="563.51" style="left:34.416%;top:56.351%"><p class="q"><span class="t-fr">Que faites-vous ?</span><span class="t-en" hidden="">What do you do?</span></p></div>
+</section>
+
+<section class="slide" id="rf-conjonction">
+  <p class="kicker" data-pose="" data-off-x="452.15" data-off-y="110.13" style="left:45.215%;top:11.013%"><span class="t-fr">Question pour vous</span><span class="t-en" hidden="">A question for you</span></p>
+  <h2 data-pose="" data-off-x="273.49" data-off-y="140.97" style="left:27.349%;top:14.097%"><span class="t-fr">Laquelle de ces deux phrases est la plus probable ?</span><span class="t-en" hidden="">Which of these two statements is more likely?</span></h2>
+  <p class="lead" data-pose="" data-off-x="403.19" data-off-y="209.25" style="left:40.319%;top:20.925%"><span class="t-fr">1) Samantha est une employée de banque.</span><span class="t-en" hidden="">1) Samantha is a bank clerk.</span></p>
+  <p class="lead" data-pose="" data-off-x="302.72" data-off-y="258.5" style="left:30.272%;top:25.85%"><span class="t-fr">2) Samantha est une employée de banque qui s’investit dans une association féministe.</span><span class="t-en" hidden="">2) Samantha is a bank clerk who is active in a feminist association.</span></p>
+  <div class="riddle-box" data-pose="" data-off-x="344.16" data-off-y="314.36" style="left:34.416%;top:31.436%"><p class="q"><span class="t-fr">Le sophisme de la conjonction</span><span class="t-en" hidden="">The conjunction fallacy</span></p><div class="step"><p><span class="t-fr">La première, forcément : toutes les employées de banque féministes sont des employées de banque. Ajouter un détail rend l’histoire plus crédible… et moins probable.</span><span class="t-en" hidden="">The first, necessarily: every feminist bank clerk is a bank clerk. Adding a detail makes the story more believable… and less likely.</span></p></div></div>
+</section>
+
+  <!-- 33. Divider dent d'or -->
+  <section class="slide divider-slide short" id="s33" data-serie="group_b561beab-1f58-4d95-8e68-841a68be2083">
+  <h2 data-pose="" data-off-x="375.95" data-off-y="476.87" style="left:37.595%;top:47.687%"><span class="t-fr">Le mystère de la dent d'or</span><span class="t-en" hidden="">The mystery of the golden tooth</span></h2>
+</section>
+
+  <!-- 34. Dent d'or - parabole -->
+  <section class="slide" id="s34" data-serie="group_b561beab-1f58-4d95-8e68-841a68be2083">
+  <p class="kicker" data-pose="" data-off-x="489.94" data-off-y="110.13" style="left:48.994%;top:11.013%">1593</p>
+  <h2 data-pose="" data-off-x="323.08" data-off-y="140.97" style="left:32.308%;top:14.097%"><span class="t-fr">Une histoire vraie… et vieille de 400 ans</span><span class="t-en" hidden="">A true story… 400 years old</span></h2>
+  <div class="riddle-box" data-pose="" data-off-x="344.16" data-off-y="215.86" style="left:34.416%;top:21.586%">
+    <p class="q" style="font-size:.92rem;"><span class="t-fr">« Le bruit courut qu'il était venu une dent d'or à un enfant de Silésie, à la place d'une de ses grosses dents. Un professeur de médecine écrivit que cette dent était en partie miraculeuse, envoyée par Dieu pour consoler les chrétiens affligés par les Turcs. Un autre savant en écrivit l'histoire. Un troisième écrivit contre le premier, qui répliqua aussitôt. Un autre grand homme ramassa tout ce qui avait été dit sur la dent, et y ajouta son propre avis. Il ne manquait qu'une chose à tant de beaux ouvrages : que la dent fût vraiment d'or. Quand un orfèvre l'examina enfin, ce n'était qu'une feuille d'or appliquée avec adresse, mais on avait commencé par écrire des livres, et on n'avait consulté l'orfèvre qu'à la fin. »</span><span class="t-en" hidden="">"Word spread that a child in Silesia had grown a golden tooth in place of one of his molars. A professor of medicine wrote that this tooth was partly miraculous, sent by God to console Christians afflicted by the Turks. Another scholar wrote its history. A third wrote against the first, who replied at once. Another great man gathered everything that had been said about the tooth, and added his own opinion. Only one thing was missing from so many fine works: that the tooth actually be made of gold. When a goldsmith finally examined it, it was merely a gold leaf skilfully applied, but books had been written first, and the goldsmith was only consulted at the very end."</span></p>
+    <div class="step" id="dent-reveal">
+      <p><span class="t-fr">Des savants respectés ont débattu pendant des années des <b>causes</b> de la dent d'or, sans jamais vérifier le <b>fait</b> lui-même. Autorité, ancienneté, accumulation de publications : tous les ingrédients d'une fausse crédibilité étaient réunis, sauf un examen simple et direct.</span><span class="t-en" hidden="">Respected scholars debated the <b>causes</b> of the golden tooth for years, without ever checking the <b>fact</b> itself. Authority, tradition, a pile of publications: every ingredient of false credibility was there, except a simple, direct examination.</span></p>
+    </div>
+  </div>
+</section>
+
+  <!-- 35. Dent d'or - discussion -->
+  <section class="slide short" id="s35" data-serie="group_b561beab-1f58-4d95-8e68-841a68be2083">
+  <h2 data-pose="" data-off-x="303.31" data-off-y="454.45" style="left:30.331%;top:45.445%"><span class="t-fr">Comment auriez-vous expliqué ce mystère ?</span><span class="t-en" hidden="">How would you have explained this mystery?</span></h2>
+  <p class="lead" data-pose="" data-off-x="344.57" data-off-y="522.73" style="left:34.457%;top:52.273%"><span class="t-fr">Avant de lire la suite… qu'auriez-vous fait, à la place de ces savants ?</span><span class="t-en" hidden="">Before reading on… what would you have done, in these scholars' place?</span></p>
+</section>
+
+  <!-- 36. Dent d'or - Fontenelle -->
+  <section class="slide short" id="s36" data-serie="group_b561beab-1f58-4d95-8e68-841a68be2083">
+  <p class="kicker" data-pose="" data-off-x="405.22" data-off-y="328.72" style="left:40.522%;top:32.872%"><span class="t-fr">La réponse, donnée un siècle plus tard</span><span class="t-en" hidden="">The answer, given a century later</span></p>
+  <h2 data-pose="" data-off-x="384.6" data-off-y="359.56" style="left:38.46%;top:35.956%"><span class="t-fr">La dent d'or de Fontenelle</span><span class="t-en" hidden="">Fontenelle's golden tooth</span></h2>
+  <div class="quote-block" data-pose="" data-off-x="333.77" data-off-y="434.45" style="left:33.377%;top:43.445%"><span class="t-fr">« Assurons-nous bien du fait, avant de nous inquiéter de la cause. »<br><br>« Il est vrai que cette méthode est bien lente pour la plupart des gens, qui courent naturellement à la cause, et passent par-dessus la vérité du fait ; mais enfin nous éviterons le ridicule d'avoir trouvé la cause de ce qui n'est point. »</span><span class="t-en" hidden="">"Let us first make sure of the fact, before worrying about the cause.<br><br>It is true that this method is quite slow for most people, who naturally rush to the cause and skip over the truth of the fact; but at least we shall avoid the ridicule of having found the cause of something that does not exist."</span>
+  <cite>Bernard Le Bouyer de Fontenelle</cite></div>
+</section>
+
+  <!-- 37. Conspiration Sound of Freedom -->
+  <section class="slide" id="s37" data-serie="group_b561beab-1f58-4d95-8e68-841a68be2083">
+  <p class="kicker" data-pose="" data-off-x="463.26" data-off-y="110.13" style="left:46.326%;top:11.013%"><span class="t-fr">Exemple récent</span><span class="t-en" hidden="">Recent example</span></p>
+  <h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">Un incident nucléaire… et la sortie d'un film, le même jour ?</span><span class="t-en" hidden="">A nuclear incident… and a film release, on the same day?</span></h2>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="262.11" style="left:42.208%;top:26.211%"><img src="../medias/images/conspiration-tweet.jpg" alt="Publication reliant un incident à la centrale de Zaporijjia à la sortie du film Sound of Freedom"></div>
+  <div class="step" id="conspi-reveal" data-pose="" data-off-x="302.6" data-off-y="342.02" style="left:30.26%;top:34.202%">
+    <div class="imgcard small"><img src="../medias/images/sound-of-freedom-poster.jpg" alt="Affiche du film Sound of Freedom"></div>
+    <p class="lead" style="margin-top:12px;"><span class="t-fr">Une simple recherche montre que « Sound of Freedom » est un film sorti aux États-Unis à une date bien documentée, sans lien établi avec l'évènement évoqué. La simultanéité (concomitance) est présentée comme une preuve : c'est exactement le même mécanisme que la dent d'or ou le chocolat et le prix Nobel.</span><span class="t-en" hidden="">A simple search shows that "Sound of Freedom" is a film released in the US on a well-documented date, with no established link to the event in question. Simultaneity (coincidence) is presented as proof: exactly the same mechanism as the golden tooth or chocolate and the Nobel Prize.</span></p>
+  </div>
+</section>
+
+  <!-- 38. Vaccin autisme -->
+  <section class="slide short" id="s38" data-serie="group_970a0f80-4bcd-4715-a20a-22adfa320a8f">
+  <h2 data-pose="" data-off-x="261.04" data-off-y="363.44" style="left:26.104%;top:36.344%"><span class="t-fr">Est-ce à cause de l'aluminium qu'ils contiennent que les vaccins causent l'autisme ?</span><span class="t-en" hidden="">Is it the aluminium they contain that makes vaccines cause autism?</span></h2>
+  <div class="riddle-box" data-pose="" data-off-x="344.16" data-off-y="491.19" style="left:34.416%;top:49.119%">
+    <div class="step" id="autisme-reveal">
+      <p><span class="t-fr">Le CHU de Montpellier, comme l'ensemble de la communauté scientifique, confirme l'absence de lien entre vaccination et autisme. Cette rumeur repose sur une étude frauduleuse publiée en 1998 et depuis rétractée, mais elle continue de circuler, des décennies plus tard.</span><span class="t-en" hidden="">Montpellier University Hospital, like the entire scientific community, confirms there is no link between vaccination and autism. This rumour rests on a fraudulent study published in 1998 and retracted since, but it keeps circulating, decades later.</span></p>
+    </div>
+  </div>
+</section>
+
+  <!-- 39. OGM -->
+  <section class="slide" id="s39-4" data-serie="group_970a0f80-4bcd-4715-a20a-22adfa320a8f">
+  <p class="kicker" data-pose="" data-off-x="465.61" data-off-y="110.13" style="left:46.561%;top:11.013%"><span class="t-fr">Autre exemple</span><span class="t-en" hidden="">Another example</span></p>
+  <h2 data-pose="" data-off-x="323.29" data-off-y="140.97" style="left:32.329%;top:14.097%"><span class="t-fr">« Pourquoi les OGM sont-ils mauvais ? »</span><span class="t-en" hidden="">"Why are GMOs bad?"</span></h2>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="209.25" style="left:42.208%;top:20.925%"><img src="../medias/images/ogm-article.jpg" alt="Article de décryptage sur les OGM"></div>
+  <div class="step" id="ogm-reveal" data-pose="" data-off-x="302.6" data-off-y="261.32" style="left:30.26%;top:26.132%">
+    <p class="lead"><span class="t-fr">Les agences sanitaires ne considèrent pas la consommation d'OGM autorisés comme un risque pour la santé : un consensus scientifique bien moins spectaculaire, et donc bien moins partagé, que l'inquiétude qu'il dément.</span><span class="t-en" hidden="">Health agencies do not consider eating approved GMOs to be a health risk: a scientific consensus far less spectacular, and therefore far less shared, than the worry it debunks.</span></p>
+  </div>
+</section>
+
+  <!-- 40. Divider biais du survivant -->
+  <section class="slide divider-slide short" id="s40" data-serie="group_5768bec5-1f75-404b-89eb-e06eda7635b3">
+  <h2 data-pose="" data-off-x="400.23" data-off-y="476.87" style="left:40.023%;top:47.687%"><span class="t-fr">Le biais du survivant</span><span class="t-en" hidden="">Survivorship bias</span></h2>
+</section>
+
+  <!-- 41. Wald bombardiers -->
+  <section class="slide" id="s41" data-serie="group_5768bec5-1f75-404b-89eb-e06eda7635b3">
+  <h2 data-pose="" data-off-x="399.78" data-off-y="140.97" style="left:39.978%;top:14.097%"><span class="t-fr">Où blinder les avions ?</span><span class="t-en" hidden="">Where to armour the planes?</span></h2>
+  <div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="209.25" style="left:39.091%;top:20.925%"><img src="../medias/images/wald-avion.svg" alt="Schéma d'un bombardier vu de dessus"><img class="step" data-anim="fondu" src="../medias/images/wald-impacts.svg" alt="Les impacts relevés sur les avions revenus de mission" style="position:absolute;left:0;top:0;width:100%;height:100%"></div>
+  <div class="speaker-notes" hidden="">Seconde Guerre mondiale. Le statisticien Abraham Wald étudie les avions revenus de mission : les impacts se concentrent sur les ailes et la queue. Faut-il blinder ces zones ? Wald répond l’inverse : ce sont les zones sans impact qu’il faut blinder, car les avions touchés là ne sont jamais revenus pour être comptés. On ne voit que les survivants.</div>
+  </section>
+
+  <!-- 42. Parachute -->
+  <section class="slide" id="s42" data-serie="group_5768bec5-1f75-404b-89eb-e06eda7635b3">
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="125.55" style="left:42.208%;top:12.555%"><img src="../medias/images/parachute-photo.jpg" alt="Personne en parachute ascensionnel"></div>
+  <div class="riddle-box" data-pose="" data-off-x="344.16" data-off-y="640.35" style="left:34.416%;top:64.035%">
+    <p class="q"><span class="t-fr">« Mes parachutes sont d'excellente qualité. La preuve : personne n'est jamais venu se plaindre ! »</span><span class="t-en" hidden="">"My parachutes are excellent quality. Proof: no one has ever come back to complain!"</span></p>
+    <div class="step" id="parachute-reveal">
+      <p><span class="t-fr">Les clients dont le parachute ne s'est pas ouvert ne sont, par définition, jamais revenus se plaindre. L'absence de plainte n'est pas une preuve de qualité : c'est un échantillon biaisé par construction.</span><span class="t-en" hidden="">Customers whose parachute didn't open never came back to complain, by definition. The absence of complaints isn't proof of quality: it's a sample biased by design.</span></p>
+    </div>
+  </div>
+</section>
+
+  <!-- 43. Chats -->
+  <section class="slide" id="s43" data-serie="group_5768bec5-1f75-404b-89eb-e06eda7635b3">
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="125.55" style="left:42.208%;top:12.555%"><img src="../medias/images/chat-photo.jpg" alt="Chat regardant par-dessus un rebord"></div>
+  <div class="riddle-box" data-pose="" data-off-x="344.16" data-off-y="407.27" style="left:34.416%;top:40.727%">
+    <p class="q"><span class="t-fr">Une étude vétérinaire montre que les chats tombant de <b>6 étages ou moins</b> ont des blessures <b>plus graves</b> que ceux tombant de plus haut. Comment est-ce possible ?</span><span class="t-en" hidden="">A veterinary study shows that cats falling from <b>6 floors or less</b> have <b>more severe</b> injuries than those falling from higher up. How is that possible?</span></p>
+    <div class="step" id="chats-reveal">
+      <p><span class="t-fr">Une explication proposée : les chats tombés de très haut et qui n'ont pas survécu ne sont, eux, jamais amenés chez le vétérinaire : ils n'entrent donc jamais dans les statistiques de « blessures ». Là encore, on ne mesure que les survivants.</span><span class="t-en" hidden="">One proposed explanation: cats that fell from very high up and didn't survive are never brought to the vet, so they never enter the "injury" statistics. Once again, only the survivors get measured.</span></p>
+    </div>
+  </div>
+</section>
+
+  <!-- 44. Beatles / Rolling Stones -->
+  <section class="slide short" id="s44" data-serie="group_5768bec5-1f75-404b-89eb-e06eda7635b3">
+  <h2 data-pose="" data-off-x="306.83" data-off-y="303.62" style="left:30.683%;top:30.362%"><span class="t-fr">On étudie les Beatles et les Rolling Stones…</span><span class="t-en" hidden="">We study the Beatles and the Rolling Stones…</span></h2>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="371.91" style="left:42.208%;top:37.191%"><img src="../medias/images/beatles-rolling-stones.jpg" alt="Photos d'époque des Beatles et des Rolling Stones"></div>
+  <p class="lead" style="margin-top:12px;left:30.26%;top:60.588%" data-pose="" data-off-x="302.6" data-off-y="605.88"><span class="t-fr">…mais qui se souvient des milliers de groupes qui, avec les mêmes méthodes et la même énergie, n'ont jamais percé ? Le succès de quelques-uns ne prouve pas que leur méthode fonctionne.</span><span class="t-en" hidden="">…but who remembers the thousands of bands who, with the same methods and the same energy, never made it? The success of a few doesn't prove their method works.</span></p>
+</section>
+
+  <!-- 45. Sylvia Browne -->
+  <section class="slide" id="s45" data-serie="group_5768bec5-1f75-404b-89eb-e06eda7635b3">
+  <p class="kicker" data-pose="" data-off-x="449.69" data-off-y="110.13" style="left:44.969%;top:11.013%"><span class="t-fr">Livre publié en 2008…</span><span class="t-en" hidden="">Book published in 2008…</span></p>
+  <h2 data-pose="" data-off-x="282.41" data-off-y="140.97" style="left:28.241%;top:14.097%"><span class="t-fr">Une psychique avait-elle « prédit » la pandémie ?</span><span class="t-en" hidden="">Did a psychic "predict" the pandemic?</span></h2>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="209.25" style="left:42.208%;top:20.925%"><img src="../medias/images/sylvia-browne-hoax.jpg" alt="Page de livre et couverture évoquant une prédiction de pandémie"></div>
+  <p class="lead" style="margin-top:12px;left:30.26%;top:40.928%" data-pose="" data-off-x="302.6" data-off-y="409.28"><span class="t-fr">Une phrase vague, isolée parmi des centaines de prédictions ratées, circule des années plus tard comme une preuve de clairvoyance. On ne compte jamais les prédictions qui n'ont jamais été vérifiées : encore le biais du survivant, appliqué aux prophéties.</span><span class="t-en" hidden="">A vague sentence, picked out of hundreds of failed predictions, circulates years later as proof of clairvoyance. The predictions that never came true are never counted: survivorship bias again, applied to prophecies.</span></p>
+</section>
+
+  <!-- 46. Harv Eker -->
+  <section class="slide" id="s46" data-serie="group_5768bec5-1f75-404b-89eb-e06eda7635b3">
+  <p class="kicker" data-pose="" data-off-x="405.12" data-off-y="110.13" style="left:40.512%;top:11.013%"><span class="t-fr">Les livres de développement personnel</span><span class="t-en" hidden="">Self-help books</span></p>
+  <h2 data-pose="" data-off-x="325.5" data-off-y="140.97" style="left:32.55%;top:14.097%"><span class="t-fr">« Les conseils d'un esprit millionnaire »</span><span class="t-en" hidden="">"Secrets of the Millionaire Mind"</span></h2>
+  <div class="quote-block" style="font-style:normal;left:33.377%;top:21.586%" data-pose="" data-off-x="333.77" data-off-y="215.86">
+    <span class="t-fr"><b>Principe n° 1 :</b> « Les gens riches croient : je crée ma vie. Les pauvres croient : la vie m'arrive à moi. »<br><br>
+    <b>Principe n° 2 :</b> « Les gens riches jouent le jeu de l'argent pour gagner. Les pauvres jouent pour ne pas perdre. »<br><br>
+    <b>Principe n° 3 :</b> « Les gens riches s'engagent à être riches. Les pauvres veulent être riches. »</span><span class="t-en" hidden=""><b>Principle 1:</b> "Rich people believe: I create my life. Poor people believe: life happens to me."<br><br>
+    <b>Principle 2:</b> "Rich people play the money game to win. Poor people play not to lose."<br><br>
+    <b>Principle 3:</b> "Rich people are committed to being rich. Poor people want to be rich."</span>
+  </div>
+  <p class="lead" style="margin-top:14px;left:30.26%;top:50.083%" data-pose="" data-off-x="302.6" data-off-y="500.83"><span class="t-fr">Ces « principes » sont déduits d'entretiens avec des personnes déjà riches, jamais avec les personnes qui partageaient les mêmes croyances et n'ont jamais réussi. Le biais du survivant, habillé en recette du succès.</span><span class="t-en" hidden="">These "principles" are drawn from interviews with people who are already rich, never with people who shared the same beliefs and never succeeded. Survivorship bias, dressed up as a recipe for success.</span></p>
+</section>
+
+  <!-- 47. Témoignages cancer (sensible) -->
+  <section class="slide" id="s47">
+  <p class="kicker" data-pose="" data-off-x="431.52" data-off-y="110.13" style="left:43.152%;top:11.013%"><span class="t-fr">L'exemple le plus dangereux</span><span class="t-en" hidden="">The most dangerous example</span></p>
+  <h2 data-pose="" data-off-x="297.65" data-off-y="140.97" style="left:29.765%;top:14.097%"><span class="t-fr">Des témoignages qui peuvent coûter des vies</span><span class="t-en" hidden="">Testimonies that can cost lives</span></h2>
+  <div class="sensitive-gate" id="sensitive-gate" data-sensible="" data-pose="" data-off-x="344.16" data-off-y="211.45" style="left:34.416%;top:21.145%">
+    <div class="warn"><span class="t-fr">Désinformation médicale</span><span class="t-en" hidden="">Medical disinformation</span></div>
+    <p><span class="t-fr">Le contenu ci-dessous regroupe de vrais témoignages en ligne encourageant à privilégier des méthodes alternatives plutôt qu'un traitement contre le cancer. Il est montré ici uniquement pour apprendre à reconnaître ce mécanisme, jamais comme une information médicale valable.</span><span class="t-en" hidden="">The content below gathers real online testimonies encouraging alternative methods over actual cancer treatment. It is shown here solely to learn to recognise this mechanism, never as valid medical information.</span></p>
+    <button class="gate-btn"><span class="t-fr">Afficher quand même (à but pédagogique)</span><span class="t-en" hidden="">Show anyway (for educational purposes)</span></button>
+    <div class="gate-content">
+      <div class="imgcard small"><img src="../medias/images/temoignage-cancer-thumbnail.jpg" alt="Vidéo YouTube faisant la promotion d'un programme anti-cancer alternatif"></div>
+      <div class="testi"><div class="who"><span class="t-fr">Commentaire YouTube</span><span class="t-en" hidden="">YouTube comment</span></div><span class="t-fr">« Guéri d'un cancer du côlon stade 3 grâce à ton enseignement. Merci ! »</span><span class="t-en" hidden="">"Cured of stage 3 colon cancer thanks to your teaching. Thank you!"</span></div>
+      <div class="testi"><div class="who"><span class="t-fr">Commentaire YouTube</span><span class="t-en" hidden="">YouTube comment</span></div><span class="t-fr">« Si j'avais un cancer, je ne ferais pas de chimio car c'est la mort assurée… jeûne, bain froid. »</span><span class="t-en" hidden="">"If I had cancer, I wouldn't do chemo because it's certain death… fasting, cold baths."</span></div>
+      <div class="warn-banner">
+        <p style="margin:0;"><span class="t-fr"><b>Pourquoi c'est trompeur :</b> seules les personnes qui se sentent mieux (ou qui ont guéri malgré tout, et non grâce à la méthode) laissent ce genre de commentaire. Les personnes pour qui cela s'est mal passé ne témoignent pas. Ce déséquilibre donne une impression de succès totalement fausse, sur un sujet où l'enjeu est la vie des gens. En cas de doute, la parole d'un professionnel de santé prime toujours sur un témoignage en ligne.</span><span class="t-en" hidden=""><b>Why this is misleading:</b> only people who feel better (or who recovered anyway, not because of the method) leave this kind of comment. People for whom it went badly don't come back to testify. This imbalance creates a completely false impression of success, on a topic where people's lives are at stake. When in doubt, a healthcare professional's word always outweighs an online testimony.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- 48. Loto -->
+  <section class="slide" id="s48">
+  <p class="kicker" data-pose="" data-off-x="431.57" data-off-y="110.13" style="left:43.157%;top:11.013%"><span class="t-fr">Un classique de la publicité</span><span class="t-en" hidden="">An advertising classic</span></p>
+  <h2 data-pose="" data-off-x="300.18" data-off-y="140.97" style="left:30.018%;top:14.097%"><span class="t-fr">« 100 % des gagnants ont tenté leur chance »</span><span class="t-en" hidden="">"100% of winners took a chance"</span></h2>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="209.25" style="left:42.208%;top:20.925%"><img src="../medias/images/loto-pub-gagnants.jpg" alt="Publicité télévisée pour le Loto : 100 pourcent des gagnants ont tenté leur chance"></div>
+  <p class="lead" style="margin-top:12px;left:30.26%;top:46.261%" data-pose="" data-off-x="302.6" data-off-y="462.61"><span class="t-fr">Une phrase parfaitement vraie… et totalement creuse. Elle ne dit rien des millions de perdants qui, eux aussi, avaient tenté leur chance.</span><span class="t-en" hidden="">A perfectly true sentence… and a completely empty one. It says nothing about the millions of losers who also took a chance.</span></p>
+</section>
+
+  <!-- 49. Phishing SMS -->
+  <section class="slide" id="s49">
+  <p class="kicker" data-pose="" data-off-x="436.17" data-off-y="110.13" style="left:43.617%;top:11.013%"><span class="t-fr">Au fait, dans la vraie vie…</span><span class="t-en" hidden="">By the way, in real life…</span></p>
+  <h2 data-pose="" data-off-x="338.01" data-off-y="140.97" style="left:33.801%;top:14.097%"><span class="t-fr">Repérez-vous le piège dans ce SMS ?</span><span class="t-en" hidden="">Can you spot the trap in this text message?</span></h2>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="209.25" style="left:42.208%;top:20.925%"><img src="../medias/images/phishing-sms-chronopost.jpg" alt="SMS frauduleux se faisant passer pour un colis Chronopost"></div>
+  <p class="lead" style="margin-top:12px;left:30.26%;top:44.753%" data-pose="" data-off-x="302.6" data-off-y="447.53"><span class="t-fr">Un lien inhabituel, une urgence fabriquée, un nom de marque déformé : les mêmes réflexes de vérification s'appliquent aux arnaques du quotidien qu'aux sophismes qu'on vient de voir.</span><span class="t-en" hidden="">An unusual link, a manufactured sense of urgency, a distorted brand name: the same verification reflexes apply to everyday scams as to the fallacies we've just seen.</span></p>
+</section>
+
+  <!-- 50. Rasoir d'Ockham -->
+  <section class="slide" id="s50">
+  <p class="kicker" data-pose="" data-off-x="424.65" data-off-y="110.13" style="left:42.465%;top:11.013%"><span class="t-fr">Un outil pour y voir plus clair</span><span class="t-en" hidden="">A tool for seeing things more clearly</span></p>
+  <h2 data-pose="" data-off-x="414.68" data-off-y="140.97" style="left:41.468%;top:14.097%"><span class="t-fr">Le rasoir d'Ockham</span><span class="t-en" hidden="">Occam's razor</span></h2>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="209.25" style="left:42.208%;top:20.925%"><img src="../medias/images/occam-portrait.jpg" alt="Portrait historique de Guillaume d'Ockham"></div>
+  <div class="quote-block" data-pose="" data-off-x="333.77" data-off-y="539.79" style="left:33.377%;top:53.979%">« Pluralitas non est ponenda sine necessitate »<br><span class="t-fr">« Les multiples ne doivent pas être utilisés sans nécessité »</span><span class="t-en" hidden="">"Entities must not be multiplied beyond necessity"</span></div>
+  <p class="lead" style="margin-top:10px;font-size:.85rem;left:32.856%;top:64.792%" data-pose="" data-off-x="328.56" data-off-y="647.92"><span class="t-fr">Entre deux explications, celle qui suppose le moins d'éléments compliqués est en général la plus probable.</span><span class="t-en" hidden="">Between two explanations, the one that assumes the fewest complicated elements is generally the more likely.</span></p>
+</section>
+
+  <!-- 51. Le monde est complexe -->
+  <section class="slide short" id="s51">
+  <h2 data-pose="" data-off-x="261.04" data-off-y="452.64" style="left:26.104%;top:45.264%"><span class="t-fr">Admettre que le monde est complexe, tout comme le sont les accès à l'information !</span><span class="t-en" hidden="">Accept that the world is complex, and so is access to information!</span></h2>
+</section>
+
+  <!-- 52. Merci (mi-parcours) -->
+  <section class="slide short" id="s52">
+  <h2 data-pose="" data-off-x="470.46" data-off-y="454.45" style="left:47.046%;top:45.445%"><span class="t-fr">Merci !</span><span class="t-en" hidden="">Thank you!</span></h2>
+  <p class="lead" data-pose="" data-off-x="378.79" data-off-y="522.73" style="left:37.879%;top:52.273%"><span class="t-fr">On pourrait s'arrêter là… mais allons un peu plus loin.</span><span class="t-en" hidden="">We could stop here… but let's go a bit further.</span></p>
+</section>
+
+  <!-- 53. Divider neutralité -->
+  <section class="slide divider-slide short" id="s53">
+  <h2 data-pose="" data-off-x="319.25" data-off-y="476.87" style="left:31.925%;top:47.687%"><span class="t-fr">Bonus : un média peut-il être neutre ?</span><span class="t-en" hidden="">Bonus: can a media outlet be neutral?</span></h2>
+</section>
+
+  <!-- 54. Poll neutralité -->
+  <section class="slide" id="s54">
+  <h2><span class="t-fr">À main levée : un média doit-il, et peut-il, être neutre ?</span><span class="t-en" hidden>Show of hands: should, and can, a media outlet be neutral?</span></h2>
+  <div class="poll" data-sondage="">
+    <button class="oui" onclick="Deck.vote('oui')"><span class="t-fr">Oui</span><span class="t-en" hidden>Yes</span></button>
+    <button class="non" onclick="Deck.vote('non')"><span class="t-fr">Non</span><span class="t-en" hidden>No</span></button>
+  </div>
+  <div id="poll-bars">
+    <div class="pbar-row"><span style="width:38px"><span class="t-fr">Oui</span><span class="t-en" hidden>Yes</span></span><div class="pbar-track"><div class="pbar-fill oui" id="bar-oui"></div></div><span id="cnt-oui">0</span></div>
+    <div class="pbar-row"><span style="width:38px"><span class="t-fr">Non</span><span class="t-en" hidden>No</span></span><div class="pbar-track"><div class="pbar-fill non" id="bar-non"></div></div><span id="cnt-non">0</span></div>
+  </div>
+  <p class="poll-hint"><span class="t-fr">Un clic par main levée dans la salle.</span><span class="t-en" hidden>One click per raised hand in the room.</span></p>
+</section>
+
+  <!-- 55. Le Monde climat -->
+  <section class="slide" id="s55">
+  <p class="kicker" data-pose="" data-off-x="424.11" data-off-y="110.13" style="left:42.411%;top:11.013%"><span class="t-fr">Un fait, présenté comme un fait</span><span class="t-en" hidden="">A fact, presented as a fact</span></p>
+  <h2 data-pose="" data-off-x="300.88" data-off-y="140.97" style="left:30.088%;top:14.097%"><span class="t-fr">« Le changement climatique est une réalité »</span><span class="t-en" hidden="">"Climate change is a reality"</span></h2>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="209.25" style="left:42.208%;top:20.925%"><img src="../medias/images/lemonde-climat.jpg" alt="Article du Monde affirmant que le changement climatique est une réalité"></div>
+  <p class="lead" style="margin-top:12px;left:30.26%;top:35.726%" data-pose="" data-off-x="302.6" data-off-y="357.26"><span class="t-fr">Ce titre est-il « neutre » ? Il prend clairement position sur un fait, mais un fait établi scientifiquement n'est pas une opinion.</span><span class="t-en" hidden="">Is this headline "neutral"? It clearly takes a position on a fact, but a scientifically established fact isn't an opinion.</span></p>
+</section>
+
+  <!-- 56. Terre plate vs ronde -->
+  <section class="slide" id="s56">
+  <h2 data-pose="" data-off-x="264.85" data-off-y="113.07" style="left: 26.485%; top: 11.307%;"><span class="t-fr">Est-ce « neutre » de dire que la Terre n'est pas plate ?</span><span class="t-en" hidden="">Is it "neutral" to say the Earth isn't flat?</span></h2>
+  
+  <p class="lead" style="margin-top: 14px; left: 30.26%; top: 39.909%;" data-pose="" data-off-x="302.6" data-off-y="399.09"><span class="t-fr">La « neutralité » d'une information dépend du contexte : présenter les deux thèses à égalité serait ici une <b>fausse</b> neutralité.</span><span class="t-en" hidden="">The "neutrality" of a piece of information depends on context: presenting both views as equal would here be a <b>false</b> neutrality.</span></p>
+<div class="imgcard small" data-pose="" data-off-x="340" data-off-y="196.76" style="width: 300px; left: 34%; top: 19.676%;"><img src="../medias/images/terre-plate-illustration.jpg" alt="Illustration d'une Terre plate"></div><div class="imgcard small" data-pose="" data-off-x="504.16" data-off-y="196.76" style="width: 300px; left: 50.416%; top: 19.676%;"><img src="../medias/images/terre-ronde-nasa.jpg" alt="Photo de la Terre ronde vue de l'espace"></div></section>
+
+  <!-- 57. Neutralité et Ukraine -->
+  <section class="slide" id="s57">
+  <p class="kicker" data-pose="" data-off-x="429.58" data-off-y="110.13" style="left:42.958%;top:11.013%"><span class="t-fr">Qu'est-ce que la neutralité ?</span><span class="t-en" hidden="">What is neutrality?</span></p>
+  <h2 data-pose="" data-off-x="265.8" data-off-y="140.97" style="left:26.58%;top:14.097%"><span class="t-fr">« Conflit » ou « invasion » : lequel est le plus neutre ?</span><span class="t-en" hidden="">"Conflict" or "invasion": which is more neutral?</span></h2>
+  <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="209.25" style="left:42.208%;top:20.925%"><img src="../medias/images/poutine-bfmtv-ukraine.jpg" alt="Diffusion télévisée d'un discours pendant la guerre en Ukraine"></div>
+  <p class="lead" style="margin-top:12px;left:30.26%;top:44.16%" data-pose="" data-off-x="302.6" data-off-y="441.6"><span class="t-fr">Est-ce neutre de ne parler que des exactions russes ? De ne parler que des exactions ukrainiennes ? D'en parler autant l'une que l'autre ? Chaque choix de mot, chaque choix de sujet, engage déjà un point de vue.</span><span class="t-en" hidden="">Is it neutral to only report Russian abuses? To only report Ukrainian abuses? To report both equally? Every choice of word, every choice of topic, already commits to a point of view.</span></p>
+</section>
+
+  <!-- 58. Conclusion finale -->
+  <section class="slide short" id="s58">
+  <p class="kicker" data-pose="" data-off-x="472.63" data-off-y="388.46" style="left:47.263%;top:38.846%"><span class="t-fr">Conclusion</span><span class="t-en" hidden="">Conclusion</span></p>
+  <div class="concl-box" data-pose="" data-off-x="323.38" data-off-y="430.31" style="left:32.338%;top:43.031%">
+    <p><span class="t-fr">Factuel ne veut pas dire <span class="context">neutre</span>.</span><span class="t-en" hidden="">Factual doesn't mean <span class="context">neutral</span>.</span></p>
+    <p><span class="t-fr">La neutralité est un parti pris, de fait : elle dépend du contexte, et est donc, paradoxalement, subjective.</span><span class="t-en" hidden="">Neutrality is, in fact, a stance: it depends on context, and is therefore, paradoxically, subjective.</span></p>
+    <p><span class="t-fr">Admettre sa « non-neutralité » ne veut pas dire cesser d'être factuel.</span><span class="t-en" hidden="">Admitting your own "non-neutrality" doesn't mean you stop being factual.</span></p>
+  </div>
+</section>
+
+  <!-- 59. Merci final -->
+  <section class="slide short" id="s39" data-serie="serie_4876ce66-4e05-416a-ab6a-5ea953659741">
+    <h1 style="font-size:clamp(2rem,calc(6 * var(--vw1)),3rem);background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;left:46.307%;top:41.685%" data-pose="" data-off-x="463.07" data-off-y="416.85"><span class="t-fr">Merci !</span><span class="t-en" hidden="">Thank you!</span></h1>
+    <button class="bigbtn" onclick="Deck.restart()" data-pose="" data-off-x="436.56" data-off-y="532.49" style="left:43.656%;top:53.249%"><span class="t-fr">Revoir depuis le début</span><span class="t-en" hidden="">Watch again from the start</span></button>
+  </section>
+
+<!-- Slide finale : bilan de l'intervention (QR code) -->
+  <section class="slide short" id="s-bilan-qr" data-serie="serie_743edaf5-33f9-4668-ab8a-f0365b011093">
+    <p class="kicker" data-pose="" data-off-x="461.46" data-off-y="272.25" style="left: 46.146%; top: 27.225%;"><span class="t-fr">Après la séance</span><span class="t-en" hidden="">After the session</span></p>
+    <h2 data-pose="" data-off-x="344.92" data-off-y="303.09" style="left: 34.492%; top: 30.309%;"><span class="t-fr">Le bilan, les jeux, et votre retour</span><span class="t-en" hidden="">Summary, games, and your feedback</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="375.76" style="left: 30.26%; top: 37.576%;"><span class="t-fr">Scannez ce QR code&nbsp;: vous pourrez donner votre retour, revoir le bilan de la formation ou rejouer aux jeux.</span><span class="t-en" hidden="">Scan this QR code: you can leave your feedback, review the session summary, or play the games again.</span></p>
+    
+  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhwAAAIcAQAAAACVhUrRAAAC80lEQVR42u2dUWrEMAxERS/g+9/SN3C7jSNp5JQW2p+it5SybDbvY2EYaSw7tn7/mgYECBAgQID8HGL+Gvcn4/Xhx/v9Zu3/16Xjljf7gxcQIP8LYi6HLZlP+VxvQjgjtOaXQkpoB0hj7VwO4nbjjlPc57pUbkE7QNCOyycuWYjFq8T4GtoBgnZUO+4vL9O5v+Y1G74DBMhzv5MCgR0LDAkY6HeAAAl1XC+3nm//0i1oB0hb7ZTU2vOBaG00fztu4YcF0lc7WxqWlngsiUij6f253452gHT2nWQ00ddEGmDlv7RCaAdI434nr+nskO1WSlRxtxNF/kbOBoSaLa1+bjfJizulfnMRTXwHSG/t6KhAtD8jajkZZiuJAdoB0rvf8ZGbbC5StuXqTkIGflggXfudNDUdMvHJAa/l7twgYjeyAiDtswKv1mJrw7QctT3YEP0OELRjaWp6hfVImHYuA9HvAKHfKbrQGEGsJ09ZTzJqIPhO2miwnlueXK3lGg/tAKHfkX5nWtaR6CWHBmgHSHPtDN1PfRRsUbnlGyNV4IcF0rXfmaEFk0G1uglORndY3wGCdlbqZcbTiE4R1FriWWgHSGPfiVOkcr9zHFBQDOj+Mj8skMZZQVHHUMfRtVGyAiBASlaQ53NkF08aYzMz6Y/QDpD2WUE5kSBv2yk9kWwdRTtAemcFMXiTBnLy9reSV8uxBmgHSO9+R46WyrsMTEJp/zB1RvywQBr7To7Opk6EnocYGP0OECBW91bXPaHmvmNl4xuzoEDwnRWb2qqCZj1IJxaDWN8Bgu/YsXBT8rSyvqNlG9oB0tl3JAQoXU86k82ejgxFO0Ba+45FX1OdJXvQqgftoh0grbWTn4NgVh6LUBZMw3eo2YCgnXHkA7PuTZDjdOh3gAD5Sjvl0aL5uLalEzvUbEDQzvHQNx2WPtofzmcDgnb0CKmyza3YUL1KzQaks3aslmTRzkyrp+UseXA8vgOks3Z++5pAgAABAgTIDyHv20VZl660GMAAAAAASUVORK5CYII=" alt="QR code vers la page antoninatger.github.io/interventions/retours" style="width: 200px; height: 200px; border-radius: 16px; background: rgb(255, 255, 255); padding: 10px; box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 30px; left: 44.805%; top: 47.267%;" data-pose="" data-off-x="448.05" data-off-y="472.67"><a href="https://antoninatger.github.io/interventions/retours/" target="_blank" rel="noopener" style="color: var(--acc2); font-weight: 800; font-size: 1.05rem; text-decoration: none; border-bottom: 2px solid var(--acc2); padding-bottom: 2px; width: 371.73px; left: 40.345%; top: 71.275%;" data-pose="" data-off-x="403.45" data-off-y="712.75">
+        <span class="t-fr">antoninatger.github.io/interventions/retours →</span><span class="t-en" hidden="">antoninatger.github.io/interventions/retours →</span>
+      </a></section>
+
+
+
+
+
+
+
+</div>
+
+<div id="navzone-l" aria-hidden="true"></div>
+<div id="navzone-r" aria-hidden="true"></div>
+<div id="dots"></div>
+<div id="navctrl">
+  <button id="btn-prev" title="Précédent (←)">‹</button>
+  <button id="btn-next" title="Suivant (→)">›</button>
+</div>
+
+<div id="admin-modal" class="admin-modal">
+  <div class="admin-head">
+    <h3>Mode Admin : diapos de la session</h3>
+    <span class="admin-count" id="admin-count"></span>
+    <div class="actions">
+      <select id="admin-selections" title="Parcours enregistrés" onchange="Deck.applySelectedPreset()"></select>
+      <button type="button" onclick="Deck.saveCurrentSelectionAs()">Enregistrer comme parcours…</button>
+      <button type="button" onclick="Deck.deleteSelectedPreset()">Supprimer le parcours</button>
+      <button type="button" onclick="Deck.openAddSlideModal()">Ajouter une diapo</button>
+      <button type="button" onclick="window.open('../media-browser.html','_blank')">Médiathèque (toutes formations)</button>
+      <button type="button" onclick="Deck.adminSelectAll()">Tout cocher</button>
+      <button type="button" onclick="Deck.adminSelectNone()">Tout décocher</button>
+      <button type="button" class="primary" onclick="Deck.adminSave()">Enregistrer la sélection</button>
+      <button type="button" id="admin-save-order" onclick="Deck.saveSlideOrder()">Enregistrer l'ordre dans le fichier</button>
+      <button type="button" onclick="Deck.adminClose()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-grid" id="admin-grid"></div>
+</div>
+
+<div id="admin-zoom-modal" class="admin-zoom-modal">
+  <button type="button" class="admin-zoom-close" onclick="Deck.adminZoomClose()">✕</button>
+  <div id="admin-zoom-box"></div>
+</div>
+
+<div id="admin-edit-modal" class="admin-edit-modal">
+  <div class="admin-edit-head">
+    <h3>Édition de la diapo</h3>
+    <span class="admin-edit-hint"></span>
+    <div class="actions">
+      <button type="button" onclick="Deck.addTextBlock()">Ajouter un texte</button>
+      <button type="button" onclick="Deck.addPhotoBlock()">Ajouter une photo</button>
+      <button type="button" onclick="Deck.addPollWidget()">Sondage</button>
+      <button type="button" onclick="Deck.addScaleWidget()">Échelle</button>
+      <button type="button" onclick="Deck.addPieChartWidget()">Camembert</button>
+      <button type="button" onclick="Deck.addHistogramWidget()">Histogramme</button>
+      <button type="button" onclick="Deck.addReponseWidget()">Réponses à écrire</button>
+      <button type="button" onclick="Deck.quickAddSlideAfterCurrent()">Ajouter une diapo après</button>
+      <button type="button" onclick="Deck.apporterUneDiapo()">⤵ Apporter une diapo</button>
+      <button type="button" onclick="Deck.closeSlideEditToGrid()">Toutes les diapos</button>
+      <button type="button" id="admin-edit-save" onclick="Deck.saveEditedSlide()">Enregistrer dans le fichier</button>
+      <button type="button" onclick="Deck.closeSlideEdit()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-edit-stage" id="admin-edit-stage"></div>
+</div>
+
+<div id="addslide-modal" class="addslide-modal">
+  <div class="addslide-modal-box">
+    <div class="addslide-modal-head">
+      <h3>Ajouter une diapo</h3>
+      <button type="button" onclick="Deck.closeAddSlideModal()">✕</button>
+    </div>
+    <div class="addslide-modal-body">
+      <div id="addslide-modeles" class="addslide-modeles"></div>
+      <div id="addslide-champs"></div>
+      <div class="addslide-field">
+        <label for="addslide-position">Position</label>
+        <select id="addslide-position" class="addslide-input"></select>
+      </div>
+      <div class="addslide-modal-actions">
+        <button type="button" class="primary" onclick="Deck.submitAddSlide()">Ajouter</button>
+        <button type="button" onclick="Deck.closeAddSlideModal()">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../shared-deck-engine.js"></script>
+<script src="../shared-widgets.js"></script>
+<script src="../shared-slide-templates.js"></script>
+<script src="app.js"></script>
+<script src="../shared-comments-theme.js"></script>
+</body>
+</html>

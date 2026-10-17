@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="pageTitle">Pas si vite ! — Explique à tes amis pourquoi c'est faux</title>
+<meta name="description" data-i18n-content="metaDesc"
+      content="Tes amis se sont fait avoir par une photo, une pub ou un message. À toi de leur expliquer pourquoi, en choisissant la bonne réponse ou en l'écrivant avec tes mots.">
+
+<!-- Ce jeu prolonge les bilans des formations : il vit dans Cours/bilans/ et se
+     publie avec eux (antoninatger.github.io/interventions/retours/bilans/).
+     socle/ est une COPIE du socle de la collection Jeux (collection.css,
+     collection.js, i18n.js, polices) : le jeu ne dépend ainsi ni du dépôt
+     « jeux », ni de sa branche refonte-ux. Pour reprendre une évolution du
+     socle, recopier les trois fichiers depuis Jeux/. -->
+<link rel="stylesheet" href="socle/fonts.css">
+<link rel="stylesheet" href="socle/collection.css">
+<style>
+  /* ── Identité : une messagerie de nuit ───────────────────────────────── */
+  :root {
+    --bg:             #0e1621;
+    --surface:        #17212b;
+    --bordure:        rgba(255, 255, 255, .12);
+    --txt:            #eef2f8;
+    --txt-secondaire: #9fb0c8;   /* 8,2:1 sur --bg, 7,4:1 sur --surface */
+    --acc:            #25d366;
+    --acc-txt:        #06121c;   /* 9,5:1 sur --acc */
+    --focus:          #ffd54f;
+    --font-texte:     'Nunito', system-ui, sans-serif;
+    --font-titre:     'Baloo 2', 'Nunito', system-ui, sans-serif;
+
+    /* Le téléphone */
+    --wa-fond:    #0b141a;
+    --wa-haut:    #202c33;
+    --wa-recu:    #202c33;
+    --wa-envoye:  #005c4b;
+    --wa-txt:     #e9edef;
+    --wa-doux:    #aebac1;       /* 7,2:1 sur --wa-recu */
+    --wa-heure-e: #d4e4e0;       /* heure dans une bulle envoyée */
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--txt);
+    font-family: var(--font-texte);
+    padding: 0 var(--sp-5) var(--sp-6);
+  }
+  .jeu { max-width: 1040px; margin: 0 auto; }
+  .ecran[hidden], [hidden] { display: none !important; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* ── Intro ──────────────────────────────────────────────────────────── */
+  .col-intro { max-width: 720px; margin-left: auto; margin-right: auto; }
+  .niveaux { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--sp-4); margin-top: var(--sp-5); }
+  .niveau {
+    display: flex; flex-direction: column; gap: var(--sp-2); text-align: left;
+    padding: var(--sp-4) var(--sp-5); min-height: var(--cible);
+    background: var(--surface); color: var(--txt);
+    border: 2px solid var(--bordure); border-radius: var(--radius);
+    font-family: var(--font-texte); cursor: pointer;
+    transition: border-color .15s, transform .15s;
+  }
+  .niveau:hover { border-color: var(--acc); transform: translateY(-2px); }
+  .niveau__num { font-size: var(--fs-200); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--acc); }
+  .niveau__titre { font-family: var(--font-titre); font-size: var(--fs-500); line-height: 1.2; }
+  .niveau__desc { font-size: var(--fs-200); color: var(--txt-secondaire); line-height: 1.45; }
+
+  /* ── Écran de jeu ───────────────────────────────────────────────────── */
+  .entete-jeu { display: flex; justify-content: space-between; align-items: baseline; gap: var(--sp-3); flex-wrap: wrap; margin: var(--sp-3) 0 var(--sp-4); }
+  .progression { font-size: var(--fs-200); color: var(--txt-secondaire); font-weight: 700; }
+  .pastille-niveau { font-size: var(--fs-100); font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--acc); border: 1px solid currentColor; border-radius: var(--radius-pill); padding: 2px 10px; }
+
+  .plateau { display: grid; gap: var(--sp-5); align-items: start; }
+  @media (min-width: 900px) {
+    .plateau { grid-template-columns: minmax(340px, 420px) 1fr; }
+  }
+
+  /* Le téléphone */
+  .tel {
+    background: var(--wa-fond);
+    background-image:
+      radial-gradient(rgba(255,255,255,.035) 1px, transparent 1.5px),
+      radial-gradient(rgba(255,255,255,.025) 1px, transparent 1.5px);
+    background-size: 22px 22px, 22px 22px;
+    background-position: 0 0, 11px 11px;
+    border: 1px solid var(--bordure);
+    border-radius: 22px;
+    overflow: hidden;
+    color: var(--wa-txt);
+    box-shadow: 0 18px 50px rgba(0,0,0,.35);
+  }
+  .tel__haut { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-3) var(--sp-4); background: var(--wa-haut); }
+  .tel__avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .tel__nom { font-weight: 800; font-size: var(--fs-300); line-height: 1.2; }
+  .tel__statut { font-size: var(--fs-100); color: var(--wa-doux); }
+  .fil { list-style: none; display: flex; flex-direction: column; gap: 6px; padding: var(--sp-4) var(--sp-3) var(--sp-4); min-height: 260px; }
+  .jour { align-self: center; font-size: var(--fs-100); color: var(--wa-doux); background: var(--wa-haut); border-radius: 8px; padding: 3px 10px; margin-bottom: var(--sp-2); }
+
+  .bulle {
+    max-width: 85%; padding: 6px 9px 5px; border-radius: 10px;
+    font-size: var(--fs-300); line-height: 1.4; overflow-wrap: anywhere;
+    animation: arrive .22s ease-out;
+  }
+  .bulle--recu   { align-self: flex-start; background: var(--wa-recu); border-top-left-radius: 3px; }
+  .bulle--envoye { align-self: flex-end; background: var(--wa-envoye); border-top-right-radius: 3px; }
+  .bulle__heure { display: block; text-align: right; font-size: var(--fs-100); color: var(--wa-doux); margin-top: 1px; }
+  .bulle--envoye .bulle__heure { color: var(--wa-heure-e); }
+  .bulle--image { padding: 4px; width: min(290px, 85%); }
+  .bulle--image .bulle__heure { padding: 0 5px 1px; }
+  .zoom { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: 7px; overflow: hidden; }
+  .zoom img { display: block; width: 100%; height: auto; }
+  .bulle--ecrit { align-self: flex-start; background: var(--wa-recu); padding: 11px 14px; display: flex; gap: 4px; }
+  .bulle--ecrit span { width: 7px; height: 7px; border-radius: 50%; background: var(--wa-doux); animation: point 1s infinite ease-in-out; }
+  .bulle--ecrit span:nth-child(2) { animation-delay: .15s; }
+  .bulle--ecrit span:nth-child(3) { animation-delay: .3s; }
+  @keyframes point { 0%, 60%, 100% { opacity: .35; transform: none; } 30% { opacity: 1; transform: translateY(-3px); } }
+  @keyframes arrive { from { opacity: 0; transform: translateY(6px); } }
+
+  .saisie { display: flex; align-items: flex-end; gap: var(--sp-2); padding: var(--sp-2) var(--sp-3) var(--sp-3); background: var(--wa-fond); border-top: 1px solid var(--bordure); }
+  .saisie textarea {
+    flex: 1; min-height: var(--cible); max-height: 160px; resize: none;
+    padding: 11px 16px; border-radius: 22px; border: 1px solid transparent;
+    background: var(--wa-haut); color: var(--wa-txt);
+    font-family: var(--font-texte); font-size: var(--fs-300); line-height: 1.35;
+  }
+  .saisie textarea::placeholder { color: var(--wa-doux); }
+  .saisie textarea:disabled { opacity: .6; }
+  .envoyer { width: var(--cible); height: var(--cible); flex-shrink: 0; border-radius: 50%; border: 0; background: var(--acc); color: var(--acc-txt); font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .envoyer:disabled { opacity: .5; cursor: default; }
+
+  /* À droite : la question, les choix, le retour */
+  .panneau { display: flex; flex-direction: column; gap: var(--sp-4); }
+  .entete-jeu + .col-enonce { margin: 0 0 var(--sp-4); }
+  .choix { display: flex; flex-direction: column; gap: var(--sp-3); }
+  .choix-btn {
+    min-height: var(--cible); padding: var(--sp-3) var(--sp-4);
+    border: 1px solid var(--bordure); border-radius: var(--radius);
+    background: var(--surface); color: var(--txt);
+    font-family: var(--font-texte); font-size: var(--fs-300); line-height: 1.4;
+    text-align: left; cursor: pointer; transition: border-color .15s;
+  }
+  .choix-btn:hover:not(:disabled) { border-color: var(--acc); }
+  .choix-btn:disabled { cursor: default; }
+  .choix-btn.est-faux { border-color: var(--alerte); border-left: 4px solid var(--alerte); opacity: .7; text-decoration: line-through; text-decoration-color: var(--alerte); }
+  .choix-btn.est-juste { border-color: var(--ok); border-left: 4px solid var(--ok); }
+  .aide-libre { font-size: var(--fs-200); color: var(--txt-secondaire); line-height: 1.5; }
+
+  .retour { font-size: var(--fs-300); line-height: 1.5; padding: var(--sp-3) var(--sp-4); border-radius: var(--radius); background: var(--surface); border-left: 4px solid var(--txt-secondaire); }
+  .retour:empty { display: none; }
+  .retour.est-ok { border-left-color: var(--ok); }
+  .retour.est-ko { border-left-color: var(--alerte); }
+  .retour b { color: var(--txt); }
+  .retour ul { margin: var(--sp-2) 0 0 var(--sp-5); }
+  .retour .indice { display: block; margin-top: var(--sp-2); color: var(--txt-secondaire); }
+
+  /* Ce qu'il fallait voir */
+  .bilan { margin-top: var(--sp-5); padding: var(--sp-5); background: var(--surface); border-radius: var(--radius); border: 1px solid var(--bordure); }
+  .bilan h2 { font-family: var(--font-titre); font-size: var(--fs-500); margin-bottom: var(--sp-3); }
+  .bilan h2:focus { outline: none; }
+  .bilan p { line-height: 1.6; }
+  .bilan b { color: var(--acc); }
+  .bilan__corps { display: grid; gap: var(--sp-5); align-items: start; }
+  @media (min-width: 760px) { .bilan__corps.a-image { grid-template-columns: 1fr minmax(220px, 320px); } }
+  .bilan figure img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--bordure); }
+  .bilan figcaption { font-size: var(--fs-200); color: var(--txt-secondaire); margin-top: var(--sp-2); }
+  .reflexe { margin-top: var(--sp-4); padding: var(--sp-3) var(--sp-4); border-radius: var(--radius); background: rgba(37, 211, 102, .1); border: 1px solid rgba(37, 211, 102, .35); }
+  .reflexe strong { display: block; font-size: var(--fs-200); letter-spacing: .06em; text-transform: uppercase; color: var(--acc); margin-bottom: 2px; }
+  .idees { margin-top: var(--sp-4); font-size: var(--fs-200); color: var(--txt-secondaire); }
+  .idees ul { list-style: none; margin-top: var(--sp-1); display: flex; flex-direction: column; gap: 2px; }
+  .idees li.vu { color: var(--txt); }
+  .idees li::before { content: '○ '; }
+  .idees li.vu::before { content: '✓ '; color: var(--ok); font-weight: 800; }
+  .bilan .col-actions { margin-top: var(--sp-5); }
+
+  /* La modale d'agrandissement */
+  .col-modale.psv-zoom { max-width: min(92vw, 900px); }
+  .psv-zoom img { display: block; max-width: 100%; max-height: 72vh; margin: 0 auto var(--sp-3); border-radius: 8px; }
+
+  @media (max-width: 560px) {
+    body { padding: 0 var(--sp-3) var(--sp-6); }
+    .tel { border-radius: 16px; }
+    .bilan { padding: var(--sp-4); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bulle, .bulle--ecrit span { animation: none; }
+  }
+</style>
+</head>
+<body data-col-retour="../index.html" data-col-retour-cle="retourBilans">
+
+<main class="jeu">
+  <h1 data-i18n="titre">Pas si vite !</h1>
+
+  <!-- ── ÉCRAN 1 : INTRO ──────────────────────────────────────────────── -->
+  <section class="ecran col-intro" id="ecran-intro">
+    <div class="col-intro__brief">
+      <p data-i18n-html="brief1">Tes amis t'envoient des photos, des pubs, des messages… et ils <b>se sont fait avoir</b>. À toi de leur expliquer pourquoi il ne faut pas y croire trop vite.</p>
+      <p data-i18n-html="brief2">Ce qui compte, ce sont <b>tes idées</b> : d'où vient l'image, qui l'a publiée, qui y gagne quelque chose.</p>
+    </div>
+
+    <ul class="col-meta">
+      <li>⏱️ <span data-i18n="duree">10 minutes</span></li>
+      <li>🎓 <span data-i18n="niveau">Collège · lycée</span></li>
+      <li>⌨️ <span data-i18n="commandes">Souris, doigt ou clavier</span></li>
+    </ul>
+
+    <div class="niveaux">
+      <button type="button" class="niveau" data-niveau="qcm">
+        <span class="niveau__num" data-i18n="n1Num">Niveau 1</span>
+        <span class="niveau__titre" data-i18n="n1Titre">Je choisis la réponse</span>
+        <span class="niveau__desc" data-i18n="n1Desc">Trois réponses possibles : trouve celle qui explique vraiment le piège.</span>
+      </button>
+      <button type="button" class="niveau" data-niveau="libre">
+        <span class="niveau__num" data-i18n="n2Num">Niveau 2</span>
+        <span class="niveau__titre" data-i18n="n2Titre">J'écris ma réponse</span>
+        <span class="niveau__desc" data-i18n="n2Desc">Réponds avec tes mots, comme dans un vrai message. Les fautes d'orthographe ne comptent pas.</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ── ÉCRAN 2 : JEU ────────────────────────────────────────────────── -->
+  <section class="ecran" id="ecran-jeu" hidden>
+    <div class="entete-jeu">
+      <p class="progression" id="progression"></p>
+      <span class="pastille-niveau" id="pastille-niveau"></span>
+    </div>
+
+    <p class="col-enonce">
+      <strong id="question"></strong>
+      <span class="col-enonce__aide" id="consigne"></span>
+    </p>
+    <div class="plateau">
+      <div class="tel" id="tel">
+        <div class="tel__haut">
+          <span class="tel__avatar" id="ami-avatar" aria-hidden="true"></span>
+          <div>
+            <p class="tel__nom" id="ami-nom"></p>
+            <p class="tel__statut" data-i18n="enLigne">en ligne</p>
+          </div>
+        </div>
+        <ol class="fil" id="fil" aria-live="polite" aria-relevant="additions"></ol>
+        <form class="saisie" id="saisie" hidden autocomplete="off">
+          <label class="sr-only" for="champ" id="champ-label"></label>
+          <textarea id="champ" rows="1" spellcheck="false"></textarea>
+          <button type="submit" class="envoyer" id="envoyer"><span aria-hidden="true">➤</span><span class="sr-only" data-i18n="envoyer">Envoyer</span></button>
+        </form>
+      </div>
+
+      <div class="panneau">
+        <div class="choix" id="choix"></div>
+        <p class="aide-libre" id="aide-libre" hidden data-i18n="aideLibre">Écris ta réponse dans la conversation, puis appuie sur Entrée ou sur ➤. Maj + Entrée pour aller à la ligne.</p>
+        <div class="retour" id="retour" role="status" aria-live="polite"></div>
+        <div class="col-actions">
+          <button type="button" class="col-btn col-btn--fantome" id="btn-voir" hidden data-i18n="voirReponse">Voir une réponse possible</button>
+        </div>
+      </div>
+    </div>
+
+    <section class="bilan" id="bilan" hidden aria-labelledby="bilan-titre">
+      <h2 id="bilan-titre" tabindex="-1" data-i18n="bilanTitre">Ce qu'il fallait voir</h2>
+      <div class="bilan__corps" id="bilan-corps">
+        <div>
+          <p id="bilan-expl"></p>
+          <p class="reflexe"><strong data-i18n="reflexe">Le réflexe</strong><span id="bilan-reflexe"></span></p>
+          <div class="idees" id="bilan-idees" hidden></div>
+        </div>
+        <figure id="bilan-figure" hidden>
+          <img id="bilan-img" alt="">
+          <figcaption id="bilan-legende"></figcaption>
+        </figure>
+      </div>
+      <div class="col-actions">
+        <button type="button" class="col-btn" id="btn-suivant"></button>
+      </div>
+    </section>
+  </section>
+
+  <!-- ── ÉCRAN 3 : FIN (écrit par ColFin) ─────────────────────────────── -->
+  <section class="ecran col-fin" id="ecran-fin" hidden></section>
+</main>
+
+<script src="socle/i18n.js"></script>
+<script>
+/* Le retour mène au bilan d'où l'on vient (?serie=), sinon à la liste des
+   bilans. Posé AVANT collection.js, qui construit l'en-tête. */
+window.PSV_RETOUR = (function () {
+  var BILANS = { niveau1: 'bilan-fake-news-niveau1.html' };
+  var serie = new URLSearchParams(location.search).get('serie');
+  var r = BILANS[serie] ? { href: '../' + BILANS[serie], cle: 'retourBilan' }
+                        : { href: '../index.html', cle: 'retourBilans' };
+  document.body.setAttribute('data-col-retour', r.href);
+  document.body.setAttribute('data-col-retour-cle', r.cle);
+  return r;
+})();
+</script>
+<script src="socle/collection.js"></script>
+<script>
+I18N.register({
+  fr: {
+    pageTitle: "Pas si vite ! — Explique à tes amis pourquoi c'est faux",
+    metaDesc: "Tes amis se sont fait avoir par une photo, une pub ou un message. À toi de leur expliquer pourquoi, en choisissant la bonne réponse ou en l'écrivant avec tes mots.",
+    titre: "Pas si vite !",
+    retourBilan: "Retour au bilan", retourBilans: "Les bilans",
+    brief1: "Tes amis t'envoient des photos, des pubs, des messages… et ils <b>se sont fait avoir</b>. À toi de leur expliquer pourquoi il ne faut pas y croire trop vite.",
+    brief2: "Ce qui compte, ce sont <b>tes idées</b> : d'où vient l'image, qui l'a publiée, qui y gagne quelque chose.",
+    duree: "10 minutes", niveau: "Collège · lycée", commandes: "Souris, doigt ou clavier",
+    n1Num: "Niveau 1", n1Titre: "Je choisis la réponse", n1Desc: "Trois réponses possibles : trouve celle qui explique vraiment le piège.",
+    n2Num: "Niveau 2", n2Titre: "J'écris ma réponse", n2Desc: "Réponds avec tes mots, comme dans un vrai message. Les fautes d'orthographe ne comptent pas.",
+    pastilleQcm: "Niveau 1 · choix", pastilleLibre: "Niveau 2 · réponse libre",
+    progression: "Conversation {n} sur {total}",
+    enLigne: "en ligne", aujourdhui: "Aujourd'hui", envoyer: "Envoyer",
+    agrandir: "Agrandir l'image", imageDe: "Image envoyée par {nom}",
+    ecrit: "{nom} est en train d'écrire…",
+    consigneQcm: "Choisis la réponse que tu enverrais.",
+    consigneLibre: "Écris-lui ce que tu en penses, en expliquant pourquoi.",
+    aideLibre: "Écris ta réponse dans la conversation, puis appuie sur Entrée ou sur ➤. Maj + Entrée pour aller à la ligne.",
+    champLabel: "Ta réponse à {nom}", placeholder: "Écris à {nom}…",
+    bienVu: "Bien vu !",
+    pasTout: "Pas tout à fait.",
+    autreReponse: "Essaie une autre réponse.",
+    videMsg: "Écris d'abord ta réponse.",
+    ideesVues: "Tu as repéré :",
+    rienVu1: "Ta réponse n'explique pas encore le piège à {nom}. Dis-lui ce qui cloche.",
+    rienVu2: "Toujours pas tout à fait. Tu peux réessayer, ou voir une réponse possible.",
+    indice: "Indice :",
+    voirReponse: "Voir une réponse possible",
+    reponseVue: "Voici une réponse possible. Lis bien l'explication ci-dessous.",
+    bilanTitre: "Ce qu'il fallait voir",
+    reflexe: "Le réflexe",
+    ideesTitre: "Les idées qui marchaient :",
+    suivant: "Conversation suivante", voirBilan: "Voir mon bilan",
+    finTitre: "Partie terminée",
+    finMsg: "Une photo, une pub, un message : avant de croire ou de partager, on se demande d'où ça vient et qui y gagne quelque chose.",
+    versNiveau2: "Passer au niveau 2 : j'écris ma réponse",
+    doute: ["Ah bon ? 🤔", "Mouais… t'es sûr ?", "Je comprends pas trop 😕", "Hmm, pourquoi tu dis ça ?"],
+    confirme: ["Ben oui, c'est ce que je dis 😅", "Voilà, t'es d'accord avec moi !"]
+  },
+  en: {
+    pageTitle: "Not so fast! — Explain to your friends why it's fake",
+    metaDesc: "Your friends got fooled by a photo, an ad or a message. Explain why, by picking the right answer or writing it in your own words.",
+    titre: "Not so fast!",
+    retourBilan: "Back to the summary", retourBilans: "All summaries",
+    brief1: "Your friends send you photos, ads, messages… and they <b>got fooled</b>. It's up to you to explain why they shouldn't believe it so fast.",
+    brief2: "What counts is <b>your ideas</b>: where the picture comes from, who posted it, who gains something.",
+    duree: "10 minutes", niveau: "Ages 11+", commandes: "Mouse, touch or keyboard",
+    n1Num: "Level 1", n1Titre: "I pick the answer", n1Desc: "Three possible replies: find the one that really explains the trap.",
+    n2Num: "Level 2", n2Titre: "I write my answer", n2Desc: "Reply in your own words, like in a real message. Spelling mistakes don't count.",
+    pastilleQcm: "Level 1 · choice", pastilleLibre: "Level 2 · free answer",
+    progression: "Conversation {n} of {total}",
+    enLigne: "online", aujourdhui: "Today", envoyer: "Send",
+    agrandir: "Enlarge the picture", imageDe: "Picture sent by {nom}",
+    ecrit: "{nom} is typing…",
+    consigneQcm: "Pick the reply you would send.",
+    consigneLibre: "Tell them what you think, and explain why.",
+    aideLibre: "Type your reply in the conversation, then press Enter or ➤. Shift + Enter for a new line.",
+    champLabel: "Your reply to {nom}", placeholder: "Message {nom}…",
+    bienVu: "Good catch!",
+    pasTout: "Not quite.",
+    autreReponse: "Try another reply.",
+    videMsg: "Write your reply first.",
+    ideesVues: "You spotted:",
+    rienVu1: "Your reply doesn't explain the trap to {nom} yet. Tell them what's wrong.",
+    rienVu2: "Still not quite. You can try again, or see a possible answer.",
+    indice: "Hint:",
+    voirReponse: "See a possible answer",
+    reponseVue: "Here is a possible answer. Read the explanation below carefully.",
+    bilanTitre: "What you needed to see",
+    reflexe: "The reflex",
+    ideesTitre: "Ideas that worked:",
+    suivant: "Next conversation", voirBilan: "See my results",
+    finTitre: "Game over",
+    finMsg: "A photo, an ad, a message: before believing or sharing, ask where it comes from and who gains something.",
+    versNiveau2: "Go to level 2: I write my answer",
+    doute: ["Really? 🤔", "Hmm… are you sure?", "I don't really get it 😕", "Why do you say that?"],
+    confirme: ["Yeah, that's what I'm saying 😅", "See, you agree with me!"]
+  }
+});
+</script>
+<script src="scenarios.js"></script>
+<script src="analyse.js"></script>
+<script src="jeu.js"></script>
+</body>
+</html>

@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Illusions d'optique</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared-deck.css">
+<style>
+/* Propre à cette intervention. Les règles qui suivent sont reprises de
+   formation-fake-news-niveau1 : ses diapos en série en ont besoin pour s’afficher pareil. */
+:root{--acc:#8b5cf6;--acc2:#38bdf8}
+:root[data-theme="light"]{
+  --bg:#f4f6fb; --bg2:#e8ecf5; --panel:#ffffff; --panel2:#eef1f8;
+  --acc:#b8720a; --acc2:#0369a1; --ok:#15803d; --ko:#dc2626;
+  --tx:#0f172a; --mu:#5b6472; --bord:rgba(15,23,42,.14);
+}
+body{background-image:radial-gradient(ellipse at 20% -10%, rgba(56,189,248,.12) 0%, transparent 55%), radial-gradient(ellipse at 90% 110%, rgba(245,185,66,.10) 0%, transparent 55%);transition:background-color .3s ease, color .3s ease}
+#topbar .brand{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+/* ── Cover ── */
+#s0 .logo{font-size:3rem;margin-bottom:6px;}
+#s0 h1{font-size:clamp(2rem,calc(6 * var(--vw1)),3.4rem);font-weight:800;
+  background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+#s0 .objectifs{list-style:none;margin-top:26px;display:flex;flex-direction:column;gap:10px;text-align:left;max-width:520px;}
+#s0 .objectifs li{background:var(--panel);border:1px solid var(--bord);border-radius:14px;padding:12px 18px;font-weight:700;
+  display:flex;align-items:center;gap:12px;}
+#s0 .objectifs li b{color:var(--acc);font-family:'Baloo 2',cursive;font-size:1.1rem;}
+/* ── Boutons génériques ── */
+.bigbtn{background:linear-gradient(135deg,var(--acc),#d99b1f);box-shadow:0 6px 22px rgba(245,185,66,.3)}
+/* ── Vidéos ── */
+/* Pas de largeur imposée : la vidéo garde son format d'origine (portrait ou paysage)
+   et n'est agrandie/réduite que par max-width/max-height, sans crop ni déformation. */
+.vidwrap{position:relative;display:inline-flex;max-width:calc(94 * var(--vw1));max-height:calc(64 * var(--vh1));border-radius:20px;overflow:hidden;border:1px solid var(--bord);
+  box-shadow:0 20px 50px rgba(0,0,0,.4);margin-top:10px;background:#000;}
+.vidwrap video{width:auto;max-width:calc(94 * var(--vw1));max-height:calc(64 * var(--vh1))}
+/* U7 (1er septembre) : niveau1 dimensionne ses videos par la HAUTEUR, la ou influenceurs et
+   niveau2 les dimensionnent par la largeur. Les deux partis se valent, mais celui-ci ne
+   cooperait pas avec un agrandissement a la poignee : le cadre grandissait, la video non,
+   bande noire a droite. Une largeur posee A LA MAIN sur le cadre (poignee ou cran, donc un
+   style en ligne) leve la regle : la video remplit son cadre. Sans largeur explicite, rien
+   ne change : les videos de niveau1 gardent exactement leur aspect. */
+.vidwrap[style*="width"]{max-height:none}
+.vidwrap[style*="width"] video{width:100%;max-width:none;max-height:none;height:auto}
+.vidwrap.wide{max-height:calc(74 * var(--vh1));}
+.vid-rotate-wrap{position:relative;display:inline-flex;}
+.vidwrap{transition:transform .3s ease;}
+/* !important nécessaire : la règle générique d'élévation des boutons (navigation) impose
+   position:relative avec une spécificité plus forte que ce sélecteur simple. */
+.rotate-btn{position:absolute!important;top:6px;right:6px;z-index:12!important;width:34px;height:34px;border-radius:50%;
+  background:rgba(17,24,39,.65);border:1px solid var(--bord);color:#fff;font-size:1.2rem;cursor:pointer;}
+.rotate-btn:hover{border-color:var(--acc2);}
+/* ── Sondage ── */
+.poll{display:flex;gap:20px;margin-top:30px;flex-wrap:wrap;justify-content:center;}
+.poll button:hover{transform:translateY(-3px);}
+.poll button.oui:hover,.poll button.oui.picked{border-color:var(--ok);background:rgba(62,207,142,.14);}
+.poll button.non:hover,.poll button.non.picked{border-color:var(--ko);background:rgba(247,95,95,.14);}
+.pbar-count{width:48px;background:var(--panel2);border:1px solid var(--bord);border-radius:8px;color:var(--tx);
+  padding:4px 6px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;text-align:center;}
+/* Mise en page de la diapo du quiz de vote : une diapo, pas un widget — les regles du
+   widget sont remontees dans shared-deck.css (etape W3). */
+#s6{padding-top:70px;}
+/* Le titre editable du barometre. Un identifiant ne se partage pas : ces trois regles
+   restent ici, le reste du barometre est remonte (etape W3). */
+#truth-title{cursor:text;border-radius:10px;padding:4px 10px;outline-offset:4px;}
+#truth-title:hover{background:rgba(255,255,255,.05);}
+#truth-title:focus-visible{outline:2px dashed var(--acc2);}
+/* ── Illusions (iframe) ── */
+.illu-frame{width:min(740px,calc(92 * var(--vw1)));height:min(calc(80 * var(--vh1)),660px);border-radius:18px;overflow:hidden;border:1px solid var(--bord);
+  box-shadow:0 20px 50px rgba(0,0,0,.4);background:#fff;margin-top:16px;}
+.illu-frame iframe{width:100%;height:100%;border:0;}
+.illu-frame:fullscreen{width:100vw;height:100vh;border-radius:0;}
+/* ── Conclusion ── */
+/* 21 septembre — « Enleve le "bloc", ne garde que le texte » : l'encadre .concl-box a
+   disparu de la diapo, ses trois regles avec. Reste la mise en valeur du mot CONTEXTE,
+   qui vivait dans le <span class="context"> du texte : l'ancienne regle visait « p.context »
+   (le paragraphe), jamais le span, et le mot n'a donc jamais ete colore. */
+#s10 .context{color:var(--acc);font-weight:800;}
+/* ── Navigation ── */
+#navzone-l,#navzone-r{position:fixed;top:52px;bottom:0;width:12%;z-index:10;cursor:pointer;background:transparent;}
+#navzone-l{left:0;}
+#navzone-r{right:0;}
+/* Les éléments interactifs des slides passent au-dessus des zones de clic latérales,
+   sinon un clic sur un élément proche du bord déclenche la navigation au lieu de l'action. */
+.slide.active :is(button,a,input,.flagcard,.flagcard-static,.persona,.dpoll,.alpha-grid,.danceq-item,.truth-track,video,iframe){position:relative;z-index:11;}
+#dots{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:20;
+  max-width:88vw;overflow-x:auto;flex-wrap:nowrap;justify-content:flex-start;padding:2px 4px;scrollbar-width:none;-ms-overflow-style:none;}
+#dots::-webkit-scrollbar{display:none;}
+#dots button{width:9px;height:9px;min-width:9px;border-radius:50%;border:none;background:var(--bord);cursor:pointer;padding:0;flex:none;}
+#dots button.active{background:var(--acc);width:22px;border-radius:6px;}
+#slide-counter{position:fixed;bottom:16px;left:18px;z-index:20;color:var(--mu);font-size:.78rem;font-weight:800;}
+#navctrl{position:fixed;bottom:14px;right:18px;display:flex;gap:8px;z-index:20;}
+#navctrl button{background:var(--panel);border:1px solid var(--bord);color:var(--tx);border-radius:10px;
+  width:38px;height:38px;font-size:1.1rem;cursor:pointer;}
+#navctrl button:hover{border-color:var(--acc2);}
+.reveal-btn:hover{background:rgba(56,189,248,.15)}
+.reveal-box.show{max-height:800px}
+.thune{font-family:'Baloo 2',cursive;font-weight:800;font-size:clamp(3rem,calc(12 * var(--vw1)),7rem);line-height:1;
+  background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.panneau-img{max-width:min(420px,calc(80 * var(--vw1)));width:100%;height:auto;filter:drop-shadow(0 10px 20px rgba(0,0,0,.35));}
+/* ── Flip cards drapeaux ── */
+.flag-grid{display:flex;gap:20px;margin-top:24px;flex-wrap:wrap;justify-content:center;}
+.flagcard:hover{border-color:var(--acc2);}
+.flagcard-static{background:var(--panel);border:1px solid var(--bord);border-radius:16px;padding:22px 26px;min-width:220px;text-align:center;cursor:pointer;transition:.15s;}
+.flagcard-static:hover{border-color:var(--acc2);}
+.flagcard-static .fname{font-family:'Baloo 2',cursive;font-weight:700;font-size:1.1rem;}
+.flagcard-static .swatches{display:none;}
+.flagcard-static.open .swatches{display:flex;}
+/* La photo du drapeau suit la meme mecanique que les pastilles de couleur : cachee tant
+   qu'on n'a pas clique, pour que la question garde son sens. C'est une .imgcard, donc
+   l'editeur lui offre ses crans de taille et ses poignees. */
+.flagcard-static .fanswer{display:none;}
+.flagcard-static.open .fanswer{display:block;margin:14px auto 0;max-width:260px;width:auto;}
+.swatches{display:flex;justify-content:center;gap:6px;margin-top:14px;}
+.sw{width:26px;height:18px;border-radius:3px;border:1px solid var(--bord);}
+/* ── Contenu sensible (gate) ── */
+.sensitive-gate{max-width:480px;width:calc(85 * var(--vw1));background:var(--panel);border:1px solid var(--ko);border-radius:16px;
+  padding:26px 24px;margin-top:16px;}
+.sensitive-gate video{display:none;width:100%;border-radius:10px;margin-top:10px;}
+.sensitive-gate.open video{display:block;}
+.riddle-visual{display:flex;justify-content:center;align-items:center;gap:14px;margin-bottom:18px;}
+.riddle-visual img{height:70px;width:auto;background:#fff;border-radius:10px;padding:8px;box-shadow:0 6px 14px rgba(0,0,0,.3);}
+/* Le raisonnement de la Lune (s20) : « juste des lignes qui apparaissent les unes apres les
+   autres ». Plus de cadre #reasoning-box ni de clic dessus — les lignes sont des .step, que
+   la fleche, la molette et les zones de clic revelent deja. */
+.reasoning-line{font-weight:700;font-size:1.1rem;line-height:1.7;}
+.reasoning-line.shown ~ .reasoning-line.shown{margin-top:6px;}
+/* ── Alphabet à l'envers ── */
+.alpha-grid{display:flex;flex-wrap:wrap;gap:10px;max-width:760px;justify-content:center;margin-top:28px;cursor:pointer;}
+.alpha-letter{width:44px;height:44px;border-radius:12px;background:var(--panel);border:1px solid var(--bord);
+  display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',cursive;font-size:1.25rem;font-weight:700;
+  color:transparent;transition:.25s;}
+.alpha-letter.shown{color:#2a1c02;background:var(--acc);border-color:var(--acc);transform:scale(1.08);}
+.compare-img{width:100%;height:90px;object-fit:contain;background:#fff;border-radius:10px;padding:8px;margin-bottom:12px;}
+.compare .col ul{color:var(--mu-diapo);font-size:.88rem;line-height:1.7;font-weight:600}
+/* ── Liens vers d'autres jeux ── */
+.gamelink{background:linear-gradient(135deg,var(--acc2),#1c8fc9);font-size:.95rem}
+/* ── Note médias non traduits (visible uniquement en anglais) ── */
+.media-note{margin-top:10px;font-size:.8rem;color:var(--mu-diapo);font-style:italic;}
+/* ── Personas (Hervé / Julie) ── */
+.persona-grid{display:flex;gap:20px;margin-top:22px;flex-wrap:wrap;justify-content:center;}
+.persona{width:250px}
+.persona:hover{border-color:var(--acc2);}
+/* ── Chips peur ── */
+.fear-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;max-width:820px;width:100%;margin-top:20px;}
+.admin-head button.primary{background:linear-gradient(135deg,var(--acc),#d99b1f)}
+/* ── Ajout de diapo (photo / vidéo / texte) ── */
+#addslide-modal .comments-modal-box{max-width:520px;text-align:left;}
+.addslide-field{margin-bottom:14px}
+.slide.editing [contenteditable="true"]{outline:2px dashed var(--acc2);outline-offset:4px;border-radius:6px;cursor:text;}
+.slide.editing [contenteditable="true"]:focus{outline-color:var(--acc);}
+.custom-slide .imgcard-full img,.custom-slide .vidwrap video{max-width:calc(94 * var(--vw1));max-height:calc(60 * var(--vh1));}
+.static-convert-hint{position:fixed;top:64px;left:50%;transform:translateX(-50%);z-index:150;
+  background:var(--panel);border:1px solid var(--bord);padding:9px 14px;border-radius:14px;
+  box-shadow:0 14px 34px rgba(0,0,0,.4);display:flex;gap:8px;align-items:center;font-size:.82rem;max-width:92vw;}
+.static-convert-hint button{background:linear-gradient(135deg,var(--acc),#d99b1f);color:#2a1c02;border:none;border-radius:9px;
+  padding:7px 12px;font-size:.8rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;}
+.step-toggle{position:absolute!important;z-index:5!important}
+.del-toggle{position:absolute!important;z-index:5!important}
+/* ── Masque de révélation partielle d'image (une zone "n'existe pas" jusqu'au clic suivant) ── */
+.mask-add-btn{position:absolute!important;z-index:5!important}
+.img-mask .mask-del{position:absolute!important;z-index:2!important}
+.media-reset-btn{position:absolute!important;z-index:6!important}
+.admin-edit-btn:hover{background:rgba(245,185,66,.15)}
+@media(max-width:640px){
+  .slide{padding:70px calc(6 * var(--vw1)) 90px;}
+  .poll{gap:12px;}
+  .poll button{padding:18px 26px;font-size:1.05rem;min-width:120px;}
+  .compare{gap:12px;}
+  .compare .col{width:100%;max-width:320px;}
+  #topbar{padding:0 10px;}
+  #topbar .brand{font-size:.82rem;max-width:40vw;}
+  #topbar .tools{gap:6px;}
+  #topbar button{padding:6px 8px;font-size:.72rem;}
+  #dots{gap:5px;max-width:60vw;}
+  #dots button{width:6px;height:6px;min-width:6px;}
+  #dots button.active{width:16px;}
+  #slide-counter{left:10px;bottom:14px;font-size:.7rem;}
+  #navctrl{right:10px;}
+  .admin-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));}
+  .admin-head{flex-wrap:wrap;height:auto;padding:10px;gap:8px;}
+  .admin-modal{padding:110px 12px 20px;}
+}
+
+  /* Diapos en série venues d’IA ou d’encadrants (3 octobre) : leurs règles. */
+:root{--ppt-police:'Trebuchet MS','Nunito',sans-serif}
+.slide .ppt-titre{font-family:var(--ppt-police);font-weight:400;line-height:1.2;max-width:none;color:var(--acc);text-align:left}
+.cover h1.ppt-titre{background:none;-webkit-background-clip:border-box;background-clip:border-box}
+.slide ul.ppt-texte{font-family:var(--ppt-police);list-style:none;text-align:left;color:var(--tx);font-weight:400;max-width:none}
+.slide ul.ppt-texte li{margin:0;max-width:none;list-style:none}
+.slide ul.ppt-texte li[data-puce]::before{content:attr(data-puce);display:inline-block;width:var(--retrait);text-indent:0;color:var(--puce,currentColor);font-size:.8em}
+.slide ul.ppt-texte a{color:var(--acc)}
+.slide .imgcard.ppt-img{margin:0;border-radius:2px;background:#fff;border:0;box-shadow:0 8px 26px rgba(0,0,0,.28)}
+.slide .imgcard.ppt-img img{max-height:none;width:100%;height:auto;object-fit:fill}
+.slide .imgcard.ppt-recadre{overflow:hidden}
+.slide .imgcard.ppt-recadre img{position:absolute}
+.slide .imgcard.ppt-sans-fond{background:none;box-shadow:none;border-radius:0}
+.slide .vidwrap.ppt-video{margin:0;border-radius:2px;border:0;max-width:none;background:#000}
+.slide .vidwrap.ppt-video video{max-height:none;width:100%;height:100%;object-fit:contain}
+.slide .forme.ppt-forme{isolation:isolate}
+/* Ce qui dépasse de la diapo dans le PowerPoint y est coupé : pareil ici. */
+#deck > .slide.ppt-rogne{overflow:hidden}
+/* Bulle ovale (phylactère du PowerPoint) : la pointe rejoint le bord de l'ovale. */
+.slide .forme.ppt-bulle::after{left:20%;bottom:5%}
+.slide .forme .ppt-forme-texte{font-family:var(--ppt-police);display:flex;flex-direction:column;align-items:stretch;justify-content:center;text-align:center;font-weight:400;line-height:1.2}
+.slide .forme .ppt-forme-texte>span{display:block}
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <span class="brand">👁️ Illusions d'optique</span>
+  <div class="tools">
+    <button id="btn-admin-grid" title="Toutes les diapos" onclick="Deck.openAdmin()">Toutes les diapos</button>
+    <button id="btn-dossier" hidden title="Donner au navigateur l’accès au dossier Cours : nécessaire pour les séries, les diapos liées et les médias" onclick="Deck.connecterDossier()">🔌 Connecter le dossier</button>
+    <button id="btn-fullscreen" title="Plein écran"><span class="t-fr">Plein écran</span><span class="t-en" hidden>Fullscreen</span></button>
+    <button id="btn-lang" title="Switch to English" onclick="Deck.toggleLang()">EN</button>
+  </div>
+</div>
+
+<div id="deck">
+
+  
+
+  <section class="slide short cover" id="s0">
+    <h1 data-pose="" data-off-x="380.84" data-off-y="427.31" style="left:38.084%;top:42.731%"><span class="t-fr">Illusions d'optique</span><span class="t-en" hidden=""></span></h1><p class="lead taille-l" data-pose="" data-off-x="399.06" data-off-y="539.65" style="left:39.906%;top:53.965%"><span class="t-fr">Quand notre cerveau nous trompe</span><span class="t-en" hidden=""></span></p>
+  </section>
+
+  <section class="slide short divider-slide" id="illu-partie-interactives" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <div class="em" data-pose="" data-off-x="397.91" data-off-y="400.88" style="left:39.791%;top:40.088%"><span class="t-fr">Illusions d'optique</span><span class="t-en" hidden=""></span></div><h2 data-pose="" data-off-x="362.44" data-off-y="484.58" style="left:36.244%;top:48.458%"><span class="t-fr">Les illusions à manipuler</span><span class="t-en" hidden=""></span></h2><p class="lead taille-l" data-pose="" data-off-x="386.84" data-off-y="566.08" style="left:38.684%;top:56.608%"><span class="t-fr">On les montre, on vote, puis on révèle.</span><span class="t-en" hidden=""></span></p>
+  </section>
+
+  <section class="slide" id="s8" data-serie="serie_8a29a914-6427-4263-a0f4-98cf031c79c0">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden="">Optical illusion</span></p>
+    <h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">Les deux cercles orange sont-ils de la même taille ?</span><span class="t-en" hidden="">Are the two orange circles the same size?</span></h2>
+    <div class="illu-frame" id="illu-frame-ebb" data-pose="" data-off-x="307.79" data-off-y="273.09" style="left:30.779%;top:27.309%"><iframe src="https://antoninatger.github.io/jeux/Ilusions%20d'optique/ebbinghaus.html" title="Illusion d'Ebbinghaus" loading="lazy"></iframe></div>
+    <button type="button" class="reveal-btn illu-fs-btn" data-target="#illu-frame-ebb" data-pose="" data-off-x="467.39" data-off-y="1019.79" style="left:46.739%;top:101.979%"><span class="t-fr">Plein écran</span><span class="t-en" hidden="">Fullscreen</span></button>
+    <p class="lead media-note t-en" hidden="">This interactive illustration is in French.</p>
+  </section>
+
+  <section class="slide" id="s9" data-serie="serie_882c98b5-f118-4042-ae69-db17706809af">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden="">Optical illusion</span></p>
+    <h2 data-pose="" data-off-x="269.5" data-off-y="140.97" style="left:26.95%;top:14.097%"><span class="t-fr">Les cases A et B sont-elles de la même couleur ?</span><span class="t-en" hidden="">Are squares A and B the same colour?</span></h2>
+    <div class="illu-frame" id="illu-frame-adelson" data-pose="" data-off-x="307.79" data-off-y="215.84" style="left:30.779%;top:21.584%"><iframe src="https://antoninatger.github.io/jeux/Ilusions%20d'optique/adelson.html" title="Échiquier d'Adelson" loading="lazy"></iframe></div>
+    <button type="button" class="reveal-btn illu-fs-btn" data-target="#illu-frame-adelson" data-pose="" data-off-x="467.39" data-off-y="962.53" style="left:46.739%;top:96.253%"><span class="t-fr">Plein écran</span><span class="t-en" hidden="">Fullscreen</span></button>
+    <p class="lead media-note t-en" hidden="">This interactive illustration is in French.</p>
+  </section>
+
+  <section class="slide" id="illu-muller-lyer" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="277.17" data-off-y="140.97" style="left:27.717%;top:14.097%"><span class="t-fr">Les deux segments ont-ils la même longueur ?</span><span class="t-en" hidden=""></span></h2><div class="illu-frame" id="illu-frame-muller-lyer" data-pose="" data-off-x="307.79" data-off-y="215.84" style="left:30.779%;top:21.584%"><iframe src="https://antoninatger.github.io/jeux/Ilusions%20d'optique/muller_lyer_illusion.html" title="Illusion de Müller-Lyer" loading="lazy"></iframe></div><button type="button" class="reveal-btn illu-fs-btn" data-target="#illu-frame-muller-lyer" data-pose="" data-off-x="467.39" data-off-y="962.53" style="left:46.739%;top:96.253%"><span class="t-fr">Plein écran</span><span class="t-en" hidden=""></span></button><p class="lead media-note t-en" hidden="">This interactive illustration is in French.</p>
+  </section>
+
+  <section class="slide" id="illu-ponzo" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="281.52" data-off-y="140.97" style="left:28.152%;top:14.097%"><span class="t-fr">Les deux barres ont-elles la même longueur ?</span><span class="t-en" hidden=""></span></h2><div class="illu-frame" id="illu-frame-ponzo" data-pose="" data-off-x="307.79" data-off-y="215.84" style="left:30.779%;top:21.584%"><iframe src="https://antoninatger.github.io/jeux/Ilusions%20d'optique/ponzo.html" title="Illusion de Ponzo" loading="lazy"></iframe></div><button type="button" class="reveal-btn illu-fs-btn" data-target="#illu-frame-ponzo" data-pose="" data-off-x="467.39" data-off-y="962.53" style="left:46.739%;top:96.253%"><span class="t-fr">Plein écran</span><span class="t-en" hidden=""></span></button><p class="lead media-note t-en" hidden="">This interactive illustration is in French.</p>
+  </section>
+
+  <section class="slide" id="illu-delboeuf" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="306.29" data-off-y="140.97" style="left:30.629%;top:14.097%"><span class="t-fr">Les deux disques ont-ils la même taille ?</span><span class="t-en" hidden=""></span></h2><div class="illu-frame" id="illu-frame-delboeuf" data-pose="" data-off-x="307.79" data-off-y="215.84" style="left:30.779%;top:21.584%"><iframe src="https://antoninatger.github.io/jeux/Ilusions%20d'optique/delboeuf.html" title="Illusion de Delboeuf" loading="lazy"></iframe></div><button type="button" class="reveal-btn illu-fs-btn" data-target="#illu-frame-delboeuf" data-pose="" data-off-x="467.39" data-off-y="962.53" style="left:46.739%;top:96.253%"><span class="t-fr">Plein écran</span><span class="t-en" hidden=""></span></button><p class="lead media-note t-en" hidden="">This interactive illustration is in French.</p>
+  </section>
+
+  <section class="slide" id="illu-contraste" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="261.29" data-off-y="140.97" style="left:26.129%;top:14.097%"><span class="t-fr">Les deux carrés gris sont-ils de la même couleur ?</span><span class="t-en" hidden=""></span></h2><div class="illu-frame" id="illu-frame-contraste" data-pose="" data-off-x="307.79" data-off-y="215.84" style="left:30.779%;top:21.584%"><iframe src="https://antoninatger.github.io/jeux/Ilusions%20d'optique/contraste_simultane.html" title="Contraste simultané" loading="lazy"></iframe></div><button type="button" class="reveal-btn illu-fs-btn" data-target="#illu-frame-contraste" data-pose="" data-off-x="467.39" data-off-y="962.53" style="left:46.739%;top:96.253%"><span class="t-fr">Plein écran</span><span class="t-en" hidden=""></span></button><p class="lead media-note t-en" hidden="">This interactive illustration is in French.</p>
+  </section>
+
+  <section class="slide" id="illu-hering" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="294.89" data-off-y="140.97" style="left:29.489%;top:14.097%"><span class="t-fr">Les deux lignes rouges sont-elles droites ?</span><span class="t-en" hidden=""></span></h2><div class="illu-frame" id="illu-frame-hering" data-pose="" data-off-x="307.79" data-off-y="215.84" style="left:30.779%;top:21.584%"><iframe src="https://antoninatger.github.io/jeux/Ilusions%20d'optique/hering.html" title="Illusion de Hering" loading="lazy"></iframe></div><button type="button" class="reveal-btn illu-fs-btn" data-target="#illu-frame-hering" data-pose="" data-off-x="467.39" data-off-y="962.53" style="left:46.739%;top:96.253%"><span class="t-fr">Plein écran</span><span class="t-en" hidden=""></span></button><p class="lead media-note t-en" hidden="">This interactive illustration is in French.</p>
+  </section>
+
+  <section class="slide" id="illu-zollner" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="302.07" data-off-y="140.97" style="left:30.207%;top:14.097%"><span class="t-fr">Les grandes lignes sont-elles parallèles ?</span><span class="t-en" hidden=""></span></h2><div class="illu-frame" id="illu-frame-zollner" data-pose="" data-off-x="307.79" data-off-y="215.84" style="left:30.779%;top:21.584%"><iframe src="https://antoninatger.github.io/jeux/Ilusions%20d'optique/zollner.html" title="Illusion de Zöllner" loading="lazy"></iframe></div><button type="button" class="reveal-btn illu-fs-btn" data-target="#illu-frame-zollner" data-pose="" data-off-x="467.39" data-off-y="962.53" style="left:46.739%;top:96.253%"><span class="t-fr">Plein écran</span><span class="t-en" hidden=""></span></button><p class="lead media-note t-en" hidden="">This interactive illustration is in French.</p>
+  </section>
+
+  <section class="slide" id="illu-cafe-wall" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="280.27" data-off-y="140.97" style="left:28.027%;top:14.097%"><span class="t-fr">Les lignes horizontales sont-elles parallèles ?</span><span class="t-en" hidden=""></span></h2><div class="illu-frame" id="illu-frame-cafe-wall" data-pose="" data-off-x="307.79" data-off-y="215.84" style="left:30.779%;top:21.584%"><iframe src="https://antoninatger.github.io/jeux/Ilusions%20d'optique/cafe_wall.html" title="Illusion du Mur du Café" loading="lazy"></iframe></div><button type="button" class="reveal-btn illu-fs-btn" data-target="#illu-frame-cafe-wall" data-pose="" data-off-x="467.39" data-off-y="962.53" style="left:46.739%;top:96.253%"><span class="t-fr">Plein écran</span><span class="t-en" hidden=""></span></button><p class="lead media-note t-en" hidden="">This interactive illustration is in French.</p>
+  </section>
+
+  <section class="slide" id="illu-poggendorff" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="332.01" data-off-y="140.97" style="left:33.201%;top:14.097%"><span class="t-fr">La ligne oblique est-elle continue ?</span><span class="t-en" hidden=""></span></h2><div class="illu-frame" id="illu-frame-poggendorff" data-pose="" data-off-x="307.79" data-off-y="215.84" style="left:30.779%;top:21.584%"><iframe src="https://antoninatger.github.io/jeux/Ilusions%20d'optique/poggendorff.html" title="Illusion de Poggendorff" loading="lazy"></iframe></div><button type="button" class="reveal-btn illu-fs-btn" data-target="#illu-frame-poggendorff" data-pose="" data-off-x="467.39" data-off-y="962.53" style="left:46.739%;top:96.253%"><span class="t-fr">Plein écran</span><span class="t-en" hidden=""></span></button><p class="lead media-note t-en" hidden="">This interactive illustration is in French.</p>
+  </section>
+
+  <section class="slide short divider-slide" id="illu-partie-formes" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <div class="em" data-pose="" data-off-x="397.91" data-off-y="430.62" style="left:39.791%;top:43.062%"><span class="t-fr">Illusions d'optique</span><span class="t-en" hidden=""></span></div><h2 data-pose="" data-off-x="407.14" data-off-y="514.32" style="left:40.714%;top:51.432%"><span class="t-fr">Formes et tailles</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+  <section class="slide" id="illu-shepard" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="296.74" data-off-y="140.97" style="left:29.674%;top:14.097%"><span class="t-fr">Les deux plateaux ont-ils la même forme ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="335.84" data-off-y="209.23" style="left:33.584%;top:20.923%"><img src="../medias/images/illusion-tables-shepard.jpg" alt="Les tables de Shepard" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-tours" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">La tour de droite penche-t-elle plus que celle de gauche ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="343.64" data-off-y="266.49" style="left:34.364%;top:26.649%"><img src="../medias/images/illusion-tours-penchees.jpg" alt="Deux fois la même photo de la tour de Pise" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-meme-photo" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="304.43" data-off-y="140.97" style="left:30.443%;top:14.097%"><span class="t-fr">Ces deux photos sont-elles différentes ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="343.69" data-off-y="209.23" style="left:34.369%;top:20.923%"><img src="../medias/images/illusion-meme-photo-rue.jpg" alt="Deux fois la même photo d’une rue, côte à côte" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-sander" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="263.55" data-off-y="140.97" style="left:26.355%;top:14.097%"><span class="t-fr">Laquelle des deux diagonales est la plus longue ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="187.79" data-off-y="209.23" style="left:18.779%;top:20.923%"><img src="../medias/images/illusion-sander.png" alt="Le parallélogramme de Sander" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-rayures" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="301.37" data-off-y="140.97" style="left:30.137%;top:14.097%"><span class="t-fr">Les rayures bleues sont-elles parallèles ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="263.64" data-off-y="209.23" style="left:26.364%;top:20.923%"><img src="../medias/images/illusion-rayures-paralleles.jpg" alt="Des rayures bleues qui semblent onduler" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-cercles" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="320.07" data-off-y="140.97" style="left:32.007%;top:14.097%"><span class="t-fr">Ces deux cercles sont-ils bien ronds ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="328.03" data-off-y="209.23" style="left:32.803%;top:20.923%"><img src="../medias/images/illusion-cercles-ronds.png" alt="Deux cercles qui semblent déformés" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-carres" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="380.02" data-off-y="140.97" style="left:38.002%;top:14.097%"><span class="t-fr">Voyez-vous des cercles ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="334.39" data-off-y="209.23" style="left:33.439%;top:20.923%"><img src="../medias/images/illusion-carres-concentriques.jpg" alt="Des carrés concentriques qui semblent former des cercles" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-kanizsa" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="331.96" data-off-y="140.97" style="left:33.196%;top:14.097%"><span class="t-fr">Combien de triangles voyez-vous ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="248.58" data-off-y="209.23" style="left:24.858%;top:20.923%"><img src="../medias/images/illusion-triangle-kanizsa.png" alt="Le triangle de Kanizsa" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-elephant" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="331.35" data-off-y="140.97" style="left:33.135%;top:14.097%"><span class="t-fr">Combien de pattes a cet éléphant ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="334.39" data-off-y="209.23" style="left:33.439%;top:20.923%"><img src="../medias/images/illusion-elephant-pattes.jpg" alt="Un éléphant dessiné entre des rayures" loading="lazy"></div>
+  </section>
+
+  <section class="slide short divider-slide" id="illu-partie-couleurs" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <div class="em" data-pose="" data-off-x="397.91" data-off-y="430.62" style="left:39.791%;top:43.062%"><span class="t-fr">Illusions d'optique</span><span class="t-en" hidden=""></span></div><h2 data-pose="" data-off-x="390.88" data-off-y="514.32" style="left:39.088%;top:51.432%"><span class="t-fr">Couleurs et lumière</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+  <section class="slide" id="illu-cases-ombre" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="269.5" data-off-y="140.97" style="left:26.95%;top:14.097%"><span class="t-fr">Les cases A et B sont-elles de la même couleur ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="286.02" data-off-y="209.23" style="left:28.602%;top:20.923%"><img src="../medias/images/illusion-cases-a-b.png" alt="Deux carrés A et B, l’un à l’ombre" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-touches" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="262.23" data-off-y="140.97" style="left:26.223%;top:14.097%"><span class="t-fr">Les parties A et B sont-elles de la même couleur ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="331.33" data-off-y="209.23" style="left:33.133%;top:20.923%"><img src="../medias/images/illusion-cornsweet-a-b.webp" alt="Deux blocs A et B posés l’un sur l’autre" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-cube" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">Les carrés « rouges » et « bleus » ont-ils vraiment ces couleurs ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="291.69" data-off-y="266.49" style="left:29.169%;top:26.649%"><img src="../medias/images/illusion-constance-couleurs-cube.jpg" alt="Le même cube de couleurs sous deux éclairages" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-boules" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="330.83" data-off-y="140.97" style="left:33.083%;top:14.097%"><span class="t-fr">De quelle couleur sont ces boules ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="275.87" data-off-y="209.23" style="left:27.587%;top:20.923%"><img src="../medias/images/illusion-boules-munker.jpg" alt="Des boules colorées derrière des rayures" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-chiens" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="280.84" data-off-y="140.97" style="left:28.084%;top:14.097%"><span class="t-fr">Les deux chiens sont-ils de la même couleur ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="222.52" data-off-y="209.23" style="left:22.252%;top:20.923%"><img src="../medias/images/illusion-chiens-degrade.webp" alt="Deux silhouettes de chien sur un fond en dégradé" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-spirales" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">Les spirales vertes et orange sont-elles de couleurs différentes ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="238.44" data-off-y="266.49" style="left:23.844%;top:26.649%"><img src="../medias/images/illusion-spirales-couleurs.jpg" alt="Deux spirales colorées" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-pieces-echecs" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">Les pièces du haut et du bas sont-elles de la même couleur ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="332.83" data-off-y="266.49" style="left:33.283%;top:26.649%"><img src="../medias/images/illusion-pieces-echecs.jpg" alt="Des pièces d’échecs sur deux fonds différents" loading="lazy"></div>
+  </section>
+
+  <section class="slide short divider-slide" id="illu-partie-cerveau" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <div class="em" data-pose="" data-off-x="397.91" data-off-y="430.62" style="left:39.791%;top:43.062%"><span class="t-fr">Illusions d'optique</span><span class="t-en" hidden=""></span></div><h2 data-pose="" data-off-x="310.56" data-off-y="514.32" style="left:31.056%;top:51.432%"><span class="t-fr">Le cerveau complète et interprète</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+  <section class="slide" id="illu-monroe-einstein" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="417.86" data-off-y="140.97" style="left:41.786%;top:14.097%"><span class="t-fr">Qui voyez-vous ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="424.16" data-off-y="209.23" style="left:42.416%;top:20.923%"><img src="../medias/images/illusion-monroe-einstein.jpg" alt="Einstein de près, Marilyn Monroe de loin" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-double-visage" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="414.95" data-off-y="140.97" style="left:41.495%;top:14.097%"><span class="t-fr">Que voyez-vous ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="182.6" data-off-y="209.23" style="left:18.26%;top:20.923%"><img src="../medias/images/illusion-double-visage.png" alt="Un dessin qui cache un second visage" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-coca" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="330.28" data-off-y="140.97" style="left:33.028%;top:14.097%"><span class="t-fr">Que voyez-vous dans cette image ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="375.91" data-off-y="209.23" style="left:37.591%;top:20.923%"><img src="../medias/images/illusion-image-cachee-coca.jpg" alt="Une canette cachée dans un bruit de couleurs" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-stroop" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="465.15" data-off-y="110.13" style="left:46.515%;top:11.013%"><span class="t-fr">L'effet Stroop</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="290.15" data-off-y="140.97" style="left:29.015%;top:14.097%"><span class="t-fr">Dites à voix haute la couleur de chaque mot</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="304.68" data-off-y="209.23" style="left:30.468%;top:20.923%"><img src="../medias/images/illusion-stroop.jpg" alt="La tâche de Stroop" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-lecture" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="445.97" data-off-y="110.13" style="left:44.597%;top:11.013%"><span class="t-fr">La hiérarchie visuelle</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="361.23" data-off-y="140.97" style="left:36.123%;top:14.097%"><span class="t-fr">Qu’avez-vous lu en premier ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="334.39" data-off-y="209.23" style="left:33.439%;top:20.923%"><img src="../medias/images/illusion-ordre-de-lecture.jpg" alt="Une affiche qui décide de l’ordre dans lequel on la lit" loading="lazy"></div>
+  </section>
+
+  <section class="slide short divider-slide" id="illu-partie-photos" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <div class="em" data-pose="" data-off-x="397.91" data-off-y="430.62" style="left:39.791%;top:43.062%"><span class="t-fr">Illusions d'optique</span><span class="t-en" hidden=""></span></div><h2 data-pose="" data-off-x="360.79" data-off-y="514.32" style="left:36.079%;top:51.432%"><span class="t-fr">Des photos qui trompent</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+  <section class="slide" id="illu-quatre-personnes" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="458.57" data-off-y="110.13" style="left:45.857%;top:11.013%"><span class="t-fr">Photo trompeuse</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="305.58" data-off-y="140.97" style="left:30.558%;top:14.097%"><span class="t-fr">Combien de personnes sur cette photo ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="364.04" data-off-y="209.23" style="left:36.404%;top:20.923%"><img src="../medias/images/illusion-quatre-personnes.jpg" alt="Une photo où l’on peine à compter les personnes" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-porte-enfant" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="458.57" data-off-y="110.13" style="left:45.857%;top:11.013%"><span class="t-fr">Photo trompeuse</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="388.59" data-off-y="140.97" style="left:38.859%;top:14.097%"><span class="t-fr">À qui sont ces jambes ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="367.41" data-off-y="209.23" style="left:36.741%;top:20.923%"><img src="../medias/images/illusion-porte-enfant.jpg" alt="Un homme porte une enfant : on croit voir ses jambes à lui" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-poignet" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="458.57" data-off-y="110.13" style="left:45.857%;top:11.013%"><span class="t-fr">Photo trompeuse</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="428.08" data-off-y="140.97" style="left:42.808%;top:14.097%"><span class="t-fr">Est-ce un cou ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="334.73" data-off-y="209.23" style="left:33.473%;top:20.923%"><img src="../medias/images/illusion-poignet-cou.jpg" alt="Un poignet posé contre un t-shirt, qu’on prend pour un cou" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-sac" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="458.57" data-off-y="110.13" style="left:45.857%;top:11.013%"><span class="t-fr">Photo trompeuse</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="425.93" data-off-y="140.97" style="left:42.593%;top:14.097%"><span class="t-fr">Où est sa tête ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="339.53" data-off-y="209.23" style="left:33.953%;top:20.923%"><img src="../medias/images/illusion-sac-tete.jpg" alt="Un homme assis dont le sac cache la tête" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-chien-canape" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="458.57" data-off-y="110.13" style="left:45.857%;top:11.013%"><span class="t-fr">Photo trompeuse</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="334.74" data-off-y="140.97" style="left:33.474%;top:14.097%"><span class="t-fr">Que se passe-t-il sur cette photo ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="338.17" data-off-y="209.23" style="left:33.817%;top:20.923%"><img src="../medias/images/illusion-chien-canape.jpg" alt="Un chien dont on met du temps à comprendre la posture" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-chat" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="458.57" data-off-y="110.13" style="left:45.857%;top:11.013%"><span class="t-fr">Photo trompeuse</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="382.91" data-off-y="140.97" style="left:38.291%;top:14.097%"><span class="t-fr">Où est le corps du chat ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="272.64" data-off-y="209.23" style="left:27.264%;top:20.923%"><img src="../medias/images/illusion-chat-corps.jpg" alt="Un chat dont le corps semble avoir disparu" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-chiens-neige" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="458.57" data-off-y="110.13" style="left:45.857%;top:11.013%"><span class="t-fr">Photo trompeuse</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="414.95" data-off-y="140.97" style="left:41.495%;top:14.097%"><span class="t-fr">Que voyez-vous ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="371.17" data-off-y="209.23" style="left:37.117%;top:20.923%"><img src="../medias/images/illusion-chiens-neige.jpg" alt="Une personne et deux chiens dans la neige" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-javelot" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="458.57" data-off-y="110.13" style="left:45.857%;top:11.013%"><span class="t-fr">Photo trompeuse</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="414.95" data-off-y="140.97" style="left:41.495%;top:14.097%"><span class="t-fr">Que voyez-vous ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="265.71" data-off-y="209.23" style="left:26.571%;top:20.923%"><img src="../medias/images/illusion-javelot.jpg" alt="Un lanceur de javelot photographié au mauvais moment" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-cygne" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="458.57" data-off-y="110.13" style="left:45.857%;top:11.013%"><span class="t-fr">Photo trompeuse</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="292.15" data-off-y="140.97" style="left:29.215%;top:14.097%"><span class="t-fr">Où finit le cygne, où commence son reflet ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="242.86" data-off-y="209.23" style="left:24.286%;top:20.923%"><img src="../medias/images/illusion-cygne-reflet.png" alt="Un cygne noir et son reflet dans l’eau" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-aigrette-1" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="458.57" data-off-y="110.13" style="left:45.857%;top:11.013%"><span class="t-fr">Photo trompeuse</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="344.11" data-off-y="140.97" style="left:34.411%;top:14.097%"><span class="t-fr">Dans quel sens est cette photo ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="251.72" data-off-y="209.23" style="left:25.172%;top:20.923%"><img src="../medias/images/illusion-photo-a-l-envers-1.jpg" alt="Une aigrette au bord de l’eau" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="illu-aigrette-2" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="458.57" data-off-y="110.13" style="left:45.857%;top:11.013%"><span class="t-fr">Photo trompeuse</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="344.11" data-off-y="140.97" style="left:34.411%;top:14.097%"><span class="t-fr">Dans quel sens est cette photo ?</span><span class="t-en" hidden=""></span></h2><div class="imgcard-full" data-pose="" data-off-x="266.11" data-off-y="209.23" style="left:26.611%;top:20.923%"><img src="../medias/images/illusion-photo-a-l-envers-2.jpg" alt="Un bloc de pierre au bord de l’eau" loading="lazy"></div>
+  </section>
+
+  <section class="slide short divider-slide" id="illu-partie-mouvement" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <div class="em" data-pose="" data-off-x="397.91" data-off-y="430.62" style="left:39.791%;top:43.062%"><span class="t-fr">Illusions d'optique</span><span class="t-en" hidden=""></span></div><h2 data-pose="" data-off-x="416.17" data-off-y="514.32" style="left:41.617%;top:51.432%"><span class="t-fr">En mouvement</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+  <section class="slide" id="illu-points" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="376.15" data-off-y="140.97" style="left:37.615%;top:14.097%"><span class="t-fr">Fixe… ou en mouvement ?</span><span class="t-en" hidden=""></span></h2><div class="vidwrap" data-pose="" data-off-x="316.04" data-off-y="209.23" style="left:31.604%;top:20.923%;width:708.23px"><video src="../medias/video/points-illusion.mp4" controls="" playsinline=""></video></div>
+  </section>
+
+  <section class="slide" id="illu-points-rouges" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="329.62" data-off-y="140.97" style="left:32.962%;top:14.097%"><span class="t-fr">Fixez une des croix noires au milieu</span><span class="t-en" hidden=""></span></h2><div class="vidwrap" data-pose="" data-off-x="396.3" data-off-y="209.23" style="left:39.63%;top:20.923%;width:399.25px"><video src="../medias/video/illusion-points-rouges-lignes.mp4" controls="" playsinline=""></video></div>
+  </section>
+
+  <section class="slide" id="illu-cheval" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="296.89" data-off-y="140.97" style="left:29.689%;top:14.097%"><span class="t-fr">Le cheval s’approche-t-il ou s’éloigne-t-il ?</span><span class="t-en" hidden=""></span></h2><div class="vidwrap" data-pose="" data-off-x="396.3" data-off-y="209.23" style="left:39.63%;top:20.923%;width:399.25px"><video src="../medias/video/illusion-cheval-neige.mp4" controls="" playsinline=""></video></div>
+  </section>
+
+  <section class="slide" id="illu-chat-ombre" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="387.18" data-off-y="140.97" style="left:38.718%;top:14.097%"><span class="t-fr">Lequel est le vrai chat ?</span><span class="t-en" hidden=""></span></h2><div class="vidwrap" data-pose="" data-off-x="396.26" data-off-y="209.23" style="left:39.626%;top:20.923%;width:399.39px"><video src="../medias/video/illusion-chat-ombre.mp4" controls="" playsinline=""></video></div>
+  </section>
+
+  <section class="slide" id="illu-raquettes" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="414.95" data-off-y="140.97" style="left:41.495%;top:14.097%"><span class="t-fr">Que voyez-vous ?</span><span class="t-en" hidden=""></span></h2><div class="vidwrap" data-pose="" data-off-x="396.3" data-off-y="209.23" style="left:39.63%;top:20.923%;width:399.25px"><video src="../medias/video/illusion-ombres-raquettes.mp4" controls="" playsinline=""></video></div>
+  </section>
+
+  <section class="slide" id="illu-ours" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="340.73" data-off-y="140.97" style="left:34.073%;top:14.097%"><span class="t-fr">Fixez l’ours sans cligner des yeux</span><span class="t-en" hidden=""></span></h2><div class="vidwrap" data-pose="" data-off-x="396.3" data-off-y="209.23" style="left:39.63%;top:20.923%;width:399.25px"><video src="../medias/video/illusion-ours-image-remanente.mp4" controls="" playsinline=""></video></div>
+  </section>
+
+  <section class="slide" id="illu-guitare" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="300.12" data-off-y="140.97" style="left:30.012%;top:14.097%"><span class="t-fr">Pourquoi la corde semble-t-elle onduler ?</span><span class="t-en" hidden=""></span></h2><div class="vidwrap" data-pose="" data-off-x="396.3" data-off-y="209.23" style="left:39.63%;top:20.923%;width:399.25px"><video src="../medias/video/illusion-corde-guitare.mp4" controls="" playsinline=""></video></div>
+  </section>
+
+  <section class="slide short divider-slide" id="illu-partie-prediction" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <div class="em" data-pose="" data-off-x="397.91" data-off-y="430.62" style="left:39.791%;top:43.062%"><span class="t-fr">Illusions d'optique</span><span class="t-en" hidden=""></span></div><h2 data-pose="" data-off-x="402.78" data-off-y="514.32" style="left:40.278%;top:51.432%"><span class="t-fr">Le cerveau prédit</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+  <section class="slide" id="illu-robinet-predit" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="275.84" data-off-y="140.97" style="left:27.584%;top:14.097%"><span class="t-fr">Notre cerveau ne voit pas la réalité : il la prédit</span><span class="t-en" hidden=""></span></h2><div class="vidwrap" data-pose="" data-off-x="396.44" data-off-y="209.23" style="left:39.644%;top:20.923%;width:398.7px"><video src="../medias/video/illusion-robinet-cerveau-predit.mp4" controls="" playsinline=""></video></div>
+  </section>
+
+  <section class="slide" id="illu-chatons" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="393.27" data-off-y="140.97" style="left:39.327%;top:14.097%"><span class="t-fr">Que va-t-il se passer ?</span><span class="t-en" hidden=""></span></h2><div class="vidwrap" data-pose="" data-off-x="396.3" data-off-y="209.23" style="left:39.63%;top:20.923%;width:399.25px"><video src="../medias/video/illusion-chatons-robinet.mp4" controls="" playsinline=""></video></div>
+  </section>
+
+  <section class="slide" id="illu-ciseaux" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <p class="kicker" data-pose="" data-off-x="455.83" data-off-y="110.13" style="left:45.583%;top:11.013%"><span class="t-fr">Illusion d'optique</span><span class="t-en" hidden=""></span></p><h2 data-pose="" data-off-x="393.27" data-off-y="140.97" style="left:39.327%;top:14.097%"><span class="t-fr">Que va-t-il se passer ?</span><span class="t-en" hidden=""></span></h2><div class="vidwrap" data-pose="" data-off-x="396.3" data-off-y="209.23" style="left:39.63%;top:20.923%;width:399.25px"><video src="../medias/video/illusion-ciseaux-robinet.mp4" controls="" playsinline=""></video></div>
+  </section>
+
+  <section class="slide short divider-slide" id="illu-partie-auditives" data-serie="serie_79500975-6d45-4714-a74f-caa0d0a172ae">
+    <div class="em" data-pose="" data-off-x="397.91" data-off-y="400.88" style="left:39.791%;top:40.088%"><span class="t-fr">Illusions d'optique</span><span class="t-en" hidden=""></span></div><h2 data-pose="" data-off-x="376.83" data-off-y="484.58" style="left:37.683%;top:48.458%"><span class="t-fr">Les illusions auditives</span><span class="t-en" hidden=""></span></h2><p class="lead taille-l" data-pose="" data-off-x="360.75" data-off-y="566.08" style="left:36.075%;top:56.608%"><span class="t-fr">Nos oreilles peuvent, elles aussi, nous tromper.</span><span class="t-en" hidden=""></span></p>
+  </section>
+
+  <section class="slide" id="s19" data-serie="serie_fe7a6a46-b9f8-4666-add1-986c85d657e9">
+    <div class="vidwrap" data-pose="" data-off-x="366.74" data-off-y="121.15" style="left:36.674%;top:12.115%;width:513.03px">
+      <video src="../medias/video/illusion-eau-robinet.mp4" controls="" playsinline=""></video>
+    </div>
+    <p class="lead media-note t-en" hidden="">This audio illusion relies on French words and may not work the same way in English.</p>
+  </section>
+
+  <section class="slide" id="communiquer-on-ecoute" data-serie="serie_a4426512-ea3c-40fa-a1ed-fcc4896f34a7">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">On écoute !</span><span class="t-en" hidden=""></span></h2>
+    <div class="vidwrap" data-pose="" data-off-x="223.101" data-off-y="196.759" style="left:22.31%;top:19.676%;width:53.196%;max-width:none"><video src="../medias/video/illusion-audio-cuicui.mp4" controls="" playsinline=""></video></div>
+  </section>
+
+  <section class="slide short" id="s-nos-sens" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <h2 data-pose="" data-off-x="340.55" data-off-y="476.87" style="left:34.055%;top:47.687%"><span class="t-fr">Nos sens peuvent nous tromper !</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+  <section class="slide" id="s-illusion-zebres" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="365.63" data-off-y="121.15" style="left:36.563%;top:12.115%"><img src="../medias/images/illusion-zebres-ombres.jpg" alt="Des zèbres vus d’avion : on confond les animaux et leurs ombres" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="encadrants-d52" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="367.338" data-off-y="0.0" style="left:36.734%;top:0.0%;width:26.532%;max-width:none;"><img src="../medias/images/enfant-grimace-reaction.jpg" alt="" loading="lazy" style="aspect-ratio:3857625/6858000"></div>
+  </section>
+
+  <section class="slide" id="s-illusion-jambes" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="376.06" data-off-y="121.15" style="left:37.606%;top:12.115%"><img src="../medias/images/illusion-fillette-assise.jpg" alt="Une fillette assise dans l’herbe : où sont ses jambes ?" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-1" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="375.62" data-off-y="121.15" style="left:37.562%;top:12.115%"><img src="../medias/images/pareidolie-mortadelle.png" alt="Une tranche de mortadelle qui sourit" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-2" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="375.22" data-off-y="121.15" style="left:37.522%;top:12.115%"><img src="../medias/images/pareidolie-muffin.png" alt="Un muffin qui fait une grimace" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-3" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="376.63" data-off-y="121.15" style="left:37.663%;top:12.115%"><img src="../medias/images/pareidolie-batiment.jpg" alt="Un bâtiment qui a un visage" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-4" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="356.73" data-off-y="121.15" style="left:35.673%;top:12.115%"><img src="../medias/images/pareidolie-chaussons.jpg" alt="Des chaussons qui ont l’air de nous regarder" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-5" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="362.8" data-off-y="121.15" style="left:36.28%;top:12.115%"><img src="../medias/images/pareidolie-poivron.jpg" alt="Un poivron qui hurle" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-6" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="333.25" data-off-y="121.15" style="left:33.325%;top:12.115%"><img src="../medias/images/pareidolie-pantalon.jpg" alt="Un pantalon plié qui a des yeux" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-7" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="355.58" data-off-y="121.15" style="left:35.558%;top:12.115%"><img src="../medias/images/pareidolie-siege-voiture.jpg" alt="Un siège de voiture qui tire la langue" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-8" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="291.69" data-off-y="121.15" style="left:29.169%;top:12.115%"><img src="../medias/images/pareidolie-toit.jpg" alt="Un toit dont les lucarnes font des yeux" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-9" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="375.87" data-off-y="121.15" style="left:37.587%;top:12.115%"><img src="../medias/images/pareidolie-eglise.jpg" alt="Une église étonnée" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-10" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="291.69" data-off-y="121.15" style="left:29.169%;top:12.115%"><img src="../medias/images/pareidolie-plafonnier.jpg" alt="Un plafonnier de voiture qui a un visage" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-11" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="406" data-off-y="121.15" style="left:40.6%;top:12.115%"><img src="../medias/images/pareidolie-pantalon-vert.jpg" alt="Un pantalon suspendu qui a un visage" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-12" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="334.39" data-off-y="121.15" style="left:33.439%;top:12.115%"><img src="../medias/images/pareidolie-maison-surprise.jpg" alt="Une petite église dont les fenêtres font deux yeux étonnés" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-13" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="308.08" data-off-y="121.15" style="left:30.808%;top:12.115%"><img src="../medias/images/pareidolie-aubergine.jpg" alt="Une aubergine qui a un nez et une bouche" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-14" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="375.67" data-off-y="121.15" style="left:37.567%;top:12.115%"><img src="../medias/images/pareidolie-branche.jpg" alt="Une branche qui ressemble à un petit bonhomme" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-15" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="337.14" data-off-y="121.15" style="left:33.714%;top:12.115%"><img src="../medias/images/pareidolie-rayon-magasin.jpg" alt="Un rayon de magasin rempli de petits visages qui crient" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-16" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="343.64" data-off-y="121.15" style="left:34.364%;top:12.115%"><img src="../medias/images/pareidolie-cuisiniere.jpg" alt="Une cuisinière qui nous regarde" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-17" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="375.67" data-off-y="121.15" style="left:37.567%;top:12.115%"><img src="../medias/images/pareidolie-boules-bowling.jpg" alt="Des boules de bowling qui ont l’air surprises" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-18" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="291.69" data-off-y="121.15" style="left:29.169%;top:12.115%"><img src="../medias/images/pareidolie-fermeture-eclair.jpg" alt="Une fermeture éclair qui ouvre une grande bouche" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-19" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="372.47" data-off-y="121.15" style="left:37.247%;top:12.115%"><img src="../medias/images/pareidolie-lave-linge.jpg" alt="Un lave-linge qui tire la langue" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-20" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="291.69" data-off-y="121.15" style="left:29.169%;top:12.115%"><img src="../medias/images/pareidolie-rasoir.jpg" alt="Un rasoir qui nous sourit" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-21" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="380" data-off-y="121.15" style="left:38%;top:12.115%"><img src="../medias/images/pareidolie-oeufs.gif" alt="Deux œufs au plat qui font un visage" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-22" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="317.66" data-off-y="121.15" style="left:31.766%;top:12.115%"><img src="../medias/images/pareidolie-melon-bidon.webp" alt="Un melon et un bidon de lait qui ont l’air de parler" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-23" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="291.69" data-off-y="121.15" style="left:29.169%;top:12.115%"><img src="../medias/images/pareidolie-tronc-arbre.webp" alt="Un tronc d’arbre qui crie" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-24" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="392.99" data-off-y="121.15" style="left:39.299%;top:12.115%"><img src="../medias/images/pareidolie-poubelle.jpg" alt="Une poubelle qui a une tête" loading="lazy"></div>
+  </section>
+
+  <section class="slide short" id="s-pareidolies" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <h2 data-pose="" data-off-x="426.91" data-off-y="417.4" style="left:42.691%;top:41.74%"><span class="t-fr">Les paréidolies</span><span class="t-en" hidden=""></span></h2><p class="lead taille-l" data-pose="" data-off-x="342.75" data-off-y="490.07" style="left:34.275%;top:49.007%"><span class="t-fr">Notre cerveau voit des choses qui ne sont pas vraies !</span><span class="t-en" hidden=""></span></p><p class="lead taille-l" data-pose="" data-off-x="355.25" data-off-y="549.54" style="left:35.525%;top:54.954%"><span class="t-fr">On peut s’en servir pour nous piéger sur Internet.</span><span class="t-en" hidden=""></span></p>
+  </section>
+
+  <section class="slide" id="s-mars-1" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="293.25" data-off-y="121.15" style="left:29.325%;top:12.115%"><img src="../medias/images/mars-visage-cercle.jpg" alt="Le « visage sur Mars », photographié par Viking 1" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-mars-2" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="324.94" data-off-y="121.15" style="left:32.494%;top:12.115%"><img src="../medias/images/mars-visage-zoom.jpg" alt="Le « visage sur Mars », de plus près" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-mars-3" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="334.39" data-off-y="121.15" style="left:33.439%;top:12.115%"><img src="../medias/images/mars-visage-haute-resolution.png" alt="Le même relief photographié en haute résolution : ce n’est qu’une colline" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="s-pareidolie-11-septembre" data-serie="serie_e0936e31-4f72-4393-ae0b-561c20c179b2">
+    <div class="imgcard-full" data-pose="" data-off-x="374.81" data-off-y="121.15" style="left:37.481%;top:12.115%"><img src="../medias/images/pareidolie-11-septembre.png" alt="Un « visage » dans la fumée du 11 septembre" loading="lazy"></div>
+  </section>
+
+<!-- Slide finale : bilan de l'intervention (QR code) -->
+  <section class="slide short" id="s-bilan-qr" data-serie="serie_743edaf5-33f9-4668-ab8a-f0365b011093">
+    <p class="kicker" data-pose="" data-off-x="461.46" data-off-y="272.25" style="left: 46.146%; top: 27.225%;"><span class="t-fr">Après la séance</span><span class="t-en" hidden="">After the session</span></p>
+    <h2 data-pose="" data-off-x="344.92" data-off-y="303.09" style="left: 34.492%; top: 30.309%;"><span class="t-fr">Le bilan, les jeux, et votre retour</span><span class="t-en" hidden="">Summary, games, and your feedback</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="375.76" style="left: 30.26%; top: 37.576%;"><span class="t-fr">Scannez ce QR code&nbsp;: vous pourrez donner votre retour, revoir le bilan de la formation ou rejouer aux jeux.</span><span class="t-en" hidden="">Scan this QR code: you can leave your feedback, review the session summary, or play the games again.</span></p>
+    
+  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhwAAAIcAQAAAACVhUrRAAAC80lEQVR42u2dUWrEMAxERS/g+9/SN3C7jSNp5JQW2p+it5SybDbvY2EYaSw7tn7/mgYECBAgQID8HGL+Gvcn4/Xhx/v9Zu3/16Xjljf7gxcQIP8LYi6HLZlP+VxvQjgjtOaXQkpoB0hj7VwO4nbjjlPc57pUbkE7QNCOyycuWYjFq8T4GtoBgnZUO+4vL9O5v+Y1G74DBMhzv5MCgR0LDAkY6HeAAAl1XC+3nm//0i1oB0hb7ZTU2vOBaG00fztu4YcF0lc7WxqWlngsiUij6f253452gHT2nWQ00ddEGmDlv7RCaAdI434nr+nskO1WSlRxtxNF/kbOBoSaLa1+bjfJizulfnMRTXwHSG/t6KhAtD8jajkZZiuJAdoB0rvf8ZGbbC5StuXqTkIGflggXfudNDUdMvHJAa/l7twgYjeyAiDtswKv1mJrw7QctT3YEP0OELRjaWp6hfVImHYuA9HvAKHfKbrQGEGsJ09ZTzJqIPhO2miwnlueXK3lGg/tAKHfkX5nWtaR6CWHBmgHSHPtDN1PfRRsUbnlGyNV4IcF0rXfmaEFk0G1uglORndY3wGCdlbqZcbTiE4R1FriWWgHSGPfiVOkcr9zHFBQDOj+Mj8skMZZQVHHUMfRtVGyAiBASlaQ53NkF08aYzMz6Y/QDpD2WUE5kSBv2yk9kWwdRTtAemcFMXiTBnLy9reSV8uxBmgHSO9+R46WyrsMTEJp/zB1RvywQBr7To7Opk6EnocYGP0OECBW91bXPaHmvmNl4xuzoEDwnRWb2qqCZj1IJxaDWN8Bgu/YsXBT8rSyvqNlG9oB0tl3JAQoXU86k82ejgxFO0Ba+45FX1OdJXvQqgftoh0grbWTn4NgVh6LUBZMw3eo2YCgnXHkA7PuTZDjdOh3gAD5Sjvl0aL5uLalEzvUbEDQzvHQNx2WPtofzmcDgnb0CKmyza3YUL1KzQaks3aslmTRzkyrp+UseXA8vgOks3Z++5pAgAABAgTIDyHv20VZl660GMAAAAAASUVORK5CYII=" alt="QR code vers la page antoninatger.github.io/interventions/retours" style="width: 200px; height: 200px; border-radius: 16px; background: rgb(255, 255, 255); padding: 10px; box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 30px; left: 44.805%; top: 47.267%;" data-pose="" data-off-x="448.05" data-off-y="472.67"><a href="https://antoninatger.github.io/interventions/retours/" target="_blank" rel="noopener" style="color: var(--acc2); font-weight: 800; font-size: 1.05rem; text-decoration: none; border-bottom: 2px solid var(--acc2); padding-bottom: 2px; width: 371.73px; left: 40.345%; top: 71.275%;" data-pose="" data-off-x="403.45" data-off-y="712.75">
+        <span class="t-fr">antoninatger.github.io/interventions/retours →</span><span class="t-en" hidden="">antoninatger.github.io/interventions/retours →</span>
+      </a></section>
+<script type="application/json" id="parcours-enregistres">{}</script>
+
+
+</div>
+
+<div id="navzone-l" aria-hidden="true"></div>
+<div id="navzone-r" aria-hidden="true"></div>
+<div id="dots"></div>
+<div id="navctrl">
+  <button id="btn-prev" title="Précédent (←)">‹</button>
+  <button id="btn-next" title="Suivant (→)">›</button>
+</div>
+
+<div id="admin-modal" class="admin-modal">
+  <div class="admin-head">
+    <h3>Mode Admin — diapos de la session</h3>
+    <span class="admin-count" id="admin-count"></span>
+    <div class="actions">
+      <select id="admin-selections" title="Parcours enregistrés" onchange="Deck.applySelectedPreset()"></select>
+      <button type="button" onclick="Deck.saveCurrentSelectionAs()">Enregistrer comme parcours…</button>
+      <button type="button" onclick="Deck.deleteSelectedPreset()">Supprimer le parcours</button>
+      <button type="button" onclick="Deck.openAddSlideModal()">Ajouter une diapo</button>
+      <button type="button" onclick="window.open('../media-browser.html','_blank')">Médiathèque (toutes formations)</button>
+      <button type="button" onclick="Deck.adminSelectAll()">Tout cocher</button>
+      <button type="button" onclick="Deck.adminSelectNone()">Tout décocher</button>
+      <button type="button" class="primary" onclick="Deck.adminSave()">Enregistrer la sélection</button>
+      <button type="button" id="admin-save-order" onclick="Deck.saveSlideOrder()">Enregistrer l'ordre dans le fichier</button>
+      <button type="button" onclick="Deck.adminClose()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-grid" id="admin-grid"></div>
+</div>
+
+<div id="admin-zoom-modal" class="admin-zoom-modal">
+  <button type="button" class="admin-zoom-close" onclick="Deck.adminZoomClose()">✕</button>
+  <div id="admin-zoom-box"></div>
+</div>
+
+<div id="admin-edit-modal" class="admin-edit-modal">
+  <div class="admin-edit-head">
+    <h3>Édition de la diapo</h3>
+    <span class="admin-edit-hint"></span>
+    <div class="actions">
+      <button type="button" onclick="Deck.addTextBlock()">Ajouter un texte</button>
+      <button type="button" onclick="Deck.addPhotoBlock()">Ajouter une photo</button>
+      <button type="button" onclick="Deck.addPollWidget()">Sondage</button>
+      <button type="button" onclick="Deck.addScaleWidget()">Échelle</button>
+      <button type="button" onclick="Deck.addPieChartWidget()">Camembert</button>
+      <button type="button" onclick="Deck.addHistogramWidget()">Histogramme</button>
+      <button type="button" onclick="Deck.addReponseWidget()">Réponses à écrire</button>
+      <button type="button" onclick="Deck.quickAddSlideAfterCurrent()">Ajouter une diapo après</button>
+      <button type="button" onclick="Deck.apporterUneDiapo()">⤵ Apporter une diapo</button>
+      <button type="button" onclick="Deck.closeSlideEditToGrid()">Toutes les diapos</button>
+      <button type="button" id="admin-edit-save" onclick="Deck.saveEditedSlide()">Enregistrer dans le fichier</button>
+      <button type="button" onclick="Deck.closeSlideEdit()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-edit-stage" id="admin-edit-stage"></div>
+</div>
+
+<div id="addslide-modal" class="addslide-modal">
+  <div class="addslide-modal-box">
+    <div class="addslide-modal-head">
+      <h3>Ajouter une diapo</h3>
+      <button type="button" onclick="Deck.closeAddSlideModal()">✕</button>
+    </div>
+    <div class="addslide-modal-body">
+      <div id="addslide-modeles" class="addslide-modeles"></div>
+      <div id="addslide-champs"></div>
+      <div class="addslide-field">
+        <label for="addslide-position">Position</label>
+        <select id="addslide-position" class="addslide-input"></select>
+      </div>
+      <div class="addslide-modal-actions">
+        <button type="button" class="primary" onclick="Deck.submitAddSlide()">Ajouter</button>
+        <button type="button" onclick="Deck.closeAddSlideModal()">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../shared-deck-engine.js"></script>
+<script src="../shared-widgets.js"></script>
+<script src="../shared-slide-templates.js"></script>
+<script src="app.js"></script>
+<script src="../shared-comments-theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Séries — toutes les formations</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../fonts/polices.css">
+<!--
+  La page des séries (17 octobre). Deux vues dans ce seul fichier :
+    series/                 la liste de toutes les séries, lue dans slides-manifest.js ;
+    series/?serie=<id>      une série seule, présentée par le moteur habituel.
+
+  Cette page n'a PAS de diapos à elle : elles viennent du catalogue, et le deck est
+  fabriqué en JavaScript. C'est voulu : le moteur, l'atelier et les bancs reconnaissent une
+  formation à la balise du deck écrite dans son index.html ; celle-ci n'en a pas, donc
+  personne ne la prend pour une formation (ni le catalogue, ni la propagation des séries).
+
+  Modifier une diapo ici l'écrit dans TOUTES les formations qui la portent (moteur, mode
+  série), jamais dans ce fichier. L'ordre, les parcours et les diapos neuves se font depuis
+  une formation.
+-->
+<style>
+:root{
+  --bg:#111827; --panel:#1c2536; --panel2:#232f45;
+  --acc:#a78bfa; --acc2:#22d3ee; --ok:#3ecf8e;
+  --tx:#eef2fb; --mu:#93a1bd; --bord:rgba(255,255,255,.1);
+}
+body.liste{margin:0;font-family:'Nunito',sans-serif;color:var(--tx);background:var(--bg);min-height:100vh;
+  background-image:radial-gradient(ellipse at 20% -10%, rgba(34,211,238,.12) 0%, transparent 55%),
+                   radial-gradient(ellipse at 90% 110%, rgba(167,139,250,.12) 0%, transparent 55%);}
+body.liste *{box-sizing:border-box;}
+.liste h1,.liste h2{font-family:'Baloo 2',cursive;margin:0;}
+.liste header{position:sticky;top:0;z-index:5;background:rgba(11,18,32,.94);border-bottom:1px solid var(--bord);
+  backdrop-filter:blur(6px);padding:14px 20px;}
+.liste .row1{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.liste header h1{font-size:1.2rem;color:var(--acc);}
+.liste .back{font-size:.85rem;color:var(--mu);text-decoration:none;border:1px solid var(--bord);border-radius:10px;padding:6px 12px;}
+.liste .back:hover{border-color:var(--acc2);}
+.liste .explique{font-size:.85rem;color:var(--mu);margin-top:8px;}
+.liste .filtres{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;align-items:center;}
+.liste .chip{background:var(--panel);border:1px solid var(--bord);color:var(--tx);border-radius:20px;padding:6px 14px;
+  font-size:.85rem;font-weight:700;cursor:pointer;font-family:inherit;}
+.liste .chip.active{background:linear-gradient(135deg,var(--acc),#7c5ce0);color:#160a2e;border-color:transparent;}
+.liste input,.liste select{background:var(--panel2);border:1px solid var(--bord);color:var(--tx);border-radius:10px;
+  padding:8px 12px;font-size:.9rem;font-family:inherit;}
+.liste input{flex:1;min-width:200px;}
+.liste .count{font-size:.78rem;color:var(--mu);margin-top:10px;}
+.liste main{padding:20px;}
+.liste .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;}
+.liste .card{background:var(--panel);border:1px solid var(--bord);border-radius:14px;overflow:hidden;display:flex;
+  flex-direction:column;text-decoration:none;color:inherit;}
+.liste .card:hover{border-color:var(--acc2);}
+.liste .thumb{aspect-ratio:16/9;background:#05070c;display:flex;align-items:center;justify-content:center;overflow:hidden;
+  color:var(--mu);font-size:.8rem;padding:10px;text-align:center;}
+.liste .thumb img{width:100%;height:100%;object-fit:contain;}
+.liste .meta{padding:10px 12px;display:flex;flex-direction:column;gap:6px;}
+.liste .nom{font-weight:800;font-size:.95rem;}
+.liste .nb{font-size:.75rem;color:var(--acc2);font-weight:700;}
+.liste .ou{font-size:.75rem;color:var(--mu);}
+.liste .vide{color:var(--mu);text-align:center;padding:60px 20px;}
+.liste .erreur{color:#f7a35f;padding:40px 20px;text-align:center;}
+/* La vue d'une serie : la barre du haut rappelle d'ou viennent les diapos. */
+#serie-origine{font-size:.8rem;opacity:.75;margin-left:10px;font-weight:600;}
+</style>
+</head>
+<body>
+
+<template id="chrome-deck">
+<div id="topbar">
+  <span class="brand">🧩 <span id="serie-nom"></span><span id="serie-origine"></span></span>
+  <div class="tools">
+    <button type="button" onclick="location.href='index.html'" title="Toutes les séries">← Séries</button>
+    <button id="btn-dossier" hidden title="Donner au navigateur l’accès au dossier Cours : nécessaire pour enregistrer une diapo dans les formations qui la portent" onclick="Deck.connecterDossier()">🔌 Connecter le dossier</button>
+    <button id="btn-fullscreen" title="Plein écran"><span class="t-fr">Plein écran</span><span class="t-en" hidden>Fullscreen</span></button>
+    <button id="btn-lang" title="Switch to English" onclick="Deck.toggleLang()">EN</button>
+  </div>
+</div>
+<div id="navzone-l" aria-hidden="true"></div>
+<div id="navzone-r" aria-hidden="true"></div>
+<div id="dots"></div>
+<div id="navctrl">
+  <button id="btn-prev" title="Précédent (←)">‹</button>
+  <button id="btn-next" title="Suivant (→)">›</button>
+</div>
+
+<div id="admin-modal" class="admin-modal">
+  <div class="admin-head">
+    <h3>Mode Admin — diapos de la session</h3>
+    <span class="admin-count" id="admin-count"></span>
+    <div class="actions">
+      <select id="admin-selections" title="Parcours enregistrés" onchange="Deck.applySelectedPreset()"></select>
+      <button type="button" onclick="Deck.saveCurrentSelectionAs()">Enregistrer comme parcours…</button>
+      <button type="button" onclick="Deck.deleteSelectedPreset()">Supprimer le parcours</button>
+      <button type="button" onclick="Deck.openAddSlideModal()">Ajouter une diapo</button>
+      <button type="button" onclick="window.open('../media-browser.html','_blank')">Médiathèque (toutes formations)</button>
+      <button type="button" onclick="Deck.adminSelectAll()">Tout cocher</button>
+      <button type="button" onclick="Deck.adminSelectNone()">Tout décocher</button>
+      <button type="button" class="primary" onclick="Deck.adminSave()">Enregistrer la sélection</button>
+      <button type="button" id="admin-save-order" onclick="Deck.saveSlideOrder()">Enregistrer l'ordre dans le fichier</button>
+      <button type="button" onclick="Deck.adminClose()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-grid" id="admin-grid"></div>
+</div>
+
+<div id="admin-zoom-modal" class="admin-zoom-modal">
+  <button type="button" class="admin-zoom-close" onclick="Deck.adminZoomClose()">✕</button>
+  <div id="admin-zoom-box"></div>
+</div>
+
+<div id="admin-edit-modal" class="admin-edit-modal">
+  <div class="admin-edit-head">
+    <h3>Édition de la diapo</h3>
+    <span class="admin-edit-hint"></span>
+    <div class="actions">
+      <button type="button" onclick="Deck.addTextBlock()">Ajouter un texte</button>
+      <button type="button" onclick="Deck.addPhotoBlock()">Ajouter une photo</button>
+      <button type="button" onclick="Deck.addPollWidget()">Sondage</button>
+      <button type="button" onclick="Deck.addScaleWidget()">Échelle</button>
+      <button type="button" onclick="Deck.addPieChartWidget()">Camembert</button>
+      <button type="button" onclick="Deck.addHistogramWidget()">Histogramme</button>
+      <button type="button" onclick="Deck.addReponseWidget()">Réponses à écrire</button>
+      <button type="button" onclick="Deck.quickAddSlideAfterCurrent()">Ajouter une diapo après</button>
+      <button type="button" onclick="Deck.apporterUneDiapo()">⤵ Apporter une diapo</button>
+      <button type="button" onclick="Deck.closeSlideEditToGrid()">Toutes les diapos</button>
+      <button type="button" id="admin-edit-save" onclick="Deck.saveEditedSlide()">Enregistrer dans le fichier</button>
+      <button type="button" onclick="Deck.closeSlideEdit()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-edit-stage" id="admin-edit-stage"></div>
+</div>
+
+<div id="addslide-modal" class="addslide-modal">
+  <div class="addslide-modal-box">
+    <div class="addslide-modal-head">
+      <h3>Ajouter une diapo</h3>
+      <button type="button" onclick="Deck.closeAddSlideModal()">✕</button>
+    </div>
+    <div class="addslide-modal-body">
+      <div id="addslide-modeles" class="addslide-modeles"></div>
+      <div id="addslide-champs"></div>
+      <div class="addslide-field">
+        <label for="addslide-position">Position</label>
+        <select id="addslide-position" class="addslide-input"></select>
+      </div>
+      <div class="addslide-modal-actions">
+        <button type="button" class="primary" onclick="Deck.submitAddSlide()">Ajouter</button>
+        <button type="button" onclick="Deck.closeAddSlideModal()">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</template>
+
+<script src="../slides-manifest.js"></script>
+<script src="../series-manifest.js"></script>
+<script>
+(function () {
+  'use strict';
+  var CAT = window.COURS_DIAPOS;
+  var NOMS = (window.COURS_SERIES && window.COURS_SERIES.series) || {};
+  var params = new URLSearchParams(location.search);
+  var idSerie = params.get('serie');
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+  function serieDe(d) { return (d.attrsRaw.match(/\bdata-serie="([^"]*)"/) || [])[1] || null; }
+  function idHtml(d) { return d.id.slice(d.id.indexOf('#') + 1); }
+  function titreFormation(f) { return (CAT.formations && CAT.formations[f]) || f; }
+  function nomDeSerie(s) { return (NOMS[s.id] && NOMS[s.id].nom) || s.nom || 'Série sans nom'; }
+
+  // Les copies de chaque série, formation par formation, dans l'ordre des fichiers.
+  function copiesParSerie() {
+    var par = {};
+    CAT.diapos.forEach(function (d) {
+      var s = serieDe(d);
+      if (!s) return;
+      var e = par[s] || (par[s] = {});
+      (e[d.formation] = e[d.formation] || []).push(d);
+    });
+    return par;
+  }
+
+  // L'ordre d'une série : celui de la formation qui en porte le plus de diapos, puis ce
+  // qui n'y est pas, dans l'ordre du catalogue. Chaque diapo vient de cette formation-là
+  // quand elle l'a, sinon de la première qui la porte.
+  function diaposDeLaSerie(parFormation) {
+    var formations = Object.keys(parFormation).sort(function (a, b) {
+      return parFormation[b].length - parFormation[a].length;
+    });
+    var vus = {}, liste = [];
+    formations.forEach(function (f) {
+      parFormation[f].forEach(function (d) {
+        var id = idHtml(d);
+        if (vus[id]) return;
+        vus[id] = true;
+        liste.push(d);
+      });
+    });
+    return { diapos: liste, formations: formations };
+  }
+
+  if (!CAT || !CAT.diapos) {
+    document.body.className = 'liste';
+    document.body.innerHTML = '<p class="erreur">Le catalogue des diapos (slides-manifest.js) est introuvable. '
+      + 'Ouvrez une formation et enregistrez une diapo pour le reconstruire.</p>';
+    return;
+  }
+
+  var parSerie = copiesParSerie();
+  if (idSerie) return presenter(idSerie);
+  lister();
+
+  // ── La liste ──────────────────────────────────────────────────────────────────────
+  function lister() {
+    document.body.className = 'liste';
+    var series = (CAT.series || []).filter(function (s) { return parSerie[s.id]; }).map(function (s) {
+      var r = diaposDeLaSerie(parSerie[s.id]);
+      var image = null;
+      r.diapos.some(function (d) {
+        var m = d.contentHtml.match(/<img\b[^>]*\bsrc="([^"]+)"/);
+        if (m) image = m[1];
+        return !!m;
+      });
+      return { id: s.id, nom: nomDeSerie(s), diapos: r.diapos, formations: r.formations, image: image };
+    }).sort(function (a, b) { return a.nom.localeCompare(b.nom, 'fr'); });
+
+    var formations = {};
+    series.forEach(function (s) { s.formations.forEach(function (f) { formations[f] = true; }); });
+
+    document.body.innerHTML =
+      '<header>'
+      + '<div class="row1"><h1>Séries</h1><a class="back" href="../index.html">← Retour à l’index des formations</a></div>'
+      + '<p class="explique">Les diapos partagées entre formations. Ouvrir une série la présente seule ; y modifier '
+      + 'une diapo l’enregistre dans toutes les formations qui la portent.</p>'
+      + '<div class="filtres">'
+      + '<button type="button" class="chip active" data-taille="tout">Toutes</button>'
+      + '<button type="button" class="chip" data-taille="plusieurs">Plusieurs diapos</button>'
+      + '<button type="button" class="chip" data-taille="une">Une seule diapo</button>'
+      + '<select id="filtre-formation"><option value="">Toutes les formations</option>'
+      + Object.keys(formations).sort(function (a, b) { return titreFormation(a).localeCompare(titreFormation(b), 'fr'); })
+          .map(function (f) { return '<option value="' + esc(f) + '">' + esc(titreFormation(f)) + '</option>'; }).join('')
+      + '</select>'
+      + '<input type="search" id="recherche" placeholder="Chercher une série (nom, texte d’une diapo)…">'
+      + '</div><div class="count" id="count"></div></header>'
+      + '<main><div class="grid" id="grid"></div><p class="vide" id="vide" hidden>Aucune série ne correspond.</p></main>';
+
+    var taille = 'tout';
+    var grid = document.getElementById('grid');
+    var texteDe = {};
+    series.forEach(function (s) {
+      texteDe[s.id] = (s.nom + ' ' + s.diapos.map(function (d) { return d.titre || ''; }).join(' ')).toLowerCase();
+    });
+
+    function dessiner() {
+      var q = document.getElementById('recherche').value.trim().toLowerCase();
+      var f = document.getElementById('filtre-formation').value;
+      var visibles = series.filter(function (s) {
+        if (taille === 'plusieurs' && s.diapos.length < 2) return false;
+        if (taille === 'une' && s.diapos.length !== 1) return false;
+        if (f && s.formations.indexOf(f) === -1) return false;
+        return !q || texteDe[s.id].indexOf(q) !== -1;
+      });
+      grid.innerHTML = visibles.map(function (s) {
+        return '<a class="card" href="?serie=' + encodeURIComponent(s.id) + '">'
+          + '<div class="thumb">' + (s.image
+              ? '<img loading="lazy" alt="" src="' + esc(s.image) + '">'
+              : esc((s.diapos[0] && s.diapos[0].titre) || '')) + '</div>'
+          + '<div class="meta"><span class="nom">' + esc(s.nom) + '</span>'
+          + '<span class="nb">' + s.diapos.length + (s.diapos.length > 1 ? ' diapos' : ' diapo') + '</span>'
+          + '<span class="ou">' + s.formations.map(function (x) { return esc(titreFormation(x)); }).join(' · ') + '</span>'
+          + '</div></a>';
+      }).join('');
+      document.getElementById('vide').hidden = visibles.length > 0;
+      document.getElementById('count').textContent = visibles.length + ' séries sur ' + series.length;
+    }
+    document.querySelectorAll('.chip[data-taille]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        document.querySelectorAll('.chip[data-taille]').forEach(function (x) { x.classList.toggle('active', x === b); });
+        taille = b.getAttribute('data-taille');
+        dessiner();
+      });
+    });
+    document.getElementById('recherche').addEventListener('input', dessiner);
+    document.getElementById('filtre-formation').addEventListener('change', dessiner);
+    dessiner();
+  }
+
+  // ── Une série, présentée par le moteur ───────────────────────────────────────────────
+  function presenter(id) {
+    var parFormation = parSerie[id];
+    var entree = (CAT.series || []).filter(function (s) { return s.id === id; })[0] || { id: id };
+    if (!parFormation) {
+      document.body.className = 'liste';
+      document.body.innerHTML = '<p class="erreur">Cette série ne porte plus aucune diapo. '
+        + '<a class="back" href="index.html">← Toutes les séries</a></p>';
+      return;
+    }
+    var r = diaposDeLaSerie(parFormation);
+    document.title = nomDeSerie(entree) + ' — série';
+
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '../shared-deck.css';
+    document.head.appendChild(link);
+
+    // Le deck, fabriqué ici (voir l'en-tête : pas de balise de deck dans le fichier).
+    var chrome = document.getElementById('chrome-deck').content;
+    var deck = document.createElement('div');
+    deck.id = 'deck';
+    var blocs = {};
+    deck.innerHTML = r.diapos.map(function (d) {
+      var html = '<section ' + d.attrsRaw + '>' + d.contentHtml + '</section>';
+      blocs[idHtml(d)] = html;
+      return html;
+    }).join('\n');
+    document.body.appendChild(chrome.querySelector('#topbar').cloneNode(true));
+    document.body.appendChild(deck);
+    Array.prototype.forEach.call(chrome.children, function (el) {
+      if (el.id !== 'topbar') document.body.appendChild(el.cloneNode(true));
+    });
+    document.getElementById('serie-nom').textContent = nomDeSerie(entree);
+    document.getElementById('serie-origine').textContent = '· ' + r.formations.map(titreFormation).join(' · ');
+
+    var scripts = ['../shared-deck-engine.js', '../shared-widgets.js', '../shared-slide-templates.js'];
+    (function suivant() {
+      if (!scripts.length) return demarrer();
+      var s = document.createElement('script');
+      s.src = scripts.shift();
+      s.onload = suivant;
+      s.onerror = function () { alert('Impossible de charger ' + s.src); };
+      document.body.appendChild(s);
+    })();
+
+    function demarrer() {
+      var Deck = createDeckEngine({
+        storagePrefix: 'series',
+        modeSerie: true,
+        blocDOrigine: function (idDiapo) { return blocs[idDiapo] || null; },
+        apresEnregistrement: function (idDiapo, html) { blocs[idDiapo] = html; },
+      });
+      window.Deck = Deck;
+      Deck.init();
+      var t = document.createElement('script');
+      t.src = '../shared-comments-theme.js';
+      document.body.appendChild(t);
+    }
+  }
+})();
+</script>
+</body>
+</html>

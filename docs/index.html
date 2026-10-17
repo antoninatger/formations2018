@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formations : index</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts/polices.css">
+
+<!-- admin.css reste charge apres le depart de l'atelier (Z6b) : il habille les fenetres de
+     « Nouvelle intervention » et le bandeau ephemere des messages. Il vient en premier ; les
+     regles du menu, qui suivent, portent toutes le prefixe #menu — variables comprises, car
+     les deux feuilles emploient les memes noms (--bg, --panel, --bord). Sans ce prefixe, la
+     derniere declaration l'emporterait et le menu changerait de couleurs. -->
+<link rel="stylesheet" href="admin/admin.css">
+<style>
+#menu{
+  --bg:#111827; --bg2:#0b1220; --panel:#1c2536; --panel2:#232f45;
+  --acc:#a78bfa; --acc2:#22d3ee; --ok:#3ecf8e; --ko:#f75f5f;
+  --tx:#eef2fb; --mu:#93a1bd; --bord:rgba(255,255,255,.1);
+  font-family:'Nunito',sans-serif; color:var(--tx); background:var(--bg); min-height:100vh;
+  background-image:radial-gradient(ellipse at 20% -10%, rgba(34,211,238,.12) 0%, transparent 55%),
+                    radial-gradient(ellipse at 90% 110%, rgba(167,139,250,.12) 0%, transparent 55%);
+  padding:40px 20px 60px;
+}
+#menu *{box-sizing:border-box;margin:0;padding:0;}
+#menu h1,#menu h2{font-family:'Baloo 2',cursive;}
+#menu a{color:inherit;text-decoration:none;}
+
+#menu .wrap{max-width:980px;margin:0 auto;}
+#menu .menu-head{display:flex;flex-direction:column;gap:8px;margin-bottom:32px;text-align:center;}
+#menu .menu-head h1{font-size:clamp(1.6rem,4vw,2.3rem);
+  background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+#menu .menu-head p{color:var(--mu);font-weight:600;}
+
+#menu .menu-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:10px;}
+#menu .mediabtn{display:inline-flex;align-items:center;background:var(--panel);border:1px solid var(--bord);
+  color:var(--tx);border-radius:12px;padding:10px 20px;font-weight:700;font-size:.9rem;
+  font-family:'Nunito',sans-serif;cursor:pointer;}
+#menu .mediabtn:hover{border-color:var(--acc2);}
+#menu .neuve-btn{border-color:rgba(62,207,142,.45);}
+#menu .neuve-btn:hover{border-color:var(--ok);}
+
+#menu .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;}
+#menu .card{position:relative;background:var(--panel);border:1px solid var(--bord);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px;
+  transition:transform .15s, border-color .15s;}
+#menu .card.linked:hover{transform:translateY(-3px);border-color:var(--acc2);}
+#menu .card h2{font-size:1.05rem;color:var(--acc);line-height:1.3;}
+#menu .card .desc{font-size:.82rem;color:var(--mu);flex:1;}
+#menu .card .stats{font-size:.72rem;color:var(--mu);font-family:monospace;}
+#menu .card .status{align-self:flex-start;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;
+  padding:3px 10px;border-radius:20px;background:rgba(62,207,142,.15);color:var(--ok);}
+
+/* Le nom du dossier connecte, sous la rangee de boutons. admin.css le pose a droite d'une
+   barre (margin-left:auto) : ici il est centre avec le reste de l'en-tete. */
+#menu #conn-status{display:block;margin:10px auto 0;text-align:center;font-size:.8rem;color:var(--mu);}
+/* Le crayon d'une carte : discret jusqu'a ce qu'on survole la carte. Antonin, le
+   10 septembre : « comment changer un titre d'intervention ? » — nulle part, jusqu'ici. */
+#menu .card-renommer{position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:8px;
+  background:var(--panel);border:1px solid var(--bord);color:var(--mu);cursor:pointer;line-height:1;
+  font-size:.8rem;padding:0;opacity:0;transition:opacity .15s,border-color .15s;}
+#menu .card:hover .card-renommer,#menu .card-renommer:focus{opacity:1;}
+#menu .card-renommer:hover{border-color:var(--acc2);}
+/* Deux categories (13 septembre) : « je veux deux categories de formations : les centrales,
+   et les specifiques, et un moyen de passer les formations de l'une a l'autre ». */
+#menu .categorie{margin-bottom:40px;}
+#menu .categorie-titre{font-size:1.25rem;color:var(--acc2);margin-bottom:14px;}
+#menu .card-deplacer{right:42px;}
+</style>
+</head>
+<body>
+
+<!-- ═══ Le menu : ce qu'on ouvre pour presenter. Rien n'ecrit ici. ═══ -->
+<div id="menu">
+  <div class="wrap">
+    <div class="menu-head">
+      <h1>Formations : esprit critique &amp; désinformation</h1>
+      <p>Accès rapide à toutes les formations créées.</p>
+      <div class="menu-actions">
+        <a class="mediabtn" href="media-browser.html">Médiathèque</a>
+        <a class="mediabtn" href="series/index.html">Séries</a>
+        <button type="button" class="mediabtn neuve-btn" id="btn-nouvelle">Nouvelle intervention</button>
+        <button type="button" class="mediabtn" id="btn-relire-articles" title="Balayer le dossier des articles et réécrire articles-manifest.js (à faire après avoir ajouté un PDF)">Relire les articles</button>
+        <button type="button" class="mediabtn" id="btn-relire-jeux" title="Balayer le dossier Jeux et réécrire jeux-manifest.js (à faire après avoir créé un jeu)">Relire les jeux</button>
+      </div>
+      <!-- Le dossier connecte se NOMME : « 🟢 Cours · maison ». Le 15 aout, « Dossier
+           connecte » designait l'autre copie du depot et personne ne pouvait le voir.
+           Vide tant qu'aucun dossier n'est ouvert : ici, on vient surtout presenter. -->
+      <span id="conn-status"></span>
+    </div>
+
+    <section class="categorie" data-categorie="centrales">
+    <h2 class="categorie-titre">Formations centrales</h2>
+    <div class="grid">
+      <a class="card linked" href="formation-fake-news-niveau1/index.html">
+        <h2>Fake News et esprit critique : Niveau 1</h2>
+        <p class="desc">Introduction aux fake news et à l'esprit critique.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="formation-fake-news-niveau2/index.html">
+        <h2>Désinformation, au-delà de la Fake News : Niveau 2</h2>
+        <p class="desc">Approfondissement : biais, propagande, IA générative.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="formation-fake-news-influenceurs/index.html">
+        <h2>Fake News et esprit critique : Les influenceurs</h2>
+        <p class="desc">Marketing d'influence, storytelling, arnaques en ligne.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="formation-raisonnements-fallacieux/index.html">
+        <h2>Les raisonnements fallacieux</h2>
+        <p class="desc">Sophismes et biais de raisonnement courants.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="formation-rhetorique-niveau3/index.html">
+        <h2>Rhétorique et esprit critique : Niveau 3</h2>
+        <p class="desc">Techniques rhétoriques et manipulation du discours.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="la-magie-des-histoires/index.html">
+        <h2>La magie des histoires</h2>
+        <p class="desc">Construire une histoire : univers, personnages, intrigue, héros attachant, cycle du héros.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+<!-- Repère : les cartes des formations centrales. -->
+    </div>
+    </section>
+
+    <section class="categorie" data-categorie="specifiques">
+    <h2 class="categorie-titre">Formations spécifiques</h2>
+    <div class="grid">
+      <a class="card linked" href="comment-convaincre-un-climatosceptique/index.html">
+        <h2>Comment convaincre un climato-sceptique</h2>
+        <p class="desc">Déni, réactance, et ce qui convainc vraiment.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="esprit-critique-encadrants/index.html">
+        <h2>Repérer, analyser, transmettre l’information</h2>
+        <p class="desc">Conférence pour le personnel encadrant : évaluer une information, puis la transmettre sans braquer.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="ia-entre-crainte-et-espoir/index.html">
+        <h2>IA et désinformation, entre crainte et espoir.</h2>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="arnaques-en-ligne/index.html">
+        <h2>Formation contre les arnaques en ligne</h2>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="parcours-cm1-cm2/index.html">
+        <h2>Parcours Fake News &amp; Esprit critique : CM1-CM2</h2>
+        <p class="desc">Six séances pour l’école primaire : fake news, cadrage, cerveau, images, biais, enquête.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="fake-news-6e-5e/index.html">
+        <h2>Fake News et esprit critique : 6e-5e</h2>
+        <p class="desc">Le cerveau face aux fake news, les réseaux sociaux, et ce qu’on peut faire.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="masni-politique-complotisme/index.html">
+        <h2>Politique et complotisme (MASNI)</h2>
+        <p class="desc">Les cinq cours du MASNI : théories du complot, Fake News, désinformation, rhétorique, politique.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="illusions-d-optique/index.html">
+        <h2>Illusions d’optique</h2>
+        <p class="desc">Toutes les illusions en une réserve : interactives, photos, vidéos, paréidolies. Les autres formations y puisent.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="parler-a-un-complotiste/index.html">
+        <h2>Parler à un complotiste</h2>
+        <p class="desc">Argument, conviction, croyance : échanger avec quelqu’un qui n’est pas d’accord, sans le perdre.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="communiquer-efficacement/index.html">
+        <h2>Communiquer efficacement</h2>
+        <p class="desc">Les biais qui brouillent nos échanges, le langage implicite, et comment mieux se faire comprendre.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="fictions-et-esprit-critique/index.html">
+        <h2>Les fictions permettent-elles de développer l’esprit critique ?</h2>
+        <p class="desc">Ce que les histoires nous apprennent à croire, et à douter (conférence REC 2023).</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="harcelement-scolaire/index.html">
+        <h2>Harcèlement scolaire</h2>
+        <p class="desc">Statut social, effet témoin, ostracisme, cyberharcèlement : comprendre pour agir.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="entreprise-2/index.html">
+        <h2>Entreprise 2</h2>
+        <p class="desc">Décider à plusieurs : la sagesse des foules, un jeu en trois manches, et la réunion où chacun écrit avant de parler.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="enigmes-logiques/index.html">
+        <h2>Énigmes logiques</h2>
+        <p class="desc">Cinq énigmes à glisser en pause ou en fin de séance.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="la-magie-des-histoires-manga/index.html">
+        <h2>La magie des histoires : spécial manga</h2>
+        <p class="desc">La magie des histoires, avec les exemples manga et shōnen.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="la-magie-des-histoires-spiderman/index.html">
+        <h2>La magie des histoires : Spider-Man</h2>
+        <p class="desc">La magie des histoires, appliquée à Spider-Man.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="demon-slayer-pourquoi-ca-marche/index.html">
+        <h2>Demon Slayer : pourquoi ça marche ?</h2>
+        <p class="desc">Analyse d’œuvre : prémisse, récit porté par les personnages, cycle du héros.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="attaque-des-titans/index.html">
+        <h2>L’Attaque des Titans</h2>
+        <p class="desc">Analyse d’œuvre : set up et pay off, double menace, antagonistes, hareng rouge.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="narrative-design/index.html">
+        <h2>Narrative Design</h2>
+        <p class="desc">Le cours en six séances (Sup de Pub) : personnages, symboles, transmettre un message, projet.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="atelier-ecrire-une-histoire/index.html">
+        <h2>Atelier : on écrit une histoire ensemble</h2>
+        <p class="desc">Prémisse, promesse, message, héros : écrire une histoire en groupe, puis la fiche « structure dystopie ».</p>
+        <span class="status">Disponible</span>
+      </a>
+
+      <a class="card linked" href="impact-du-numerique-sur-la-culture/index.html">
+        <h2>L’impact du numérique sur la culture</h2>
+        <p class="desc">BookTok, Bookstagram, remontages de films : ce que le numérique change à nos histoires.</p>
+        <span class="status">Disponible</span>
+      </a>
+
+<!-- Repère : l’atelier insère ici la carte des interventions créées. -->
+    </div>
+    </section>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="shared-slide-templates.js"></script>
+<script src="admin/storage.js"></script>
+<script src="diapos-core.js"></script>
+<script src="admin/jeux-core.js"></script>
+<script src="admin/articles-core.js"></script>
+<script src="admin/admin.js"></script>
+<!-- Classement du menu par thème et par public (4 octobre) : voir classement.js -->
+<script src="classement.js"></script>
+<script>
+// Les trois gestes qui ecrivent hors d'une presentation. Avant Z6b ils vivaient dans
+// l'atelier, une deuxieme page cachee derriere « #atelier » ; l'atelier est parti avec le
+// registre, et ses trois boutons utiles sont ici.
+//
+// CoursAdmin.App.init() n'est appele qu'au premier clic sur l'un d'eux : il restaure le
+// dossier memorise et peut ouvrir le panneau du tampon — hors de question que ca surgisse
+// a l'ouverture de la page, pendant qu'une formation est projetee.
+(function () {
+  var demarrage = null;
+
+  function demarrer() {
+    if (!demarrage) { demarrage = Promise.resolve(CoursAdmin.App.init()).catch(function (e) { console.error(e); }); }
+    return demarrage;
+  }
+
+  // Chaque bouton propose lui-meme de connecter le dossier si besoin, depuis sa propre
+  // fenetre : personne n'a a aller chercher un bouton « Connecter » ailleurs. C'est le
+  // « c'est complique » du 6 septembre, regle pour les trois.
+  function brancher(id, geste) {
+    document.getElementById(id).addEventListener('click', function () {
+      var bouton = this;
+      bouton.disabled = true;
+      demarrer().then(function () {
+        return CoursAdmin.App[geste]();
+      }).catch(function (e) {
+        console.error(e);
+      }).then(function () { bouton.disabled = false; });
+    });
+  }
+
+  brancher('btn-nouvelle', 'nouvelleIntervention');
+  brancher('btn-relire-articles', 'relireArticles');
+  brancher('btn-relire-jeux', 'relireJeux');
+
+  // Un crayon sur chaque carte. Le nom d'une intervention est ecrit a quatre endroits
+  // (cette page, le <title> et le bandeau de l'intervention, le catalogue) : le crayon
+  // les fait tous les quatre. La carte est un LIEN — d'ou le preventDefault, sans quoi
+  // cliquer le crayon ouvrirait la formation au lieu de la renommer.
+  Array.prototype.forEach.call(document.querySelectorAll('#menu .card.linked'), function (carte) {
+    var href = carte.getAttribute('href') || '';
+    var id = href.split('/')[0];
+    if (!id || href.indexOf('/index.html') === -1) return;
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'card-renommer';
+    b.title = 'Renommer cette intervention';
+    b.setAttribute('aria-label', 'Renommer cette intervention');
+    b.textContent = '✏️';
+    b.addEventListener('click', function (ev) {
+      ev.preventDefault();
+      ev.stopPropagation();
+      b.disabled = true;
+      demarrer().then(function () {
+        return CoursAdmin.App.renommerIntervention(id);
+      }).catch(function (e) {
+        console.error(e);
+      }).then(function () { b.disabled = false; });
+    });
+    carte.appendChild(b);
+
+    // Et ⇄ : passer la formation dans l'autre categorie. Meme geste, meme ecriture.
+    var d = document.createElement('button');
+    d.type = 'button';
+    d.className = 'card-renommer card-deplacer';
+    d.title = 'Passer dans l’autre catégorie';
+    d.setAttribute('aria-label', 'Passer dans l’autre catégorie');
+    d.textContent = '⇄';
+    d.addEventListener('click', function (ev) {
+      ev.preventDefault();
+      ev.stopPropagation();
+      d.disabled = true;
+      demarrer().then(function () {
+        return CoursAdmin.App.deplacerIntervention(id);
+      }).catch(function (e) {
+        console.error(e);
+      }).then(function () { d.disabled = false; });
+    });
+    carte.appendChild(d);
+  });
+})();
+</script>
+</body>
+</html>

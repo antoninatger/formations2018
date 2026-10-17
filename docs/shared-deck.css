@@ -1,0 +1,1237 @@
+/* Polices embarquées (23 septembre) : Baloo 2 et Nunito, sous-ensembles latin et latin-ext,
+   copiées depuis Google Fonts (licence SIL Open Font License). Sans elles, une salle sans
+   internet voyait les titres en Comic Sans (repli « cursive »), et trois diapos débordaient.
+   Elles sont déclarées dans shared-deck.css, APRÈS le lien Google des pages : en ligne comme
+   hors ligne, ce sont elles qui servent. */
+/* latin-ext */
+@font-face {
+  font-family: 'Baloo 2';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(fonts/baloo2-normal-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Baloo 2';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(fonts/baloo2-normal-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Nunito';
+  font-style: italic;
+  font-weight: 200 1000;
+  font-display: swap;
+  src: url(fonts/nunito-italic-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Nunito';
+  font-style: italic;
+  font-weight: 200 1000;
+  font-display: swap;
+  src: url(fonts/nunito-italic-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 200 1000;
+  font-display: swap;
+  src: url(fonts/nunito-normal-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 200 1000;
+  font-display: swap;
+  src: url(fonts/nunito-normal-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* shared-deck.css — socle visuel commun des formations.
+ *
+ * Contient, pour chaque sélecteur partagé, les propriétés que toutes les
+ * formations concernées déclaraient à l'identique ou en majorité. Chaque
+ * index.html charge cette feuille PUIS son propre <style> : ses écarts y
+ * restent et l'emportent.
+ *
+ * Une nouvelle diapo — ou une nouvelle formation — hérite d'ici de la mise
+ * en page, de la typographie et des composants, sans rien recopier.
+ * Ne rien mettre ici qui soit propre à une seule formation (couleur d'accent,
+ * emoji, illustration).
+ */
+
+
+/* ── La toile (12 septembre) ───────────────────────────────────────────────────────
+   Antonin : « quand j’ai voulu zoomer pour agrandir (car l’ecran etait trop petit),
+   les blocs n’ont pas que grossi, ils se sont decalles les uns des autres. Pourquoi ? »
+
+   Parce qu’une diapo n’avait pas de format : elle avait la taille de la fenetre. La
+   POSITION d’un bloc pose est en millemes de la diapo, sa TAILLE est en pixels. Changer
+   la fenetre rapprochait donc les positions sans rapprocher les blocs. Mesure du 12 sur
+   « climatosceptique », de 1925 a 1280 px de large : position x0,665, largeur x1 — et les
+   cinq cartes des 5 D, espacees de 320 px pour 300 px de large, se chevauchaient de 87 px.
+
+   La diapo a maintenant un format, comme une page de PowerPoint, et l’ecran la reduit ou
+   l’agrandit D’UN SEUL BLOC. Format retenu par Antonin le 12 septembre : 1925 x 908,
+   exactement l’ecran sur lequel les 49 diapos ont ete composees — donc aucune ne bouge.
+
+   --vw1 et --vh1 sont le centieme de la toile. Ils remplacent vw et vh PARTOUT dans la
+   diapo : ces deux unites-la se referent a la fenetre meme a l’interieur d’un element mis
+   a l’echelle, et c’est precisement le melange qui decalait tout. */
+:root{--toile-w:1925px;--toile-h:908px;--toile-k:1;
+  --vw1:calc(var(--toile-w) / 100);--vh1:calc(var(--toile-h) / 100)}
+:root{--bg:#111827;--bg2:#0b1220;--panel:#1c2536;--panel2:#232f45;--acc:#f5478c;--acc2:#a78bfa;--ok:#3ecf8e;--ko:#f75f5f;--tx:#eef2fb;--mu:#93a1bd;--bord:rgba(255,255,255,.1)}
+/* Le texte secondaire D'UNE DIAPO (13 septembre). Antonin : « la couleur par défaut du texte
+   en mode sombre est le blanc, pas le gris, fait le, et change toutes les fois où c'est
+   gris ». En sombre, il prend donc la couleur du texte ; en clair il reste gris, comme avant.
+   --mu garde son rôle pour tout ce qui n'est pas du contenu : l'éditeur, les panneaux, les
+   pastilles, l'invite « Tapez votre texte », et les états qui DISENT quelque chose en étant
+   atténués (une réponse manquante, un critère raté). Un seul jeton, parce que « toutes les
+   fois » vit aussi dans le <style> des formations. */
+:root{--mu-diapo:var(--tx)}
+:root[data-theme="light"]{--mu-diapo:var(--mu)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'Nunito',sans-serif;color:var(--tx);background:var(--bg);background-image:radial-gradient(ellipse at 20% -10%, rgba(167,139,250,.14) 0%, transparent 55%), radial-gradient(ellipse at 90% 110%, rgba(245,71,140,.12) 0%, transparent 55%);overflow:hidden;height:100vh}
+h1,h2,h3,.brand{font-family:'Baloo 2','Nunito',sans-serif}
+:where(button,a,[tabindex]):focus-visible{outline:3px solid var(--acc2);outline-offset:3px;border-radius:8px}
+#topbar{position:fixed;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:linear-gradient(180deg,rgba(11,18,32,.92),rgba(11,18,32,0));z-index:20}
+/* En plein ecran, le bandeau s’efface (12 septembre). Antonin : « en full screen, tu peux
+   supprimer la ligne du dessus qui est encore visible et masque parfois les titres ? ».
+   Il mesure 52 px d'ECRAN, position fixe, pendant que la diapo se reduit pour tenir dans
+   la fenetre : il mordait donc sur son haut. Ses boutons ne manquent pas en salle, et on
+   sort du plein ecran par Echap comme partout. L’attribut est pose par le moteur
+   (refreshFullscreenLabel), pas par :fullscreen — voir le commentaire la-bas. */
+:root[data-plein-ecran] #topbar{display:none}
+
+#topbar .brand{font-size:1.05rem;font-weight:800;color:var(--acc)}
+#topbar .tools{display:flex;gap:10px;align-items:center}
+#topbar button{background:var(--panel);border:1px solid var(--bord);color:var(--tx);border-radius:10px;padding:7px 12px;font-size:.85rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif}
+#topbar button:hover{border-color:var(--acc2)}
+/* La toile est centree dans la fenetre et reduite d’un seul scale. --toile-k est calcule
+   par le moteur (ajusterToile) au chargement et a chaque changement de taille : CSS ne
+   sait pas diviser une longueur par une longueur. Il vit sur <html>, jamais dans la diapo :
+   buildCleanClone ne clone que la diapo, donc il ne peut pas atteindre le fichier. */
+#deck{position:absolute;left:50%;top:50%;width:var(--toile-w);height:var(--toile-h);
+  transform:translate(-50%,-50%) translate(var(--toile-dx,0px),var(--toile-dy,0px)) scale(var(--toile-k,1));transform-origin:center center}
+/* Navigation : les deux bandes cliquables sur les bords, les pastilles, les flèches.
+ * Ces trois blocs sont dans le foot.html commun, donc dans CHAQUE index.html — mais leur
+ * mise en page vivait en double dans le <style> de chaque formation. Une intervention
+ * neuve, dont le <style> se réduit à la couleur d'accent, héritait donc des balises sans
+ * les règles : sans position:fixed, #navctrl tombait sous le deck (100vh) et body
+ * {overflow:hidden} le coupait. Pas de flèches, pas de pastilles, et rien pour le dire.
+ * Mesuré le 6 septembre sur « comment-convaincre-un-climatosceptique » ET sur
+ * formation-rhetorique-niveau3, dont le <style> ne les avait pas non plus.
+ * Les formations qui gardent leurs propres règles les redéclarent après : elles gagnent. */
+#navzone-l,#navzone-r{position:fixed;top:52px;bottom:0;width:12%;z-index:10;cursor:pointer;background:transparent}
+#navzone-l{left:0}
+#navzone-r{right:0}
+#dots{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:20;max-width:70vw;flex-wrap:wrap;justify-content:center}
+#dots button{width:9px;height:9px;border-radius:50%;border:none;background:var(--bord);cursor:pointer;padding:0}
+#dots button.active{background:var(--acc);width:22px;border-radius:6px}
+#navctrl{position:fixed;bottom:14px;right:18px;display:flex;gap:8px;z-index:20}
+#navctrl button{background:var(--panel);border:1px solid var(--bord);color:var(--tx);border-radius:10px;width:38px;height:38px;font-size:1.1rem;cursor:pointer}
+#navctrl button:hover{border-color:var(--acc2)}
+/* Le PDF de l'intervention (28 septembre) : un seul bouton, pose par le moteur sur la
+   derniere diapo de la ligne principale, centre au-dessus des pastilles (le moteur calcule
+   son « bottom » d'apres leur hauteur). */
+.btn-pdf-intervention{position:fixed;left:50%;bottom:56px;transform:translateX(-50%);z-index:21;display:inline-flex;align-items:center;gap:10px;
+  background:var(--panel);border:1.5px solid var(--acc);color:var(--tx);border-radius:999px;padding:10px 22px;
+  font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;box-shadow:0 8px 26px rgba(0,0,0,.28);
+  animation:btn-pdf-arrivee .45s ease both;white-space:nowrap}
+.btn-pdf-intervention[hidden]{display:none}
+.btn-pdf-intervention:hover{background:var(--acc);color:var(--bg)}
+.btn-pdf-intervention:disabled{opacity:.6;cursor:progress}
+.btn-pdf-intervention .btn-pdf-icone{color:var(--acc);font-size:1.05rem;line-height:1}
+.btn-pdf-intervention:hover .btn-pdf-icone{color:inherit}
+@keyframes btn-pdf-arrivee{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translateX(-50%)}}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:100px calc(8 * var(--vw1)) 90px;text-align:center;opacity:0;pointer-events:none;transform:translateY(18px);transition:opacity .35s ease, transform .35s ease;overflow-y:auto}
+/* La barre de défilement fantôme (11 septembre) : un bloc remonté par un `transform` garde
+   sa case dans le flux, et scrollHeight compte fidèlement ce vide. Douze diapos portaient
+   ainsi une barre à droite qui ne menait nulle part. data-ed-plein est posé par le moteur
+   quand rien de VISIBLE ne passe sous la ligne d'horizon — et, comme tout data-ed-*, il est
+   retiré à l'enregistrement : il ne peut pas atteindre le fichier. */
+.slide[data-ed-plein]{overflow-y:hidden}
+.slide.short{justify-content:center}
+.slide.active{opacity:1;pointer-events:auto;transform:none}
+/* Une diapo qu'on ne voit pas ne doit rien intercepter (11 septembre). .slide porte bien
+   pointer-events:none — mais .step.shown et .ligne.step le REPRENNENT, plus bas, sur leurs
+   descendants. Une diapo invisible gardait donc des zones sensibles par-dessus celle qu'on
+   regarde, et c'est là que la molette atterrissait : le navigateur cherchait alors de quoi
+   faire défiler AUTOUR DE CETTE DIAPO-LÀ, n'en trouvait pas, et la diapo affichée ne
+   bougeait pas d'un pixel. « La molette pour monter et descendre à droite ne fonctionne
+   pas. » Restreint à #deck : la diapo en cours d'édition vit ailleurs, et les vignettes de
+   l'atelier ont déjà leur propre règle. */
+#deck > .slide:not(.active):not(.editing) *{pointer-events:none}
+.slide .kicker{font-size:.8rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--acc2);margin-bottom:10px}
+.slide h2{font-size:clamp(1.5rem,calc(4.2 * var(--vw1)),2.6rem);font-weight:700;line-height:1.25;max-width:920px}
+.slide p.lead{font-size:clamp(1rem,calc(2 * var(--vw1)),1.25rem);color:var(--mu-diapo);max-width:760px;margin-top:14px;line-height:1.6;font-weight:600}
+.bigbtn{background:linear-gradient(135deg,var(--acc),#b8235f);color:#2a1c02;border:none;border-radius:50px;padding:14px 34px;font-family:'Baloo 2','Nunito',sans-serif;font-size:1.1rem;font-weight:700;cursor:pointer;box-shadow:0 6px 22px rgba(245,71,140,.3);transition:transform .15s;margin-top:28px}
+.bigbtn:hover{transform:translateY(-2px)}
+.vidwrap video{display:block;width:100%;height:auto}
+.poll button{font-family:'Baloo 2','Nunito',sans-serif;font-size:1.25rem;font-weight:700;border-radius:18px;border:2px solid var(--bord);padding:22px 40px;cursor:pointer;background:var(--panel);color:var(--tx);transition:.15s;min-width:150px}
+#poll-bars{margin-top:26px;width:min(520px,calc(80 * var(--vw1)));display:flex;flex-direction:column;gap:10px}
+.pbar-row{display:flex;align-items:center;gap:10px;font-weight:800;font-size:.95rem}
+.pbar-track{flex:1;height:20px;border-radius:10px;background:var(--panel2);overflow:hidden;border:1px solid var(--bord)}
+.pbar-fill{height:100%;width:0%;border-radius:10px;transition:width .4s ease}
+.pbar-fill.oui{background:linear-gradient(90deg,var(--ok),#22a06a)}
+.pbar-fill.non{background:linear-gradient(90deg,var(--ko),#c23a3a)}
+#poll-hint,.poll-hint{margin-top:14px;color:var(--mu-diapo);font-size:.85rem}
+.quiz-grid{display:grid;gap:14px;max-width:980px;width:100%}
+.qcard{background:var(--panel);border:1px solid var(--bord);border-radius:16px;padding:14px;cursor:pointer;display:flex;flex-direction:column;text-align:left;transition:.15s;position:relative;overflow:hidden}
+.qcard img{width:100%;height:80px;border-radius:8px;margin-bottom:8px}
+.qcard .txt{font-weight:700;font-size:.88rem;line-height:1.35}
+.qcard .badge{position:absolute;top:10px;right:10px;font-family:'Baloo 2','Nunito',sans-serif;font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:20px;opacity:0;transform:scale(.7);transition:.2s}
+.qcard.revealed .badge{opacity:1;transform:none}
+.qcard .expl{font-size:.78rem;color:var(--mu-diapo);margin-top:8px;max-height:0;opacity:0;overflow:hidden;transition:.25s;font-weight:600;line-height:1.4}
+.qcard.revealed .expl{max-height:120px;opacity:1}
+.qcard .tap{font-size:.68rem;color:var(--mu-diapo);text-transform:uppercase;letter-spacing:1px;font-weight:800}
+.qcard.revealed .tap{display:none}
+.quiz-score{margin-top:16px;font-weight:800;color:var(--mu-diapo);font-size:.85rem}
+.reveal-btn{margin-top:18px;background:var(--panel2);border:1px solid var(--acc2);color:var(--acc2);border-radius:50px;padding:10px 24px;font-family:'Baloo 2','Nunito',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer}
+.reveal-btn:hover{background:rgba(167,139,250,.15)}
+.reveal-box{margin-top:16px;opacity:0;max-height:0;overflow:hidden;transition:.35s}
+.reveal-box.show{opacity:1;max-height:900px}
+.flagcard{background:var(--panel);border:1px solid var(--bord);border-radius:16px;padding:18px 22px;cursor:pointer;min-width:220px;text-align:center;transition:.15s}
+.flagcard .fname{font-family:'Baloo 2','Nunito',sans-serif;font-weight:700;font-size:1.1rem;margin-bottom:8px}
+.flagcard .fans{display:none;margin-top:10px;font-size:.85rem;color:var(--mu-diapo);font-weight:600;line-height:1.5}
+.flagcard.open .fans{display:block}
+.flagcard video{width:100%;border-radius:10px;margin-top:8px;display:none}
+.flagcard.open video{display:block}
+/* Une étape GARDE SA PLACE tant qu'elle est cachée (10 septembre).
+   Antonin : « OÙ que je place le bloc dans le mode création, il n'apparaît pas à la même
+   place ensuite », et « il faut que les emplacements que je vois en mode édition soient
+   toujours au plus près de ce qu'on verra au final ».
+   Mesuré sur la formation climato, avant / après : 22 diapos sur 35 changeaient de mise en
+   page entre deux paliers, et une poussait du contenu hors écran. Après : zéro et zéro.
+   La cause était ici — max-height:0 escamotait une étape cachée, donc ses voisines
+   remontaient, et l'écran ne ressemblait plus à l'éditeur, qui déplie tout. Le 8 septembre
+   le correctif avait été ciblé (.step[data-off-x]) : un bloc DÉPLACÉ gardait sa place, un
+   bloc laissé dans le flux, non. D'où « je ne sais pas quelle touche tu utilises » : la
+   règle existait, mais elle était invisible. Elle devient générale.
+   min-height:0 part avec : lui seul laissait une diapo trop pleine ÉCRASER ses étapes, et
+   leur texte débordait sur la voisine. Rendu à « auto », plus rien ne s'écrase.
+   L'opacité suffit à cacher : elle s'applique à tout le sous-arbre, enfant déplacé compris,
+   ce que max-height et overflow:hidden faisaient à deux.
+   Les animations de DÉPLACEMENT ne sont pas concernées : elles jouent sur transform, qui ne
+   touche pas la mise en page — ce qui bouge exprès continue de bouger. */
+.step{opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease;pointer-events:none}
+/* Un bloc qui PART à un rang donné (data-sortie). Il garde sa place, exactement comme une
+   étape qui n'est pas encore arrivée : son départ ne doit pas pousser ses voisines — c'est
+   la leçon de U9, et elle vaut dans les deux sens.
+   La double classe n'est pas une coquetterie : un bloc qui part est presque toujours une
+   étape déjà révélée, et « .step.shown{opacity:1} » (deux classes) l'emporterait sur un
+   « .sorti » seul. Mesuré : la classe se posait, l'opacité restait à 1. */
+.sorti,.step.shown.sorti{opacity:0;pointer-events:none;transition:opacity .4s ease}
+/* Une fois l'etape revelee, plus rien ne coupe : un enfant deplace au doigt (transform sur
+   l'.imgcard interieur) sort de la boite du .step, et overflow:hidden l'amputait — mais
+   seulement en presentation, car .slide.editing .step force overflow:visible. Tant que
+   l'etape est cachee, hidden + max-height:0 masquent tout, enfant deplace compris. */
+.step.shown{opacity:1;transform:none;pointer-events:auto}
+/* Une étape POSÉE À LA MAIN garde sa place tant qu'elle est cachée (8 septembre).
+   Le cas d'Antonin, diapo 8 de « comment convaincre un climatosceptique » : deux photos
+   placées à la souris, la première réglée « au clic ». Dans l'éditeur la seconde était à
+   y=52 ; en présentation elle arrivait à y=-173, hors cadre, puis redescendait au premier
+   clic. Mesuré, pas supposé : 225 px d'écart.
+   La cause est le max-height:0 ci-dessus, qui fait s'effondrer une étape cachée. C'est le
+   bon comportement pour les ~700 blocs écrits à la main, qui se poussent l'un l'autre en
+   arrivant. Mais un bloc qu'on a DÉPLACÉ à la poignée a été placé par rapport à une mise en
+   page qui contenait son voisin : l'escamoter déplace ce voisin, et l'écran ne ressemble
+   plus à ce qu'on avait sous les yeux en le posant. data-off-x/data-off-y est exactement la
+   marque « celui-là, quelqu'un l'a placé » — donc la condition, et rien d'autre ne change. */
+.step[data-off-x],.step[data-off-y]{overflow:visible}
+/* ── Un bloc ne s'ECRASE pas pour faire tenir la diapo (10 septembre) ───────────────
+   La diapo est une colonne flex. Un enfant flex se laisse comprimer quand la colonne
+   deborde, et un bloc a overflow:hidden — .imgcard, .vidwrap, une carte a retourner — n'a
+   alors PLUS AUCUNE hauteur minimale : il tombe a deux pixels, l'image disparait, et rien
+   ne le signale. Un paragraphe, lui, garde sa hauteur de contenu (min-height:auto) : le
+   defaut ne frappait donc que les images et les videos, exactement ce qu'on ne peut pas
+   se permettre de perdre.
+   Depuis que les etapes cachees gardent leur place, une colonne deborde bien plus souvent
+   qu'avant : la comprimer n'etait plus un cas rare. Mieux vaut un bloc entier qui depasse
+   — le banc test-hors-ecran.js le voit, et on le deplace — qu'une image ecrasee que
+   personne ne voit. */
+.slide>*{flex-shrink:0}
+/* ── Étape AB, niveau A (11 septembre) ───────────────────────────────────────────────
+   Antonin : « Ce que je veux, c'est que JAMAIS un bloc ne bouge à cause d'un autre bloc,
+   jamais. »
+   Un bloc POSÉ quitte le flux. Son data-off-x/y ne dit plus un écart par rapport à la place
+   que la colonne lui donnait : il dit sa POSITION, depuis le coin haut-gauche de la diapo.
+   Il n'a donc plus de place de flux, et plus rien au-dessus de lui ne peut le déplacer — ni
+   un panneau d'édition, ni une image qui finit de charger, ni un texte anglais plus long,
+   ni un voisin qu'on agrandit ou qu'on supprime.
+   `data-pose` est du CONTENU : il part dans le fichier, comme data-off-x/y.
+   margin:0 — un bloc de flux porte une marge (.lead en a 14) ; posé, sa marge le décalerait
+   de la position mesurée.
+   Le max-width est posé dans un :where(), donc de poids NUL : chaque famille de bloc porte
+   le sien (920 px pour un titre, 760 pour un .lead, 420 pour une carte image) et le garde.
+   Il ne sert qu'aux blocs qui n'en ont aucun : hors du flux, la largeur disponible devient
+   la diapo ENTIÈRE au lieu de sa zone de texte, et un tel bloc s'élargissait de 308 px —
+   exactement les deux marges latérales. Écrit d'abord sans :where(), il écrasait tout : une
+   carte image de 420 px s'étalait à 1540.
+   !important sur les trois propriétés de position, et c'est voulu : être hors du flux n'est
+   pas un réglage d'apparence, c'est le MODÈLE. Sans lui, la règle qui donne z-index:11 aux
+   éléments cliquables d'une diapo (`.slide.active :is(button, a, …)`, plus spécifique)
+   rendait `position:relative` à un lien posé : `left:0` cessait de vouloir dire « au coin de
+   la diapo », le transform s'ajoutait à la place de flux, et le bloc partait à DEUX FOIS sa
+   position (mesuré le 11 septembre sur « s28 » de niveau 1 : 828 px → 1657 px).
+   left/top NON important, en revanche : ce sont eux que le moteur écrit, EN POURCENTAGE de
+   la diapo. Antonin, devant la première migration : « pourquoi est-ce que toutes mes slides
+   sont décentrées maintenant ? » — parce qu’on avait gravé des PIXELS, mesurés sur un écran
+   de 1925. Une position ne peut pas se compter en pixels quand la diapo a la taille de la
+   fenêtre. Les 0 ci-dessous ne servent qu’avant le premier calcul.
+   Le sélecteur est en DESCENDANT et non en enfant direct : une diapo « complexe » enveloppe
+   son contenu dans .slide-original-interactive ou .slide-content-editable, et une zone de
+   texte y naissait posée mais restait static — donc au mauvais endroit, sans rien dire.
+   Ces enveloppes ne sont pas positionnées : le pourcentage se compte bien sur la diapo. */
+.slide [data-pose]{position:absolute!important;left:0;top:0;margin:0!important}
+:where(.slide [data-pose]){max-width:calc(100% - calc(16 * var(--vw1)))}
+/* Style d'apparition d'une étape, piloté par data-anim (valeurs ASCII sans accent).
+   SANS ATTRIBUT = fondu + léger glissement, exactement les deux règles ci-dessus : les
+   diapos existantes n'en portent aucun et ne doivent jamais en gagner un. Ces règles
+   restent AVANT .img-mask.step (même spécificité, la dernière l'emporte) pour ne pas
+   défaire le cas particulier des caches d'image. */
+.step[data-anim="fondu"]{transform:none}
+.step[data-anim="zoom"]{transform:scale(.94)}
+.step[data-anim="zoom"].shown{transform:none}
+/* Une liste qui arrive ligne par ligne DANS une seule zone (data-lignes sur le bloc). Une
+   ligne est en ligne (inline) : elle n'obéirait pas au max-height des .step, et le moindre
+   collapse ferait sauter tout le paragraphe. C'est donc l'opacité seule qui la cache, et
+   elle garde sa place — la même règle que « .sorti », pour la même raison.
+   « .vue » est la cascade (chronomètre), « .step.shown » le clic : deux chemins, un seul
+   aspect. Ces règles ne touchent QUE .ligne, donc rien de ce qui existe. */
+.ligne{opacity:0;transition:opacity .45s ease}
+.ligne.vue,.ligne.step.shown{opacity:1}
+.ligne.step{max-height:none;min-height:0;overflow:visible;transform:none;pointer-events:auto}
+/* Dans l'éditeur et dans les vignettes, on regarde le CONTENU, pas la mécanique : toutes
+   les lignes sont là. (L'éditeur défait de toute façon le découpage ; la règle reste pour
+   la vignette, qui clone la diapo vivante.) */
+.slide.editing .ligne,.admin-thumb-inner .ligne{opacity:1!important}
+/* U10 (1er septembre) : les formes simples. Reconnues a leurs classes (⚠️ 11) ; couleur et
+   contour en style en ligne : du contenu. Une forme d'annotation vit DANS la carte du media
+   (position:absolute) et le suit quand il bouge ou change de taille. Une forme est un bloc
+   comme un autre : .step, data-anim="fondu" et le deplacement a la poignee s'y appliquent. */
+/* position:relative : une forme peut porter un texte pose en absolu (double-clic), et il
+   doit tenir DANS elle — y compris en presentation, ou .edit-candidate a disparu. */
+.forme{display:block;flex:none;margin-top:14px;box-sizing:border-box;background:var(--acc2);position:relative}
+.forme-carre{width:120px;height:120px;border-radius:6px}
+.forme-rond{width:120px;height:120px;border-radius:50%}
+.forme-ovale{width:190px;height:110px;border-radius:50%}
+.forme-rectangle{width:220px;height:110px;border-radius:10px}
+.forme-fleche{width:200px;height:90px;clip-path:polygon(0 32%,58% 32%,58% 8%,100% 50%,58% 92%,58% 68%,0 68%)}
+/* Les trois autres directions et la ligne. Une flèche est un aplat découpé : elle ne peut
+   pas porter de contour, le découpage couperait le trait — d'où « rempli ou vide » réservé
+   aux quatre formes pleines. */
+.forme-fleche-gauche{width:200px;height:90px;clip-path:polygon(100% 32%,42% 32%,42% 8%,0 50%,42% 92%,42% 68%,100% 68%)}
+.forme-fleche-haut{width:90px;height:200px;clip-path:polygon(32% 100%,32% 42%,8% 42%,50% 0,92% 42%,68% 42%,68% 100%)}
+.forme-fleche-bas{width:90px;height:200px;clip-path:polygon(32% 0,32% 58%,8% 58%,50% 100%,92% 58%,68% 58%,68% 0)}
+.forme-ligne{width:240px;height:6px;border-radius:3px}
+/* Le phylactère (10 septembre) : un corps arrondi, et une pointe qui dit QUI parle.
+   La pointe est un carré tourné à 45° dont le fond est « inherit » : elle prend donc
+   exactement la couleur posée sur le corps par le sélecteur de la barre. Un triangle en
+   bordures aurait eu sa propre couleur, et le sélecteur ne l'aurait plus atteinte — la
+   bulle serait devenue bicolore au premier changement de teinte.
+   Deux classes plutôt qu'un réglage : c'est déjà la façon dont les quatre flèches
+   distinguent leur direction, et le panneau des formes les montre côte à côte. */
+.forme-phylactere,.forme-phylactere-droite{width:230px;height:130px;border-radius:20px}
+.forme-phylactere::after,.forme-phylactere-droite::after{content:"";position:absolute;
+  bottom:-13px;width:28px;height:28px;background-color:inherit;border-radius:0 0 5px 0;
+  transform:rotate(45deg)}
+.forme-phylactere::after{left:30px}
+.forme-phylactere-droite::after{right:30px}
+/* Vide : la couleur passe du fond au trait. Le style en ligne porte les deux (c'est du
+   contenu) ; la classe dit seulement dans quel état on est. */
+.forme.forme-vide{background-color:transparent}
+/* .forme.forme-annotation : plus specifique que .edit-candidate{position:relative}, qui vient apres. */
+.forme.forme-annotation{position:absolute;left:30%;top:30%;margin:0;z-index:3}
+
+/* ── Un texte pose DANS une forme (double-clic dedans) ──────────────────────────────
+   Il occupe le RECTANGLE INSCRIT de la forme, jamais sa boite : un carre inscrit dans un
+   rond ne fait que 71 % du diametre (d'ou les 15 % de retrait), et le corps d'une fleche
+   n'est qu'une bande de sa boite. La taille du texte, elle, est reglee en JS : elle
+   diminue tant que le texte deborde (ajusterTexteForme). */
+.forme-texte{position:absolute;inset:8%;display:flex;align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;font-family:'Baloo 2','Nunito',sans-serif;font-weight:700;
+  line-height:1.15;outline:none;overflow-wrap:anywhere;z-index:1}
+.forme-rond>.forme-texte,.forme-ovale>.forme-texte{inset:15%}
+.forme-fleche>.forme-texte{inset:34% 44% 34% 6%}
+.forme-fleche-gauche>.forme-texte{inset:34% 6% 34% 44%}
+.forme-fleche-haut>.forme-texte{inset:44% 34% 6% 34%}
+.forme-fleche-bas>.forme-texte{inset:6% 34% 44% 34%}
+/* Le texte d'un phylactère reste dans le corps : la pointe déborde en bas, il ne doit
+   pas descendre dedans. */
+.forme-phylactere>.forme-texte,.forme-phylactere-droite>.forme-texte{inset:12% 12% 16% 12%}
+/* Six pixels de haut : aucun texte n'y tiendrait. */
+.forme-ligne>.forme-texte{display:none}
+.slide.editing .forme-texte:empty::before{content:'Texte…';opacity:.55}
+
+/* Les deux poignees de bord d'une forme : largeur seule a droite, hauteur seule en bas.
+   Elles vivent dans le calque ed- de la forme, comme les autres poignees. */
+.ed-bord{position:absolute;z-index:6;background:var(--acc2);border:2px solid var(--bg2);
+  border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.45);touch-action:none;opacity:.85}
+.ed-bord:hover{opacity:1;transform:scale(1.08)}
+.ed-bord-w{top:50%;right:-9px;width:12px;height:34px;margin-top:-17px;cursor:ew-resize}
+.ed-bord-h{left:50%;bottom:-9px;width:34px;height:12px;margin-left:-17px;cursor:ns-resize}
+
+/* Un bloc qu'un clic anime se montre cliquable, comme une carte à retourner. L'attribut est
+   le JSON écrit par l'éditeur (JSON.stringify, sans espace) : on y cherche le déclencheur. */
+.slide:not(.editing) [data-animation*='"declencheur":"clic"'],
+.slide:not(.editing) [data-animation*='"declencheur":"fleche-ou-clic"']{cursor:pointer}
+
+/* ── Le retournement : un objet, et un autre derrière ────────────────────────────────
+   Un clic retourne la carte sur son axe vertical. Les deux faces sont des blocs
+   ordinaires : un texte, une image, une forme, un lien web, ou un bloc data-vers qui mène
+   à une autre diapo. « tournee » est un état de présentation, jamais enregistré.
+   backface-visibility exige que les deux faces soient superposées en absolu — d'où une
+   hauteur portée par la carte, que les poignées de l'éditeur savent changer. */
+.retourne{position:relative;display:block;flex:none;margin-top:14px;width:min(420px,calc(80 * var(--vw1)));height:240px;
+  perspective:1200px;cursor:pointer}
+.retourne-inner{position:relative;width:100%;height:100%;transition:transform .6s ease;transform-style:preserve-3d}
+.retourne.tournee .retourne-inner{transform:rotateY(180deg)}
+.retourne-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border:1px solid var(--bord);border-radius:16px;background:var(--panel);overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;text-align:center}
+.retourne-verso{transform:rotateY(180deg)}
+.retourne-face img,.retourne-face video{max-width:100%;max-height:100%;object-fit:contain;border-radius:10px}
+/* Ce qu'on pose sur une face tient dans la carte : les tailles par défaut d'une forme
+   (120 à 240 px) ou d'une carte média dépasseraient, et overflow:hidden les couperait sans
+   rien dire. Vaut aussi pour un bloc déjà sur la diapo que « ↻ Retourner » met au recto. */
+.retourne-face .forme,
+.retourne-face .imgcard,.retourne-face .imgcard-full,.retourne-face .vidwrap{
+  max-width:100%;max-height:100%;margin-top:0}
+.retourne-face > *{max-width:100%}
+.retourne-face p,.retourne-face h2,.retourne-face h3{margin:0}
+/* 10 septembre — « je ne veux pas qu'il y ait une diff de couleur devant et derrière la
+   carte ». Le recto porte souvent un titre (h2, blanc) et le verso un paragraphe
+   (p.lead, gris) : deux couleurs par héritage, alors que ce sont les deux faces d'UNE
+   carte, lues l'une après l'autre. Elles prennent donc la même — celle du texte courant.
+   Une couleur choisie à la main reste en style en ligne, et l'emporte. */
+.slide .retourne-face h1,.slide .retourne-face h2,.slide .retourne-face h3,
+.slide .retourne-face p,.slide .retourne-face li,.slide .retourne-face .lead{color:var(--tx)}
+.retourne-face a{color:var(--acc2);font-weight:800}
+/* Le repère « ça se retourne » : discret en présentation, il dit que la carte s'ouvre. */
+.retourne-face::after{content:"↻";position:absolute;right:10px;bottom:8px;font-size:.9rem;color:var(--mu);opacity:.55}
+/* En édition, les deux faces se regardent à plat : superposées et invisibles, on ne
+   pourrait pas cliquer celle qu'on veut modifier. La carte se déplie donc côte à côte.
+   Mais elle GARDE SA HAUTEUR : dépliée en `height:auto`, elle occupait 160 px au lieu de
+   240, et chaque carte suivante remontait d'autant. Une diapo de cinq cartes placées à la
+   main (« comment convaincre un climatosceptique », diapo 26) se retrouvait entièrement
+   décalée entre l'écran d'édition et la salle : « si je déplace les cartes, c'est le
+   bordel, elles ne se mettent pas comme je veux » (Antonin, 9 septembre). Ce qu'on place
+   dans l'éditeur doit occuper la place que ça occupera devant la classe. */
+.slide.editing .retourne{perspective:none}
+.slide.editing .retourne-inner{transform:none!important;display:flex;gap:12px;flex-wrap:nowrap;height:100%}
+.slide.editing .retourne-face{position:relative;inset:auto;flex:1 1 0;min-width:0;
+  backface-visibility:visible;-webkit-backface-visibility:visible;transform:none!important}
+.slide.editing .retourne-face::after{content:"recto";font-size:.68rem;text-transform:uppercase;letter-spacing:.08em}
+.slide.editing .retourne-verso::after{content:"verso"}
+/* ── La TROISIÈME face, et les suivantes (10 septembre) ────────────────────────────
+   Antonin : « rajoute une troisième face aux cartes qu'on retourne […] je clique
+   désormais trois fois pour faire le tour ». Deux faces tiennent avec un demi-tour et
+   backface-visibility ; trois n'y tiennent pas — un demi-tour ramènerait toujours la
+   même paire. La carte devient donc un PRISME : n faces posées sur les côtés d'un
+   prisme à n pans, et chaque clic le fait tourner d'un pan. Trois clics font le tour,
+   au sens propre.
+   La géométrie (l'angle d'un pan, le rayon en pixels) se calcule dans le moteur —
+   translateZ n'accepte pas de pourcentage, donc le rayon dépend de la largeur réelle de
+   la carte, qu'un ResizeObserver suit. Ce que le moteur écrit en ligne (les transforms
+   et --retourne-rayon) est de l'ÉTAT, comme « tournee » : buildCleanClone le retire, et
+   la carte revient à sa première face en arrivant sur la diapo.
+   Une carte à deux faces ne passe jamais par là : elle garde le demi-tour d'origine. */
+.slide.editing .retourne-inner > .retourne-face:nth-child(3)::after{content:"face 3"}
+.slide.editing .retourne-inner > .retourne-face:nth-child(4)::after{content:"face 4"}
+.slide.editing .retourne-inner > .retourne-face:nth-child(5)::after{content:"face 5"}
+.slide.editing .retourne-inner > .retourne-face:nth-child(6)::after{content:"face 6"}
+/* Au-delà de trois faces dépliées côte à côte, chacune devient illisible : on passe à
+   deux rangs plutôt que de les écraser. La carte garde la hauteur qu'elle aura en salle
+   (règle du 9 septembre), donc c'est l'éditeur qui montre deux rangs, pas la salle. */
+.slide.editing .retourne-inner:has(> .retourne-face:nth-child(4)){flex-wrap:wrap}
+.slide.editing .retourne-inner:has(> .retourne-face:nth-child(4)) > .retourne-face{flex:1 1 46%}
+/* ── La FORME qui se retourne (14 octobre) ─────────────────────────────────────────
+   Antonin : « un cercle rouge, tu cliques, ça devient un cercle bleu ». La carte à
+   retourner garde toute sa mécanique ; data-silhouette ne change que sa FORME. La couleur
+   de fond de chaque face (réglée face par face dans la barre) fait la couleur de la forme.
+   Une photo posée sur une face la remplit entièrement, découpée à la forme ; un texte se
+   lit par-dessus, en blanc. */
+.retourne[data-silhouette]{width:200px;height:200px}
+.retourne[data-silhouette] .retourne-face{border:none;border-radius:0;padding:14%;
+  box-shadow:inset 0 -10px 24px rgba(0,0,0,.18)}
+.retourne[data-silhouette="cercle"] .retourne-face{border-radius:50%}
+.retourne[data-silhouette="carre"] .retourne-face{border-radius:10px}
+.retourne[data-silhouette="losange"] .retourne-face{clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);padding:22%}
+.retourne[data-silhouette="triangle"] .retourne-face{clip-path:polygon(50% 2%,100% 98%,0 98%);padding:38% 22% 6%}
+.retourne[data-silhouette="hexagone"] .retourne-face{clip-path:polygon(25% 3%,75% 3%,100% 50%,75% 97%,25% 97%,0 50%)}
+.retourne[data-silhouette="etoile"] .retourne-face{clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);padding:30%}
+.retourne[data-silhouette] .retourne-face > img,.retourne[data-silhouette] .retourne-face > video{
+  position:absolute;inset:0;width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;border-radius:0}
+.retourne[data-silhouette] .retourne-face > :not(img):not(video){position:relative;z-index:1}
+.slide .retourne[data-silhouette] .retourne-face :is(h1,h2,h3,p,li,.lead){color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.45)}
+.retourne[data-silhouette] .retourne-face::after{display:none}
+/* En édition, les faces dépliées gardent leur forme (au lieu de s'écraser en ovale) : le
+   recto occupe la place qu'il aura en salle, les autres faces s'alignent à sa droite. */
+.slide.editing .retourne[data-silhouette] .retourne-inner{flex-wrap:nowrap}
+.slide.editing .retourne[data-silhouette] .retourne-inner > .retourne-face{flex:0 0 auto;height:100%;width:auto;aspect-ratio:1/1}
+.slide.editing .retourne[data-silhouette] .retourne-face::after{display:block;right:auto;left:50%;bottom:6%;
+  transform:translateX(-50%);color:#fff;opacity:.85}
+.slide.editing .forme{outline:1px dashed var(--bord);outline-offset:3px}
+.imgcard{position:relative;max-width:420px;width:calc(80 * var(--vw1));border-radius:16px;overflow:hidden;border:1px solid var(--bord);box-shadow:0 16px 40px rgba(0,0,0,.35);margin-top:14px}
+.imgcard img{width:100%;display:block}
+/* ── Le filet : un média ne peut pas être plus haut que le cadre (10 septembre) ─────
+   Sur les 17 diapos qui sortaient de l'écran, ONZE avaient la même cause : un média
+   VERTICAL. Une publicité filmée au téléphone fait 420 × 745 dans un cadre qui en offre
+   700 ; une capture d'écran de fil de discussion, 640 × 1300. La largeur était bornée, la
+   hauteur ne l'était pas — donc la hauteur suivait le format de l'image, sans limite.
+   Ces onze-là sont réglés un par un, à la bonne taille (voir les largeurs posées en style
+   en ligne). Ce qui suit n'est que le FILET, pour la prochaine vidéo verticale : au-delà
+   de 78vh — la hauteur utile d'une diapo, marges comprises — le média est ramené dans le
+   cadre au lieu d'en sortir. object-fit:contain parce que l'enveloppe est en
+   overflow:hidden : sans lui on rognerait l'image au lieu de la réduire.
+   Le filet ne touche AUCUN média d'aujourd'hui : seuls cinq dépassaient 78vh, et ce sont
+   précisément ceux qu'on vient de mettre à la bonne taille. Il ne sert qu'au prochain. */
+.slide .vidwrap,.slide .imgcard{max-height:calc(78 * var(--vh1))}
+.slide .vidwrap video,.slide .imgcard img{max-height:calc(78 * var(--vh1));object-fit:contain}
+/* Aucune image ne peut être plus large que la diapo. Évident — et pourtant : la balle de
+   tennis de la devinette (influenceurs, diapo 35) est un PNG de 2000 × 2000 posé nu dans
+   le HTML, sans enveloppe .imgcard, donc sans aucune des règles qui bornent les autres.
+   Elle s'affichait à 2000 px de haut, deux mille pixels sous le cadre. */
+.slide img,.slide video{max-width:100%}
+/* Le visuel d'une devinette (raquette + balle) : deux vignettes, pas deux affiches. Cette
+   règle vivait dans le <style> de fake-news-niveau1 ; la formation « influenceurs » avait
+   repris le HTML sans le CSS, et rien ne le disait. Elle monte donc au socle, comme celle
+   des vidéos verticales. */
+.riddle-visual{display:flex;justify-content:center;align-items:center;gap:14px;margin-bottom:18px}
+.riddle-visual img{height:70px;width:auto;background:#fff;border-radius:10px;padding:8px;
+  box-shadow:0 6px 14px rgba(0,0,0,.3)}
+.imgcard.small{max-width:300px}
+.imgcard-full{position:relative;max-width:calc(94 * var(--vw1));max-height:calc(70 * var(--vh1));border-radius:16px;overflow:hidden;border:1px solid var(--bord);box-shadow:0 16px 40px rgba(0,0,0,.35);margin-top:10px}
+.imgcard-full img{display:block;max-width:calc(94 * var(--vw1));max-height:calc(70 * var(--vh1));width:auto;height:auto}
+/* Pivoter une vidéo d'un quart de tour, en séance (10 septembre). Le geste existait depuis
+   « fake-news-niveau1 », mais son habillage vivait dans le <style> de cette formation-là :
+   la même vidéo posée ailleurs héritait du comportement (le moteur lie .rotate-btn dans
+   bindComportements) et pas de l'apparence. Les deux vivent ici désormais.
+   Le bouton se pose DANS un .vid-rotate-wrap qui enveloppe la carte vidéo : c'est lui qui
+   donne le repère au positionnement absolu, sans toucher à .vidwrap. */
+.vid-rotate-wrap{position:relative;display:inline-flex}
+.rotate-btn{position:absolute!important;top:6px;right:6px;z-index:12!important;width:34px;height:34px;
+  border-radius:50%;background:rgba(17,24,39,.65);border:1px solid var(--bord);color:#fff;
+  font-size:1.2rem;cursor:pointer;line-height:1}
+.rotate-btn:hover{border-color:var(--acc2)}
+.two-imgs{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+.sensitive-gate .warn{font-family:'Baloo 2','Nunito',sans-serif;color:var(--ko);font-weight:700;font-size:1.05rem;margin-bottom:8px}
+.sensitive-gate p{color:var(--mu-diapo);font-size:.88rem;line-height:1.5;margin-bottom:14px}
+.sensitive-gate.open .gate-btn{display:none}
+.gate-btn{background:var(--ko);color:#fff;border:none;border-radius:50px;padding:11px 26px;font-family:'Baloo 2','Nunito',sans-serif;font-weight:700;cursor:pointer}
+.riddle-box{background:var(--panel);border:1px solid var(--bord);border-radius:18px;padding:26px 30px;max-width:560px;width:calc(85 * var(--vw1));margin-top:20px;text-align:left}
+.riddle-box .q{font-weight:700;font-size:1.05rem;line-height:1.6}
+.riddle-answer{margin-top:16px;padding-top:16px;border-top:1px dashed var(--bord);display:none}
+.riddle-answer.show{display:block}
+.riddle-answer b{color:var(--acc)}
+.compare{display:flex;gap:18px;margin-top:24px;flex-wrap:wrap;justify-content:center}
+.compare .col{background:var(--panel);border:1px solid var(--bord);border-radius:16px;padding:20px 22px;width:260px;text-align:left}
+.compare .col h3{font-family:'Baloo 2','Nunito',sans-serif;color:var(--acc2);font-size:1.05rem;margin-bottom:10px}
+.compare .col.sys2 h3{color:var(--acc)}
+.compare .col ul{padding-left:18px}
+/* ── Deux réglages du 21 septembre, posés sur la DIAPO et non sur son identifiant ────────
+   Une diapo de série voyage d'une formation à l'autre ; sa feuille <style> reste derrière.
+   « #s11 { … } » dans niveau1 ne suit donc pas s11 chez 6e-5e — et il y a même un s11 sans
+   rapport chez influenceurs, qu'une règle partagée sur l'identifiant abîmerait. Une CLASSE
+   posée sur la section, elle, est DANS le bloc recopié : elle part avec la diapo, et ne
+   touche que celles qui la portent. */
+/* Deux vidéos côte à côte (l'effet de cadrage) : empilées elles débordaient de 700 px, et
+   côte à côte il restait 120 px de trop — la légende passait sous la ligne d'horizon. */
+.slide.videos-cote-a-cote .vidwrap,
+.slide.videos-cote-a-cote .vidwrap video{max-height:calc(50 * var(--vh1))}
+/* 21 septembre — cette regle ne vaut que pour une diapo qui montre VRAIMENT deux videos
+   cote a cote. Quand il n'en reste qu'une, c'est l'etiquette `videos-cote-a-cote` qu'il
+   faut retirer de la diapo, pas le plafond qu'il faut contourner : Antonin, le jour ou
+   s11 a perdu sa seconde video — « j'ai enleve la seconde video, donc la regle ne doit
+   plus s'appliquer ». */
+
+/* ── Une taille posee A LA MAIN n'a plus aucun plafond (21 septembre) ──────────────────
+   Antonin : « je ne veux pas de limite ».
+   L'audit des 895 medias des douze formations a trouve 430 defauts, dont 317 du meme
+   mecanisme : la poignee ecrit une largeur sur le CADRE, mais la photo dedans garde
+   `largeur:auto ; hauteur:auto` avec ses plafonds (94 % de la largeur de la diapo, 70 % de
+   sa hauteur). Le cadre s'elargissait donc autour d'une photo qui ne bougeait pas d'un
+   pixel — et une photo verticale, deja collee a son plafond, ne pouvait plus grandir du
+   tout. C'est le « impossible d'agrandir la photo » de s6-7, s-paul-1 et des 315 autres.
+   Le remede existait depuis le 11 septembre, mais pour le seul `.vidwrap`, dans le <style>
+   de la seule niveau1. Il vit ici, pour les trois cadres et les douze interventions.
+   Le prefixe `.slide` n'est pas decoratif : sans lui, la regle « videos cote a cote »
+   (trois classes) l'emporterait sur celle-ci. */
+.slide .imgcard[style*="width"],
+.slide .imgcard-full[style*="width"],
+.slide .vidwrap[style*="width"]{max-width:none;max-height:none}
+.slide .imgcard[style*="width"] img,.slide .imgcard[style*="width"] video,
+.slide .imgcard-full[style*="width"] img,.slide .imgcard-full[style*="width"] video,
+.slide .vidwrap[style*="width"] img,.slide .vidwrap[style*="width"] video{
+  width:100%;height:auto;max-width:none;max-height:none}
+/* Et le meme principe pour un media pose sans cadre, dont la poignee ecrit la taille
+   directement sur lui : ce qui est ecrit a la main fait foi. */
+.slide img[style*="width"],.slide video[style*="width"]{max-width:none;max-height:none}
+/* ── La réponse occupe sa place, la diapo se resserre (21 septembre) ────────────────────
+   En retirant les boutons « Voir la réponse », l'encadré révélé est devenu un bloc `.step`.
+   Un `.reveal-box` fermé était à max-height:0 : son contenu ne coûtait RIEN en hauteur, et
+   six diapos ne tenaient que grâce à ça — elles débordaient dès qu'on cliquait, sans que
+   personne ne le mesure. Une étape, elle, réserve sa place dès l'arrivée (décision U9), et
+   c'est ce qu'on veut : ce qui apparaît ne pousse plus ce qui est déjà lu.
+   Reste à faire tenir les six. La photo (ou la vidéo) de la réponse cède les 40 à 150 px
+   qui manquent : c'est elle qui en a le plus, et la réduire ne coûte rien à la lecture.
+   La classe est posée sur la SECTION, donc elle suit la diapo d'une formation à l'autre —
+   une règle sur l'identifiant, elle, serait restée dans la feuille d'origine. */
+.slide.reponse-compacte .imgcard{width:auto;max-width:none}
+.slide.reponse-compacte .imgcard img{max-height:calc(28 * var(--vh1));width:auto}
+.slide.reponse-compacte .vidwrap,
+.slide.reponse-compacte .vidwrap video{max-height:calc(44 * var(--vh1))}
+/* Une question de quiz vrai/faux devenue une vraie diapo : un titre, une photo, un sondage
+   et la réponse au clic. L'image doit laisser sa place aux trois autres : sans plafond, la
+   règle commune (70 vh) la laisse pousser le sondage et la réponse hors du cadre. */
+.slide.quiz-vrai-faux .imgcard-full,
+.slide.quiz-vrai-faux .imgcard-full img{max-height:calc(41 * var(--vh1))}
+.slide.quiz-vrai-faux .wpoll{margin-top:16px}
+/* Colonnes sans cadre (« juste des images et un texte ») : le fond, la bordure et l'ombre
+   partent, l'image reprend la place libérée, et les lignes sont des <p> ordinaires — donc
+   modifiables à la main dans l'éditeur, ce qu'une liste <ul><li> n'était pas. */
+.slide.colonnes-nues .compare .col{background:none;border:none;box-shadow:none;padding:0;text-align:center;width:360px}
+.slide.colonnes-nues .compare .col .lead{font-size:1rem;line-height:1.6}
+.slide.colonnes-nues .compare-img{height:170px}
+/* Une source posee depuis la fenetre « Trouver des sources » : le lien porte le texte de
+   la source, sans le bleu du navigateur — c'est une legende, pas un bouton. */
+.src-lien{color:inherit;text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px;}
+.src-lien:hover{color:var(--acc2);}
+.gamelink{display:inline-flex;align-items:center;gap:8px;margin-top:22px;background:linear-gradient(135deg,var(--acc2),#6d4fd6);color:#04202c;border-radius:50px;padding:12px 26px;text-decoration:none;font-family:'Baloo 2','Nunito',sans-serif;font-weight:700;font-size:.92rem}
+.persona{background:var(--panel);border:1px solid var(--bord);border-radius:16px;padding:18px 20px;width:260px;cursor:pointer;text-align:left}
+.persona .pname{font-family:'Baloo 2','Nunito',sans-serif;font-weight:700;margin-bottom:6px}
+.persona .pexpl{display:none;font-size:.85rem;color:var(--mu-diapo);margin-top:8px;line-height:1.5;font-weight:600}
+.persona.open .pexpl{display:block}
+.tips-list{list-style:none;margin-top:24px;display:flex;flex-direction:column;gap:10px;max-width:600px;width:100%;text-align:left}
+.tips-list li{background:var(--panel);border:1px solid var(--bord);border-radius:12px;padding:13px 18px;font-weight:700;display:flex;align-items:flex-start;gap:12px}
+.tips-list .n{font-family:'Baloo 2','Nunito',sans-serif;color:var(--acc);font-size:1.3rem;flex:none}
+.divider-slide h2{font-size:clamp(1.8rem,calc(5 * var(--vw1)),3rem)}
+.divider-slide .em{font-size:3rem;margin-bottom:10px}
+.concl-box p.context{color:var(--acc)}
+.admin-modal{display:none;position:fixed;inset:0;z-index:200;background:var(--bg2);padding:76px 24px 24px;overflow-y:auto}
+.admin-modal.open{display:block}
+.admin-head{position:fixed;top:0;left:0;right:0;min-height:56px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:10px 24px;background:var(--panel);border-bottom:1px solid var(--bord);z-index:2;gap:10px 14px}
+.admin-head h3{font-family:'Baloo 2','Nunito',sans-serif;color:var(--acc);font-size:1.05rem;white-space:nowrap}
+.admin-head .actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.admin-head button{background:var(--panel2);border:1px solid var(--bord);color:var(--tx);border-radius:10px;padding:8px 14px;font-size:.82rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif}
+.admin-head button:hover{border-color:var(--acc2)}
+.admin-head button.primary{background:linear-gradient(135deg,var(--acc),#b8235f);color:#2a1c02;border:none}
+.admin-head select{background:var(--panel2);border:1px solid var(--bord);color:var(--tx);border-radius:10px;padding:8px 12px;font-size:.82rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif}
+.admin-count{color:var(--mu);font-size:.82rem;font-weight:700;white-space:nowrap}
+.admin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.admin-card{background:var(--panel);border:1px solid var(--bord);border-radius:14px;padding:10px;transition:border-color .15s,opacity .15s;position:relative}
+.admin-card:hover{border-color:var(--acc2)}
+.admin-card.dragging{opacity:.35}
+.admin-card-drag{cursor:grab;text-align:center;color:var(--mu);font-size:.9rem;letter-spacing:3px;padding:4px 0 8px;border-radius:8px;user-select:none}
+.admin-card-drag:hover{color:var(--acc2);background:var(--panel2)}
+.admin-card-drag:active{cursor:grabbing}
+.admin-card .an{position:absolute;top:16px;left:16px;z-index:2;font-family:'Baloo 2','Nunito',sans-serif;color:#fff;font-weight:700;font-size:.78rem;background:rgba(17,24,39,.65);border-radius:8px;padding:2px 8px}
+.admin-card .aid{margin-top:6px;font-size:.7rem;color:var(--mu);font-family:monospace}
+.admin-card input[type=checkbox]{position:absolute;top:14px;right:14px;z-index:2;width:19px;height:19px;cursor:pointer;accent-color:var(--acc)}
+.admin-thumb-frame{position:relative;width:100%;overflow:hidden;border-radius:10px;background:#000;border:1px solid var(--bord);cursor:zoom-in}
+.admin-thumb-frame:hover{border-color:var(--acc2)}
+.admin-thumb-inner{position:absolute;top:0;left:0;transform-origin:top left;pointer-events:none}
+.admin-thumb-inner .slide{opacity:1!important;transform:none!important;transition:none!important;pointer-events:none!important}
+.admin-title-input{margin-top:8px;width:100%;background:var(--panel2);border:1px solid var(--bord);border-radius:8px;color:var(--tx);padding:6px 9px;font-size:.82rem;font-weight:700;font-family:'Nunito',sans-serif}
+.admin-title-input:focus-visible{outline:2px solid var(--acc2);outline-offset:1px}
+.admin-edit-btn{margin-top:8px;width:100%;background:var(--panel2);border:1px solid var(--acc);color:var(--acc);border-radius:8px;padding:7px 9px;font-size:.8rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif}
+.admin-edit-btn:hover{background:rgba(167,139,250,.15)}
+.admin-zoom-modal{display:none;position:fixed;inset:0;z-index:300;background:rgba(5,8,14,.88);align-items:center;justify-content:center;padding:30px}
+.admin-zoom-modal.open{display:flex}
+.admin-zoom-modal .admin-thumb-frame{border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.55);cursor:default}
+.admin-zoom-close{position:fixed;top:70px;right:24px;z-index:301;width:40px;height:40px;border-radius:50%;background:var(--panel);border:1px solid var(--bord);color:var(--tx);font-size:1.2rem;cursor:pointer}
+.admin-zoom-close:hover{border-color:var(--acc2)}
+.admin-card-del{position:absolute;bottom:10px;right:10px;z-index:2;width:28px;height:28px;border-radius:50%;background:var(--panel2);border:1px solid var(--bord);color:var(--tx);cursor:pointer;font-size:.85rem;line-height:1}
+.admin-card-del:hover{border-color:#e0554f;color:#e0554f}
+/* Antonin, 12 septembre : « tu as un onglet toujours ouvert a gauche sur les formations
+   (position, ajouter, annuler) qu'on ne peut pas fermer ».
+
+   C'etait la fenetre « Ajouter une diapo », et elle n'etait pas fermable parce qu'elle
+   n'etait pas OUVERTE : elle n'avait simplement jamais ete cachee. Sa regle de base vivait
+   dans le <style> de chaque formation — et deux d'entre elles ne l'avaient pas, dont
+   « comment convaincre un climatosceptique ». Encore deux listes a tenir ensemble.
+
+   Le defaut est ancien ; c'est la toile qui l'a revele. Tant que #deck occupait toute la
+   fenetre, la fenetre orpheline etait poussee sous la ligne de flottaison, et body porte
+   overflow:hidden : personne ne la voyait. La toile l'a sortie du flux, et l'orpheline est
+   remontee en haut a gauche.
+
+   La regle est donc ici, ou aucune formation ne peut l’oublier — comme .admin-modal,
+   .admin-zoom-modal et .admin-edit-modal, qui y etaient deja. Les copies que quatre
+   formations gardent dans leur <style> sont identiques et sans effet. */
+.addslide-modal{display:none;position:fixed;inset:0;z-index:410;background:rgba(0,0,0,.6);
+  align-items:center;justify-content:center;padding:20px}
+.addslide-modal.open{display:flex}
+.addslide-modal-box{background:var(--panel);border:1px solid var(--bord);border-radius:18px;padding:24px;max-width:520px;width:100%;max-height:80vh;display:flex;flex-direction:column;text-align:left;overflow-y:auto}
+.addslide-modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.addslide-modal-head h3{font-family:'Baloo 2','Nunito',sans-serif;font-size:1.15rem;color:var(--acc)}
+.addslide-modal-head button{background:none;border:none;color:var(--mu);font-size:1.2rem;cursor:pointer}
+.addslide-modal-body{display:flex;flex-direction:column;gap:12px}
+.addslide-modal-actions{display:flex;gap:10px;margin-top:6px}
+.addslide-field{margin-bottom:2px}
+.addslide-field label{display:block;font-size:.8rem;font-weight:700;color:var(--mu);margin-bottom:6px}
+.addslide-input{width:100%;background:var(--panel2);border:1px solid var(--bord);border-radius:8px;color:var(--tx);padding:9px 12px;font-size:.9rem;font-family:'Nunito',sans-serif}
+.addslide-field textarea.addslide-input{min-height:90px;resize:vertical}
+.addslide-hint{font-size:.76rem;color:var(--mu);margin-top:6px}
+.addslide-warn{font-size:.8rem;color:#e0554f;margin-top:8px;display:none}
+.addslide-warn.show{display:block}
+.admin-edit-modal{display:none;position:fixed;inset:0;z-index:400;background:var(--bg2)}
+.admin-edit-modal.open{display:flex;flex-direction:column}
+.admin-edit-head{flex:none;min-height:56px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:10px 20px;background:var(--panel);border-bottom:1px solid var(--bord);gap:10px 14px}
+.admin-edit-head h3{font-family:'Baloo 2','Nunito',sans-serif;color:var(--acc);font-size:1rem;white-space:nowrap}
+.admin-edit-head .actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.admin-edit-head button{background:var(--panel2);border:1px solid var(--bord);color:var(--tx);border-radius:10px;padding:8px 14px;font-size:.82rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif}
+.admin-edit-head button:hover{border-color:var(--acc2)}
+.admin-edit-head button.primary{background:linear-gradient(135deg,var(--acc),#7c5ce0);color:#160a2e;border:none}
+.admin-edit-hint{font-size:.72rem;color:var(--mu)}
+.admin-edit-stage{flex:1;overflow:auto;position:relative;background:#05070c}
+/* ── L'éditeur montre la diapo TELLE QU'ELLE SERA (10 septembre) ────────────────────
+   Antonin, pour la troisième fois : « c'est toujours décalé ! Insupportable ».
+   La cause n'était pas dans les blocs, elle était ici. La scène de l'éditeur est plus
+   étroite que l'écran (le rail lui prend sa droite) et portait ses propres marges
+   (60px 6vw au lieu de 100px 8vw). Un titre qui tient sur une ligne en présentation —
+   donc dans une boîte étroite, centrée — passait à la ligne dans la scène, remplissait
+   toute la largeur et se retrouvait collé à gauche. Rien n'avait bougé : ce n'était pas
+   la même page.
+   Désormais la diapo garde EXACTEMENT sa taille de présentation (la fenêtre entière) et
+   c'est l'IMAGE qu'on réduit, d'un seul scale. Mêmes marges, mêmes retours à la ligne,
+   mêmes centrages, aux mêmes endroits — en plus petit. Le seul prix : les glissers à la
+   souris divisent leur déplacement par cette échelle (echelleEditeur), sinon le bloc
+   courrait plus vite que le curseur. */
+.ed-cadre{position:relative;margin:12px auto;flex:none;outline:1px solid rgba(255,255,255,.14);border-radius:4px}
+.admin-edit-stage .slide.editing{position:relative!important;inset:auto!important;opacity:1!important;
+  pointer-events:auto!important;transition:none!important;
+  width:var(--ed-w,100%)!important;height:var(--ed-h,auto)!important;min-height:0!important;
+  transform:scale(var(--ed-k,1))!important;transform-origin:top left}
+/* Aucune marge imposee ici : la diapo garde CELLE DE SA FORMATION. L'ancienne regle en
+   plaquait une (60px 6vw), et une formation qui rehausse ses diapos dans son propre
+   <style> voyait donc tout son contenu descendre de dix pixels dans l'editeur. */
+.editable-text{outline:1px dashed transparent;border-radius:4px;cursor:text;transition:outline-color .15s}
+.editable-text:hover,.editable-text:focus-visible{outline-color:var(--acc2);outline-style:dashed}
+.edit-candidate{position:relative}
+/* U3 (1er septembre) : un bloc vide se repliait a 0 pixel, donc plus rien a cliquer et rien
+   pour le supprimer. En edition, tout bloc garde une surface prehensible, et un bloc vide
+   se voit (contour). U4 : les invites d'une diapo neuve sont du CSS, jamais du contenu :
+   elles ne s'affichent qu'en edition et n'atteignent jamais le fichier. */
+.slide.editing .edit-candidate{min-width:3em;min-height:1.3em}
+/* Le temps d'une mesure (« Ramener dans la diapo », étape AB) la diapo est jugée telle que
+   LA SALLE la verra : ce confort d'édition prend de la place, et la place est justement ce
+   qu'on mesure. data-ed-* : l'attribut est retiré à l'enregistrement, par préfixe. */
+.slide.editing[data-ed-mesure] .edit-candidate{min-width:0;min-height:0}
+/* data-ed-vide est pose par l'editeur (majInvite) quand le texte saisi est vide, et retire
+   par prefixe a l'enregistrement comme tout attribut data-ed-*. :empty ne peut pas servir :
+   la pastille d'apparition vit DANS le bloc. */
+.slide.editing .editable-text[data-ed-vide]{display:inline-block;min-width:3em;min-height:1.3em;outline-color:var(--acc2);outline-style:dashed}
+.slide.editing .editable-text[data-ed-vide]::before{content:"Tapez votre texte";color:var(--mu);opacity:.75;pointer-events:none;font-weight:600}
+.slide.editing h1 > .editable-text[data-ed-vide]::before,.slide.editing h2 > .editable-text[data-ed-vide]::before,.slide.editing h1.editable-text[data-ed-vide]::before,.slide.editing h2.editable-text[data-ed-vide]::before{content:"Titre de la diapo"}
+/* Un media ou une forme se prend directement a la main dans l'editeur (7 septembre) :
+   le curseur le dit. Les blocs de TEXTE gardent le curseur du texte — on y ecrit, et on y
+   selectionne des mots ; eux se deplacent par leur poignee ✥. */
+.slide.editing .media-draggable.imgcard,.slide.editing .media-draggable.imgcard-full,
+.slide.editing .media-draggable.vidwrap,.slide.editing .media-draggable.forme,
+.slide.editing img.media-draggable,.slide.editing video.media-draggable{cursor:move}
+.slide.editing .step{opacity:1!important;max-height:none!important;overflow:visible!important;transform:none;pointer-events:auto!important}
+.slide.editing .step:not(.shown){outline:2px dashed var(--acc2);outline-offset:3px;border-radius:8px}
+/* La molette des paliers (10 septembre) : « une petite molette qui joue les différentes
+   animations de la slide, et je peux m'arrêter quand je veux pour faire des modifs ».
+   Tant qu'on n'y touche pas, l'éditeur déplie tout comme avant. Dès qu'on la bouge, la
+   diapo prend l'état du palier choisi — mais un bloc pas encore arrivé reste en filigrane
+   au lieu de disparaître : sinon on ne pourrait plus le désigner pour le modifier, ce qui
+   est exactement ce qu'on est venu faire. */
+.slide.editing.ed-au-palier .step:not(.shown){opacity:.22!important}
+.slide.editing.ed-au-palier .step.shown{opacity:1!important}
+.slide.editing.ed-au-palier .sorti{opacity:.22!important}
+.slide.editing.ed-au-palier .ligne:not(.vue):not(.shown){opacity:.22}
+/* La pastille vit HORS du bloc, a droite : posee a l'interieur (right:4px), elle couvrait
+   la fin de la premiere ligne des blocs de texte, qui epousent leur contenu (flex centre).
+   Le repli .ed-rentre la fait rentrer quand le bloc touche le bord droit de la scene. */
+.step-toggle{position:absolute;top:4px;right:-32px;z-index:5;width:28px;height:28px;border-radius:50%;background:rgba(17,24,39,.8);border:1px solid var(--bord);color:var(--tx);font-size:.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.step-toggle.ed-rentre{right:4px}
+/* Palier partage : deux blocs qui apparaissent ensemble portent le meme numero et ce
+   lisere commun — le plan de revelation se lit d'un coup d'oeil. */
+.step-toggle.ed-palier-partage{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc)}
+.step-toggle.ed-palier-partage .step-rank{background:var(--acc);color:var(--bg)}
+.step-toggle.is-step{border-color:var(--acc2)}
+/* Rang de révélation, lisible sans ouvrir le panneau : c'est ce qui permet de voir
+   d'un coup d'œil le plan de révélation de toute la diapo. */
+.step-toggle .step-rank{position:absolute;bottom:-5px;right:-5px;min-width:15px;height:15px;border-radius:8px;background:var(--acc2);color:var(--bg);font-size:.6rem;font-weight:800;line-height:15px;text-align:center;padding:0 2px}
+.del-toggle{position:absolute;top:4px;left:4px;z-index:5;width:28px;height:28px;border-radius:50%;background:rgba(127,20,20,.85);border:1px solid var(--ko);color:#fff;font-size:.8rem;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.del-toggle:hover{background:var(--ko)}
+/* Panneau de réglage de l'apparition. Il est enfant de <body>, jamais du bloc : ainsi
+   buildCleanClone() ne peut pas le sérialiser dans l'index.html, même si on oubliait
+   une liste de nettoyage. La sécurité vient de la structure, pas d'une liste. */
+#reveal-panel{position:fixed;z-index:600;width:250px;background:var(--panel);border:1px solid var(--bord);border-radius:12px;padding:12px;box-shadow:0 16px 40px rgba(0,0,0,.45);font-size:.82rem}
+#reveal-panel h5{margin:0 0 8px;font-size:.72rem;color:var(--mu);text-transform:uppercase;letter-spacing:.04em}
+#reveal-panel label{display:flex;align-items:center;gap:7px;padding:4px 0;cursor:pointer}
+#reveal-panel select,#reveal-panel input[type=number]{background:var(--panel2);color:var(--tx);border:1px solid var(--bord);border-radius:8px;padding:5px 7px;font:inherit}
+#reveal-panel input[type=number]{width:62px}
+#reveal-panel .rv-row{display:flex;align-items:center;gap:8px;margin-top:8px}
+#reveal-panel .rv-eff{color:var(--mu);font-size:.72rem}
+#reveal-panel .rv-mask{margin-top:10px;width:100%;background:var(--panel2);border:1px solid var(--acc2);color:var(--acc2);border-radius:8px;padding:6px;font:inherit;font-weight:700;cursor:pointer}
+#reveal-panel .rv-close{position:absolute;top:6px;right:6px;width:22px;height:22px;border-radius:50%;padding:0;background:var(--panel2);border:1px solid var(--bord);color:var(--tx);cursor:pointer}
+/* U1 (1er septembre) : le fond du cache est du contenu (il cache), la bordure en pointilles
+   est une affordance d'edition : elle ne se peint qu'en mode edition, jamais en presentation.
+   U2 : la croix et la poignee vivent A L'INTERIEUR du cache. Posees a -11px, elles
+   tombaient hors de sa boite et .imgcard/.vidwrap (overflow:hidden) les rognaient. */
+.img-mask{position:absolute;background:var(--bg);box-sizing:border-box}
+.slide.editing .img-mask{border:2px dashed var(--acc2)}
+.img-mask.step{opacity:1;max-height:none;min-height:0;overflow:visible;transform:none;transition:opacity .4s ease;pointer-events:auto}
+.img-mask.step.shown{opacity:0;pointer-events:none}
+.img-mask .mask-resize{position:absolute;bottom:3px;right:3px;width:16px;height:16px;border-radius:50%;z-index:2;background:var(--acc2);border:2px solid var(--bg2);cursor:nwse-resize}
+.img-mask .mask-del{position:absolute;top:3px;right:3px;width:22px;height:22px;border-radius:50%;z-index:2;background:rgba(127,20,20,.9);color:#fff;border:1px solid var(--ko);font-size:.7rem;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.imgsize-ctl{position:absolute;bottom:6px;right:6px;z-index:5;display:flex;gap:4px;background:rgba(17,24,39,.8);border-radius:8px;padding:4px}
+.imgsize-ctl button{width:26px;height:22px;border-radius:5px;border:1px solid var(--bord);background:var(--panel2);color:var(--tx);font-size:.65rem;font-weight:800;cursor:pointer;padding:0}
+.imgsize-ctl button.active{background:var(--acc);color:#160a2e;border-color:var(--acc)}
+/* Calque des medias nus : un <img>/<video> sans conteneur ne peut pas porter d'enfants,
+   ses poignees vivent dans ce calque recale sur sa boite. Transparent aux clics, sauf
+   les poignees elles-memes. */
+.ed-calque-media{position:absolute;z-index:6;pointer-events:none}
+.ed-calque-media>*{pointer-events:auto}
+.media-draggable{outline:1px dashed var(--bord);outline-offset:4px}
+.media-move-handle{position:absolute;bottom:-14px;left:-14px;z-index:6;width:30px;height:30px;border-radius:50%;background:var(--panel2);border:2px solid var(--acc2);color:var(--acc2);font-size:.95rem;cursor:move;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.45);touch-action:none}
+.media-move-handle:hover{background:var(--acc2);color:#04202c}
+.media-resize-handle{position:absolute;bottom:-14px;right:-14px;width:26px;height:26px;border-radius:50%;z-index:6;background:var(--acc2);border:2px solid var(--bg2);cursor:nwse-resize;box-shadow:0 2px 8px rgba(0,0,0,.45);touch-action:none}
+.media-resize-handle:hover{transform:scale(1.15)}
+/* Sur un bloc de texte, la poignée ne fait que la LARGEUR : la hauteur suit le texte, qui
+   se recoupe. Le curseur le dit — une flèche à double sens horizontale, pas une diagonale
+   qui promettrait de changer aussi la hauteur. */
+.media-resize-handle.media-resize-largeur{cursor:ew-resize}
+.media-reset-btn{position:absolute;top:-14px;right:-14px;z-index:6;width:26px;height:26px;border-radius:50%;background:var(--panel2);border:1px solid var(--bord);color:var(--tx);font-size:.9rem;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center}
+.media-reset-btn:hover{border-color:var(--acc2);color:var(--acc2)}
+/* 21 septembre — Antonin, sur « Devinette eclair » : « impossible d'agrandir la photo ».
+   Mesure faite : la poignee d'agrandissement de la raquette EXISTE, mais elle est
+   recouverte par la poignee de deplacement de la balle. Les poignees debordent de 14 px
+   hors du media ; entre deux petites images separees d'un intervalle de 14 px, celles de
+   l'une tombent exactement sur celles de l'autre, et la derniere posee gagne. Aucun reglage
+   de z-index n'y peut rien : chaque calque est son propre plan.
+   Quand le media est petit, les poignees se rangent DEDANS. Elles ne debordent plus, donc
+   elles ne peuvent plus se voler l'une l'autre, et elles restent attrapables. */
+   La classe est posee sur les POIGNEES, jamais sur le media : une poignee est retiree du
+   document avant tout enregistrement, donc rien de ce reglage ne peut atteindre un fichier. */
+.media-move-handle.poignees-dedans{bottom:3px;left:3px;width:22px;height:22px;font-size:.78rem;border-width:1px}
+.media-resize-handle.poignees-dedans{bottom:3px;right:3px;width:20px;height:20px;border-width:1px}
+.media-reset-btn.poignees-dedans{top:3px;right:3px;width:20px;height:20px;font-size:.72rem}
+/* La barre S/M/L/XL fait 130 px : sur un media plus etroit, elle deborde sur la voisine et
+   lui vole ses poignees. Elle ne se montre alors que quand le pointeur est sur ce media.
+   Au-dessus de ce seuil, elle reste visible comme avant : rien ne change a l'habitude. */
+.imgsize-ctl.cran-etroit{display:none}
+.imgsize-ctl.cran-etroit.cran-montre{display:flex}
+.trim-ctl{position:absolute;top:6px;left:6px;right:6px;z-index:5;background:rgba(17,24,39,.85);border-radius:8px;padding:6px 8px;display:flex;flex-direction:column;gap:4px}
+.trim-ctl label{display:flex;align-items:center;gap:6px;font-size:.68rem;color:var(--tx);font-weight:700}
+.trim-ctl input[type=range]{flex:1;accent-color:var(--acc2)}
+.trim-ctl .trim-val{width:38px;text-align:right;font-variant-numeric:tabular-nums;color:var(--mu)}
+.attention{margin-top:22px;font-family:'Baloo 2','Nunito',sans-serif;font-size:1.15rem;color:var(--acc);opacity:0;transform:translateY(8px);transition:.4s}
+.attention.show{opacity:1;transform:none}
+.fear-chip{background:var(--panel);border:1px solid var(--bord);border-radius:14px;padding:16px;font-weight:700;font-size:.88rem;text-align:left}
+.fear-chip .em{font-size:1.4rem;display:block;margin-bottom:6px}
+.checklist li{font-weight:700;transition:opacity .35s ease,max-height .35s ease}
+.qcard.revealed{border-color:var(--acc2)}
+
+/* ── Familles promues pour la bibliothèque de modèles (étape B) ──
+   Un modèle ne doit jamais dépendre du <style> d'une formation, sinon il ne
+   marche pas dans une intervention neuve. Ces règles existaient déjà, mais
+   accrochées à #s0 dans 4 formations sur 5 : ici elles le sont à des CLASSES,
+   ce qui les rend utilisables par une diapo engendrée, où qu'elle se trouve.
+   Aucune formation ne perd la main : celles qui possèdent ces éléments les
+   déclarent déjà, et leur <style> passe après cette feuille. */
+.cover .logo{font-size:3rem;margin-bottom:6px}
+.cover h1{font-size:clamp(2rem,calc(6 * var(--vw1)),3.4rem);font-weight:800;background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.cover .objectifs{list-style:none;margin-top:26px;display:flex;flex-direction:column;gap:10px;text-align:left;max-width:520px}
+.cover .objectifs li{background:var(--panel);border:1px solid var(--bord);border-radius:14px;padding:12px 18px;font-weight:700;display:flex;align-items:center;gap:12px}
+.cover .objectifs li b{color:var(--acc);font-family:'Baloo 2','Nunito',sans-serif;font-size:1.1rem}
+.quote-block{background:var(--panel);border-left:4px solid var(--acc);border-radius:0 14px 14px 0;padding:18px 24px;max-width:640px;width:calc(86 * var(--vw1));margin-top:20px;text-align:left;font-style:italic;font-weight:700;font-size:1.02rem;line-height:1.6}
+.quote-block cite{display:block;margin-top:12px;font-style:normal;font-size:.8rem;color:var(--mu-diapo);font-weight:700}
+.quiz-slide{padding-top:70px}
+/* Pastilles VRAI / FAUX du modèle « Quiz vrai/faux ». Elles sont posées à
+   l'exécution par createTrueFalseQuiz (classe `vrai` ou `faux` sur le badge, puis
+   sur la carte à la révélation) : sans ces règles, une diapo de ce modèle créée
+   ailleurs que dans influenceurs — la seule formation qui les déclarait en local —
+   affiche ses pastilles sans style. Les valeurs sont exactement celles
+   d'influenceurs, dont le <style> passe de toute façon après cette feuille.
+   `.qcard.revealed.vrai` (3 classes) l'emporte sur le `.qcard.revealed` local de
+   niveau2 et de raisonnements-fallacieux par spécificité, ce qui est voulu : sur un
+   quiz vrai/faux, la bordure doit dire la réponse. */
+.qcard.revealed.vrai{border-color:var(--ok)}
+.qcard.revealed.faux{border-color:var(--ko)}
+.qcard .badge.vrai{background:rgba(62,207,142,.18);color:var(--ok);border:1px solid var(--ok)}
+.qcard .badge.faux{background:rgba(247,95,95,.18);color:var(--ko);border:1px solid var(--ko)}
+
+/* Grille de choix d'un modèle, dans « ➕ Ajouter une diapo ». */
+.addslide-modeles{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px;margin-bottom:16px}
+.addslide-modele{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 6px;background:var(--panel2);border:1px solid var(--bord);border-radius:12px;color:var(--tx);font:inherit;font-size:.74rem;font-weight:700;line-height:1.25;text-align:center;cursor:pointer}
+.addslide-modele:hover{border-color:var(--acc2)}
+.addslide-modele.choisi{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc)}
+.addslide-modele .am-emoji{font-size:1.5rem;line-height:1}
+/* Formulaire à N questions du modèle « Quiz vrai/faux ». */
+.addslide-questions{display:flex;flex-direction:column;gap:10px}
+.addslide-question{display:flex;flex-direction:column;gap:5px;padding:9px;background:var(--panel2);border:1px solid var(--bord);border-radius:10px}
+.addslide-question .q-pied{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:.78rem}
+.addslide-question .q-pied label{display:flex;align-items:center;gap:6px;cursor:pointer}
+.addslide-question .q-pied button{background:none;border:none;color:var(--mu);font-size:.95rem;cursor:pointer;padding:0 4px}
+.addslide-q-add{margin-top:8px;background:var(--panel2);border:1px solid var(--acc2);color:var(--acc2);border-radius:8px;padding:6px 10px;font:inherit;font-size:.8rem;font-weight:700;cursor:pointer}
+
+/* Adaptations d'écran communes (fin de feuille : une règle
+   en ligne d'une formation reste prioritaire). */
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;}}
+
+/* Taille du texte, quatre crans (S/M/L/XL), posee par la barre de l'editeur sur le bloc.
+   En em, pas en px : un titre agrandi reste plus gros qu'une accroche agrandie, et la
+   hierarchie typographique du theme survit. M est l'absence de classe.
+
+   !important, et ce n'est pas une facilite : les formations reglent leurs titres par des
+   selecteurs a identifiant (« #s0 h1 => clamp(2rem,6vw,3.4rem) »), qu'aucune classe ne peut
+   surpasser, quel qu'en soit le nombre. Sans !important le cran choisi n'aurait aucun effet
+   sur les diapos qui en ont le plus besoin. C'est un choix explicite de l'utilisateur : il
+   doit gagner sur le reglage par defaut du theme. */
+/* Le cran s'applique aux DEUX langues du bloc, jamais au bloc lui-meme : `em` se calcule
+   sur la taille du PARENT, si bien qu'un « 1.6em » pose sur un titre en
+   clamp(2rem,6vw,3.4rem) le ramenerait a 1.6 x 16px, soit plus petit qu'avant. Pose sur les
+   spans t-fr/t-en, il se calcule sur la taille reelle du titre : le clamp, donc l'adaptation
+   au videoprojecteur, est preserve. Les rares blocs sans paire de langues sont traites a
+   part, faute de mieux. */
+.slide .taille-s > .t-fr, .slide .taille-s > .t-en{font-size:.82em!important}
+.slide .taille-l > .t-fr, .slide .taille-l > .t-en{font-size:1.25em!important}
+.slide .taille-xl > .t-fr, .slide .taille-xl > .t-en{font-size:1.6em!important}
+/* L'alignement d'un texte (8 septembre). Une diapo est centrée deux fois : text-align sur
+   .slide, ET align-items:center sur le flex qui la compose. Aligner à gauche demandait donc
+   de sortir aussi le BLOC du centre — sans quoi le texte se collait à gauche d'une boîte
+   restée au milieu, ce qui ne ressemble à rien. Les marges auto font le même travail là où
+   le parent n'est pas un flex (une face de retournement, une colonne).
+   « justifier » ne touche pas à la position de la boîte : c'est la seule des quatre qui
+   décrit le REMPLISSAGE des lignes, pas l'endroit où le bloc se pose.
+   !important comme les crans de taille, et pour la même raison : c'est un choix explicite,
+   il doit l'emporter sur le text-align qu'un conteneur impose (.compare .col, .qcard…). */
+/* 10 septembre — « ça ne déplace pas que le texte, mais la case aussi. Corrige. »
+   Ces quatre classes faisaient DEUX choses : aligner le texte, et sortir la boîte du
+   centre. Elles n'en font plus qu'une, celle qui est écrite sur le bouton. La boîte se
+   place à la souris, comme tout le reste.
+   Les blocs écrits avant ce jour portent une classe pos-* qui garde l'ancien placement :
+   leur mise en page ne bouge pas d'un pixel. */
+.slide .al-gauche{text-align:left!important}
+.slide .al-centre{text-align:center!important}
+.slide .al-droite{text-align:right!important}
+.slide .al-justifie{text-align:justify!important}
+.slide .pos-gauche{align-self:flex-start;margin-right:auto}
+.slide .pos-centre{align-self:center;margin-left:auto;margin-right:auto}
+.slide .pos-droite{align-self:flex-end;margin-left:auto}
+.slide .taille-s:not(:has(> .t-fr)){font-size:.82em!important}
+.slide .taille-l:not(:has(> .t-fr)){font-size:1.25em!important}
+.slide .taille-xl:not(:has(> .t-fr)){font-size:1.6em!important}
+/* La visionneuse plein ecran (remontee de niveau2, injectee par le moteur sur body).
+   Ouverte par data-plein-ecran="clic"/"auto" sur un media ou son conteneur, ou par
+   config.lightboxToutesImages (niveau2). */
+.img-lightbox{display:none;position:fixed;inset:0;z-index:500;background:rgba(5,8,14,.92);
+  align-items:center;justify-content:center;padding:30px;cursor:zoom-out}
+.img-lightbox.open{display:flex}
+.img-lightbox img{max-width:94vw;max-height:94vh;object-fit:contain;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+/* 13 septembre : un clic sur une photo l'ouvre en grand. La loupe le dit avant qu'on clique,
+   et se tait la ou le clic appartient a un autre geste — la meme liste que
+   SEL_CLIC_DEJA_PRIS dans le moteur. */
+#deck > .slide:not(.editing) img{cursor:zoom-in}
+#deck > .slide:not(.editing) :is(.retourne,a[href],[data-vers],button,[data-widget],.qcard,.qcard2,.persona,
+  .flip-card,.flagcard,.flagcard-static,.riddle-box,.reveal-box,.sensitive-gate,.suspect-card,.techcard,
+  .tweet-card,.slide-original-interactive) img{cursor:inherit}
+
+/* 13 septembre : le bloc qui NOMME la diapo. Antonin : « possibilité de créer un bloc avec
+   l'option titre (qui sera le nom de la slide) ». En edition, une etiquette le designe ; en
+   salle rien ne le distingue d'un autre texte — c'est sa taille et sa couleur qui le font
+   voir, et elles se reglent comme partout. Un bloc pose est deja en absolu (regle 6). */
+.slide.editing .titre-diapo:not([data-pose]){position:relative}
+.slide.editing .titre-diapo::after{content:"titre de la diapo";position:absolute;left:0;bottom:100%;margin-bottom:3px;
+  font:800 10px/1.3 'Nunito',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--acc2);
+  background:var(--panel);border:1px solid var(--acc2);border-radius:6px;padding:1px 6px;white-space:nowrap;pointer-events:none}
+
+/* Sortie du plein ecran d'un conteneur interactif (illusions). Elle vit DANS l'element
+   plein ecran, seul endroit que le navigateur peint alors. Prefixe ed- : posee dans une
+   diapo, retiree par buildCleanClone sans avoir a la nommer. Contraste eleve, parce que la
+   page dessous peut etre blanche comme sombre. */
+.ed-sortie-plein-ecran{position:fixed;top:14px;right:14px;z-index:2147483647;
+  background:rgba(17,24,39,.94);color:#fff;border:2px solid #22d3ee;border-radius:50px;
+  padding:10px 18px;font-family:inherit;font-size:.95rem;font-weight:700;cursor:pointer;
+  box-shadow:0 8px 26px rgba(0,0,0,.55);}
+.ed-sortie-plein-ecran:hover{background:#22d3ee;color:#04121a;}
+
+/* ── Widgets qui portent leurs donnees (etape W3, 2 septembre) ──────────────────
+ * Remontees du <style> de formation-fake-news-niveau1, ou elles vivaient seules : les
+ * widgets FONCTIONNENT dans les cinq formations depuis le lot V, ils n'y etaient BEAUX
+ * que dans une. Deplacement pur — aucune declaration n'a change.
+ *
+ * Deux exceptions restees dans niveau1, parce qu'un identifiant ne se partage pas :
+ * #s6{padding-top} (une mise en page de diapo, pas une regle de widget) et les trois
+ * regles de #truth-title (le titre editable du barometre).
+ *
+ * Les six regles qui nommaient #s-danceq.corrected sont devenues .slide.corrected : la
+ * classe `corrected` n'est posee que par createReponsesLibres, sur sa propre diapo.
+ *
+ * .flip-* a rejoint ce fichier a l etape X2. Ces regles ne vivaient que dans niveau1, et
+ * la diapo de SERIE s-imaginez etait donc non stylee du cote influenceurs : les deux cartes
+ * s y affichaient cote a cote au lieu d apparaitre l une apres l autre. Une diapo partagee
+ * doit se comporter pareil des deux cotes ; c est tout l objet de l etape X.
+ */
+/* ── Critères — liste libre ── */
+.crit-add{display:flex;gap:10px;margin-top:26px;max-width:520px;width:100%;}
+.crit-add .danceq-input{flex:1;}
+.crit-list{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:9px;text-align:left;max-width:560px;width:100%;}
+.crit-list li{background:var(--panel);border:1px solid var(--bord);border-radius:12px;padding:12px 16px;font-weight:700;transition:.2s;}
+.crit-list li.match{border-color:var(--ok);background:rgba(62,207,142,.10);}
+.crit-list li.missing{border-color:var(--acc);background:rgba(245,185,66,.08);color:var(--mu);font-weight:600;}
+.crit-list li.missing b{color:var(--acc);font-weight:800;}
+/* ── Quiz vrai/faux (séquentiel + vote) ── */
+.qcard2{background:var(--panel);border:1px solid var(--bord);border-radius:20px;padding:26px 30px;
+  max-width:560px;width:100%;margin-top:20px;text-align:center;}
+.qcard2 img{max-width:100%;max-height:calc(44 * var(--vh1));width:auto;height:auto;object-fit:contain;border-radius:14px;margin-bottom:16px;}
+.qc2-txt{font-weight:700;font-size:1.1rem;line-height:1.4;margin-bottom:20px;}
+.qc2-vote-row{display:flex;gap:14px;justify-content:center;margin-bottom:18px;}
+.qc2-vote{font-family:'Baloo 2','Nunito',sans-serif;font-size:1.05rem;font-weight:700;border-radius:16px;border:2px solid var(--bord);
+  padding:14px 28px;cursor:pointer;background:var(--panel2);color:var(--tx);transition:.15s;}
+.qc2-vote:hover{transform:translateY(-2px);}
+.qc2-vote.vrai:hover{border-color:var(--ok);}
+.qc2-vote.faux:hover{border-color:var(--ko);}
+.qc2-bars{max-width:380px;margin:0 auto 18px;display:flex;flex-direction:column;gap:8px;}
+.qc2-answer{display:none;margin-top:16px;padding-top:16px;border-top:1px dashed var(--bord);}
+.qc2-answer.show{display:block;}
+.qc2-answer .badge{display:inline-block;font-family:'Baloo 2','Nunito',sans-serif;font-size:.85rem;font-weight:700;
+  padding:4px 14px;border-radius:20px;margin-bottom:10px;}
+.qc2-answer .badge.vrai{background:rgba(62,207,142,.18);color:var(--ok);border:1px solid var(--ok);}
+.qc2-answer .badge.faux{background:rgba(247,95,95,.18);color:var(--ko);border:1px solid var(--ko);}
+.qc2-expl{color:var(--mu-diapo);font-size:.9rem;line-height:1.5;font-weight:600;}
+.qc2-majority{margin-bottom:14px;font-weight:800;color:var(--acc);font-size:.9rem;min-height:1.2em;}
+/* ── Vérité-mètre ── */
+.truth-meter{width:100%;max-width:640px;margin-top:24px;}
+.truth-track{position:relative;height:14px;border-radius:8px;
+  background:linear-gradient(90deg, var(--ko), var(--bord) 50%, var(--ok));border:1px solid var(--bord);cursor:pointer;}
+.truth-cursor{position:absolute;top:50%;left:50%;width:30px;height:30px;border-radius:50%;background:var(--acc);
+  border:3px solid rgba(255,255,255,.2);box-shadow:0 4px 14px rgba(0,0,0,.4);transform:translate(-50%,-50%);
+  cursor:grab;touch-action:none;}
+.truth-cursor:active{cursor:grabbing;}
+.truth-labels{display:flex;justify-content:space-between;margin-top:10px;font-family:'Baloo 2','Nunito',sans-serif;font-weight:700;font-size:.95rem;}
+.truth-labels span:first-child{color:var(--ko);}
+.truth-labels span:last-child{color:var(--ok);}
+.truth-cols{display:flex;gap:20px;margin-top:30px;width:100%;max-width:800px;flex-wrap:wrap;justify-content:center;}
+.truth-col{flex:1;min-width:260px;background:var(--panel);border:1px solid var(--bord);border-radius:16px;padding:18px 20px;text-align:left;}
+.truth-col h3{font-family:'Baloo 2','Nunito',sans-serif;font-size:1rem;margin-bottom:12px;}
+.truth-col.contre h3{color:var(--ko);}
+.truth-col.pour h3{color:var(--ok);}
+.truth-add{margin-bottom:10px;}
+.truth-add .danceq-input{width:100%;}
+.truth-weight{display:flex;gap:8px;margin-bottom:14px;}
+.tw-btn{flex:1;border-radius:10px;border:1px solid var(--bord);background:var(--panel2);color:var(--tx);
+  font-family:'Nunito',sans-serif;font-weight:700;font-size:.76rem;padding:8px 6px;cursor:pointer;}
+.tw-btn:hover{border-color:var(--acc2);}
+.tw-btn.tw-strong{border-color:var(--acc);color:var(--acc);}
+.truth-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.truth-list li{background:var(--panel2);border-radius:8px;padding:7px 10px;font-size:.85rem;font-weight:600;}
+.truth-list li.strong{border-left:3px solid var(--acc);font-weight:800;}
+.truth-list li.weak{border-left:3px solid var(--bord);opacity:.85;}
+/* 12 octobre : le verite-metre a tri — une phrase posee, puis rangee en cinq. */
+.truth-cursor.truth-anime{transition:left .6s cubic-bezier(.34,1.4,.5,1);}
+@media (prefers-reduced-motion:reduce){.truth-cursor.truth-anime{transition:none;}}
+.truth-saisie{width:100%;max-width:860px;margin-top:26px;}
+.truth-saisie [hidden]{display:none !important;}
+.truth-saisie .truth-add{display:flex;gap:10px;margin:0;}
+.truth-saisie .truth-add .danceq-input{flex:1;width:auto;}
+.truth-saisie .tw-poser{flex:0 0 auto;font-size:.9rem;padding:8px 18px;border-color:var(--acc);color:var(--acc);}
+.truth-attente{display:flex;flex-direction:column;align-items:center;gap:12px;}
+.truth-phrase{font-family:'Baloo 2','Nunito',sans-serif;font-weight:700;font-size:1.25rem;line-height:1.3;text-align:center;margin:0;overflow-wrap:anywhere;}
+.truth-tri{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;width:100%;}
+.truth-tri .tw-btn{font-size:.8rem;padding:9px 6px;border-width:2px;}
+.truth-tri .tw-gn{border-color:var(--ko);color:var(--ko);}
+.truth-tri .tw-pn{border-color:color-mix(in srgb,var(--ko) 55%,var(--bord));}
+.truth-tri .tw-ne{border-color:var(--bord);color:var(--mu-diapo,var(--tx));}
+.truth-tri .tw-pp{border-color:color-mix(in srgb,var(--ok) 55%,var(--bord));}
+.truth-tri .tw-gp{border-color:var(--ok);color:var(--ok);}
+.truth-tri .tw-btn:hover{transform:translateY(-1px);}
+.truth-retour{background:none;border:0;color:var(--mu-diapo,var(--tx));font-family:'Nunito',sans-serif;font-size:.78rem;text-decoration:underline;cursor:pointer;opacity:.8;}
+.truth-cols.truth-cols-3{max-width:900px;margin-top:22px;flex-wrap:nowrap;gap:14px;}
+.truth-cols-3 .truth-col{min-width:0;padding:14px 16px;}
+.truth-col.neutre h3{color:var(--mu-diapo,var(--tx));}
+.truth-list li.neutral{border-left:3px solid var(--bord);opacity:.75;}
+.truth-col.contre .truth-list li.strong{border-left-color:var(--ko);}
+.truth-col.pour .truth-list li.strong{border-left-color:var(--ok);}
+/* ── Questions vidéo / correction ── */
+.danceq-wrap{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:22px;width:100%;max-width:1200px;}
+.slide.corrected .danceq-wrap{flex-direction:row;align-items:flex-start;justify-content:center;max-width:1500px;gap:30px;flex-wrap:wrap;}
+.danceq-video{display:none;flex:none;}
+.slide.corrected .danceq-video{display:block;}
+.danceq-video .vidwrap{max-width:520px;max-height:calc(66 * var(--vh1));}
+/* 21 septembre — « quand toutes les questions sont posées ça déborde du cadre ». Cinq
+   questions PLUS ce que la salle propose (chaque proposition ajoute une bulle) : mesuré à
+   +128 px hors du cadre en pleine séance, et encore +44 px une fois la correction affichée.
+   En hauteur il n'y avait plus rien à gagner ; en largeur, tout — la diapo fait 1925 px et
+   la liste en occupait 419.
+   Elle passe donc en colonnes de trois questions. `grid-auto-flow:column` remplit de haut
+   en bas PUIS à droite : l'ordre de lecture suit l'ordre des questions, là où le `row` par
+   défaut aurait mis la 2 à droite de la 1. Rien à compter ni à déclarer : une liste de
+   trois questions ou moins reste une colonne, exactement comme avant. */
+.danceq-list{display:grid;grid-auto-flow:column;grid-template-rows:repeat(3,min-content);
+  grid-auto-columns:minmax(260px,420px);gap:10px 24px;justify-content:center;align-content:start;
+  width:auto;max-width:100%;text-align:left;}
+/* Une fois corrigée, la liste partage la ligne avec la vidéo : des colonnes plus étroites,
+   sinon l'ensemble dépasse la largeur du rang, la vidéo passe à la ligne, et la diapo
+   redevient trop haute (mesuré : +428 px). */
+.slide.corrected .danceq-list{grid-auto-columns:minmax(240px,330px);}
+.danceq-item{display:none;background:var(--panel);border:1px solid var(--bord);border-radius:14px;padding:12px 16px;transition:.2s;}
+.danceq-item.shown{display:block;}
+.danceq-item label{display:block;font-weight:700;font-size:.9rem;margin-bottom:6px;}
+/* 21 septembre — « quand toutes les questions sont posées ça déborde du cadre ». Les cinq
+   questions tiennent ; c'est la CORRECTION qui fait déborder de ~140 px en 1440×900, parce
+   qu'elle ajoute une ligne de réponse à chacune sans rien retirer. Or le champ de saisie
+   n'a plus d'emploi une fois la correction affichée : la salle a répondu, ses réponses sont
+   devenues des bulles, et le champ ne sert qu'à en ajouter. Il part, et c'est lui qui rend
+   la hauteur (≈ 40 px par question, 200 px en tout). Les quelques pixels de padding et de
+   gap récupérés juste au-dessus font le reste pour les écrans bas (1280×720). */
+.slide.corrected .danceq-input{display:none;}
+.danceq-input{width:100%;background:var(--panel2);border:1px solid var(--bord);border-radius:8px;color:var(--tx);
+  padding:9px 12px;font-family:'Nunito',sans-serif;font-size:.9rem;}
+.danceq-input:focus-visible{outline:2px solid var(--acc2);outline-offset:2px;}
+.danceq-correct{display:none;margin-top:10px;padding-top:10px;border-top:1px dashed var(--bord);font-size:.85rem;color:var(--mu-diapo);}
+.slide.corrected .danceq-correct{display:block;}
+.danceq-item.match{border-color:var(--ok);background:rgba(62,207,142,.10);}
+.danceq-item.match .danceq-correct{color:var(--ok);}
+.slide.corrected .danceq-item:not(.match) .danceq-correct{color:var(--acc);font-weight:800;}
+.slide.corrected .danceq-btn, .slide.corrected #danceq-btn{display:none;}
+.danceq-bubbles{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
+.danceq-bubbles:empty{display:none;}
+.danceq-bubble{background:var(--panel2);border:1px solid var(--bord);border-radius:20px;padding:4px 12px;font-size:.82rem;font-weight:700;}
+.danceq-bubble.match{border-color:var(--ok);color:var(--ok);background:rgba(62,207,142,.12);}
+/* ── Triple sondage conduite ── */
+.drive-polls{display:flex;flex-direction:column;gap:14px;margin-top:16px;max-width:520px;width:100%;}
+.dpoll{display:none;background:var(--panel);border:1px solid var(--bord);border-radius:14px;padding:16px 20px;text-align:left;}
+.dpoll.shown{display:block;}
+.dpoll .lead{margin:0 0 10px;font-size:.95rem;}
+.dpoll .drow{display:flex;align-items:center;gap:12px;}
+.dpoll button.dtap{background:var(--acc2);border:none;color:#04202c;border-radius:50px;padding:7px 18px;
+  font-family:'Baloo 2','Nunito',sans-serif;font-weight:700;cursor:pointer;font-size:.85rem;}
+.dpoll .dcount{font-family:'Baloo 2','Nunito',sans-serif;font-weight:700;color:var(--acc);font-size:1.1rem;min-width:24px;}
+
+/* ── Cartes retournables (équation / chaton) ── */
+.flip-grid{display:flex;gap:24px;margin-top:30px;justify-content:center;flex-wrap:wrap;}
+.flip-card{display:none;width:220px;height:220px;perspective:1000px;cursor:pointer;}
+.flip-card.shown{display:block;}
+.flip-inner{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d;}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+.flip-front,.flip-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;border:1px solid var(--bord);}
+.flip-front{background:var(--panel);border-style:dashed;font-family:'Baloo 2','Nunito',sans-serif;font-size:2.5rem;color:var(--mu-diapo);}
+.flip-back{background:#fff;transform:rotateY(180deg);}
+.flip-back img{width:100%;height:100%;object-fit:cover;}
+
+/* ── Mode statique : la paire interactif / a plat ──────────────────────────────
+ * Ces cinq regles decrivent un MECANISME DU MOTEUR (prepareComplexSlide,
+ * convertToStatic, revertToInteractive), pas un style de formation. Elles
+ * vivaient dans le <style> de niveau1 et nulle part ailleurs.
+ *
+ * Ce que ca a coute, le 3 septembre : la diapo de serie `s-devinette-eclair`,
+ * passee en statique dans niveau1, a porte sa paire de conteneurs jusqu'a
+ * influenceurs par l'absorption automatique de l'etape S. La-bas, sans ces
+ * regles, les deux conteneurs sont deux enfants ordinaires d'une colonne flex :
+ * la diapo affichait son contenu DEUX FOIS, la version interactive puis la
+ * version a plat.
+ *
+ * C'est exactement ce que l'etape S3 avait annonce : la liste de retrait de
+ * buildCleanClone est une enumeration, pas une regle, et l'absorption
+ * automatique fait voyager ce qu'elle laisse passer jusqu'aux autres
+ * formations par les series. Une structure qui traverse les formations a
+ * besoin d'un style qui les traverse aussi.
+ */
+.slide-content-editable{display:contents;}
+.slide-original-interactive{display:contents;}
+.slide-original-interactive ~ .slide-content-editable{display:none;}
+.slide.static-active .slide-original-interactive{display:none;}
+.slide.static-active .slide-original-interactive ~ .slide-content-editable{display:contents;}
+
+/* ── Etape T4 : la carte, seconde allure d'un lien vers un jeu ──────────────────────
+   `.gamelink` reste la pastille des dix-neuf liens deja poses ; la carte n'en change que
+   la forme, pour qu'ils se ressemblent. Les cinq formations recouvrent deja le fond et la
+   couleur de `.gamelink` dans leur <style> : la carte en herite sans une ligne de plus.
+   Ces regles vivent ICI et non dans un <style> de formation : la structure traverse les
+   cinq (regle du 3 septembre), donc le style aussi. */
+.gamelink.gamelink-carte{flex-direction:column;align-items:stretch;gap:6px;border-radius:16px;
+  padding:10px 10px 14px;max-width:280px;text-align:left;}
+.gamelink-vignette{width:100%;height:130px;object-fit:cover;border-radius:10px;display:block;}
+.gamelink-titre{font-size:1rem;line-height:1.2;}
+.gamelink-phrase{font-weight:600;font-size:.8rem;line-height:1.35;opacity:.85;
+  font-family:'Nunito',sans-serif;}
+
+
+/* La bibliographie APA 7 (8 septembre) : une liste de references, pas un decor. Le retrait
+   pendu (hanging indent) est la forme attendue d'APA, et il rend la liste lisible a
+   distance : la premiere ligne avance, les suivantes rentrent. Le texte est a gauche et
+   justifie a rien : une reference ne se centre pas. */
+.slide .biblio{width:min(980px,92%);margin-top:18px;text-align:left;max-height:calc(68 * var(--vh1));overflow-y:auto}
+.slide .biblio-titre{font-size:clamp(1.1rem,calc(2.4 * var(--vw1)),1.5rem);font-weight:800;margin:0 0 10px;text-align:left}
+.slide .biblio-liste{display:flex;flex-direction:column;gap:9px}
+.slide .biblio-ref,.slide .biblio-autre{margin:0;font-size:clamp(.72rem,calc(1.35 * var(--vw1)),.92rem);line-height:1.45;
+  color:var(--tx);padding-left:2.2em;text-indent:-2.2em}
+.slide .biblio-autre{color:var(--mu-diapo)}
+.slide .biblio-reste-titre{margin:14px 0 6px;font-size:.78rem;font-weight:800;color:var(--acc2);text-align:left}
+.slide .biblio-compte{margin:14px 0 0;font-size:.76rem;color:var(--mu-diapo);text-align:left}
+.slide .biblio-vide{margin:0;font-size:.9rem;color:var(--mu-diapo);text-align:left}
+.slide .biblio-copier{margin-top:12px;background:var(--panel2);color:var(--tx);border:1px solid var(--acc2);
+  border-radius:10px;padding:7px 14px;font:inherit;font-weight:700;cursor:pointer}
+.slide .biblio-copier:hover{border-color:var(--acc)}
+
+/* ── Ne rien perdre en fermant l'éditeur (23 septembre) ─────────────────────────────
+   Le bouton « Enregistrer » dit quand la diapo diffère de ce qui est enregistré, et la
+   fermeture pose une question s'il reste des modifications (shared-deck-engine.js). */
+#admin-edit-save.ed-non-enregistre{box-shadow:0 0 0 2px #f59e0b}
+#admin-edit-save.ed-non-enregistre::after{content:'● non enregistré';display:table;margin-top:4px;padding:1px 8px;border-radius:6px;background:rgba(5,8,14,.72);font-size:.72rem;font-weight:700;color:#fbbf24}
+.ed-question-fermer{position:fixed;inset:0;z-index:700;background:rgba(5,8,14,.6);display:flex;align-items:center;justify-content:center;padding:16px}
+.ed-qf-boite{background:var(--panel);color:var(--tx);border:1px solid var(--bord);border-radius:14px;padding:20px 22px;max-width:560px;box-shadow:0 16px 40px rgba(0,0,0,.45)}
+.ed-qf-titre{font-weight:700;margin:0 0 6px}
+.ed-qf-texte{color:var(--mu);margin:0 0 16px;font-size:.92rem}
+.ed-qf-boutons{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.ed-qf-boutons button{padding:8px 14px;border-radius:8px;border:1px solid var(--bord);background:var(--panel2);color:var(--tx);cursor:pointer;font:inherit}
+.ed-qf-boutons button:hover{border-color:var(--acc2)}
+.ed-qf-boutons .ed-qf-principal{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:700}
+
+/* 1er octobre — Antonin, niveau1.
+   « Répondez à ces questions » (s-danceq) : les questions sont là d'emblée, chaque
+   réponse arrive au clic (.qr-r.step), la vidéo avec la première. */
+.qr-wrap{display:flex;align-items:center;justify-content:center;gap:36px;margin-top:22px;width:100%;max-width:1500px}
+.qr-wrap .vidwrap{flex:none;max-width:520px;max-height:calc(62 * var(--vh1))}
+.qr-liste{display:flex;flex-direction:column;gap:12px;margin:0;padding:0;list-style:none;text-align:left;max-width:640px}
+.qr-liste li{background:var(--panel);border:1px solid var(--bord);border-radius:14px;padding:12px 18px;font-size:1.1rem}
+.qr-q{display:block;font-weight:700}
+.qr-r{display:block;margin-top:4px;color:var(--ok);font-weight:800;font-size:1.2rem}
+/* Vrai ou faux (série s6-1…s6-7) : plus de sondage, une coche verte ou une croix rouge
+   se pose SUR l'image au clic. Elle vit dans .imgcard-full, comme le cache d'image. */
+.slide.quiz-vrai-faux .imgcard-full,
+.slide.quiz-vrai-faux .imgcard-full img{max-height:calc(58 * var(--vh1))}
+.vf-marque{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:2}
+.vf-marque svg{width:min(70%,70vh);height:auto;aspect-ratio:1;max-height:90%;overflow:visible}
+.vf-marque path{fill:none;stroke-width:14;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px rgba(0,0,0,.65))}
+.vf-vrai path{stroke:#22c55e}
+.vf-faux path{stroke:#ef4444}
+.vf-marque.step{transform:scale(.6);transition:opacity .3s ease,transform .35s cubic-bezier(.3,1.6,.5,1)}
+.vf-marque.step.shown{transform:none;pointer-events:none}
+/* 2 octobre — 6e-5e. « La glace au chocolat est la meilleure » : ni vrai ni faux, un
+   point d'interrogation sur l'image (même mécanique que la coche et la croix). */
+.vf-question path{stroke:#f5b301}
+.vf-question circle{fill:#f5b301;stroke:none;filter:drop-shadow(0 0 6px rgba(0,0,0,.65))}
+/* « Faits ≠ Opinions » : deux bulles et, au clic, un égal barré entre elles. */
+.fo-bulles{display:flex;align-items:center;justify-content:center;gap:5vw;width:100%;margin:auto 0}
+.fo-bulle{position:relative;margin:0;display:flex;align-items:center;justify-content:center;
+  width:min(28vw,400px);aspect-ratio:1;padding:24px;box-sizing:border-box;border-radius:50%;
+  font-family:'Baloo 2','Nunito',sans-serif;font-weight:800;font-size:clamp(2rem,4.6vw,4.2rem);line-height:1;
+  background:color-mix(in srgb,currentColor 14%,var(--panel));border:6px solid currentColor;
+  box-shadow:0 18px 44px rgba(0,0,0,.35)}
+.fo-faits{color:#3ecf8e}
+.fo-opinions{color:#f5478c}
+.fo-bulle>span{position:relative;z-index:1}
+.fo-different{display:block;width:min(12vw,170px);flex:none}
+.fo-different svg{width:100%;height:auto;display:block;overflow:visible}
+.fo-different path{fill:none;stroke:#f5b301;stroke-width:9;stroke-linecap:round}

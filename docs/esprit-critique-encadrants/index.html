@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repérer, analyser, transmettre l’information</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared-deck.css">
+<style>
+/* Propre à cette intervention. Le reste vient de ../shared-deck.css.
+   3 octobre 2026 : toutes les diapos sont reprises du PowerPoint « Esprit critique et raisonnement pour personnel encadrant »,
+   chaque élément à sa place et à sa taille (la diapo 16:9 est centrée sur la toile 1925 x 908,
+   1 point PowerPoint = 1,68 px de toile). Police du PowerPoint : Trebuchet MS.
+   Les classes ppt-* ne servent qu'ici. */
+:root{--acc:#5FCBEF;--ppt-police:'Trebuchet MS','Nunito',sans-serif}
+:root[data-theme="light"]{--acc:#1f9ad6}
+.slide .ppt-titre{font-family:var(--ppt-police);font-weight:400;line-height:1.2;max-width:none;color:var(--acc);text-align:left}
+.cover h1.ppt-titre{background:none;-webkit-background-clip:border-box;background-clip:border-box}
+.slide ul.ppt-texte{font-family:var(--ppt-police);list-style:none;text-align:left;color:var(--tx);font-weight:400;max-width:none}
+.slide ul.ppt-texte li{margin:0;max-width:none;list-style:none}
+.slide ul.ppt-texte li[data-puce]::before{content:attr(data-puce);display:inline-block;width:var(--retrait);text-indent:0;color:var(--puce,currentColor);font-size:.8em}
+.slide ul.ppt-texte a{color:var(--acc)}
+.slide .imgcard.ppt-img{margin:0;border-radius:2px;background:#fff;border:0;box-shadow:0 8px 26px rgba(0,0,0,.28)}
+.slide .imgcard.ppt-img img{max-height:none;width:100%;height:auto;object-fit:fill}
+.slide .imgcard.ppt-recadre{overflow:hidden}
+.slide .imgcard.ppt-recadre img{position:absolute}
+.slide .imgcard.ppt-sans-fond{background:none;box-shadow:none;border-radius:0}
+.slide .vidwrap.ppt-video{margin:0;border-radius:2px;border:0;max-width:none;background:#000}
+.slide .vidwrap.ppt-video video{max-height:none;width:100%;height:100%;object-fit:contain}
+.slide .forme.ppt-forme{isolation:isolate}
+/* Ce qui dépasse de la diapo dans le PowerPoint y est coupé : pareil ici. */
+#deck > .slide.ppt-rogne{overflow:hidden}
+/* Bulle ovale (phylactère du PowerPoint) : la pointe rejoint le bord de l'ovale. */
+.slide .forme.ppt-bulle::after{left:20%;bottom:5%}
+.slide .forme .ppt-forme-texte{font-family:var(--ppt-police);display:flex;flex-direction:column;align-items:stretch;justify-content:center;text-align:center;font-weight:400;line-height:1.2}
+.slide .forme .ppt-forme-texte>span{display:block}
+
+  
+/* 5 octobre 2026 : la série « Les critères pour valider l’information… et leurs limites »,
+   venue du niveau 2. Sa diapo d’ouverture (#s2, la liste à deviner) a besoin des règles
+   de liste du niveau 2 : elles sont recopiées ici, limitées à cette diapo. */
+#s2 h2{font-size:clamp(1.4rem,calc(3.8 * var(--vw1)),2.4rem);line-height:1.28;max-width:1100px}
+#s2 .checklist{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:8px;text-align:left;max-width:520px;width:100%;}
+#s2 .checklist li{font-size:1rem;max-height:0;opacity:0;overflow:hidden}
+#s2 .checklist li.revealed{max-height:60px;opacity:1;}
+#s2 .checklist li.done{color:var(--ok);}
+#s2 .checklist li.done::before{content:'✓ ';}
+#s2 .checklist li.missed{color:var(--mu);}
+#s2 .checklist li.missed::before{content:'· ';}
+#s2 .answer-field{margin-top:24px;width:100%;max-width:520px;}
+#s2 .answer-field input{width:100%;background:var(--panel);border:2px solid var(--bord);color:var(--tx);border-radius:14px;
+  padding:14px 18px;font-size:1rem;font-weight:700;font-family:'Nunito',sans-serif;text-align:center;}
+#s2 .answer-field input:focus-visible{outline:2px solid var(--acc2);outline-offset:2px;border-color:var(--acc2);}
+#s2 .reveal-btn:hover{background:rgba(34,211,238,.15)}
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <span class="brand">🧭 Repérer, analyser, transmettre l’information</span>
+  <div class="tools">
+    <button id="btn-admin-grid" title="Toutes les diapos" onclick="Deck.openAdmin()">Toutes les diapos</button>
+    <button id="btn-dossier" hidden title="Donner au navigateur l’accès au dossier Cours : nécessaire pour les séries, les diapos liées et les médias" onclick="Deck.connecterDossier()">🔌 Connecter le dossier</button>
+    <button id="btn-fullscreen" title="Plein écran"><span class="t-fr">Plein écran</span><span class="t-en" hidden>Fullscreen</span></button>
+    <button id="btn-lang" title="Switch to English" onclick="Deck.toggleLang()">EN</button>
+  </div>
+</div>
+
+<div id="deck" data-edite-en-page="1791146159621" data-registry-build="1788779958314">
+
+  <section class="slide cover" id="s0">
+    <h1 class="ppt-titre" data-pose="" data-off-x="184.376" data-off-y="350.617" style="left:18.438%;top:35.062%;width:53.42%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:90.8px;line-height:1.2;text-align:right;color:var(--acc);height:24.006%;display:flex;flex-direction:column;justify-content:flex-end;"><span class="ppt-l"><span class="t-fr">Repérer, analyser, transmettre l’information</span><span class="t-en" hidden=""></span></span></h1>
+    <ul class="ppt-texte" data-pose="" data-off-x="184.376" data-off-y="590.673" style="left:18.438%;top:59.067%;width:53.42%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:21.859px;line-height:0.96;text-align:right;color:#808080"><span class="t-fr">Formation à destination des enseignants</span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:9.837px;line-height:0.96;margin-top:16.815px;text-align:right;color:#808080"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:9.837px;line-height:0.96;margin-top:16.815px;text-align:right;color:#808080"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:9.837px;line-height:0.96;margin-top:16.815px;text-align:right;color:#808080"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li style="font-size:9.837px;line-height:0.96;margin-top:16.815px;text-align:right;color:#808080"><span class="t-fr">Antonin Atger</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="s-qui-suis-je">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:center;color:var(--acc);"><span class="t-fr">Qui suis-je ?</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="192.453" data-off-y="246.528" style="left:19.245%;top:24.653%;width:18.235%;max-width:none;"><img src="../medias/images/interfeel-couverture.jpg" alt="" loading="lazy" style="aspect-ratio:2651162/4255477"></div>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="527.294" data-off-y="400.0" style="left:52.729%;top:40.0%;width:31.93%;max-width:none;"><img src="../medias/images/pyramide-oeil-dollar.jpg" alt="" loading="lazy" style="aspect-ratio:4642338/2611315"></div>
+  </section>
+
+  <section class="slide" id="s-comment-faites-vous">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Comment évaluer la crédibilité d’une information ?</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li data-puce="▸" style="font-size:30.267px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Vous, comment faites-vous ?</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <!-- 5 octobre 2026 : la série « Les critères pour valider l’information… et leurs limites », reprise du niveau 2 (elle remplace les critères d’origine). -->
+  <section class="slide" id="s2" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="276.24" data-off-y="99.12" style="left:27.624%;top:9.912%"><span class="t-fr">Quels sont les critères pour valider l'information ?</span><span class="t-en" hidden="">What criteria help us validate information?</span></h2>
+    <div class="answer-field" data-pose="" data-off-x="364.94" data-off-y="179.69" style="left:36.494%;top:17.969%">
+      <input type="text" id="checklist-input" autocomplete="off">
+    </div>
+    <ul class="checklist" id="checklist" data-checklist-revelee="" data-pose="" data-off-x="364.94" data-off-y="258.99" style="left:36.494%;top:25.899%">
+      <li data-item="1" data-keywords="source|fiable|site|média|media|journal|provenance|reputee|réputée|serieux|sérieux|origine"><span class="t-fr">Fiabilité de la source.</span><span class="t-en" hidden="">Reliability of the source.</span></li>
+      <li data-item="2" data-keywords="interlocuteur|qui parle|qui le dit|qui dit ca|qui dit ça|auteur|expert|specialiste|spécialiste|credibilite personne|crédibilité de la personne"><span class="t-fr">Fiabilité de l'interlocuteur.</span><span class="t-en" hidden="">Reliability of the speaker.</span></li>
+      <li data-item="3" data-keywords="preuve|preuves|demontr|démontr|argument|donnees|données|chiffres|etude|étude|scientifique"><span class="t-fr">Niveau de preuves.</span><span class="t-en" hidden="">Level of evidence.</span></li>
+      <li data-item="4" data-keywords="plusieurs sources|beaucoup en parlent|beaucoup de sources|tout le monde en parle|nombreux medias|nombreux médias|viral|repandu|répandu|partout"><span class="t-fr">Beaucoup de sources en parlent.</span><span class="t-en" hidden="">Many sources report it.</span></li>
+      <li data-item="5" data-keywords="credible|crédible|plausible|vraisemblable|semble vrai|ca se tient|ça se tient|logique|credibilite info|crédibilité de l'info"><span class="t-fr">Crédibilité de l'information.</span><span class="t-en" hidden="">Credibility of the information.</span></li>
+      <li data-item="6" data-keywords="commentaire|critique|avis|retour|fact-check|factcheck|verifi|vérifi|debat|débat|reaction|réaction"><span class="t-fr">Commentaires et critiques de l'information.</span><span class="t-en" hidden="">Comments and criticism of the information.</span></li>
+    </ul>
+    <button class="reveal-btn" onclick="Deck.revealMissingChecklist()" data-pose="" data-off-x="433.62" data-off-y="322.86" style="left:43.362%;top:32.286%"><span class="t-fr">Voir les critères manquants →</span><span class="t-en" hidden="">See the missing criteria →</span></button>
+  </section>
+
+  <!-- PPT 6 : Fiabilité de la source : Le Monde -->
+  <section class="slide" id="s3" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="121.02" data-off-y="59.7" style="left:12.102%;top:5.97%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Fiabilité de la source</span><span class="t-en" hidden="">Reliability of the source</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="169.65" data-off-y="185" style="left:16.965%;top:18.5%;width:63.386%;max-width:none"><img src="../medias/images/panama-papers-lemonde.jpg" alt="Le Monde : « Panama papers », une plongée inédite dans la « boîte noire » des paradis fiscaux" loading="lazy"></div>
+  </section>
+
+  <!-- PPT 7 : Fiabilité de la source : Le Nouvel Obs -->
+  <section class="slide" id="nv2-source-observateur" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="121.02" data-off-y="59.7" style="left:12.102%;top:5.97%;width:77.053%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Fiabilité de la source</span><span class="t-en" hidden="">Reliability of the source</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="325.6" data-off-y="140" style="left:32.56%;top:14%;width:34.963%;max-width:none"><img src="../medias/images/ogm-poisons-nouvelobs.jpg" alt="Le Nouvel Observateur : « Oui, les OGM sont des poisons ! »" loading="lazy"></div>
+  </section>
+
+  <!-- PPT 8 : Fiabilité de l’interlocuteur : GIEC -->
+  <section class="slide" id="s4" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Fiabilité de l’interlocuteur.</span><span class="t-en" hidden="">Reliability of the speaker.</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="196.48" data-off-y="202" style="left:19.648%;top:20.2%;width:57.014%;max-width:none"><img src="../medias/images/giec-experts-panel.jpg" alt="Les experts du GIEC en conférence" loading="lazy"></div>
+  </section>
+
+  <!-- PPT 9 : Fiabilité de l’interlocuteur : Didier Raoult -->
+  <section class="slide" id="nv2-interlocuteur-raoult" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Fiabilité de l’interlocuteur.</span><span class="t-en" hidden="">Reliability of the speaker.</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="217.45" data-off-y="240" style="left:21.745%;top:24%;width:53.241%;max-width:none"><img src="../medias/images/didier-raoult.jpg" alt="Didier Raoult" loading="lazy"></div>
+  </section>
+
+  <!-- PPT 10 : Niveau de preuves -->
+  <section class="slide" id="s5" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Niveau de preuves</span><span class="t-en" hidden="">Level of evidence</span></h2>
+    <p class="lead" data-pose="" data-off-x="143.66" data-off-y="234.7" style="left:14.366%;top:23.47%;width:61.709%;max-width:none;font-size:30px;text-align:left;"><span class="t-fr">Les preuves peuvent être fausses, falsifiées, ou faire aboutir à la mauvaise conclusion.</span><span class="t-en" hidden="">Evidence can be false, falsified, or lead to the wrong conclusion.</span></p>
+    <div class="imgcard" data-pose="" data-off-x="175.52" data-off-y="303" style="left:17.552%;top:30.3%;width:58.607%;max-width:none"><img src="../medias/images/adn-experts-se-trompent-lemonde.png" alt="Le Monde : « ADN : quand les "experts" se trompent »" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="233.38" data-off-y="637" style="left:23.338%;top:63.7%;width:47.037%;max-width:none"><img src="../medias/images/adn-manipulation-titre.jpg" alt="Des centaines d’affaires remises en cause ? Une médecin accusée de « manipulations » de preuves ADN" loading="lazy"></div>
+    <div class="speaker-notes" hidden="">https://www.bfmtv.com/police-justice/des-milliers-d-affaires-remises-en-cause-une-medecin-soupconnee-de-manipulations-de-preuves-adn_AN-202403170037.html
+https://www.lemonde.fr/technologies/article/2010/12/10/adn-quand-les-experts-se-trompent_1451949_651865.html</div>
+  </section>
+
+  <!-- PPT 11 : Photo Trump et Xi Jinping -->
+  <section class="slide short" id="nv2-trump-xi" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <div class="imgcard" data-pose="" data-off-x="337.27" data-off-y="28" style="left:33.727%;top:2.8%;width:32.546%;max-width:none;max-height:none"><img src="../medias/images/trump-xi-jinping.jpg" alt="Donald Trump et Xi Jinping" loading="lazy" style="max-height:none"></div>
+  </section>
+
+  <!-- PPT 12 : Beaucoup de sources en parlent : la Suède -->
+  <section class="slide" id="s6" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Beaucoup de sources en parlent.</span><span class="t-en" hidden="">Many sources report it.</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="243.44" data-off-y="260" style="left:24.344%;top:26%;width:54.079%;max-width:none"><img src="../medias/images/hoax-sport-suede.jpg" alt="IOL : « Sex tournament: Sweden becomes the first country to make sex a sport »" loading="lazy"></div>
+  </section>
+
+  <!-- PPT 13 : Beaucoup de sources en parlent : Dupont de Ligonnès -->
+  <section class="slide" id="nv2-sources-dupont-ligonnes" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Beaucoup de sources en parlent.</span><span class="t-en" hidden="">Many sources report it.</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="133.6" data-off-y="273" style="left:13.36%;top:27.3%;width:32.867%;max-width:none"><img src="../medias/images/xavier-dupont-de-ligonnes.jpg" alt="Le Parisien : Xavier Dupont de Ligonnès aurait été arrêté en Écosse" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="493.29" data-off-y="293" style="left:49.329%;top:29.3%;width:35.718%;max-width:none"><img src="../medias/images/xavier-dupont-de-ligonnes-bfm.jpg" alt="BFMTV : Xavier Dupont de Ligonnès arrêté à Glasgow" loading="lazy"></div>
+  </section>
+
+  <!-- PPT 14 : Crédibilité : les biscuits -->
+  <section class="slide" id="s7" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Crédibilité de l’information</span><span class="t-en" hidden="">Credibility of the information</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="245.11" data-off-y="202" style="left:24.511%;top:20.2%;width:42.928%;max-width:none"><img src="../medias/images/biscuits-vegan-hoax.jpg" alt="La Vegan Society demande la fin des biscuits en forme d’animaux" loading="lazy"></div>
+  </section>
+
+  <!-- PPT 15 : Crédibilité : la méduse immortelle -->
+  <section class="slide" id="nv2-credibilite-meduse" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Crédibilité de l’information</span><span class="t-en" hidden="">Credibility of the information</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="328.12" data-off-y="255" style="left:32.812%;top:25.5%;width:34.376%;max-width:none"><img src="../medias/images/meduse-immortelle.jpg" alt="Il existe une espèce de méduse immortelle" loading="lazy"></div>
+  </section>
+
+  <!-- PPT 16 : Retours critiques : les fact-checkeurs -->
+  <section class="slide" id="s8" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Quels sont les retours critiques ?</span><span class="t-en" hidden="">What is the critical feedback?</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="272.78" data-off-y="200" style="left:27.278%;top:20%;width:44.018%;max-width:none"><img src="../medias/images/logos-fact-checking.png" alt="Logos de sites de fact-checking" loading="lazy"></div>
+  </section>
+
+  <!-- PPT 17 : Retours critiques : RSF -->
+  <section class="slide" id="nv2-retours-rsf" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Quels sont les retours critiques ?</span><span class="t-en" hidden="">What is the critical feedback?</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="186.42" data-off-y="227" style="left:18.642%;top:22.7%;width:52.738%;max-width:none"><img src="../medias/images/rsf-factchecking-kremlin.jpg" alt="RSF : « Russie : quand le fact-checking devient le nouvel outil de la propagande du Kremlin »" loading="lazy"></div>
+  </section>
+
+  <!-- PPT 18 : Critères, et le « 100 % » barré -->
+  <section class="slide" id="nv2-criteres" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Critères</span><span class="t-en" hidden="">Criteria</span></h2>
+    <p class="lead step" data-order="1" data-pose="" data-off-x="127.73" data-off-y="321.7" style="left:12.773%;top:32.17%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr">– Fiabilité de la source.</span><span class="t-en" hidden="">– Reliability of the source.</span></p>
+    <p class="lead step" data-order="1" data-pose="" data-off-x="127.73" data-off-y="383.17" style="left:12.773%;top:38.317%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr">– Fiabilité de l’interlocuteur.</span><span class="t-en" hidden="">– Reliability of the speaker.</span></p>
+    <p class="lead step" data-order="1" data-pose="" data-off-x="127.73" data-off-y="444.64" style="left:12.773%;top:44.464%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr">– Niveau de preuves</span><span class="t-en" hidden="">– Level of evidence</span></p>
+    <p class="lead step" data-order="1" data-pose="" data-off-x="127.73" data-off-y="506.11" style="left:12.773%;top:50.611%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr">– Multiplicité des canaux de diffusion.</span><span class="t-en" hidden="">– Multiple distribution channels.</span></p>
+    <p class="lead step" data-order="1" data-pose="" data-off-x="127.73" data-off-y="567.58" style="left:12.773%;top:56.758%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr">– Crédibilité de l’information.</span><span class="t-en" hidden="">– Credibility of the information.</span></p>
+    <p class="lead step" data-order="1" data-pose="" data-off-x="127.73" data-off-y="629.05" style="left:12.773%;top:62.905%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr">– Commentaires et critiques de l’information.</span><span class="t-en" hidden="">– Comments and criticism of the information.</span></p>
+    <div class="imgcard step" data-order="2" data-pose="" data-off-x="613.19" data-off-y="194" style="left:61.319%;top:19.4%;width:22.219%;max-width:none"><img src="../medias/images/tampon-cent-pour-cent.jpeg" alt="Tampon « 100 % »" loading="lazy"></div>
+    <svg class="step" data-order="2" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" data-pose="" data-off-x="621.57" data-off-y="155" style="left:62.157%;top:15.5%;width:22.051%;height:41.9%;max-width:none;overflow:visible"><line x1="5.3" y1="3.3" x2="100" y2="97.9" stroke="#ff0000" stroke-width="10" vector-effect="non-scaling-stroke"></line><line x1="95.4" y1="0" x2="0" y2="100" stroke="#ff0000" stroke-width="10" vector-effect="non-scaling-stroke"></line></svg>
+  </section>
+
+  <section class="slide" id="s-actions">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr"><b>Actions à effectuer</b></span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li data-puce="▸" style="font-size:30.267px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Remonter à la source.</span><span class="t-en" hidden=""></span></li><li data-puce="▸" style="font-size:30.267px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Vérifier le contexte</span><span class="t-en" hidden=""></span></li><li data-puce="▸" style="font-size:26.904px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">Date</span><span class="t-en" hidden=""></span></li><li data-puce="▸" style="font-size:26.904px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">Lieu</span><span class="t-en" hidden=""></span></li><li data-puce="▸" style="font-size:26.904px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">Contexte général.</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="encadrants-d20" data-serie="serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="300.569" data-off-y="66.915" style="left:30.057%;top:6.692%;width:42.174%;max-width:none;"><img src="../medias/images/foule-arc-triomphe-hors-contexte.png" alt="" loading="lazy" style="aspect-ratio:6131757/6184783"></div>
+  </section>
+
+  <section class="slide" id="encadrants-d21">
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:73.985px;line-height:1.2;text-align:center"><span class="t-fr">Maintenant, allons plus loin.</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="encadrants-d22" data-serie="serie_27e9693e-57d6-4fba-aebe-8076661ebb87">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Le mystère de la dent d’or</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="342.208" data-off-y="203.778" style="left:34.221%;top:20.378%;width:31.558%;max-width:none;"><img src="../medias/images/complotiste-046-5.png" alt="" loading="lazy" style="aspect-ratio:4588371/4062985"></div>
+    <div class="speaker-notes" hidden="">« En 1593, le bruit courut que les dents étant tombées à un enfant de Silésie, âgé de sept ans, il lui en était venu une d’or, à la place d’une de ses grosses dents. Horstius, professeur en médecine dans l’université de Helmstad, écrivit en 1595 l’histoire de cette dent, et prétendit qu’elle était en partie naturelle, en partie miraculeuse, et qu’elle avait été envoyée de Dieu à cet enfant pour consoler les chrétiens affligés par les Turcs. Figurez-vous quelle consolation, et quel rapport de cette dent aux chrétiens ni aux Turcs. En la même année, afin que cette dent d’or ne manquât pas d’historiens, Rullandus en écrit encore l’histoire. Deux ans après, Ingolstetetus, autre savant, écrit contre le sentiment que Rullandus avait de la dent d’or, et Rullandus fait aussitôt une belle et docte réplique. Un autre grand homme nommé Libavius ramasse tout ce qui avait été dit de la dent, et y ajoute son sentiment particulier. Il ne manquait autre chose à tant de beaux ouvrages, sinon qu’il fût vrai que la dent était d’or. Quand un orfèvre l’eut examinée, il se trouva que c’était une feuille d’or appliquée avec beaucoup d’adresse ; mais on commença par faire des livres, et puis on consulta l’orfèvre. »</div>
+  </section>
+
+  <section class="slide" id="encadrants-d23" data-serie="serie_27e9693e-57d6-4fba-aebe-8076661ebb87">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Comment pouvez-vous expliquer ce mystere ?</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+  <section class="slide" id="encadrants-d24">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:center;color:var(--acc);"><span class="t-fr">La dent d’or de Fontenelle</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">“Assurons nous bien du fait, avant de nous inquiéter de la cause”</span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:30.267px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li style="font-size:30.267px;line-height:1.2;margin-top:16.815px;text-align:left"><span class="t-fr">“Il est vrai que cette méthode est bien lente pour la plupart des gens, qui courent naturellement à la cause, et passent par-dessus la vérité du fait ; mais enfin nous éviterons le ridicule d’avoir trouvé la cause de ce qui n’est point. »</span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:30.267px;line-height:1.2;margin-top:16.815px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li style="font-size:30.267px;line-height:1.2;margin-top:16.815px;text-align:right"><span class="t-fr">Bernard Le Bouyer de Fontenelle</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="encadrants-d25" data-serie="serie_2c5d2cc7-1283-41f7-a5ba-d97ed4af5831">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="247.617" data-off-y="422.842" style="left:24.762%;top:42.284%;width:52.878%;max-width:none;"><img src="../medias/images/complotiste-049-6.png" alt="" loading="lazy" style="aspect-ratio:7688128/1820158"></div>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="460.124" data-off-y="193.28" style="left:46.012%;top:19.328%;width:7.975%;max-width:none;"><img src="../medias/images/complotiste-049-7.png" alt="" loading="lazy" style="aspect-ratio:1159543/953452"></div>
+  </section>
+
+  <section class="slide" id="encadrants-d26" data-serie="serie_2c5d2cc7-1283-41f7-a5ba-d97ed4af5831">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="417.526" data-off-y="55.385" style="left:41.753%;top:5.538%;width:16.495%;max-width:none;"><img src="../medias/images/complotiste-050-8.jpg" alt="" loading="lazy" style="aspect-ratio:2398205/3553704"></div>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="213.825" data-off-y="628.921" style="left:21.383%;top:62.892%;width:57.235%;max-width:none;"><img src="../medias/images/complotiste-050-9.png" alt="" loading="lazy" style="aspect-ratio:8321541/1890712"></div>
+  </section>
+
+  <section class="slide" id="encadrants-d27" data-serie="serie_423bc906-aebd-4cad-adec-26b309a2ca7e">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:54.48px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr"><b>Est-ce à cause de l’aluminium qu’ils contiennent que les vaccins causent l’autisme ?</b></span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="393.162" data-off-y="356.058" style="left:39.316%;top:35.606%;width:21.368%;max-width:none;"><img src="../medias/images/complotiste-051-10.png" alt="" loading="lazy" style="aspect-ratio:3106689/3106689"></div>
+  </section>
+
+  <section class="slide" id="encadrants-d28" data-serie="serie_423bc906-aebd-4cad-adec-26b309a2ca7e">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="240.244" data-off-y="327.778" style="left:24.024%;top:32.778%;width:51.951%;max-width:none;"><img src="../medias/images/complotiste-052-11.png" alt="" loading="lazy" style="aspect-ratio:7553325/2362200"></div>
+  </section>
+
+  <section class="slide" id="encadrants-d29" data-serie="serie_0c130ac1-2a4c-4e60-a699-1a9de25e66d8">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="118.531" data-off-y="219.099" style="left:11.853%;top:21.91%;width:76.294%;max-width:none;"><img src="../medias/images/complotiste-053-12.png" alt="" loading="lazy" style="aspect-ratio:11092543/1687101"></div>
+  </section>
+
+  <section class="slide" id="encadrants-d30" data-serie="serie_0c130ac1-2a4c-4e60-a699-1a9de25e66d8">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="331.306" data-off-y="356.944" style="left:33.131%;top:35.694%;width:33.739%;max-width:none;"><img src="../medias/images/complotiste-054-13.png" alt="" loading="lazy" style="aspect-ratio:4905375/1962150"></div>
+  </section>
+
+  <section class="slide" id="encadrants-d31">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Une fois qu’on a l’information, a-t-on vraiment l’information ?</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="288.998" data-off-y="246.528" style="left:28.9%;top:24.653%;width:42.2%;max-width:none;"><img src="../medias/images/communiquer-211-52.png" alt="" loading="lazy" style="aspect-ratio:6135640/4572969"></div>
+    <div class="speaker-notes" hidden="">Au cours de la Seconde Guerre mondiale, le statisticien Abraham Wald a pris en compte le biais des survivants dans ses calculs afin d'évaluer comment minimiser la perte de bombardiers sous le feu ennemi. En étudiant les dommages causés à des aéronefs revenus de mission, l'étude a recommandé de blinder les endroits des appareils qui présentaient le moins de dommages. En effet, Wald a constaté que les études précédentes ne tenaient compte que des aéronefs qui avaient « survécu » à leur mission, sans tenir compte de ceux qui avaient disparu. Ainsi, les endroits endommagés des aéronefs revenus représentent les endroits où ces derniers peuvent encaisser des dommages et réussir à rentrer à la base. La conclusion de Wald est que lorsqu'un aéronef est endommagé à un autre endroit, il ne revient pas de sa mission. En conséquence, ce sont ces endroits - ceux non endommagés chez les « survivants » - qui devraient être renforcés, et non les endroits endommagé</div>
+  </section>
+
+  <section class="slide" id="encadrants-d32">
+    <ul class="ppt-texte" data-pose="" data-off-x="106.61" data-off-y="64.797" style="left:10.661%;top:6.48%;width:61.728%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:40.356px;line-height:1.2;text-align:left"><span class="t-fr">“Mes parachutes sont d’excellentes qualités. La preuve : personne n’est jamais venu se plaindre !”</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="imgcard ppt-img ppt-recadre" data-pose="" data-off-x="344.617" data-off-y="280.889" style="left:34.462%;top:28.089%;width:26.953%;max-width:none;aspect-ratio:3918753/4621940;"><img src="../medias/images/parachute-photo.jpg" alt="" loading="lazy" style="position:absolute;max-width:none;max-height:none;width:100.0%;height:126.781%;left:-0.0%;top:-13.988%"></div>
+  </section>
+
+  <section class="slide" id="encadrants-d33">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="230.453" data-off-y="135.111" style="left:23.045%;top:13.511%;width:45.2%;max-width:none;"><img src="../medias/images/chat-photo.jpg" alt="" loading="lazy" style="aspect-ratio:6571726/5155914"></div>
+    <div class="speaker-notes" hidden="">Une etude montre que les chats qui tombe d’une chute de 6 etages ou moins ont des blessures PLUS importantes que les chats qui tombent d’une chute plus haute. Comment est-ce possible ?
+Source : https://pubmed.ncbi.nlm.nih.gov/3692980/</div>
+  </section>
+
+  <section class="slide" id="encadrants-d34">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="244.994" data-off-y="108.444" style="left:24.499%;top:10.844%;width:48.589%;max-width:none;"><img src="../medias/images/encadrants-034-temple-grec.jpg" alt="" loading="lazy" style="aspect-ratio:7064417/5298313"></div>
+  </section>
+
+  <section class="slide" id="encadrants-d35">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="244.864" data-off-y="159.903" style="left:24.486%;top:15.99%;width:51.027%;max-width:none;"><img src="../medias/images/beatles-rolling-stones.jpg" alt="" loading="lazy" style="aspect-ratio:7418972/4944745"></div>
+  </section>
+
+  <section class="slide" id="encadrants-d36">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="182.8" data-off-y="201.795" style="left:18.28%;top:20.179%;width:63.44%;max-width:none;"><img src="../medias/images/sylvia-browne-hoax.jpg" alt="" loading="lazy" style="aspect-ratio:9223717/5188341"></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="352.608" data-off-y="86.154" style="left:35.261%;top:8.615%;width:15.516%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Livre publié en 2008…</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="encadrants-d37">
+    <ul class="ppt-texte" data-pose="" data-off-x="138.372" data-off-y="266.204" style="left:13.837%;top:26.62%;width:72.326%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="ppt-vide" style="font-size:31.107px;line-height:0.96;padding-left:45.4px;text-indent:-45.4px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:31.107px;line-height:0.96;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:31.107px;line-height:0.96;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:31.107px;line-height:0.96;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:31.107px;line-height:0.96;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:31.107px;line-height:0.96;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:31.107px;line-height:0.96;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li data-puce="▸" style="font-size:31.107px;line-height:0.96;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr"><b>Les conseils d’ Harv Eker</b></span><span class="t-en" hidden=""></span></li><li data-puce="▸" style="font-size:31.107px;line-height:0.96;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr"><b>Principe n° 1 : Les gens riches croient « je crée ma vie. » Les pauvres croient que « La vie m’arrive à moi. ».</b></span><span class="t-en" hidden=""></span></li><li data-puce="▸" style="font-size:31.107px;line-height:0.96;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr"><b>Principe n° 2 : Les gens riches jouent le jeu de l’argent pour gagner. Les pauvres jouent le jeu de l’argent pour ne pas perdre.</b></span><span class="t-en" hidden=""></span></li><li data-puce="▸" style="font-size:31.107px;line-height:0.96;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr"><b>Principe n° 3 : Les gens riches s’engagent à être riches. Les pauvres veulent être riches.</b></span><span class="t-en" hidden=""></span></li></ul>
+    <div class="imgcard ppt-img ppt-recadre" data-pose="" data-off-x="265.794" data-off-y="19.742" style="left:26.579%;top:1.974%;width:45.751%;max-width:none;aspect-ratio:6651930/2111207;"><img src="../medias/images/encadrants-037-harv-eker-article.png" alt="" loading="lazy" style="position:absolute;max-width:none;max-height:none;width:100.0%;height:133.522%;left:-0.0%;top:-0.0%"></div>
+    <div class="imgcard ppt-img ppt-recadre" data-pose="" data-off-x="321.131" data-off-y="327.588" style="left:32.113%;top:32.759%;width:34.684%;max-width:none;aspect-ratio:5042807/2118575;"><img src="../medias/images/encadrants-037-harv-eker-photo.jpg" alt="" loading="lazy" style="position:absolute;max-width:none;max-height:none;width:100.0%;height:158.796%;left:-0.0%;top:-35.21%"></div>
+    <div class="speaker-notes" hidden="">https://medium.com/essentiels/les-secrets-dun-esprit-millionnaire-17-principes-pour-se-conditionner-%C3%A0-la-libert%C3%A9-financi%C3%A8re-cfcf4b694e69</div>
+  </section>
+
+  <section class="slide" id="encadrants-d38">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="232.336" data-off-y="106.173" style="left:23.234%;top:10.617%;width:53.533%;max-width:none;"><img src="../medias/images/temoignage-cancer-thumbnail.jpg" alt="" loading="lazy" style="aspect-ratio:7783286/4324048"></div>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="217.127" data-off-y="761.012" style="left:21.713%;top:76.101%;width:29.86%;max-width:none;"><img src="../medias/images/encadrants-038-programme-anti-cancer.png" alt="" loading="lazy" style="aspect-ratio:4341359/666283"></div>
+  </section>
+
+  <section class="slide" id="encadrants-d39" data-serie="serie_b9cb77cd-755a-4b0e-9516-957bd89d1ffa">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Comment diffuser l’information lorsqu’elle peut être conflictuelle ?</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li data-puce="▸" style="font-size:30.267px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Pourquoi une information peut être rejetée par l’élève ?</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="speaker-notes" hidden="">Exemple : je ne fais pas confiance au vaccin CAR le gouvernement nous ment.</div>
+  </section>
+
+  <section class="slide" id="encadrants-d40" data-serie="serie_1cc17ccf-db19-48e4-a429-06ef68c19df3">
+    <div class="forme ppt-forme forme-ovale" data-pose="" data-off-x="184.251" data-off-y="500.0" style="left:18.425%;top:50.0%;background-color:#5FCBEF;border:2.522px solid #0E1E24;width:12.482%;height:24.667%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Argument</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-ovale" data-pose="" data-off-x="455.29" data-off-y="500.0" style="left:45.529%;top:50.0%;background-color:#2E83C3;border:2.522px solid #07141D;width:12.482%;height:24.667%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Conviction</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-fleche" data-pose="" data-off-x="329.386" data-off-y="591.538" style="left:32.939%;top:59.154%;background-color:#000000;border:2.522px solid #000000;width:11.321%;height:6.359%;max-width:none;"></div>
+    <ul class="ppt-texte step" data-order="2" data-pose="" data-off-x="337.126" data-off-y="518.974" style="left:33.713%;top:51.897%;width:8.611%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Donc</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte step" data-order="1" data-pose="" data-off-x="129.1" data-off-y="381.538" style="left:12.91%;top:38.154%;width:19.267%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Un avion ne pourrait pas voler si la Terre était ronde.</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte step" data-order="3" data-pose="" data-off-x="455.29" data-off-y="381.538" style="left:45.529%;top:38.154%;width:12.272%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">La Terre est plate</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="357.62" data-off-y="35.185" style="left:35.762%;top:3.519%;width:25.419%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:47.081px;line-height:1.2;text-align:left"><span class="t-fr">Dans un monde idéal</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="speaker-notes" hidden="">Exemple : je ne fais pas confiance au vaccin CAR le gouvernement nous ment.</div>
+  </section>
+
+  <section class="slide" id="encadrants-d41">
+    <div class="forme ppt-forme forme-ovale" data-pose="" data-off-x="184.251" data-off-y="500.0" style="left:18.425%;top:50.0%;background-color:#5FCBEF;border:2.522px solid #0E1E24;width:12.482%;height:24.667%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Argument</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-ovale" data-pose="" data-off-x="455.29" data-off-y="500.0" style="left:45.529%;top:50.0%;background-color:#2E83C3;border:2.522px solid #07141D;width:12.482%;height:24.667%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Conviction</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-fleche" data-pose="" data-off-x="329.386" data-off-y="591.538" style="left:32.939%;top:59.154%;background-color:#000000;border:2.522px solid #000000;width:11.321%;height:6.359%;max-width:none;"></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="337.126" data-off-y="518.974" style="left:33.713%;top:51.897%;width:8.611%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Donc</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte step" data-order="2" data-pose="" data-off-x="136.719" data-off-y="230.113" style="left:13.672%;top:23.011%;width:19.267%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Un avion PEUT voler sur une Terre ronde.</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte step" data-order="4" data-pose="" data-off-x="455.29" data-off-y="381.538" style="left:45.529%;top:38.154%;width:13.248%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">La Terre est ronde.</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte step" data-order="5" data-pose="" data-off-x="653.521" data-off-y="475.783" style="left:65.352%;top:47.578%;width:22.886%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:40.356px;line-height:1.2;text-align:left"><span class="t-fr">L’argument est la CAUSE de la conviction.</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="129.1" data-off-y="381.538" style="left:12.91%;top:38.154%;width:19.267%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Un avion ne pourrait pas voler si la Terre était ronde.</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="forme ppt-forme forme-ligne step" data-order="1" data-pose="" data-off-x="157.57" data-off-y="419.695" style="left:15.757%;top:41.969%;background-color:#FF0000;width:13.573%;height:26.027px;border-radius:13.014px;max-width:none;transform:rotate(20.584deg);opacity:0.502;"></div>
+    <div class="forme ppt-forme forme-ligne step" data-order="1" data-pose="" data-off-x="157.57" data-off-y="419.695" style="left:15.757%;top:41.969%;background-color:#FF0000;width:13.573%;height:26.027px;border-radius:13.014px;max-width:none;transform:rotate(159.416deg);opacity:0.502;"></div>
+    <ul class="ppt-texte" data-sortie="2" data-pose="" data-off-x="453.69" data-off-y="382.465" style="left:45.369%;top:38.247%;width:12.272%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">La Terre est plate</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="357.62" data-off-y="35.185" style="left:35.762%;top:3.519%;width:25.419%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:47.081px;line-height:1.2;text-align:left"><span class="t-fr">Dans un monde idéal</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="speaker-notes" hidden="">Exemple : je ne fais pas confiance au vaccin CAR le gouvernement nous ment.</div>
+  </section>
+
+  <section class="slide ppt-rogne" id="encadrants-d42" data-serie="serie_60dea563-00ec-4c33-a5f3-ee21de64812d">
+    <div class="forme ppt-forme forme-ovale" data-pose="" data-off-x="184.251" data-off-y="500.0" style="left:18.425%;top:50.0%;background-color:#5FCBEF;border:2.522px solid #0E1E24;width:12.482%;height:24.667%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Argument</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-ovale" data-pose="" data-off-x="455.29" data-off-y="500.0" style="left:45.529%;top:50.0%;background-color:#2E83C3;border:2.522px solid #07141D;width:12.482%;height:24.667%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Conviction</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-fleche" data-pose="" data-off-x="329.386" data-off-y="591.538" style="left:32.939%;top:59.154%;background-color:#000000;border:2.522px solid #000000;width:11.321%;height:6.359%;max-width:none;transform:rotate(180.0deg);"></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="337.126" data-off-y="518.974" style="left:33.713%;top:51.897%;width:8.611%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Donc</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="129.1" data-off-y="381.538" style="left:12.91%;top:38.154%;width:19.267%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Les avions ne peuvent pas voler sur une Terre ronde.</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="455.29" data-off-y="381.538" style="left:45.529%;top:38.154%;width:12.669%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">La Terre est plate.</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="forme ppt-forme forme-ligne step" data-order="1" data-pose="" data-off-x="134.545" data-off-y="419.696" style="left:13.455%;top:41.97%;background-color:#FF0000;width:13.735%;height:28.504px;border-radius:14.252px;max-width:none;transform:rotate(22.365deg);opacity:0.502;"></div>
+    <div class="forme ppt-forme forme-ligne step" data-order="1" data-pose="" data-off-x="134.545" data-off-y="419.696" style="left:13.455%;top:41.97%;background-color:#FF0000;width:13.735%;height:28.504px;border-radius:14.252px;max-width:none;transform:rotate(157.635deg);opacity:0.502;"></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="260.662" data-off-y="35.185" style="left:26.066%;top:3.519%;width:40.53%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:47.081px;line-height:1.2;text-align:left"><span class="t-fr">Dans notre monde qui ne l’est pas</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="speaker-notes" hidden="">Exemple : je ne fais pas confiance au vaccin CAR le gouvernement nous ment.</div>
+  </section>
+
+  <section class="slide ppt-rogne" id="encadrants-d43">
+    <div class="forme ppt-forme forme-ovale" data-pose="" data-off-x="184.251" data-off-y="500.0" style="left:18.425%;top:50.0%;background-color:#5FCBEF;border:2.522px solid #0E1E24;width:12.482%;height:24.667%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Argument</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-ovale" data-pose="" data-off-x="455.29" data-off-y="500.0" style="left:45.529%;top:50.0%;background-color:#2E83C3;border:2.522px solid #07141D;width:12.482%;height:24.667%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Conviction</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-fleche" data-pose="" data-off-x="329.386" data-off-y="591.538" style="left:32.939%;top:59.154%;background-color:#000000;border:2.522px solid #000000;width:11.321%;height:6.359%;max-width:none;transform:rotate(180.0deg);"></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="337.126" data-off-y="518.974" style="left:33.713%;top:51.897%;width:8.611%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Donc</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte step" data-order="3" data-pose="" data-off-x="150.326" data-off-y="347.852" style="left:15.033%;top:34.785%;width:19.267%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">L’horizon est plat</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="455.29" data-off-y="381.538" style="left:45.529%;top:38.154%;width:12.669%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">La Terre est plate.</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte step" data-order="1" data-pose="" data-off-x="147.423" data-off-y="788.669" style="left:14.742%;top:78.867%;width:19.267%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">On ne voit qu’une seule face de la lune</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte step" data-order="2" data-pose="" data-off-x="87.918" data-off-y="431.472" style="left:8.792%;top:43.147%;width:19.267%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Les rails des trains ne sont pas courbés.</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte step" data-order="4" data-pose="" data-off-x="653.52" data-off-y="475.783" style="left:65.352%;top:47.578%;width:25.399%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:40.356px;line-height:1.2;text-align:left"><span class="t-fr">L’argument est la CONSEQUENCE de la conviction.</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="260.662" data-off-y="35.185" style="left:26.066%;top:3.519%;width:40.53%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:47.081px;line-height:1.2;text-align:left"><span class="t-fr">Dans notre monde qui ne l’est pas</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="speaker-notes" hidden="">Exemple : je ne fais pas confiance au vaccin CAR le gouvernement nous ment.</div>
+  </section>
+
+  <section class="slide ppt-rogne" id="encadrants-d44">
+    <div class="forme ppt-forme forme-ovale" data-pose="" data-off-x="184.251" data-off-y="500.0" style="left:18.425%;top:50.0%;background-color:#5FCBEF;border:2.522px solid #0E1E24;width:12.482%;height:24.667%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Argument</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-ovale" data-pose="" data-off-x="455.29" data-off-y="500.0" style="left:45.529%;top:50.0%;background-color:#2E83C3;border:2.522px solid #07141D;width:12.482%;height:24.667%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Conviction</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-fleche" data-pose="" data-off-x="329.386" data-off-y="591.538" style="left:32.939%;top:59.154%;background-color:#000000;border:2.522px solid #000000;width:11.321%;height:6.359%;max-width:none;transform:rotate(180.0deg);"></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="337.126" data-off-y="518.974" style="left:33.713%;top:51.897%;width:8.611%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Donc</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="129.1" data-off-y="381.538" style="left:12.91%;top:38.154%;width:19.267%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">L’horizon est plat</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="455.29" data-off-y="381.538" style="left:45.529%;top:38.154%;width:12.669%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">La Terre est plate.</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="147.423" data-off-y="788.669" style="left:14.742%;top:78.867%;width:19.267%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">On ne voit qu’une seule face de la lune</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="87.918" data-off-y="431.472" style="left:8.792%;top:43.147%;width:19.267%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Les rails des trains ne sont pas courbés.</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="forme ppt-forme forme-fleche" data-pose="" data-off-x="592.806" data-off-y="595.384" style="left:59.281%;top:59.538%;background-color:#000000;border:2.522px solid #000000;width:11.321%;height:6.359%;max-width:none;transform:rotate(180.0deg);"></div>
+    <div class="forme ppt-forme forme-ovale" data-pose="" data-off-x="726.33" data-off-y="500.0" style="left:72.633%;top:50.0%;background-color:#2E946B;border:2.522px solid #071610;width:12.482%;height:24.667%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Croyance</span><span class="t-en" hidden=""></span></span></span></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="260.662" data-off-y="35.185" style="left:26.066%;top:3.519%;width:40.53%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:47.081px;line-height:1.2;text-align:left"><span class="t-fr">Dans notre monde qui ne l’est pas</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="speaker-notes" hidden="">Exemple : je ne fais pas confiance au vaccin CAR le gouvernement nous ment.</div>
+  </section>
+
+  <section class="slide ppt-rogne" id="encadrants-d45">
+    <div class="forme ppt-forme forme-ovale" data-pose="" data-off-x="184.251" data-off-y="500.0" style="left:18.425%;top:50.0%;background-color:#5FCBEF;border:2.522px solid #0E1E24;width:12.482%;height:24.667%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Argument</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-ovale" data-pose="" data-off-x="455.29" data-off-y="500.0" style="left:45.529%;top:50.0%;background-color:#2E83C3;border:2.522px solid #07141D;width:12.482%;height:24.667%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Conviction</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-fleche" data-pose="" data-off-x="329.386" data-off-y="591.538" style="left:32.939%;top:59.154%;background-color:#000000;border:2.522px solid #000000;width:11.321%;height:6.359%;max-width:none;transform:rotate(180.0deg);"></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="337.126" data-off-y="518.974" style="left:33.713%;top:51.897%;width:8.611%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Donc</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="129.1" data-off-y="381.538" style="left:12.91%;top:38.154%;width:19.267%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">L’horizon est plat</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="455.29" data-off-y="381.538" style="left:45.529%;top:38.154%;width:12.669%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">La Terre est plate.</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="147.423" data-off-y="788.669" style="left:14.742%;top:78.867%;width:19.267%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">On ne voit qu’une seule face de la lune</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="87.918" data-off-y="431.472" style="left:8.792%;top:43.147%;width:19.267%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Les rails des trains ne sont pas courbés.</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="forme ppt-forme forme-fleche" data-pose="" data-off-x="592.806" data-off-y="595.384" style="left:59.281%;top:59.538%;background-color:#000000;border:2.522px solid #000000;width:11.321%;height:6.359%;max-width:none;transform:rotate(180.0deg);"></div>
+    <div class="forme ppt-forme forme-ovale" data-pose="" data-off-x="726.33" data-off-y="500.0" style="left:72.633%;top:50.0%;background-color:#2E946B;border:2.522px solid #071610;width:12.482%;height:24.667%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Croyance</span><span class="t-en" hidden=""></span></span></span></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="735.891" data-off-y="381.538" style="left:73.589%;top:38.154%;width:10.569%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Je suis croyant</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="735.891" data-off-y="808.864" style="left:73.589%;top:80.886%;width:13.703%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Je suis complotiste</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="260.662" data-off-y="35.185" style="left:26.066%;top:3.519%;width:40.53%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:47.081px;line-height:1.2;text-align:left"><span class="t-fr">Dans notre monde qui ne l’est pas</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="speaker-notes" hidden="">Exemple : je ne fais pas confiance au vaccin CAR le gouvernement nous ment.</div>
+  </section>
+
+  <section class="slide ppt-rogne" id="encadrants-d46" data-serie="serie_a70cc4bb-d2cf-4706-ab35-fda2e730adb2">
+    <div class="forme ppt-forme forme-fleche step" data-order="2" data-pose="" data-off-x="474.786" data-off-y="335.901" style="left:47.479%;top:33.59%;background-color:#000000;border:2.522px solid #000000;width:11.321%;height:6.359%;max-width:none;transform:rotate(101.091deg);"></div>
+    <div class="forme ppt-forme forme-ovale" data-pose="" data-off-x="184.251" data-off-y="500.0" style="left:18.425%;top:50.0%;background-color:#5FCBEF;border:2.522px solid #0E1E24;width:12.482%;height:24.667%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Argument</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-ovale" data-pose="" data-off-x="455.29" data-off-y="500.0" style="left:45.529%;top:50.0%;background-color:#2E83C3;border:2.522px solid #07141D;width:12.482%;height:24.667%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Conviction</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-fleche" data-pose="" data-off-x="329.386" data-off-y="591.538" style="left:32.939%;top:59.154%;background-color:#000000;border:2.522px solid #000000;width:11.321%;height:6.359%;max-width:none;transform:rotate(180.0deg);"></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="337.126" data-off-y="518.974" style="left:33.713%;top:51.897%;width:8.611%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Donc</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="129.1" data-off-y="381.538" style="left:12.91%;top:38.154%;width:19.267%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">L’horizon est plat</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="455.29" data-off-y="381.538" style="left:45.529%;top:38.154%;width:12.669%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;background:var(--bg);white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">La Terre est plate.</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="147.423" data-off-y="788.669" style="left:14.742%;top:78.867%;width:19.267%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">On ne voit qu’une seule face de la lune</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="87.918" data-off-y="431.472" style="left:8.792%;top:43.147%;width:19.267%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Les rails des trains ne sont pas courbés.</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="forme ppt-forme forme-fleche" data-pose="" data-off-x="592.806" data-off-y="595.384" style="left:59.281%;top:59.538%;background-color:#000000;border:2.522px solid #000000;width:11.321%;height:6.359%;max-width:none;transform:rotate(180.0deg);"></div>
+    <div class="forme ppt-forme forme-ovale" data-pose="" data-off-x="726.33" data-off-y="500.0" style="left:72.633%;top:50.0%;background-color:#2E946B;border:2.522px solid #071610;width:12.482%;height:24.667%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Croyance</span><span class="t-en" hidden=""></span></span></span></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="735.891" data-off-y="381.538" style="left:73.589%;top:38.154%;width:10.569%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Je suis croyant</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="735.891" data-off-y="808.864" style="left:73.589%;top:80.886%;width:13.703%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Je suis complotiste</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="260.662" data-off-y="35.185" style="left:26.066%;top:3.519%;width:40.53%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:47.081px;line-height:1.2;text-align:left"><span class="t-fr">Dans notre monde qui ne l’est pas</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="forme ppt-forme forme-ovale step" data-order="3" data-pose="" data-off-x="679.589" data-off-y="77.376" style="left:67.959%;top:7.738%;background-color:#96D141;border:2.522px solid #161F0A;width:12.482%;height:24.667%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Contexte social</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-ovale step" data-order="1" data-pose="" data-off-x="502.363" data-off-y="5.333" style="left:50.236%;top:0.533%;background-color:#42D0A2;border:2.522px solid #0A1F18;width:14.271%;height:28.172%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:26.904px;line-height:1.2;text-align:center"><span class="t-fr">Biais d’engagement / Identification</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-fleche step" data-order="4" data-pose="" data-off-x="581.603" data-off-y="365.947" style="left:58.16%;top:36.595%;background-color:#000000;border:2.522px solid #000000;width:11.321%;height:6.359%;max-width:none;transform:rotate(139.38deg);"></div>
+    <div class="speaker-notes" hidden="">Exemple : je ne fais pas confiance au vaccin CAR le gouvernement nous ment.</div>
+  </section>
+
+
+<!-- Iceberg : l'argument visible, ce qui le porte sous l'eau (12 octobre) -->
+  <section class="slide" id="encadrants-iceberg">
+    <div class="forme ppt-forme forme-rectangle" data-pose="" data-off-x="0.00" data-off-y="320.00" style="left:0.000%;top:32.000%;background-color:rgba(46,131,195,.28);border:0;border-radius:0;width:100.000%;height:68.000%;max-width:none;border-top:3px solid #5FCBEF;"></div>
+    <div class="forme ppt-forme forme-rectangle" data-pose="" data-off-x="380.00" data-off-y="120.00" style="left:38.000%;top:12.000%;background-color:#F2FAFD;border:0;border-radius:0;clip-path:polygon(0 100%,22% 42%,36% 58%,55% 0,70% 38%,82% 30%,100% 100%);width:24.000%;height:20.400%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#0B2233;inset:52% 0 4% 0"><span style="font-size:30px;line-height:1.15;text-align:center;font-weight:800"><span class="t-fr">Argument</span><span class="t-en" hidden=""></span></span></span></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="640.00" data-off-y="180.00" style="left:64.000%;top:18.000%;width:22.000%;max-width:none;padding:6px 12px;"><li style="font-size:24px;line-height:1.25;text-align:left;color:var(--tx)"><span class="t-fr">« L’horizon est plat »</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="forme ppt-forme forme-rectangle step" data-order="1" data-pose="" data-off-x="300.00" data-off-y="326.00" style="left:30.000%;top:32.600%;background-color:#BFE3F2;border:0;border-radius:0;clip-path:polygon(15% 0,85% 0,100% 100%,0 100%);width:40.000%;height:15.400%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#0B2233"><span style="font-size:26px;line-height:1.15;text-align:center;font-weight:800"><span class="t-fr">Conviction</span><span class="t-en" hidden=""></span></span></span></div>
+    <ul class="ppt-texte step" data-order="1" data-pose="" data-off-x="785.00" data-off-y="356.00" style="left:78.500%;top:35.600%;width:20.000%;max-width:none;padding:6px 12px;"><li style="font-size:20px;line-height:1.25;text-align:left;color:var(--tx)"><span class="t-fr">La Terre est plate.</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="forme ppt-forme forme-rectangle step" data-order="2" data-pose="" data-off-x="250.00" data-off-y="486.00" style="left:25.000%;top:48.600%;background-color:#8CC7E3;border:0;border-radius:0;clip-path:polygon(9.8% 0,88.2% 0,100% 100%,0 100%);width:51.000%;height:15.400%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#0B2233"><span style="font-size:26px;line-height:1.15;text-align:center;font-weight:800"><span class="t-fr">Croyance</span><span class="t-en" hidden=""></span></span></span></div>
+    <ul class="ppt-texte step" data-order="2" data-pose="" data-off-x="785.00" data-off-y="516.00" style="left:78.500%;top:51.600%;width:20.000%;max-width:none;padding:6px 12px;"><li style="font-size:20px;line-height:1.25;text-align:left;color:var(--tx)"><span class="t-fr">Personnelle ou religieuse : « je suis croyant », « je suis complotiste ».</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="forme ppt-forme forme-rectangle step" data-order="3" data-pose="" data-off-x="230.00" data-off-y="646.00" style="left:23.000%;top:64.600%;background-color:#5AA6CF;border:0;border-radius:0;clip-path:polygon(3.7% 0,98.1% 0,100% 100%,0 100%);width:54.000%;height:15.400%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:26px;line-height:1.15;text-align:center;font-weight:800"><span class="t-fr">Biais d’engagement / Identification</span><span class="t-en" hidden=""></span></span></span></div>
+    <ul class="ppt-texte step" data-order="3" data-pose="" data-off-x="785.00" data-off-y="676.00" style="left:78.500%;top:67.600%;width:20.000%;max-width:none;padding:6px 12px;"><li style="font-size:20px;line-height:1.25;text-align:left;color:var(--tx)"><span class="t-fr">Investissement dans la conviction.</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="forme ppt-forme forme-rectangle step" data-order="4" data-pose="" data-off-x="230.00" data-off-y="806.00" style="left:23.000%;top:80.600%;background-color:#2F7DB0;border:0;border-radius:0;clip-path:polygon(0 0,100% 0,88% 55%,72% 100%,24% 100%,10% 60%);width:54.000%;height:15.400%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:26px;line-height:1.15;text-align:center;font-weight:800"><span class="t-fr">Contexte social</span><span class="t-en" hidden=""></span></span></span></div>
+    <ul class="ppt-texte step" data-order="4" data-pose="" data-off-x="785.00" data-off-y="836.00" style="left:78.500%;top:83.600%;width:20.000%;max-width:none;padding:6px 12px;"><li style="font-size:20px;line-height:1.25;text-align:left;color:var(--tx)"><span class="t-fr">Difficulté d’admettre ses erreurs en public, positionnement social.</span><span class="t-en" hidden=""></span></li></ul>
+    <ul class="ppt-texte" data-pose="" data-off-x="30.00" data-off-y="30.00" style="left:3.000%;top:3.000%;width:60.000%;max-width:none;padding:6px 12px;"><li style="font-size:40px;line-height:1.25;text-align:left;font-weight:800"><span class="t-fr">Ce que l’élève dit… et ce qui le retient</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="speaker-notes" hidden="">Chaque clic fait apparaître une couche sous l’eau : conviction, croyance, biais d’engagement, contexte social. Exemple : je ne fais pas confiance au vaccin CAR le gouvernement nous ment.</div>
+  </section>
+
+  <section class="slide" id="encadrants-d47">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:center;color:var(--acc);"><span class="t-fr">Comment diffuser l’information lorsqu’elle peut être conflictuelle ?</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="273.59" data-off-y="315.047" style="left:27.359%;top:31.505%;width:44.499%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="ppt-vide" style="font-size:30.267px;line-height:1.2;padding-left:98.367px;text-indent:-37.833px;text-align:center"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="step" data-order="2" data-puce="▸" style="font-size:30.267px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">Personnelle ou religieuse.</span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:30.267px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:30.267px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="step" data-order="4" data-puce="▸" style="font-size:30.267px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">Investissement dans la conviction.</span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:30.267px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:30.267px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="step" data-order="6" data-puce="▸" style="font-size:30.267px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">Difficulté d’admettre ses erreurs en public, positionnement social.</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="forme ppt-forme forme-ovale step" data-order="1" data-pose="" data-off-x="133.187" data-off-y="241.704" style="left:13.319%;top:24.17%;background-color:#2E946B;border:2.522px solid #071610;width:12.482%;height:24.667%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Croyance</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-ovale step" data-order="3" data-pose="" data-off-x="133.187" data-off-y="441.648" style="left:13.319%;top:44.165%;background-color:#42D0A2;border:2.522px solid #0A1F18;width:12.482%;height:23.637%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:26.904px;line-height:1.2;text-align:center"><span class="t-fr">Biais d’engagement / Identification</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="forme ppt-forme forme-ovale step" data-order="5" data-pose="" data-off-x="133.187" data-off-y="657.807" style="left:13.319%;top:65.781%;background-color:#96D141;border:2.522px solid #161F0A;width:12.482%;height:24.667%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Contexte social</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="speaker-notes" hidden="">Exemple : je ne fais pas confiance au vaccin CAR le gouvernement nous ment.</div>
+  </section>
+
+  <section class="slide" id="encadrants-d48">
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="375.111" style="left:12.731%;top:37.511%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="1" data-puce="▸" style="font-size:33.63px;line-height:1.2;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">Montrer que l’on PEUT garder cette croyance tout en changeant sa conviction.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="2" data-puce="▸" style="font-size:33.63px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px"><span class="t-fr">Montrer que cette conviction peut se voir selon le prisme de la croyance (exemple : le COVID aux Etats Unis).</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="forme ppt-forme forme-ovale" data-pose="" data-off-x="426.299" data-off-y="32.019" style="left:42.63%;top:3.202%;background-color:#2E946B;border:2.522px solid #071610;width:14.823%;height:28.985%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Croyance</span><span class="t-en" hidden=""></span></span></span></div>
+    <div class="speaker-notes" hidden="">Exemple : je ne crois pas a la theorie de l evolution CAR je suis croyant.
+Je ne crois pas au nucleaire CAR je suis ecologiste.</div>
+  </section>
+
+  <section class="slide" id="encadrants-d49">
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="ppt-vide" style="font-size:30.267px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="step" data-order="1" data-puce="▸" style="font-size:30.267px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Garder un lien de confiance avec la personne.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="2" data-puce="▸" style="font-size:30.267px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Montrer que c’est l’idée qu’on attaque, et non pas elle.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="3" data-puce="▸" style="font-size:30.267px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Expliquer d’où l’on tire son propre raisonnement (storytelling).</span><span class="t-en" hidden=""></span></li><li class="step" data-order="4" data-puce="▸" style="font-size:30.267px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Ne pas chercher à écraser l’autre.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="5" data-puce="▸" style="font-size:30.267px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Ne pas chercher à convaincre la personne.</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="forme ppt-forme forme-ovale" data-pose="" data-off-x="415.885" data-off-y="26.648" style="left:41.589%;top:2.665%;background-color:#42D0A2;border:2.522px solid #0A1F18;width:16.823%;height:33.246%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:23.541px;line-height:1.2;text-align:center"><span class="t-fr">Biais d’engagement / Identification</span><span class="t-en" hidden=""></span></span></span></div>
+  </section>
+
+  <section class="slide" id="encadrants-d50">
+    <ul class="ppt-texte" data-pose="" data-off-x="138.372" data-off-y="378.667" style="left:13.837%;top:37.867%;width:65.932%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="1" data-puce="▸" style="font-size:33.63px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Vous ne POUVEZ PAS gagner l’échange (son but n’est pas de vous convaincre vous, mais les autres).</span><span class="t-en" hidden=""></span></li><li class="step" data-order="2" data-puce="▸" style="font-size:33.63px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Quittez l’affrontement dans un milieu social.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="3" data-puce="▸" style="font-size:33.63px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Ne pas chercher à écraser l’autre.</span><span class="t-en" hidden=""></span></li><li class="step" data-order="4" data-puce="▸" style="font-size:33.63px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Ne pas chercher à convaincre la personne.</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="forme ppt-forme forme-ovale" data-pose="" data-off-x="428.86" data-off-y="33.759" style="left:42.886%;top:3.376%;background-color:#96D141;border:2.522px solid #161F0A;width:15.835%;height:31.294%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr">Contexte social</span><span class="t-en" hidden=""></span></span></span></div>
+  </section>
+
+  <section class="slide" id="encadrants-d51">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Quelques conseils généraux</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li data-puce="▸" style="font-size:33.63px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Commencer par un sujet neutre, pour décrire un principe, puis allez sur un sujet plus « sensible » qui applique ce même principe.</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  
+
+  
+
+  <section class="slide" id="encadrants-d54" data-serie="serie_5688a6ab-6ed3-4c72-a20a-68eb12797e76">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="382.862" data-off-y="132.721" style="left:38.286%;top:13.272%;width:26.137%;max-width:none;"><img src="../medias/images/complotiste-014-1.jpg" alt="" loading="lazy" style="aspect-ratio:3800118/5764920"></div>
+  </section>
+
+  <section class="slide" id="s-homme-de-fer" data-serie="serie_5688a6ab-6ed3-4c72-a20a-68eb12797e76">
+    <h2 class="ppt-titre" data-pose="" data-off-x="138.372" data-off-y="26.667" style="left:13.837%;top:2.667%;width:72.326%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:center;color:var(--acc);"><span class="t-fr">Comment bien échanger ?</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="303.163" data-off-y="117.914" style="left:30.316%;top:11.791%;width:39.367%;max-width:none;"><img src="../medias/images/complotiste-015-2.jpg" alt="" loading="lazy" style="aspect-ratio:5723735/5723735"></div>
+  </section>
+
+  <section class="slide" id="encadrants-d56">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Un changement de conviction est PROGRESSIF !</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="ppt-vide" style="font-size:40.356px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li data-puce="▸" style="font-size:40.356px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Votre but n’est pas de le faire radicalement changer d’avis, mais de l’amener à réfléchir. </span><span class="t-en" hidden=""></span></li><li data-puce="▸" style="font-size:40.356px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">La simple écoute d’arguments contraires, même s’ils sont réfutés, c’est déjà une victoire !</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="s-principe-charite" data-serie="serie_e5c70047-fbc8-4aa7-aac5-573e8c5f556b">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Principe de charité</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li class="step" data-order="1" data-puce="▸" style="font-size:40.356px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Partez du principe que l’interlocuteur est sincère… car c’est souvent le cas ! </span><span class="t-en" hidden=""></span></li><li class="ppt-vide" style="font-size:40.356px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></li><li class="step" data-order="2" data-puce="▸" style="font-size:40.356px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Cela vous éviteras de tomber dans le biais d’engagement… ce qu’il se passera si vous vous énervez dès le début pour de mauvaises raisons !</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="encadrants-d58">
+    <div class="vidwrap ppt-video" data-pose="" data-off-x="141.879" data-off-y="181.913" style="left:14.188%;top:18.191%;width:71.283%;max-width:none;aspect-ratio:10364025/4793802;"><video src="../medias/video/echange-micro-trottoir-ukraine.mp4" controls="" playsinline="" preload="metadata"></video></div>
+  </section>
+
+  <section class="slide ppt-rogne" id="encadrants-d59">
+    <div class="vidwrap ppt-video" data-pose="" data-off-x="248.28" data-off-y="-7.371" style="left:24.828%;top:-0.737%;width:52.006%;max-width:none;aspect-ratio:7561262/6908551;"><video src="../medias/video/echange-debat-voitures-electriques.mp4" controls="" playsinline="" preload="metadata"></video></div>
+  </section>
+
+  <section class="slide" id="s-long-terme" data-serie="serie_2ce7a26b-6931-4db5-a477-603a5b78a2e2">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Point essentiel</span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:47.081px;line-height:1.2;text-align:left"><span class="t-fr">L’apprentissage et le changement d’idées erronées se fait sur le LONG TERME.</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="encadrants-d61" data-serie="serie_2591af3d-23e6-4f57-a4b9-42ded9b32913">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Exemple concret d’échange</span><span class="t-en" hidden=""></span></h2>
+    <div class="forme ppt-forme forme-rectangle" data-pose="" data-off-x="412.597" data-off-y="270.769" style="left:41.26%;top:27.077%;background-color:#FFFFFF;border:2.522px solid #0E1E24;border-radius:0;width:18.868%;height:65.026%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF;inset:6.053px 12.107px 6.053px 12.107px"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr"><span style="color:#000000">Ecrivez une dystopie</span></span><span class="t-en" hidden=""></span></span></span></div>
+  </section>
+
+  <section class="slide" id="encadrants-d62" data-serie="serie_e556dfcd-3827-4bf2-a006-6735d17c81d7">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Exemple concret d’échange</span><span class="t-en" hidden=""></span></h2>
+    <div class="forme ppt-forme forme-rectangle" data-pose="" data-off-x="412.597" data-off-y="270.769" style="left:41.26%;top:27.077%;background-color:#FFFFFF;border:2.522px solid #0E1E24;border-radius:0;width:18.868%;height:65.026%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF;inset:6.053px 12.107px 6.053px 12.107px"><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr"><span style="color:#000000">Ecrivez une dystopie</span></span><span class="t-en" hidden=""></span></span><br><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></span><br><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr"><br></span><span class="t-en" hidden=""></span></span><br><span style="font-size:30.267px;line-height:1.2;text-align:center"><span class="t-fr"><span style="color:#000000">« Un jour, les LGBTS domineront le monde et on sera obligé de vivre comme eux. »</span></span><span class="t-en" hidden=""></span></span></span></div>
+  </section>
+
+  <section class="slide" id="encadrants-d63" data-serie="serie_594ccf66-6370-43e3-aa56-bfbb27ceb38d">
+    <div class="forme ppt-forme forme-phylactere ppt-bulle" data-pose="" data-off-x="280.04" data-off-y="104.989" style="left:28.004%;top:10.499%;background-color:#FFFFFF;border:2.522px solid #000000;border-radius:50%;width:41.412%;height:33.604%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:53.807px;line-height:1.2;text-align:center"><span class="t-fr"><span style="color:#000000">« Un garçon m’a dragué, je l’ai repoussé, il m’a traité d’homophobe.»</span></span><span class="t-en" hidden=""></span></span></span></div>
+  </section>
+
+  <section class="slide" id="encadrants-d64" data-serie="serie_47155b2f-0273-488e-a370-b202848f2f41">
+    <div class="forme ppt-forme forme-phylactere ppt-bulle" data-pose="" data-off-x="280.04" data-off-y="104.989" style="left:28.004%;top:10.499%;background-color:#FFFFFF;border:2.522px solid #000000;border-radius:50%;width:41.412%;height:33.604%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:53.807px;line-height:1.2;text-align:center"><span class="t-fr"><span style="color:#000000">« Un garçon m’a dragué, je l’ai repoussé, il m’a traité d’homophobe.»</span></span><span class="t-en" hidden=""></span></span></span></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="179.413" data-off-y="590.769" style="left:17.941%;top:59.077%;width:69.719%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr"><b>Généralisation</b> (un garçon homosexuel -&gt; tous les garçons homosexuels)</span><span class="t-en" hidden=""></span></li><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Un raisonnement fallacieux : comme on m’a accusé d’homophobe car j’ai refusé les avances d’un homme, </span><span class="t-en" hidden=""></span></li><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">on ne pourra plus refuser les avance d’un homme sans être traité d’homophobe.</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="encadrants-d65" data-serie="serie_cbf2dbb4-4dda-4982-ad5c-e5260b18bdd8">
+    <div class="forme ppt-forme forme-phylactere ppt-bulle" data-pose="" data-off-x="280.04" data-off-y="104.989" style="left:28.004%;top:10.499%;background-color:#FFFFFF;border:2.522px solid #000000;border-radius:50%;width:41.412%;height:33.604%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:53.807px;line-height:1.2;text-align:center"><span class="t-fr"><span style="color:#000000">« Un garçon m’a dragué, je l’ai repoussé, il m’a traité d’homophobe.»</span></span><span class="t-en" hidden=""></span></span></span></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="179.413" data-off-y="590.769" style="left:17.941%;top:59.077%;width:72.084%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr"><b>Généralisation </b>(un garçon homosexuel -&gt; tous les garçons homosexuels)</span><span class="t-en" hidden=""></span></li><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Un raisonnement fallacieux : comme on m’a accusé d’homophobe car j’ai refusé les avances d’un homme, </span><span class="t-en" hidden=""></span></li><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">on ne pourra plus refuser les avances d’un homme sans être traité d’homophobe.</span><span class="t-en" hidden=""></span></li><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr"><b>Conseil </b>: briser la généralité, utiliser l’expérience personnelle (« moi, je n’ai jamais été dans ce cas de situation »)</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="encadrants-d66" data-serie="serie_1773e80f-cac5-4e63-a422-724472fc6b1b">
+    <div class="forme ppt-forme forme-phylactere ppt-bulle" data-pose="" data-off-x="258.592" data-off-y="55.759" style="left:25.859%;top:5.576%;background-color:#FFFFFF;border:2.522px solid #0E1E24;border-radius:50%;width:48.282%;height:46.769%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:53.807px;line-height:1.2;text-align:center"><span class="t-fr"><span style="color:#000000">« Pour moi, c’est Adam et Eve. C’est donc un garçon et une fille. »</span></span><span class="t-en" hidden=""></span></span></span></div>
+  </section>
+
+  <section class="slide" id="encadrants-d67" data-serie="serie_418dec0b-5558-4ff0-a3a8-2e03a5454046">
+    <div class="forme ppt-forme forme-phylactere ppt-bulle" data-pose="" data-off-x="258.592" data-off-y="55.759" style="left:25.859%;top:5.576%;background-color:#FFFFFF;border:2.522px solid #0E1E24;border-radius:50%;width:48.282%;height:46.769%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:53.807px;line-height:1.2;text-align:center"><span class="t-fr"><span style="color:#000000">« Pour moi, c’est Adam et Eve. C’est donc un garçon et une fille. »</span></span><span class="t-en" hidden=""></span></span></span></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="191.992" data-off-y="650.256" style="left:19.199%;top:65.026%;width:20.932%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Conviction religieuse : difficile.</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="encadrants-d68" data-serie="serie_875cb79c-3746-4520-a5b6-85dc8f6e7c36">
+    <div class="forme ppt-forme forme-phylactere ppt-bulle" data-pose="" data-off-x="258.592" data-off-y="55.759" style="left:25.859%;top:5.576%;background-color:#FFFFFF;border:2.522px solid #0E1E24;border-radius:50%;width:48.282%;height:46.769%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:53.807px;line-height:1.2;text-align:center"><span class="t-fr"><span style="color:#000000">« Pour moi, c’est Adam et Eve. C’est donc un garçon et une fille. »</span></span><span class="t-en" hidden=""></span></span></span></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="191.992" data-off-y="650.256" style="left:19.199%;top:65.026%;width:29.372%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Conviction religieuse : difficile.</span><span class="t-en" hidden=""></span></li><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Sur le moment : je suis passé à autre chose.</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="encadrants-d69" data-serie="serie_1bd531cd-8986-484d-a2b9-8b9868e4e241">
+    <div class="forme ppt-forme forme-phylactere ppt-bulle" data-pose="" data-off-x="258.592" data-off-y="55.759" style="left:25.859%;top:5.576%;background-color:#FFFFFF;border:2.522px solid #0E1E24;border-radius:50%;width:48.282%;height:46.769%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:53.807px;line-height:1.2;text-align:center"><span class="t-fr"><span style="color:#000000">« Pour moi, c’est Adam et Eve. C’est donc un garçon et une fille. »</span></span><span class="t-en" hidden=""></span></span></span></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="191.992" data-off-y="650.256" style="left:19.199%;top:65.026%;width:47.114%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Conviction religieuse : difficile.</span><span class="t-en" hidden=""></span></li><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Sur le moment : je suis passé à autre chose.</span><span class="t-en" hidden=""></span></li><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr"><b>Conseil</b> : dire qu’il s’agit de ses croyances à lui, pas de celles des autres.</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="encadrants-d70">
+    <div class="forme ppt-forme forme-phylactere ppt-bulle" data-pose="" data-off-x="258.592" data-off-y="55.759" style="left:25.859%;top:5.576%;background-color:#FFFFFF;border:2.522px solid #0E1E24;border-radius:50%;width:48.282%;height:46.769%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:53.807px;line-height:1.08;text-align:center"><span class="t-fr"><span style="color:#000000">« C’est pas naturel ».</span></span><span class="t-en" hidden=""></span></span></span></div>
+  </section>
+
+  <section class="slide" id="encadrants-d71">
+    <div class="forme ppt-forme forme-phylactere ppt-bulle" data-pose="" data-off-x="258.592" data-off-y="55.759" style="left:25.859%;top:5.576%;background-color:#FFFFFF;border:2.522px solid #0E1E24;border-radius:50%;width:48.282%;height:46.769%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:53.807px;line-height:1.08;text-align:center"><span class="t-fr"><span style="color:#000000">« C’est pas naturel ».</span></span><span class="t-en" hidden=""></span></span></span></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="191.992" data-off-y="650.256" style="left:19.199%;top:65.026%;width:28.458%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Conviction personnelle : appel à la nature.</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="encadrants-d72" data-serie="serie_cdf09e8a-085c-44e5-a5f6-e6797ab685d2">
+    <div class="forme ppt-forme forme-phylactere ppt-bulle" data-pose="" data-off-x="258.592" data-off-y="55.759" style="left:25.859%;top:5.576%;background-color:#FFFFFF;border:2.522px solid #0E1E24;border-radius:50%;width:48.282%;height:46.769%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:53.807px;line-height:1.08;text-align:center"><span class="t-fr"><span style="color:#000000">« C’est pas naturel ».</span></span><span class="t-en" hidden=""></span></span></span></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="191.992" data-off-y="650.256" style="left:19.199%;top:65.026%;width:28.458%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Conviction personnelle : appel à la nature.</span><span class="t-en" hidden=""></span></li><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Conseil : </span><span class="t-en" hidden=""></span></li></ul>
+    <div class="imgcard ppt-img" data-pose="" data-off-x="398.083" data-off-y="697.379" style="left:39.808%;top:69.738%;width:6.769%;max-width:none;"><img src="../medias/images/complotiste-046-5.png" alt="" loading="lazy" style="aspect-ratio:984144/871456"></div>
+  </section>
+
+  <section class="slide" id="encadrants-d73" data-serie="serie_c0320197-e330-4db6-a413-500aafead291">
+    <div class="forme ppt-forme forme-phylactere ppt-bulle" data-pose="" data-off-x="258.592" data-off-y="55.759" style="left:25.859%;top:5.576%;background-color:#FFFFFF;border:2.522px solid #0E1E24;border-radius:50%;width:48.282%;height:46.769%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:53.807px;line-height:1.08;text-align:center"><span class="t-fr"><span style="color:#000000">« Si on laisse passer la transidentité, bientôt on aura des </span><span style="color:#000000">xénogenres</span><span style="color:#000000">. »</span></span><span class="t-en" hidden=""></span></span></span></div>
+  </section>
+
+  <section class="slide" id="encadrants-d74" data-serie="serie_0c85b330-7c06-45d0-a05c-29629c73368f">
+    <div class="forme ppt-forme forme-phylactere ppt-bulle" data-pose="" data-off-x="258.592" data-off-y="55.759" style="left:25.859%;top:5.576%;background-color:#FFFFFF;border:2.522px solid #0E1E24;border-radius:50%;width:48.282%;height:46.769%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:53.807px;line-height:1.08;text-align:center"><span class="t-fr"><span style="color:#000000">« Si on laisse passer la transidentité, bientôt on aura des </span><span style="color:#000000">xénogenres</span><span style="color:#000000">. »</span></span><span class="t-en" hidden=""></span></span></span></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="191.992" data-off-y="650.256" style="left:19.199%;top:65.026%;width:23.535%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Sophisme de la pente savonneuse.</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="encadrants-d75" data-serie="serie_d863b8de-850b-4bbd-ab2a-7dd837673629">
+    <div class="forme ppt-forme forme-phylactere ppt-bulle" data-pose="" data-off-x="258.592" data-off-y="55.759" style="left:25.859%;top:5.576%;background-color:#FFFFFF;border:2.522px solid #0E1E24;border-radius:50%;width:48.282%;height:46.769%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:53.807px;line-height:1.08;text-align:center"><span class="t-fr"><span style="color:#000000">« Si on laisse passer la transidentité, bientôt on aura des </span><span style="color:#000000">xénogenres</span><span style="color:#000000">. »</span></span><span class="t-en" hidden=""></span></span></span></div>
+    <ul class="ppt-texte" data-pose="" data-off-x="191.992" data-off-y="650.256" style="left:19.199%;top:65.026%;width:29.17%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Sophisme de la pente savonneuse.</span><span class="t-en" hidden=""></span></li><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Conseil : le raisonnement par comparaison.</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="encadrants-d76" data-serie="serie_00cadd0f-baea-4488-a2c1-24c2479957ef">
+    <div class="forme ppt-forme forme-phylactere ppt-bulle" data-pose="" data-off-x="258.592" data-off-y="55.759" style="left:25.859%;top:5.576%;background-color:#FFFFFF;border:2.522px solid #0E1E24;border-radius:50%;width:48.282%;height:46.769%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:53.807px;line-height:1.08;text-align:center"><span class="t-fr"><span style="color:#000000">« Mais enfin, c’est pas normal »</span></span><span class="t-en" hidden=""></span></span></span></div>
+  </section>
+
+  <section class="slide" id="encadrants-d77" data-serie="serie_780b4008-fdfb-443b-ac39-40ef4aa41aba">
+    <ul class="ppt-texte" data-pose="" data-off-x="191.992" data-off-y="650.256" style="left:19.199%;top:65.026%;width:23.272%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Conviction, appel au « bon sens ».</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="forme ppt-forme forme-phylactere ppt-bulle" data-pose="" data-off-x="258.592" data-off-y="55.759" style="left:25.859%;top:5.576%;background-color:#FFFFFF;border:2.522px solid #0E1E24;border-radius:50%;width:48.282%;height:46.769%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:53.807px;line-height:1.08;text-align:center"><span class="t-fr"><span style="color:#000000">« Mais enfin, c’est pas normal »</span></span><span class="t-en" hidden=""></span></span></span></div>
+  </section>
+
+  <section class="slide" id="encadrants-d78" data-serie="serie_b86733e0-8355-4bbf-af3b-bc94d3425b3c">
+    <ul class="ppt-texte" data-pose="" data-off-x="191.992" data-off-y="650.256" style="left:19.199%;top:65.026%;width:56.931%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;white-space:nowrap;"><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Conviction, appel au « bon sens.</span><span class="t-en" hidden=""></span></li><li style="font-size:30.267px;line-height:1.2;text-align:left"><span class="t-fr">Conseil : demander ce qu’est la normalité, et utiliser le raisonnement par comparaison.</span><span class="t-en" hidden=""></span></li></ul>
+    <div class="forme ppt-forme forme-phylactere ppt-bulle" data-pose="" data-off-x="258.592" data-off-y="55.759" style="left:25.859%;top:5.576%;background-color:#FFFFFF;border:2.522px solid #0E1E24;border-radius:50%;width:48.282%;height:46.769%;max-width:none;"><span class="forme-texte ppt-forme-texte" style="color:#FFFFFF"><span style="font-size:53.807px;line-height:1.08;text-align:center"><span class="t-fr"><span style="color:#000000">« Mais enfin, c’est pas normal »</span></span><span class="t-en" hidden=""></span></span></span></div>
+  </section>
+
+  <section class="slide" id="s-conclusion" data-serie="serie_49507a74-8d54-4d48-a17f-ef5d1e07c9d1">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">Conclusion : </span><span class="t-en" hidden=""></span></h2>
+    <ul class="ppt-texte" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;"><li data-puce="▸" style="font-size:30.267px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Eviter la confrontation.</span><span class="t-en" hidden=""></span></li><li data-puce="▸" style="font-size:30.267px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Dédramatiser.</span><span class="t-en" hidden=""></span></li><li data-puce="▸" style="font-size:30.267px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Comparer avec des situations où ils sont d’accords, puis transposer sur la situation problématique.</span><span class="t-en" hidden=""></span></li><li data-puce="▸" style="font-size:30.267px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px"><span class="t-fr">Laisser faire le temps.</span><span class="t-en" hidden=""></span></li></ul>
+  </section>
+
+  <section class="slide" id="s-a-vous">
+    <h2 class="ppt-titre" data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);"><span class="t-fr">A vous !</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+<!-- Slide finale : bilan de l'intervention (QR code) -->
+  <section class="slide short" id="s-bilan-qr" data-serie="serie_743edaf5-33f9-4668-ab8a-f0365b011093">
+    <p class="kicker" data-pose="" data-off-x="461.46" data-off-y="272.25" style="left: 46.146%; top: 27.225%;"><span class="t-fr">Après la séance</span><span class="t-en" hidden="">After the session</span></p>
+    <h2 data-pose="" data-off-x="344.92" data-off-y="303.09" style="left: 34.492%; top: 30.309%;"><span class="t-fr">Le bilan, les jeux, et votre retour</span><span class="t-en" hidden="">Summary, games, and your feedback</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="375.76" style="left: 30.26%; top: 37.576%;"><span class="t-fr">Scannez ce QR code&nbsp;: vous pourrez donner votre retour, revoir le bilan de la formation ou rejouer aux jeux.</span><span class="t-en" hidden="">Scan this QR code: you can leave your feedback, review the session summary, or play the games again.</span></p>
+    
+  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhwAAAIcAQAAAACVhUrRAAAC80lEQVR42u2dUWrEMAxERS/g+9/SN3C7jSNp5JQW2p+it5SybDbvY2EYaSw7tn7/mgYECBAgQID8HGL+Gvcn4/Xhx/v9Zu3/16Xjljf7gxcQIP8LYi6HLZlP+VxvQjgjtOaXQkpoB0hj7VwO4nbjjlPc57pUbkE7QNCOyycuWYjFq8T4GtoBgnZUO+4vL9O5v+Y1G74DBMhzv5MCgR0LDAkY6HeAAAl1XC+3nm//0i1oB0hb7ZTU2vOBaG00fztu4YcF0lc7WxqWlngsiUij6f253452gHT2nWQ00ddEGmDlv7RCaAdI434nr+nskO1WSlRxtxNF/kbOBoSaLa1+bjfJizulfnMRTXwHSG/t6KhAtD8jajkZZiuJAdoB0rvf8ZGbbC5StuXqTkIGflggXfudNDUdMvHJAa/l7twgYjeyAiDtswKv1mJrw7QctT3YEP0OELRjaWp6hfVImHYuA9HvAKHfKbrQGEGsJ09ZTzJqIPhO2miwnlueXK3lGg/tAKHfkX5nWtaR6CWHBmgHSHPtDN1PfRRsUbnlGyNV4IcF0rXfmaEFk0G1uglORndY3wGCdlbqZcbTiE4R1FriWWgHSGPfiVOkcr9zHFBQDOj+Mj8skMZZQVHHUMfRtVGyAiBASlaQ53NkF08aYzMz6Y/QDpD2WUE5kSBv2yk9kWwdRTtAemcFMXiTBnLy9reSV8uxBmgHSO9+R46WyrsMTEJp/zB1RvywQBr7To7Opk6EnocYGP0OECBW91bXPaHmvmNl4xuzoEDwnRWb2qqCZj1IJxaDWN8Bgu/YsXBT8rSyvqNlG9oB0tl3JAQoXU86k82ejgxFO0Ba+45FX1OdJXvQqgftoh0grbWTn4NgVh6LUBZMw3eo2YCgnXHkA7PuTZDjdOh3gAD5Sjvl0aL5uLalEzvUbEDQzvHQNx2WPtofzmcDgnb0CKmyza3YUL1KzQaks3aslmTRzkyrp+UseXA8vgOks3Z++5pAgAABAgTIDyHv20VZl660GMAAAAAASUVORK5CYII=" alt="QR code vers la page antoninatger.github.io/interventions/retours" style="width: 200px; height: 200px; border-radius: 16px; background: rgb(255, 255, 255); padding: 10px; box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 30px; left: 44.805%; top: 47.267%;" data-pose="" data-off-x="448.05" data-off-y="472.67"><a href="https://antoninatger.github.io/interventions/retours/" target="_blank" rel="noopener" style="color: var(--acc2); font-weight: 800; font-size: 1.05rem; text-decoration: none; border-bottom: 2px solid var(--acc2); padding-bottom: 2px; width: 371.73px; left: 40.345%; top: 71.275%;" data-pose="" data-off-x="403.45" data-off-y="712.75">
+        <span class="t-fr">antoninatger.github.io/interventions/retours →</span><span class="t-en" hidden="">antoninatger.github.io/interventions/retours →</span>
+      </a></section>
+
+</div>
+
+<div id="navzone-l" aria-hidden="true"></div>
+<div id="navzone-r" aria-hidden="true"></div>
+<div id="dots"></div>
+<div id="navctrl">
+  <button id="btn-prev" title="Précédent (←)">‹</button>
+  <button id="btn-next" title="Suivant (→)">›</button>
+</div>
+
+<div id="admin-modal" class="admin-modal">
+  <div class="admin-head">
+    <h3>Mode Admin — diapos de la session</h3>
+    <span class="admin-count" id="admin-count"></span>
+    <div class="actions">
+      <select id="admin-selections" title="Parcours enregistrés" onchange="Deck.applySelectedPreset()"></select>
+      <button type="button" onclick="Deck.saveCurrentSelectionAs()">Enregistrer comme parcours…</button>
+      <button type="button" onclick="Deck.deleteSelectedPreset()">Supprimer le parcours</button>
+      <button type="button" onclick="Deck.openAddSlideModal()">Ajouter une diapo</button>
+      <button type="button" onclick="window.open('../media-browser.html','_blank')">Médiathèque (toutes formations)</button>
+      <button type="button" onclick="Deck.adminSelectAll()">Tout cocher</button>
+      <button type="button" onclick="Deck.adminSelectNone()">Tout décocher</button>
+      <button type="button" class="primary" onclick="Deck.adminSave()">Enregistrer la sélection</button>
+      <button type="button" id="admin-save-order" onclick="Deck.saveSlideOrder()">Enregistrer l'ordre dans le fichier</button>
+      <button type="button" onclick="Deck.adminClose()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-grid" id="admin-grid"></div>
+</div>
+
+<div id="admin-zoom-modal" class="admin-zoom-modal">
+  <button type="button" class="admin-zoom-close" onclick="Deck.adminZoomClose()">✕</button>
+  <div id="admin-zoom-box"></div>
+</div>
+
+<div id="admin-edit-modal" class="admin-edit-modal">
+  <div class="admin-edit-head">
+    <h3>Édition de la diapo</h3>
+    <span class="admin-edit-hint"></span>
+    <div class="actions">
+      <button type="button" onclick="Deck.addTextBlock()">Ajouter un texte</button>
+      <button type="button" onclick="Deck.addPhotoBlock()">Ajouter une photo</button>
+      <button type="button" onclick="Deck.addPollWidget()">Sondage</button>
+      <button type="button" onclick="Deck.addScaleWidget()">Échelle</button>
+      <button type="button" onclick="Deck.addPieChartWidget()">Camembert</button>
+      <button type="button" onclick="Deck.addHistogramWidget()">Histogramme</button>
+      <button type="button" onclick="Deck.addReponseWidget()">Réponses à écrire</button>
+      <button type="button" onclick="Deck.quickAddSlideAfterCurrent()">Ajouter une diapo après</button>
+      <button type="button" onclick="Deck.apporterUneDiapo()">⤵ Apporter une diapo</button>
+      <button type="button" onclick="Deck.closeSlideEditToGrid()">Toutes les diapos</button>
+      <button type="button" id="admin-edit-save" onclick="Deck.saveEditedSlide()">Enregistrer dans le fichier</button>
+      <button type="button" onclick="Deck.closeSlideEdit()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-edit-stage" id="admin-edit-stage"></div>
+</div>
+
+<div id="addslide-modal" class="addslide-modal">
+  <div class="addslide-modal-box">
+    <div class="addslide-modal-head">
+      <h3>Ajouter une diapo</h3>
+      <button type="button" onclick="Deck.closeAddSlideModal()">✕</button>
+    </div>
+    <div class="addslide-modal-body">
+      <div id="addslide-modeles" class="addslide-modeles"></div>
+      <div id="addslide-champs"></div>
+      <div class="addslide-field">
+        <label for="addslide-position">Position</label>
+        <select id="addslide-position" class="addslide-input"></select>
+      </div>
+      <div class="addslide-modal-actions">
+        <button type="button" class="primary" onclick="Deck.submitAddSlide()">Ajouter</button>
+        <button type="button" onclick="Deck.closeAddSlideModal()">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../shared-deck-engine.js"></script>
+<script src="../shared-widgets.js"></script>
+<script src="../shared-slide-templates.js"></script>
+<script src="app.js"></script>
+<script src="../shared-comments-theme.js"></script>
+</body>
+</html>

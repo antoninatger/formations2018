@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>⚠️ 20 — rendre visible le dossier connecté : trois propositions</title>
+<link rel="stylesheet" href="admin/admin.css">
+<style>
+  /* Maquettes statiques. Rien ici ne touche admin/ : cette page ne fait que MONTRER,
+     en réutilisant admin.css pour que ce soit à l'échelle et aux vraies couleurs. */
+  body { padding: 0 0 60px; }
+  .page { max-width: 940px; margin: 0 auto; padding: 0 24px; }
+  h2 { font-size: 20px; margin: 44px 0 6px; }
+  h3 { font-size: 15px; margin: 26px 0 8px; color: var(--muted); text-transform: uppercase;
+       letter-spacing: .06em; font-weight: 700; }
+  p { line-height: 1.6; font-size: 14px; }
+  .chapeau { color: var(--muted); margin-top: 0; }
+  .maquette { border: 1px solid var(--bord); border-radius: 10px; overflow: hidden;
+              margin: 14px 0 18px; background: var(--bg); }
+  .maquette header { border-bottom: 1px solid var(--bord); }
+  .etiquette { font-size: 12px; color: var(--muted); padding: 6px 10px;
+               border-bottom: 1px dashed var(--bord); background: rgba(255,255,255,.02); }
+  .pour-contre { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 12px 0 0; }
+  .pour-contre div { border: 1px solid var(--bord); border-radius: 8px; padding: 12px 14px;
+                     font-size: 13.5px; line-height: 1.55; }
+  .pour-contre h4 { margin: 0 0 6px; font-size: 13px; }
+  .pour h4 { color: #3ecf8e; } .contre h4 { color: var(--danger); }
+  ul { line-height: 1.6; font-size: 14px; } li { margin-bottom: 5px; }
+  code { background: rgba(255,255,255,.06); padding: 1px 5px; border-radius: 4px;
+         font-size: .92em; }
+  .encart { border-left: 3px solid var(--accent); background: rgba(91,140,255,.07);
+            padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 18px 0; font-size: 14px;
+            line-height: 1.6; }
+  .encart.alerte { border-left-color: var(--danger); background: rgba(229,72,77,.08); }
+  /* Éléments de maquette qui n'existent pas encore dans admin.css */
+  .m-temoin { margin-left: auto; text-align: right; font-size: 12.5px; line-height: 1.45; }
+  .m-temoin b { color: var(--text); font-weight: 600; }
+  .m-temoin span { color: var(--muted); }
+  .m-etiq { background: rgba(91,140,255,.16); border: 1px solid var(--accent);
+            color: #cfe0ff; border-radius: 6px; padding: 2px 8px; font-size: 12px; }
+  .m-empreinte { font-family: ui-monospace, Consolas, monospace; font-size: 11.5px;
+                 color: var(--muted); }
+  .m-bandeau { background: var(--danger); color: #fff; padding: 10px 18px; font-size: 13.5px;
+               font-weight: 600; display: flex; gap: 14px; align-items: center; }
+  .m-bandeau button { background: none; border: 1px solid rgba(255,255,255,.6); color: #fff; }
+  .m-dialogue { background: var(--panel); border: 1px solid var(--bord); border-radius: 10px;
+                padding: 18px 20px; margin: 14px 18px; }
+  .m-dialogue h4 { margin: 0 0 4px; font-size: 15px; }
+  .m-dialogue .sous { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
+  .m-liste { border: 1px solid var(--bord); border-radius: 8px; font-size: 13px;
+             max-height: 190px; overflow: auto; }
+  .m-liste div { padding: 7px 12px; border-bottom: 1px solid var(--bord);
+                 display: flex; justify-content: space-between; }
+  .m-liste div:last-child { border-bottom: 0; }
+  .m-liste .chemin { font-family: ui-monospace, Consolas, monospace; }
+  .m-liste .quoi { color: var(--muted); }
+  .m-actions { display: flex; gap: 10px; margin-top: 16px; align-items: center; }
+  .m-actions .espace { margin-left: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; margin-top: 10px; }
+  th, td { border: 1px solid var(--bord); padding: 8px 11px; text-align: left;
+           vertical-align: top; }
+  th { background: var(--panel); font-weight: 700; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🗂 ⚠️ 20 — rendre visible le dossier connecté</h1>
+  <span id="conn-status">trois propositions · 20 août 2026</span>
+</header>
+
+<div class="page">
+
+<p class="chapeau">Maquettes statiques, à l'échelle et aux vraies couleurs d'<code>admin/</code>.
+Rien n'est branché : cette page ne fait que montrer. Le choix vous revient — je n'ai touché
+à aucun fichier d'<code>admin/</code>.</p>
+
+<h2>Le problème, tel qu'il s'est produit</h2>
+
+<p>Le 15 août, <code>admin/</code> a régénéré <b>une autre copie du dépôt</b> en annonçant un
+succès. Rien à l'écran ne permettait de s'en apercevoir : le bandeau dit
+<code>🟢 Dossier connecté</code>, sans dire <em>lequel</em>.</p>
+
+<div class="maquette">
+  <div class="etiquette">aujourd'hui</div>
+  <header>
+    <h1>🗂 Cours — Admin</h1>
+    <button>⬇ Importer les formations existantes</button>
+    <button>🔄 Régénérer tout</button>
+    <button>➕ Ajouter</button>
+    <span id="conn-status">🟢 Dossier connecté</span>
+  </header>
+</div>
+
+<div class="encart alerte">
+<b>Une contrainte technique qui ferme la porte la plus évidente.</b> L'API File System Access
+ne donne <b>jamais</b> le chemin complet d'un dossier. <code>handle.name</code> ne rend que
+son nom — <code>"Cours"</code> — et deux copies du dépôt s'appellent toutes les deux
+« Cours ». <b>Afficher le chemin est impossible</b>, quelle que soit la proposition retenue.
+Il faut donc identifier le dossier par autre chose : ce qu'il contient, un marqueur qu'on y
+dépose, ou un nom que vous lui donnez.
+</div>
+
+<h2>Proposition A — le témoin de contenu</h2>
+
+<p>Le bandeau ne dit plus qu'il est connecté : il dit <b>à quoi</b>. Nombre de formations,
+nombre de diapos, et date du fichier le plus récemment régénéré. Une autre copie du dépôt
+affiche presque toujours des chiffres différents — et une copie oubliée depuis des semaines
+se trahit par sa date.</p>
+
+<div class="maquette">
+  <div class="etiquette">proposition A</div>
+  <header>
+    <h1>🗂 Cours — Admin</h1>
+    <button>🔄 Régénérer tout</button>
+    <button>➕ Ajouter</button>
+    <span class="m-temoin">
+      🟢 <b>Cours</b> — 5 formations, 276 diapos<br>
+      <span>dernière régénération : 17 août à 23:21</span>
+    </span>
+  </header>
+</div>
+
+<div class="pour-contre">
+  <div class="pour"><h4>Pour</h4>
+    Toujours visible, sans rien demander ni rien écrire. Coût : lire <code>registry.json</code>
+    à la connexion, ce que <code>admin.js</code> fait déjà. Une copie périmée saute aux yeux
+    par sa date.</div>
+  <div class="contre"><h4>Contre</h4>
+    Deux copies fraîches et synchronisées affichent la même chose : ça ne les distingue pas.
+    Et il faut regarder pour voir — c'est passif.</div>
+</div>
+
+<h2>Proposition B — l'empreinte déposée dans le dossier</h2>
+
+<p>À la première connexion, <code>admin/</code> écrit un identifiant unique dans
+<code>data/.cours-id</code>. Il l'affiche, et le mémorise. Si vous connectez ensuite un
+dossier dont l'empreinte diffère de la dernière utilisée, il <b>le dit</b>, avant toute
+écriture.</p>
+
+<div class="maquette">
+  <div class="etiquette">proposition B — cas normal</div>
+  <header>
+    <h1>🗂 Cours — Admin</h1>
+    <button>🔄 Régénérer tout</button>
+    <button>➕ Ajouter</button>
+    <span class="m-temoin">
+      🟢 <b>Cours</b> <span class="m-empreinte">· empreinte a3f9-21c4</span><br>
+      <span>le même dossier que la dernière fois</span>
+    </span>
+  </header>
+</div>
+
+<div class="maquette">
+  <div class="etiquette">proposition B — le dossier a changé</div>
+  <div class="m-bandeau">
+    ⚠️ Ce dossier n'est pas celui de la dernière session (empreinte <b>7d10-88ea</b>, au lieu de
+    <b>a3f9-21c4</b>). Une autre copie du dépôt ? Rien n'a encore été écrit.
+    <button>Je sais ce que je fais, continuer</button>
+  </div>
+  <header>
+    <h1>🗂 Cours — Admin</h1>
+    <button>🔄 Régénérer tout</button>
+    <span class="m-temoin">🟠 <b>Cours</b> <span class="m-empreinte">· empreinte 7d10-88ea</span></span>
+  </header>
+</div>
+
+<div class="pour-contre">
+  <div class="pour"><h4>Pour</h4>
+    La seule proposition qui <b>détecte</b> le changement de copie au lieu de compter sur votre
+    vigilance. C'est exactement le scénario du 15 août.</div>
+  <div class="contre"><h4>Contre</h4>
+    Écrit un fichier dans votre dépôt (à mettre dans <code>.gitignore</code>). Et si la copie a
+    été faite <em>après</em> le dépôt du marqueur, les deux portent la même empreinte : il faut
+    alors la proposition A ou C pour trancher.</div>
+</div>
+
+<h2>Proposition C — la confirmation avant d'écrire</h2>
+
+<p>Celle-ci ne change pas l'affichage : elle change le moment. Avant toute écriture,
+« Régénérer tout » montre <b>la liste exacte des fichiers</b> qu'il s'apprête à réécrire, et
+attend une confirmation. Écrire dans la mauvaise copie devient une chose qu'on voit passer,
+pas une chose qu'on apprend après coup.</p>
+
+<div class="maquette">
+  <div class="etiquette">proposition C</div>
+  <header>
+    <h1>🗂 Cours — Admin</h1>
+    <button>🔄 Régénérer tout</button>
+    <span id="conn-status">🟢 Dossier connecté</span>
+  </header>
+  <div class="m-dialogue">
+    <h4>Régénérer 5 formations — confirmer</h4>
+    <p class="sous">Ces fichiers vont être <b>réécrits</b> dans le dossier <b>Cours</b>
+      (5 formations, 276 diapos, dernière régénération le 17 août à 23:21).</p>
+    <div class="m-liste">
+      <div><span class="chemin">formation-fake-news-influenceurs/index.html</span><span class="quoi">54 diapos · réécrit</span></div>
+      <div><span class="chemin">formation-fake-news-niveau1/index.html</span><span class="quoi">53 diapos · réécrit</span></div>
+      <div><span class="chemin">formation-fake-news-niveau2/index.html</span><span class="quoi">69 diapos · <b>refusé</b> : édité en page</span></div>
+      <div><span class="chemin">formation-raisonnements-fallacieux/index.html</span><span class="quoi">61 diapos · réécrit</span></div>
+      <div><span class="chemin">formation-rhetorique-niveau3/index.html</span><span class="quoi">39 diapos · réécrit</span></div>
+    </div>
+    <div class="m-actions">
+      <span class="quoi" style="color:var(--muted);font-size:13px">1 formation sera ignorée — réimportez-la d'abord.</span>
+      <span class="espace"></span>
+      <button>Annuler</button>
+      <button class="primary">Réécrire les 4 autres</button>
+    </div>
+  </div>
+</div>
+
+<div class="pour-contre">
+  <div class="pour"><h4>Pour</h4>
+    Traite la <b>conséquence</b>, pas seulement le symptôme : c'est l'écriture qui fait mal, pas
+    l'affichage. Rend aussi visible le garde-fou de l'étape C, qui refuse aujourd'hui en
+    silence relatif.</div>
+  <div class="contre"><h4>Contre</h4>
+    Un clic de plus à chaque régénération. Et ça ne dit toujours pas <em>quelle copie</em> —
+    à combiner avec A pour que la liste soit parlante.</div>
+</div>
+
+<h2>Ce que je recommanderais</h2>
+
+<p><b>A + C.</b> Le témoin de contenu coûte presque rien et rend la copie identifiable ;
+la confirmation avant écriture attrape le geste au moment où il devient irréversible. B est la
+plus solide des trois — c'est la seule qui <em>détecte</em> — mais elle écrit dans votre dépôt
+et sa protection tombe si la copie fantôme a été faite après le dépôt du marqueur.</p>
+
+<table>
+  <tr><th></th><th>A — témoin</th><th>B — empreinte</th><th>C — confirmation</th></tr>
+  <tr><th>Détecte tout seul</th><td>non</td><td><b>oui</b></td><td>non</td></tr>
+  <tr><th>Écrit dans le dépôt</th><td>non</td><td>oui (<code>data/.cours-id</code>)</td><td>non</td></tr>
+  <tr><th>Arrête l'écriture</th><td>non</td><td>oui</td><td><b>oui</b></td></tr>
+  <tr><th>Gêne à l'usage</th><td>aucune</td><td>aucune</td><td>un clic par régénération</td></tr>
+  <tr><th>Ampleur</th><td>petite</td><td>moyenne</td><td>moyenne</td></tr>
+</table>
+
+<div class="encart">
+<b>Rappel de ce que ça débloque.</b> Tant que ⚠️ 20 n'est pas tranchée, le garde-fou de
+l'étape C — « le fichier fait foi sur le contenu » — n'a <b>jamais été éprouvé en conditions
+réelles</b>. C'est aussi de lui que dépend la sécurité des parcours de ⚠️ 15 quand
+<code>admin/</code> régénère.
+</div>
+
+</div>
+</body>
+</html>

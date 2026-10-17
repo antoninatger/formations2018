@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilan - Fake News et écologie</title>
+    <style>
+        :root {
+            --primary: #15803d;
+            --primary-dark: #166534;
+            --primary-light: #dcfce7;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #ffffff;
+            --bg-light: #f9fafb;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --accent: #0d9488;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 40px 20px;
+            margin: 0 0 40px 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+        }
+
+        header h1 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            opacity: 0.95;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .intro {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            font-size: 1rem;
+        }
+
+        .toc {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .toc h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin: 10px 0;
+        }
+
+        .toc a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            display: inline-block;
+            border-radius: 6px;
+        }
+
+        .toc a:hover {
+            background: var(--primary-light);
+            transform: translateX(5px);
+        }
+
+        .content {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .content h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .accordion-item {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(21, 128, 61, 0.1);
+        }
+
+        .accordion-header {
+            background: var(--bg-light);
+            padding: 18px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text);
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-header {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .accordion-header:hover {
+            background: var(--primary-light);
+        }
+
+        .accordion-icon {
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: white;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 2000px;
+        }
+
+        .accordion-text {
+            padding: 20px;
+            line-height: 1.8;
+        }
+
+        .accordion-text p {
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .accordion-text ul, .accordion-text ol {
+            margin: 15px 0 15px 25px;
+        }
+
+        .accordion-text li {
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .section-image {
+            display: block;
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            max-height: 520px;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+
+        .legende {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-align: center;
+            margin-top: -8px;
+        }
+
+        .avant-apres {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 14px;
+            margin: 20px 0 10px;
+        }
+
+        .avant-apres figure { margin: 0; }
+        .avant-apres img { display: block; width: 100%; height: auto; border-radius: 8px; }
+        .avant-apres figcaption {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            text-align: center;
+            margin-top: 6px;
+        }
+
+        .definition-box {
+            background: #f0fdfa;
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 1.05rem;
+            color: #134e4a;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: var(--bg-light);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(21, 128, 61, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .card h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* --- Barre de repartition (sondage Ipsos) ------------------------- */
+        .repartition {
+            display: flex;
+            width: 100%;
+            height: 44px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 16px 0 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .repartition span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+        }
+
+        .repartition-legende {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 18px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .pastille {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            margin-right: 6px;
+            vertical-align: -1px;
+        }
+
+        .table-responsive { overflow-x: auto; margin: 15px 0; }
+
+        table.tableau {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        table.tableau th,
+        table.tableau td {
+            border: 1px solid var(--border);
+            padding: 10px 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        table.tableau th {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .games-section {
+            background: linear-gradient(135deg, var(--accent) 0%, #0f766e 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        .games-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--text);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .game-card h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .game-card p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .game-btn {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .game-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        .biblio li {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .biblio a {
+            color: var(--primary);
+            word-break: break-all;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            font-weight: 600;
+        }
+
+        .biblio a:hover { color: var(--primary-dark); background: var(--primary-light); }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(21, 128, 61, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--border);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-light);
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            header {
+                padding: 30px 15px;
+                margin: 0 0 30px 0;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .card-grid,
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* ===================================================================
+           MODULES INTERACTIFS
+           Chaque module est un bloc jouable (quiz, reponse a reveler). A
+           l'impression il disparait et laisse la place a son equivalent
+           texte (.module-papier), pour que le PDF reste un document lisible.
+           =================================================================== */
+        .module {
+            border: 2px solid var(--primary-light);
+            border-radius: 12px;
+            background: #fff;
+            margin: 22px 0;
+            overflow: hidden;
+        }
+
+        .module-titre {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: .95rem;
+            padding: 12px 16px;
+        }
+
+        .module-corps { padding: 18px 16px; }
+
+        .module-consigne {
+            font-size: .95rem;
+            color: var(--text-light);
+            margin-bottom: 14px;
+        }
+
+        .module-papier { display: none; }
+
+        .module-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .m-btn {
+            font: inherit;
+            font-size: .9rem;
+            font-weight: 600;
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: 2px solid var(--primary);
+            background: var(--primary);
+            color: #fff;
+            cursor: pointer;
+            transition: background .2s, color .2s;
+        }
+
+        .m-btn:hover { background: var(--primary-dark); border-color: var(--primary-dark); }
+
+        .m-reponse {
+            margin-top: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid var(--primary);
+            background: var(--bg-light);
+            border-radius: 0 8px 8px 0;
+            font-size: .95rem;
+        }
+
+        .m-reponse[hidden] { display: none; }
+
+        .m-reponse p:last-child { margin-bottom: 0; }
+
+        .consigne-forte {
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-align: center;
+            color: var(--primary-dark);
+            margin: 10px 0 4px;
+        }
+
+        /* --- Questions a choix ------------------------------------------- */
+        .q-bloc + .q-bloc { margin-top: 20px; border-top: 1px solid var(--border); padding-top: 20px; }
+        .q-enonce { font-weight: 600; margin-bottom: 12px; }
+        .q-choix { display: grid; gap: 8px; }
+
+        .q-opt {
+            font: inherit;
+            font-size: .93rem;
+            text-align: left;
+            padding: 11px 14px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: #fff;
+            color: var(--text);
+            cursor: pointer;
+            transition: border-color .15s, background .15s;
+        }
+
+        .q-opt:hover:not(:disabled) { border-color: var(--primary); background: var(--primary-light); }
+        .q-opt:disabled { cursor: default; }
+        .q-opt.juste  { border-color: #16a34a; background: #dcfce7; font-weight: 600; }
+        .q-opt.faux   { border-color: #dc2626; background: #fee2e2; }
+
+        .q-retour {
+            margin-top: 10px;
+            font-size: .92rem;
+            padding: 10px 12px;
+            border-radius: 8px;
+            background: var(--bg-light);
+            border-left: 3px solid var(--primary);
+        }
+
+        .q-retour[hidden] { display: none; }
+
+        .m-score {
+            margin-top: 16px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        /* ===================================================================
+           IMPRESSION / EXPORT PDF
+           Le document papier n'est pas la page web en noir et blanc :
+           - tous les accordeons sont ouverts (sinon le PDF sortait vide) ;
+           - les photos et l'habillage d'interface disparaissent ;
+           - typographie de document : serif, noir sur blanc, sans aplats.
+           =================================================================== */
+        @media print {
+            @page {
+                size: A4;
+                margin: 18mm 16mm 20mm 16mm;
+            }
+
+            body {
+                background: #fff !important;
+                color: #000 !important;
+                font-family: Georgia, 'Times New Roman', serif;
+                font-size: 10.5pt;
+                line-height: 1.55;
+            }
+
+            .container { max-width: none; padding: 0; }
+
+            *, *::before, *::after {
+                color: #000 !important;
+                background: none !important;
+                background-color: transparent !important;
+                box-shadow: none !important;
+                text-shadow: none !important;
+            }
+
+            .accordion-text [style*="background"],
+            .content [style*="background"] {
+                border-left: 2pt solid #000 !important;
+                border-radius: 0 !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 7pt 0 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            table { border-collapse: collapse; width: 100%; font-size: 9.5pt; }
+            th, td { border: 0.5pt solid #666 !important; padding: 3pt 5pt !important; }
+            th { font-weight: 700; }
+            .table-responsive { overflow: visible !important; }
+
+            .content {
+                background: none !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            /* --- Modules interactifs : le jeu disparait, le texte reste --- */
+            .module {
+                border: none !important;
+                border-radius: 0 !important;
+                margin: 8pt 0 !important;
+            }
+            .module-titre,
+            .module-corps { display: none !important; }
+            .module-papier {
+                display: block !important;
+                border-left: 2pt solid #000 !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 0 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* --- La barre de repartition n'a plus de couleurs : la legende suffit */
+            .repartition { display: none !important; }
+            .pastille { display: none !important; }
+
+            /* --- Hors sujet sur papier ------------------------------------ */
+            .action-buttons,
+            .games-section,
+            .accordion-icon,
+            .hero-image,
+            .section-image,
+            .avant-apres,
+            .legende {
+                display: none !important;
+            }
+
+            header {
+                background: none !important;
+                color: #000 !important;
+                margin: 0 0 14pt 0 !important;
+                padding: 0 0 8pt 0 !important;
+                border-bottom: 2pt solid #000;
+                border-radius: 0 !important;
+                text-align: left;
+            }
+            header h1 { font-size: 19pt; margin-bottom: 4pt; }
+            header p  { font-size: 10.5pt; opacity: 1; margin: 0; max-width: none; }
+
+            .intro,
+            .toc {
+                background: none !important;
+                border: none !important;
+                border-left: 2pt solid #000 !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 0 0 14pt 0 !important;
+                font-size: 10.5pt;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            .toc h2 {
+                font-size: 11.5pt;
+                border: none !important;
+                margin: 0 0 5pt 0 !important;
+                padding: 0 !important;
+            }
+            .toc ul { margin: 0 !important; padding: 0 0 0 12pt !important; }
+            .toc li { margin: 2pt 0 !important; }
+
+            h2, .content h2 {
+                font-size: 14pt;
+                color: #000 !important;
+                border-bottom: 1pt solid #000;
+                padding-bottom: 3pt;
+                margin: 18pt 0 9pt 0 !important;
+                break-after: avoid;
+                page-break-after: avoid;
+            }
+
+            .accordion-content,
+            .accordion-item.active .accordion-content {
+                max-height: none !important;
+                overflow: visible !important;
+                display: block !important;
+                background: none !important;
+            }
+
+            .accordion-item,
+            .accordion-item.active {
+                border: none !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                margin: 0 0 11pt 0 !important;
+                overflow: visible !important;
+            }
+
+            .accordion-header,
+            .accordion-item.active .accordion-header {
+                background: none !important;
+                color: #000 !important;
+                cursor: default;
+                display: block;
+                font-family: Georgia, 'Times New Roman', serif;
+                font-size: 11.5pt;
+                font-weight: 700;
+                padding: 0 0 3pt 0 !important;
+                border-bottom: 0.5pt solid #888;
+                break-after: avoid;
+                page-break-after: avoid;
+            }
+
+            .accordion-text { padding: 5pt 0 0 0 !important; line-height: 1.55; }
+
+            .accordion-text p,
+            .accordion-text li,
+            .accordion-text span,
+            .accordion-text strong,
+            .accordion-text em,
+            .intro, .intro *,
+            .toc a {
+                color: #000 !important;
+                background: none !important;
+                font-size: inherit !important;
+            }
+
+            .definition-box,
+            .card {
+                background: none !important;
+                border: none !important;
+                border-left: 2pt solid #000 !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 7pt 0 !important;
+                color: #000 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            a { color: #000 !important; text-decoration: none; }
+            a[href^="http"]::after {
+                content: " (" attr(href) ")";
+                font-size: 8.5pt;
+                word-break: break-all;
+            }
+            .toc a::after { content: ""; }
+
+            ul, ol { margin-left: 14pt; }
+            li { margin-bottom: 2pt; }
+            p  { orphans: 3; widows: 3; margin-bottom: 6pt; }
+            table { break-inside: avoid; page-break-inside: avoid; }
+
+            footer {
+                border-top: 0.5pt solid #888;
+                margin-top: 16pt;
+                padding-top: 6pt;
+                font-size: 9pt;
+                color: #000 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Fake News et écologie</h1>
+        <p>Le réchauffement climatique, sa désinformation, et comment en parler</p>
+    </header>
+
+    <div class="container">
+        <img src="images/atmosphere-limbe-terrestre-iss.jpg" alt="La fine couche de l'atmosphère terrestre vue depuis la Station spatiale internationale" class="hero-image">
+
+        <div class="intro">
+            <strong>Objectif :</strong> Comprendre ce qu'est le réchauffement climatique et comment on sait qu'il est d'origine humaine, repérer les techniques de la désinformation climatique sur les réseaux sociaux, et comprendre pourquoi les preuves seules ne convainquent pas, pour savoir quoi faire à la place.
+            <p style="margin-top: 10px;">Les études et les livres cités sont réunis dans la <a href="#section-7" style="color: var(--primary-dark); font-weight: 600;">bibliographie, en fin de page</a>.</p>
+        </div>
+
+        <div class="toc">
+            <h2>Table des matières</h2>
+            <ul>
+                <li><a href="#section-1">1. De quoi parle-t-on ?</a></li>
+                <li><a href="#section-2">2. Comment sait-on que c'est réel, et humain ?</a></li>
+                <li><a href="#section-3">3. La désinformation climatique sur les réseaux</a></li>
+                <li><a href="#section-4">4. Pourquoi les preuves ne suffisent pas</a></li>
+                <li><a href="#section-5">5. Comment en parler</a></li>
+                <li><a href="#section-6">6. Jeux interactifs</a></li>
+                <li><a href="#section-7">7. Bibliographie</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <h2 id="section-1">De quoi parle-t-on ?</h2>
+
+            <div class="accordion-item active">
+                <div class="accordion-header">
+                    <span>Réchauffement ou dérèglement climatique ?</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <div class="definition-box">
+                            <strong>Le réchauffement climatique</strong> est l'augmentation durable de la température moyenne du système climatique terrestre, <strong>observée sur plusieurs décennies ou davantage</strong>.
+                        </div>
+
+                        <p>La seconde moitié de la phrase compte autant que la première. Le climat se mesure sur des décennies, pas sur une saison. Une semaine froide en avril ne dit rien du climat, pas plus qu'une journée de canicule à elle seule.</p>
+
+                        <div class="definition-box">
+                            <strong>Le dérèglement climatique</strong> est une notion plus large. Il inclut le réchauffement, mais aussi les modifications durables des précipitations, des sécheresses, des vagues de chaleur, des glaces, du niveau des mers et des autres composantes du climat.
+                        </div>
+
+                        <p>Les deux mots ne sont donc pas synonymes : le réchauffement est une partie du dérèglement. C'est pour cette raison qu'un hiver rigoureux ou des pluies exceptionnelles ne contredisent pas le réchauffement, ils peuvent au contraire en faire partie.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Les trois sortes de climatosceptiques</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>On imagine le climatosceptique comme quelqu'un qui nie le réchauffement climatique. C'est vrai, <strong>mais</strong> ce n'est qu'un cas sur trois.</p>
+
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4>1. Celui qui nie le réchauffement</h4>
+                                <p><em>« Il a neigé en avril : il est où, votre réchauffement ? »</em></p>
+                            </div>
+                            <div class="card">
+                                <h4>2. Celui qui nie la responsabilité humaine</h4>
+                                <p><em>« Le climat a toujours changé, bien avant les usines. »</em></p>
+                            </div>
+                            <div class="card">
+                                <h4>3. Celui qui nie les conséquences</h4>
+                                <p><em>« Deux degrés de plus, on s'adaptera. »</em></p>
+                            </div>
+                        </div>
+
+                        <p>Les distinguer n'est pas un détail. On ne répond pas de la même manière à quelqu'un qui doute des mesures, à quelqu'un qui accepte les mesures mais pas leur cause, et à quelqu'un qui accepte tout sauf la gravité.</p>
+
+                        <div class="module" data-module="types">
+                            <div class="module-titre">À reconnaître : quel climatosceptique ?</div>
+                            <div class="module-corps">
+                                <p class="module-consigne">Quatre phrases entendues. Laquelle des trois positions chacune exprime-t-elle&nbsp;?</p>
+                                <div id="types-questions"></div>
+                                <div class="m-score" id="types-score" hidden></div>
+                            </div>
+                            <div class="module-papier">
+                                <p><strong>Exercice sur les trois sortes de climatosceptiques.</strong> La question à se poser : qu'est-ce que la personne refuse ? Les mesures elles-mêmes (le réchauffement), leur cause (la responsabilité humaine), ou leur gravité (les conséquences).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Combien sont-ils en France ?</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Selon l'Observatoire international Climat et Opinions publiques (Ipsos et EDF, 2024), <strong>33 % des Français</strong> sont climatosceptiques :</p>
+
+                        <div class="repartition" role="img" aria-label="10 % nient le réchauffement, 23 % doutent de la cause humaine, 67 % ni l'un ni l'autre">
+                            <span style="width:10%;background:#b91c1c">10 %</span>
+                            <span style="width:23%;background:#ea580c">23 %</span>
+                            <span style="width:67%;background:#15803d">67 %</span>
+                        </div>
+                        <div class="repartition-legende">
+                            <span><span class="pastille" style="background:#b91c1c"></span><strong>10 %</strong> nient encore le réchauffement climatique</span>
+                            <span><span class="pastille" style="background:#ea580c"></span><strong>23 %</strong> l'admettent, mais estiment que la cause n'est pas humaine</span>
+                            <span><span class="pastille" style="background:#15803d"></span><strong>67 %</strong> ni l'un ni l'autre</span>
+                        </div>
+
+                        <p><strong>Le climatoscepticisme ne diminue pas.</strong> La conscience de la responsabilité humaine avait progressé pendant plusieurs années, mais <strong>depuis 2023, la tendance s'inverse</strong> : l'urgence climatique cède du terrain face aux préoccupations économiques.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="section-2" style="margin-top: 40px;">Comment sait-on que c'est réel, et humain ?</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Cinq indices indépendants</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Le réchauffement n'est pas déduit d'une seule mesure. Il est observé par des instruments différents, sur des éléments différents, qui disent tous la même chose :</p>
+                        <ol>
+                            <li>la <strong>hausse de la température moyenne mondiale</strong> ;</li>
+                            <li>l'<strong>accumulation de chaleur dans les océans</strong> ;</li>
+                            <li>la <strong>fonte des glaciers et des calottes polaires</strong> ;</li>
+                            <li>l'<strong>élévation du niveau moyen des mers</strong> ;</li>
+                            <li>la <strong>hausse des concentrations de gaz à effet de serre</strong>.</li>
+                        </ol>
+
+                        <div class="avant-apres">
+                            <figure>
+                                <img src="images/glacier-columbia-1986.jpg" alt="Le glacier Columbia, en Alaska, en 1986 : la langue de glace descend jusqu'à la mer">
+                                <figcaption>Glacier Columbia (Alaska), 1986</figcaption>
+                            </figure>
+                            <figure>
+                                <img src="images/glacier-columbia-2024.jpg" alt="Le glacier Columbia en 2024 : la glace a reculé de plus de vingt kilomètres, remplacée par un fjord">
+                                <figcaption>Le même glacier, 2024</figcaption>
+                            </figure>
+                        </div>
+                        <p class="legende">Images satellite NASA (fausses couleurs : la glace apparaît en bleu clair, la végétation en vert, l'eau en bleu foncé).</p>
+
+                        <img src="images/co2-mauna-loa-releve-complet.png" alt="Courbe du CO2 atmosphérique mesuré à Mauna Loa depuis 1958, en hausse continue de 315 à plus de 420 ppm" class="section-image">
+                        <p class="legende">Le CO₂ mesuré sans interruption à l'observatoire de Mauna Loa (Hawaï) depuis 1958.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Les signatures de l'origine humaine</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <div class="definition-box">
+                            <strong>Une signature</strong> est un signal caractéristique et identifiable, laissé dans le système climatique par une cause donnée.
+                        </div>
+
+                        <p>Chaque cause possible du réchauffement (le Soleil, les volcans, les gaz à effet de serre) laisserait une trace différente. On sait que l'humain est en cause parce que ce sont ses traces à lui que l'on retrouve.</p>
+
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 14px 0;"><strong>La haute atmosphère se refroidit pendant que la basse atmosphère se réchauffe.</strong> Si le Soleil chauffait davantage, toutes les couches se réchaufferaient. Ce contraste est ce que produisent des gaz qui retiennent la chaleur près du sol : la stratosphère se refroidit alors que la troposphère se réchauffe.</p>
+
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 14px 0;"><strong>L'évolution des températures correspond à ce qui avait été prédit.</strong> La hausse observée coïncide avec ce que l'on attendait d'une augmentation des gaz à effet de serre.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>« Le CO₂, c'est 0,04 % de l'air, ça ne peut rien faire »</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>C'est un argument climatosceptique fréquent, et les chiffres sont justes :</p>
+
+                        <div class="table-responsive">
+                            <table class="tableau">
+                                <tr><th>Composition de l'atmosphère</th><th>Part</th></tr>
+                                <tr><td>Azote</td><td>≈ 78 %</td></tr>
+                                <tr><td>Oxygène</td><td>≈ 21 %</td></tr>
+                                <tr><td>Autres gaz</td><td>≈ 0,96 %</td></tr>
+                                <tr><td>CO₂</td><td>≈ 0,04 %</td></tr>
+                                <tr><td>dont CO₂ d'origine humaine</td><td>≈ 0,016 %</td></tr>
+                            </table>
+                        </div>
+
+                        <p>Sur un camembert, 0,04 % est invisible. C'est précisément ce qui rend l'argument convaincant : <strong>on confond une petite quantité avec un petit effet</strong>.</p>
+
+                        <p>Or l'azote et l'oxygène laissent passer la chaleur que la Terre renvoie vers l'espace. Le CO₂, lui, la retient. Ce n'est pas sa part dans l'air qui compte, c'est ce qu'il fait. Et sa concentration a augmenté de plus d'un tiers depuis le début des mesures à Mauna Loa, en 1958.</p>
+
+                        <p><strong>Une comparaison :</strong> une alcoolémie de 0,5 gramme par litre de sang, la limite légale pour conduire, représente environ 0,05 % du sang. Personne n'en conclut que c'est trop peu pour avoir un effet.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="section-3" style="margin-top: 40px;">La désinformation climatique sur les réseaux</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Qui sont les comptes climatodénialistes ?</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Une étude du CNRS (Chavalarias et al., 2023, projet Climatoscope) a analysé deux années d'échanges sur Twitter. Ce qu'elle montre :</p>
+                        <ul>
+                            <li>une <strong>forte polarisation</strong> sur la question ;</li>
+                            <li><strong>ce sont les mêmes comptes</strong> qui étaient antivax pendant le COVID, puis pro-russes pendant la guerre en Ukraine ;</li>
+                            <li>aux États-Unis, le climatoscepticisme est <strong>très associé à Donald Trump</strong> ;</li>
+                            <li>les vrais spécialistes du climat parlent du climat. Les « références » climatodénialistes, elles, <strong>parlent de tout</strong>. Ce n'est pas bon signe ;</li>
+                            <li>ces comptes ne sont pas affiliés aux partis politiques traditionnels : ils se retrouvent plutôt autour de personnalités politiques devenues des « références complotistes ».</li>
+                        </ul>
+
+                        <p style="margin-top: 20px;"><strong>Les comptes climatodénialistes :</strong></p>
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4>Sont plus toxiques</h4>
+                                <p>Leurs échanges contiennent davantage d'insultes et d'attaques.</p>
+                            </div>
+                            <div class="card">
+                                <h4>Se font davantage suspendre</h4>
+                                <p>Les plateformes les sanctionnent plus souvent que les autres comptes.</p>
+                            </div>
+                            <div class="card">
+                                <h4>Sont plus souvent des robots</h4>
+                                <p>6 % de comptes automatisés, contre 3,5 % chez les autres.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>La technique des 5 D</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Pour décrédibiliser la science du climat, ces comptes s'appuient sur une rhétorique en cinq temps, les « 5 D ». Chacun correspond à une technique connue :</p>
+
+                        <div class="table-responsive">
+                            <table class="tableau">
+                                <tr><th>Le D</th><th>La technique</th><th>En pratique</th></tr>
+                                <tr><td><strong>Discréditer</strong></td><td>Attaquer l'éthos</td><td>On s'en prend à la personne (le scientifique, le journaliste, le militant) plutôt qu'à ce qu'elle dit.</td></tr>
+                                <tr><td><strong>Déformer</strong></td><td>L'homme de paille</td><td>On caricature la position adverse pour la réfuter plus facilement.</td></tr>
+                                <tr><td><strong>Distraire</strong></td><td>Le whataboutism</td><td>« Et la Chine, alors ? » On change de sujet au lieu de répondre.</td></tr>
+                                <tr><td><strong>Dissuader</strong></td><td>La menace</td><td>On fait comprendre qu'il sera coûteux de continuer à prendre la parole.</td></tr>
+                                <tr><td><strong>Diviser</strong></td><td>Diviser pour mieux régner</td><td>On oppose les groupes entre eux (villes et campagnes, écologistes et travailleurs) pour empêcher tout accord.</td></tr>
+                            </table>
+                        </div>
+
+                        <p>On y ajoute souvent un sixième D, <strong>douter</strong> : il ne s'agit pas de prouver que la science a tort, seulement de faire croire que la question n'est pas tranchée.</p>
+
+                        <div class="module" data-module="cinqd">
+                            <div class="module-titre">À reconnaître : lequel des 5 D ?</div>
+                            <div class="module-corps">
+                                <p class="module-consigne">Cinq réactions sous une publication sur le climat. Quelle technique chacune utilise-t-elle&nbsp;?</p>
+                                <div id="cinqd-questions"></div>
+                                <div class="m-score" id="cinqd-score" hidden></div>
+                            </div>
+                            <div class="module-papier">
+                                <p><strong>Exercice sur les 5 D.</strong> Discréditer vise la personne, déformer caricature ce qu'elle dit, distraire change de sujet, dissuader fait peur à celui qui parle, diviser oppose les groupes entre eux.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Quels effets ?</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <div class="card-grid">
+                            <div class="card">
+                                <h4>Sur le court terme</h4>
+                                <p>Les réactions dénialistes <strong>réduisent la portée</strong> des rapports du GIEC au moment de leur publication.</p>
+                            </div>
+                            <div class="card">
+                                <h4>Sur le long terme</h4>
+                                <p><strong>Le consensus scientifique fonctionne</strong> : les conclusions du GIEC finissent par s'imposer.</p>
+                            </div>
+                        </div>
+                        <p>C'est une bonne nouvelle : la désinformation retarde, elle ne gagne pas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>La nouvelle cible : les solutions</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Nier le réchauffement devient difficile. Une autre méthode se développe sur les réseaux : <strong>ne plus s'attaquer au réchauffement climatique, mais aux solutions</strong> (Nicolosi et al., 2025).</p>
+                        <p>Et pour cela, un ressort revient souvent : le <strong>complotisme</strong>. Une mesure écologique n'est plus discutée pour ce qu'elle coûte ou rapporte, elle est présentée comme un plan caché, destiné à contrôler la population ou à enrichir quelqu'un.</p>
+                        <p>Le piège est plus subtil que le déni : on peut accepter toute la science du climat et se retrouver, malgré tout, à rejeter chaque réponse qu'on lui apporte.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Le jeu : trouvez ce qui ne va pas</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Pendant la formation, une série de graphiques et de documents sur le climat a été projetée, avec une consigne : <strong>trouvez ce qui ne va pas</strong>.</p>
+
+                        <div class="module" data-module="jeu">
+                            <div class="module-titre">Et la réponse du jeu ?</div>
+                            <div class="module-corps">
+                                <p class="module-consigne">Si vous n'étiez pas là, ou si vous avez oublié : combien de ces documents étaient trompeurs&nbsp;?</p>
+                                <div class="module-actions">
+                                    <button type="button" class="m-btn" data-reveler="jeu-reponse">Voir la réponse</button>
+                                </div>
+                                <div class="m-reponse" id="jeu-reponse" hidden>
+                                    <p><strong>Aucun. Ils étaient tous vrais.</strong></p>
+                                    <p>Quand on nous demande de trouver l'erreur, on en trouve une. Cet exercice montre l'autre face de la désinformation : à force de se méfier de tout, on finit par douter aussi de ce qui est solide. Douter de tout n'est pas de l'esprit critique, c'est exactement ce que cherche le sixième D.</p>
+                                </div>
+                            </div>
+                            <div class="module-papier">
+                                <p><strong>La réponse du jeu.</strong> Tous les documents projetés étaient vrais. Quand on cherche une erreur, on en trouve une : douter de tout n'est pas de l'esprit critique, c'est ce que cherche la désinformation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="section-4" style="margin-top: 40px;">Pourquoi les preuves ne suffisent pas</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>« Il suffit de montrer les preuves ! »</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>C'est l'idée la plus répandue : si quelqu'un doute, il manque d'informations, et il suffit de les lui donner. Les résultats des études sont formels : <strong>bof</strong>.</p>
+
+                        <p>Car notre cerveau ne fonctionne pas dans le sens qu'on imagine. Penser au réchauffement climatique n'est <strong>pas agréable</strong>. Et quand une conclusion nous dérange, nous ne la cherchons pas, nous cherchons de quoi la repousser.</p>
+
+                        <div class="definition-box">
+                            <strong>Le raisonnement motivé</strong> (ou post-rationalisation) : on choisit d'abord la conclusion qui nous convient, puis on construit le raisonnement qui y mène.
+                        </div>
+
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 14px 0;"><strong>« Nous n'avons pas un scientifique en nous, nous avons un avocat. »</strong> Un scientifique part des faits et accepte la conclusion qu'ils imposent. Un avocat connaît déjà sa conclusion et cherche les arguments pour la défendre.</p>
+
+                        <p>C'est pour cela qu'une preuve de plus renforce parfois la position de celui qui doute : elle lui donne une occasion de plus de mobiliser sa défense (Stoetzer et Zimmermann, 2024).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Pourquoi devient-on climatosceptique ?</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Il y a des raisons, et elles sont rarement scientifiques :</p>
+                        <div class="card-grid">
+                            <div class="card"><h4>Psychologiques</h4><p>Le sujet est angoissant, et le raisonnement motivé protège de cette angoisse.</p></div>
+                            <div class="card"><h4>Sociales</h4><p>On adopte la position de son groupe, de son camp, de son entourage.</p></div>
+                            <div class="card"><h4>Complotistes</h4><p>Le réchauffement devient un mensonge organisé par « ceux d'en haut ».</p></div>
+                            <div class="card"><h4>Économiques</h4><p>Les réponses au réchauffement menacent un emploi, un revenu, un mode de vie.</p></div>
+                        </div>
+
+                        <p style="margin-top: 20px;"><strong>Aux États-Unis, les facteurs qui prédisent le plus le déni climatique</strong> (Gounaridis et Newell, 2024), du plus fort au plus faible :</p>
+                        <ol>
+                            <li>l'<strong>affiliation politique</strong> ;</li>
+                            <li>le <strong>niveau de diplôme</strong> ;</li>
+                            <li>le <strong>taux de vaccination contre le COVID</strong> ;</li>
+                            <li>l'<strong>intensité carbone de l'économie régionale</strong> (le poids des énergies fossiles dans la région) ;</li>
+                            <li>le <strong>revenu</strong>.</li>
+                        </ol>
+                        <p>L'étude estime qu'environ 15 % des Américains nient le réchauffement. Et ce qui prédit le mieux leur opinion, ce n'est pas ce qu'ils savent, c'est le camp politique auquel ils appartiennent.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Et les catastrophes, elles convainquent ?</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>On pourrait penser qu'une fois la catastrophe vécue, le doute disparaît. Une étude récente (Andreotta et al., 2026) a interrogé plus de 1 000 Australiens autour des gigantesques incendies du « Black Summer » de 2019-2020, en trois temps : <strong>avant le pic</strong> des incendies (automne 2019), <strong>juste après</strong> (février 2020), puis <strong>un mois plus tard</strong> (mars 2020).</p>
+
+                        <div class="card-grid">
+                            <div class="card"><h4>Les convaincus</h4><p>Ne doutent pas de l'origine humaine et s'inquiètent des conséquences. Plutôt à gauche, ils pensent que la nature a une capacité limitée à se remettre des dommages.</p></div>
+                            <div class="card"><h4>Les hésitants</h4><p>Pas de profil type, politiquement plus neutres, mais plus attirés par les théories du complot que les deux autres groupes.</p></div>
+                            <div class="card"><h4>Les sceptiques</h4><p>Doutent du réchauffement et de sa cause humaine. Plutôt conservateurs, très sûrs de leurs connaissances, ils pensent que la nature se remet de tout.</p></div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="tableau">
+                                <tr><th>Part de la population</th><th>Avant le pic (automne 2019)</th><th>Juste après (février 2020)</th><th>Un mois plus tard (mars 2020)</th></tr>
+                                <tr><td>Convaincus</td><td>65 %</td><td>62 %</td><td>54 %</td></tr>
+                                <tr><td>Hésitants</td><td>27 %</td><td>28 %</td><td>37 %</td></tr>
+                                <tr><td>Sceptiques</td><td>8 %</td><td>10 %</td><td>8 %</td></tr>
+                            </table>
+                        </div>
+
+                        <p><strong>Résultat : la catastrophe n'a convaincu personne de plus.</strong> Les convaincus ont même un peu reculé au profit des hésitants, et les sceptiques n'ont pas bougé. L'écart reste à la limite de ce que l'étude peut démontrer, mais il ne va pas dans le sens espéré.</p>
+
+                        <p><strong>Pourquoi ?</strong> Une catastrophe ne fait changer d'avis que si on l'attribue au climat. Or pendant les incendies, une fausse information a circulé sur les réseaux sociaux, puis dans une partie de la presse : les feux auraient été allumés par des centaines de pyromanes. En mars 2020, l'affirmation « plus de cent pyromanes ont contribué aux incendies » était acceptée par :</p>
+                        <ul>
+                            <li><strong>89 %</strong> des sceptiques ;</li>
+                            <li><strong>57 %</strong> des hésitants ;</li>
+                            <li>et même <strong>39 %</strong> des convaincus.</li>
+                        </ul>
+                        <p>La fausse explication a pris la place de la vraie. Et la pandémie de COVID, arrivée au même moment, a détourné l'attention.</p>
+
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 14px 0;"><strong>Ce que recommandent les auteurs.</strong> Ne pas se contenter de dire « c'est faux », mais donner une autre explication : le plus grand de ces feux a été allumé par la foudre. Expliquer le mécanisme : le réchauffement n'allume pas les feux, il crée la chaleur et la sécheresse qui les rendent immenses. Et s'adresser d'abord aux hésitants, qui révisent leur avis presque autant que les convaincus.</p>
+
+                        <p>Ni les preuves, ni les événements ne suffisent. Il faut donc s'y prendre autrement.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Ce qui aggrave les choses</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 14px 0;"><strong>Insulter, culpabiliser.</strong> Ça soulage celui qui parle, et ça ferme la discussion. Il ne faut pas appuyer.</p>
+
+                        <div class="definition-box">
+                            <strong>La réactance</strong> : quand une personne sent qu'on cherche à lui imposer une idée ou un comportement, elle défend sa liberté en se raidissant, et s'accroche plus fort à sa position de départ.
+                        </div>
+
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 14px 0;"><strong>Jouer sur la peur.</strong> Ça ne marche que sur les personnes déjà convaincues. Pour les sceptiques, cela risque de produire l'effet inverse.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="section-5" style="margin-top: 40px;">Comment en parler</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Écouter, et ne pas dire « c'est faux »</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 14px 0;"><strong>Plutôt que de convaincre, écouter.</strong> Il faut comprendre les motivations profondes de la personne : ce qu'elle craint, ce qu'elle protège, ce qu'elle a à perdre. Tant qu'on ne les connaît pas, on répond à côté.</p>
+
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 14px 0;"><strong>Ne pas dire « c'est faux », mais proposer une explication alternative.</strong> Un peu de psychologie pour comprendre pourquoi :</p>
+
+                        <div class="module" data-module="elephant">
+                            <div class="module-titre">L'expérience de l'éléphant</div>
+                            <div class="module-corps">
+                                <p class="consigne-forte">Essayez de ne PAS penser à un éléphant en tutu.</p>
+                                <div class="module-actions" style="justify-content:center">
+                                    <button type="button" class="m-btn" data-reveler="elephant-reponse">Voir la réponse</button>
+                                </div>
+                                <div class="m-reponse" id="elephant-reponse" hidden>
+                                    <p><strong>C'est raté.</strong> Pour comprendre la phrase, il a fallu imaginer l'éléphant.</p>
+                                    <p>Le cerveau ne sait pas penser directement le négatif. Un démenti, c'est une information plus un « non ». Or l'information reste, et le « non » s'oublie. Répéter « non, le réchauffement n'est pas un mensonge », c'est encore faire entendre « mensonge ».</p>
+                                    <p>D'où le conseil : plutôt que de réfuter, <strong>proposer une autre explication</strong>, qui prend la place de la première.</p>
+                                </div>
+                            </div>
+                            <div class="module-papier">
+                                <p><strong>L'expérience de l'éléphant.</strong> Essayez de ne pas penser à un éléphant en tutu : c'est impossible, il faut l'imaginer pour comprendre la phrase. Un démenti est une information plus un « non », et le « non » s'oublie. Plutôt que de réfuter, mieux vaut proposer une explication alternative.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Parler à la personne, pas contre elle</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 14px 0;"><strong>Trouver des arguments qui s'alignent avec ses valeurs.</strong> Un argument qui heurte les valeurs de quelqu'un est rejeté avant d'être examiné. Un argument qui s'appuie sur elles (protéger sa famille, défendre son territoire, l'indépendance du pays, l'économie locale) a une chance d'être écouté.</p>
+
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 14px 0;"><strong>Trouver un porte-parole de son camp.</strong> Vous n'êtes peut-être pas le meilleur interlocuteur. Nous écoutons plus volontiers quelqu'un de notre groupe (l'endogroupe) que quelqu'un d'un groupe extérieur (l'exogroupe). Le même message porté par une personne de son camp passe mieux.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Montrer le consensus, et rendre les choses concrètes</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 14px 0;"><strong>Montrer le consensus.</strong> Non pas les preuves scientifiques, mais le fait que <strong>les scientifiques sont quasiment tous d'accord</strong>. Il est difficile de juger soi-même une courbe de température ; il est facile de comprendre que presque tous les spécialistes du monde arrivent à la même conclusion.</p>
+
+                        <img src="images/giec-experts-panel.jpg" alt="Des scientifiques du GIEC présentent un rapport lors d'une conférence de presse" class="section-image">
+                        <p class="legende">Le GIEC ne mène pas ses propres recherches : il fait la synthèse de milliers d'études publiées.</p>
+
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 14px 0;"><strong>Rendre le réchauffement climatique concret.</strong> Ne parlez pas des ours polaires ou du « un degré de plus ». Parlez des impacts concrets, ici et maintenant, et des avantages concrets des réponses qu'on y apportera.</p>
+
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 14px 0;"><strong>Trouver des bénéfices à la lutte.</strong> Quels sont les avantages à lutter contre le réchauffement ou à s'y adapter ? Des emplois, des revenus, le développement de nouvelles technologies.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Changer les normes, pas seulement les opinions</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 14px 0;"><strong>Établir des normes.</strong> L'humain est un animal social. S'il devient « normal » de trier ses déchets, de recycler, de limiter sa consommation de viande, les gens le feront plus naturellement, sans avoir eu besoin d'être convaincus.</p>
+
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 14px 0;"><strong>Présenter les actions comme positives et faciles.</strong> L'humain fonctionne par coûts et bénéfices. Une action vécue comme un sacrifice sera repoussée ; la même action présentée comme simple et avantageuse sera adoptée.</p>
+
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 14px 0;"><strong>Former un consensus politique.</strong> L'affiliation politique étant le facteur qui pèse le plus, un accord entre les camps politiques neutraliserait ce levier. C'est le plus efficace, et le plus difficile. Bon courage !</p>
+
+                        <div class="module" data-module="parler">
+                            <div class="module-titre">En situation : quelle réponse ouvre la discussion ?</div>
+                            <div class="module-corps">
+                                <p class="module-consigne">Trois phrases entendues à table. Pour chacune, quelle réponse a le plus de chances de faire avancer l'échange&nbsp;?</p>
+                                <div id="parler-questions"></div>
+                                <div class="m-score" id="parler-score" hidden></div>
+                            </div>
+                            <div class="module-papier">
+                                <p><strong>Exercice de mise en situation.</strong> Les réponses qui ouvrent la discussion ont en commun d'écouter avant de répondre, de s'appuyer sur ce qui compte pour la personne, de montrer le consensus plutôt que d'accumuler les preuves, et de proposer une explication plutôt qu'un simple « c'est faux ». Insulter, culpabiliser ou faire peur provoquent l'effet inverse.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>En conclusion</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <ul>
+                            <li><strong>Le réchauffement climatique est réel</strong>, et il est d'origine humaine.</li>
+                            <li>Il y a encore <strong>beaucoup de sceptiques</strong>, et ni les preuves, ni les événements ne suffiront à les convaincre.</li>
+                            <li>Le climat est devenu <strong>un terrain de désinformation et de manipulation en ligne</strong>, porté par les mêmes comptes que d'autres sujets.</li>
+                            <li><strong>Mais</strong> ce que l'on sait de la psychologie permet d'actionner des leviers pour changer les choses, à l'échelle individuelle <strong>et</strong> collective.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="games-section">
+            <h3 id="section-6">Testez votre esprit critique</h3>
+            <p style="margin-bottom: 20px;">Mettez en pratique ce que vous avez appris avec ces jeux interactifs :</p>
+
+            <div class="games-grid">
+                <div class="game-card">
+                    <h4>Chasse aux Biais</h4>
+                    <p>Repérez les sophismes et les techniques de manipulation, dont l'homme de paille et le whataboutism.</p>
+                    <a href="https://antoninatger.github.io/jeux/chasse-aux-biais/index.html" class="game-btn" target="_blank" rel="noopener">Jouer </a>
+                </div>
+
+                <div class="game-card">
+                    <h4>Arène Rhétorique</h4>
+                    <p>Entraînez-vous à argumenter sans tomber dans les pièges qui ferment la discussion.</p>
+                    <a href="https://antoninatger.github.io/jeux/arene-rhetorique/index.html" class="game-btn" target="_blank" rel="noopener">Jouer </a>
+                </div>
+
+                <div class="game-card">
+                    <h4>QCM Écologie</h4>
+                    <p>Vingt-quatre questions sur le climat, sa désinformation et comment en parler.</p>
+                    <a href="https://antoninatger.github.io/jeux/Arcade%20quizz/qcm-classique.html?serie=ecologie" class="game-btn" target="_blank" rel="noopener">Jouer </a>
+                </div>
+
+                <div class="game-card">
+                    <h4>Brick Breaker Quiz</h4>
+                    <p>Les mêmes questions, en cassant des briques.</p>
+                    <a href="https://antoninatger.github.io/jeux/Arcade%20quizz/brick-breaker-quiz.html?serie=ecologie" class="game-btn" target="_blank" rel="noopener">Jouer </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2 id="section-7">Bibliographie</h2>
+            <ul class="biblio">
+                <li>Andreotta, M., Boschetti, F., Farrell, S., Paris, C., Walker, I., et Hurlstone, M. J. (2026). <em>Do weather-related extreme events influence climate-related opinions? The case of the 2019–2020 Australian Black Summer bushfires.</em> Royal Society Open Science, 13, 251450. <a href="https://doi.org/10.1098/rsos.251450" target="_blank" rel="noopener">https://doi.org/10.1098/rsos.251450</a></li>
+                <li>Chavalarias, D., Bouchaud, P., Chomel, V., et Panahi, M. (2023). <em>Les nouveaux fronts du dénialisme et du climato-scepticisme : deux années d'échanges Twitter passées aux macroscopes.</em> CNRS, Institut des Systèmes Complexes de Paris Île-de-France. <a href="https://hal.science/hal-03986798" target="_blank" rel="noopener">https://hal.science/hal-03986798</a></li>
+                <li>Gounaridis, D., et Newell, J. P. (2024). <em>The social anatomy of climate change denial in the United States.</em> Scientific Reports, 14, 2097. <a href="https://doi.org/10.1038/s41598-023-50591-6" target="_blank" rel="noopener">https://doi.org/10.1038/s41598-023-50591-6</a></li>
+                <li>Handley, G. B. (2019). <em>Climate scepticism and Christian conservatism in the United States.</em> <a href="https://doi.org/10.5040/9781350057050.ch-004" target="_blank" rel="noopener">https://doi.org/10.5040/9781350057050.ch-004</a></li>
+                <li>Hornsey, M. J., et Lewandowsky, S. (2022). <em>A toolkit for understanding and addressing climate scepticism.</em> <a href="https://doi.org/10.1038/s41562-022-01463-y" target="_blank" rel="noopener">https://doi.org/10.1038/s41562-022-01463-y</a></li>
+                <li>Ipsos et EDF (2024). <em>Obs'COP 2024 : l'urgence climatique cède du terrain face à la préoccupation économique.</em> <a href="https://www.ipsos.com/fr-fr/obscop-2024-lurgence-climatique-cede-du-terrain-face-la-preoccupation-economique" target="_blank" rel="noopener">ipsos.com</a></li>
+                <li>Mercier, H. (2022). <em>Pas né de la dernière pluie : la science de la confiance et de la crédulité.</em> Humensciences. <a href="https://books.google.com/books/about/Pas_n%C3%A9_de_la_derni%C3%A8re_pluie.html?id=d_2LEAAAQBAJ" target="_blank" rel="noopener">Voir le livre</a></li>
+                <li>Nicolosi, E., Medina, R., Brewer, S., Vorkink, M., et Allred, A. (2025). <em>The new denial: Climate solution misinformation on social media.</em> <a href="https://doi.org/10.1017/sus.2025.10016" target="_blank" rel="noopener">https://doi.org/10.1017/sus.2025.10016</a></li>
+                <li>Stoetzer, L. S., et Zimmermann, F. (2024). <em>A representative survey experiment of motivated climate change denial.</em> <a href="https://doi.org/10.1038/s41558-023-01910-2" target="_blank" rel="noopener">https://doi.org/10.1038/s41558-023-01910-2</a></li>
+                <li>Uscinski, J. E., et Olivella, S. (2017). <em>The conditional effect of conspiracy thinking on attitudes toward climate change.</em> <a href="https://doi.org/10.1177/2053168017743105" target="_blank" rel="noopener">https://doi.org/10.1177/2053168017743105</a></li>
+                <li>Vlasceanu, M., Doell, K. C., Bak-Coleman, J. B., et al. (2024). <em>Addressing climate change with behavioral science: A global intervention tournament in 63 countries.</em> <a href="https://doi.org/10.1126/sciadv.adj5778" target="_blank" rel="noopener">https://doi.org/10.1126/sciadv.adj5778</a></li>
+                <li>Wullenkord, M. C. (2022). <em>From denial of facts to rationalization and avoidance: Ideology, needs, and gender predict the spectrum of climate denial.</em> <a href="https://doi.org/10.1016/j.paid.2022.111616" target="_blank" rel="noopener">https://doi.org/10.1016/j.paid.2022.111616</a></li>
+            </ul>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="window.print()">Exporter en PDF</button>
+            <a href="#section-7" class="btn btn-secondary">Bibliographie</a>
+            <a href="index.html" class="btn btn-secondary">Les autres bilans</a>
+            <a href="../" class="btn btn-secondary">Menu principal</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>Créé par <strong>Antonin Atger</strong> | Collection de jeux pédagogiques sur l'esprit critique</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">Images : NASA Earth Observatory, NOAA et Scripps Institution of Oceanography, NASA (ISS)</p>
+    </footer>
+
+    <script>
+        /* ===================================================================
+           MODULES INTERACTIFS
+           =================================================================== */
+
+        /* --- Boutons « Voir la reponse » ---------------------------------- */
+        document.querySelectorAll('[data-reveler]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var cible = document.getElementById(btn.dataset.reveler);
+                cible.hidden = !cible.hidden;
+                btn.textContent = cible.hidden ? 'Voir la réponse' : 'Masquer la réponse';
+            });
+        });
+
+        /* --- Questionnaires ------------------------------------------------ */
+        function construireQuiz(conteneurId, scoreId, questions, bilan) {
+            var zone = document.getElementById(conteneurId);
+            if (!zone) return;
+            var repondues = 0, justes = 0;
+
+            questions.forEach(function (q, i) {
+                var bloc = document.createElement('div');
+                bloc.className = 'q-bloc';
+
+                var enonce = document.createElement('p');
+                enonce.className = 'q-enonce';
+                enonce.textContent = (i + 1) + '. ' + q.enonce;
+                bloc.appendChild(enonce);
+
+                var choix = document.createElement('div');
+                choix.className = 'q-choix';
+
+                var retour = document.createElement('div');
+                retour.className = 'q-retour';
+                retour.hidden = true;
+
+                q.options.forEach(function (opt, j) {
+                    var b = document.createElement('button');
+                    b.type = 'button';
+                    b.className = 'q-opt';
+                    b.textContent = opt;
+                    b.addEventListener('click', function () {
+                        if (bloc.dataset.fait) return;
+                        bloc.dataset.fait = '1';
+                        repondues++;
+                        if (j === q.bonne) justes++;
+                        choix.querySelectorAll('.q-opt').forEach(function (autre, k) {
+                            autre.disabled = true;
+                            if (k === q.bonne) autre.classList.add('juste');
+                            else if (k === j) autre.classList.add('faux');
+                        });
+                        retour.innerHTML = q.explication;
+                        retour.hidden = false;
+                        if (repondues === questions.length) {
+                            var s = document.getElementById(scoreId);
+                            s.textContent = justes + ' / ' + questions.length + '. ' +
+                                (justes === questions.length ? bilan.parfait : bilan.imparfait);
+                            s.hidden = false;
+                        }
+                    });
+                    choix.appendChild(b);
+                });
+
+                bloc.appendChild(choix);
+                bloc.appendChild(retour);
+                zone.appendChild(bloc);
+            });
+        }
+
+        var TYPES = ['Nie le réchauffement', 'Nie la responsabilité humaine', 'Nie les conséquences'];
+
+        construireQuiz('types-questions', 'types-score', [
+            {
+                enonce: '« Il fait 12 degrés en plein mois de juin. Drôle de réchauffement. »',
+                options: TYPES,
+                bonne: 0,
+                explication: '<strong>Il nie le réchauffement.</strong> Il prend la météo d’un jour pour le climat. Or le réchauffement se mesure sur plusieurs décennies, à l’échelle de la planète.'
+            },
+            {
+                enonce: '« Oui, ça se réchauffe. Mais c’est le Soleil, c’est cyclique. »',
+                options: TYPES,
+                bonne: 1,
+                explication: '<strong>Il nie la responsabilité humaine.</strong> Il accepte les mesures, pas leur cause. C’est à lui que parlent les signatures : si c’était le Soleil, la haute atmosphère se réchaufferait aussi.'
+            },
+            {
+                enonce: '« Il fera un peu plus chaud, on mettra la climatisation. »',
+                options: TYPES,
+                bonne: 2,
+                explication: '<strong>Il nie les conséquences.</strong> Il accepte le réchauffement et même sa cause, mais pas sa gravité. Lui répondre avec des courbes de température ne sert à rien : il faut parler d’impacts concrets.'
+            },
+            {
+                enonce: '« Le climat a toujours changé. Les dinosaures n’avaient pas de voitures. »',
+                options: TYPES,
+                bonne: 1,
+                explication: '<strong>Il nie la responsabilité humaine.</strong> Que le climat ait changé dans le passé est vrai. Cela ne dit rien de la cause du changement actuel, dont la vitesse et les signatures désignent l’activité humaine.'
+            }
+        ], {
+            parfait: 'Sans faute. Savoir ce que la personne refuse, c’est savoir à quoi il faut répondre.',
+            imparfait: 'La bonne question : refuse-t-elle les mesures, leur cause, ou leur gravité ?'
+        });
+
+        var CINQ_D = ['Discréditer', 'Déformer', 'Distraire', 'Dissuader', 'Diviser'];
+
+        construireQuiz('cinqd-questions', 'cinqd-score', [
+            {
+                enonce: '« Et la Chine, elle fait quoi ? Commencez par leur parler à eux. »',
+                options: CINQ_D,
+                bonne: 2,
+                explication: '<strong>Distraire, par le whataboutism.</strong> La question posée n’a pas reçu de réponse : on a simplement changé de sujet.'
+            },
+            {
+                enonce: '« Ce climatologue a pris l’avion l’an dernier. Il n’a aucune leçon à nous donner. »',
+                options: CINQ_D,
+                bonne: 0,
+                explication: '<strong>Discréditer, en attaquant l’éthos.</strong> Le comportement du chercheur ne change rien à ses mesures. On vise la personne pour ne pas avoir à discuter ce qu’elle dit.'
+            },
+            {
+                enonce: '« Les écolos veulent qu’on retourne vivre dans des grottes. »',
+                options: CINQ_D,
+                bonne: 1,
+                explication: '<strong>Déformer, par l’homme de paille.</strong> Personne ne défend cette position. On invente une version absurde pour la réfuter facilement.'
+            },
+            {
+                enonce: '« Continue à publier ça, et on verra bien ce qui t’arrive. »',
+                options: CINQ_D,
+                bonne: 3,
+                explication: '<strong>Dissuader, par la menace.</strong> Il ne s’agit pas de gagner le débat, mais de faire taire ceux qui y participent.'
+            },
+            {
+                enonce: '« L’écologie, c’est un truc de citadins aisés qui méprisent ceux qui ont besoin de leur voiture. »',
+                options: CINQ_D,
+                bonne: 4,
+                explication: '<strong>Diviser pour mieux régner.</strong> On oppose deux groupes qui auraient pourtant intérêt à s’entendre, et aucun accord ne devient possible.'
+            }
+        ], {
+            parfait: 'Sans faute. Nommer la technique, c’est déjà ne plus s’y laisser prendre.',
+            imparfait: 'Aucun de ces messages ne discute la science du climat : c’est le point commun des 5 D.'
+        });
+
+        construireQuiz('parler-questions', 'parler-score', [
+            {
+                enonce: 'Un oncle agriculteur : « Encore une taxe écolo. C’est toujours nous qui payons. »',
+                options: [
+                    '« Tu ne peux pas nier la science, regarde les courbes du GIEC. »',
+                    '« Qu’est-ce qui te fait le plus peur là-dedans, pour l’exploitation ? »',
+                    '« C’est à cause de gens comme toi qu’on n’avance pas. »'
+                ],
+                bonne: 1,
+                explication: '<strong>Écouter d’abord.</strong> Son objection ne porte pas sur la science, elle porte sur ce qu’il risque de perdre. Les courbes répondent à une question qu’il ne pose pas, et le reproche déclenche la réactance.'
+            },
+            {
+                enonce: 'Une amie : « Les scientifiques ne sont même pas d’accord entre eux. »',
+                options: [
+                    '« Presque tous les climatologues du monde arrivent à la même conclusion. »',
+                    '« Si on ne fait rien, dans trente ans ce sera l’apocalypse. »',
+                    '« Je vais t’envoyer une dizaine d’études, tu verras. »'
+                ],
+                bonne: 0,
+                explication: '<strong>Montrer le consensus.</strong> Elle ne peut pas juger elle-même dix études ; elle peut comprendre que les spécialistes sont d’accord. La peur, elle, ne marche que sur les convaincus.'
+            },
+            {
+                enonce: 'Un collègue : « Le réchauffement, c’est un prétexte inventé pour nous taxer. »',
+                options: [
+                    '« Non, c’est faux, ce n’est pas un prétexte. »',
+                    '« Les mesures de température existent depuis bien avant qu’on parle de taxes : ce sont des relevés de météo, de glaciers, d’océans. »',
+                    '« Tu es complotiste, en fait. »'
+                ],
+                bonne: 1,
+                explication: '<strong>Proposer une explication alternative.</strong> « Non, ce n’est pas un prétexte » répète le mot « prétexte ». Mieux vaut donner une autre histoire, qui prenne la place de la première. L’étiquette « complotiste », elle, clôt la discussion.'
+            }
+        ], {
+            parfait: 'Sans faute. Écouter, s’appuyer sur le consensus, proposer une autre explication : c’est la méthode.',
+            imparfait: 'Les réponses qui semblent les plus fortes sont souvent celles qui ferment la discussion.'
+        });
+
+        /* --- Accordeons -----------------------------------------------------
+           La hauteur ouverte est mesuree puis relachee a « none » : les
+           modules interactifs font grandir leur contenu apres coup (reponse
+           depliee, retour d'un quiz) et un plafond fixe les couperait. */
+        const accordionItems = document.querySelectorAll('.accordion-item');
+
+        function ouvrirAccordeon(item) {
+            const c = item.querySelector('.accordion-content');
+            item.classList.add('active');
+            c.style.maxHeight = c.scrollHeight + 'px';
+            c.addEventListener('transitionend', function fini(e) {
+                if (e.propertyName !== 'max-height') return;
+                c.removeEventListener('transitionend', fini);
+                if (item.classList.contains('active')) c.style.maxHeight = 'none';
+            });
+        }
+
+        function fermerAccordeon(item) {
+            const c = item.querySelector('.accordion-content');
+            c.style.maxHeight = c.scrollHeight + 'px';
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                item.classList.remove('active');
+                c.style.maxHeight = '0px';
+            }));
+        }
+
+        accordionItems.forEach(item => {
+            item.querySelector('.accordion-header').addEventListener('click', () => {
+                if (item.classList.contains('active')) fermerAccordeon(item);
+                else ouvrirAccordeon(item);
+            });
+        });
+
+        document.querySelectorAll('.toc a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Le premier accordeon est ouvert d'entree
+        if (accordionItems.length > 0) {
+            accordionItems[0].classList.remove('active');
+            ouvrirAccordeon(accordionItems[0]);
+        }
+    </script>
+</body>
+</html>

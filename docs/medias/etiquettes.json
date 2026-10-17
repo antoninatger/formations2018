@@ -1,0 +1,914 @@
+{
+ "note": "Etiquettes des medias. Proposees le 31 aout a partir des noms de fichiers, A CORRIGER A LA MAIN : un nom de fichier ne dit pas toujours ce que montre l'image. Un media peut porter plusieurs etiquettes, ou aucune.",
+ "etiquettes": {
+  "images/adn-manipulation-titre.jpg": [],
+  "images/affiche-tabac-lucky-strike.png": [],
+  "images/alerte-ukraine-sensible.jpg": [
+   "Politique"
+  ],
+  "images/aliens-pyramides.jpg": [
+   "Science et santé"
+  ],
+  "images/anakin-faux-dilemme-meme.jpg": [
+   "Réseaux sociaux"
+  ],
+  "images/anciennete-manuscrit.jpg": [],
+  "images/appel-nature-champignon.jpg": [],
+  "images/aristote.jpg": [],
+  "images/arnaque-nft-influenceur.jpg": [
+   "Influenceurs"
+  ],
+  "images/astroturf-lettre-pere-noel.jpg": [],
+  "images/astroturfing-illustration.jpg": [],
+  "images/avocat-plaidoirie.jpg": [],
+  "images/balle-tennis.png": [],
+  "images/bbc-ukraine-biolabs.jpg": [
+   "Politique"
+  ],
+  "images/beatles-rolling-stones.jpg": [],
+  "images/biais-autorite-portrait.jpg": [
+   "Biais cognitifs",
+   "Portraits"
+  ],
+  "images/biais-engagement-submarine.jpg": [
+   "Biais cognitifs"
+  ],
+  "images/biscuits-animaux.jpg": [],
+  "images/biscuits-vegan-hoax.jpg": [],
+  "images/boutin-cite-gorafi.jpg": [
+   "Presse et médias",
+   "Politique"
+  ],
+  "images/brigitte-macron-elysee-texte.jpg": [
+   "Politique"
+  ],
+  "images/cadrage-piege.jpg": [
+   "Illusions d'optique"
+  ],
+  "images/champion-podium.jpg": [],
+  "images/chargeur-samsung-avis.jpg": [],
+  "images/chat-photo.jpg": [],
+  "images/chaton-choix.jpg": [],
+  "images/chaton.jpg": [],
+  "images/chevalier-homme-de-fer.jpg": [],
+  "images/chocolat-nobel-debunk.jpg": [],
+  "images/chocolat-nobel-lepoint.jpg": [
+   "Presse et médias"
+  ],
+  "images/colere-dinosaures-gif.jpg": [],
+  "images/colin-powell-regret.jpg": [],
+  "images/compte-annaj-avatar.jpg": [],
+  "images/compte-annaj-profil.jpg": [],
+  "images/concomitance-nicolas-cage.jpg": [],
+  "images/conspiration-tweet.jpg": [
+   "Réseaux sociaux",
+   "Complotisme"
+  ],
+  "images/correlation-aliments-cancer.jpg": [],
+  "images/david-hume.jpg": [
+   "Portraits"
+  ],
+  "images/deepfake-panic-1.jpg": [
+   "IA générative"
+  ],
+  "images/deepfake-panic-2.jpg": [
+   "IA générative"
+  ],
+  "images/deepfake-panic-3.jpg": [
+   "IA générative"
+  ],
+  "images/deepfake-panic-4.jpg": [
+   "IA générative"
+  ],
+  "images/deepfake-panic-5.jpg": [
+   "IA générative"
+  ],
+  "images/deepfake-panic-6.jpg": [
+   "IA générative"
+  ],
+  "images/didier-raoult.jpg": [
+   "Science et santé"
+  ],
+  "images/drapeau-lune.jpg": [],
+  "images/dupont-ligonnes-bfmtv.jpg": [
+   "Presse et médias"
+  ],
+  "images/dupont-ligonnes-parisien.jpg": [],
+  "images/enhanced-photo-meme-1.jpg": [
+   "Réseaux sociaux"
+  ],
+  "images/enhanced-photo-meme-2.jpg": [
+   "Réseaux sociaux"
+  ],
+  "images/epouvantail-homme-de-paille.jpg": [],
+  "images/epouvantail.jpg": [],
+  "images/equation.jpg": [],
+  "images/ethos-influenceur-finance.jpg": [
+   "Influenceurs"
+  ],
+  "images/etoile-berger-venus.jpg": [
+   "Science et santé"
+  ],
+  "images/etoiles-avis.jpg": [
+   "Science et santé"
+  ],
+  "images/etoiles-david-tags-photo.jpg": [
+   "Science et santé",
+   "Portraits"
+  ],
+  "images/etoiles-david-titre-borne.jpg": [
+   "Science et santé",
+   "Portraits"
+  ],
+  "images/etoiles-david-titre-fsb.jpg": [
+   "Science et santé",
+   "Portraits"
+  ],
+  "images/etoiles-david-titre-manipulation.jpg": [
+   "Science et santé",
+   "Portraits"
+  ],
+  "images/etude-ia-texte-fabrique.jpg": [
+   "IA générative",
+   "Science et santé"
+  ],
+  "images/etude-instagram-ia-1.jpg": [
+   "IA générative",
+   "Influenceurs",
+   "Science et santé"
+  ],
+  "images/etude-instagram-ia-2.jpg": [
+   "IA générative",
+   "Influenceurs",
+   "Science et santé"
+  ],
+  "images/etude-science-conspi-1.jpg": [
+   "Science et santé",
+   "Complotisme"
+  ],
+  "images/etude-science-conspi-2.jpg": [
+   "Science et santé",
+   "Complotisme"
+  ],
+  "images/faux-brad-pitt.jpg": [
+   "IA générative"
+  ],
+  "images/femmes-reelles-identites-tweet.jpg": [
+   "Réseaux sociaux"
+  ],
+  "images/femmes-volant-stats.jpg": [],
+  "images/flag-politique-us.jpg": [],
+  "images/flat-earth.jpg": [
+   "Science et santé"
+  ],
+  "images/ford-teddy-riner-2.jpeg": [
+   "Influenceurs"
+  ],
+  "images/ford-teddy-riner-pub.jpg": [
+   "Influenceurs"
+  ],
+  "images/ford-teddy-riner.jpg": [
+   "Influenceurs"
+  ],
+  "images/france24-femmes-accusees-ia.jpg": [
+   "IA générative"
+  ],
+  "images/george-floyd-manifestation.jpg": [],
+  "images/giec-experts-panel.jpg": [
+   "Science et santé"
+  ],
+  "images/godwin-portrait-historique.jpg": [
+   "Portraits"
+  ],
+  "images/golden-billion-texte.jpg": [],
+  "images/google-fox-vaccin-1.jpg": [
+   "Science et santé"
+  ],
+  "images/google-fox-vaccin-2.jpg": [
+   "Science et santé"
+  ],
+  "images/gorafi-etchebest.jpg": [
+   "Presse et médias"
+  ],
+  "images/gorafi-radars-patriotisme.jpg": [
+   "Presse et médias"
+  ],
+  "images/gossip-michou-manaudou.jpg": [
+   "Influenceurs"
+  ],
+  "images/harrison-ford-jet-prive.jpg": [
+   "Influenceurs",
+   "Portraits"
+  ],
+  "images/harrison-ford-loopsider.jpg": [
+   "Influenceurs",
+   "Portraits"
+  ],
+  "images/harrison-ford-titre-gueux.jpg": [
+   "Influenceurs",
+   "Portraits"
+  ],
+  "images/harrison-ford-titre-hypocrisie.jpg": [
+   "Influenceurs",
+   "Portraits"
+  ],
+  "images/harrison-ford-tweet-1.jpg": [
+   "Influenceurs",
+   "Réseaux sociaux",
+   "Portraits"
+  ],
+  "images/hidalgo-site-parodique.jpg": [
+   "Politique"
+  ],
+  "images/hoax-sport-suede.jpg": [],
+  "images/ia-deblur-pixelise.jpg": [
+   "IA générative"
+  ],
+  "images/ia-facebook-bebe-boue.jpg": [
+   "IA générative",
+   "Réseaux sociaux"
+  ],
+  "images/ia-facebook-sept-bebes.jpg": [
+   "IA générative",
+   "Réseaux sociaux"
+  ],
+  "images/influenceur-type1.jpg": [
+   "Influenceurs"
+  ],
+  "images/influenceur-type2.jpg": [
+   "Influenceurs"
+  ],
+  "images/influenceur-type3.jpg": [
+   "Influenceurs"
+  ],
+  "images/irak-mensonges-statue.jpg": [],
+  "images/iran-accuse-france-titre.jpg": [
+   "Politique"
+  ],
+  "images/iran-embassy-factcheck-2026.jpg": [
+   "Politique"
+  ],
+  "images/iran-embassy-intox-tweet.jpg": [
+   "Réseaux sociaux",
+   "Politique"
+  ],
+  "images/just-stop-oil.jpg": [],
+  "images/lemonde-climat.jpg": [
+   "Presse et médias"
+  ],
+  "images/lievre.png": [
+   "Biais cognitifs"
+  ],
+  "images/lloyd-bentsen.jpg": [],
+  "images/logo-chatgpt.png": [
+   "IA générative"
+  ],
+  "images/logo-claude.png": [],
+  "images/logo-gemini.png": [],
+  "images/logos-fact-checking.png": [],
+  "images/loto-pub-gagnants.jpg": [
+   "Influenceurs"
+  ],
+  "images/macron-alien-ia.jpg": [
+   "IA générative",
+   "Politique"
+  ],
+  "images/macron-president.jpg": [
+   "Politique"
+  ],
+  "images/mcdo-osaka-foule.jpg": [],
+  "images/mcdo-osaka-titre.jpg": [],
+  "images/mcfly-carlito-pub.jpg": [],
+  "images/meduse-immortelle--niveau1.jpg": [
+   "Science et santé"
+  ],
+  "images/meduse-immortelle.jpg": [
+   "Science et santé"
+  ],
+  "images/milgram-schema.jpg": [],
+  "images/milliard-or-titre.jpg": [],
+  "images/moteur-eau-autoplus.jpg": [],
+  "images/moteur-eau-condamnation.jpg": [],
+  "images/moteur-eau-headline.jpg": [],
+  "images/moteur-eau-miracle.jpg": [],
+  "images/mute-news-gaza.jpg": [],
+  "images/mute-news-soudan.jpg": [],
+  "images/mute-news-ukraine.jpg": [
+   "Politique"
+  ],
+  "images/occam-portrait.jpg": [
+   "Portraits"
+  ],
+  "images/ogm-article.jpg": [
+   "Presse et médias",
+   "Science et santé"
+  ],
+  "images/ogm-poisons-nouvelobs.jpg": [
+   "Presse et médias",
+   "Science et santé"
+  ],
+  "images/panama-papers-lemonde.jpg": [
+   "Presse et médias"
+  ],
+  "images/panneau-jai-raison.png": [],
+  "images/parachute-photo.jpg": [],
+  "images/patrimoine-moyen-bfmtv.jpg": [
+   "Presse et médias"
+  ],
+  "images/paul-histoire-1--niveau1.jpg": [],
+  "images/paul-histoire-1.jpg": [],
+  "images/paul-histoire-2--niveau1.jpg": [],
+  "images/paul-histoire-2.jpg": [],
+  "images/pente-savonneuse-panneau.jpg": [],
+  "images/phishing-sms-chronopost.jpg": [],
+  "images/photo-groupe-souvenir.jpg": [],
+  "images/photoshop-panic-1.jpg": [],
+  "images/photoshop-panic-2.jpg": [],
+  "images/polarisation-booba.jpg": [],
+  "images/portrait-bouazizi.jpg": [
+   "Portraits"
+  ],
+  "images/poutine-bfmtv-ukraine.jpg": [
+   "Presse et médias",
+   "Politique"
+  ],
+  "images/poutine-patrimoine-tweet.jpg": [
+   "Réseaux sociaux",
+   "Politique"
+  ],
+  "images/poutine.jpg": [
+   "Politique"
+  ],
+  "images/pub-30millions-amis.jpg": [
+   "Influenceurs"
+  ],
+  "images/pub-black-friday-maillots.jpg": [
+   "Influenceurs"
+  ],
+  "images/pub-nft-whale.jpg": [
+   "Influenceurs"
+  ],
+  "images/pub-voiture-champion.jpg": [
+   "Influenceurs"
+  ],
+  "images/putin-unipolar-world.jpg": [],
+  "images/pyramide-preuves.jpg": [
+   "Science et santé"
+  ],
+  "images/pyramides-gizeh.jpg": [
+   "Science et santé"
+  ],
+  "images/quiz-ia-flamant-rose-beach.png": [
+   "IA générative"
+  ],
+  "images/quiz-ia-flamant-rose.jpg": [
+   "IA générative"
+  ],
+  "images/quiz-ia-portrait-double.jpg": [
+   "IA générative",
+   "Portraits"
+  ],
+  "images/quiz-ia-tournage-reel.jpg": [
+   "IA générative"
+  ],
+  "images/quiz-texte-ia-1.jpg": [
+   "IA générative"
+  ],
+  "images/quiz-texte-ia-2.jpg": [
+   "IA générative"
+  ],
+  "images/raquette.png": [],
+  "images/reine-margot.jpg": [],
+  "images/rock-metal-orthographe.jpg": [],
+  "images/roy-amara-portrait.jpg": [
+   "Portraits"
+  ],
+  "images/rsf-factchecking-kremlin.jpg": [],
+  "images/soldats-mise-en-scene.png": [],
+  "images/soleil-etoile.jpg": [
+   "Science et santé"
+  ],
+  "images/sound-of-freedom-poster.jpg": [],
+  "images/storytelling-dubai.jpg": [
+   "Réseaux sociaux"
+  ],
+  "images/sylvia-browne-hoax.jpg": [
+   "IA générative"
+  ],
+  "images/systeme-analytique-tortue.png": [
+   "Biais cognitifs"
+  ],
+  "images/systeme-intuitif-lievre.png": [
+   "Biais cognitifs"
+  ],
+  "images/tapis-negociation.jpg": [],
+  "images/teddy-riner-judo.jpeg": [
+   "Influenceurs"
+  ],
+  "images/teddy-riner.jpg": [
+   "Influenceurs"
+  ],
+  "images/telegram-silhouette.jpg": [],
+  "images/temoignage-cancer-thumbnail.jpg": [],
+  "images/terre-plate-illustration.jpg": [
+   "Science et santé"
+  ],
+  "images/terre-ronde-nasa.jpg": [],
+  "images/titre-bouazizi.jpg": [],
+  "images/titre-vaccin-covid-grippe.jpg": [
+   "Science et santé"
+  ],
+  "images/tortue.png": [
+   "Biais cognitifs"
+  ],
+  "images/trump-biden-sabre-laser-ia.jpg": [
+   "IA générative",
+   "Politique"
+  ],
+  "images/trump-billet-salaire.jpg": [
+   "Politique"
+  ],
+  "images/trump-eating-pets-debat.jpg": [
+   "Politique"
+  ],
+  "images/trump-fake-news-gif.jpg": [
+   "Politique"
+  ],
+  "images/trump-iran-8-femmes-tweet.jpg": [
+   "Réseaux sociaux",
+   "Politique"
+  ],
+  "images/trump-photo.jpg": [
+   "Politique"
+  ],
+  "images/trump-titre.png": [
+   "Politique"
+  ],
+  "images/tweet-debunk-intox-france24.jpg": [
+   "Réseaux sociaux"
+  ],
+  "images/tweet-politique-us.jpg": [
+   "Réseaux sociaux"
+  ],
+  "images/tweet-progres-noel-36.jpg": [
+   "Réseaux sociaux"
+  ],
+  "images/tweet-progres-noel-64.jpg": [
+   "Réseaux sociaux"
+  ],
+  "images/vaccin-ado-tweet.jpg": [
+   "Réseaux sociaux",
+   "Science et santé"
+  ],
+  "images/vaccin-college-article.jpg": [
+   "Presse et médias",
+   "Science et santé"
+  ],
+  "images/vice-versa-emotions.jpg": [
+   "Biais cognitifs"
+  ],
+  "images/vie-curatee-photo.jpg": [],
+  "images/vie-de-reve-lamborghini.jpg": [],
+  "images/vrai-ecossais-roux.jpg": [],
+  "images/wald-bombardiers.jpg": [],
+  "video/alerte-ukraine-sensible.mp4": [
+   "Politique"
+  ],
+  "video/antoine-relations-parasociales.mp4": [],
+  "video/attaque-titans-charge-erwin.mp4": [],
+  "video/avion-video-source-iran.mp4": [
+   "Politique"
+  ],
+  "video/avion-video-virale-elysee.mp4": [],
+  "video/cadrage-apres.mp4": [
+   "Illusions d'optique"
+  ],
+  "video/cadrage-rocketman.mp4": [
+   "Illusions d'optique"
+  ],
+  "video/colin-powell-onu-archive.mp4": [],
+  "video/danse-dupliquee.mp4": [
+   "Illusions d'optique"
+  ],
+  "video/drapeau-avions-1.mp4": [],
+  "video/enquete-melius-leparisien.mp4": [],
+  "video/experience-asch-conformite.mp4": [],
+  "video/harrison-ford-hypocrisie.mp4": [
+   "Influenceurs",
+   "Portraits"
+  ],
+  "video/illusion-audio-cuicui.mp4": [
+   "Illusions d'optique"
+  ],
+  "video/illusion-eau-robinet.mp4": [
+   "Illusions d'optique"
+  ],
+  "video/independence-day-discours.mp4": [],
+  "video/influenceur-finance-lac.mp4": [
+   "Influenceurs"
+  ],
+  "video/influenceur-proximite.mp4": [
+   "Influenceurs"
+  ],
+  "video/interview-rue-ukraine.mp4": [
+   "Politique"
+  ],
+  "video/lapin-carotte.mp4": [
+   "Illusions d'optique"
+  ],
+  "video/metro-cadrage-biaise.mp4": [
+   "Illusions d'optique",
+   "Biais cognitifs"
+  ],
+  "video/mlk-i-have-a-dream.mp4": [],
+  "video/norman-video-longue.mp4": [],
+  "video/patrouille-france-marseille.mp4": [
+   "Politique"
+  ],
+  "video/points-illusion.mp4": [
+   "Illusions d'optique"
+  ],
+  "video/propagande-anti-francaise-dessin-anime.mp4": [],
+  "video/pub-gant-exfoliant.mp4": [
+   "Influenceurs"
+  ],
+  "video/pub-metaverse-secret.mp4": [
+   "Influenceurs"
+  ],
+  "video/pub-nft-celestials-club.mp4": [
+   "Influenceurs"
+  ],
+  "video/pub-paris-sportifs-casino.mp4": [
+   "Influenceurs"
+  ],
+  "video/pub-soin-avant-apres.mp4": [
+   "Influenceurs"
+  ],
+  "video/rtbf-coup-etat-ia-reportage.mp4": [
+   "IA générative"
+  ],
+  "video/spotted-white-house-hoax.mp4": [],
+  "video/temoignage-halo-populaire.mp4": [],
+  "video/transition-astroturfing-humour.mp4": [],
+  "video/trump-huit-jeunes-doute-ia.mp4": [
+   "IA générative",
+   "Politique"
+  ],
+  "video/tv5monde-propagande-afrique.mp4": [],
+  "video/will-smith-spaghetti-ia-2023.mp4": [
+   "IA générative"
+  ],
+  "video/will-smith-spaghetti-ia-recente.mp4": [
+   "IA générative"
+  ],
+  "video/zevent-influenceur-don.mp4": [
+   "Influenceurs"
+  ],
+  "images/teddy riner foule.webp": [
+   "Influenceurs",
+   "Portraits",
+   "Biais cognitifs"
+  ],
+  "images/global-land-ocean-anomalies-202201-202212border2-768x331.jpg": [
+   "Complotisme",
+   "Science et santé",
+   "Réseaux sociaux"
+  ],
+  "video/ia-ou-pas-salto-cuisine-ia.mp4": [
+   "IA générative"
+  ],
+  "video/ia-ou-pas-arrestation-cherokee-ia.mp4": [
+   "IA générative"
+  ],
+  "video/ia-ou-pas-chaton-robinet-ia.mp4": [
+   "IA générative"
+  ],
+  "video/ia-ou-pas-lion-chien-safari-ia.mp4": [
+   "IA générative"
+  ],
+  "video/ia-ou-pas-grimpeur-gratte-ciel-vraie.mp4": [
+   "IA générative"
+  ],
+  "video/ia-ou-pas-danseur-metro-vraie.mp4": [
+   "IA générative"
+  ],
+  "video/ia-ou-pas-barre-pole-dance-vraie.mp4": [
+   "IA générative"
+  ],
+  "video/ia-ou-pas-yoyo-nuit-vraie.mp4": [
+   "IA générative"
+  ],
+  "video/ia-ou-pas-moissonneuse-tilt-shift-vraie.mp4": [
+   "IA générative"
+  ],
+  "images/ia-ou-pas-image.jpg": [
+   "IA générative"
+  ],
+  "images/actu-2023-12-24-biais-de-realisme-naif-moi-je-suis-objectif-et-pragmatique.png": [
+   "Biais cognitifs"
+  ],
+  "images/actu-2025-11-16-ia-didier-von-cawleart.jpg": [
+   "IA générative"
+  ],
+  "images/actu-2025-11-21-perdre-nos-enfants.jpg": [],
+  "images/actu-2025-11-24-comptes-twitter-a-l-etranger.jpg": [
+   "Réseaux sociaux"
+  ],
+  "images/actu-2025-11-25-insultes-extreme-droite.png": [],
+  "images/actu-2025-11-26-macron-mettre-la-presse-au-pas.jpg": [
+   "Politique",
+   "Presse et médias"
+  ],
+  "images/actu-2025-11-30-cantine-enfants-police-accusation-complot.png": [
+   "Complotisme",
+   "Politique"
+  ],
+  "images/actu-2025-12-07-segregation-sociale.png": [],
+  "images/actu-2025-12-09-sales-connes-ari-abbitan.jpg": [],
+  "images/actu-2025-12-11-supermarches-londres-generalisation-abusive.png": [
+   "Biais cognitifs"
+  ],
+  "images/actu-2025-12-18-video-coup-d-etat-ia.jpg": [
+   "IA générative"
+  ],
+  "images/actu-2025-12-23-jeunes-acceleration-videos-le-parisien.jpg": [
+   "Presse et médias"
+  ],
+  "images/actu-2025-12-25-joyeux-noel-ou-bonne-fete-panique-morale.png": [],
+  "images/actu-2026-01-01-coups-et-blessures-plaintes-deposees.jpg": [],
+  "images/actu-2026-01-02-grok-images-detournees-liberte.png": [
+   "IA générative",
+   "Presse et médias"
+  ],
+  "images/actu-2026-01-03-maduro-arrestation-complot.jpg": [
+   "Complotisme",
+   "Politique"
+  ],
+  "images/actu-2026-01-05-which-way-greenland-man.png": [
+   "Politique"
+  ],
+  "images/actu-2026-01-09-iran-accuse-trump-complot.png": [
+   "Complotisme",
+   "Politique"
+  ],
+  "video/actu-2026-01-11-francis-lalanne-brigitte-macron-preuve.mp4": [
+   "Politique"
+  ],
+  "images/actu-2026-01-14-groenland-usa-chine-russie-faux-dilemme-maison-blanche.jpg": [
+   "Politique"
+  ],
+  "images/actu-2026-01-15-which-way-western-man-dogwhislte-appel-du-pied.jpg": [],
+  "images/actu-2026-01-16-morandini-jospin-j-assume-changement-de-sens.png": [
+   "Politique"
+  ],
+  "images/actu-2026-01-16-which-way-american-man.png": [],
+  "images/actu-2026-01-20-49-3-biais-d-omission.jpg": [
+   "Politique",
+   "Biais cognitifs"
+  ],
+  "video/actu-2026-01-21-charles-allonce-science-rechauffement-climatique-violences.mp4": [
+   "Science et santé"
+  ],
+  "images/actu-2026-01-24-ia-maison-blanche.png": [
+   "IA générative",
+   "Politique"
+  ],
+  "images/actu-2026-01-26-melenchon-grand-remplacement.png": [
+   "Politique"
+  ],
+  "images/actu-2026-01-27-interdiction-reseaux-sociaux-moins-de-15-ans-audition-assem.png": [
+   "Réseaux sociaux"
+  ],
+  "images/actu-2026-01-29-francois-ruffin-smic-populisme.png": [
+   "Politique"
+  ],
+  "video/actu-2026-01-30-alex-pretti-video-ia-ou-pas-ia.mp4": [
+   "IA générative"
+  ],
+  "images/actu-2026-01-31-epstein-maga-complot.png": [
+   "Complotisme"
+  ],
+  "images/actu-2026-02-02-dossiers-epstein-pensee-complotiste.png": [
+   "Complotisme"
+  ],
+  "images/actu-2026-02-02-coomplotiste-definition.jpg": [],
+  "video/actu-2026-02-06-macron-brut-jeu-video-violence.mp4": [
+   "Politique",
+   "Presse et médias"
+  ],
+  "images/actu-2026-02-07-mel-gibson-complot.jpg": [
+   "Complotisme"
+  ],
+  "video/actu-2026-02-10-arfi-complotisme-du-haut-rhetorique.mp4": [
+   "Complotisme"
+  ],
+  "images/actu-2026-02-20-vassal-travail-famill-patrie-petain-deni-plausible-appel-du.png": [],
+  "images/actu-2026-03-02-jim-carrey-clone-croyance-complotisme-croivance.png": [
+   "Complotisme"
+  ],
+  "images/actu-2026-03-21-instrumentalisation-de-la-psycho-1.png": [
+   "Biais cognitifs"
+  ],
+  "images/actu-2026-03-21-instrumentalisation-de-la-psycho-2.png": [
+   "Biais cognitifs"
+  ],
+  "images/actu-2026-03-24-aulas-et-le-biais-de-cadrage.png": [
+   "Biais cognitifs"
+  ],
+  "images/actu-2026-03-28-salame-lavrov.jpg": [
+   "Politique"
+  ],
+  "video/actu-2026-03-31-bally-bayagoko-des-rois-ou-des-noirs.mp4": [],
+  "images/actu-2026-04-03-serguei-lavrov-falcification-video.jpg": [
+   "Politique"
+  ],
+  "images/actu-2026-04-03-surrepresentation-des-candidats.png": [],
+  "images/actu-2026-04-08-complotisme-macron.webp": [
+   "Complotisme",
+   "Politique"
+  ],
+  "images/actu-2026-04-13-orban-defaite-elections.jpg": [
+   "Politique"
+  ],
+  "images/actu-2026-04-20-trump-attentat-maga-changent-d-avis.png": [
+   "Politique"
+  ],
+  "images/actu-2026-04-22-alex-jones-the-onion-info-wars.jpg": [
+   "Complotisme"
+  ],
+  "images/actu-2026-04-22-complotisme-tasty-crousty.png": [
+   "Complotisme"
+  ],
+  "images/actu-2026-04-22-gmilgram-qanon-charles-temoignage.png": [
+   "Complotisme"
+  ],
+  "images/actu-2026-04-23-alex-jones-accuse-trump-complot-complotisme.png": [
+   "Complotisme",
+   "Politique"
+  ],
+  "images/actu-2026-04-28-medecin-espagnol-cancer-pancreas-retacte.png": [
+   "Science et santé"
+  ],
+  "images/actu-2026-05-02-super-size-me-documentaire-malbouffe.jpg": [],
+  "images/actu-2026-05-07-theorie-du-complot-terre-plate-soyons-precis.png": [
+   "Complotisme"
+  ],
+  "images/actu-2026-05-10-rec-2026.jpg": [],
+  "images/actu-2026-05-11-entretiens-pelapelaka.png": [],
+  "images/actu-2026-05-16-monet-ia-ou-authentique.jpg": [
+   "IA générative"
+  ],
+  "images/actu-2026-05-19-lycee-carriat-le-progres.jpg": [],
+  "images/actu-2026-05-23-le-parti-des-cafards-retournement-stigmates.jpg": [],
+  "images/actu-2026-05-24-aptonyme-contraptonyme-bastien-bonnargent.png": [],
+  "images/actu-2026-05-27-antisemitisme-dog-whistle-corleone-akim-omiri-qui.jpg": [],
+  "images/actu-2026-06-01-interview-dermatose-nodulaire-contagieuse-complotisme-desin.png": [
+   "Complotisme",
+   "Science et santé"
+  ],
+  "images/actu-2026-06-02-francais-ruffin-preterition.png": [
+   "Politique"
+  ],
+  "images/actu-2026-06-10-satrapi-recuperation-artiste.png": [],
+  "images/actu-2026-06-12-coree-du-sud-complot-reel.jpg": [
+   "Complotisme"
+  ],
+  "images/actu-2026-06-14-mise-a-jour-fakemetre.png": [],
+  "images/actu-2026-06-27-retour-fakemetre.png": [],
+  "images/actu-2026-07-02-rencontre-alliance-francaise-hong-kong.jpg": [],
+  "images/actu-2026-07-05-bardella-complotisme-rhetorique.png": [
+   "Complotisme",
+   "Politique"
+  ],
+  "images/actu-2026-07-08-trump-fifa-foot-carton-rouge-complot.png": [
+   "Complotisme",
+   "Politique"
+  ],
+  "images/actu-2026-07-15-cce-psychologie-fake-news-interventions.jpg": [
+   "Biais cognitifs"
+  ],
+  "images/actu-2026-07-16-elon-musk-twitter-marine-le-pen-algorithme.png": [
+   "Politique",
+   "Réseaux sociaux"
+  ],
+  "images/actu-2026-07-23-reseaux-sociaux-audition-assemblee-nationale.png": [
+   "Réseaux sociaux"
+  ],
+  "images/actu-2026-07-24-sciences-et-pseudo-science-fakemetre-interventions-scolaire.jpg": [
+   "Science et santé"
+  ],
+  "images/actu-2026-07-30-gilbert-collart-incendies-ia-mesinformation-desinformation.jpg": [
+   "IA générative"
+  ],
+  "images/actu-2026-07-30-complots-impots-youtube-collaboration.png": [
+   "Complotisme",
+   "Réseaux sociaux"
+  ],
+  "images/actu-2026-07-31-zidane-effet-mandela.png": [
+   "Biais cognitifs"
+  ],
+  "images/actu-2026-08-02-fedorova-xena-democratie.png": [
+   "Politique"
+  ],
+  "images/actu-2026-08-04-critique-moralite-oeuvre.png": [],
+  "images/actu-2026-08-25-cerveau-predictive.webp": [],
+  "images/actu-2026-08-31-soral-guenole-debat.png": [
+   "Complotisme"
+  ],
+  "images/actu-2026-09-03-theories-du-complot-google.png": [
+   "Complotisme"
+  ],
+  "images/actu-2026-09-04-soral-antisemite-judeophobe.png": [
+   "Complotisme"
+  ],
+  "images/actu-2026-09-07-intervention-rechauffement-climatique-osny-cergy.png": [
+   "Science et santé"
+  ],
+  "images/actu-maga-garbage.png": [],
+  "images/actu-madmadi-arabe.png": [],
+  "images/actu-preservatif.png": [],
+  "images/actu-tiktok1.jpg": [
+   "Réseaux sociaux"
+  ],
+  "images/actu-tiktok2.jpg": [
+   "Réseaux sociaux"
+  ],
+  "images/actu-tiktok3.jpg": [
+   "Réseaux sociaux"
+  ],
+  "images/actu-trump-garbage.jpg": [
+   "Politique"
+  ],
+  "images/actu-zaka-sur-bfm.png": [
+   "Presse et médias",
+   "Science et santé"
+  ],
+  "images/actu-zemmour-recuperation-politique-sondage.png": [
+   "Politique"
+  ],
+  "images/actu-akenaton.jpg": [],
+  "video/actu-jeune-homme-noir-pousse-vieux-blanc-sur-le-quai.mp4": [],
+  "images/actu-sanders-bfm.jpg": [
+   "Politique",
+   "Presse et médias"
+  ],
+  "images/actu-sondage-xavier-bertrand.jpg": [
+   "Politique"
+  ],
+  "images/hep-astroturfing-1.png": [
+   "Réseaux sociaux"
+  ],
+  "images/hep-astroturfing-2.jpg": [
+   "Réseaux sociaux"
+  ],
+  "images/hep-effet-de-cadrage-1.jpg": [
+   "Biais cognitifs"
+  ],
+  "images/hep-effet-de-cadrage-2.png": [
+   "Biais cognitifs"
+  ],
+  "images/hep-fabrique-du-doute-1.png": [
+   "Science et santé"
+  ],
+  "images/hep-fabrique-du-doute-2-tv5monde.png": [
+   "Science et santé"
+  ],
+  "images/hep-mute-news-1.png": [
+   "Presse et médias"
+  ],
+  "images/hep-mute-news-2.png": [
+   "Presse et médias"
+  ],
+  "images/drapeau-ukrainien-nazi-1-la-photo.jpg": [
+   "Politique"
+  ],
+  "images/drapeau-ukrainien-nazi-2-la-recherche.jpg": [
+   "Politique"
+  ],
+  "images/drapeau-ukrainien-nazi-3-le-46.jpg": [
+   "Politique"
+  ],
+  "images/drapeau-ukrainien-nazi-4-explication.jpg": [
+   "Politique"
+  ],
+  "images/drapeau-ukrainien-nazi-5-le-dementi.jpg": [
+   "Politique"
+  ],
+  "images/reagan-et-poutine.jpg": [
+   "Politique"
+  ],
+  "images/xavier-dupont-de-ligonnes.jpg": [
+   "Presse et médias"
+  ],
+  "images/xavier-dupont-de-ligonnes-bfm.jpg": [
+   "Presse et médias"
+  ],
+  "images/actu-2026-10-18-vous-condamnez-les-violences.jpg": [
+   "Cadrage"
+  ],
+  "images/actu-2026-10-18-faux-dilemme-lecornu.png": [
+   "Faux dilemme",
+   "Sophismes"
+  ]
+ }
+}

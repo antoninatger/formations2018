@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rhétorique et esprit critique : Niveau 3</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared-deck.css">
+<style>
+/* Propre à « formation-rhetorique-niveau3 » : 88 règles.
+ * Le socle commun est dans ../shared-deck.css, chargé juste avant ;
+ * ce qui suit le complète ou le surcharge. */
+:root{--bg:#171326;--bg2:#0d0a17;--panel:#241f38;--panel2:#2d2745;--acc:#d9a441;--acc2:#b23a55;--c3:#3f9e8f;--c4:#5b8fd9;--c5:#e0854a;--tx:#f3eef8;--mu:#a89bc0}
+body{background-image:radial-gradient(ellipse at 15% -10%, rgba(217,164,65,.12) 0%, transparent 55%), radial-gradient(ellipse at 90% 110%, rgba(178,58,85,.14) 0%, transparent 55%)}
+:where(button,a,[tabindex]):focus-visible{outline:3px solid var(--c4)}
+/* ── Bandeau top ── */
+#topbar{background:linear-gradient(180deg,rgba(13,10,23,.92),rgba(13,10,23,0))}
+/* ── Cover ── */
+#s0 .logo{font-size:3rem;margin-bottom:6px;}
+#s0 h1{font-size:clamp(2rem,calc(6 * var(--vw1)),3.4rem);font-weight:800;
+  background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+#s0 .objectifs{list-style:none;margin-top:26px;display:flex;flex-direction:column;gap:10px;text-align:left;max-width:540px;}
+#s0 .objectifs li{background:var(--panel);border:1px solid var(--bord);border-radius:14px;padding:12px 18px;font-weight:700;
+  display:flex;align-items:center;gap:12px;}
+#s0 .objectifs li b{color:var(--acc);font-family:'Baloo 2',cursive;font-size:1.1rem;}
+/* ── Boutons génériques ── */
+.bigbtn{background:linear-gradient(135deg,var(--acc),#a9762a);box-shadow:0 6px 22px rgba(217,164,65,.3)}
+/* ── Vidéos ── */
+.vidwrap{position:relative;max-width:460px;width:calc(74 * var(--vw1));border-radius:20px;overflow:hidden;border:1px solid var(--bord);
+  box-shadow:0 20px 50px rgba(0,0,0,.4);margin-top:10px;background:#000;}
+.vidwrap.wide{max-width:680px;width:calc(82 * var(--vw1));}
+.imgcard{background:#fff}
+.imgcard.tiny{max-width:220px;}
+.img-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;max-width:680px;width:100%;margin-top:16px;}
+.img-grid .imgcard{max-width:100%;width:100%;margin-top:0;}
+/* ── Reveal générique ── */
+.reveal-btn{color:#f3c9d3}
+.reveal-btn:hover{background:rgba(178,58,85,.18)}
+.reveal-box.show{max-height:1200px}
+/* ── Quiz (qcard) ── */
+.quiz-grid{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));max-width:1000px;margin-top:20px}
+.qcard{min-height:150px;justify-content:space-between}
+.qcard:hover{border-color:var(--acc2);transform:translateY(-2px);}
+.qcard img{object-fit:cover}
+.qcard .handle{color:var(--mu-diapo);font-size:.72rem;font-weight:700;margin-top:2px;}
+.qcard .badge.b1{background:rgba(217,164,65,.2);color:var(--acc);border:1px solid var(--acc);}
+.qcard .badge.b2{background:rgba(178,58,85,.2);color:#f3a9bb;border:1px solid var(--acc2);}
+.qcard .badge.b3{background:rgba(63,158,143,.22);color:#7fd9c8;border:1px solid var(--c3);}
+.qcard .badge.b4{background:rgba(91,143,217,.22);color:#a7c4ec;border:1px solid var(--c4);}
+.qcard.revealed.b1{border-color:var(--acc);}
+.qcard.revealed.b2{border-color:var(--acc2);}
+.qcard.revealed.b3{border-color:var(--c3);}
+.qcard.revealed.b4{border-color:var(--c4);}
+.qcard.revealed .expl{max-height:200px}
+.compare .col{width:280px}
+.compare .col.alt h3{color:var(--acc);}
+.compare .col p,.compare .col ul{color:var(--mu-diapo);font-size:.88rem;line-height:1.65;font-weight:600;}
+.compare .col .imgcard{margin:0 0 12px;max-width:100%;width:100%;}
+/* ── Personas ── */
+.persona-grid{display:flex;gap:20px;margin-top:22px;flex-wrap:wrap;justify-content:center;}
+.persona:hover{border-color:var(--acc2);}
+.persona .pexpl{line-height:1.55}
+.persona .imgcard{margin:0 0 10px;max-width:100%;width:100%;}
+/* ── Checklist ── */
+.checklist{list-style:none;margin-top:26px;display:flex;flex-direction:column;gap:9px;text-align:left;max-width:600px;width:100%;}
+.checklist li{background:var(--panel);border:1px solid var(--bord);border-radius:12px;padding:12px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:.15s}
+.checklist li:hover{border-color:var(--acc2);}
+.checklist li .box{width:22px;height:22px;border-radius:6px;border:2px solid var(--mu);flex:none;display:flex;align-items:center;justify-content:center;font-size:.85rem;}
+.checklist li.done{opacity:.6;}
+.checklist li.done .box{background:var(--ok);border-color:var(--ok);color:#06281a;}
+/* ── Tips numérotés ── */
+.tips-list{max-width:640px}
+.tips-list li span.sub{display:block;font-weight:600;color:var(--mu-diapo);font-size:.85rem;margin-top:4px;}
+/* ── Devinette / discussion ── */
+.riddle-box{max-width:620px}
+.riddle-box .q{font-size:1.03rem}
+.riddle-box ul{margin-top:10px;padding-left:20px;color:var(--mu-diapo);font-weight:600;line-height:1.7;}
+/* La loi de Hume (s31) : son exemple, jadis rangé dans un encadré fermé, occupe désormais
+   sa place dès l'arrivée. Le plafond commun de .reponse-compacte lui laisse encore 51 px de
+   trop — le portrait de Hume les cède. Règle locale, et elle peut l'être : cette diapo
+   n'est en série avec aucune autre formation. */
+#s31 .imgcard img{max-height:calc(19 * var(--vh1));}
+/* ── Liens vers d'autres jeux ── */
+.gamelink{background:linear-gradient(135deg,var(--c4),#2f5fa8);color:#041226}
+.gamelink.gold{background:linear-gradient(135deg,var(--acc),#a9762a);color:#2a1c02;}
+.links-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+/* ── Diagramme rôles (types de rhétorique) ── */
+.rhet-diagram{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:26px;}
+.rd-role{background:var(--panel);border:1px solid var(--bord);border-radius:14px;padding:14px 20px;font-weight:700;
+  font-family:'Baloo 2',cursive;font-size:.92rem;min-width:150px;text-align:center;}
+.rd-role.merged{border-color:var(--acc2);}
+.rd-arrow{font-family:'Baloo 2',cursive;color:var(--acc2);font-weight:700;font-size:.88rem;white-space:nowrap;}
+.rd-public{margin-top:16px;background:var(--panel2);border:1px dashed var(--bord);border-radius:14px;padding:10px 20px;font-weight:700;color:var(--mu-diapo);font-size:.85rem;}
+.rd-example{margin-top:20px;color:var(--mu-diapo);font-size:.92rem;font-weight:600;max-width:520px;}
+.rd-example b{color:var(--acc);}
+/* ── Techniques grid (ethos/pathos/logos) ── */
+.tech-grid{display:flex;gap:16px;margin-top:24px;flex-wrap:wrap;justify-content:center;}
+.techcard{background:var(--panel);border:1px solid var(--bord);border-radius:16px;padding:20px 22px;width:230px;cursor:pointer;text-align:left;transition:.15s;}
+.techcard:hover{transform:translateY(-2px);border-color:var(--acc2);}
+.techcard .ticon{font-size:1.6rem;margin-bottom:6px;}
+.techcard h3{font-family:'Baloo 2',cursive;font-size:1.1rem;margin-bottom:6px;}
+.techcard.ethos h3{color:var(--acc);}
+.techcard.pathos h3{color:#f3a9bb;}
+.techcard.logos h3{color:#7fd9c8;}
+.techcard .tdef{color:var(--mu-diapo);font-size:.85rem;font-weight:600;line-height:1.5;}
+.techcard .texpl{display:none;margin-top:10px;font-size:.82rem;color:var(--mu-diapo);font-weight:600;line-height:1.5;padding-top:10px;border-top:1px dashed var(--bord);}
+.techcard.open .texpl{display:block;}
+.techcard .ttap{font-size:.68rem;color:var(--mu-diapo);text-transform:uppercase;letter-spacing:1px;font-weight:800;margin-top:8px;}
+.techcard.open .ttap{display:none;}
+/* ── Duel tweets ── */
+.tweet-duel{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin-top:22px;max-width:760px;}
+.tweet-card{background:var(--panel);border:1.5px solid var(--bord);border-radius:16px;padding:16px 18px;width:290px;text-align:left;cursor:pointer;transition:.15s;}
+.tweet-card:hover{border-color:var(--acc2);}
+.tweet-card.picked{border-color:var(--acc);background:rgba(217,164,65,.08);}
+.tweet-card .tw-name{font-family:'Baloo 2',cursive;font-weight:700;font-size:.92rem;}
+.tweet-card .tw-handle{color:var(--mu-diapo);font-size:.75rem;margin-bottom:8px;font-weight:600;}
+.tweet-card .tw-txt{font-size:.84rem;line-height:1.5;font-weight:600;}
+.duel-hint{margin-top:10px;color:var(--mu-diapo);font-size:.85rem;font-weight:700;}
+.admin-head button.primary{background:linear-gradient(135deg,var(--acc),#a9762a)}
+/* ── Formulaire "Ajouter une diapo" (autonome, pas de dépendance à un autre composant) ── */
+.addslide-modal{display:none;position:fixed;inset:0;z-index:410;background:rgba(0,0,0,.6);
+  align-items:center;justify-content:center;padding:20px;}
+.addslide-input:focus-visible{outline:2px solid var(--acc2);outline-offset:2px;}
+.admin-edit-head button.primary{background:linear-gradient(135deg,var(--acc),#a9762a);color:#2a1c02}
+@media(max-width:640px){
+  .slide{padding:70px calc(6 * var(--vw1)) 90px;}
+  .compare{gap:12px;}
+  .compare .col{width:100%;max-width:320px;}
+  .rhet-diagram{gap:10px;}
+  .admin-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));}
+  .admin-head{flex-wrap:wrap;height:auto;padding:10px;gap:8px;}
+  .admin-modal{padding:110px 12px 20px;}
+}
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <span class="brand">Rhétorique et esprit critique : Niveau 3</span>
+  <div class="tools">
+    <button id="btn-admin-grid" title="Toutes les diapos" onclick="Deck.openAdmin()">Toutes les diapos</button>
+    <button id="btn-dossier" hidden title="Donner au navigateur l’accès au dossier Cours : nécessaire pour les séries, les diapos liées et les médias" onclick="Deck.connecterDossier()">🔌 Connecter le dossier</button>
+    <button id="btn-fullscreen" title="Plein écran"><span class="t-fr">Plein écran</span><span class="t-en" hidden>Fullscreen</span></button>
+    <button id="btn-lang" title="Switch to English" onclick="Deck.toggleLang()">EN</button>
+  </div>
+</div>
+
+<div id="deck" data-registry-build="1788779327081">
+
+  
+
+  
+
+  
+
+  <!-- 0. Couverture -->
+  <section class="slide short" id="s0">
+    <h1 data-pose="" data-off-x="316.67" data-off-y="342.51" style="left:31.667%;top:34.251%"><span class="t-fr">Rhétorique et esprit critique</span><span class="t-en" hidden="">Rhetoric and Critical Thinking</span></h1>
+    <ul class="objectifs" data-pose="" data-off-x="360.68" data-off-y="468.06" style="left:36.068%;top:46.806%">
+      <li><span class="t-fr"><b>1.</b> Sommes-nous influençables ? (spoiler : oui, et ce n'est pas grave)</span><span class="t-en" hidden=""><b>1.</b> Are we easily influenced? (spoiler: yes, and that's OK)</span></li>
+      <li><span class="t-fr"><b>2.</b> Les outils de la rhétorique : ethos, pathos, logos.</span><span class="t-en" hidden=""><b>2.</b> The tools of rhetoric: ethos, pathos, logos.</span></li>
+      <li><span class="t-fr"><b>3.</b> Comment mieux débattre, sans tromper ni se faire tromper.</span><span class="t-en" hidden=""><b>3.</b> How to debate better, without deceiving or being deceived.</span></li>
+    </ul>
+  </section>
+
+  <!-- 1. La rhétorique définition -->
+  <section class="slide short" id="s1-3" data-serie="serie_22e531e0-6f40-469f-a185-95ef7bcff3c3">
+    <p class="kicker" data-pose="" data-off-x="475.6" data-off-y="255.13" style="left:47.56%;top:25.513%"><span class="t-fr">Définition</span><span class="t-en" hidden="">Definition</span></p>
+    <h2 data-pose="" data-off-x="434.11" data-off-y="285.97" style="left:43.411%;top:28.597%"><span class="t-fr">La rhétorique</span><span class="t-en" hidden="">Rhetoric</span></h2>
+    <div class="imgcard tiny" data-pose="" data-off-x="442.86" data-off-y="358.63" style="left:44.286%;top:35.863%"><img src="../medias/images/aristote.jpg" alt="Buste d'Aristote, philosophe grec, théoricien de la rhétorique"></div>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="630.32" style="left:30.26%;top:63.032%"><span class="t-fr">L'art de persuader, convaincre ou impressionner un public en utilisant les mots de manière efficace.</span><span class="t-en" hidden="">The art of persuading, convincing, or impressing an audience by using words effectively.</span></p>
+    <p class="lead" style="margin-top:18px;color:var(--acc);font-weight:800;left:41.42%;top:72.063%" data-pose="" data-off-x="414.2" data-off-y="720.63"><span class="t-fr">C'est donc une histoire d'influence.</span><span class="t-en" hidden="">So it's really a matter of influence.</span></p>
+  </section>
+
+  <!-- 2. Êtes-vous influençable ? teaser -->
+  <section class="slide short" id="s2-2" data-serie="serie_22e531e0-6f40-469f-a185-95ef7bcff3c3">
+    <h2 data-pose="" data-off-x="380.94" data-off-y="433.92" style="left:38.094%;top:43.392%"><span class="t-fr">Êtes-vous influençable ?</span><span class="t-en" hidden="">Are you easily influenced?</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="506.59" style="left:30.26%;top:50.659%"><span class="t-fr">Nous sommes des créatures sociales, et donc très influençables. Deux exemples pour s'en convaincre.</span><span class="t-en" hidden="">We are social creatures, and therefore highly susceptible to influence. Two examples to prove it.</span></p>
+  </section>
+
+  <!-- 3. Expérience d'Asch -->
+  <section class="slide" id="s3-2" data-serie="serie_22e531e0-6f40-469f-a185-95ef7bcff3c3">
+    <p class="kicker" data-pose="" data-off-x="449.09" data-off-y="110.13" style="left:44.909%;top:11.013%"><span class="t-fr">Expérience classique</span><span class="t-en" hidden="">A classic experiment</span></p>
+    <h2 data-pose="" data-off-x="406.15" data-off-y="140.97" style="left:40.615%;top:14.097%"><span class="t-fr">L'expérience d'Asch</span><span class="t-en" hidden="">Asch's experiment</span></h2>
+    <div class="vidwrap" data-pose="" data-off-x="380.52" data-off-y="209.23" style="left:38.052%;top:20.923%">
+      <video src="../medias/video/experience-asch-conformite.mp4" controls="" playsinline=""></video>
+    </div>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="605.15" style="left:30.26%;top:60.515%"><span class="t-fr">Face à un groupe qui répond faux à l'unanimité, une personne sur trois se rallie à la mauvaise réponse, juste pour éviter le désaccord.</span><span class="t-en" hidden="">Faced with a group that unanimously gives a wrong answer, one person in three goes along with the wrong answer too, just to avoid disagreement.</span></p>
+  </section>
+
+  <!-- 4. Chargeur Amazon -->
+  <section class="slide" id="s4">
+    <h2 data-pose="" data-off-x="331.15" data-off-y="113.07" style="left: 33.115%; top: 11.307%;"><span class="t-fr">Un chargeur à choisir sur Amazon…</span><span class="t-en" hidden="">Choosing a charger on Amazon…</span></h2>
+    
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="546.97" style="left: 30.26%; top: 54.697%;"><span class="t-fr">Deux chargeurs identiques. L'un a <b style="color:var(--ok);">2 686 avis positifs</b>, l'autre plus de <b style="color:var(--ko);">3 000 avis négatifs</b>. Lequel prenez-vous ?</span><span class="t-en" hidden="">Two identical chargers. One has <b style="color:var(--ok);">2,686 positive reviews</b>, the other over <b style="color:var(--ko);">3,000 negative reviews</b>. Which one do you pick?</span></p>
+    <div class="step" id="chargeur-reveal" data-pose="" data-off-x="302.6" data-off-y="626.03" style="left: 30.26%; top: 62.603%;">
+      <p class="lead"><span class="t-fr">Vous venez d'être influencé : par les autres acheteurs, sans même les connaître. Et ce n'est pas un problème : c'est une <b style="color:var(--acc);">preuve sociale</b>, un raccourci souvent utile. Le souci commence quand on ne sait plus qu'on l'utilise.</span><span class="t-en" hidden="">You've just been influenced: by other buyers, without even knowing them. And that's not a problem: it's <b style="color:var(--acc);">social proof</b>, an often useful shortcut. The trouble starts when you no longer realise you're using it.</span></p>
+      <a class="gamelink" href="https://antoninatger.github.io/jeux/Biais%20cognitifs/index.html" target="_blank"><span class="t-fr">Explorer les biais cognitifs sur Perceptio</span><span class="t-en" hidden="">Explore cognitive biases on Perceptio</span></a>
+    </div>
+  <div class="imgcard small" data-pose="" data-off-x="360.78" data-off-y="201.15" style="width: 300px; left: 36.078%; top: 20.115%;"><img src="../medias/images/chargeur-samsung-avis.jpg" alt="Chargeur Samsung, deux fiches produit identiques"></div><div class="imgcard tiny" data-pose="" data-off-x="524.94" data-off-y="201.15" style="width: 220px; left: 52.494%; top: 20.115%;"><img src="../medias/images/etoiles-avis.jpg" alt="Note du chargeur : 4,5 étoiles, 2 686 avis"></div></section>
+
+  <!-- 5. Synthèse influence sociale -->
+  <section class="slide short" id="s5">
+    <div class="riddle-box" style="text-align:center;left:33.896%;top:40.645%" data-pose="" data-off-x="338.96" data-off-y="406.45">
+      <p class="q"><span class="t-fr">L'influence sociale est un aspect fondamental de l'humanité. Ce n'est ni bien ni mal, c'est comme ça.</span><span class="t-en" hidden="">Social influence is a fundamental part of being human. It's neither good nor bad, it's just how it is.</span></p>
+      <p class="q" style="margin-top:14px;"><span class="t-fr">La rhétorique, c'est un moyen de convaincre par différents procédés. En avoir conscience permet de l'utiliser correctement, et de ne pas se faire avoir.</span><span class="t-en" hidden="">Rhetoric is a way of persuading through various techniques. Being aware of it lets you use it properly, and avoid being fooled by it.</span></p>
+    </div>
+  </section>
+
+  <!-- 6. La rhétorique nécessite -->
+  <section class="slide short" id="s6" data-serie="serie_1da3c831-a54d-4d40-a62e-605b73145ea0">
+    <h2 data-pose="" data-off-x="370.61" data-off-y="425.11" style="left:37.061%;top:42.511%"><span class="t-fr">Une rhétorique nécessite…</span><span class="t-en" hidden="">Rhetoric requires…</span></h2>
+    <p class="lead" data-pose="" data-off-x="368.81" data-off-y="497.78" style="left:36.881%;top:49.778%"><span class="t-fr">Un orateur, un interlocuteur, un auditoire et un langage.</span><span class="t-en" hidden="">A speaker, a listener, an audience, and a language.</span></p>
+    <p class="lead" style="margin-top:16px;color:var(--acc);font-weight:800;left:32.536%;top:55.064%" data-pose="" data-off-x="325.36" data-off-y="550.64"><span class="t-fr">Elle est structurée autour d'une triple dimension : ethos, pathos, logos.</span><span class="t-en" hidden="">It is structured around a triple dimension: ethos, pathos, logos.</span></p>
+  </section>
+
+  <!-- 7. Mots clés -->
+  <section class="slide" id="s7-3" data-serie="serie_1da3c831-a54d-4d40-a62e-605b73145ea0">
+    <h2 data-pose="" data-off-x="454.33" data-off-y="110.13" style="left:45.433%;top:11.013%"><span class="t-fr">Mots clés</span><span class="t-en" hidden="">Key words</span></h2>
+    <p class="lead" style="margin-top:6px;left:44.344%;top:17.399%" data-pose="" data-off-x="443.44" data-off-y="173.99"><span class="t-fr">Cliquez sur chaque rôle.</span><span class="t-en" hidden="">Click each role.</span></p>
+    <div class="persona-grid" data-pose="" data-off-x="287.01" data-off-y="233.46" style="left:28.701%;top:23.346%">
+      <div class="persona" data-p="orateur">
+        <div class="pname"><span class="t-fr">Orateur</span><span class="t-en" hidden="">Speaker</span></div>
+        <div class="pexpl"><span class="t-fr">Personne qui tente de convaincre.</span><span class="t-en" hidden="">The person trying to convince.</span></div>
+      </div>
+      <div class="persona" data-p="auditoire">
+        <div class="pname"><span class="t-fr">Auditoire</span><span class="t-en" hidden="">Audience</span></div>
+        <div class="pexpl"><span class="t-fr">Personne que l'on cherche à convaincre.</span><span class="t-en" hidden="">The people you're trying to convince.</span></div>
+      </div>
+      <div class="persona" data-p="interlocuteur">
+        <div class="pname"><span class="t-fr">Interlocuteur</span><span class="t-en" hidden="">Interlocutor</span></div>
+        <div class="pexpl"><span class="t-fr">Personne à qui s'adresse l'orateur.</span><span class="t-en" hidden="">The person the speaker is directly addressing.</span></div>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:18px;font-size:.85rem;left:38.626%;top:32.927%" data-pose="" data-off-x="386.26" data-off-y="329.27"><span class="t-fr">Auditoire et interlocuteur ne sont pas forcément les mêmes personnes.</span><span class="t-en" hidden="">The audience and the interlocutor aren't necessarily the same people.</span></p>
+  </section>
+
+  <!-- 8. Monologue -->
+  <section class="slide" id="s8-3" data-serie="serie_1da3c831-a54d-4d40-a62e-605b73145ea0">
+    <p class="kicker" data-pose="" data-off-x="430.51" data-off-y="110.13" style="left:43.051%;top:11.013%"><span class="t-fr">1 des 4 manières de débattre</span><span class="t-en" hidden="">1 of 4 ways to debate</span></p>
+    <h2 data-pose="" data-off-x="445.46" data-off-y="140.97" style="left:44.546%;top:14.097%"><span class="t-fr">Monologue</span><span class="t-en" hidden="">Monologue</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="213.63" style="left:30.26%;top:21.363%"><span class="t-fr">L'orateur cherche à convaincre un auditoire, mais l'auditoire ne peut pas lui répondre ou contre-argumenter.</span><span class="t-en" hidden="">The speaker tries to convince an audience, but the audience cannot respond or counter-argue.</span></p>
+    <div class="rhet-diagram" data-pose="" data-off-x="380.25" data-off-y="312.75" style="left:38.025%;top:31.275%">
+      <div class="rd-role"><span class="t-fr">Orateur</span><span class="t-en" hidden="">Speaker</span></div>
+      <div class="rd-arrow"><span class="t-fr">convainc →</span><span class="t-en" hidden="">convinces →</span></div>
+      <div class="rd-role merged"><span class="t-fr">Auditoire = Interlocuteur</span><span class="t-en" hidden="">Audience = Interlocutor</span></div>
+    </div>
+    <p class="rd-example" data-pose="" data-off-x="443.16" data-off-y="394.25" style="left:44.316%;top:39.425%"><span class="t-fr">Exemple : <b>un discours politique.</b></span><span class="t-en" hidden="">Example: <b>a political speech.</b></span></p>
+  </section>
+
+  <!-- 9. Délibération -->
+  <section class="slide" id="s9" data-serie="serie_aa5cf03e-1144-44ba-ac14-f389d3bf7fb9">
+    <p class="kicker" data-pose="" data-off-x="430.51" data-off-y="110.13" style="left:43.051%;top:11.013%"><span class="t-fr">2 des 4 manières de débattre</span><span class="t-en" hidden="">2 of 4 ways to debate</span></p>
+    <h2 data-pose="" data-off-x="439.32" data-off-y="140.97" style="left:43.932%;top:14.097%"><span class="t-fr">Délibération</span><span class="t-en" hidden="">Deliberation</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="213.63" style="left:30.26%;top:21.363%"><span class="t-fr">On argumente pour convaincre l'interlocuteur, mais on peut aussi se laisser convaincre. L'idée est de parvenir à un consensus.</span><span class="t-en" hidden="">We argue to convince the other person, but we can also let ourselves be convinced. The goal is to reach a consensus.</span></p>
+    <div class="rhet-diagram" data-pose="" data-off-x="388.37" data-off-y="312.75" style="left:38.837%;top:31.275%">
+      <div class="rd-role"><span class="t-fr">Personne A</span><span class="t-en" hidden="">Person A</span></div>
+      <div class="rd-arrow"><span class="t-fr">⇄ s'influencent</span><span class="t-en" hidden="">⇄ influence each other</span></div>
+      <div class="rd-role"><span class="t-fr">Personne B</span><span class="t-en" hidden="">Person B</span></div>
+    </div>
+    <p class="rd-example" data-pose="" data-off-x="399.95" data-off-y="394.25" style="left:39.995%;top:39.425%"><span class="t-fr">Exemple : <b>un couple cherche à décider quoi faire ce soir.</b></span><span class="t-en" hidden="">Example: <b>a couple deciding what to do tonight.</b></span></p>
+  </section>
+
+  <!-- 10. Compétition -->
+  <section class="slide" id="s10-3" data-serie="serie_e47591d9-c98c-493f-a43e-a8ba68bd7566">
+    <p class="kicker" data-pose="" data-off-x="430.51" data-off-y="110.13" style="left:43.051%;top:11.013%"><span class="t-fr">3 des 4 manières de débattre</span><span class="t-en" hidden="">3 of 4 ways to debate</span></p>
+    <h2 data-pose="" data-off-x="439.77" data-off-y="140.97" style="left:43.977%;top:14.097%"><span class="t-fr">Compétition</span><span class="t-en" hidden="">Competition</span></h2>
+    <p class="lead" data-pose="" data-off-x="327.62" data-off-y="213.63" style="left:32.762%;top:21.363%"><span class="t-fr">Le but n'est pas de convaincre l'interlocuteur (l'adversaire) mais le public.</span><span class="t-en" hidden="">The goal isn't to convince the other party (the opponent) but the audience.</span></p>
+    <div class="rhet-diagram" data-pose="" data-off-x="402.04" data-off-y="277.51" style="left:40.204%;top:27.751%">
+      <div class="rd-role"><span class="t-fr">Camp A</span><span class="t-en" hidden="">Side A</span></div>
+      <div class="rd-arrow"><span class="t-fr">rivalité</span><span class="t-en" hidden="">rivalry</span></div>
+      <div class="rd-role"><span class="t-fr">Camp B</span><span class="t-en" hidden="">Side B</span></div>
+    </div>
+    <div class="rd-public" data-pose="" data-off-x="398.15" data-off-y="354.6" style="left:39.815%;top:35.46%"><span class="t-fr">Auditoire : c'est lui qu'on cherche vraiment à convaincre</span><span class="t-en" hidden="">Audience: the one you're really trying to convince</span></div>
+    <p class="rd-example" data-pose="" data-off-x="432.64" data-off-y="421.78" style="left:43.264%;top:42.178%"><span class="t-fr">Exemple : <b>un débat politique télévisé.</b></span><span class="t-en" hidden="">Example: <b>a televised political debate.</b></span></p>
+  </section>
+
+  <!-- 11. Conflit -->
+  <section class="slide" id="s11-3" data-serie="serie_e47591d9-c98c-493f-a43e-a8ba68bd7566">
+    <p class="kicker" data-pose="" data-off-x="430.51" data-off-y="110.13" style="left:43.051%;top:11.013%"><span class="t-fr">4 des 4 manières de débattre</span><span class="t-en" hidden="">4 of 4 ways to debate</span></p>
+    <h2 data-pose="" data-off-x="466.81" data-off-y="140.97" style="left:46.681%;top:14.097%"><span class="t-fr">Conflit</span><span class="t-en" hidden="">Conflict</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="213.63" style="left:30.26%;top:21.363%"><span class="t-fr">Le but n'est ni de convaincre l'interlocuteur, ni le public : c'est juste le « plaisir » de la joute verbale.</span><span class="t-en" hidden="">The goal is neither to convince the other person nor the audience: it's just the "pleasure" of verbal sparring.</span></p>
+    <div class="rhet-diagram" data-pose="" data-off-x="391.96" data-off-y="312.75" style="left:39.196%;top:31.275%">
+      <div class="rd-role"><span class="t-fr">Vous</span><span class="t-en" hidden="">You</span></div>
+      <div class="rd-arrow"><span class="t-fr">joute verbale</span><span class="t-en" hidden="">verbal sparring</span></div>
+      <div class="rd-role"><span class="t-fr">Beau-frère</span><span class="t-en" hidden="">Brother-in-law</span></div>
+    </div>
+    <p class="rd-example" data-pose="" data-off-x="364.94" data-off-y="394.25" style="left:36.494%;top:39.425%"><span class="t-fr">Exemple : <b>fin de repas de famille, débat avec ton beau-frère aux idées radicalement différentes des tiennes…</b></span><span class="t-en" hidden="">Example: <b>end of a family dinner, arguing with your brother-in-law whose views are radically different from yours…</b></span></p>
+  </section>
+
+  <!-- 12. Quelques exemples - quiz -->
+  <section class="slide" id="s12-3" data-serie="serie_e47591d9-c98c-493f-a43e-a8ba68bd7566">
+    <h2><span class="t-fr">Quelques exemples</span><span class="t-en" hidden>A few examples</span></h2>
+    <p class="lead" style="margin-top:6px;"><span class="t-fr">Monologue, délibération, compétition ou conflit ? Cliquez sur chaque situation.</span><span class="t-en" hidden>Monologue, deliberation, competition, or conflict? Click each situation.</span></p>
+    <div class="retourne" data-pose="" data-off-x="120.00" data-off-y="300.00" style="left:12.000%;top:30.000%;width:37.400%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><div class="imgcard" style="margin:0 0 6px;width:100%;max-height:130px;overflow:hidden"><img src="../medias/images/tapis-negociation.jpg" alt="" style="width:100%;height:130px;object-fit:cover"></div><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">Tu cherches à obtenir une réduction sur le prix de ce magnifique tapis.</span><span class="t-en" hidden="">You're trying to negotiate a discount on this magnificent rug.</span></p></div><div class="retourne-face retourne-verso" style="border-color:#7fd9c8"><p class="kicker" style="color:#7fd9c8;font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">Délibération</span><span class="t-en" hidden="">Deliberation</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">Vous négociez à deux : chacun peut infléchir l'autre, l'objectif est un accord sur le prix. C'est une délibération.</span><span class="t-en" hidden="">The two of you negotiate: each can sway the other, the goal is agreement on a price. That's a deliberation.</span></p></div></div></div><div class="retourne" data-pose="" data-off-x="506.00" data-off-y="300.00" style="left:50.600%;top:30.000%;width:37.400%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">Même situation… mais tu es avec tes amis, qui te chambrent souvent en disant que tu ne sais pas négocier.</span><span class="t-en" hidden="">Same situation… but you're with your friends, who often tease you for being bad at negotiating.</span></p></div><div class="retourne-face retourne-verso" style="border-color:#a7c4ec"><p class="kicker" style="color:#a7c4ec;font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">Compétition</span><span class="t-en" hidden="">Competition</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">Le vrai public, ce sont vos amis : vous ne cherchez plus vraiment à convaincre le vendeur, mais à leur prouver quelque chose.</span><span class="t-en" hidden="">The real audience is your friends: you're no longer really trying to convince the seller, but to prove something to them.</span></p></div></div></div><div class="retourne" data-pose="" data-off-x="120.00" data-off-y="642.28" style="left:12.000%;top:64.228%;width:37.400%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">L'avocat et le procureur affichent leurs désaccords sur la culpabilité du prévenu.</span><span class="t-en" hidden="">The defence lawyer and the prosecutor argue over the defendant's guilt.</span></p></div><div class="retourne-face retourne-verso" style="border-color:#a7c4ec"><p class="kicker" style="color:#a7c4ec;font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">Compétition</span><span class="t-en" hidden="">Competition</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">Ils ne cherchent pas à se convaincre l'un l'autre, mais à convaincre le juge ou le jury, le vrai public du procès.</span><span class="t-en" hidden="">They aren't trying to convince each other, but to convince the judge or jury, the trial's real audience.</span></p></div></div></div><div class="retourne" data-pose="" data-off-x="506.00" data-off-y="642.28" style="left:50.600%;top:64.228%;width:37.400%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><div class="imgcard" style="margin:0 0 6px;width:100%;max-height:130px;overflow:hidden"><img src="../medias/images/avocat-plaidoirie.jpg" alt="" style="width:100%;height:130px;object-fit:cover"></div><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">L'avocat fait sa plaidoirie.</span><span class="t-en" hidden="">The lawyer delivers their closing argument.</span></p></div><div class="retourne-face retourne-verso" style="border-color:var(--acc)"><p class="kicker" style="color:var(--acc);font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">Monologue</span><span class="t-en" hidden="">Monologue</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">Un discours ininterrompu, comme un discours politique : personne ne peut contre-argumenter en direct.</span><span class="t-en" hidden="">An uninterrupted speech, like a political address: no one can counter-argue live.</span></p></div></div></div>
+    
+  </section>
+
+  <!-- 13. Endogroupe / Exogroupe -->
+  <section class="slide" id="s13-4" data-serie="serie_e47591d9-c98c-493f-a43e-a8ba68bd7566">
+    <h2 data-pose="" data-off-x="352.58" data-off-y="110.13" style="left:35.258%;top:11.013%"><span class="t-fr">Pour qui est-ce que je débats ?</span><span class="t-en" hidden="">Who am I debating for?</span></h2>
+    <p class="lead" style="margin-top:4px;left:37.219%;top:17.178%" data-pose="" data-off-x="372.19" data-off-y="171.78"><span class="t-fr">Même situation de départ, deux stratégies différentes.</span><span class="t-en" hidden="">Same starting situation, two different strategies.</span></p>
+    <div class="compare" data-pose="" data-off-x="349.87" data-off-y="233.46" style="left:34.987%;top:23.346%">
+      <div class="col">
+        <h3><span class="t-fr">Endogroupe : mon camp</span><span class="t-en" hidden="">In-group: my side</span></h3>
+        <p><span class="t-fr">Convaincre / galvaniser les gens qui pensent déjà comme moi.</span><span class="t-en" hidden="">Convince / rally people who already think like me.</span></p>
+      </div>
+      <div class="col alt">
+        <h3><span class="t-fr">Exogroupe : l'autre camp</span><span class="t-en" hidden="">Out-group: the other side</span></h3>
+        <p><span class="t-fr">Convaincre les gens qui pensent différemment.</span><span class="t-en" hidden="">Convince people who think differently.</span></p>
+      </div>
+    </div>
+    <div class="step" id="endoexo-reveal" data-pose="" data-off-x="302.6" data-off-y="371.61" style="left:30.26%;top:37.161%">
+      <div class="compare">
+        <div class="col alt">
+          <h3><span class="t-fr">Stratégie « exogroupe »</span><span class="t-en" hidden="">"Out-group" strategy</span></h3>
+          <p><span class="t-fr">« Féministe, j'interpelle un propos machiste sur Twitter et tente d'<b style="color:var(--acc);">argumenter</b> avec l'auteur pour lui faire comprendre le sexisme de ses propos. »</span><span class="t-en" hidden="">"As a feminist, I call out a sexist comment on Twitter and try to <b style="color:var(--acc);">reason</b> with its author to help them see the sexism in what they said."</span></p>
+        </div>
+        <div class="col">
+          <h3><span class="t-fr">Stratégie « endogroupe »</span><span class="t-en" hidden="">"In-group" strategy</span></h3>
+          <p><span class="t-fr">« Féministe, j'interpelle un propos machiste sur Twitter et montre avec <b style="color:var(--acc2);">véhémence</b> à son auteur que ses propos sont inadmissibles. »</span><span class="t-en" hidden="">"As a feminist, I call out a sexist comment on Twitter and <b style="color:var(--acc2);">forcefully</b> show its author that what they said is unacceptable."</span></p>
+        </div>
+      </div>
+      <p class="lead" style="margin-top:16px;"><span class="t-fr">Il n'y a pas de bonne ou de mauvaise stratégie : c'est un choix rhétorique et stratégique. En avoir conscience aide à comprendre ce qui se joue vraiment dans un débat.</span><span class="t-en" hidden="">There's no right or wrong strategy: it's a rhetorical and strategic choice. Being aware of it helps you understand what's really at stake in a debate.</span></p>
+    </div>
+  </section>
+
+  <!-- 14. Vidéo Independence Day -->
+  <section class="slide" id="s14">
+    <p class="kicker" data-pose="" data-off-x="445.76" data-off-y="110.13" style="left:44.576%;top:11.013%"><span class="t-fr">Exemple de monologue</span><span class="t-en" hidden="">Example of a monologue</span></p>
+    <h2 data-pose="" data-off-x="391.54" data-off-y="140.97" style="left:39.154%;top:14.097%"><span class="t-fr">Galvaniser les troupes</span><span class="t-en" hidden="">Rallying the troops</span></h2>
+    <div class="vidwrap wide" data-pose="" data-off-x="323.38" data-off-y="209.23" style="left:32.338%;top:20.923%">
+      <video src="../medias/video/independence-day-discours.mp4" controls="" playsinline=""></video>
+    </div>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="646.53" style="left:30.26%;top:64.653%"><span class="t-fr">Le président galvanise son auditoire avant le combat : aucune contre-argumentation possible.</span><span class="t-en" hidden="">The president rallies his audience before battle: no counter-argument possible.</span></p>
+  </section>
+
+  <!-- 15. Vidéo Attaque des Titans -->
+  <section class="slide" id="s15">
+    <p class="kicker" data-pose="" data-off-x="430.33" data-off-y="110.13" style="left:43.033%;top:11.013%"><span class="t-fr">Autre exemple de monologue</span><span class="t-en" hidden="">Another example of a monologue</span></p>
+    <h2 data-pose="" data-off-x="414.76" data-off-y="140.97" style="left:41.476%;top:14.097%"><span class="t-fr">La charge d'Erwin</span><span class="t-en" hidden="">Erwin's charge</span></h2>
+    <div class="vidwrap" data-pose="" data-off-x="380.52" data-off-y="209.23" style="left:38.052%;top:20.923%">
+      <video src="../medias/video/attaque-titans-charge-erwin.mp4" controls="" playsinline=""></video>
+    </div>
+    <p class="lead" data-pose="" data-off-x="304.47" data-off-y="510.58" style="left:30.447%;top:51.058%"><span class="t-fr">Même ressort rhétorique dans un tout autre médium : un discours de guerre animé.</span><span class="t-en" hidden="">The same rhetorical device in a completely different medium: an animated war speech.</span></p>
+  </section>
+
+  <!-- 16. 3 manières -->
+  <section class="slide" id="s16-3" data-serie="serie_af36f6a8-224c-4228-a773-595c414fea2f">
+    <h2 data-pose="" data-off-x="327.92" data-off-y="110.13" style="left:32.792%;top:11.013%"><span class="t-fr">3 manières de faire de la rhétorique</span><span class="t-en" hidden="">3 ways to do rhetoric</span></h2>
+    <p class="lead" style="margin-top:6px;left:44.07%;top:17.399%" data-pose="" data-off-x="440.7" data-off-y="173.99"><span class="t-fr">Cliquez sur chaque carte.</span><span class="t-en" hidden="">Click each card.</span></p>
+    <div class="tech-grid" data-pose="" data-off-x="312.47" data-off-y="235.66" style="left:31.247%;top:23.566%">
+      <div class="techcard ethos" data-t="ethos">
+        <h3>Ethos</h3>
+        <div class="tdef"><span class="t-fr">Convaincre par rapport à l'éthique.</span><span class="t-en" hidden="">Convincing through ethics.</span></div>
+        <div class="ttap"><span class="t-fr">Cliquez</span><span class="t-en" hidden="">Click</span></div>
+        <div class="texpl"><span class="t-fr">La crédibilité, la réputation ou les valeurs de l'orateur.</span><span class="t-en" hidden="">The speaker's credibility, reputation, or values.</span></div>
+      </div>
+      <div class="techcard pathos" data-t="pathos">
+        <h3>Pathos</h3>
+        <div class="tdef"><span class="t-fr">Convaincre grâce à l'émotion.</span><span class="t-en" hidden="">Convincing through emotion.</span></div>
+        <div class="ttap"><span class="t-fr">Cliquez</span><span class="t-en" hidden="">Click</span></div>
+        <div class="texpl"><span class="t-fr">On touche l'empathie, la peur, l'indignation…</span><span class="t-en" hidden="">It taps into empathy, fear, outrage…</span></div>
+      </div>
+      <div class="techcard logos" data-t="logos">
+        <h3>Logos</h3>
+        <div class="tdef"><span class="t-fr">Convaincre grâce à la logique.</span><span class="t-en" hidden="">Convincing through logic.</span></div>
+        <div class="ttap"><span class="t-fr">Cliquez</span><span class="t-en" hidden="">Click</span></div>
+        <div class="texpl"><span class="t-fr">Arguments, statistiques, raisonnement « si… alors… ».</span><span class="t-en" hidden="">Arguments, statistics, "if… then…" reasoning.</span></div>
+      </div>
+    </div>
+    <a class="gamelink" href="https://antoninatger.github.io/jeux/rhetor/index.html#/outils/triade-ethos-pathos-logos" target="_blank" data-pose="" data-off-x="437.17" data-off-y="413.84" style="left:43.717%;top:41.384%"><span class="t-fr">La fiche complète sur Rhetor</span><span class="t-en" hidden="">The full entry on Rhetor</span></a>
+  </section>
+
+  <!-- 17. Logos - duel tweets -->
+  <section class="slide" id="s17">
+    <p class="kicker" data-pose="" data-off-x="485.73" data-off-y="110.13" style="left:48.573%;top:11.013%">Logos</p>
+    <h2 data-pose="" data-off-x="347.23" data-off-y="140.97" style="left:34.723%;top:14.097%"><span class="t-fr">Lequel est le plus convaincant ?</span><span class="t-en" hidden="">Which one is more convincing?</span></h2>
+    <p class="lead" style="margin-top:6px;left:33.216%;top:20.482%" data-pose="" data-off-x="332.16" data-off-y="204.82"><span class="t-fr">Et lequel est le plus solide ? Sont-ce les mêmes ? Cliquez sur un tweet.</span><span class="t-en" hidden="">And which one is more solid? Are they the same? Click a tweet.</span></p>
+    <div class="tweet-duel" id="tweet-duel" data-pose="" data-off-x="344.68" data-off-y="264.3" style="left:34.468%;top:26.43%">
+      <div class="tweet-card" data-tw="lea">
+        <div class="tw-name">Léa</div>
+        <div class="tw-handle">@lea_3eC</div>
+        <div class="tw-txt"><span class="t-fr">« Franchement les devoirs en rentrant à 18h30 c'est ingérable. Je bâcle tout juste pour dormir à une heure normale. À quoi ça sert si c'est pour faire n'importe quoi. »</span><span class="t-en" hidden="">"Honestly, homework when you get home at 6:30pm is unmanageable. I just rush through it to get to bed at a normal time. What's the point if it's done badly anyway."</span></div>
+      </div>
+      <div class="tweet-card" data-tw="research">
+        <div class="tw-name">ResearchEdu</div>
+        <div class="tw-handle">@recherche_edu</div>
+        <div class="tw-txt"><span class="t-fr">« Une méta-analyse sur 180 000 élèves (Harris Cooper, 2019) montre que les devoirs ont un effet positif au collège, mais seulement jusqu'à 1h/soir. Au-delà : aucun bénéfice. »</span><span class="t-en" hidden="">"A meta-analysis of 180,000 students (Harris Cooper, 2019) shows homework has a positive effect in middle school, but only up to 1h/night. Beyond that: no benefit."</span></div>
+      </div>
+    </div>
+    <div class="reveal-box" id="duel-reveal" data-pose="" data-off-x="87.4" data-off-y="483.23" style="left:8.74%;top:48.323%">
+      <p class="duel-hint"><span class="t-fr">Le tweet de Léa est vivant, incarné, on ressent sa fatigue : c'est du <b style="color:#f3a9bb;">pathos</b> efficace. Le tweet de ResearchEdu est moins percutant mais s'appuie sur une vraie donnée vérifiable : c'est du <b style="color:#7fd9c8;">logos</b>. Le plus convaincant à chaud n'est pas toujours le plus solide.</span><span class="t-en" hidden="">Léa's tweet is vivid, personal, you can feel her exhaustion: that's effective <b style="color:#f3a9bb;">pathos</b>. ResearchEdu's tweet is less punchy but rests on a real, checkable data point: that's <b style="color:#7fd9c8;">logos</b>. The most convincing in the moment isn't always the most solid.</span></p>
+    </div>
+  </section>
+
+  <!-- 18. Logos - 3 outils -->
+  <section class="slide" id="s18">
+    <p class="kicker" data-pose="" data-off-x="485.73" data-off-y="110.13" style="left:48.573%;top:11.013%">Logos</p>
+    <h2 data-pose="" data-off-x="389.8" data-off-y="140.97" style="left:38.98%;top:14.097%"><span class="t-fr">Les outils de la logique</span><span class="t-en" hidden="">The tools of logic</span></h2>
+    <div class="tech-grid" data-pose="" data-off-x="312.47" data-off-y="224.65" style="left:31.247%;top:22.465%">
+      <div class="techcard logos" data-t="stats">
+        <h3><span class="t-fr">Chiffres &amp; stats</span><span class="t-en" hidden="">Numbers &amp; stats</span></h3>
+        <div class="tdef"><span class="t-fr">Des données mesurables qui prouvent ce qu'on avance.</span><span class="t-en" hidden="">Measurable data that proves the claim.</span></div>
+        <div class="ttap"><span class="t-fr">Cliquez</span><span class="t-en" hidden="">Click</span></div>
+        <div class="texpl"><span class="t-fr">« 78 % des ados français passent plus de 4h par jour sur les écrans. »</span><span class="t-en" hidden="">"78% of French teenagers spend more than 4h a day on screens."</span></div>
+      </div>
+      <div class="techcard logos" data-t="exemple">
+        <h3><span class="t-fr">Exemple concret</span><span class="t-en" hidden="">Concrete example</span></h3>
+        <div class="tdef"><span class="t-fr">Un cas réel qui illustre et rend l'argument visible.</span><span class="t-en" hidden="">A real case that illustrates and makes the argument visible.</span></div>
+        <div class="ttap"><span class="t-fr">Cliquez</span><span class="t-en" hidden="">Click</span></div>
+        <div class="texpl"><span class="t-fr">« La Finlande a supprimé les devoirs, ses élèves ont les meilleures notes d'Europe. »</span><span class="t-en" hidden="">"Finland scrapped homework, and its students have the best grades in Europe."</span></div>
+      </div>
+      <div class="techcard logos" data-t="sialors">
+        <h3><span class="t-fr">Si… alors…</span><span class="t-en" hidden="">If… then…</span></h3>
+        <div class="tdef"><span class="t-fr">Un enchaînement logique qui tient la route.</span><span class="t-en" hidden="">A logical chain that holds up.</span></div>
+        <div class="ttap"><span class="t-fr">Cliquez</span><span class="t-en" hidden="">Click</span></div>
+        <div class="texpl"><span class="t-fr">« Si on dort moins de 8h, la concentration baisse. Donc les devoirs tardifs nuisent aux résultats. »</span><span class="t-en" hidden="">"If you sleep less than 8h, concentration drops. So late homework hurts results."</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 19. Syllogisme -->
+  <section class="slide" id="s19-3" data-serie="serie_dd16b743-478d-4fc2-a306-b51a69645ecc">
+    <p class="kicker" data-pose="" data-off-x="485.73" data-off-y="110.13" style="left:48.573%;top:11.013%">Logos</p>
+    <h2 data-pose="" data-off-x="434.46" data-off-y="140.97" style="left:43.446%;top:14.097%"><span class="t-fr">Le syllogisme</span><span class="t-en" hidden="">The syllogism</span></h2>
+    <div class="riddle-box" data-pose="" data-off-x="338.96" data-off-y="220.24" style="left:33.896%;top:22.024%">
+      <p class="q"><span class="t-fr">Tous les hommes sont mortels.<br>Socrate est un homme.<br><b>DONC</b> Socrate est mortel.</span><span class="t-en" hidden="">All men are mortal.<br>Socrates is a man.<br><b>THEREFORE</b> Socrates is mortal.</span></p>
+      <p style="margin-top:12px;color:var(--mu-diapo);font-weight:600;"><span class="t-fr">Logique, cohérent, imparable.</span><span class="t-en" hidden="">Logical, coherent, unassailable.</span></p>
+    </div>
+    <div class="step" id="syllogisme-piege" data-pose="" data-off-x="302.6" data-off-y="404.31" style="left:30.26%;top:40.431%">
+      <div class="riddle-box">
+        <p class="q"><span class="t-fr">Tous les hommes sont mortels.<br>La reine Margot est mortelle.<br><b>DONC</b> la reine Margot est un homme.</span><span class="t-en" hidden="">All men are mortal.<br>Queen Margot is mortal.<br><b>THEREFORE</b> Queen Margot is a man.</span></p>
+      </div>
+      <div class="imgcard small"><img src="../medias/images/reine-margot.jpg" alt="Portrait de la Reine Margot, reine de France"></div>
+      <p class="lead" style="margin-top:14px;"><span class="t-fr">Même structure « logique », mais c'est un <b style="color:var(--ko);">sophisme</b> : la forme ressemble à un syllogisme valide, le fond ne l'est pas.</span><span class="t-en" hidden="">Same "logical" structure, but it's a <b style="color:var(--ko);">fallacy</b>: the form looks like a valid syllogism, the substance isn't.</span></p>
+      <a class="gamelink" href="https://antoninatger.github.io/jeux/rhetor/index.html#/outils/syllogisme" target="_blank"><span class="t-fr">La fiche syllogisme sur Rhetor</span><span class="t-en" hidden="">The syllogism entry on Rhetor</span></a>
+    </div>
+  </section>
+
+  <!-- 20. Ethos intro -->
+  <section class="slide" id="s20-3" data-serie="serie_dd16b743-478d-4fc2-a306-b51a69645ecc">
+    <p class="kicker" data-pose="" data-off-x="485.92" data-off-y="110.13" style="left:48.592%;top:11.013%">Ethos</p>
+    <h2 data-pose="" data-off-x="339.5" data-off-y="140.97" style="left:33.95%;top:14.097%"><span class="t-fr">Deux manières de faire de l'ethos</span><span class="t-en" hidden="">Two ways to do ethos</span></h2>
+    <div class="compare" data-pose="" data-off-x="349.87" data-off-y="224.65" style="left:34.987%;top:22.465%">
+      <div class="col">
+        <h3><span class="t-fr">L'éthique « universelle »</span><span class="t-en" hidden="">"Universal" ethics</span></h3>
+        <p><span class="t-fr">Invoquer de grandes valeurs : la justice, la liberté, la solidarité…</span><span class="t-en" hidden="">Invoking grand values: justice, freedom, solidarity…</span></p>
+      </div>
+      <div class="col alt">
+        <h3><span class="t-fr">L'éthique contextuelle</span><span class="t-en" hidden="">Contextual ethics</span></h3>
+        <p><span class="t-fr">Se baser sur son propre statut, sa réputation, sa situation.</span><span class="t-en" hidden="">Relying on one's own status, reputation, or situation.</span></p>
+      </div>
+    </div>
+    <div class="step" id="ethos-ex" data-pose="" data-off-x="302.6" data-off-y="362.8" style="left:30.26%;top:36.28%">
+      <p class="lead"><span class="t-fr">« Il est scandaleux que dans le pays des Lumières, des gens dorment encore dehors. »<br>« Le clonage, c'est mauvais, car c'est jouer à Dieu. »</span><span class="t-en" hidden="">"It's a scandal that in the land of the Enlightenment, people still sleep outside."<br>"Cloning is wrong, because it's playing God."</span></p>
+    </div>
+  </section>
+
+  <!-- 21. Ethos exemples contextuels -->
+  <section class="slide" id="s21" data-serie="serie_b5dfcea6-d563-4d73-a90e-c680ed086af4">
+    <p class="kicker" data-pose="" data-off-x="457.06" data-off-y="110.13" style="left:45.706%;top:11.013%"><span class="t-fr">Ethos contextuel</span><span class="t-en" hidden="">Contextual ethos</span></p>
+    <h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">Se baser sur le contexte pour donner du poids à sa position</span><span class="t-en" hidden="">Using context to give weight to a position</span></h2>
+    <div class="persona-grid" data-pose="" data-off-x="359.74" data-off-y="279.7" style="left:35.974%;top:27.97%">
+      <div class="persona" data-p="poutine">
+        <div class="imgcard tiny"><img src="../medias/images/poutine-patrimoine-tweet.jpg" alt="Tweet : Poutine révèle son patrimoine financier avant les élections : un appartement, un garage, trois voitures et une caravane"></div>
+        <div class="pname">Vladimir Poutine</div>
+        <div class="pexpl"><span class="t-fr">Affirme n'avoir qu'un petit appartement, un garage et 3 voitures, pour paraître proche du peuple. Son patrimoine réel est très largement contesté par les enquêtes journalistiques.</span><span class="t-en" hidden="">Claims to own only a small flat, a garage, and 3 cars, to appear close to ordinary people. His actual wealth is heavily disputed by journalistic investigations.</span></div>
+      </div>
+      <div class="persona" data-p="trump">
+        <div class="imgcard tiny"><img src="../medias/images/trump-billet-salaire.jpg" alt="Article : Donald Trump renonce à son salaire de président"></div>
+        <div class="pname">Donald Trump</div>
+        <div class="pexpl"><span class="t-fr">Explique avoir renoncé à son salaire de président, ce qui est vrai et vérifiable. Éthiquement, l'argument se défend.</span><span class="t-en" hidden="">States he waived his presidential salary, which is true and verifiable. Ethically, the argument holds up.</span></div>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:18px;left:30.26%;top:61.75%" data-pose="" data-off-x="302.6" data-off-y="617.5"><span class="t-fr">Même procédé rhétorique, deux niveaux de véracité très différents : d'où l'importance de vérifier avant de se laisser convaincre par le personnage plutôt que par les faits.</span><span class="t-en" hidden="">Same rhetorical device, two very different levels of truthfulness, which is why it matters to check facts before letting yourself be convinced by the persona rather than the facts.</span></p>
+  </section>
+
+  <!-- 22. Ethos pour délégitimer + vidéo -->
+  <section class="slide" id="s22" data-serie="serie_33a72bdf-082e-4a95-a397-94f76c8e988b">
+    <h2 data-pose="" data-off-x="261.04" data-off-y="110.13" style="left:26.104%;top:11.013%"><span class="t-fr">L'éthos, un moyen puissant de délégitimer un argumentaire</span><span class="t-en" hidden="">Ethos, a powerful way to delegitimise an argument</span></h2>
+    <div class="vidwrap" data-pose="" data-off-x="380.52" data-off-y="235.65" style="left:38.052%;top:23.565%">
+      <video src="../medias/video/harrison-ford-hypocrisie.mp4" controls="" playsinline=""></video>
+    </div>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="757.68" style="left:30.26%;top:75.768%"><span class="t-fr">Harrison Ford tient un discours sur l'urgence climatique sur France 2… avant de repartir dans son jet privé.</span><span class="t-en" hidden="">Harrison Ford gives a speech about the climate emergency on French TV… before flying off in his private jet.</span></p>
+  </section>
+
+  <!-- 23. Harrison Ford escalade -->
+  <section class="slide" id="s23" data-serie="serie_bdc7df5b-982b-4d38-a17f-bf1687e8f568">
+    <h2 data-pose="" data-off-x="306.59" data-off-y="113.38" style="left: 30.659%; top: 11.338%;"><span class="t-fr">« Faites ce que je dis, pas ce que je fais »</span><span class="t-en" hidden="">"Do as I say, not as I do"</span></h2>
+    
+    <div class="step" id="ford-discuss" data-pose="" data-off-x="302.6" data-off-y="741.49" style="left: 30.26%; top: 74.149%;">
+      <p class="lead"><span class="t-fr">La seule chose qu'on retient de son intervention, c'est cette hypocrisie, pas le fond de son propos sur le climat. Attaquer la personne plutôt que l'argument est très efficace… mais ce n'est pas toujours pertinent sur le fond. C'est ce qu'on appelle un <b style="color:var(--acc2);">argument ad hominem</b>.</span><span class="t-en" hidden="">The only thing people remember from his speech is this hypocrisy, not the substance of what he said about climate. Attacking the person rather than the argument is very effective… but it's not always relevant to the substance. This is what's called an <b style="color:var(--acc2);">ad hominem argument</b>.</span></p>
+      <a class="gamelink" href="https://antoninatger.github.io/jeux/rhetor/index.html#/outils/ad-hominem" target="_blank"><span class="t-fr">La fiche ad hominem sur Rhetor</span><span class="t-en" hidden="">The "ad hominem" entry on Rhetor</span></a>
+    </div>
+  <div class="imgcard" data-pose="" data-off-x="323.38" data-off-y="188.24" style="width: 162.5px; left: 32.338%; top: 18.824%;"><img src="../medias/images/harrison-ford-tweet-1.jpg" alt="Tweet dénonçant la contradiction d'Harrison Ford"></div><div class="imgcard" data-pose="" data-off-x="412.99" data-off-y="188.24" style="width: 162.5px; left: 41.299%; top: 18.824%;"><img src="../medias/images/harrison-ford-jet-prive.jpg" alt="Harrison Ford montant dans son jet privé"></div><div class="imgcard" data-pose="" data-off-x="502.6" data-off-y="188.24" style="width: 162.5px; left: 50.26%; top: 18.824%;"><img src="../medias/images/harrison-ford-titre-hypocrisie.jpg" alt="Titre : Harrison Ford au sommet de l'hypocrisie"></div><div class="imgcard" data-pose="" data-off-x="592.21" data-off-y="188.24" style="width: 162.5px; left: 59.221%; top: 18.824%;"><img src="../medias/images/harrison-ford-titre-gueux.jpg" alt="Titre : Harrison Ford fait la leçon climatique en jet privé, l'écologie c'est pour les gueux"></div><div class="imgcard" data-pose="" data-off-x="323.38" data-off-y="432.51" style="width: 162.5px; left: 32.338%; top: 43.251%;"><img src="../medias/images/harrison-ford-loopsider.jpg" alt="Harrison Ford est-il opportuniste ? (Loopsider)"></div></section>
+
+  <!-- 24. Pathos intro -->
+  <section class="slide" id="s24" data-serie="serie_47b9ab0b-879f-4d91-a4f4-b3fb0d82f9a6">
+    <p class="kicker" data-pose="" data-off-x="483.21" data-off-y="110.13" style="left:48.321%;top:11.013%">Pathos</p>
+    <h2 data-pose="" data-off-x="270.62" data-off-y="140.97" style="left:27.062%;top:14.097%"><span class="t-fr">Chercher à convaincre par l'émotion, l'empathie</span><span class="t-en" hidden="">Trying to convince through emotion, empathy</span></h2>
+    <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="213.63" style="left:42.208%;top:21.363%"><img src="../medias/images/pub-30millions-amis.jpg" alt="Publicité 30 Millions d'Amis contre l'abandon des animaux"></div>
+    <p class="lead" style="margin-top:14px;left:30.26%;top:48.2%" data-pose="" data-off-x="302.6" data-off-y="482"><span class="t-fr">Très utilisé en politique (discours de Sarah Palin, États-Unis) comme sur les réseaux sociaux, pour galvaniser ou engranger des likes et des dons.</span><span class="t-en" hidden="">Widely used in politics (Sarah Palin's speeches, US) as well as on social media, to rally supporters or rack up likes and donations.</span></p>
+  </section>
+
+  <!-- 24b. Pathos - rumeur virale -->
+  <section class="slide" id="s24b">
+    <p class="kicker" data-pose="" data-off-x="442.19" data-off-y="110.13" style="left:44.219%;top:11.013%"><span class="t-fr">Pathos · rumeur et peur</span><span class="t-en" hidden="">Pathos · rumour and fear</span></p>
+    <h2 data-pose="" data-off-x="372.78" data-off-y="140.97" style="left:37.278%;top:14.097%">« They're eating the pets »</h2>
+    <div class="imgcard small" data-pose="" data-off-x="422.08" data-off-y="213.63" style="left:42.208%;top:21.363%"><img src="../medias/images/trump-eating-pets-debat.jpg" alt="Donald Trump, lors d'un débat présidentiel, affirme : « They're eating the pets »"></div>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="415.93" style="left:30.26%;top:41.593%"><span class="t-fr">Lors d'un débat présidentiel télévisé, Donald Trump affirme que des migrants mangeraient les animaux de compagnie des habitants de Springfield : une rumeur sans fondement, mais qui frappe l'imagination et se propage à toute vitesse.</span><span class="t-en" hidden="">During a televised presidential debate, Donald Trump claims migrants are eating the pets of Springfield residents: a baseless rumour, but one that captures the imagination and spreads at lightning speed.</span></p>
+    <p class="lead" style="margin-top:10px;font-size:.85rem;color:var(--acc);font-weight:800;left:38.567%;top:53.267%" data-pose="" data-off-x="385.67" data-off-y="532.67"><span class="t-fr">Plus une affirmation est choquante, plus elle est virale, vraie ou pas.</span><span class="t-en" hidden="">The more shocking a claim, the more viral it goes, true or not.</span></p>
+  </section>
+
+  <!-- 25. IA sur Facebook -->
+  <section class="slide reponse-compacte" id="s-ia-facebook" data-serie="serie_ef4e6cef-f509-4bfd-b2e5-e2f5e622bc1e">
+    <h2 data-pose="" data-off-x="350.41" data-off-y="113.5" style="left: 35.041%; top: 11.35%;"><span class="t-fr">Le pouvoir de l'IA sur Facebook</span><span class="t-en" hidden="">The power of AI on Facebook</span></h2>
+  <img src="../medias/images/ia-facebook-bebe-boue.jpg" alt="Photo générée par IA d'un bébé dans la boue, publication engagement bait" data-pose="" data-off-x="105" data-off-y="210" style="left:10.5%;top:21%;height:580px;width:auto;max-width:none;border-radius:12px">
+  <img class="step" id="ia-reveal" src="../medias/images/ia-facebook-sept-bebes.jpg" alt="Photo générée par IA de sept bébés identiques dans les bras d'une femme" data-pose="" data-off-x="425" data-off-y="210" style="left:42.5%;top:21%;height:580px;width:auto;max-width:none;border-radius:12px"></section>
+
+  <!-- 26. Pathos déclenche l'Histoire -->
+  <section class="slide" id="s26">
+    <h2 data-pose="" data-off-x="322.33" data-off-y="110.13" style="left:32.233%;top:11.013%"><span class="t-fr">Quand l'émotion déclenche l'Histoire</span><span class="t-en" hidden="">When emotion triggers History</span></h2>
+    <div class="compare" data-pose="" data-off-x="349.87" data-off-y="193.81" style="left:34.987%;top:19.381%">
+      <div class="col">
+        <div class="imgcard small"><img src="../medias/images/titre-bouazizi.jpg" alt="Titre : Mohamed Bouazizi, l'immolation qui a déclenché le printemps arabe"></div>
+        <div class="imgcard small"><img src="../medias/images/portrait-bouazizi.jpg" alt="Portrait de Mohamed Bouazizi, brandi lors d'un hommage"></div>
+        <h3>Mohamed Bouazizi</h3>
+        <p><span class="t-fr">Le 17 décembre 2010, ce jeune marchand tunisien s'immole par le feu : l'événement déclenche le Printemps arabe.</span><span class="t-en" hidden="">On 17 December 2010, this young Tunisian street vendor set himself on fire: the event triggered the Arab Spring.</span></p>
+      </div>
+      <div class="col alt">
+        <div class="imgcard small"><img src="../medias/images/george-floyd-manifestation.jpg" alt="Manifestation Justice for George Floyd"></div>
+        <h3>George Floyd</h3>
+        <p><span class="t-fr">Sa mort en 2020 déclenche un mouvement mondial de manifestations : Black Lives Matter.</span><span class="t-en" hidden="">His death in 2020 triggered a global wave of protests: Black Lives Matter.</span></p>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:18px;left:30.26%;top:63.228%" data-pose="" data-off-x="302.6" data-off-y="632.28"><span class="t-fr">Deux événements réels dont la charge émotionnelle a mobilisé des millions de personnes : le pathos n'est pas qu'une technique publicitaire.</span><span class="t-en" hidden="">Two real events whose emotional weight mobilised millions of people: pathos isn't just an advertising technique.</span></p>
+  </section>
+
+  <!-- 27. Exercice - 6 tweets -->
+  <section class="slide" id="s27">
+    <h2><span class="t-fr">Quel outil est utilisé ?</span><span class="t-en" hidden>Which tool is being used?</span></h2>
+    <p class="lead" style="margin-top:6px;"><span class="t-fr">Débat sur l'interdiction du téléphone au collège : cliquez sur chaque message.</span><span class="t-en" hidden>Debate on banning phones in middle school: click each message.</span></p>
+    <div class="retourne" data-pose="" data-off-x="120.00" data-off-y="300.00" style="left:12.000%;top:30.000%;width:24.533%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead" style="font-size:.8rem;opacity:.75"><span class="t-fr">Marie, maman inquiète · @marie_maman75</span><span class="t-en" hidden="">Marie, maman inquiète · @marie_maman75</span></p><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">Mon fils a été harcelé en ligne pendant 6 mois. Il ne dormait plus, ne mangeait plus. Ces applis DÉTRUISENT nos enfants.</span><span class="t-en" hidden="">My son was cyberbullied for 6 months. He stopped sleeping, stopped eating. These apps are DESTROYING our children.</span></p></div><div class="retourne-face retourne-verso" style="border-color:#f3a9bb"><p class="kicker" style="color:#f3a9bb;font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">Pathos</span><span class="t-en" hidden="">Pathos</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">L'émotion d'une mère inquiète, un vécu personnel douloureux : ça touche avant de convaincre par la preuve.</span><span class="t-en" hidden="">A worried mother's emotion, a painful personal experience: it moves you before it convinces you with evidence.</span></p></div></div></div><div class="retourne" data-pose="" data-off-x="377.33" data-off-y="300.00" style="left:37.733%;top:30.000%;width:24.533%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead" style="font-size:.8rem;opacity:.75"><span class="t-fr">Dr Sophie Merle · @drmerle_psy</span><span class="t-en" hidden="">Dr Sophie Merle · @drmerle_psy</span></p><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">Après 15 ans en consultation pédopsychiatrique, je confirme : l'exposition aux réseaux avant 13 ans fragilise durablement l'estime de soi.</span><span class="t-en" hidden="">After 15 years in child psychiatry practice, I can confirm: social media exposure before age 13 durably weakens self-esteem.</span></p></div><div class="retourne-face retourne-verso" style="border-color:var(--acc)"><p class="kicker" style="color:var(--acc);font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">Ethos</span><span class="t-en" hidden="">Ethos</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">Son autorité vient de son expertise et de son expérience professionnelle affichée : 15 ans de consultation.</span><span class="t-en" hidden="">Her authority comes from her stated expertise and professional experience: 15 years of practice.</span></p></div></div></div><div class="retourne" data-pose="" data-off-x="634.67" data-off-y="300.00" style="left:63.467%;top:30.000%;width:24.533%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead" style="font-size:.8rem;opacity:.75"><span class="t-fr">StatsFrance · @stats_france_off</span><span class="t-en" hidden="">StatsFrance · @stats_france_off</span></p><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">En 2023, 1 collégien sur 5 déclare avoir subi du cyberharcèlement (baromètre UNICEF France). Le phénomène a doublé en 5 ans.</span><span class="t-en" hidden="">In 2023, 1 in 5 middle schoolers reported experiencing cyberbullying (UNICEF France barometer). The phenomenon has doubled in 5 years.</span></p></div><div class="retourne-face retourne-verso" style="border-color:#7fd9c8"><p class="kicker" style="color:#7fd9c8;font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">Logos</span><span class="t-en" hidden="">Logos</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">Des chiffres, une source citée : on convainc par la donnée mesurable.</span><span class="t-en" hidden="">Numbers, a cited source: it convinces through measurable data.</span></p></div></div></div><div class="retourne" data-pose="" data-off-x="120.00" data-off-y="642.28" style="left:12.000%;top:64.228%;width:24.533%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead" style="font-size:.8rem;opacity:.75"><span class="t-fr">Tom · @tom_gamer14</span><span class="t-en" hidden="">Tom · @tom_gamer14</span></p><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">Interdire les téléphones au collège c'est nous traiter comme des criminels !! On est des élèves, pas des prisonniers. C'est RÉVOLTANT.</span><span class="t-en" hidden="">Banning phones in middle school is treating us like criminals!! We're students, not prisoners. It's OUTRAGEOUS.</span></p></div><div class="retourne-face retourne-verso" style="border-color:#f3a9bb"><p class="kicker" style="color:#f3a9bb;font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">Pathos</span><span class="t-en" hidden="">Pathos</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">L'indignation et l'exagération (« criminels », « prisonniers ») jouent sur l'émotion, pas sur la preuve.</span><span class="t-en" hidden="">The outrage and exaggeration ("criminals", "prisoners") play on emotion, not on evidence.</span></p></div></div></div><div class="retourne" data-pose="" data-off-x="377.33" data-off-y="642.28" style="left:37.733%;top:64.228%;width:24.533%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead" style="font-size:.8rem;opacity:.75"><span class="t-fr">Axel, lycéen · @axel_debat</span><span class="t-en" hidden="">Axel, lycéen · @axel_debat</span></p><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">Si les notifications arrivent en cours → élève distrait. Si distrait → il retient moins. Donc : le téléphone nuit à l'apprentissage.</span><span class="t-en" hidden="">If notifications arrive during class → student gets distracted. If distracted → retains less. Therefore: phones harm learning.</span></p></div><div class="retourne-face retourne-verso" style="border-color:#7fd9c8"><p class="kicker" style="color:#7fd9c8;font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">Logos</span><span class="t-en" hidden="">Logos</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">Un enchaînement « si… alors… » : un raisonnement logique, étape par étape.</span><span class="t-en" hidden="">An "if… then…" chain: step-by-step logical reasoning.</span></p></div></div></div><div class="retourne" data-pose="" data-off-x="634.67" data-off-y="642.28" style="left:63.467%;top:64.228%;width:24.533%;height:289px;margin:0"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead" style="font-size:.8rem;opacity:.75"><span class="t-fr">M. Blanc, prof de français · @mrblanc_lettres</span><span class="t-en" hidden="">M. Blanc, prof de français · @mrblanc_lettres</span></p><p class="lead" style="font-weight:700;font-size:1.3rem;line-height:1.35"><span class="t-fr">En 28 ans de classe, jamais je n'ai vu des élèves aussi peu capables de lire plus de 10 min d'affilée. Le téléphone a tout changé.</span><span class="t-en" hidden="">In 28 years of teaching, I've never seen students so unable to read for more than 10 minutes straight. Phones changed everything.</span></p></div><div class="retourne-face retourne-verso" style="border-color:var(--acc)"><p class="kicker" style="color:var(--acc);font-size:1.3rem;letter-spacing:.06em"><span class="t-fr">Ethos</span><span class="t-en" hidden="">Ethos</span></p><p class="lead" style="font-size:1.15rem;line-height:1.4"><span class="t-fr">L'autorité vient ici de l'ancienneté et de l'expérience de terrain : 28 ans de classe.</span><span class="t-en" hidden="">The authority here comes from seniority and hands-on experience: 28 years in the classroom.</span></p></div></div></div>
+  </section>
+
+  <!-- 28. Exercices pratiques -->
+  <section class="slide" id="s28">
+    <h2 data-pose="" data-off-x="425.74" data-off-y="110.13" style="left:42.574%;top:11.013%"><span class="t-fr">À vous de jouer</span><span class="t-en" hidden="">Your turn</span></h2>
+    <ul class="tips-list" data-pose="" data-off-x="333.77" data-off-y="193.81" style="left:33.377%;top:19.381%">
+      <li><div><span class="t-fr">Convaincre les professeurs d'organiser une sortie scolaire.</span><span class="t-en" hidden="">Convince the teachers to organise a school trip.</span><span class="sub"><span class="t-fr">Ethos : « Nous MÉRITONS d'y aller car… » ; Logos : « Il est LOGIQUE d'y aller car… » ; Pathos : « Je joue sur l'EMPATHIE pour vous convaincre… »</span><span class="t-en" hidden="">Ethos: "We DESERVE to go because…"; Logos: "It's LOGICAL to go because…"; Pathos: "I'm playing on EMPATHY to convince you…"</span></span></div></li>
+      <li><div><span class="t-fr">Organiser un cache-cache géant dans l'établissement.</span><span class="t-en" hidden="">Organise a giant game of hide-and-seek in the school.</span><span class="sub"><span class="t-fr">À vous de construire un argument ethos, un logos, un pathos.</span><span class="t-en" hidden="">Build one ethos argument, one logos argument, one pathos argument.</span></span></div></li>
+      <li><div><span class="t-fr">Organiser un paintball géant dans l'établissement.</span><span class="t-en" hidden="">Organise a giant paintball game in the school.</span><span class="sub"><span class="t-fr">Même exercice.</span><span class="t-en" hidden="">Same exercise.</span></span></div></li>
+      <li><div><span class="t-fr">Vous êtes militant et voulez alerter sur le réchauffement climatique.</span><span class="t-en" hidden="">You're an activist and want to raise the alarm about climate change.</span><span class="sub"><span class="t-fr">Créez la meilleure accroche possible !</span><span class="t-en" hidden="">Craft the best possible hook!</span></span></div></li>
+    </ul>
+  </section>
+
+<section class="slide" id="rh-exo-impots">
+  <p class="kicker" data-pose="" data-off-x="479.71" data-off-y="110.13" style="left:47.971%;top:11.013%"><span class="t-fr">Exercice</span><span class="t-en" hidden="">Exercise</span></p>
+  <h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">Vous êtes ministre de l’Économie : vous devez annoncer une augmentation d’impôts pour couvrir le déficit public.</span><span class="t-en" hidden="">You are the finance minister: you must announce a tax increase to cover the public deficit.</span></h2>
+  <div class="two-imgs" data-pose="" data-off-x="80" data-off-y="328.14" style="left:8%;top:32.814%"><div class="riddle-box"><p class="q"><span class="t-fr">Ethos</span><span class="t-en" hidden="">Ethos</span></p></div><div class="riddle-box"><p class="q"><span class="t-fr">Logos</span><span class="t-en" hidden="">Logos</span></p></div><div class="riddle-box"><p class="q"><span class="t-fr">Pathos</span><span class="t-en" hidden="">Pathos</span></p></div></div>
+</section>
+
+<section class="slide" id="rh-exo-ukraine-pour">
+  <p class="kicker" data-pose="" data-off-x="479.71" data-off-y="110.13" style="left:47.971%;top:11.013%"><span class="t-fr">Exercice</span><span class="t-en" hidden="">Exercise</span></p>
+  <h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">Vous êtes député : vous voulez convaincre l’Assemblée d’envoyer des armes supplémentaires en Ukraine.</span><span class="t-en" hidden="">You are an MP: you want to convince Parliament to send more weapons to Ukraine.</span></h2>
+  <div class="two-imgs" data-pose="" data-off-x="80" data-off-y="328.14" style="left:8%;top:32.814%"><div class="riddle-box"><p class="q"><span class="t-fr">Ethos</span><span class="t-en" hidden="">Ethos</span></p></div><div class="riddle-box"><p class="q"><span class="t-fr">Logos</span><span class="t-en" hidden="">Logos</span></p></div><div class="riddle-box"><p class="q"><span class="t-fr">Pathos</span><span class="t-en" hidden="">Pathos</span></p></div></div>
+</section>
+
+<section class="slide" id="rh-exo-ukraine-contre">
+  <p class="kicker" data-pose="" data-off-x="479.71" data-off-y="110.13" style="left:47.971%;top:11.013%"><span class="t-fr">Exercice</span><span class="t-en" hidden="">Exercise</span></p>
+  <h2 data-pose="" data-off-x="261.04" data-off-y="140.97" style="left:26.104%;top:14.097%"><span class="t-fr">Vous êtes député : vous voulez convaincre l’Assemblée d’arrêter d’envoyer des armes supplémentaires en Ukraine.</span><span class="t-en" hidden="">You are an MP: you want to convince Parliament to stop sending more weapons to Ukraine.</span></h2>
+  <div class="two-imgs" data-pose="" data-off-x="80" data-off-y="328.14" style="left:8%;top:32.814%"><div class="riddle-box"><p class="q"><span class="t-fr">Ethos</span><span class="t-en" hidden="">Ethos</span></p></div><div class="riddle-box"><p class="q"><span class="t-fr">Logos</span><span class="t-en" hidden="">Logos</span></p></div><div class="riddle-box"><p class="q"><span class="t-fr">Pathos</span><span class="t-en" hidden="">Pathos</span></p></div></div>
+</section>
+
+<section class="slide short" id="rh-questions-discours">
+  <h2 data-pose="" data-off-x="263.93" data-off-y="375.55" style="left:26.393%;top:37.555%"><span class="t-fr">Les questions à se poser sur le prochain discours</span><span class="t-en" hidden="">Questions to ask about the next speech</span></h2>
+  <p class="lead" data-pose="" data-off-x="433.16" data-off-y="448.22" style="left:43.316%;top:44.822%"><span class="t-fr">Quel est le but de l’orateur ?</span><span class="t-en" hidden="">What is the speaker’s goal?</span></p>
+  <p class="lead step" data-pose="" data-off-x="354.51" data-off-y="498.88" style="left:35.451%;top:49.888%"><span class="t-fr">Comment peut-on résumer son propos en quelques phrases ?</span><span class="t-en" hidden="">How can the speech be summed up in a few sentences?</span></p>
+  <p class="lead step" data-pose="" data-off-x="424.07" data-off-y="549.54" style="left:42.407%;top:54.954%"><span class="t-fr">Comment parvient-il à son but ?</span><span class="t-en" hidden="">How does the speaker achieve that goal?</span></p>
+  <p class="lead step" data-pose="" data-off-x="387.47" data-off-y="600.2" style="left:38.747%;top:60.02%"><span class="t-fr">Quelles sont toutes les techniques qu’il utilise ?</span><span class="t-en" hidden="">What techniques does the speaker use?</span></p>
+</section>
+
+  <!-- 29. Vidéo MLK -->
+  <section class="slide" id="s29">
+    <p class="kicker" data-pose="" data-off-x="405.96" data-off-y="110.13" style="left:40.596%;top:11.013%"><span class="t-fr">Un des plus grands discours au monde</span><span class="t-en" hidden="">One of the greatest speeches in the world</span></p>
+    <h2 data-pose="" data-off-x="413.85" data-off-y="140.97" style="left:41.385%;top:14.097%">« I have a dream »</h2>
+    <div class="vidwrap" data-pose="" data-off-x="380.52" data-off-y="209.23" style="left:38.052%;top:20.923%">
+      <video src="../medias/video/mlk-i-have-a-dream.mp4" controls="" playsinline=""></video>
+    </div>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="605.15" style="left:30.26%;top:60.515%"><span class="t-fr">Martin Luther King mobilise à la fois l'ethos (sa légitimité morale), le pathos (l'émotion de la foule) et le logos (la cohérence de son propos).</span><span class="t-en" hidden="">Martin Luther King draws on all three at once: ethos (his moral legitimacy), pathos (the crowd's emotion), and logos (the coherence of his argument).</span></p>
+  </section>
+
+  <!-- 30. Recap checklist -->
+  <section class="slide" id="s30">
+    <h2 data-pose="" data-off-x="356.57" data-off-y="110.13" style="left:35.657%;top:11.013%"><span class="t-fr">Quels outils avons-nous vus ?</span><span class="t-en" hidden="">What tools have we seen?</span></h2>
+    <ul class="checklist" id="recap-checklist" data-cocher="" data-pose="" data-off-x="344.16" data-off-y="196.01" style="left:34.416%;top:19.601%">
+      <li data-item="1"><span class="box"></span> <span class="t-fr">Monologue, délibération, compétition, conflit.</span><span class="t-en" hidden="">Monologue, deliberation, competition, conflict.</span></li>
+      <li data-item="2"><span class="box"></span> <span class="t-fr">Endogroupe / exogroupe.</span><span class="t-en" hidden="">In-group / out-group.</span></li>
+      <li data-item="3"><span class="box"></span> <span class="t-fr">Ethos, pathos, logos.</span><span class="t-en" hidden="">Ethos, pathos, logos.</span></li>
+      <li data-item="4"><span class="box"></span> <span class="t-fr">Syllogismes… et sophismes.</span><span class="t-en" hidden="">Syllogisms… and fallacies.</span></li>
+    </ul>
+  </section>
+
+  <!-- 30b. Devinette avant Loi de Hume -->
+  <section class="slide" id="s30b">
+    <p class="kicker" data-pose="" data-off-x="476.56" data-off-y="110.13" style="left:47.656%;top:11.013%"><span class="t-fr">Devinette</span><span class="t-en" hidden="">Riddle</span></p>
+    <h2 data-pose="" data-off-x="335.43" data-off-y="140.97" style="left:33.543%;top:14.097%"><span class="t-fr">Que pensez-vous de ces phrases ?</span><span class="t-en" hidden="">What do you think of these sentences?</span></h2>
+    <div class="riddle-box" data-pose="" data-off-x="338.96" data-off-y="220.24" style="left:33.896%;top:22.024%">
+      <p class="q"><span class="t-fr">« Les drogues, c'est mauvais, donc il faut les interdire ! »</span><span class="t-en" hidden="">"Drugs are bad, so they must be banned!"</span></p>
+      <p class="q" style="margin-top:12px;"><span class="t-fr">« Nous sommes omnivores, donc nous devons continuer à manger de la viande. »</span><span class="t-en" hidden="">"We are omnivores, so we must keep eating meat."</span></p>
+      <p class="q" style="margin-top:12px;"><span class="t-fr">« Nous sommes omnivores, donc nous devons nous passer de manger de la viande. »</span><span class="t-en" hidden="">"We are omnivores, so we should stop eating meat."</span></p>
+    </div>
+    <div class="step" id="phrases-piege" data-pose="" data-off-x="302.6" data-off-y="451.39" style="left:30.26%;top:45.139%">
+      <p class="lead"><span class="t-fr">Ces trois phrases, pourtant opposées sur le fond, commettent exactement la même erreur logique : elles tirent un <b style="color:var(--acc);">DEVOIR</b> (il faut / nous devons) d'un simple <b style="color:var(--acc2);">FAIT</b> (c'est mauvais / nous sommes omnivores). Un fait ne dicte jamais, à lui seul, une seule conclusion.</span><span class="t-en" hidden="">These three sentences, despite disagreeing on substance, commit exactly the same logical error: they derive an <b style="color:var(--acc);">OUGHT</b> (must / should) from a mere <b style="color:var(--acc2);">FACT</b> (it's bad / we're omnivores). A fact alone never dictates a single conclusion.</span></p>
+    </div>
+  </section>
+
+  <!-- 31. Loi de Hume -->
+  <section class="slide reponse-compacte" id="s31">
+    <p class="kicker" data-pose="" data-off-x="450.03" data-off-y="110.13" style="left:45.003%;top:11.013%"><span class="t-fr">Pour aller plus loin</span><span class="t-en" hidden="">To go further</span></p>
+    <h2 data-pose="" data-off-x="429.64" data-off-y="140.97" style="left:42.964%;top:14.097%"><span class="t-fr">La loi de Hume</span><span class="t-en" hidden="">Hume's law</span></h2>
+    <div class="imgcard small" data-pose="" data-off-x="462.92" data-off-y="213.63" style="left:46.292%;top:21.363%"><img src="../medias/images/david-hume.jpg" alt="Portrait du philosophe David Hume"></div>
+    <div class="riddle-box" data-pose="" data-off-x="338.96" data-off-y="427.84" style="left:33.896%;top:42.784%">
+      <p class="q"><span class="t-fr">« Aucun raisonnement à l'indicatif ne peut engendrer une conclusion à l'impératif. »</span><span class="t-en" hidden="">"No reasoning in the indicative can produce a conclusion in the imperative."</span></p>
+      <div class="rhet-diagram" style="margin-top:16px;">
+        <div class="rd-role"><span class="t-fr">Ce n'est pas car quelque chose EST</span><span class="t-en" hidden="">It's not because something IS</span></div>
+        <div class="rd-arrow">→</div>
+        <div class="rd-role merged"><span class="t-fr">Que quelque chose DOIT être</span><span class="t-en" hidden="">That something OUGHT to be</span></div>
+      </div>
+    </div>
+    <div class="step" id="hume-ex" data-pose="" data-off-x="302.6" data-off-y="622.5" style="left:30.26%;top:62.25%">
+      <div class="riddle-box">
+        <p class="q"><span class="t-fr">Fait : les prisons françaises sont saturées.</span><span class="t-en" hidden="">Fact: French prisons are overcrowded.</span></p>
+        <ul>
+          <li><span class="t-fr">Doit-on construire plus de prisons ?</span><span class="t-en" hidden="">Should we build more prisons?</span></li>
+          <li><span class="t-fr">Trouver des peines alternatives ?</span><span class="t-en" hidden="">Find alternative sentences?</span></li>
+          <li><span class="t-fr">Libérer les prisonniers aux peines les plus légères ?</span><span class="t-en" hidden="">Release prisoners with the lightest sentences?</span></li>
+        </ul>
+      </div>
+      <div class="riddle-box" style="margin-top:14px;">
+        <p class="q"><span class="t-fr">Fait : le réchauffement climatique est une réalité.</span><span class="t-en" hidden="">Fact: climate change is real.</span></p>
+        <ul>
+          <li><span class="t-fr">Doit-on interdire les voitures ?</span><span class="t-en" hidden="">Should we ban cars?</span></li>
+          <li><span class="t-fr">Développer le nucléaire ?</span><span class="t-en" hidden="">Develop nuclear power?</span></li>
+          <li><span class="t-fr">Développer les énergies renouvelables ?</span><span class="t-en" hidden="">Develop renewable energy?</span></li>
+        </ul>
+      </div>
+      <p class="lead" style="margin-top:14px;"><span class="t-fr">Le fait ne dicte jamais une seule conclusion : le passage du constat à l'action est toujours un choix de valeurs.</span><span class="t-en" hidden="">A fact never dictates a single conclusion: moving from observation to action is always a choice of values.</span></p>
+    </div>
+  </section>
+
+  <!-- 32. Homme de paille / homme de fer -->
+  <section class="slide" id="s32">
+    <p class="kicker" data-pose="" data-off-x="441.1" data-off-y="110.13" style="left:44.11%;top:11.013%"><span class="t-fr">Comment mieux débattre</span><span class="t-en" hidden="">How to debate better</span></p>
+    <h2 data-pose="" data-off-x="390.92" data-off-y="140.97" style="left:39.092%;top:14.097%"><span class="t-fr">À éviter / à développer</span><span class="t-en" hidden="">To avoid / to build</span></h2>
+    <div class="compare" data-pose="" data-off-x="349.87" data-off-y="224.65" style="left:34.987%;top:22.465%">
+      <div class="col">
+        <div class="imgcard small"><img src="../medias/images/epouvantail-homme-de-paille.jpg" alt="Épouvantail dans un champ"></div>
+        <h3><span class="t-fr">L'homme de paille</span><span class="t-en" hidden="">The straw man</span></h3>
+        <p><span class="t-fr">Caricaturer le propos de son contradicteur pour attaquer la caricature plutôt que le vrai argument.</span><span class="t-en" hidden="">Caricaturing the opponent's argument in order to attack the caricature rather than the real point.</span></p>
+      </div>
+      <div class="col alt">
+        <div class="imgcard small"><img src="../medias/images/chevalier-homme-de-fer.jpg" alt="Armure de chevalier"></div>
+        <h3><span class="t-fr">L'homme de fer</span><span class="t-en" hidden="">The steel man</span></h3>
+        <p><span class="t-fr">Reformuler fidèlement l'argument de l'autre avant d'y répondre : ça casse l'engrenage du conflit et permet un vrai débat de fond.</span><span class="t-en" hidden="">Faithfully restating the other person's argument before responding: it breaks the escalation of conflict and allows a real, substantive debate.</span></p>
+      </div>
+    </div>
+    <a class="gamelink" href="https://antoninatger.github.io/jeux/rhetor/index.html#/outils/homme-de-paille" target="_blank" data-pose="" data-off-x="425.08" data-off-y="841.31" style="left:42.508%;top:84.131%"><span class="t-fr">La fiche homme de paille sur Rhetor</span><span class="t-en" hidden="">The "straw man" entry on Rhetor</span></a>
+  </section>
+
+  <!-- 32b. Retour au cadre -->
+  <section class="slide short" id="s32b">
+    <p class="kicker" data-pose="" data-off-x="451.27" data-off-y="372.27" style="left:45.127%;top:37.227%"><span class="t-fr">Un réflexe à garder</span><span class="t-en" hidden="">A reflex worth keeping</span></p>
+    <h2 data-pose="" data-off-x="261.04" data-off-y="403.11" style="left:26.104%;top:40.311%"><span class="t-fr">Sommes-nous en délibération, en compétition, ou en conflit ?</span><span class="t-en" hidden="">Are we deliberating, competing, or in conflict?</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="533.02" style="left:30.26%;top:53.302%"><span class="t-fr">Avant de dégainer l'homme de fer, une question utile : qu'est-ce que je cherche vraiment dans cette discussion précise ? Convaincre mon interlocuteur ? Un public qui nous regarde ? Ou juste le plaisir de la joute ?</span><span class="t-en" hidden="">Before reaching for the steel man, a useful question: what am I really after in this particular discussion? Convincing the other person? An audience watching us? Or just the pleasure of sparring?</span></p>
+  </section>
+
+  <!-- 33. Adapter son discours -->
+  <section class="slide" id="s33">
+    <h2 data-pose="" data-off-x="261.04" data-off-y="110.13" style="left:26.104%;top:11.013%"><span class="t-fr">Utilisez les arguments qui parleront à votre interlocuteur</span><span class="t-en" hidden="">Use the arguments that will speak to your listener</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="240.06" style="left:30.26%;top:24.006%"><span class="t-fr">Aux États-Unis, pendant le Covid, on n'a pas convaincu les mêmes personnes avec les mêmes arguments : « protéger les plus faibles » pour convaincre les démocrates, « le vaccin est américain, une fierté nationale » pour convaincre les républicains.</span><span class="t-en" hidden="">In the US, during Covid, different people weren't convinced by the same arguments: "protect the most vulnerable" to convince Democrats, "the vaccine is American, a national point of pride" to convince Republicans.</span></p>
+    <div class="vidwrap" style="margin-top:20px;left:38.052%;top:40.305%" data-pose="" data-off-x="380.52" data-off-y="403.05">
+      <video src="../medias/video/interview-rue-ukraine.mp4" controls="" playsinline=""></video>
+    </div>
+    <p class="lead" style="margin-top:14px;font-size:.85rem;left:36.364%;top:65.338%" data-pose="" data-off-x="363.64" data-off-y="653.38"><span class="t-fr">Se mettre à la place de la personne en face : quel argument fonctionnerait pour elle ?</span><span class="t-en" hidden="">Put yourself in the other person's shoes: which argument would work for them?</span></p>
+  </section>
+
+  <!-- 34. Point d'accord -->
+  <section class="slide" id="s34">
+    <p class="kicker" data-pose="" data-off-x="441.1" data-off-y="110.13" style="left:44.11%;top:11.013%"><span class="t-fr">Comment mieux débattre</span><span class="t-en" hidden="">How to debate better</span></p>
+    <h2 data-pose="" data-off-x="352.58" data-off-y="140.97" style="left:35.258%;top:14.097%"><span class="t-fr">La recherche de point d'accord</span><span class="t-en" hidden="">Looking for common ground</span></h2>
+    <div class="persona-grid" data-pose="" data-off-x="359.74" data-off-y="222.44" style="left:35.974%;top:22.244%">
+      <div class="persona" data-p="provaccin">
+        <div class="pname"><span class="t-fr">« Je suis pour les vaccins »</span><span class="t-en" hidden="">"I'm pro-vaccine"</span></div>
+        <div class="pexpl"><span class="t-fr">« …car cela protège les gens. »</span><span class="t-en" hidden="">"…because it protects people."</span></div>
+      </div>
+      <div class="persona" data-p="antivaccin">
+        <div class="pname"><span class="t-fr">« Je suis contre les vaccins »</span><span class="t-en" hidden="">"I'm anti-vaccine"</span></div>
+        <div class="pexpl"><span class="t-fr">« …car cela est dangereux pour les gens ! »</span><span class="t-en" hidden="">"…because it's dangerous for people!"</span></div>
+      </div>
+    </div>
+    <div class="step" id="accord-reveal" data-pose="" data-off-x="302.6" data-off-y="298.44" style="left:30.26%;top:29.844%">
+      <p class="lead" style="color:var(--acc);font-weight:800;"><span class="t-fr">Nous avons donc un objectif commun : protéger les gens.</span><span class="t-en" hidden="">So we actually share a common goal: protecting people.</span></p>
+      <p class="lead" style="margin-top:10px;"><span class="t-fr">Ça n'efface pas le désaccord sur la méthode, mais ça rend le débat beaucoup plus serein, et beaucoup plus riche.</span><span class="t-en" hidden="">It doesn't erase the disagreement over method, but it makes the debate far calmer, and far richer.</span></p>
+    </div>
+  </section>
+
+  <!-- 35. Merci -->
+  <section class="slide short" id="s35">
+    <h1 style="font-size:clamp(2rem,calc(6 * var(--vw1)),3rem);background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;left:46.307%;top:34.196%" data-pose="" data-off-x="463.07" data-off-y="341.96"><span class="t-fr">Merci !</span><span class="t-en" hidden="">Thank you!</span></h1>
+    <p class="lead" data-pose="" data-off-x="379.32" data-off-y="442.18" style="left:37.932%;top:44.218%"><span class="t-fr">L'art rhétorique se pratique plus qu'il ne s'apprend.</span><span class="t-en" hidden="">The art of rhetoric is practised more than it's learned.</span></p>
+    <div class="links-row" style="margin-top:20px;left:36.95%;top:49.945%" data-pose="" data-off-x="369.5" data-off-y="499.45">
+      <a class="gamelink gold" href="https://antoninatger.github.io/jeux/rhetor/index.html" target="_blank"><span class="t-fr">Catalogue complet : Rhetor</span><span class="t-en" hidden="">Full catalogue: Rhetor</span></a>
+      <a class="gamelink" href="https://antoninatger.github.io/jeux/arene-rhetorique/index.html" target="_blank"><span class="t-fr">S'entraîner : L'Arène Rhétorique</span><span class="t-en" hidden="">Practise: The Rhetoric Arena</span></a>
+    </div>
+    <button class="bigbtn" onclick="Deck.go(0)" data-pose="" data-off-x="436.56" data-off-y="607.38" style="left:43.656%;top:60.738%"><span class="t-fr">Revoir depuis le début</span><span class="t-en" hidden="">Watch again from the start</span></button>
+  </section>
+
+  <!-- Slide finale : bilan de l'intervention (QR code) -->
+  <section class="slide short" id="s-bilan-qr" data-serie="serie_743edaf5-33f9-4668-ab8a-f0365b011093">
+    <p class="kicker" data-pose="" data-off-x="461.46" data-off-y="272.25" style="left: 46.146%; top: 27.225%;"><span class="t-fr">Après la séance</span><span class="t-en" hidden="">After the session</span></p>
+    <h2 data-pose="" data-off-x="344.92" data-off-y="303.09" style="left: 34.492%; top: 30.309%;"><span class="t-fr">Le bilan, les jeux, et votre retour</span><span class="t-en" hidden="">Summary, games, and your feedback</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="375.76" style="left: 30.26%; top: 37.576%;"><span class="t-fr">Scannez ce QR code&nbsp;: vous pourrez donner votre retour, revoir le bilan de la formation ou rejouer aux jeux.</span><span class="t-en" hidden="">Scan this QR code: you can leave your feedback, review the session summary, or play the games again.</span></p>
+    
+  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhwAAAIcAQAAAACVhUrRAAAC80lEQVR42u2dUWrEMAxERS/g+9/SN3C7jSNp5JQW2p+it5SybDbvY2EYaSw7tn7/mgYECBAgQID8HGL+Gvcn4/Xhx/v9Zu3/16Xjljf7gxcQIP8LYi6HLZlP+VxvQjgjtOaXQkpoB0hj7VwO4nbjjlPc57pUbkE7QNCOyycuWYjFq8T4GtoBgnZUO+4vL9O5v+Y1G74DBMhzv5MCgR0LDAkY6HeAAAl1XC+3nm//0i1oB0hb7ZTU2vOBaG00fztu4YcF0lc7WxqWlngsiUij6f253452gHT2nWQ00ddEGmDlv7RCaAdI434nr+nskO1WSlRxtxNF/kbOBoSaLa1+bjfJizulfnMRTXwHSG/t6KhAtD8jajkZZiuJAdoB0rvf8ZGbbC5StuXqTkIGflggXfudNDUdMvHJAa/l7twgYjeyAiDtswKv1mJrw7QctT3YEP0OELRjaWp6hfVImHYuA9HvAKHfKbrQGEGsJ09ZTzJqIPhO2miwnlueXK3lGg/tAKHfkX5nWtaR6CWHBmgHSHPtDN1PfRRsUbnlGyNV4IcF0rXfmaEFk0G1uglORndY3wGCdlbqZcbTiE4R1FriWWgHSGPfiVOkcr9zHFBQDOj+Mj8skMZZQVHHUMfRtVGyAiBASlaQ53NkF08aYzMz6Y/QDpD2WUE5kSBv2yk9kWwdRTtAemcFMXiTBnLy9reSV8uxBmgHSO9+R46WyrsMTEJp/zB1RvywQBr7To7Opk6EnocYGP0OECBW91bXPaHmvmNl4xuzoEDwnRWb2qqCZj1IJxaDWN8Bgu/YsXBT8rSyvqNlG9oB0tl3JAQoXU86k82ejgxFO0Ba+45FX1OdJXvQqgftoh0grbWTn4NgVh6LUBZMw3eo2YCgnXHkA7PuTZDjdOh3gAD5Sjvl0aL5uLalEzvUbEDQzvHQNx2WPtofzmcDgnb0CKmyza3YUL1KzQaks3aslmTRzkyrp+UseXA8vgOks3Z++5pAgAABAgTIDyHv20VZl660GMAAAAAASUVORK5CYII=" alt="QR code vers la page antoninatger.github.io/interventions/retours" style="width: 200px; height: 200px; border-radius: 16px; background: rgb(255, 255, 255); padding: 10px; box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 30px; left: 44.805%; top: 47.267%;" data-pose="" data-off-x="448.05" data-off-y="472.67"><a href="https://antoninatger.github.io/interventions/retours/" target="_blank" rel="noopener" style="color: var(--acc2); font-weight: 800; font-size: 1.05rem; text-decoration: none; border-bottom: 2px solid var(--acc2); padding-bottom: 2px; width: 371.73px; left: 40.345%; top: 71.275%;" data-pose="" data-off-x="403.45" data-off-y="712.75">
+        <span class="t-fr">antoninatger.github.io/interventions/retours →</span><span class="t-en" hidden="">antoninatger.github.io/interventions/retours →</span>
+      </a></section>
+
+
+
+
+
+
+
+</div>
+
+<div id="navzone-l" aria-hidden="true"></div>
+<div id="navzone-r" aria-hidden="true"></div>
+<div id="dots"></div>
+<div id="navctrl">
+  <button id="btn-prev" title="Précédent (←)">‹</button>
+  <button id="btn-next" title="Suivant (→)">›</button>
+</div>
+
+<div id="admin-modal" class="admin-modal">
+  <div class="admin-head">
+    <h3>Mode Admin : diapos de la session</h3>
+    <span class="admin-count" id="admin-count"></span>
+    <div class="actions">
+      <select id="admin-selections" title="Parcours enregistrés" onchange="Deck.applySelectedPreset()"></select>
+      <button type="button" onclick="Deck.saveCurrentSelectionAs()">Enregistrer comme parcours…</button>
+      <button type="button" onclick="Deck.deleteSelectedPreset()">Supprimer le parcours</button>
+      <button type="button" onclick="Deck.openAddSlideModal()">Ajouter une diapo</button>
+      <button type="button" onclick="window.open('../media-browser.html','_blank')">Médiathèque (toutes formations)</button>
+      <button type="button" onclick="Deck.adminSelectAll()">Tout cocher</button>
+      <button type="button" onclick="Deck.adminSelectNone()">Tout décocher</button>
+      <button type="button" class="primary" onclick="Deck.adminSave()">Enregistrer la sélection</button>
+      <button type="button" id="admin-save-order" onclick="Deck.saveSlideOrder()">Enregistrer l'ordre dans le fichier</button>
+      <button type="button" onclick="Deck.adminClose()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-grid" id="admin-grid"></div>
+</div>
+
+<div id="admin-zoom-modal" class="admin-zoom-modal">
+  <button type="button" class="admin-zoom-close" onclick="Deck.adminZoomClose()">✕</button>
+  <div id="admin-zoom-box"></div>
+</div>
+
+<div id="admin-edit-modal" class="admin-edit-modal">
+  <div class="admin-edit-head">
+    <h3>Édition de la diapo</h3>
+    <span class="admin-edit-hint"></span>
+    <div class="actions">
+      <button type="button" onclick="Deck.addTextBlock()">Ajouter un texte</button>
+      <button type="button" onclick="Deck.addPhotoBlock()">Ajouter une photo</button>
+      <button type="button" onclick="Deck.addPollWidget()">Sondage</button>
+      <button type="button" onclick="Deck.addScaleWidget()">Échelle</button>
+      <button type="button" onclick="Deck.addPieChartWidget()">Camembert</button>
+      <button type="button" onclick="Deck.addHistogramWidget()">Histogramme</button>
+      <button type="button" onclick="Deck.addReponseWidget()">Réponses à écrire</button>
+      <button type="button" onclick="Deck.quickAddSlideAfterCurrent()">Ajouter une diapo après</button>
+      <button type="button" onclick="Deck.apporterUneDiapo()">⤵ Apporter une diapo</button>
+      <button type="button" onclick="Deck.closeSlideEditToGrid()">Toutes les diapos</button>
+      <button type="button" id="admin-edit-save" onclick="Deck.saveEditedSlide()">Enregistrer dans le fichier</button>
+      <button type="button" onclick="Deck.closeSlideEdit()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-edit-stage" id="admin-edit-stage"></div>
+</div>
+
+<div id="addslide-modal" class="addslide-modal">
+  <div class="addslide-modal-box">
+    <div class="addslide-modal-head">
+      <h3>Ajouter une diapo</h3>
+      <button type="button" onclick="Deck.closeAddSlideModal()">✕</button>
+    </div>
+    <div class="addslide-modal-body">
+      <div id="addslide-modeles" class="addslide-modeles"></div>
+      <div id="addslide-champs"></div>
+      <div class="addslide-field">
+        <label for="addslide-position">Position</label>
+        <select id="addslide-position" class="addslide-input"></select>
+      </div>
+      <div class="addslide-modal-actions">
+        <button type="button" class="primary" onclick="Deck.submitAddSlide()">Ajouter</button>
+        <button type="button" onclick="Deck.closeAddSlideModal()">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../shared-deck-engine.js"></script>
+<script src="../shared-widgets.js"></script>
+<script src="../shared-slide-templates.js"></script>
+<script src="app.js"></script>
+<script src="../shared-comments-theme.js"></script>
+</body>
+</html>

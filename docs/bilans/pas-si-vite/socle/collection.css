@@ -1,0 +1,827 @@
+/* =========================================================================
+   collection.css — socle commun de la collection « Jeux »
+   Chantier 05 (§5.1). À charger AVANT la feuille propre au jeu :
+
+     <link rel="stylesheet" href="fonts.css">        (ou ../fonts.css)
+     <link rel="stylesheet" href="collection.css">
+     …puis le <style> ou le .css du jeu, qui surcharge ce qu'il veut.
+
+   ── Ce que ce fichier prend en charge ───────────────────────────────────
+   Ce qui était cassé partout et coûtait 34 corrections à chaque fois :
+   l'en-tête, le focus, `prefers-reduced-motion`, l'échelle typographique,
+   les espacements, les cibles tactiles de 44 px.
+
+   ── Ce qu'il ne touche pas ──────────────────────────────────────────────
+   La palette et les polices de chaque jeu. L'arcade reste néon sur fond
+   noir, Perceptio sobre en sérif, Radar'naque clair et rassurant, Emprise
+   doux. Ce sont des choix délibérés et réussis : le socle impose la
+   *contrainte* (un texte secondaire lisible), jamais la *couleur*.
+
+   En pratique : les variables ci-dessous ont des valeurs par défaut
+   neutres. Un jeu redéfinit dans son propre `:root` celles qui portent son
+   identité — `--bg`, `--acc`, `--font-titre`… — et hérite du reste.
+   ========================================================================= */
+
+:root {
+  /* ── Rôles de couleur ─────────────────────────────────────────────────
+     Chaque jeu DOIT redéfinir --bg, --txt et --acc. Les autres suivent.
+
+     --txt-secondaire est un rôle contraint : quelle que soit la couleur
+     choisie, elle doit rester à 4,5:1 au moins sur --bg. C'est le seul
+     point où le socle est exigeant, parce que c'est là que la collection
+     échouait (voir la table des contrastes mesurés, §8.4 du brief). */
+  --bg:             #0f1420;
+  --surface:        #171d2b;   /* panneaux, cartes, encarts */
+  --bordure:        rgba(255, 255, 255, .12);
+  --txt:            #eef2f8;
+  --txt-secondaire: #a8b4c6;   /* ≥ 4,5:1 sur --bg — à revérifier si surchargé */
+  --acc:            #4fc3f7;   /* couleur d'accent du jeu */
+  /* Couleur du voile sous l'en-tête (voir .col-entete::before). Vaut --bg par
+     défaut, donc invisible sur une page à fond uni. Les pages qui posent un
+     média plein écran sous l'en-tête peuvent la redéfinir. */
+  --entete-voile:   var(--bg);
+  --acc-txt:        #06121c;   /* texte posé SUR --acc */
+  --ok:             #3ecf8e;
+  --alerte:         #f75f5f;
+  --focus:          #ffd54f;   /* anneau de focus — 12,4:1 sur --bg sombre.
+                                  Il ne vaut QUE pour les fonds sombres : sur
+                                  blanc il tombe à 1,41:1, invisible. Une page
+                                  claire prend [data-theme="clair"] ci-dessous,
+                                  qui redéfinit ce jeton. */
+
+  /* ── Échelle typographique ────────────────────────────────────────────
+     Bornée en bas à 12,8 px : `mine.html` descendait à .28rem, soit 4,5 px,
+     sur un jeu destiné au primaire. Aucun palier ne passe sous --fs-100. */
+  --fs-100: 0.8rem;      /* 12,8 px — mentions, légendes. Plancher. */
+  --fs-200: 0.875rem;    /* 14 px   — texte secondaire */
+  --fs-300: 1rem;        /* 16 px   — corps de texte */
+  --fs-400: 1.125rem;    /* 18 px   — texte mis en avant */
+  --fs-500: clamp(1.25rem, 1.05rem + 1vw,  1.5rem);   /* sous-titres */
+  --fs-600: clamp(1.5rem,  1.2rem  + 1.6vw, 2rem);    /* titres de section */
+  --fs-700: clamp(1.9rem,  1.4rem  + 2.6vw, 2.8rem);  /* titre de page */
+
+  --lh-serre:  1.25;
+  --lh-normal: 1.55;
+
+  /* ── Polices ──────────────────────────────────────────────────────────
+     Valeurs par défaut ; chaque jeu redéfinit --font-titre / --font-texte.
+     La pile de repli compte : si /fonts/ n'est pas servi, la page reste
+     lisible au lieu de tomber sur une police à chasse fixe arbitraire. */
+  --font-texte: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-titre: var(--font-texte);
+  --font-mono:  'JetBrains Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+
+  /* ── Espacements ──────────────────────────────────────────────────── */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+
+  --radius:       12px;
+  --radius-pill:  50px;
+
+  /* ── Cible tactile ────────────────────────────────────────────────────
+     44 px : seuil WCAG 2.5.5. Appliqué par défaut plus bas, sur les
+     contrôles où il manquait dans toute la collection. */
+  --cible: 44px;
+
+  /* Hauteur réservée par l'en-tête unifié — lue par collection.js. */
+  --entete-h: 56px;
+}
+
+/* =========================================================================
+   Thème clair — le pendant du :root ci-dessus, pour les pages à fond clair.
+
+   Il se pose sur la racine :  <html lang="fr" data-theme="clair">
+
+   Il ne fournit que l'ÉCHAFAUDAGE : fond, surface, bordure, texte, texte
+   secondaire, anneau de focus. L'identité du jeu reste chez le jeu — c'est
+   la règle du socle, et elle vaut dans les deux sens. Emprise garde son fond
+   bleuté et son bleu doux, les illusions gardent leur orange : ils
+   redéfinissent --bg et --acc APRÈS avoir chargé collection.css, et n'ont
+   plus à recopier les huit autres jetons.
+
+   Contrastes mesurés (script outils/, méthode WCAG 2.1) :
+     --txt            #1a1a1c sur #ffffff  17,4:1
+     --txt-secondaire #5b6470 sur #ffffff   6,0:1
+                              sur #e9eef5   5,1:1  (le fond d'Emprise)
+                              sur #f7f7f8   5,6:1  (--surface)
+     --focus          #0b6fb8 sur #ffffff   5,3:1
+                              sur #e9eef5   4,5:1
+   ========================================================================= */
+[data-theme="clair"] {
+  --bg:             #ffffff;
+  --surface:        #f7f7f8;
+  --bordure:        #e2e2e5;
+  --txt:            #1a1a1c;
+  --txt-secondaire: #5b6470;
+  --acc:            #0b6fb8;
+  --acc-txt:        #ffffff;
+  --ok:             #1b7a4b;   /* le vert du thème sombre passe à 2,3:1 sur blanc */
+  --alerte:         #c2261f;   /* idem pour le rouge */
+  --focus:          #0b6fb8;
+  --entete-voile:   var(--bg);
+}
+
+/* =========================================================================
+   Focus — une seule définition pour toute la collection.
+   38 pages en avaient une version différente, plusieurs `outline:none` sans
+   remplacement. `:where()` garde une spécificité nulle : n'importe quelle
+   règle du jeu peut encore l'emporter si besoin.
+   ========================================================================= */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* =========================================================================
+   Mouvement réduit — le bloc correct, écrit une seule fois.
+   Il était présent 15 fois dans la collection sous une forme invalide
+   (`(prefers-reduced-motion:reduce){…}` sans `@media`), donc intégralement
+   ignoré par les navigateurs. Corrigé au chantier 01, centralisé ici.
+   ========================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================================================
+   Cibles tactiles
+   Six jeux sont utilisés sur tablette de classe. Les boutons mute, les
+   curseurs de vitesse et les puces tombaient sous 30 px.
+   `:where()` là encore : un jeu qui a besoin d'un bouton plus petit peut
+   toujours le déclarer, sans avoir à surenchérir en spécificité.
+   ========================================================================= */
+:where(button, [role="button"], .chip, .cat, summary),
+:where(a.btn, a.chip, a.back-hub, a.i18n-toggle) {
+  min-height: var(--cible);
+}
+:where(input[type="range"]) {
+  min-height: var(--cible);
+  accent-color: var(--acc);
+}
+:where(input[type="checkbox"], input[type="radio"]) {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--acc);
+}
+
+/* Un bouton purement graphique (icône seule) doit rester carré et cliquable. */
+:where(.btn-icone) {
+  min-width: var(--cible);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================================================
+   En-tête unifié — voir collection.js
+   Une grille `retour | titre | (extra) | langue` en flux normal. Elle remplace
+   les trois éléments flottants qui se disputaient le coin supérieur et se
+   recouvraient en dessous de 680 px (echecs, terre_ronde_plate, Emprise,
+   mine — le reste du chantier 01).
+
+   L'emplacement « extra » est ouvert : une page y dépose ce qu'elle veut voir
+   en permanence à côté du titre, en marquant l'élément `data-col-entete-extra`.
+   Emprise y met « Besoin d'aide ? » ; demain ce sera un bouton son, un chrono
+   ou un compteur de vies. Sans cet emplacement, chaque jeu remettrait un
+   élément flottant dans le coin — c'est-à-dire exactement le défaut que
+   l'en-tête unifié vient de supprimer.
+   ========================================================================= */
+/* L'en-tête occupe toute la largeur ; c'est la grille intérieure qui est
+   bornée et centrée. Cette séparation existe pour le voile ci-dessous : tant
+   que l'en-tête était lui-même borné à 1100 px, son voile devait déborder en
+   `100vw` — or `100vw` compte la barre de défilement, ce qui ajoutait 8 px de
+   débordement horizontal sur toute page ayant un ascenseur vertical. */
+.col-entete {
+  display: block;
+  width: 100%;
+  margin: 0 0 var(--sp-4);
+  box-sizing: border-box;
+  /* Plusieurs jeux posent un canvas en `position:fixed; inset:0` par-dessus
+     toute la page (Terre ronde/plate, Mine…). Sans contexte d'empilement
+     propre, l'en-tête passerait derrière : il doit rester atteignable. */
+  position: relative;
+  z-index: 50;
+  /* L'en-tête unifié est un <header>. Plusieurs jeux stylent `header { … }`
+     au sélecteur de type (echecs y pose un fond et une bordure) : ces règles
+     retomberaient dessus. On neutralise ce qui déborderait ; la classe
+     l'emporte sur le sélecteur de type, donc il n'y a rien à faire côté jeu. */
+  background: transparent;
+  border: 0;
+}
+
+.col-entete__grille {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--sp-3);
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--sp-2) var(--sp-3);
+  box-sizing: border-box;
+}
+
+/* Voile de lisibilité.
+   Le retour et la bascule de langue ont un fond à eux, pas le titre. Sur les
+   pages où un canvas plein écran passe sous l'en-tête, ce fond change de
+   couleur au fil du jeu : sur « La Terre ronde ou plate ? », le décor passe
+   du bleu nuit au blanc, et un titre blanc y disparaissait purement et
+   simplement.
+
+   Un dégradé de --bg vers transparent règle le cas sans imposer de barre :
+   sur une page au fond uni --bg il est strictement invisible, sur une page
+   avec du média derrière il garantit le contraste du titre. */
+.col-entete::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: calc(100% + var(--sp-5));
+  background: linear-gradient(to bottom, var(--entete-voile, var(--bg)) 40%, transparent);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Quand la page a déposé un élément dans l'emplacement extra, la grille passe
+   à quatre colonnes. Sans contenu, la colonne n'existe pas : pas d'espace
+   fantôme ni de `gap` en trop. */
+.col-entete--extra .col-entete__grille { grid-template-columns: auto 1fr auto auto; }
+
+.col-entete__extra {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-width: 0;
+}
+
+/* Les trois zones d'action partagent le même gabarit de pastille — y compris
+   ce que la page dépose dans l'emplacement extra, qui hérite ainsi de la
+   cible de 44 px sans que le jeu ait à y penser. */
+.col-entete__retour,
+.col-entete__langue,
+.col-entete__extra > * {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-1);
+  min-height: var(--cible);
+  padding: 0 var(--sp-4);
+  border: 1px solid var(--bordure);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--txt-secondaire);
+  font-family: var(--font-texte);
+  font-size: var(--fs-200);
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color .15s, border-color .15s, transform .15s;
+}
+.col-entete__retour:hover,
+.col-entete__langue:hover,
+.col-entete__extra > *:hover {
+  color: var(--txt);
+  border-color: var(--acc);
+}
+.col-entete__retour:hover { transform: translateX(-2px); }
+
+/* Un extra peut se déclarer prioritaire : il prend alors la couleur d'accent
+   du jeu. Emprise s'en sert pour « Besoin d'aide ? », qui doit rester le
+   deuxième élément lu après le titre. */
+.col-entete__extra > [data-col-extra-fort] {
+  background: var(--acc);
+  border-color: var(--acc);
+  color: var(--acc-txt);
+}
+.col-entete__extra > [data-col-extra-fort]:hover {
+  color: var(--acc-txt);
+  filter: brightness(1.08);
+}
+
+/* Colonne fantôme : sur une page non traduite, elle occupe la place de la
+   bascule de langue pour que le titre reste optiquement centré. */
+.col-entete__vide {
+  display: block;
+  width: var(--cible);
+}
+
+/* Le titre est au centre de la grille : il ne peut plus être recouvert. */
+.col-entete__titre {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-titre);
+  font-size: var(--fs-500);
+  line-height: var(--lh-serre);
+  color: var(--txt);
+  min-width: 0;               /* autorise l'ellipse plutôt que le débordement */
+  /* même raison que ci-dessus : `header h1 { white-space: nowrap }` existe
+     dans echecs.css et ferait déborder le titre en petite largeur. */
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* En dessous de 560 px, les libellés cèdent la place aux seules icônes :
+   on garde les zones sur une ligne sans jamais rogner le titre. */
+@media (max-width: 560px) {
+  .col-entete__grille { gap: var(--sp-2); padding: var(--sp-2); }
+  .col-entete__retour,
+  .col-entete__langue,
+  .col-entete__extra > * { padding: 0 var(--sp-3); }
+  /* Seuls « retour » et « langue » perdent leur libellé : ← et 🌐 sont des
+     icônes conventionnelles, comprises sans texte. Le contenu de
+     l'emplacement extra le GARDE — il est propre au jeu, donc imprévisible,
+     et une icône seule y serait une affordance faible. Sur Emprise,
+     « Besoin d'aide ? » réduit à 🆘 serait illisible pour quelqu'un en
+     difficulté, alors que la place existe : la rangée occupe 230 px sur les
+     296 disponibles en 320 px, précisément parce que les deux autres
+     pastilles sont passées en icône seule.
+     Une page dont l'extra se suffit d'une icône masque son libellé
+     elle-même. */
+  .col-entete__retour .col-entete__label,
+  .col-entete__langue .col-entete__label { display: none; }
+  /* Sans libellé, la largeur ne tenait plus que du glyphe et du padding :
+     38–40 px pour 44 de haut, sous le seuil WCAG 2.5.5 sur les DEUX
+     dimensions à la fois. Le plancher vertical existait (`min-height`), pas
+     l'horizontal — il ne manquait qu'en mode icône, puisque c'est le seul
+     mode où le texte ne remplit plus la pastille. Le coût en 320 px est de
+     12 px sur les 304 disponibles : la rangée reste entière. */
+  .col-entete__retour,
+  .col-entete__langue { min-width: var(--cible); }
+  .col-entete__titre { font-size: var(--fs-400); }
+}
+
+/* Avec un extra ET un titre long, quatre colonnes ne tiennent plus sur une
+   ligne de téléphone. Le titre passe alors au-dessus, sur toute la largeur,
+   et la rangée d'actions reste complète en dessous. */
+@media (max-width: 440px) {
+  .col-entete--extra .col-entete__grille {
+    grid-template-columns: auto 1fr auto;
+  }
+  .col-entete--extra .col-entete__titre {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    order: -1;
+  }
+}
+
+/* =========================================================================
+   Composant « énoncé + panneau pédagogique »
+   Chantier 05 (§5.3/§5.4). Extrait des 10 pages d'illusions, qui le
+   réimplémentaient chacune à sa façon — `.exp-panel` ici, `#explication` là,
+   `.page-hint` contre `#question`. Il dépasse largement les illusions : toute
+   page qui pose une question puis livre le savoir derrière obéit au même
+   schéma (Terre ronde/plate, Graphiques trompeurs, Notes Google…).
+
+   Deux règles de fond :
+   · l'énoncé vient AVANT la manipulation — on ne demande pas de chercher sans
+     dire quoi chercher ;
+   · le savoir est replié par défaut, pour laisser le temps de se tromper.
+
+   Le panneau est un <details> natif : ouverture au clavier, état exposé aux
+   lecteurs d'écran et bouton lisible sans une ligne de JS. Les pages
+   d'illusions dupliquaient chacune un toggle maison pour un résultat moindre.
+   ========================================================================= */
+
+.col-enonce {
+  max-width: 68ch;
+  margin: 0 0 var(--sp-4);
+  font-family: var(--font-texte);
+  font-size: var(--fs-400);
+  line-height: var(--lh-normal);
+  color: var(--txt);
+}
+.col-enonce strong { font-weight: 700; }
+
+/* La consigne d'interaction : « glissez les barres pour comparer ». Elle est
+   secondaire, jamais illisible — c'est le rôle --txt-secondaire qui le
+   garantit (les illusions l'écrivaient en #999, soit 2,85:1 sur blanc). */
+.col-enonce__aide {
+  display: block;
+  margin-top: var(--sp-2);
+  font-size: var(--fs-300);
+  font-weight: 600;
+  color: var(--txt-secondaire);
+}
+
+.col-savoir {
+  max-width: 68ch;
+  margin-top: var(--sp-5);
+  border-left: 3px solid var(--acc);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--surface);
+}
+
+.col-savoir > summary {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: var(--cible);
+  padding: var(--sp-2) var(--sp-4);
+  cursor: pointer;
+  font-family: var(--font-texte);
+  font-size: var(--fs-300);
+  font-weight: 700;
+  color: var(--txt);
+  list-style: none;          /* on remplace le marqueur natif par le nôtre */
+}
+.col-savoir > summary::-webkit-details-marker { display: none; }
+.col-savoir > summary::before {
+  content: "▶";
+  font-size: .8em;
+  color: var(--acc);
+  transition: transform .18s;
+}
+.col-savoir[open] > summary::before { transform: rotate(90deg); }
+.col-savoir > summary:hover { color: var(--acc); }
+
+.col-savoir__corps {
+  padding: 0 var(--sp-4) var(--sp-4);
+  /* Le texte du panneau doit rester sélectionnable même si la page a coupé la
+     sélection pour rendre la manipulation confortable — c'est le seul endroit
+     de la page qu'on peut vouloir copier. */
+  user-select: text;
+  -webkit-user-select: text;
+}
+.col-savoir__corps h2 {
+  font-family: var(--font-titre);
+  font-size: var(--fs-500);
+  line-height: var(--lh-serre);
+  color: var(--txt);
+  margin: 0 0 var(--sp-3);
+}
+.col-savoir__corps p {
+  font-size: var(--fs-300);
+  line-height: var(--lh-normal);
+  color: var(--txt);
+  margin: 0 0 var(--sp-3);
+}
+.col-savoir__corps p:last-child { margin-bottom: 0; }
+
+/* La réponse à la question posée : elle doit sauter aux yeux dans le pavé. */
+.col-savoir .reponse { font-weight: 700; color: var(--txt); }
+/* Les notions clés du paragraphe. */
+.col-savoir .cle { font-weight: 600; color: var(--acc); }
+
+/* =========================================================================
+   Boutons d'action
+   Extraits de `.bigbtn` / `.bigbtn.ghost`, présents à l'identique dans
+   radar-desinfo, chasse-aux-biais, grand-oral et radarnaque. Les écrans
+   d'intro et de fin ci-dessous s'en servent ; n'importe quelle page aussi.
+   ========================================================================= */
+.col-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  min-height: var(--cible);
+  padding: 0 var(--sp-5);
+  border: 2px solid var(--acc);
+  border-radius: var(--radius-pill);
+  background: var(--acc);
+  color: var(--acc-txt);
+  font-family: var(--font-texte);
+  font-size: var(--fs-300);
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  transition: filter .15s, transform .15s;
+}
+.col-btn:hover { filter: brightness(1.08); }
+.col-btn:active { transform: scale(.98); }
+/* `display:inline-flex` l'emporte sur le `display:none` que le navigateur
+   applique à [hidden] : sans cette ligne, `bouton.hidden = true` n'a aucun
+   effet visible. Le piège est classique et il est ici pour toute la
+   collection, une fois. */
+.col-btn[hidden] { display: none !important; }
+
+/* Action secondaire : même poids visuel de contour, sans le remplissage. */
+.col-btn--fantome {
+  background: transparent;
+  color: var(--acc);
+}
+.col-btn--fantome:hover { background: color-mix(in srgb, var(--acc) 12%, transparent); }
+
+/* =========================================================================
+   Écrans d'intro et de fin — §5.3
+   Extraits de l'existant, pas devinés : `#intro > .brief` suivi de
+   `.menu-btns` est déjà le motif de radar-desinfo, chasse-aux-biais,
+   grand-oral et radarnaque, à l'identique. Ce qui manquait partout, et que
+   le composant apporte, c'est la ligne de MÉTA : durée annoncée, niveau,
+   commandes. Un enseignant voyait douze jeux sans savoir lequel dure dix
+   minutes, et un élève démarrait sans savoir sur quoi appuyer.
+   ========================================================================= */
+.col-intro,
+.col-fin {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Le pavé de règles. */
+.col-intro__brief {
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: var(--radius);
+  padding: var(--sp-5);
+  margin-bottom: var(--sp-4);
+  text-align: left;
+  font-family: var(--font-texte);
+  font-size: var(--fs-300);
+  line-height: var(--lh-normal);
+  color: var(--txt);
+}
+.col-intro__brief p + p { margin-top: var(--sp-3); }
+.col-intro__brief b, .col-intro__brief strong { color: var(--acc); }
+
+/* Durée · niveau · commandes. Une liste de puces factuelles, pas une phrase :
+   c'est ce qu'on lit en diagonale avant de se lancer. */
+.col-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-2) var(--sp-3);
+  margin-bottom: var(--sp-4);
+  padding: 0;
+  list-style: none;
+}
+.col-meta li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: var(--sp-1) var(--sp-3);
+  border: 1px solid var(--bordure);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  font-family: var(--font-texte);
+  font-size: var(--fs-200);
+  font-weight: 700;
+  color: var(--txt-secondaire);
+}
+
+/* La rangée d'actions, commune à l'intro et à la fin. */
+.col-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-3);
+}
+
+/* ── Écran de fin ─────────────────────────────────────────────────────── */
+.col-fin__titre {
+  font-family: var(--font-titre);
+  font-size: var(--fs-600);
+  line-height: var(--lh-serre);
+  color: var(--acc);
+  margin: 0 0 var(--sp-3);
+}
+.col-fin__score {
+  font-family: var(--font-titre);
+  font-size: var(--fs-700);
+  line-height: 1;
+  color: var(--txt);
+  margin: 0 0 var(--sp-3);
+}
+.col-fin__msg {
+  font-family: var(--font-texte);
+  font-size: var(--fs-300);
+  line-height: var(--lh-normal);
+  color: var(--txt-secondaire);
+  margin: 0 0 var(--sp-5);
+}
+
+/* =========================================================================
+   Récapitulatif de fin de partie — tâche E1
+   Rendu par `ColFin.rendre()` (collection.js). Le style est ici parce que
+   quatorze jeux vont l'adopter : le jour où l'espacement d'un item change,
+   il change une fois.
+
+   Ce que le composant règle, et qui manquait partout : à la fin d'une
+   partie, le joueur voyait « 7 / 10 » et rien d'autre. Ni ce qu'il avait
+   raté, ni pourquoi. Le score sans le retour n'apprend rien.
+   ========================================================================= */
+.col-recap {
+  margin: 0 0 var(--sp-5);
+  text-align: left;
+}
+
+.col-recap__titre {
+  font-family: var(--font-texte);
+  font-size: var(--fs-200);
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--txt-secondaire);
+  margin: 0 0 var(--sp-3);
+}
+
+.col-recap__liste {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.col-recap__item {
+  border: 1px solid var(--bordure);
+  border-left: 3px solid var(--alerte);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: var(--sp-4);
+}
+/* Les réussites sont là pour le parcours (l'item est « vu »), mais la fin de
+   partie parle d'abord de ce qui a manqué : elles sont plus discrètes. */
+.col-recap__item--ok { border-left-color: var(--ok); }
+
+.col-recap__intitule {
+  font-family: var(--font-texte);
+  font-size: var(--fs-300);
+  font-weight: 700;
+  line-height: var(--lh-normal);
+  color: var(--txt);
+  margin: 0;
+}
+
+.col-recap__marque {
+  font-weight: 800;
+  margin-right: var(--sp-2);
+}
+.col-recap__item--ko .col-recap__marque { color: var(--alerte); }
+.col-recap__item--ok .col-recap__marque { color: var(--ok); }
+
+.col-recap__expl {
+  font-family: var(--font-texte);
+  font-size: var(--fs-200);
+  line-height: var(--lh-normal);
+  color: var(--txt-secondaire);
+  margin: var(--sp-2) 0 0;
+}
+
+.col-recap__lien {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  min-height: var(--cible);
+  font-family: var(--font-texte);
+  font-size: var(--fs-200);
+  font-weight: 700;
+  color: var(--acc);
+}
+
+/* Quand tout est juste, il n'y a rien à lister : on le dit en une ligne
+   plutôt que d'afficher une liste vide. */
+.col-recap__sansfaute {
+  font-family: var(--font-texte);
+  font-size: var(--fs-300);
+  line-height: var(--lh-normal);
+  color: var(--txt-secondaire);
+  margin: 0 0 var(--sp-5);
+}
+
+/* =========================================================================
+   Modale — tâche E1
+   Bâtie sur <dialog> et `showModal()` : le piège de focus, la touche Échap
+   et le retour du focus à l'élément qui a ouvert la modale sont donnés par
+   le navigateur. Une modale maison réécrit ces trois choses, et les trois
+   sont ratées dans la collection (Emprise : ✕ sans `aria-label`, pas
+   d'Échap, focus non piégé — §H3).
+   ========================================================================= */
+.col-modale {
+  /* `margin:auto` centre une <dialog> modale — c'est la règle du navigateur.
+     Elle est réécrite ici parce que presque tous les jeux commencent par
+     `*{margin:0}`, ce qui la neutralise et colle la modale en haut à gauche. */
+  margin: auto;
+  width: min(560px, calc(100vw - 2 * var(--sp-4)));
+  max-height: calc(100vh - 2 * var(--sp-5));
+  padding: 0;
+  border: 1px solid var(--bordure);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--txt);
+}
+.col-modale::backdrop {
+  background: rgba(0, 0, 0, .62);
+}
+.col-modale__corps {
+  padding: var(--sp-5);
+}
+.col-modale__titre {
+  font-family: var(--font-titre);
+  font-size: var(--fs-500);
+  line-height: var(--lh-serre);
+  color: var(--txt);
+  margin: 0 0 var(--sp-3);
+}
+.col-modale__texte {
+  font-family: var(--font-texte);
+  font-size: var(--fs-300);
+  line-height: var(--lh-normal);
+  color: var(--txt-secondaire);
+  margin: 0 0 var(--sp-5);
+}
+.col-modale__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  justify-content: flex-end;
+}
+
+/* =========================================================================
+   Grille de cartes — le hub d'une famille de pages
+   Extraite des quatre hubs qui la réimplémentaient : le portail, l'arcade,
+   les illusions et les trois catalogues. Tous avaient déjà `a.card` avec une
+   couleur d'accent portée par `--c`, un visuel, un titre et une description.
+   ========================================================================= */
+.col-cartes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--sp-3);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.col-carte {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  /* la carte entière est cliquable : la cible dépasse largement les 44 px */
+  padding: var(--sp-4);
+  border: 1px solid var(--bordure);
+  border-left: 3px solid var(--c, var(--acc));
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--txt);
+  text-decoration: none;
+  transition: transform .15s, border-color .15s;
+}
+.col-carte:hover {
+  transform: translateY(-3px);
+  border-color: var(--c, var(--acc));
+}
+.col-carte__icone { font-size: var(--fs-500); line-height: 1; }
+.col-carte__titre {
+  font-family: var(--font-titre);
+  font-size: var(--fs-400);
+  font-weight: 800;
+}
+.col-carte__desc {
+  font-family: var(--font-texte);
+  font-size: var(--fs-200);
+  line-height: var(--lh-normal);
+  color: var(--txt-secondaire);
+}
+
+/* =========================================================================
+   Utilitaires
+   ========================================================================= */
+
+/* Visible des seuls lecteurs d'écran. */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Lien d'évitement : premier élément focusable, invisible tant qu'il n'a
+   pas le focus. Sur des pages où le contenu utile est loin du haut. */
+.col-skip {
+  position: absolute;
+  left: var(--sp-3);
+  top: calc(-1 * var(--cible) - var(--sp-4));
+  z-index: 100000;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--cible);
+  padding: 0 var(--sp-4);
+  border-radius: var(--radius);
+  background: var(--acc);
+  color: var(--acc-txt);
+  font-family: var(--font-texte);
+  font-size: var(--fs-200);
+  font-weight: 800;
+  text-decoration: none;
+  transition: top .15s;
+}
+.col-skip:focus-visible { top: var(--sp-3); }
+
+/* Le texte secondaire passe par un rôle, pas par une couleur en dur :
+   c'est ce qui garantit le contraste après surcharge par le jeu. */
+.txt-secondaire { color: var(--txt-secondaire); }

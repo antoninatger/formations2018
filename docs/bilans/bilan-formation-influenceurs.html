@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilan - Formation Influenceurs</title>
+    <style>
+        :root {
+            --primary: #ef4444;
+            --primary-dark: #dc2626;
+            --primary-light: #fee2e2;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #ffffff;
+            --bg-light: #f9fafb;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --accent: #f97316;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 40px 20px;
+            margin: 0 0 40px 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+        }
+
+        header h1 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            opacity: 0.95;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .intro {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            font-size: 1rem;
+        }
+
+        .toc {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .toc h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin: 10px 0;
+        }
+
+        .toc a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            display: inline-block;
+            border-radius: 6px;
+        }
+
+        .toc a:hover {
+            background: var(--primary-light);
+            transform: translateX(5px);
+        }
+
+        .content {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .content h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .accordion-item {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.1);
+        }
+
+        .accordion-header {
+            background: var(--bg-light);
+            padding: 18px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text);
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-header {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .accordion-header:hover {
+            background: var(--primary-light);
+        }
+
+        .accordion-icon {
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: white;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 2000px;
+        }
+
+        .accordion-text {
+            padding: 20px;
+            line-height: 1.8;
+        }
+
+        .accordion-text p {
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .accordion-text ul, .accordion-text ol {
+            margin: 15px 0 15px 25px;
+        }
+
+        .accordion-text li {
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+                .section-image {
+            display: block;
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            max-height: 520px;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+
+        .highlight-box {
+            background: #fef3c7;
+            border-left: 4px solid #f97316;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            color: #92400e;
+        }
+
+        .key-point {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            color: #7f1d1d;
+        }
+
+        .games-section {
+            background: linear-gradient(135deg, var(--accent) 0%, #ea580c 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        .games-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--text);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .game-card h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .game-card p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .game-btn {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .game-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--border);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-light);
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            header {
+                padding: 30px 15px;
+                margin: 0 0 30px 0;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+                /* ===================================================================
+           MODULES INTERACTIFS
+           Chaque module est un bloc jouable (illusion, test, quiz). A
+           l'impression il disparait et laisse la place a son equivalent
+           texte (.module-papier), pour que le PDF reste un document lisible.
+           =================================================================== */
+        .module {
+            border: 2px solid var(--primary-light);
+            border-radius: 12px;
+            background: #fff;
+            margin: 22px 0;
+            overflow: hidden;
+        }
+
+        .module-titre {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: .95rem;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .module-corps { padding: 18px 16px; }
+
+        .module-consigne {
+            font-size: .95rem;
+            color: var(--text-light);
+            margin-bottom: 14px;
+        }
+
+        .module-papier { display: none; }
+
+        .illu-cadre {
+            position: relative;
+            aspect-ratio: 4 / 3;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #f3f4f6;
+            border: 1px solid var(--border);
+        }
+
+        .illu-cadre iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        a.m-btn { text-decoration: none; display: inline-block; }
+
+        .scene {
+            background: #f3f4f6;
+            border-radius: 10px;
+            padding: 10px;
+            touch-action: none;
+        }
+
+        .scene svg { display: block; width: 100%; height: auto; }
+
+        .module-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .m-btn {
+            font: inherit;
+            font-size: .9rem;
+            font-weight: 600;
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: 2px solid var(--primary);
+            background: var(--primary);
+            color: #fff;
+            cursor: pointer;
+            transition: background .2s, color .2s;
+        }
+
+        .m-btn:hover { background: var(--primary-dark); border-color: var(--primary-dark); }
+
+        .m-btn.secondaire { background: #fff; color: var(--primary); }
+        .m-btn.secondaire:hover { background: var(--primary-light); }
+
+        .m-reponse {
+            margin-top: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid var(--primary);
+            background: var(--bg-light);
+            border-radius: 0 8px 8px 0;
+            font-size: .95rem;
+        }
+
+        .m-reponse[hidden] { display: none; }
+
+        /* --- Questions a choix ------------------------------------------- */
+        .q-bloc + .q-bloc { margin-top: 20px; border-top: 1px solid var(--border); padding-top: 20px; }
+        .q-enonce { font-weight: 600; margin-bottom: 12px; }
+        .q-choix { display: grid; gap: 8px; }
+
+        .q-opt {
+            font: inherit;
+            font-size: .93rem;
+            text-align: left;
+            padding: 11px 14px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: #fff;
+            color: var(--text);
+            cursor: pointer;
+            transition: border-color .15s, background .15s;
+        }
+
+        .q-opt:hover:not(:disabled) { border-color: var(--primary); background: var(--primary-light); }
+        .q-opt:disabled { cursor: default; }
+        .q-opt.juste  { border-color: #16a34a; background: #dcfce7; font-weight: 600; }
+        .q-opt.faux   { border-color: #dc2626; background: #fee2e2; }
+
+        .q-retour {
+            margin-top: 10px;
+            font-size: .92rem;
+            padding: 10px 12px;
+            border-radius: 8px;
+            background: var(--bg-light);
+            border-left: 3px solid var(--primary);
+        }
+
+        .q-retour[hidden] { display: none; }
+
+        .m-score {
+            margin-top: 16px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        /* --- Cadrage : la photo qu'on recadre ----------------------------- */
+        .cadrage-zone { position: relative; max-width: 420px; margin: 0 auto; }
+        .cadrage-zone img { display: block; width: 100%; border-radius: 8px; }
+        .cadrage-cache {
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            background: #e5e7eb;
+            border-radius: 0 0 8px 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-light);
+            font-size: .85rem; font-weight: 600;
+            transition: height .5s ease;
+        }
+
+        /* --- Minuteur des 2 secondes -------------------------------------- */
+        .chrono {
+            font-size: 2.6rem;
+            font-weight: 800;
+            text-align: center;
+            color: var(--primary);
+            margin: 8px 0 4px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ===================================================================
+           IMPRESSION / EXPORT PDF
+           Le document papier n'est pas la page web en noir et blanc :
+           - tous les accordeons sont ouverts (sinon le PDF sort vide) ;
+           - les photos et l'habillage d'interface disparaissent ;
+           - typographie de document : serif, noir sur blanc, sans aplats.
+           =================================================================== */
+                /* ===================================================================
+           IMPRESSION / EXPORT PDF
+           Le document papier n'est pas la page web en noir et blanc :
+           - tous les accordeons sont ouverts (sinon le PDF sortait vide) ;
+           - les photos et l'habillage d'interface disparaissent ;
+           - typographie de document : serif, noir sur blanc, sans aplats.
+           =================================================================== */
+        @media print {
+            @page {
+                size: A4;
+                margin: 18mm 16mm 20mm 16mm;
+            }
+
+            body {
+                background: #fff !important;
+                color: #000 !important;
+                font-family: Georgia, 'Times New Roman', serif;
+                font-size: 10.5pt;
+                line-height: 1.55;
+            }
+
+            .container { max-width: none; padding: 0; }
+
+            /* Document monochrome. Beaucoup de couleurs et d'aplats sont poses
+               en style= directement dans le HTML : on les neutralise tous d'un
+               coup, les regles de classe ci-dessous reposent ensuite les filets. */
+            *, *::before, *::after {
+                color: #000 !important;
+                background: none !important;
+                background-color: transparent !important;
+                box-shadow: none !important;
+                text-shadow: none !important;
+            }
+
+            /* Tout element mis en avant par un aplat devient un filet a gauche. */
+            .accordion-text [style*="background"],
+            .content [style*="background"] {
+                border-left: 2pt solid #000 !important;
+                border-radius: 0 !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 7pt 0 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            table { border-collapse: collapse; width: 100%; font-size: 9.5pt; }
+            th, td { border: 0.5pt solid #666 !important; padding: 3pt 5pt !important; }
+            th { font-weight: 700; }
+            .table-responsive { overflow: visible !important; }
+
+            .content {
+                background: none !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            /* --- Modules interactifs : le jeu disparait, le texte reste --- */
+            .module {
+                border: none !important;
+                border-radius: 0 !important;
+                margin: 8pt 0 !important;
+            }
+            .module-titre,
+            .module-corps { display: none !important; }
+            .module-papier {
+                display: block !important;
+                border-left: 2pt solid #000 !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 0 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* --- Hors sujet sur papier ------------------------------------ */
+            .action-buttons,
+            .games-section,
+            .accordion-icon,
+            .hero-image,
+            .section-image,
+            header::after {
+                display: none !important;
+            }
+
+            /* --- Bandeau de titre remis a plat ---------------------------- */
+            header {
+                background: none !important;
+                color: #000 !important;
+                margin: 0 0 14pt 0 !important;
+                padding: 0 0 8pt 0 !important;
+                border-bottom: 2pt solid #000;
+                border-radius: 0 !important;
+                text-align: left;
+            }
+            header h1 { font-size: 19pt; margin-bottom: 4pt; }
+            header p  { font-size: 10.5pt; opacity: 1; margin: 0; max-width: none; }
+
+            /* --- Chapeau et sommaire -------------------------------------- */
+            .intro,
+            .toc {
+                background: none !important;
+                border: none !important;
+                border-left: 2pt solid #000 !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 0 0 14pt 0 !important;
+                font-size: 10.5pt;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            .toc h2 {
+                font-size: 11.5pt;
+                border: none !important;
+                margin: 0 0 5pt 0 !important;
+                padding: 0 !important;
+            }
+            .toc ul { margin: 0 !important; padding: 0 0 0 12pt !important; }
+            .toc li { margin: 2pt 0 !important; }
+
+            /* --- Titres de partie ----------------------------------------- */
+            h2, .content h2 {
+                font-size: 14pt;
+                color: #000 !important;
+                border-bottom: 1pt solid #000;
+                padding-bottom: 3pt;
+                margin: 18pt 0 9pt 0 !important;
+                break-after: avoid;
+                page-break-after: avoid;
+            }
+
+            /* --- Accordeons : TOUS ouverts, sans chrome ------------------- */
+            .accordion-content,
+            .accordion-item.active .accordion-content {
+                max-height: none !important;
+                overflow: visible !important;
+                display: block !important;
+                background: none !important;
+            }
+
+            .accordion-item,
+            .accordion-item.active {
+                border: none !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                margin: 0 0 11pt 0 !important;
+                overflow: visible !important;
+            }
+
+            .accordion-header,
+            .accordion-item.active .accordion-header {
+                background: none !important;
+                color: #000 !important;
+                cursor: default;
+                display: block;
+                font-family: Georgia, 'Times New Roman', serif;
+                font-size: 11.5pt;
+                font-weight: 700;
+                padding: 0 0 3pt 0 !important;
+                border-bottom: 0.5pt solid #888;
+                break-after: avoid;
+                page-break-after: avoid;
+            }
+
+            .accordion-text { padding: 5pt 0 0 0 !important; line-height: 1.55; }
+
+            /* --- Neutralise les couleurs posees en style= dans le HTML ----- */
+            .accordion-text p,
+            .accordion-text li,
+            .accordion-text span,
+            .accordion-text strong,
+            .accordion-text em,
+            .intro, .intro *,
+            .toc a {
+                color: #000 !important;
+                background: none !important;
+                font-size: inherit !important;
+            }
+
+            /* Les paragraphes mis en avant par un aplat deviennent un filet */
+            .accordion-text p[style*="background"] {
+                border-left: 2pt solid #000 !important;
+                border-radius: 0 !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 7pt 0 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* --- Encadres : un filet, pas un aplat ------------------------ */
+            .warning-box,
+            .info-box,
+            .highlight-box,
+            .definition-box,
+            .key-point,
+            .card {
+                background: none !important;
+                border: none !important;
+                border-left: 2pt solid #000 !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 7pt 0 !important;
+                color: #000 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* --- Liens : l'adresse imprimee entre parentheses ------------- */
+            a { color: #000 !important; text-decoration: none; }
+            a[href^="http"]::after {
+                content: " (" attr(href) ")";
+                font-size: 8.5pt;
+                word-break: break-all;
+            }
+            .toc a::after { content: ""; }
+
+            ul, ol { margin-left: 14pt; }
+            li { margin-bottom: 2pt; }
+            p  { orphans: 3; widows: 3; margin-bottom: 6pt; }
+            table { break-inside: avoid; page-break-inside: avoid; }
+
+            footer {
+                border-top: 0.5pt solid #888;
+                margin-top: 16pt;
+                padding-top: 6pt;
+                font-size: 9pt;
+                color: #000 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Fake News, Influenceurs et Esprit Critique</h1>
+        <p>Bilan de formation pédagogique</p>
+    </header>
+
+    <div class="container">
+        <img src="images/arnaque-nft-influenceur.jpg" alt="Influenceurs" class="hero-image">
+
+        <div class="intro">
+            <strong>Objectif :</strong> Analyser le rôle des influenceurs sur les réseaux sociaux, leur impact sur les opinions et les décisions, notamment chez les jeunes, dans une démarche d'éducation aux médias et à l'information.
+        </div>
+
+        <div class="toc">
+            <h2>Table des matières</h2>
+            <ul>
+                <li><a href="#section-1">1. Contexte et enjeux</a></li>
+                <li><a href="#section-2">2. Mécanismes d'influence</a></li>
+                <li><a href="#section-3">3. Points clés de l'intervention</a></li>
+                <li><a href="#section-4">4. Compétences à développer</a></li>
+                <li><a href="#section-5">5. Jeux interactifs</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <h2 id="section-1">Contexte et Enjeux</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Qu'est-ce qu'un influenceur ?</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p><strong>Un influenceur est une personne disposant d'une audience sur les réseaux sociaux, et capable d'influencer des opinions, des comportements ou des choix de consommation.</strong></p>
+                        <p>La définition ne dit rien du contenu, ni de la taille de l'audience, ni de la sincérité de la personne. Elle décrit une position : quelqu'un parle, beaucoup écoutent, et ce qui est dit a des effets.</p>
+                        <p>C'est important pour la suite : l'influence n'est pas un défaut de caractère de celui qui influence, ni de celui qui est influencé. C'est une propriété de la situation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item active">
+                <div class="accordion-header">
+                    <span>Pourquoi s'intéresser aux influenceurs ?</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>L'intervention s'inscrit dans une démarche d'<strong>éducation aux médias et à l'information</strong>, en lien avec :</p>
+                        <ul>
+                            <li>Les enjeux de <strong>désinformation</strong> sur les réseaux sociaux</li>
+                            <li>Les <strong>biais cognitifs</strong> qui influencent nos décisions</li>
+                            <li>La <strong>manipulation de l'attention</strong> par les algorithmes</li>
+                            <li>La capacité des influenceurs à façonner les opinions et les comportements</li>
+                        </ul>
+                        <div class="key-point"><strong>Insight clé :</strong> Les influenceurs ne constituent pas un danger en soi, mais s'inscrivent dans un écosystème informationnel complexe où l'émotion, la popularité et la répétition jouent un rôle central.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Information, opinion, Fake News</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Trois choses différentes circulent dans le même fil, présentées de la même façon :</p>
+                        <ul>
+                            <li>une <strong>information</strong> porte sur des faits, et peut être vérifiée ;</li>
+                            <li>une <strong>opinion</strong> porte sur un jugement, et ne peut pas être vraie ou fausse ;</li>
+                            <li>une <strong>Fake News</strong> se présente comme une information alors qu'elle contredit l'état des connaissances.</li>
+                        </ul>
+                        <p>Une opinion n'est pas une Fake News, même quand on la trouve absurde. Et une information exacte peut être trompeuse si elle est mal cadrée. Confondre les trois, c'est se condamner à des discussions qui ne portent sur rien.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="section-2" style="margin-top: 40px;">Mécanismes d'influence</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Comment les influenceurs influencent</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p><strong>Les influenceurs génèrent un fort engagement émotionnel, favorisant la confiance et l'adhésion de leur audience.</strong></p>
+
+                        <p style="margin-top: 20px; font-weight: 600; color: var(--primary);">1. Sentiment de proximité</p>
+                        <ul>
+                            <li>Les réseaux sociaux créent l'impression d'une relation personnelle</li>
+                            <li>Cela conduit à une <strong>surestimation de la fiabilité</strong> des propos tenus</li>
+                            <li>On fait davantage confiance à quelqu'un qu'on « connaît »</li>
+                        </ul>
+
+                        <p style="margin-top: 20px; font-weight: 600; color: var(--primary);">2. Cadrage du contenu</p>
+                        <ul>
+                            <li>Les contenus diffusés sont fortement <strong>cadrés</strong> (sélectionnés)</li>
+                            <li>Ils montrent une <strong>version partielle, idéalisée de la réalité</strong></li>
+                            <li>C'est volontaire : on montre ce qui fonctionne, pas ce qui échoue</li>
+                        </ul>
+
+                        <p style="margin-top: 20px; font-weight: 600; color: var(--primary);">3. Mécanismes cognitifs universels</p>
+                        <ul>
+                            <li>L'influence ne repose pas sur la naïveté ou la crédulité</li>
+                            <li>Elle repose sur des <strong>mécanismes cognitifs universels</strong> auxquels chacun peut être exposé</li>
+                            <li>Nous sommes <strong>tous</strong> influençables !</li>
+                        </ul>
+
+                        <img src="images/biais-autorite-portrait.jpg" alt="Biais d'autorité" class="section-image">
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>L'écosystème informationnel</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Les influenceurs opèrent dans un <strong>écosystème informationnel</strong> où :</p>
+                        <ul>
+                            <li><strong>L'émotion</strong> prime sur la rationalité</li>
+                            <li>La <strong>popularité</strong> renforce la crédibilité perçue</li>
+                            <li>La <strong>répétition</strong> crée de la familiarité et de la confiance</li>
+                            <li>Les <strong>algorithmes</strong> amplifient les contenus engageants (souvent émotionnels)</li>
+                        </ul>
+                        <div class="highlight-box"><strong>Impact des algorithmes :</strong> Plus un contenu génère d'émotions, plus il est amplifié. Cela favorise la polarisation et la désinformation.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>La relation parasociale</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 12px 0;">Une <strong>relation parasociale</strong> est un sentiment de proximité <strong>unilatéral</strong> : on connaît quelqu'un qui ne nous connaît pas.</p>
+                        <p>On sait comment il prend son café, à quoi ressemble sa cuisine, ce qui l'a fait pleurer le mois dernier. Le cerveau traite ces signaux comme ceux d'une amitié, parce qu'il n'a jamais eu à distinguer une présence quotidienne réelle d'une présence quotidienne diffusée.</p>
+                        <p>La conséquence est directe : <strong>on accorde à cette personne la confiance qu'on accorde à un proche</strong>, y compris sur des sujets où elle ne sait rien de plus que nous.</p>
+                        <p>Ce n'est pas de la naïveté. C'est un mécanisme qui fonctionne exactement comme prévu, sur des signaux pour lesquels il n'a pas été fait.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Le biais de l'engagement</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Plus on s'est engagé publiquement pour quelqu'un, plus il devient coûteux d'admettre qu'on s'est trompé sur lui.</p>
+                        <p>Avoir défendu un créateur dans les commentaires, avoir acheté ce qu'il recommandait, avoir convaincu un ami de s'abonner : chacun de ces gestes rend le retour en arrière plus difficile. Non par entêtement, mais parce qu'il faudrait aussi désavouer tout ce qui a précédé.</p>
+                        <p>C'est ce qui explique qu'une communauté défende parfois son influenceur <strong>plus fort</strong> après une révélation gênante qu'avant.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Le storytelling et l'éthos</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>La persuasion passe rarement par la démonstration. Elle passe par le <strong>récit</strong> et par <strong>l'éthos</strong>, c'est-à-dire par ce que la personne est, ou paraît être.</p>
+                        <p>Le parcours raconté, l'échec surmonté, la modestie affichée, le décor de la pièce : rien de tout cela n'est un argument, et tout cela convainc. Un récit bien construit se retient et se transmet, là où une donnée exacte s'oublie.</p>
+                        <p>La question utile n'est donc pas « est-ce que cette histoire est belle ? » mais <strong>« qu'est-ce qu'elle prouve ? »</strong>. Le plus souvent, rien. Ce qui ne veut pas dire que la personne ment.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Influence commerciale et conflits d'intérêts</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p><strong>Les contenus sponsorisés ne sont pas toujours perçus comme tels.</strong> C'est l'un des constats les plus nets de l'intervention.</p>
+                        <p>La mention légale existe souvent, mais elle est brève, placée en fin de description, et surtout : elle arrive après que la confiance a été établie. Le cerveau a déjà classé le message du côté du conseil d'ami.</p>
+                        <p>Le conflit d'intérêts n'est pas toujours financier. Recommander un produit dont on possède des parts, défendre un ami, ménager une marque avec qui l'on espère travailler : le lien peut être indirect et peser autant.</p>
+                        <p>Le réflexe utile tient en une question, posée avant de juger le contenu : <strong>qu'est-ce que cette personne a à gagner à ce que j'y croie ?</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="module" data-module="meca">
+                <div class="module-titre">À reconnaître : quel mécanisme est à l'œuvre ?</div>
+                <div class="module-corps">
+                    <p class="module-consigne">Cinq situations ordinaires. Aucune ne suppose de la naïveté&nbsp;: toutes reposent sur des mécanismes qui fonctionnent chez tout le monde.</p>
+                    <div id="meca-questions"></div>
+                    <div class="m-score" id="meca-score" hidden></div>
+                </div>
+                <div class="module-papier">
+                    <p><strong>Exercice sur les mécanismes.</strong> Cinq situations à rattacher à la relation parasociale, au cadrage du contenu, au biais de popularité, au biais de l'engagement ou au biais émotionnel.</p>
+                </div>
+            </div>
+
+            <h2 id="section-3" style="margin-top: 40px;">Points clés de l'intervention</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Les 5 constats majeurs</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <ol>
+                            <li style="margin-bottom: 15px;">
+                                <strong>Les influenceurs génèrent un fort engagement émotionnel</strong>, favorisant la confiance et l'adhésion de leur audience.
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                <strong>Le sentiment de proximité</strong> créé par les réseaux sociaux peut conduire à une surestimation de la fiabilité des propos.
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                <strong>Les contenus sont fortement cadrés</strong> : version partielle, sélectionnée, souvent idéalisée de la réalité.
+                            </li>
+                            <li style="margin-bottom: 15px;">
+                                <strong>L'influence ne repose pas sur la naïveté</strong>, mais sur des mécanismes cognitifs universels auxquels chacun peut être exposé.
+                            </li>
+                            <li>
+                                <strong>L'écosystème informationnel favorise</strong> l'émotion, la popularité et la répétition.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="section-4" style="margin-top: 40px;">Compétences à développer</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Comment développer l'esprit critique face aux influenceurs</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p><strong>Pour protéger les jeunes et les citoyens :</strong></p>
+
+                        <p style="margin-top: 20px; font-weight: 600; color: var(--primary);">Reconnaître la manipulation</p>
+                        <ul>
+                            <li>Identifier les contenus sponsorisés et les partenariats commerciaux</li>
+                            <li>Détecter le cadrage biaisé des informations</li>
+                        </ul>
+
+                        <p style="margin-top: 20px; font-weight: 600; color: var(--primary);">Activer la pensée critique</p>
+                        <ul>
+                            <li><strong>Reconsidérer</strong> avant de croire ou de partager</li>
+                            <li>Se poser des questions : <em>« Qui bénéficie de cette information ? »</em></li>
+                        </ul>
+
+                        <p style="margin-top: 20px; font-weight: 600; color: var(--primary);">Méfiance envers les raccourcis</p>
+                        <ul>
+                            <li>Se méfier des promesses simples à des problèmes complexes</li>
+                            <li>Chercher à comprendre la nuance et le contexte</li>
+                        </ul>
+
+                        <p style="margin-top: 20px; font-weight: 600; color: var(--primary);">Développer l'autonomie informationnelle</p>
+                        <ul>
+                            <li>Consulter plusieurs sources</li>
+                            <li>Évaluer la crédibilité des sources</li>
+                            <li>Comprendre les mécanismes des réseaux sociaux et des algorithmes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Quel est l'intérêt de la personne qui parle ?</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>C'est la question la plus rentable, et elle n'accuse personne : tout le monde a des intérêts, y compris quand on dit la vérité.</p>
+                        <p>Ils sont de trois ordres :</p>
+                        <ul>
+                            <li><strong>financier</strong> : un partenariat, une commission, des parts dans l'entreprise ;</li>
+                            <li><strong>symbolique</strong> : défendre une cause, une appartenance, une vision du monde ;</li>
+                            <li><strong>réputationnel</strong> : tenir son personnage, ne pas se déjuger, rester celui que sa communauté attend.</li>
+                        </ul>
+                        <p>Repérer un intérêt ne prouve pas que le propos est faux. Cela indique seulement <strong>où regarder de plus près</strong>.</p>
+
+                        <div class="module" data-module="interet">
+                            <div class="module-titre">À exercer : où est l'intérêt ?</div>
+                            <div class="module-corps">
+                                <p class="module-consigne">Quatre situations. Financier, symbolique ou réputationnel&nbsp;?</p>
+                                <div id="interet-questions"></div>
+                                <div class="m-score" id="interet-score" hidden></div>
+                            </div>
+                            <div class="module-papier">
+                                <p><strong>Exercice sur les intérêts.</strong> Quatre situations à rattacher à un intérêt financier, symbolique ou réputationnel. Repérer un intérêt ne prouve pas qu'un propos est faux : cela indique où regarder de plus près.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Se faire influencer n'est pas une faiblesse</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>C'est un point que l'intervention tient à poser explicitement, parce qu'il change la suite.</p>
+                        <p><strong>L'influence ne repose pas sur la naïveté ou la crédulité</strong>, mais sur des mécanismes cognitifs universels auxquels chacun est sensible. Y compris celui qui explique ces mécanismes.</p>
+                        <p>Le dire n'est pas une politesse : culpabiliser quelqu'un le rend moins capable de se corriger, pas plus. Quelqu'un qui a honte défend sa position au lieu de l'examiner, et le biais de l'engagement fait le reste.</p>
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 12px 0;">Normaliser le fait de se faire influencer, c'est ce qui rend la vigilance possible.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Conclusion : Pas un danger, un écosystème à comprendre</span>
+                    <span class="accordion-icon">&#9660;</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>L'intervention met en évidence que <strong>les influenceurs ne constituent pas un danger en soi</strong>, mais qu'ils s'inscrivent dans un écosystème informationnel où :</p>
+                        <ul>
+                            <li>L'<strong>émotion</strong>, la <strong>popularité</strong> et la <strong>répétition</strong> jouent un rôle central</li>
+                            <li>Les <strong>algorithmes amplifient</strong> les contenus engageants</li>
+                            <li>La <strong>compréhension des mécanismes</strong> est la meilleure défense</li>
+                        </ul>
+                        <div class="key-point"><strong>Message clé :</strong> En développant l'esprit critique et la compréhension des mécanismes d'influence, chacun peut devenir un consommateur d'information plus responsable et résilient.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="games-section">
+            <h3 id="section-5">Exercices Interactifs</h3>
+            <p style="margin-bottom: 20px;">Testez votre compréhension avec nos jeux pédagogiques :</p>
+
+            <div class="games-grid">
+                <div class="game-card">
+                    <h4>Radar Naque</h4>
+                    <p>Identifiez les arnaques et arnaqueurs sur internet !</p>
+                    <a href="https://antoninatger.github.io/jeux/radarnaque/index.html" class="game-btn" target="_blank" rel="noopener">Jouer </a>
+                </div>
+
+                <div class="game-card">
+                    <h4>Arène Rhétorique</h4>
+                    <p>Apprenez à argumenter et à contre-argumenter efficacement.</p>
+                    <a href="https://antoninatger.github.io/jeux/arene-rhetorique/index.html" class="game-btn" target="_blank" rel="noopener">Jouer </a>
+                </div>
+
+                <div class="game-card">
+                    <h4>Chasse aux Biais</h4>
+                    <p>Trouvez les biais cognitifs cachés dans les arguments.</p>
+                    <a href="https://antoninatger.github.io/jeux/chasse-aux-biais/index.html" class="game-btn" target="_blank" rel="noopener">Jouer </a>
+                </div>
+
+                <div class="game-card">
+                    <h4>QCM Influenceurs</h4>
+                    <p>Questions à choix multiples sur ce bilan.</p>
+                    <a href="https://antoninatger.github.io/jeux/Arcade%20quizz/qcm-classique.html?serie=influenceurs" class="game-btn" target="_blank" rel="noopener">Jouer </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="window.print()">Exporter en PDF</button>
+            <a href="index.html" class="btn btn-secondary">Les autres bilans</a>
+            <a href="../" class="btn btn-secondary">Menu principal</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>Créé par <strong>Antonin Atger</strong> | Collection de jeux pédagogiques sur l'esprit critique</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">Ressources : Jeux Arcade, Médiathèque du Cours</p>
+    </footer>
+
+    <script>
+        /* ===================================================================
+           MODULES INTERACTIFS
+           =================================================================== */
+
+        /* --- Boutons « Voir la reponse » ---------------------------------- */
+        document.querySelectorAll('[data-reveler]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var cible = document.getElementById(btn.dataset.reveler);
+                cible.hidden = !cible.hidden;
+                btn.textContent = cible.hidden ? 'Voir la réponse' : 'Masquer la réponse';
+            });
+        });
+
+
+
+        /* --- Questionnaires ------------------------------------------------ */
+        function construireQuiz(conteneurId, scoreId, questions, bilan) {
+            bilan = bilan || {
+                parfait: 'Sans faute. Le mode analytique a bien pris la main.',
+                imparfait: 'La réponse qui vient en premier n’est pas toujours la bonne : c’est tout le sujet.'
+            };
+            var zone = document.getElementById(conteneurId);
+            if (!zone) return;
+            var repondues = 0, justes = 0;
+
+            questions.forEach(function (q, i) {
+                var bloc = document.createElement('div');
+                bloc.className = 'q-bloc';
+
+                var enonce = document.createElement('p');
+                enonce.className = 'q-enonce';
+                enonce.textContent = (i + 1) + '. ' + q.enonce;
+                bloc.appendChild(enonce);
+
+                var choix = document.createElement('div');
+                choix.className = 'q-choix';
+
+                var retour = document.createElement('div');
+                retour.className = 'q-retour';
+                retour.hidden = true;
+
+                q.options.forEach(function (opt, j) {
+                    var b = document.createElement('button');
+                    b.type = 'button';
+                    b.className = 'q-opt';
+                    b.textContent = opt;
+                    b.addEventListener('click', function () {
+                        if (bloc.dataset.fait) return;
+                        bloc.dataset.fait = '1';
+                        repondues++;
+                        if (j === q.bonne) justes++;
+                        choix.querySelectorAll('.q-opt').forEach(function (autre, k) {
+                            autre.disabled = true;
+                            if (k === q.bonne) autre.classList.add('juste');
+                            else if (k === j) autre.classList.add('faux');
+                        });
+                        retour.innerHTML = q.explication;
+                        retour.hidden = false;
+                        if (repondues === questions.length) {
+                            var s = document.getElementById(scoreId);
+                            s.textContent = justes + ' / ' + questions.length + '. ' +
+                                (justes === questions.length ? bilan.parfait : bilan.imparfait);
+                            s.hidden = false;
+                        }
+                    });
+                    choix.appendChild(b);
+                });
+
+                bloc.appendChild(choix);
+                bloc.appendChild(retour);
+                zone.appendChild(bloc);
+            });
+        }
+
+
+        construireQuiz('meca-questions', 'meca-score', [
+            {
+                enonce: 'Vous suivez quelqu’un depuis deux ans. Vous connaissez son appartement, son chien, ses coups de mou. Il conseille un placement financier, et vous l’écoutez.',
+                options: ['Relation parasociale', 'Cadrage du contenu', 'Biais de popularité', 'Biais de l’engagement', 'Biais émotionnel'],
+                bonne: 0,
+                explication: '<strong>Relation parasociale.</strong> Le sentiment de proximité est réel d’un seul côté. Le cerveau accorde à cette personne la confiance d’un proche, sur un sujet où elle n’est pas plus compétente que vous.'
+            },
+            {
+                enonce: 'Une créatrice montre chaque jour une routine parfaite. Les jours sans, les échecs et les tournages ratés n’apparaissent jamais.',
+                options: ['Relation parasociale', 'Cadrage du contenu', 'Biais de popularité', 'Biais de l’engagement', 'Biais émotionnel'],
+                bonne: 1,
+                explication: '<strong>Cadrage du contenu.</strong> Rien n’est faux dans ce qui est montré. C’est ce qui n’est pas montré qui fabrique l’impression. Une version partielle, sélectionnée et idéalisée de la réalité.'
+            },
+            {
+                enonce: 'Un compte à trois millions d’abonnés donne un avis sur un sujet médical. Un médecin à deux cents abonnés dit le contraire. Le premier vous paraît plus crédible.',
+                options: ['Relation parasociale', 'Cadrage du contenu', 'Biais de popularité', 'Biais de l’engagement', 'Biais émotionnel'],
+                bonne: 2,
+                explication: '<strong>Biais de popularité.</strong> L’audience se transforme en autorité. Popularité et compétence ne sont pourtant pas la même chose, et rien ne les relie.'
+            },
+            {
+                enonce: 'Après une révélation gênante sur un créateur, sa communauté le défend plus fermement encore qu’avant.',
+                options: ['Relation parasociale', 'Cadrage du contenu', 'Biais de popularité', 'Biais de l’engagement', 'Biais émotionnel'],
+                bonne: 3,
+                explication: '<strong>Biais de l’engagement.</strong> Admettre s’être trompé obligerait à désavouer aussi tout ce qu’on a déjà défendu publiquement. Le coût du retour en arrière augmente avec chaque geste passé.'
+            },
+            {
+                enonce: 'Une vidéo indignée sur une injustice fait dix fois plus de vues que l’enquête détaillée publiée le même jour sur le même sujet.',
+                options: ['Relation parasociale', 'Cadrage du contenu', 'Biais de popularité', 'Biais de l’engagement', 'Biais émotionnel'],
+                bonne: 4,
+                explication: '<strong>Biais émotionnel.</strong> Le cerveau favorise ce qui l’émeut, et les algorithmes amplifient ce que le cerveau favorise. Les deux se renforcent, indépendamment du fait que ce soit vrai.'
+            }
+        ], {
+            parfait: 'Sans faute. Aucune de ces situations ne suppose de la naïveté : ce sont des mécanismes universels.',
+            imparfait: 'Aucun de ces mécanismes n’est une faiblesse personnelle. Ils fonctionnent chez tout le monde, y compris chez ceux qui les connaissent.'
+        });
+
+        construireQuiz('interet-questions', 'interet-score', [
+            {
+                enonce: 'Un créateur recommande une marque dont il possède des parts. Il ne l’a jamais mentionné.',
+                options: ['Financier', 'Symbolique', 'Réputationnel'],
+                bonne: 0,
+                explication: '<strong>Financier.</strong> Et indirect : ce n’est pas un partenariat rémunéré, c’est un intérêt au capital. Le lien n’a pas besoin d’être un paiement pour être un conflit d’intérêts.'
+            },
+            {
+                enonce: 'Une personnalité défend une position qu’elle a martelée pendant cinq ans, alors que les données récentes la contredisent.',
+                options: ['Financier', 'Symbolique', 'Réputationnel'],
+                bonne: 2,
+                explication: '<strong>Réputationnel.</strong> Se déjuger publiquement coûte cher. Tenir son personnage est souvent plus fort que l’intérêt financier, et beaucoup plus discret.'
+            },
+            {
+                enonce: 'Un militant relaie une étude fragile parce qu’elle va dans le sens de la cause qu’il défend.',
+                options: ['Financier', 'Symbolique', 'Réputationnel'],
+                bonne: 1,
+                explication: '<strong>Symbolique.</strong> Il ne gagne rien et croit sincèrement bien faire. C’est l’intérêt le plus difficile à voir chez soi, parce qu’il ressemble à une conviction.'
+            },
+            {
+                enonce: 'Un vidéaste ménage une marque avec laquelle il n’a pas encore de contrat, mais espère en avoir un.',
+                options: ['Financier', 'Symbolique', 'Réputationnel'],
+                bonne: 0,
+                explication: '<strong>Financier.</strong> À venir, donc invisible : rien à déclarer, aucune mention légale à afficher. C’est la forme la plus courante et la moins repérable.'
+            }
+        ], {
+            parfait: 'Sans faute. Repérer un intérêt ne prouve rien contre le propos : cela dit seulement où regarder.',
+            imparfait: 'Tout le monde a des intérêts, y compris en disant la vérité. La question n’est pas de démasquer, elle est de savoir où regarder de plus près.'
+        });
+
+        /* --- Accordeons -----------------------------------------------------
+           La hauteur ouverte est mesuree puis relachee a « none » : les
+           modules interactifs font grandir leur contenu apres coup (reponse
+           depliee, retour d'un quiz) et un plafond fixe les couperait. */
+        const accordionItems = document.querySelectorAll('.accordion-item');
+
+        function ouvrirAccordeon(item) {
+            const c = item.querySelector('.accordion-content');
+            item.classList.add('active');
+            c.style.maxHeight = c.scrollHeight + 'px';
+            c.addEventListener('transitionend', function fini(e) {
+                if (e.propertyName !== 'max-height') return;
+                c.removeEventListener('transitionend', fini);
+                if (item.classList.contains('active')) c.style.maxHeight = 'none';
+            });
+        }
+
+        function fermerAccordeon(item) {
+            const c = item.querySelector('.accordion-content');
+            c.style.maxHeight = c.scrollHeight + 'px';
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                item.classList.remove('active');
+                c.style.maxHeight = '0px';
+            }));
+        }
+
+        accordionItems.forEach(item => {
+            item.querySelector('.accordion-header').addEventListener('click', () => {
+                /* Chaque accordeon est independant. Refermer automatiquement les
+                   autres faisait remonter d'un coup tout ce qui etait au-dessus,
+                   et la page paraissait sauter. Ici seul le bloc clique bouge,
+                   et il grandit sous son propre titre : rien ne se deplace. */
+                if (item.classList.contains('active')) fermerAccordeon(item);
+                else ouvrirAccordeon(item);
+            });
+        });
+
+
+        document.querySelectorAll('.toc a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Le premier accordeon est ouvert d'entree
+        if (accordionItems.length > 0) {
+            accordionItems[0].classList.remove('active');
+            ouvrirAccordeon(accordionItems[0]);
+        }
+    </script>
+</body>
+</html>

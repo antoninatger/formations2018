@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Désinformation, au-delà de la Fake News : Niveau 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared-deck.css">
+<style>
+/* Propre à « formation-fake-news-niveau2 » : 140 règles.
+ * Le socle commun est dans ../shared-deck.css, chargé juste avant ;
+ * ce qui suit le complète ou le surcharge. */
+:root{--acc:#a78bfa;--acc2:#22d3ee}
+body{background-image:radial-gradient(ellipse at 20% -10%, rgba(34,211,238,.12) 0%, transparent 55%), radial-gradient(ellipse at 90% 110%, rgba(167,139,250,.12) 0%, transparent 55%)}
+.slide{padding:90px calc(4 * var(--vw1)) 80px}
+.slide h2{font-size:clamp(1.4rem,calc(3.8 * var(--vw1)),2.4rem);line-height:1.28;max-width:1100px}
+.slide p.lead{font-size:clamp(1rem,calc(2 * var(--vw1)),1.2rem);max-width:920px}
+.slide .src{font-size:.72rem;color:var(--mu-diapo);margin-top:10px;opacity:.75;}
+/* ── Cover ── */
+#s0 .logo{font-size:3rem;margin-bottom:6px;}
+#s0 h1{font-size:clamp(1.8rem,calc(5.6 * var(--vw1)),3.1rem);font-weight:800;
+  background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+#s0 .objectifs{list-style:none;margin-top:26px;display:flex;flex-direction:column;gap:10px;text-align:left;max-width:540px;}
+#s0 .objectifs li{background:var(--panel);border:1px solid var(--bord);border-radius:14px;padding:12px 18px;font-weight:700;
+  display:flex;align-items:center;gap:12px;}
+#s0 .objectifs li b{color:var(--acc);font-family:'Baloo 2',cursive;font-size:1.1rem;}
+/* ── Boutons génériques ── */
+.bigbtn{background:linear-gradient(135deg,var(--acc),#7c5ce0);color:#160a2e;box-shadow:0 6px 22px rgba(167,139,250,.32)}
+/* ── Vidéos ── */
+.vidwrap{position:relative;max-width:380px;width:calc(64 * var(--vw1));border-radius:20px;overflow:hidden;border:1px solid var(--bord);
+  box-shadow:0 20px 50px rgba(0,0,0,.4);margin-top:10px;background:#000;}
+.vidwrap.wide{max-width:620px;width:calc(80 * var(--vw1));}
+.vid-row{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin-top:10px;}
+.vid-row.stacked{flex-direction:column;align-items:center;}
+.vid-row.stacked .vidcol{max-width:640px;}
+.vid-row .vidcol{display:flex;flex-direction:column;align-items:center;gap:8px;max-width:280px;min-width:0;min-height:0;}
+.vid-row .vidcol .lbl{font-family:'Baloo 2',cursive;font-weight:700;font-size:.9rem;color:var(--acc2);}
+/* ── Checklist ── */
+.checklist{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:8px;text-align:left;max-width:520px;width:100%;}
+.checklist li{font-size:1rem;max-height:0;opacity:0;overflow:hidden}
+.checklist li.revealed{max-height:60px;opacity:1;}
+.checklist li.done{color:var(--ok);}
+.checklist li.done::before{content:'✓ ';}
+.checklist li.missed{color:var(--mu);}
+.checklist li.missed::before{content:'· ';}
+.attention{font-size:1.1rem}
+.answer-field{margin-top:24px;width:100%;max-width:520px;}
+.answer-field input{width:100%;background:var(--panel);border:2px solid var(--bord);color:var(--tx);border-radius:14px;
+  padding:14px 18px;font-size:1rem;font-weight:700;font-family:'Nunito',sans-serif;text-align:center;}
+.answer-field input:focus-visible{outline:2px solid var(--acc2);outline-offset:2px;border-color:var(--acc2);}
+.answer-field .hint{margin-top:8px;font-size:.75rem;color:var(--mu-diapo);font-weight:700;}
+.step.word-reveal{display:none;opacity:1;max-height:none;overflow:visible;transform:none;transition:none;color:var(--acc);}
+.step.word-reveal.shown{display:inline;}
+.step.shown{opacity:1;max-height:2400px;transform:none;pointer-events:auto;}
+/* ── Quiz / reflect cards ── */
+.quiz-grid{display:flex;flex-direction:column;max-width:520px;margin:20px auto 0}
+.qcard:hover{border-color:var(--acc2);transform:translateY(-2px);}
+.qcard img{height:auto}
+.qcard .txt{font-size:.85rem}
+.qcard .badge{font-size:.7rem;background:rgba(167,139,250,.18);color:var(--acc);border:1px solid var(--acc)}
+.qcard.revealed{border-color:var(--acc2);}
+.qcard.revealed .expl{max-height:160px}
+.reveal-btn:hover{background:rgba(34,211,238,.15)}
+.reveal-box.show{max-height:2400px}
+/* ── Bascule de pourcentage (effet roue) ── */
+.pct-row{display:flex;gap:22px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:14px;width:100%;}
+.pct-toggle{background:var(--panel);border:2px solid var(--acc);border-radius:50%;width:84px;height:84px;flex:none;
+  font-family:'Baloo 2',cursive;font-weight:800;font-size:1.25rem;color:var(--acc);cursor:pointer;perspective:400px;}
+.pct-toggle .pct-value{display:inline-block;}
+.pct-toggle.spin .pct-value{animation:pctspin .5s ease;}
+/* ── Image simple ── */
+.imgcard{max-width:640px;width:calc(92 * var(--vw1))}
+.imgcard.small{max-width:440px}
+.imgcard.wide{max-width:880px;}
+.two-imgs{gap:20px;align-items:flex-start;max-width:1100px;width:100%}
+.two-imgs .cap{font-size:.78rem;color:var(--mu-diapo);margin-top:6px;font-weight:700;max-width:440px;}
+/* ── Montage grid ── */
+.montage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;max-width:820px;width:100%;margin-top:18px;}
+.montage-grid .m-item{background:var(--panel);border:1px solid var(--bord);border-radius:12px;overflow:hidden;}
+.montage-grid img{width:100%;height:auto;display:block;}
+.montage-grid .m-cap{font-size:.68rem;color:var(--mu-diapo);padding:6px 8px;font-weight:700;line-height:1.3;}
+.montage-grid.stacked{display:flex;flex-direction:column;max-width:440px;}
+/* ── Devinette ── */
+.riddle-box{max-width:580px}
+.riddle-box .q{font-size:1.02rem}
+/* ── Dialogue (répliques qui apparaissent l'une après l'autre) ── */
+.dialogue{display:flex;flex-direction:column;gap:12px;}
+.dialogue .bubble{max-width:82%;padding:12px 16px;border-radius:16px;font-weight:700;font-size:.92rem;line-height:1.5;
+  background:var(--panel2);border:1px solid var(--bord);}
+.dialogue .bubble.left{align-self:flex-start;border-bottom-left-radius:4px;}
+.dialogue .bubble.right{align-self:flex-end;border-bottom-right-radius:4px;background:rgba(34,211,238,.1);border-color:var(--acc2);}
+.compare .col{width:270px}
+.compare .col h3{font-size:1.02rem}
+.compare .col p, .compare .col ul{color:var(--mu-diapo);font-size:.86rem;line-height:1.65;font-weight:600;}
+/* ── Liens vers d'autres jeux ── */
+.gamelink{background:linear-gradient(135deg,var(--acc2),#0e8fac)}
+.gamelink.alt{background:linear-gradient(135deg,var(--acc),#7c5ce0);color:#160a2e;}
+.gamelink-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+/* ── Personas / clickable persons ── */
+.persona-grid{display:flex;gap:20px;margin-top:22px;flex-wrap:wrap;justify-content:center;}
+.video-flank{display:flex;gap:22px;margin-top:14px;flex-wrap:wrap;justify-content:center;align-items:center;width:100%;}
+.video-flank .vidwrap{margin:0;}
+.video-flank .persona{width:230px;}
+.persona:hover{border-color:var(--acc2);}
+.persona img{width:100%;border-radius:10px;margin-top:8px;display:none;}
+.persona.open img{display:block;}
+/* ── Chips ── */
+.fear-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;max-width:820px;width:100%;margin-top:20px;}
+.fear-chip{font-size:.86rem}
+/* ── Tips numérotés ── */
+.tips-list{max-width:620px}
+.tips-list li{font-size:.92rem}
+/* ── Section divider ── */
+.divider-slide h2{font-size:clamp(1.7rem,calc(4.6 * var(--vw1)),2.8rem)}
+/* ── Panneaux liés à la position du curseur sur la barre (gauche / centre / droite) ── */
+.zone-panels{position:relative;width:100%;max-width:1100px;flex:1;min-height:220px;margin-top:18px;}
+.zone-panel{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
+  gap:10px;opacity:0;transition:opacity .4s ease;pointer-events:none;padding:10px;}
+.zone-panel.show{opacity:1;}
+.zone-panel[data-zone="left"]{align-items:flex-start;text-align:left;}
+.zone-panel[data-zone="center"]{align-items:center;text-align:center;}
+.zone-panel[data-zone="right"]{align-items:flex-end;text-align:right;}
+.hover-placeholder{width:200px;max-width:78%;aspect-ratio:4/3;border:2px dashed var(--bord);border-radius:14px;
+  display:flex;align-items:center;justify-content:center;color:var(--mu-diapo);font-size:.8rem;font-weight:700;text-align:center;padding:10px;}
+/* ── Continuum gradient bar ── */
+.gradient-bar-wrap{margin-top:28px;max-width:600px;width:calc(88 * var(--vw1));}
+.gradient-bar{height:34px;border-radius:20px;background:linear-gradient(90deg,var(--ko),#c99a3a,var(--ok));
+  border:1px solid var(--bord);position:relative;}
+.gradient-bar .marker{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:26px;height:26px;border-radius:50%;background:var(--acc);border:3px solid var(--bg2);
+  box-shadow:0 2px 10px rgba(0,0,0,.45);cursor:grab;touch-action:none;z-index:2;}
+.gradient-bar .marker:active{cursor:grabbing;}
+.gradient-labels{display:flex;justify-content:space-between;margin-top:10px;font-size:.78rem;font-weight:800;color:var(--mu-diapo);}
+.gradient-labels span:first-child{color:var(--ko);}
+.gradient-labels span:last-child{color:var(--ok);}
+/* ── Flow chain (cause -> effet) ── */
+.flow-chain{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;margin-top:22px;max-width:900px;width:100%;}
+.flow-chain .fbox{background:var(--panel);border:1px solid var(--bord);border-radius:12px;padding:11px 14px;
+  font-weight:700;font-size:.78rem;max-width:150px;text-align:center;line-height:1.3;}
+.flow-chain .farr{color:var(--acc2);font-size:1.1rem;font-weight:800;}
+/* ── Flow circle (cycle qui se répète) ── */
+.flow-circle{position:relative;width:min(460px,calc(86 * var(--vw1)));aspect-ratio:1;margin:28px auto 0;}
+.flow-circle::before{content:'';position:absolute;inset:9%;border:2px dashed var(--bord);border-radius:50%;}
+.flow-circle .fc-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;
+  color:var(--acc);font-family:'Baloo 2',cursive;font-weight:700;font-size:.82rem;max-width:100px;line-height:1.25;}
+.flow-circle .fc-center .arrow{display:block;font-size:1.6rem;line-height:1;margin-bottom:2px;}
+.flow-circle .fbox{position:absolute;transform:translate(-50%,-50%);background:var(--panel);border:1px solid var(--bord);
+  border-radius:12px;padding:9px 12px;font-weight:700;font-size:.72rem;max-width:118px;text-align:center;line-height:1.25;
+  cursor:pointer;transition:border-color .15s,transform .15s;}
+.flow-circle .fbox:hover{border-color:var(--acc2);}
+.flow-circle .fbox.active{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc);}
+.flow-circle .fc-center{cursor:pointer;}
+/* Rotation de la roue au clic sur le centre : le cercle tourne, chaque case se contre-tourne
+   pour rester lisible (comme les nacelles d'une grande roue). */
+.flow-circle.spinning{animation:wheelspin 1.1s ease-in-out;}
+.flow-circle.spinning .fbox{animation:wheelspin-counter 1.1s ease-in-out;}
+/* ── Détail d'une case du cercle (photo/texte à ajouter, révélé au clic) ── */
+.circle-detail-wrap{width:100%;max-width:480px;min-height:120px;margin-top:14px;position:relative;}
+.circle-detail{display:none;flex-direction:column;align-items:center;gap:10px;}
+.circle-detail.show{display:flex;}
+/* ── Stat highlight (citations clés) ── */
+.stat-highlight{background:var(--panel);border:1px solid var(--acc);border-radius:20px;padding:30px 34px;
+  max-width:700px;width:calc(88 * var(--vw1));margin-top:18px;}
+.stat-highlight p{font-size:clamp(1.05rem,calc(2.4 * var(--vw1)),1.35rem);font-weight:800;line-height:1.55;font-family:'Baloo 2',cursive;color:var(--tx);}
+.stat-highlight p .hi{color:var(--acc);}
+/* ── Suspect card (compte factice) ── */
+.suspect-card{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:18px;align-items:flex-start;}
+.suspect-card .simg{max-width:280px;width:calc(70 * var(--vw1));border-radius:14px;overflow:hidden;border:1px solid var(--bord);}
+.suspect-card .simg img{width:100%;display:block;}
+.suspect-card .savatar{max-width:150px;width:calc(36 * var(--vw1));border-radius:50%;overflow:hidden;border:2px solid var(--ko);}
+.suspect-card .savatar img{width:100%;display:block;}
+/* ── Navigation ── */
+#navzone-l,#navzone-r{position:fixed;top:52px;bottom:0;width:12%;z-index:10;cursor:pointer;background:transparent;}
+#navzone-l{left:0;}
+#navzone-r{right:0;}
+#dots{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:20;max-width:70vw;flex-wrap:wrap;justify-content:center;}
+#dots button{width:8px;height:8px;border-radius:50%;border:none;background:var(--bord);cursor:pointer;padding:0;}
+#dots button.active{background:var(--acc);width:20px;border-radius:6px;}
+#navctrl{position:fixed;bottom:14px;right:18px;display:flex;gap:8px;z-index:20;}
+#navctrl button{background:var(--panel);border:1px solid var(--bord);color:var(--tx);border-radius:10px;
+  width:38px;height:38px;font-size:1.1rem;cursor:pointer;}
+#navctrl button:hover{border-color:var(--acc2);}
+#slidenum{position:fixed;bottom:16px;left:18px;z-index:20;font-size:.75rem;color:var(--mu);font-weight:700;}
+.admin-head button.primary{background:linear-gradient(135deg,var(--acc),#7c5ce0);color:#160a2e}
+/* ── Formulaire "Ajouter une diapo" (autonome, pas de dépendance à un autre composant) ── */
+.addslide-modal{display:none;position:fixed;inset:0;z-index:410;background:rgba(0,0,0,.6);
+  align-items:center;justify-content:center;padding:20px;}
+.addslide-input:focus-visible{outline:2px solid var(--acc2);outline-offset:2px;}
+@keyframes pctspin{0%{transform:rotateX(0);}45%{transform:rotateX(90deg);opacity:.2;}55%{transform:rotateX(-90deg);opacity:.2;}100%{transform:rotateX(0);}}
+@media(max-width:640px){.flow-circle .fbox{font-size:.66rem;max-width:96px;padding:7px 9px;}}
+@keyframes wheelspin{from{transform:rotate(0);}to{transform:rotate(360deg);}}
+@keyframes wheelspin-counter{from{transform:translate(-50%,-50%) rotate(0);}to{transform:translate(-50%,-50%) rotate(-360deg);}}
+@media(max-width:640px){
+  .slide{padding:70px calc(6 * var(--vw1)) 90px;}
+  .compare{gap:12px;}
+  .compare .col{width:100%;max-width:320px;}
+  .vid-row{gap:10px;}
+  .admin-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));}
+  .admin-head{flex-wrap:wrap;height:auto;padding:10px;gap:8px;}
+  .admin-modal{padding:110px 12px 20px;}
+}
+/* Diapos en série venues d’IA ou d’encadrants (3 octobre) : leurs règles. */
+:root{--ppt-police:'Trebuchet MS','Nunito',sans-serif}
+.slide .ppt-titre{font-family:var(--ppt-police);font-weight:400;line-height:1.2;max-width:none;color:var(--acc);text-align:left}
+.cover h1.ppt-titre{background:none;-webkit-background-clip:border-box;background-clip:border-box}
+.slide ul.ppt-texte{font-family:var(--ppt-police);list-style:none;text-align:left;color:var(--tx);font-weight:400;max-width:none}
+.slide ul.ppt-texte li{margin:0;max-width:none;list-style:none}
+.slide ul.ppt-texte li[data-puce]::before{content:attr(data-puce);display:inline-block;width:var(--retrait);text-indent:0;color:var(--puce,currentColor);font-size:.8em}
+.slide ul.ppt-texte a{color:var(--acc)}
+.slide .imgcard.ppt-img{margin:0;border-radius:2px;background:#fff;border:0;box-shadow:0 8px 26px rgba(0,0,0,.28)}
+.slide .imgcard.ppt-img img{max-height:none;width:100%;height:auto;object-fit:fill}
+.slide .imgcard.ppt-recadre{overflow:hidden}
+.slide .imgcard.ppt-recadre img{position:absolute}
+.slide .imgcard.ppt-sans-fond{background:none;box-shadow:none;border-radius:0}
+.slide .vidwrap.ppt-video{margin:0;border-radius:2px;border:0;max-width:none;background:#000}
+.slide .vidwrap.ppt-video video{max-height:none;width:100%;height:100%;object-fit:contain}
+.slide .forme.ppt-forme{isolation:isolate}
+/* Ce qui dépasse de la diapo dans le PowerPoint y est coupé : pareil ici. */
+#deck > .slide.ppt-rogne{overflow:hidden}
+/* Bulle ovale (phylactère du PowerPoint) : la pointe rejoint le bord de l'ovale. */
+.slide .forme.ppt-bulle::after{left:20%;bottom:5%}
+.slide .forme .ppt-forme-texte{font-family:var(--ppt-police);display:flex;flex-direction:column;align-items:stretch;justify-content:center;text-align:center;font-weight:400;line-height:1.2}
+.slide .forme .ppt-forme-texte>span{display:block}
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <span class="brand">Au-delà de la Fake News : Niveau 2</span>
+  <div class="tools">
+    <button id="btn-admin-grid" title="Toutes les diapos" onclick="Deck.openAdmin()">Toutes les diapos</button>
+    <button id="btn-dossier" hidden title="Donner au navigateur l’accès au dossier Cours : nécessaire pour les séries, les diapos liées et les médias" onclick="Deck.connecterDossier()">🔌 Connecter le dossier</button>
+    <button id="btn-fullscreen" title="Plein écran"><span class="t-fr">Plein écran</span><span class="t-en" hidden>Fullscreen</span></button>
+    <button id="btn-lang" title="Switch to English" onclick="Deck.toggleLang()">EN</button>
+  </div>
+</div>
+
+<div id="deck" data-edite-en-page="1791306000935" data-registry-build="1788779325320">
+
+  <!-- PPT 1 : Titre -->
+  <section class="slide short" id="s0">
+    <h1 data-pose="" data-off-x="184.75" data-off-y="346.7" style="left:18.475%;top:34.67%;width:53.409%;max-width:none;font-size:91px;text-align:right"><span class="t-fr">Désinformation, au-delà de la Fake News</span><span class="t-en" hidden="">Disinformation, Beyond Fake News</span></h1>
+  </section>
+
+<!-- PPT 2 : Rappel : qu’est-ce qu’une Fake News ? -->
+  <section class="slide" id="s1">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Rappel : qu’est-ce qu’une Fake News ?</span><span class="t-en" hidden="">Reminder: what is fake news?</span></h2>
+    <p class="lead step" data-order="1" data-pose="" data-off-x="127.73" data-off-y="321.7" style="left:12.773%;top:32.17%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr"><b style="color:var(--acc)">▸</b> Fake News : information fausse.</span><span class="t-en" hidden=""><b style="color:var(--acc)">▸</b> Fake news: false information.</span></p>
+    <p class="lead step" data-order="2" data-pose="" data-off-x="127.73" data-off-y="441.69" style="left:12.773%;top:44.169%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr"><b style="color:var(--acc)">▸</b> Information contraire au réel et aux connaissances que nous en avons.</span><span class="t-en" hidden=""><b style="color:var(--acc)">▸</b> Information that contradicts reality and what we know about it.</span></p>
+    <p class="lead step" data-order="3" data-pose="" data-off-x="127.73" data-off-y="561.68" style="left:12.773%;top:56.168%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr"><b style="color:var(--acc)">▸</b> Généralement diffusée sur les médias et les réseaux sociaux.</span><span class="t-en" hidden=""><b style="color:var(--acc)">▸</b> Usually spread through the media and social networks.</span></p>
+    <p class="lead step" data-order="4" data-pose="" data-off-x="127.73" data-off-y="681.67" style="left:12.773%;top:68.167%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr"><b style="color:var(--acc)">▸</b> Généralement dans le but de désinformer.</span><span class="t-en" hidden=""><b style="color:var(--acc)">▸</b> Usually with the aim of misleading.</span></p>
+  </section>
+
+<!-- PPT 3 : GIF « You are fake news » -->
+  <section class="slide short" id="nv2-trump-fake-news">
+    <div class="imgcard" data-pose="" data-off-x="274.46" data-off-y="198" style="left:27.446%;top:19.8%;width:45.108%;max-width:none"><img src="../medias/images/trump-you-are-fake-news.gif" alt="Donald Trump : « You are fake news »" loading="lazy"></div>
+  </section>
+
+<!-- PPT 4 : 1) Quelles sont les questions à se poser ? -->
+  <section class="slide divider-slide short" id="nv2-questions">
+    <h2 data-pose="" data-off-x="80.78" data-off-y="445" style="left:8.078%;top:44.5%;width:83.844%;max-width:none;text-align:center"><span class="t-fr">1) Quelles sont les questions à se poser ?</span><span class="t-en" hidden="">1) What questions should we ask?</span></h2>
+  </section>
+
+<!-- PPT 5 : Quels sont les critères pour valider l’information ? (reprise) -->
+  <section class="slide" id="s2" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="276.24" data-off-y="99.12" style="left:27.624%;top:9.912%"><span class="t-fr">Quels sont les critères pour valider l'information ?</span><span class="t-en" hidden="">What criteria help us validate information?</span></h2>
+    <div class="answer-field" data-pose="" data-off-x="364.94" data-off-y="179.69" style="left:36.494%;top:17.969%">
+      <input type="text" id="checklist-input" autocomplete="off">
+    </div>
+    <ul class="checklist" id="checklist" data-checklist-revelee="" data-pose="" data-off-x="364.94" data-off-y="258.99" style="left:36.494%;top:25.899%">
+      <li data-item="1" data-keywords="source|fiable|site|média|media|journal|provenance|reputee|réputée|serieux|sérieux|origine"><span class="t-fr">Fiabilité de la source.</span><span class="t-en" hidden="">Reliability of the source.</span></li>
+      <li data-item="2" data-keywords="interlocuteur|qui parle|qui le dit|qui dit ca|qui dit ça|auteur|expert|specialiste|spécialiste|credibilite personne|crédibilité de la personne"><span class="t-fr">Fiabilité de l'interlocuteur.</span><span class="t-en" hidden="">Reliability of the speaker.</span></li>
+      <li data-item="3" data-keywords="preuve|preuves|demontr|démontr|argument|donnees|données|chiffres|etude|étude|scientifique"><span class="t-fr">Niveau de preuves.</span><span class="t-en" hidden="">Level of evidence.</span></li>
+      <li data-item="4" data-keywords="plusieurs sources|beaucoup en parlent|beaucoup de sources|tout le monde en parle|nombreux medias|nombreux médias|viral|repandu|répandu|partout"><span class="t-fr">Beaucoup de sources en parlent.</span><span class="t-en" hidden="">Many sources report it.</span></li>
+      <li data-item="5" data-keywords="credible|crédible|plausible|vraisemblable|semble vrai|ca se tient|ça se tient|logique|credibilite info|crédibilité de l'info"><span class="t-fr">Crédibilité de l'information.</span><span class="t-en" hidden="">Credibility of the information.</span></li>
+      <li data-item="6" data-keywords="commentaire|critique|avis|retour|fact-check|factcheck|verifi|vérifi|debat|débat|reaction|réaction"><span class="t-fr">Commentaires et critiques de l'information.</span><span class="t-en" hidden="">Comments and criticism of the information.</span></li>
+    </ul>
+    <button class="reveal-btn" onclick="Deck.revealMissingChecklist()" data-pose="" data-off-x="433.62" data-off-y="322.86" style="left:43.362%;top:32.286%"><span class="t-fr">Voir les critères manquants →</span><span class="t-en" hidden="">See the missing criteria →</span></button>
+  </section>
+
+<!-- PPT 6 : Fiabilité de la source : Le Monde -->
+  <section class="slide" id="s3" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="121.02" data-off-y="59.7" style="left:12.102%;top:5.97%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Fiabilité de la source</span><span class="t-en" hidden="">Reliability of the source</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="169.65" data-off-y="185" style="left:16.965%;top:18.5%;width:63.386%;max-width:none"><img src="../medias/images/panama-papers-lemonde.jpg" alt="Le Monde : « Panama papers », une plongée inédite dans la « boîte noire » des paradis fiscaux" loading="lazy"></div>
+  </section>
+
+<!-- PPT 7 : Fiabilité de la source : Le Nouvel Obs -->
+  <section class="slide" id="nv2-source-observateur" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="121.02" data-off-y="59.7" style="left:12.102%;top:5.97%;width:77.053%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Fiabilité de la source</span><span class="t-en" hidden="">Reliability of the source</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="325.6" data-off-y="140" style="left:32.56%;top:14%;width:34.963%;max-width:none"><img src="../medias/images/ogm-poisons-nouvelobs.jpg" alt="Le Nouvel Observateur : « Oui, les OGM sont des poisons ! »" loading="lazy"></div>
+  </section>
+
+<!-- PPT 8 : Fiabilité de l’interlocuteur : GIEC -->
+  <section class="slide" id="s4" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Fiabilité de l’interlocuteur.</span><span class="t-en" hidden="">Reliability of the speaker.</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="196.48" data-off-y="202" style="left:19.648%;top:20.2%;width:57.014%;max-width:none"><img src="../medias/images/giec-experts-panel.jpg" alt="Les experts du GIEC en conférence" loading="lazy"></div>
+  </section>
+
+<!-- PPT 9 : Fiabilité de l’interlocuteur : Didier Raoult -->
+  <section class="slide" id="nv2-interlocuteur-raoult" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Fiabilité de l’interlocuteur.</span><span class="t-en" hidden="">Reliability of the speaker.</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="217.45" data-off-y="240" style="left:21.745%;top:24%;width:53.241%;max-width:none"><img src="../medias/images/didier-raoult.jpg" alt="Didier Raoult" loading="lazy"></div>
+  </section>
+
+<!-- PPT 10 : Niveau de preuves -->
+  <section class="slide" id="s5" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Niveau de preuves</span><span class="t-en" hidden="">Level of evidence</span></h2>
+    <p class="lead" data-pose="" data-off-x="143.66" data-off-y="234.7" style="left:14.366%;top:23.47%;width:61.709%;max-width:none;font-size:30px;text-align:left;"><span class="t-fr">Les preuves peuvent être fausses, falsifiées, ou faire aboutir à la mauvaise conclusion.</span><span class="t-en" hidden="">Evidence can be false, falsified, or lead to the wrong conclusion.</span></p>
+    <div class="imgcard" data-pose="" data-off-x="175.52" data-off-y="303" style="left:17.552%;top:30.3%;width:58.607%;max-width:none"><img src="../medias/images/adn-experts-se-trompent-lemonde.png" alt="Le Monde : « ADN : quand les "experts" se trompent »" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="233.38" data-off-y="637" style="left:23.338%;top:63.7%;width:47.037%;max-width:none"><img src="../medias/images/adn-manipulation-titre.jpg" alt="Des centaines d’affaires remises en cause ? Une médecin accusée de « manipulations » de preuves ADN" loading="lazy"></div>
+    <div class="speaker-notes" hidden="">https://www.bfmtv.com/police-justice/des-milliers-d-affaires-remises-en-cause-une-medecin-soupconnee-de-manipulations-de-preuves-adn_AN-202403170037.html
+https://www.lemonde.fr/technologies/article/2010/12/10/adn-quand-les-experts-se-trompent_1451949_651865.html</div>
+  </section>
+
+<!-- PPT 11 : Photo Trump et Xi Jinping -->
+  <section class="slide short" id="nv2-trump-xi" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <div class="imgcard" data-pose="" data-off-x="337.27" data-off-y="28" style="left:33.727%;top:2.8%;width:32.546%;max-width:none;max-height:none"><img src="../medias/images/trump-xi-jinping.jpg" alt="Donald Trump et Xi Jinping" loading="lazy" style="max-height:none"></div>
+  </section>
+
+<!-- PPT 12 : Beaucoup de sources en parlent : la Suède -->
+  <section class="slide" id="s6" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Beaucoup de sources en parlent.</span><span class="t-en" hidden="">Many sources report it.</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="243.44" data-off-y="260" style="left:24.344%;top:26%;width:54.079%;max-width:none"><img src="../medias/images/hoax-sport-suede.jpg" alt="IOL : « Sex tournament: Sweden becomes the first country to make sex a sport »" loading="lazy"></div>
+  </section>
+
+<!-- PPT 13 : Beaucoup de sources en parlent : Dupont de Ligonnès -->
+  <section class="slide" id="nv2-sources-dupont-ligonnes" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Beaucoup de sources en parlent.</span><span class="t-en" hidden="">Many sources report it.</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="133.6" data-off-y="273" style="left:13.36%;top:27.3%;width:32.867%;max-width:none"><img src="../medias/images/xavier-dupont-de-ligonnes.jpg" alt="Le Parisien : Xavier Dupont de Ligonnès aurait été arrêté en Écosse" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="493.29" data-off-y="293" style="left:49.329%;top:29.3%;width:35.718%;max-width:none"><img src="../medias/images/xavier-dupont-de-ligonnes-bfm.jpg" alt="BFMTV : Xavier Dupont de Ligonnès arrêté à Glasgow" loading="lazy"></div>
+  </section>
+
+<!-- PPT 14 : Crédibilité : les biscuits -->
+  <section class="slide" id="s7" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Crédibilité de l’information</span><span class="t-en" hidden="">Credibility of the information</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="245.11" data-off-y="202" style="left:24.511%;top:20.2%;width:42.928%;max-width:none"><img src="../medias/images/biscuits-vegan-hoax.jpg" alt="La Vegan Society demande la fin des biscuits en forme d’animaux" loading="lazy"></div>
+  </section>
+
+<!-- PPT 15 : Crédibilité : la méduse immortelle -->
+  <section class="slide" id="nv2-credibilite-meduse" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Crédibilité de l’information</span><span class="t-en" hidden="">Credibility of the information</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="328.12" data-off-y="255" style="left:32.812%;top:25.5%;width:34.376%;max-width:none"><img src="../medias/images/meduse-immortelle.jpg" alt="Il existe une espèce de méduse immortelle" loading="lazy"></div>
+  </section>
+
+<!-- PPT 16 : Retours critiques : les fact-checkeurs -->
+  <section class="slide" id="s8" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Quels sont les retours critiques ?</span><span class="t-en" hidden="">What is the critical feedback?</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="272.78" data-off-y="200" style="left:27.278%;top:20%;width:44.018%;max-width:none"><img src="../medias/images/logos-fact-checking.png" alt="Logos de sites de fact-checking" loading="lazy"></div>
+  </section>
+
+<!-- PPT 17 : Retours critiques : RSF -->
+  <section class="slide" id="nv2-retours-rsf" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Quels sont les retours critiques ?</span><span class="t-en" hidden="">What is the critical feedback?</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="186.42" data-off-y="227" style="left:18.642%;top:22.7%;width:52.738%;max-width:none"><img src="../medias/images/rsf-factchecking-kremlin.jpg" alt="RSF : « Russie : quand le fact-checking devient le nouvel outil de la propagande du Kremlin »" loading="lazy"></div>
+  </section>
+
+<!-- PPT 18 : Critères, et le « 100 % » barré -->
+  <section class="slide" id="nv2-criteres" data-serie="serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Critères</span><span class="t-en" hidden="">Criteria</span></h2>
+    <p class="lead step" data-order="1" data-pose="" data-off-x="127.73" data-off-y="321.7" style="left:12.773%;top:32.17%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr">– Fiabilité de la source.</span><span class="t-en" hidden="">– Reliability of the source.</span></p>
+    <p class="lead step" data-order="1" data-pose="" data-off-x="127.73" data-off-y="383.17" style="left:12.773%;top:38.317%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr">– Fiabilité de l’interlocuteur.</span><span class="t-en" hidden="">– Reliability of the speaker.</span></p>
+    <p class="lead step" data-order="1" data-pose="" data-off-x="127.73" data-off-y="444.64" style="left:12.773%;top:44.464%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr">– Niveau de preuves</span><span class="t-en" hidden="">– Level of evidence</span></p>
+    <p class="lead step" data-order="1" data-pose="" data-off-x="127.73" data-off-y="506.11" style="left:12.773%;top:50.611%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr">– Multiplicité des canaux de diffusion.</span><span class="t-en" hidden="">– Multiple distribution channels.</span></p>
+    <p class="lead step" data-order="1" data-pose="" data-off-x="127.73" data-off-y="567.58" style="left:12.773%;top:56.758%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr">– Crédibilité de l’information.</span><span class="t-en" hidden="">– Credibility of the information.</span></p>
+    <p class="lead step" data-order="1" data-pose="" data-off-x="127.73" data-off-y="629.05" style="left:12.773%;top:62.905%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr">– Commentaires et critiques de l’information.</span><span class="t-en" hidden="">– Comments and criticism of the information.</span></p>
+    <div class="imgcard step" data-order="2" data-pose="" data-off-x="613.19" data-off-y="194" style="left:61.319%;top:19.4%;width:22.219%;max-width:none"><img src="../medias/images/tampon-cent-pour-cent.jpeg" alt="Tampon « 100 % »" loading="lazy"></div>
+    <svg class="step" data-order="2" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" data-pose="" data-off-x="621.57" data-off-y="155" style="left:62.157%;top:15.5%;width:22.051%;height:41.9%;max-width:none;overflow:visible"><line x1="5.3" y1="3.3" x2="100" y2="97.9" stroke="#ff0000" stroke-width="10" vector-effect="non-scaling-stroke"></line><line x1="95.4" y1="0" x2="0" y2="100" stroke="#ff0000" stroke-width="10" vector-effect="non-scaling-stroke"></line></svg>
+  </section>
+
+<!-- PPT 19 : Limite du concept : les canulars -->
+  <section class="slide" id="nv2-limite-concept">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:center"><span class="t-fr">Limite du concept</span><span class="t-en" hidden="">A limit of the concept</span></h2>
+    <p class="lead" data-pose="" data-off-x="127.73" data-off-y="321.7" style="left:12.773%;top:32.17%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr"><b style="color:var(--acc)">▸</b> Inclut les canulars (Gorafi)</span><span class="t-en" hidden=""><b style="color:var(--acc)">▸</b> Includes hoaxes (Le Gorafi)</span></p>
+  </section>
+
+<!-- PPT 20 : Le Gorafi : Philippe Etchebest -->
+  <section class="slide short" id="s10">
+    <div class="imgcard" data-pose="" data-off-x="220.75" data-off-y="0" style="left:22.075%;top:0%;width:55.85%;max-width:none;max-height:none"><img src="../medias/images/gorafi-etchebest.jpg" alt="Le Gorafi : « Entre trois émissions de télé, Philippe Etchebest parvient enfin à cuisiner un plat pour la première fois depuis douze ans »" loading="lazy" style="max-height:none"></div>
+  </section>
+
+<!-- PPT 21 : Christine Boutin et Anne Hidalgo piégées -->
+  <section class="slide short" id="nv2-gorafi-boutin-hidalgo">
+    <div class="imgcard" data-pose="" data-off-x="173.85" data-off-y="205" style="left:17.385%;top:20.5%;width:63.805%;max-width:none"><img src="../medias/images/boutin-cite-gorafi-titre.png" alt="Loi famille : Christine Boutin cite Le Gorafi au lieu du gouvernement" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="283.68" data-off-y="526" style="left:28.368%;top:52.6%;width:41.922%;max-width:none"><img src="../medias/images/hidalgo-site-parodique-titre.png" alt="Quand Anne Hidalgo se fait piéger par un site parodique canadien" loading="lazy"></div>
+  </section>
+
+<!-- PPT 22 : Mésinformation, désinformation -->
+  <section class="slide" id="s11">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Différentes Fake News</span><span class="t-en" hidden="">Different kinds of fake news</span></h2>
+    <p class="lead step" data-order="1" data-pose="" data-off-x="127.73" data-off-y="321.7" style="left:12.773%;top:32.17%;width:59.11%;max-width:none;font-size:40px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr"><b style="color:var(--acc)">▸</b> Mésinformation</span><span class="t-en" hidden=""><b style="color:var(--acc)">▸</b> Misinformation</span></p>
+    <p class="lead step" data-order="3" data-pose="" data-off-x="164.62" data-off-y="397.49" style="left:16.462%;top:39.749%;width:55.421%;max-width:none;font-size:37px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr"><b style="color:var(--acc)">▹</b> Une infox que l’on partage mais que l’on croit vraie.</span><span class="t-en" hidden=""><b style="color:var(--acc)">▹</b> Fake news we share while believing it is true.</span></p>
+    <p class="lead step" data-order="2" data-pose="" data-off-x="127.73" data-off-y="612.68" style="left:12.773%;top:61.268%;width:59.11%;max-width:none;font-size:40px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr"><b style="color:var(--acc)">▸</b> Désinformation</span><span class="t-en" hidden=""><b style="color:var(--acc)">▸</b> Disinformation</span></p>
+    <p class="lead step" data-order="4" data-pose="" data-off-x="164.62" data-off-y="688.47" style="left:16.462%;top:68.847%;width:55.421%;max-width:none;font-size:37px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr"><b style="color:var(--acc)">▹</b> Une infox que l’on partage et que l’on sait fausse.</span><span class="t-en" hidden=""><b style="color:var(--acc)">▹</b> Fake news we share while knowing it is false.</span></p>
+  </section>
+
+<!-- PPT 23 : Informations fallacieuses -->
+  <section class="slide" id="nv2-informations-fallacieuses">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Informations fallacieuses (misleading news)</span><span class="t-en" hidden="">Misleading information (misleading news)</span></h2>
+    <p class="lead step" data-order="1" data-pose="" data-off-x="127.73" data-off-y="321.7" style="left:12.773%;top:32.17%;width:59.11%;max-width:none;font-size:40px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr"><b style="color:var(--acc)">▸</b> Sont beaucoup moins facilement identifiables qu’une “Fake News” pure et dure.</span><span class="t-en" hidden=""><b style="color:var(--acc)">▸</b> Are much harder to identify than outright “fake news”.</span></p>
+    <p class="lead step" data-order="2" data-pose="" data-off-x="127.73" data-off-y="454.76" style="left:12.773%;top:45.476%;width:59.11%;max-width:none;font-size:40px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr"><b style="color:var(--acc)">▸</b> Sont beaucoup plus partagées par les médias.</span><span class="t-en" hidden=""><b style="color:var(--acc)">▸</b> Are shared far more widely by the media.</span></p>
+  </section>
+
+<!-- PPT 24 : Limite du concept : le continuum -->
+  <section class="slide" id="s12">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:center"><span class="t-fr">Limite du concept</span><span class="t-en" hidden="">A limit of the concept</span></h2>
+    <p class="lead step" data-order="1" data-pose="" data-off-x="127.73" data-off-y="321.7" style="left:12.773%;top:32.17%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr"><b style="color:var(--acc)">▸</b> Inclut les canulars (Gorafi)</span><span class="t-en" hidden=""><b style="color:var(--acc)">▸</b> Includes hoaxes (Le Gorafi)</span></p>
+    <p class="lead step" data-order="2" data-pose="" data-off-x="127.73" data-off-y="441.69" style="left:12.773%;top:44.169%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr"><b style="color:var(--acc)">▸</b> Distinction floue entre la Fake news volontaire (désinformation) et involontaire (mésinformation).</span><span class="t-en" hidden=""><b style="color:var(--acc)">▸</b> A blurred line between deliberate fake news (disinformation) and unintentional fake news (misinformation).</span></p>
+    <p class="lead step" data-order="3" data-pose="" data-off-x="127.73" data-off-y="604.63" style="left:12.773%;top:60.463%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr"><b style="color:var(--acc)">▸</b> Néglige tout le continuum possible de désinformation (« misleading news »).</span><span class="t-en" hidden=""><b style="color:var(--acc)">▸</b> Ignores the whole possible continuum of disinformation (“misleading news”).</span></p>
+    <div class="forme forme-ovale step" data-order="4" data-pose="" data-off-x="159.59" data-off-y="706" style="left:15.959%;top:70.6%;background-color:#5FCBEF;width:12.074%;height:6.7%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#1b1b1b;font-size:27px"><span class="t-fr">Fake News</span><span class="t-en" hidden="">Fake news</span></span></div>
+    <div class="forme forme-ovale step" data-order="5" data-pose="" data-off-x="526.83" data-off-y="700" style="left:52.683%;top:70%;background-color:#EF4F4F;width:26.998%;height:6.7%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#ffffff;font-size:27px"><span class="t-fr">Véritable information</span><span class="t-en" hidden="">Genuine information</span></span></div>
+    <div class="forme forme-rectangle step" data-order="6" data-pose="" data-off-x="219.96" data-off-y="864" style="left:21.996%;top:86.4%;background-color:#5FCBEF;width:45.276%;height:3.3%;max-width:none;isolation:isolate"></div>
+    <p class="lead step" data-order="6" data-pose="" data-off-x="219.96" data-off-y="926.7" style="left:21.996%;top:92.67%;width:45.276%;max-width:none;font-size:30px;text-align:center;"><span class="t-fr">Continuum</span><span class="t-en" hidden="">Continuum</span></p>
+  </section>
+
+<!-- PPT 25 : Conclusion -->
+  <section class="slide" id="s13" data-serie="serie_611e47ed-0618-485c-a70e-7fb6dc9dc3b5">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Conclusion</span><span class="t-en" hidden="">Conclusion</span></h2>
+    <p class="lead" data-pose="" data-off-x="127.73" data-off-y="321.7" style="left:12.773%;top:32.17%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr"><b style="color:var(--acc)">▸</b> 1) Aucune source n’est à 100% fiable</span><span class="t-en" hidden=""><b style="color:var(--acc)">▸</b> 1) No source is 100% reliable</span></p>
+    <p class="lead" data-pose="" data-off-x="127.73" data-off-y="383.17" style="left:12.773%;top:38.317%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr"><b style="color:var(--acc)">▸</b> 2) La « Fake News » est un concept flou.</span><span class="t-en" hidden=""><b style="color:var(--acc)">▸</b> 2) “Fake news” is a blurry concept.</span></p>
+    <p class="lead" data-pose="" data-off-x="127.73" data-off-y="444.64" style="left:12.773%;top:44.464%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr"><b style="color:var(--acc)">▸</b> 3) Elle dépend du contexte.</span><span class="t-en" hidden=""><b style="color:var(--acc)">▸</b> 3) It depends on the context.</span></p>
+  </section>
+
+<!-- PPT 26 : Désinformer SANS Fake News (reprise) -->
+  <section class="slide divider-slide short" id="s14" data-serie="serie_0eecca15-7a12-49b3-a99b-9ed2b7be4944">
+    <h2 data-pose="" data-off-x="345.83" data-off-y="473.93" style="left:34.583%;top:47.393%"><span class="t-fr">Désinformer SANS Fake News</span><span class="t-en" hidden="">Misleading WITHOUT fake news</span></h2>
+  </section>
+
+<!-- PPT 27 : Le biais de cadrage -->
+  <section class="slide divider-slide short" id="nv2-biais-cadrage">
+    <h2 data-pose="" data-off-x="80.78" data-off-y="445" style="left:8.078%;top:44.5%;width:83.844%;max-width:none;text-align:center"><span class="t-fr">Le biais de cadrage</span><span class="t-en" hidden="">Framing bias</span></h2>
+  </section>
+
+<!-- PPT 28 : Le biais de cadrage : la vidéo du métro -->
+  <section class="slide" id="s15">
+    <div class="vidwrap" data-pose="" data-off-x="352.8" data-off-y="16" style="left:35.28%;top:1.6%;width:24.41%;max-width:none;max-height:none"><video src="../medias/video/metro-cadrage-biaise.mp4" controls="" playsinline="" style="max-height:none"></video></div>
+    <p class="lead step" data-order="1" data-pose="" data-off-x="89.16" data-off-y="121.7" style="left:8.916%;top:12.17%;width:25.656%;max-width:none;font-size:30px;text-align:left;"><span class="t-fr">"Dans le métro, ce migrant refuse que des blancs rentrent dans le même wagon que lui !! C’est bizarre, on nous a toujours dit que le racisme anti-blancs n’existait pas !"</span><span class="t-en" hidden="">"On the subway, this migrant refuses to let white people into the same carriage as him!! Weird, we were always told anti-white racism didn’t exist!"</span></p>
+    <p class="lead step" data-order="2" data-pose="" data-off-x="613.19" data-off-y="121.7" style="left:61.319%;top:12.17%;width:30.603%;max-width:none;font-size:30px;text-align:left;"><span class="t-fr">À Lille, un homme frappait sa femme dans le métro. Un passager, témoin de la scène, lui a demandé à plusieurs reprises de cesser. À l’arrêt suivant, le passager a pris l’initiative de faire sortir l’homme du train pour protéger la femme.</span><span class="t-en" hidden="">In Lille, a man was hitting his wife on the subway. A passenger who witnessed the scene repeatedly asked him to stop. At the next stop, the passenger took it upon himself to get the man off the train to protect the woman.</span></p>
+  </section>
+
+<!-- Biais de cadrage : « Vous condamnez les violences ? » (18 oct. 2026) -->
+  <section class="slide short" id="nv2-cadrage-condamnez-violences">
+    <div class="imgcard" data-pose="" data-off-x="150" data-off-y="120" style="left:15%;top:12%;width:70%;max-width:none;max-height:none"><img src="../medias/images/actu-2026-10-18-vous-condamnez-les-violences.jpg" alt="Bâtiment en feu recouvert de la phrase « Vous condamnez les violences ? » répétée" loading="lazy" style="max-height:none"></div>
+  </section>
+
+<!-- Biais de cadrage : dégradations et médiatisation (18 oct. 2026) -->
+  <section class="slide" id="nv2-cadrage-degradations-mediatisation">
+    <h2 data-pose="" data-off-x="80.78" data-off-y="445" style="left:8.078%;top:44.5%;width:83.844%;max-width:none;font-size:61px;text-align:center"><span class="t-fr">« Dégradations » ≠ « Médiatisation des dégradations »</span><span class="t-en" hidden="">“Damage” ≠ “Media coverage of damage”</span></h2>
+  </section>
+
+<!-- PPT 29 : Le même sondage, deux tweets (diapos 29 et 30 du PowerPoint) (reprise) -->
+  <section class="slide" id="s16" data-serie="serie_fcff4396-3a72-47e3-a3ce-0f444b5b2d82">
+    <p class="kicker"><span class="t-fr">Le même chiffre, retourné</span><span class="t-en" hidden="">The same figure, flipped</span></p>
+    <h2><span class="t-fr">Un tweet, deux versions du même sondage</span><span class="t-en" hidden="">One tweet, two versions of the same poll</span></h2>
+    <div class="pct-row">
+      <div class="imgcard small pct-img" data-pct="64" style=""><img src="../medias/images/tweet-progres-noel-64.jpg" alt="Tweet : 64% des Français prévoient le même budget Noël" loading="lazy"></div>
+      <button type="button" class="pct-toggle" data-active="64" data-bascule="[&quot;64%&quot;,&quot;36%&quot;]"><span class="pct-value">64%</span></button>
+      <div class="imgcard small pct-img" data-pct="36" style=""><img src="../medias/images/tweet-progres-noel-36.jpg" alt="Tweet : 36% des Français vont baisser leur budget Noël" loading="lazy"></div>
+    </div>
+    
+  </section>
+
+<!-- PPT 31 : Désinformer en CITANT des Fake News -->
+  <section class="slide" id="s17">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Il est possible de désinformer SANS fake news mais en CITANT des Fake News.</span><span class="t-en" hidden="">It is possible to mislead WITHOUT fake news, but by CITING fake news.</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="362.5" data-off-y="281" style="left:36.25%;top:28.1%;width:27.501%;max-width:none"><img src="../medias/images/logo-fox-news.png" alt="Logo Fox News Channel" loading="lazy"></div>
+  </section>
+
+<!-- PPT 32 : Fox News : le titre, traduit -->
+  <section class="slide" id="nv2-fox-titre">
+    <div class="imgcard" data-pose="" data-off-x="104.26" data-off-y="146" style="left:10.426%;top:14.6%;width:79.149%;max-width:none"><img src="../medias/images/masni-fox-vaccins-1.png" alt="Fox News : « Should you get the COVID and flu vaccines at the same time? »" loading="lazy"></div>
+    <p class="lead" data-pose="" data-off-x="173.01" data-off-y="601.7" style="left:17.301%;top:60.17%;width:56.343%;max-width:none;font-size:30px;text-align:left;"><span class="t-fr"><b>« Devriez-vous recevoir les vaccins contre la COVID et la grippe en même temps ? »</b><br><i>De nouvelles recherches suggèrent qu’il pourrait être bénéfique de les faire ensemble, mais certains médecins appellent à la prudence.</i></span><span class="t-en" hidden=""><b>“Should you get the COVID and flu vaccines at the same time?”</b><br><i>New research suggests it may be beneficial to double up, but some doctors urge caution.</i></span></p>
+  </section>
+
+<!-- PPT 33 : Recherche Google : Fox News et les vaccins (1) -->
+  <section class="slide short" id="nv2-fox-google-1" data-serie="serie_bc4c26bc-a7ae-4b49-a6c0-f38657d04653">
+    <div class="imgcard" data-pose="" data-off-x="209.06" data-off-y="27" style="left:20.906%;top:2.7%;width:58.104%;max-width:none;max-height:none"><img src="../medias/images/masni-fox-vaccins-2.png" alt="Recherche Google « fox news and vaccin » : quatre articles de Fox News" loading="lazy" style="max-height:none"></div>
+  </section>
+
+<!-- PPT 34 : Recherche Google (1), en texte -->
+  <section class="slide" id="nv2-fox-google-1-texte">
+    <p class="lead" data-pose="" data-off-x="193.97" data-off-y="26.7" style="left:19.397%;top:2.67%;width:64.308%;max-width:none;font-size:25px;text-align:left;line-height:1.27"><span class="t-fr"><b>Fox News</b><br><span style="color:var(--acc2)">https://www.foxnews.com › health</span><br><b>Devriez-vous recevoir les vaccins contre la COVID et la grippe en même temps ?</b><br>Il y a 2 jours – De nouvelles recherches suggèrent qu’il pourrait être bénéfique de les faire ensemble, mais certains médecins appellent à la prudence. Par Melissa Rudy, <i>Fox News</i>. Publié le 16 novembre 2023 à 6h : ...<br><br><b>Fox News</b><br><span style="color:var(--acc2)">https://www.foxnews.com › health</span><br><b>Les taux de vaccination contre la COVID et la grippe diminuent chez les professionnels de santé américains ...</b><br>De moins en moins de travailleurs de la santé aux États-Unis se tiennent à jour concernant leurs vaccinations contre la COVID-19 et la grippe, selon deux rapports distincts publiés cette semaine ...<br><br><b>Fox News</b><br><span style="color:var(--acc2)">https://www.foxnews.com › health</span><br><b>Un sondage sur le vaccin contre la COVID révèle que plus de la moitié des adultes sont susceptibles de ne pas se faire vacciner ...</b><br>1er oct. 2023 – Parmi les adultes américains, 52 % déclarent qu’ils ne se feront « probablement » ou « certainement » pas administrer le nouveau vaccin contre la COVID-19, selon le sondage <i>KFF COVID-19 Vaccine Monitor</i>.<br><br><b>Fox News</b><br><span style="color:var(--acc2)">https://www.foxnews.com › health</span><br><b>Vaccins contre la COVID mis à jour : la FDA annonce une autorisation d’urgence ...</b><br>11 sept. 2023 – Selon l’annonce de lundi, « les vaccins bivalents Moderna et Pfizer-BioNTech contre la COVID-19 ne sont plus autorisés pour une utilisation aux États-Unis, » ...</span><span class="t-en" hidden=""><b>Fox News</b><br><span style="color:var(--acc2)">https://www.foxnews.com › health</span><br><b>Should you get the COVID and flu vaccines at the same time?</b><br>2 days ago – New research suggests it may be beneficial to double up, but some doctors urge caution. By Melissa Rudy, <i>Fox News</i>. Published November 16, 2023 6am: ...<br><br><b>Fox News</b><br><span style="color:var(--acc2)">https://www.foxnews.com › health</span><br><b>COVID and flu vaccine rates are declining for US health care workers ...</b><br>Fewer U.S. health care workers are keeping up to date on their COVID-19 and flu vaccinations, according to two separate reports this week ...<br><br><b>Fox News</b><br><span style="color:var(--acc2)">https://www.foxnews.com › health</span><br><b>COVID vaccine poll finds more than half of adults are likely ...</b><br>Oct 1, 2023 – Among U.S. adults, 52% said they will “probably” or “definitely” not get the new COVID-19 vaccine, according to the <i>KFF COVID-19 Vaccine Monitor</i> poll.<br><br><b>Fox News</b><br><span style="color:var(--acc2)">https://www.foxnews.com › health</span><br><b>Updated COVID vaccines: FDA announces emergency ...</b><br>Sep 11, 2023 – With Monday’s announcement, “the bivalent Moderna and Pfizer-BioNTech COVID-19 vaccines are no longer authorized for use in the United States,” ...</span></p>
+  </section>
+
+<!-- PPT 35 : Recherche Google : Fox News et les vaccins (2) -->
+  <section class="slide short" id="nv2-fox-google-2">
+    <div class="imgcard" data-pose="" data-off-x="278.65" data-off-y="53" style="left:27.865%;top:5.3%;width:44.186%;max-width:none;max-height:none"><img src="../medias/images/masni-fox-vaccins-3.png" alt="Recherche Google : quatre autres articles de Fox News sur le vaccin COVID" loading="lazy" style="max-height:none"></div>
+  </section>
+
+<!-- PPT 36 : Recherche Google (2), en texte -->
+  <section class="slide" id="nv2-fox-google-2-texte">
+    <p class="lead" data-pose="" data-off-x="93.36" data-off-y="68.7" style="left:9.336%;top:6.87%;width:69.507%;max-width:none;font-size:24px;text-align:left;line-height:1.3"><span class="t-fr"><b>Fox News</b><br><span style="color:var(--acc2)">https://www.foxnews.com › health</span><br>Le vaccin COVID qui vient d’être approuvé devrait être évité par les Floridiens…<br>17 sept. 2023 – Les « Floridiens en bonne santé » ne devraient pas être des « cobayes », déclare le gouverneur, alors que la FDA et le CDC approuvent et recommandent un nouveau vaccin.<br>Par Melissa Rudy, Fox News.<br><br><b>Fox News</b><br><span style="color:var(--acc2)">https://www.foxnews.com › health</span><br>La nouvelle promotion du vaccin COVID est « anti-humaine », déclare le chirurgien général de Floride…<br>3 oct. 2023 – La nouvelle promotion du vaccin COVID est « anti-humaine », affirme le chirurgien général de Floride : « Problème majeur de sécurité ».<br>Le Dr Joseph Ladapo a déclaré à Fox News Digital qu’il…<br><br><b>Fox News</b><br><span style="color:var(--acc2)">https://www.foxnews.com › health</span><br>Encore un autre vaccin COVID ? Alors que Biden réclame un nouveau…<br>29 août 2023 – À la suite des déclarations du président Biden vendredi indiquant qu’il prévoit de demander un financement pour un nouveau vaccin COVID amid rising cases, des médecins réagissent…<br><br><b>Fox News</b><br><span style="color:var(--acc2)">https://www.foxnews.com › health</span><br>Quel bras devriez-vous utiliser pour le vaccin COVID et…<br>Cela compte vraiment, suggère une étude. Voici pourquoi un choix pourrait déclencher une « réponse immunitaire plus forte » que l’autre.<br>Par Melissa Rudy, Fox News.</span><span class="t-en" hidden=""><b>Fox News</b><br><span style="color:var(--acc2)">https://www.foxnews.com › health</span><br>COVID vaccine just approved should be skipped by Florida…<br>Sep 17, 2023 – “Healthy Floridians” should not be “guinea pigs,” says governor, as FDA and CDC approve, recommend new vaccine.<br>By Melissa Rudy, Fox News.<br><br><b>Fox News</b><br><span style="color:var(--acc2)">https://www.foxnews.com › health</span><br>New COVID vaccine push is “anti-human,” says Florida…<br>Oct 3, 2023 – New COVID vaccine push is “anti-human,” says Florida surgeon general: “Major safety concern”.<br>Dr. Joseph Ladapo told Fox News Digital he…<br><br><b>Fox News</b><br><span style="color:var(--acc2)">https://www.foxnews.com › health</span><br>Yet another COVID vaccine? As Biden calls for new…<br>Aug 29, 2023 – Following President Biden’s Friday remarks that he plans to request funding for a new COVID vaccine amid rising cases, doctors sound off…<br><br><b>Fox News</b><br><span style="color:var(--acc2)">https://www.foxnews.com › health</span><br>Which arm should you use for the COVID vaccine and…<br>It really does matter, study suggests. Here’s why one choice may trigger a “stronger immune response” than the other.<br>By Melissa Rudy, Fox News.</span></p>
+  </section>
+
+<!-- PPT 37 : Les autres manières de désinformer (reprise) -->
+  <section class="slide divider-slide short" id="s26-2" data-serie="serie_51ef73f5-bc37-45be-a9ef-79dcefd12ebd">
+    <h2 data-pose="" data-off-x="312.26" data-off-y="473.93" style="left:31.226%;top:47.393%"><span class="t-fr">Les autres manières de désinformer</span><span class="t-en" hidden="">Other ways to mislead</span></h2>
+  </section>
+
+<!-- PPT 38 : Les autres manières de désinformer : le collage -->
+  <section class="slide" id="s27">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">3 - Les autres manières de désinformer</span><span class="t-en" hidden="">3 - Other ways to mislead</span></h2>
+    <div class="imgcard step" data-order="3" data-pose="" data-off-x="301.29" data-off-y="653" style="left:30.129%;top:65.3%;width:33.789%;max-width:none"><img src="../medias/images/actu-2025-11-25-insultes-extreme-droite.png" alt="Capture : un flot de commentaires insultants sous une publication" loading="lazy"></div>
+    <div class="imgcard step" data-order="1" data-pose="" data-off-x="94.19" data-off-y="199" style="left:9.419%;top:19.9%;width:37.981%;max-width:none"><img src="../medias/images/mcdo-osaka-foule.jpg" alt="Foule devant un McDonald’s à Osaka" loading="lazy"></div>
+    <div class="imgcard step" data-order="2" data-pose="" data-off-x="551.14" data-off-y="186" style="left:55.114%;top:18.6%;width:24.734%;max-width:none"><img src="../medias/images/lloyd-bentsen.jpg" alt="Le sénateur Lloyd Bentsen" loading="lazy"></div>
+    <div class="imgcard step" data-order="5" data-pose="" data-off-x="503.35" data-off-y="217" style="left:50.335%;top:21.7%;width:35.382%;max-width:none"><img src="../medias/images/astroturf-lettre-pere-noel.jpg" alt="Des lettres envoyées en masse" loading="lazy"></div>
+    <div class="imgcard step" data-order="4" data-pose="" data-off-x="104.26" data-off-y="217" style="left:10.426%;top:21.7%;width:36.891%;max-width:none"><img src="../medias/images/mcdo-osaka-titre.jpg" alt="« McDonald’s admits 1,000 people paid to join queue for Quarter Pounder debut in Osaka »" loading="lazy"></div>
+    <div class="imgcard step" data-order="6" data-pose="" data-off-x="304.64" data-off-y="578" style="left:30.464%;top:57.8%;width:33.789%;max-width:none"><img src="../medias/images/telegram-silhouette.jpg" alt="Silhouette avec un smartphone Telegram" loading="lazy"></div>
+    <div class="speaker-notes" hidden="">Lloyd Bentsen[2] in 1985 sénateur Texan</div>
+  </section>
+
+<!-- PPT 39 : L’Astroturfing -->
+  <section class="slide" id="s28">
+    <div class="imgcard" data-pose="" data-off-x="395.96" data-off-y="0" style="left:39.596%;top:0%;width:50.154%;max-width:none;max-height:none"><img src="../medias/images/astroturfing-illustration-recadree.jpg" alt="Une usine qui fabrique des trolls à la chaîne" loading="lazy" style="max-height:none"></div>
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:26.495%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">L’Astroturfing</span><span class="t-en" hidden="">Astroturfing</span></h2>
+    <p class="lead" data-pose="" data-off-x="127.73" data-off-y="321.7" style="left:12.773%;top:32.17%;width:26.495%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr"><b style="color:var(--acc)">▸</b> L’astroturfing est une technique consistant à simuler un mouvement spontané ou populaire à des fins politiques ou économiques dans le but d’influencer l’opinion publique.</span><span class="t-en" hidden=""><b style="color:var(--acc)">▸</b> Astroturfing is a technique that fakes a spontaneous or grassroots movement for political or economic ends, in order to influence public opinion.</span></p>
+    <div class="speaker-notes" hidden="">C'est le sénateur du Texas Lloyd Bentsen qui utilise le terme astroturfing pour la première fois en 1986. Il raconte que de nombreux courriers qui lui sont prétendument envoyés par des citoyens sont en réalité une campagne de lobbying d'une compagnie d'assurance5. 
+L'origine du terme astroturfing fait référence à la pelouse artificielle de marque AstroTurf (en) utilisée dans les stades. C'est un jeu de mots sur l'expression « grassroots movement » en anglais américain. Grassroots, qui signifie littéralement « racine de l'herbe », exprime l'idée d'authenticité, d'ancrage dans le peuple. Ainsi la référence à une pelouse synthétique dénonce par analogie l'artificialité de ces pseudo mouvements citoyens. 
+C’est du militantisme mensongé.</div>
+  </section>
+
+<!-- PPT 40 : Vidéo -->
+  <section class="slide short" id="s29-2" data-serie="serie_56b43ec5-fb2d-4482-a65f-ade3960e4d16">
+    <div class="vidwrap" data-pose="" data-off-x="352.38" data-off-y="0" style="left:35.238%;top:0%;width:24.41%;max-width:none;max-height:none"><video src="../medias/video/transition-astroturfing-humour.mp4" controls="" playsinline="" style="max-height:none"></video></div>
+  </section>
+
+<!-- PPT 41 : La fabrique du doute : le tabac -->
+  <section class="slide" id="s30">
+    <div class="imgcard" data-pose="" data-off-x="442.99" data-off-y="227" style="left:44.299%;top:22.7%;width:45.947%;max-width:none"><img src="../medias/images/affiche-tabac-lucky-strike.png" alt="Publicité Lucky Strike : « 20,679 Physicians say "Luckies are less irritating" »" loading="lazy"></div>
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">La fabrique du doute</span><span class="t-en" hidden="">The manufacture of doubt</span></h2>
+    <p class="lead" data-pose="" data-off-x="96.71" data-off-y="349.7" style="left:9.671%;top:34.97%;width:31.358%;max-width:none;font-size:34px;text-align:left;"><span class="t-fr">Une technique à l’origine employée par les industriels pour noyer le poisson sur leurs activités mais pas seulement… Elle plaît beaucoup en politique également.</span><span class="t-en" hidden="">A technique originally used by industry to muddy the waters about its activities, but not only… It is also very popular in politics.</span></p>
+    <div class="speaker-notes" hidden="">Le tabac comme habitude cool : 
+Connaissance des risques du tabac : caché. Négation. 
+Lobbying ET soft power auprès des jeunes.</div>
+  </section>
+
+<!-- PPT 42 : La fabrique du doute : le contre-narratif -->
+  <section class="slide" id="s32e">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">La fabrique du doute</span><span class="t-en" hidden="">The manufacture of doubt</span></h2>
+    <div class="forme forme-ovale step" data-order="1" data-pose="" data-off-x="166.3" data-off-y="195" style="left:16.63%;top:19.5%;background-color:#5FCBEF;width:11.487%;height:22.5%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#ffffff;font-size:30px"><span class="t-fr">Invasion</span><span class="t-en" hidden="">Invasion</span></span></div>
+    <div class="forme forme-ovale step" data-order="2" data-pose="" data-off-x="224.15" data-off-y="453" style="left:22.415%;top:45.3%;background-color:#5FCBEF;width:16.937%;height:30.5%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#ffffff;font-size:30px"><span class="t-fr">Attaque d’un pays souverain</span><span class="t-en" hidden="">Attack on a sovereign country</span></span></div>
+    <div class="forme forme-ovale step" data-order="3" data-pose="" data-off-x="162.11" data-off-y="770" style="left:16.211%;top:77%;background-color:#5FCBEF;width:10.9%;height:21.6%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#ffffff;font-size:30px"><span class="t-fr">Premiers à attaquer</span><span class="t-en" hidden="">First to attack</span></span></div>
+    <div class="forme forme-ovale step" data-order="5" data-pose="" data-off-x="479.04" data-off-y="431" style="left:47.904%;top:43.1%;background-color:#FF0000;width:16.937%;height:32.8%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#ffffff;font-size:30px"><span class="t-fr">Historiquement nous sommes le même pays</span><span class="t-en" hidden="">Historically we are the same country</span></span></div>
+    <div class="forme forme-ovale step" data-order="6" data-pose="" data-off-x="617.38" data-off-y="770" style="left:61.738%;top:77%;background-color:#FF0000;width:10.732%;height:21.6%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#ffffff;font-size:30px"><span class="t-fr">Légitime défense</span><span class="t-en" hidden="">Self-defence</span></span></div>
+    <div class="forme forme-ovale step" data-order="4" data-pose="" data-off-x="606.48" data-off-y="203" style="left:60.648%;top:20.3%;background-color:#FF0000;width:12.744%;height:26.1%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#ffffff;font-size:30px"><span class="t-fr">Libération du peuple</span><span class="t-en" hidden="">Liberation of the people</span></span></div>
+    <div class="forme forme-rectangle step" data-order="7" data-pose="" data-off-x="254.34" data-off-y="470" style="left:25.434%;top:47%;background-color:#FFC000;width:45.024%;height:19.3%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#ffffff;font-size:54px"><span class="t-fr">Contre narratif</span><span class="t-en" hidden="">Counter-narrative</span></span></div>
+    <div class="speaker-notes" hidden="">Russia: Denial of human rights abuses. 
+https://www.politico.eu/article/russia-ukraine-disinformation-nato-united-states-special-forces-winter-olympics-moscow-kremlin-kyiv/
+NATO will supposedly attack Russia at the upcoming Winter Olympics.
+https://news-front.info/2022/01/14/ukraina-gotovit-vooruzhennuyu-provokatsiyu-v-donbasse-vo-vremya-olimpiady-dmitriy-solonnikov/
+Debate around RT, Russia Today.</div>
+  </section>
+
+<!-- PPT 43 : La Mute News -->
+  <section class="slide" id="s31">
+    <div class="imgcard" data-pose="" data-off-x="500" data-off-y="229" style="left:50%;top:22.9%;width:38.233%;max-width:none"><img src="../medias/images/hep-mute-news-1.png" alt="Une femme, un doigt sur les lèvres" loading="lazy"></div>
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">La Mute News</span><span class="t-en" hidden="">Mute News</span></h2>
+    <p class="lead" data-pose="" data-off-x="105.09" data-off-y="351.7" style="left:10.509%;top:35.17%;width:38.233%;max-width:none;font-size:30px;text-align:justify;"><span class="t-fr">Ne PAS parler de certaines informations, ou PEU parler de certaines informations.</span><span class="t-en" hidden="">NOT talking about certain information, or talking about it only a LITTLE.</span></p>
+  </section>
+
+<!-- PPT 44 : La Mute News : trois conflits -->
+  <section class="slide" id="s31b">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">La Mute News</span><span class="t-en" hidden="">Mute News</span></h2>
+    <div class="imgcard step" data-order="1" data-pose="" data-off-x="484.91" data-off-y="44" style="left:48.491%;top:4.4%;width:29.345%;max-width:none"><img src="../medias/images/mute-news-ukraine.jpg" alt="Soldats ukrainiens" loading="lazy"></div>
+    <div class="imgcard step" data-order="2" data-pose="" data-off-x="260.21" data-off-y="332" style="left:26.021%;top:33.2%;width:27.249%;max-width:none"><img src="../medias/images/mute-news-gaza.jpg" alt="Gaza, après un bombardement" loading="lazy"></div>
+    <div class="imgcard step" data-order="3" data-pose="" data-off-x="490.78" data-off-y="558" style="left:49.078%;top:55.8%;width:28.255%;max-width:none"><img src="../medias/images/mute-news-soudan.jpg" alt="Soudan, réfugiés" loading="lazy"></div>
+  </section>
+
+<!-- PPT 45 : Just Stop Oil -->
+  <section class="slide short" id="s31c" data-serie="serie_d0233e22-237c-4afd-a874-13b32beb31c1">
+    <div class="imgcard" data-pose="" data-off-x="202.35" data-off-y="146" style="left:20.235%;top:14.6%;width:59.446%;max-width:none"><img src="../medias/images/just-stop-oil.jpg" alt="Deux militantes de Just Stop Oil devant les Tournesols de Van Gogh" loading="lazy"></div>
+  </section>
+
+<!-- PPT 46 : L’usage politique de la désinformation -->
+  <section class="slide divider-slide short" id="nv2-usage-politique">
+    <h2 data-pose="" data-off-x="80.78" data-off-y="445" style="left:8.078%;top:44.5%;width:83.844%;max-width:none;text-align:center"><span class="t-fr">L’usage politique de la désinformation</span><span class="t-en" hidden="">The political use of disinformation</span></h2>
+  </section>
+
+<!-- PPT 47 : GIF « You are fake news », encore -->
+  <section class="slide short" id="nv2-trump-fake-news-bis">
+    <div class="imgcard" data-pose="" data-off-x="224.99" data-off-y="281" style="left:22.499%;top:28.1%;width:39.574%;max-width:none"><img src="../medias/images/trump-you-are-fake-news.gif" alt="Donald Trump : « You are fake news »" loading="lazy"></div>
+  </section>
+
+<!-- PPT 48 : Photo de manifestation -->
+  <section class="slide short" id="nv2-manifestation">
+    <div class="imgcard" data-pose="" data-off-x="355.79" data-off-y="111" style="left:35.579%;top:11.1%;width:28.339%;max-width:none;max-height:none"><img src="../medias/images/manifestation-gaz-lacrymogene.jpg" alt="Une rue, des manifestants et des gaz lacrymogènes" loading="lazy" style="max-height:none"></div>
+  </section>
+
+<!-- PPT 49 : Le Monde : l’Iran accuse la France -->
+  <section class="slide" id="s36">
+    <div class="imgcard" data-pose="" data-off-x="175.52" data-off-y="252" style="left:17.552%;top:25.2%;width:62.296%;max-width:none"><img src="../medias/images/masni-c5-delegitimer-1.png" alt="Le Monde : « L’Iran accuse les services de renseignement français d’ingérence dans les manifestations antirégime, la France dément des "déclarations mensongères" »" loading="lazy"></div>
+    <img src="../medias/images/logo-le-monde.png" alt="Le Monde" data-pose="" data-off-x="385.13" data-off-y="50" style="left:38.513%;top:5%;width:20.374%;max-width:none;height:auto;max-height:none">
+  </section>
+
+<!-- PPT 50 : Les croix de David -->
+  <section class="slide" id="s32">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Les croix de David</span><span class="t-en" hidden="">The Stars of David</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="204.87" data-off-y="201" style="left:20.487%;top:20.1%;width:43.683%;max-width:none"><img src="../medias/images/etoiles-david-tags-photo.jpg" alt="Étoiles de David taguées sur un mur à Paris" loading="lazy"></div>
+  </section>
+
+<!-- PPT 51 : Les premiers titres -->
+  <section class="slide short" id="s32b">
+    <div class="imgcard" data-pose="" data-off-x="109.29" data-off-y="313" style="left:10.929%;top:31.3%;width:65.734%;max-width:none"><img src="../medias/images/etoiles-david-titre-borne.jpg" alt="Des étoiles de David taguées en Île-de-France : enquête ouverte, Élisabeth Borne dénonce des « agissements ignobles »" loading="lazy"></div>
+    <div class="speaker-notes" hidden="">https://www.lemonde.fr/societe/article/2023/10/31/le-parquet-de-paris-ouvre-une-enquete-apres-la-decouverte-d-etoiles-de-david-taguees-sur-des-immeubles_6197523_3224.html</div>
+  </section>
+
+<!-- PPT 52 : Le doute, puis le FSB -->
+  <section class="slide" id="s32c">
+    <div class="imgcard step" data-order="1" data-pose="" data-off-x="115.99" data-off-y="101" style="left:11.599%;top:10.1%;width:65.566%;max-width:none"><img src="../medias/images/etoiles-david-titre-manipulation.jpg" alt="Tags d’étoiles de David : antisémitisme, manipulation, soutien à Israël ? L’enquête se poursuit" loading="lazy"></div>
+    <div class="imgcard step" data-order="2" data-pose="" data-off-x="174.68" data-off-y="350" style="left:17.468%;top:35%;width:57.601%;max-width:none"><img src="../medias/images/etoiles-david-titre-insulter.png" alt="Étoiles de David taguées à Paris : « insulter le peuple juif ou en revendiquer l’appartenance ? »" loading="lazy"></div>
+    <div class="imgcard step" data-order="3" data-pose="" data-off-x="316.38" data-off-y="621" style="left:31.638%;top:62.1%;width:50.81%;max-width:none"><img src="../medias/images/etoiles-david-titre-fsb.jpg" alt="Étoiles de David taguées à Paris : l’opération était pilotée par le FSB russe" loading="lazy"></div>
+    <div class="speaker-notes" hidden="">https://www.francebleu.fr/infos/faits-divers-justice/trois-etoiles-de-david-taguees-a-proximite-de-l-hypercacher-des-attentats-de-2015-8817322
+https://actu.fr/ile-de-france/paris_75056/etoiles-de-david-taguees-a-paris-insulter-le-peuple-juif-ou-en-revendiquer-l-appartenance_60280856.html</div>
+  </section>
+
+<!-- PPT 53 : Photo : la tête de porc -->
+  <section class="slide short" id="nv2-tete-de-porc" data-serie="serie_5504b356-6fd5-473f-a7bb-1ecd7cefea51">
+    <div class="imgcard" data-pose="" data-off-x="188.1" data-off-y="182" style="left:18.81%;top:18.2%;width:58.691%;max-width:none"><img src="../medias/images/communiquer-221-56.jpg" alt="Une tête de porc déposée sur le trottoir" loading="lazy"></div>
+  </section>
+
+<!-- PPT 54 : Photo : Elon Musk -->
+  <section class="slide" id="s-d30" data-serie="serie_cffefd4d-3855-4807-a0b3-b37b07ddbfaa">
+    <div class="imgcard ppt-img" data-pose="" data-off-x="170.471" data-off-y="34.256" style="left:17.047%;top:3.426%;width:65.906%;max-width:none;"><img src="../medias/images/ia-desinfo-diapo-30.png" alt="" loading="lazy" style="aspect-ratio:9582210/6388141"></div>
+  </section>
+
+<!-- PPT 55 : Le cycle de la polarisation : des agents étrangers -->
+  <section class="slide" id="s33">
+    <div class="forme forme-rectangle step" data-order="1" data-pose="" data-off-x="236.73" data-off-y="111" style="left:23.673%;top:11.1%;background-color:#ffffff;border:2px solid #2C3C43;width:17.859%;height:19.8%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#1b1b1b;font-size:30px"><span class="t-fr">Des agents étrangers provoquent un incident</span><span class="t-en" hidden="">Foreign agents provoke an incident</span></span></div>
+    <div class="forme forme-rectangle step" data-order="2" data-pose="" data-off-x="478.2" data-off-y="111" style="left:47.82%;top:11.1%;background-color:#ffffff;border:2px solid #2C3C43;width:17.859%;height:19.8%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#1b1b1b;font-size:30px"><span class="t-fr">Politiciens et médias réagissent</span><span class="t-en" hidden="">Politicians and media react</span></span></div>
+    <div class="forme forme-rectangle step" data-order="3" data-pose="" data-off-x="589.71" data-off-y="401" style="left:58.971%;top:40.1%;background-color:#ffffff;border:2px solid #2C3C43;width:17.859%;height:19.8%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#1b1b1b;font-size:30px"><span class="t-fr">Les médias sociaux réagissent</span><span class="t-en" hidden="">Social media react</span></span></div>
+    <div class="forme forme-rectangle step" data-order="5" data-pose="" data-off-x="236.73" data-off-y="673" style="left:23.673%;top:67.3%;background-color:#ffffff;border:2px solid #2C3C43;width:17.859%;height:19.8%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#1b1b1b;font-size:30px"><span class="t-fr">Les fermes de troll augmentent ce phénomène</span><span class="t-en" hidden="">Troll farms amplify the phenomenon</span></span></div>
+    <div class="forme forme-rectangle step" data-order="4" data-pose="" data-off-x="488.26" data-off-y="671" style="left:48.826%;top:67.1%;background-color:#ffffff;border:2px solid #2C3C43;width:17.859%;height:19.8%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#1b1b1b;font-size:30px"><span class="t-fr">Les médias sociaux augmentent les propos radicaux et polarisants</span><span class="t-en" hidden="">Social media amplify radical, polarising rhetoric</span></span></div>
+    <div class="forme forme-rectangle step" data-order="6" data-pose="" data-off-x="147.85" data-off-y="387" style="left:14.785%;top:38.7%;background-color:#ffffff;border:2px solid #2C3C43;width:17.859%;height:19.8%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#1b1b1b;font-size:30px"><span class="t-fr">La société devient davantage divisée</span><span class="t-en" hidden="">Society becomes more divided</span></span></div>
+    <img src="../medias/images/fleche-cycle-polarisation.png" alt="Une flèche circulaire : le cycle recommence" data-order="7" class="step" data-pose="" data-off-x="226.01" data-off-y="27" style="left:22.601%;top:2.7%;width:43.395%;max-width:none;height:auto;max-height:none">
+  </section>
+
+<!-- PPT 56 : Le cycle : une attaque terroriste -->
+  <section class="slide" id="nv2-polarisation-attentat">
+    <div class="forme forme-rectangle" data-pose="" data-off-x="236.73" data-off-y="111" style="left:23.673%;top:11.1%;background-color:#ffffff;border:2px solid #2C3C43;width:17.859%;height:19.8%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#1b1b1b;font-size:30px"><span class="t-fr">Attaque terroriste</span><span class="t-en" hidden="">Terrorist attack</span></span></div>
+    <div class="forme forme-rectangle" data-pose="" data-off-x="478.2" data-off-y="111" style="left:47.82%;top:11.1%;background-color:#ffffff;border:2px solid #2C3C43;width:17.859%;height:19.8%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#1b1b1b;font-size:30px"><span class="t-fr">Politiciens et médias réagissent</span><span class="t-en" hidden="">Politicians and media react</span></span></div>
+    <div class="forme forme-rectangle" data-pose="" data-off-x="589.71" data-off-y="401" style="left:58.971%;top:40.1%;background-color:#ffffff;border:2px solid #2C3C43;width:17.859%;height:19.8%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#1b1b1b;font-size:30px"><span class="t-fr">Les médias sociaux réagissent</span><span class="t-en" hidden="">Social media react</span></span></div>
+    <div class="forme forme-rectangle" data-pose="" data-off-x="236.73" data-off-y="673" style="left:23.673%;top:67.3%;background-color:#ffffff;border:2px solid #2C3C43;width:17.859%;height:19.8%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#1b1b1b;font-size:30px"><span class="t-fr">Les fermes de troll augmentent ce phénomène</span><span class="t-en" hidden="">Troll farms amplify the phenomenon</span></span></div>
+    <div class="forme forme-rectangle" data-pose="" data-off-x="488.26" data-off-y="671" style="left:48.826%;top:67.1%;background-color:#ffffff;border:2px solid #2C3C43;width:17.859%;height:19.8%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#1b1b1b;font-size:30px"><span class="t-fr">Les médias sociaux augmentent les propos radicaux et polarisants</span><span class="t-en" hidden="">Social media amplify radical, polarising rhetoric</span></span></div>
+    <div class="forme forme-rectangle" data-pose="" data-off-x="147.85" data-off-y="387" style="left:14.785%;top:38.7%;background-color:#ffffff;border:2px solid #2C3C43;width:17.859%;height:19.8%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#1b1b1b;font-size:30px"><span class="t-fr">La société devient davantage divisée</span><span class="t-en" hidden="">Society becomes more divided</span></span></div>
+  </section>
+
+<!-- PPT 57 : Le cycle : des manifestations nationales -->
+  <section class="slide" id="nv2-polarisation-manifestations">
+    <div class="forme forme-rectangle" data-pose="" data-off-x="236.73" data-off-y="111" style="left:23.673%;top:11.1%;background-color:#ffffff;border:2px solid #2C3C43;width:17.859%;height:19.8%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#1b1b1b;font-size:30px"><span class="t-fr">Manifestations nationales</span><span class="t-en" hidden="">Nationwide protests</span></span></div>
+    <div class="forme forme-rectangle" data-pose="" data-off-x="478.2" data-off-y="111" style="left:47.82%;top:11.1%;background-color:#ffffff;border:2px solid #2C3C43;width:17.859%;height:19.8%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#1b1b1b;font-size:30px"><span class="t-fr">Politiciens et médias réagissent</span><span class="t-en" hidden="">Politicians and media react</span></span></div>
+    <div class="forme forme-rectangle" data-pose="" data-off-x="589.71" data-off-y="401" style="left:58.971%;top:40.1%;background-color:#ffffff;border:2px solid #2C3C43;width:17.859%;height:19.8%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#1b1b1b;font-size:30px"><span class="t-fr">Les médias sociaux réagissent</span><span class="t-en" hidden="">Social media react</span></span></div>
+    <div class="forme forme-rectangle" data-pose="" data-off-x="236.73" data-off-y="673" style="left:23.673%;top:67.3%;background-color:#ffffff;border:2px solid #2C3C43;width:17.859%;height:19.8%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#1b1b1b;font-size:30px"><span class="t-fr">Les fermes de troll augmentent ce phénomène</span><span class="t-en" hidden="">Troll farms amplify the phenomenon</span></span></div>
+    <div class="forme forme-rectangle" data-pose="" data-off-x="488.26" data-off-y="671" style="left:48.826%;top:67.1%;background-color:#ffffff;border:2px solid #2C3C43;width:17.859%;height:19.8%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#1b1b1b;font-size:30px"><span class="t-fr">Les médias sociaux augmentent les propos radicaux et polarisants</span><span class="t-en" hidden="">Social media amplify radical, polarising rhetoric</span></span></div>
+    <div class="forme forme-rectangle" data-pose="" data-off-x="147.85" data-off-y="387" style="left:14.785%;top:38.7%;background-color:#ffffff;border:2px solid #2C3C43;width:17.859%;height:19.8%;max-width:none;isolation:isolate"><span class="forme-texte" style="color:#1b1b1b;font-size:30px"><span class="t-fr">La société devient davantage divisée</span><span class="t-en" hidden="">Society becomes more divided</span></span></div>
+  </section>
+
+<!-- PPT 58 : Complot ou pas ? -->
+  <section class="slide" id="nv2-complot-ou-pas">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Complot ou pas ?</span><span class="t-en" hidden="">Conspiracy or not?</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="185.58" data-off-y="315" style="left:18.558%;top:31.5%;width:47.456%;max-width:none"><img src="../medias/images/11-septembre-world-trade-center.jpg" alt="Les tours du World Trade Center, le 11 septembre 2001" loading="lazy"></div>
+  </section>
+
+<!-- PPT 59 : Les théories du complot comme argument rhétorique -->
+  <section class="slide" id="s37">
+    <h2 data-pose="" data-off-x="128.57" data-off-y="50.7" style="left:12.857%;top:5.07%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Les théories du complot comme argument rhétorique</span><span class="t-en" hidden="">Conspiracy theories as a rhetorical device</span></h2>
+    <div class="vidwrap" data-pose="" data-off-x="272.78" data-off-y="211" style="left:27.278%;top:21.1%;width:45.444%;max-width:none"><video src="../medias/video/colin-powell-onu-archive.mp4" controls="" playsinline=""></video></div>
+  </section>
+
+<!-- PPT 60 : Colin Powell regrette -->
+  <section class="slide short" id="s37b">
+    <div class="imgcard" data-pose="" data-off-x="169.65" data-off-y="76" style="left:16.965%;top:7.6%;width:60.787%;max-width:none"><img src="../medias/images/colin-powell-regret.jpg" alt="Colin Powell : « Je le regrette maintenant parce que ces informations étaient fausses »" loading="lazy"></div>
+  </section>
+
+<!-- PPT 61 : BBC : les armes biologiques -->
+  <section class="slide short" id="nv2-bbc-biolabs">
+    <div class="imgcard" data-pose="" data-off-x="127.73" data-off-y="45" style="left:12.773%;top:4.5%;width:67.159%;max-width:none;max-height:none"><img src="../medias/images/bbc-ukraine-biolabs.jpg" alt="BBC : « Ukraine war: Fact-checking Russia’s biological weapons claims »" loading="lazy" style="max-height:none"></div>
+    <div class="speaker-notes" hidden="">https://www.bbc.com/news/60711705</div>
+  </section>
+
+<!-- PPT 62 : Les mensonges sur l’Irak -->
+  <section class="slide short" id="nv2-irak-mensonges">
+    <div class="imgcard" data-pose="" data-off-x="251.82" data-off-y="54" style="left:25.182%;top:5.4%;width:43.683%;max-width:none;max-height:none"><img src="../medias/images/irak-mensonges-statue.jpg" alt="Les mensonges qui ont conduit les États-Unis et leurs alliés à envahir l’Irak il y a 20 ans" loading="lazy" style="max-height:none"></div>
+  </section>
+
+<!-- PPT 63 : Le « milliard d’or » -->
+  <section class="slide" id="s38">
+    <div class="imgcard" data-pose="" data-off-x="204.87" data-off-y="89" style="left:20.487%;top:8.9%;width:44.689%;max-width:none"><img src="../medias/images/milliard-or-titre.jpg" alt="Le « milliard d’or » : la théorie du complot de Vladimir Poutine" loading="lazy"></div>
+    <p class="lead" data-pose="" data-off-x="127.73" data-off-y="380.7" style="left:12.773%;top:38.07%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr"><b style="color:var(--acc)">▸</b> Théorie du complot d’origine Russe de 1990 qui imagine que les occidentaux souhaitent accaparer l’ensemble de la richesse du globe pour uniquement un milliard d’individus.</span><span class="t-en" hidden=""><b style="color:var(--acc)">▸</b> A Russian conspiracy theory from 1990 imagining that Westerners want to hoard all of the world’s wealth for just one billion people.</span></p>
+    <p class="lead" data-pose="" data-off-x="127.73" data-off-y="528.07" style="left:12.773%;top:52.807%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr"><b style="color:var(--acc)">▸</b> Comme souvent, il y a un fond de vrai (si le monde entier vivait comme les occidentaux, il n’y aurait plus assez de ressources).</span><span class="t-en" hidden=""><b style="color:var(--acc)">▸</b> As is often the case, there is a grain of truth (if the whole world lived like Westerners, there would not be enough resources).</span></p>
+    <p class="lead" data-pose="" data-off-x="127.73" data-off-y="632.49" style="left:12.773%;top:63.249%;width:59.11%;max-width:none;font-size:30px;line-height:1.3;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr"><b style="color:var(--acc)">▸</b> MAIS cela est extrapolé jusqu’à imaginer une agentivité consciente des occidentaux pour s’accaparer l’ensemble des richesses du globe VOIRE veulent réduire en esclavage ou tuer le reste de la population.</span><span class="t-en" hidden=""><b style="color:var(--acc)">▸</b> BUT this is stretched to the point of imagining a conscious intent by Westerners to seize all of the world’s wealth, or EVEN to enslave or kill the rest of the population.</span></p>
+  </section>
+
+<!-- PPT 64 : Conséquence politique : la fin du monde unipolaire -->
+  <section class="slide" id="nv2-poutine-monde-unipolaire">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Conséquence politique de cette théorie du complot :</span><span class="t-en" hidden="">Political consequence of this conspiracy theory:</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="328.96" data-off-y="196" style="left:32.896%;top:19.6%;width:21.213%;max-width:none"><img src="../medias/images/poutine-tribune.jpg" alt="Vladimir Poutine à la tribune" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="185.58" data-off-y="535" style="left:18.558%;top:53.5%;width:59.194%;max-width:none"><img src="../medias/images/putin-unipolar-world.jpg" alt="« Putin Declares End of the "Unipolar World" »" loading="lazy"></div>
+  </section>
+
+<!-- PPT 65 : Poutine et le « golden billion » -->
+  <section class="slide short" id="nv2-milliard-or-citation">
+    <div class="imgcard" data-pose="" data-off-x="127.73" data-off-y="172" style="left:12.773%;top:17.2%;width:60.368%;max-width:none"><img src="../medias/images/golden-billion-texte.jpg" alt="Citation de Vladimir Poutine sur le « golden billion »" loading="lazy"></div>
+    <div class="speaker-notes" hidden="">https://fr.wikipedia.org/wiki/Golden_billion
+https://nationalinterest.org/feature/putin-declares-end-%E2%80%98unipolar-world%E2%80%99-203105
+https://www.francetvinfo.fr/monde/russie/vladimir-poutine/vrai-ou-fake-y-a-t-il-un-milliard-d-or-une-domination-de-l-occident-comme-l-explique-vladimir-poutine_5817428.html</div>
+  </section>
+
+<!-- PPT 66 : Conséquence de cette idéologie en Afrique -->
+  <section class="slide" id="s39-3">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Conséquence de cette idéologie en Afrique</span><span class="t-en" hidden="">A consequence of this ideology in Africa</span></h2>
+    <div class="vidwrap" data-pose="" data-off-x="157.92" data-off-y="271" style="left:15.792%;top:27.1%;width:51.145%;max-width:none"><video src="../medias/video/tv5monde-propagande-afrique.mp4" controls="" playsinline=""></video></div>
+    <div class="speaker-notes" hidden="">https://africacenter.org/fr/spotlight/traquer-ingerence-russe-saper-democratie-afrique/</div>
+  </section>
+
+<!-- PPT 67 : Autre exemple -->
+  <section class="slide" id="nv2-propagande-autre-exemple">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">Autre exemple</span><span class="t-en" hidden="">Another example</span></h2>
+    <div class="vidwrap" data-pose="" data-off-x="185.58" data-off-y="218" style="left:18.558%;top:21.8%;width:55.84%;max-width:none"><video src="../medias/video/propagande-anti-francaise-dessin-anime.mp4" controls="" playsinline=""></video></div>
+  </section>
+
+<!-- PPT 68 : L’impact de l’information, même vraie -->
+  <section class="slide" id="s40">
+    <h2 data-pose="" data-off-x="127.73" data-off-y="95.7" style="left:12.773%;top:9.57%;width:73.783%;max-width:none;font-size:61px;text-align:left"><span class="t-fr">L’impact de l’information, même vraie</span><span class="t-en" hidden="">The impact of information, even when true</span></h2>
+    <div class="imgcard" data-pose="" data-off-x="127.73" data-off-y="237" style="left:12.773%;top:23.7%;width:57.182%;max-width:none"><img src="../medias/images/etude-medias-anxiogenes-israel.png" alt="« Anxiety-Inducing Media: The Effect of Constant News Broadcasting on the Well-Being of Israeli Television Viewers »" loading="lazy"></div>
+    <p class="lead" data-pose="" data-off-x="141.15" data-off-y="471.7" style="left:14.115%;top:47.17%;width:62.632%;max-width:none;font-size:30px;line-height:1.25;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr">- L’exposition à des nouvelles angoissantes accroît le temps passé devant les informations.</span><span class="t-en" hidden="">- Exposure to distressing news increases the time spent watching the news.</span></p>
+    <p class="lead" data-pose="" data-off-x="141.15" data-off-y="572.82" style="left:14.115%;top:57.282%;width:62.632%;max-width:none;font-size:30px;line-height:1.25;text-align:left;padding-left:1.15em;text-indent:-1.15em;"><span class="t-fr">- Les personnes davantage exposées à ces nouvelles angoissantes montrent des symptômes d’anxiété plus importants.</span><span class="t-en" hidden="">- People more exposed to this distressing news show greater anxiety symptoms.</span></p>
+    <div class="speaker-notes" hidden="">https://www.tandfonline.com/doi/full/10.1080/00332747.2015.1069658?casa_token=tf4fOfpoOw0AAAAA%3AGGUaz0qWfVnH_QeCAaf5SMQlh1kDRLTFpfDWDOWzgfSxgjulq6f2HvbWF2Z-fKtRyWJ7g9jR34dH</div>
+  </section>
+
+<!-- PPT 69 : Merci ! (reprise) -->
+  <section class="slide short" id="s39" data-serie="serie_4876ce66-4e05-416a-ab6a-5ea953659741">
+    <h1 style="font-size:clamp(2rem,calc(6 * var(--vw1)),3rem);background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;left:46.307%;top:41.685%" data-pose="" data-off-x="463.07" data-off-y="416.85"><span class="t-fr">Merci !</span><span class="t-en" hidden="">Thank you!</span></h1>
+    <button class="bigbtn" onclick="Deck.restart()" data-pose="" data-off-x="436.56" data-off-y="532.49" style="left:43.656%;top:53.249%"><span class="t-fr">Revoir depuis le début</span><span class="t-en" hidden="">Watch again from the start</span></button>
+  </section>
+
+<!-- Slide finale : bilan de l'intervention (QR code) -->
+  <section class="slide short" id="s-bilan-qr" data-serie="serie_743edaf5-33f9-4668-ab8a-f0365b011093">
+    <p class="kicker" data-pose="" data-off-x="461.46" data-off-y="272.25" style="left: 46.146%; top: 27.225%;"><span class="t-fr">Après la séance</span><span class="t-en" hidden="">After the session</span></p>
+    <h2 data-pose="" data-off-x="344.92" data-off-y="303.09" style="left: 34.492%; top: 30.309%;"><span class="t-fr">Le bilan, les jeux, et votre retour</span><span class="t-en" hidden="">Summary, games, and your feedback</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="375.76" style="left: 30.26%; top: 37.576%;"><span class="t-fr">Scannez ce QR code&nbsp;: vous pourrez donner votre retour, revoir le bilan de la formation ou rejouer aux jeux.</span><span class="t-en" hidden="">Scan this QR code: you can leave your feedback, review the session summary, or play the games again.</span></p>
+    
+  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhwAAAIcAQAAAACVhUrRAAAC80lEQVR42u2dUWrEMAxERS/g+9/SN3C7jSNp5JQW2p+it5SybDbvY2EYaSw7tn7/mgYECBAgQID8HGL+Gvcn4/Xhx/v9Zu3/16Xjljf7gxcQIP8LYi6HLZlP+VxvQjgjtOaXQkpoB0hj7VwO4nbjjlPc57pUbkE7QNCOyycuWYjFq8T4GtoBgnZUO+4vL9O5v+Y1G74DBMhzv5MCgR0LDAkY6HeAAAl1XC+3nm//0i1oB0hb7ZTU2vOBaG00fztu4YcF0lc7WxqWlngsiUij6f253452gHT2nWQ00ddEGmDlv7RCaAdI434nr+nskO1WSlRxtxNF/kbOBoSaLa1+bjfJizulfnMRTXwHSG/t6KhAtD8jajkZZiuJAdoB0rvf8ZGbbC5StuXqTkIGflggXfudNDUdMvHJAa/l7twgYjeyAiDtswKv1mJrw7QctT3YEP0OELRjaWp6hfVImHYuA9HvAKHfKbrQGEGsJ09ZTzJqIPhO2miwnlueXK3lGg/tAKHfkX5nWtaR6CWHBmgHSHPtDN1PfRRsUbnlGyNV4IcF0rXfmaEFk0G1uglORndY3wGCdlbqZcbTiE4R1FriWWgHSGPfiVOkcr9zHFBQDOj+Mj8skMZZQVHHUMfRtVGyAiBASlaQ53NkF08aYzMz6Y/QDpD2WUE5kSBv2yk9kWwdRTtAemcFMXiTBnLy9reSV8uxBmgHSO9+R46WyrsMTEJp/zB1RvywQBr7To7Opk6EnocYGP0OECBW91bXPaHmvmNl4xuzoEDwnRWb2qqCZj1IJxaDWN8Bgu/YsXBT8rSyvqNlG9oB0tl3JAQoXU86k82ejgxFO0Ba+45FX1OdJXvQqgftoh0grbWTn4NgVh6LUBZMw3eo2YCgnXHkA7PuTZDjdOh3gAD5Sjvl0aL5uLalEzvUbEDQzvHQNx2WPtofzmcDgnb0CKmyza3YUL1KzQaks3aslmTRzkyrp+UseXA8vgOks3Z++5pAgAABAgTIDyHv20VZl660GMAAAAAASUVORK5CYII=" alt="QR code vers la page antoninatger.github.io/interventions/retours" style="width: 200px; height: 200px; border-radius: 16px; background: rgb(255, 255, 255); padding: 10px; box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 30px; left: 44.805%; top: 47.267%;" data-pose="" data-off-x="448.05" data-off-y="472.67"><a href="https://antoninatger.github.io/interventions/retours/" target="_blank" rel="noopener" style="color: var(--acc2); font-weight: 800; font-size: 1.05rem; text-decoration: none; border-bottom: 2px solid var(--acc2); padding-bottom: 2px; width: 371.73px; left: 40.345%; top: 71.275%;" data-pose="" data-off-x="403.45" data-off-y="712.75">
+        <span class="t-fr">antoninatger.github.io/interventions/retours →</span><span class="t-en" hidden="">antoninatger.github.io/interventions/retours →</span>
+      </a></section>
+
+</div>
+
+<div id="navzone-l" aria-hidden="true"></div>
+<div id="navzone-r" aria-hidden="true"></div>
+<div id="dots"></div>
+<div id="slidenum"></div>
+<div id="navctrl">
+  <button id="btn-prev" title="Précédent (←)">‹</button>
+  <button id="btn-next" title="Suivant (→)">›</button>
+</div>
+
+<div id="admin-modal" class="admin-modal">
+  <div class="admin-head">
+    <h3>Mode Admin : diapos de la session</h3>
+    <span class="admin-count" id="admin-count"></span>
+    <div class="actions">
+      <select id="admin-selections" title="Parcours enregistrés" onchange="Deck.applySelectedPreset()"></select>
+      <button type="button" onclick="Deck.saveCurrentSelectionAs()">Enregistrer comme parcours…</button>
+      <button type="button" onclick="Deck.deleteSelectedPreset()">Supprimer le parcours</button>
+      <button type="button" onclick="Deck.openAddSlideModal()">Ajouter une diapo</button>
+      <button type="button" onclick="window.open('../media-browser.html','_blank')">Médiathèque (toutes formations)</button>
+      <button type="button" onclick="Deck.adminSelectAll()">Tout cocher</button>
+      <button type="button" onclick="Deck.adminSelectNone()">Tout décocher</button>
+      <button type="button" class="primary" onclick="Deck.adminSave()">Enregistrer la sélection</button>
+      <button type="button" id="admin-save-order" onclick="Deck.saveSlideOrder()">Enregistrer l'ordre dans le fichier</button>
+      <button type="button" onclick="Deck.adminClose()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-grid" id="admin-grid"></div>
+</div>
+
+<div id="admin-zoom-modal" class="admin-zoom-modal">
+  <button type="button" class="admin-zoom-close" onclick="Deck.adminZoomClose()">✕</button>
+  <div id="admin-zoom-box"></div>
+</div>
+
+<div id="admin-edit-modal" class="admin-edit-modal">
+  <div class="admin-edit-head">
+    <h3>Édition de la diapo</h3>
+    <span class="admin-edit-hint"></span>
+    <div class="actions">
+      <button type="button" onclick="Deck.addTextBlock()">Ajouter un texte</button>
+      <button type="button" onclick="Deck.addPhotoBlock()">Ajouter une photo</button>
+      <button type="button" onclick="Deck.addPollWidget()">Sondage</button>
+      <button type="button" onclick="Deck.addScaleWidget()">Échelle</button>
+      <button type="button" onclick="Deck.addPieChartWidget()">Camembert</button>
+      <button type="button" onclick="Deck.addHistogramWidget()">Histogramme</button>
+      <button type="button" onclick="Deck.addReponseWidget()">Réponses à écrire</button>
+      <button type="button" onclick="Deck.quickAddSlideAfterCurrent()">Ajouter une diapo après</button>
+      <button type="button" onclick="Deck.apporterUneDiapo()">⤵ Apporter une diapo</button>
+      <button type="button" onclick="Deck.closeSlideEditToGrid()">Toutes les diapos</button>
+      <button type="button" id="admin-edit-save" onclick="Deck.saveEditedSlide()">Enregistrer dans le fichier</button>
+      <button type="button" onclick="Deck.closeSlideEdit()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-edit-stage" id="admin-edit-stage"></div>
+</div>
+
+<div id="addslide-modal" class="addslide-modal">
+  <div class="addslide-modal-box">
+    <div class="addslide-modal-head">
+      <h3>Ajouter une diapo</h3>
+      <button type="button" onclick="Deck.closeAddSlideModal()">✕</button>
+    </div>
+    <div class="addslide-modal-body">
+      <div id="addslide-modeles" class="addslide-modeles"></div>
+      <div id="addslide-champs"></div>
+      <div class="addslide-field">
+        <label for="addslide-position">Position</label>
+        <select id="addslide-position" class="addslide-input"></select>
+      </div>
+      <div class="addslide-modal-actions">
+        <button type="button" class="primary" onclick="Deck.submitAddSlide()">Ajouter</button>
+        <button type="button" onclick="Deck.closeAddSlideModal()">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../shared-deck-engine.js"></script>
+<script src="../shared-widgets.js"></script>
+<script src="../shared-slide-templates.js"></script>
+<script src="app.js"></script>
+<script src="../shared-comments-theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilan - Fake News et Esprit Critique</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --primary-light: #dbeafe;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #ffffff;
+            --bg-light: #f9fafb;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --accent: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 40px 20px;
+            margin: 0 0 40px 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+        }
+
+        header h1 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            opacity: 0.95;
+        }
+
+        /* Hero Image */
+        .hero-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        /* Intro */
+        .intro {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            font-size: 1rem;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .toc h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin: 10px 0;
+        }
+
+        .toc a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            display: inline-block;
+            border-radius: 6px;
+        }
+
+        .toc a:hover {
+            background: var(--primary-light);
+            transform: translateX(5px);
+        }
+
+        /* Content */
+        .content {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .content h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        /* Accordion */
+        .accordion-item {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+        }
+
+        .accordion-header {
+            background: var(--bg-light);
+            padding: 18px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text);
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-header {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .accordion-header:hover {
+            background: var(--primary-light);
+        }
+
+        .accordion-icon {
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: white;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 2000px;
+        }
+
+        .accordion-text {
+            padding: 20px;
+            line-height: 1.8;
+        }
+
+        .accordion-text p {
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .accordion-text ul, .accordion-text ol {
+            margin: 15px 0 15px 25px;
+        }
+
+        .accordion-text li {
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+                .section-image {
+            display: block;
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            max-height: 520px;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+
+        /* Interactive Games */
+        .games-section {
+            background: linear-gradient(135deg, var(--accent) 0%, #fbbf24 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        .games-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--text);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .game-card h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .game-card p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .game-btn {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .game-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        /* Aller plus loin : le jeu « Pas si vite ! » */
+        .plus-loin {
+            background: #0e1621;
+            color: #eef2f8;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .plus-loin h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+
+        .plus-loin p {
+            color: #c3cfdf;
+            max-width: 560px;
+            line-height: 1.6;
+        }
+
+        .plus-loin-btn {
+            background: #25d366;
+            color: #06121c;
+            padding: 14px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .plus-loin-btn:hover {
+            transform: scale(1.04);
+            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+        }
+
+        /* Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--border);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-light);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            header {
+                padding: 30px 15px;
+                margin: 0 0 30px 0;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+                /* ===================================================================
+           MODULES INTERACTIFS
+           Chaque module est un bloc jouable (illusion, test, quiz). A
+           l'impression il disparait et laisse la place a son equivalent
+           texte (.module-papier), pour que le PDF reste un document lisible.
+           =================================================================== */
+        .module {
+            border: 2px solid var(--primary-light);
+            border-radius: 12px;
+            background: #fff;
+            margin: 22px 0;
+            overflow: hidden;
+        }
+
+        .module-titre {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: .95rem;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .module-corps { padding: 18px 16px; }
+
+        .module-consigne {
+            font-size: .95rem;
+            color: var(--text-light);
+            margin-bottom: 14px;
+        }
+
+        .module-papier { display: none; }
+
+        .illu-cadre {
+            position: relative;
+            aspect-ratio: 4 / 3;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #f3f4f6;
+            border: 1px solid var(--border);
+        }
+
+        .illu-cadre iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        a.m-btn { text-decoration: none; display: inline-block; }
+
+        .scene {
+            background: #f3f4f6;
+            border-radius: 10px;
+            padding: 10px;
+            touch-action: none;
+        }
+
+        .scene svg { display: block; width: 100%; height: auto; }
+
+        .module-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .m-btn {
+            font: inherit;
+            font-size: .9rem;
+            font-weight: 600;
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: 2px solid var(--primary);
+            background: var(--primary);
+            color: #fff;
+            cursor: pointer;
+            transition: background .2s, color .2s;
+        }
+
+        .m-btn:hover { background: var(--primary-dark); border-color: var(--primary-dark); }
+
+        .m-btn.secondaire { background: #fff; color: var(--primary); }
+        .m-btn.secondaire:hover { background: var(--primary-light); }
+
+        .m-reponse {
+            margin-top: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid var(--primary);
+            background: var(--bg-light);
+            border-radius: 0 8px 8px 0;
+            font-size: .95rem;
+        }
+
+        .m-reponse[hidden] { display: none; }
+
+        /* --- Questions a choix ------------------------------------------- */
+        .q-bloc + .q-bloc { margin-top: 20px; border-top: 1px solid var(--border); padding-top: 20px; }
+        .q-enonce { font-weight: 600; margin-bottom: 12px; }
+        .q-choix { display: grid; gap: 8px; }
+
+        .q-opt {
+            font: inherit;
+            font-size: .93rem;
+            text-align: left;
+            padding: 11px 14px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: #fff;
+            color: var(--text);
+            cursor: pointer;
+            transition: border-color .15s, background .15s;
+        }
+
+        .q-opt:hover:not(:disabled) { border-color: var(--primary); background: var(--primary-light); }
+        .q-opt:disabled { cursor: default; }
+        .q-opt.juste  { border-color: #16a34a; background: #dcfce7; font-weight: 600; }
+        .q-opt.faux   { border-color: #dc2626; background: #fee2e2; }
+
+        .q-retour {
+            margin-top: 10px;
+            font-size: .92rem;
+            padding: 10px 12px;
+            border-radius: 8px;
+            background: var(--bg-light);
+            border-left: 3px solid var(--primary);
+        }
+
+        .q-retour[hidden] { display: none; }
+
+        .m-score {
+            margin-top: 16px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        /* --- Cadrage : la photo qu'on recadre ----------------------------- */
+        .cadrage-zone { position: relative; max-width: 420px; margin: 0 auto; }
+        .cadrage-zone img { display: block; width: 100%; border-radius: 8px; }
+        .cadrage-cache {
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            background: #e5e7eb;
+            border-radius: 0 0 8px 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-light);
+            font-size: .85rem; font-weight: 600;
+            transition: height .5s ease;
+        }
+
+        /* --- Minuteur des 2 secondes -------------------------------------- */
+        .chrono {
+            font-size: 2.6rem;
+            font-weight: 800;
+            text-align: center;
+            color: var(--primary);
+            margin: 8px 0 4px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ===================================================================
+           IMPRESSION / EXPORT PDF
+           Le document papier n'est pas la page web en noir et blanc :
+           - tous les accordeons sont ouverts (sinon le PDF sortait vide) ;
+           - les photos et l'habillage d'interface disparaissent ;
+           - typographie de document : serif, noir sur blanc, sans aplats.
+           =================================================================== */
+        @media print {
+            @page {
+                size: A4;
+                margin: 18mm 16mm 20mm 16mm;
+            }
+
+            body {
+                background: #fff !important;
+                color: #000 !important;
+                font-family: Georgia, 'Times New Roman', serif;
+                font-size: 10.5pt;
+                line-height: 1.55;
+            }
+
+            .container { max-width: none; padding: 0; }
+
+            /* Document monochrome. Beaucoup de couleurs et d'aplats sont poses
+               en style= directement dans le HTML : on les neutralise tous d'un
+               coup, les regles de classe ci-dessous reposent ensuite les filets. */
+            *, *::before, *::after {
+                color: #000 !important;
+                background: none !important;
+                background-color: transparent !important;
+                box-shadow: none !important;
+                text-shadow: none !important;
+            }
+
+            /* Tout element mis en avant par un aplat devient un filet a gauche. */
+            .accordion-text [style*="background"],
+            .content [style*="background"] {
+                border-left: 2pt solid #000 !important;
+                border-radius: 0 !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 7pt 0 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            table { border-collapse: collapse; width: 100%; font-size: 9.5pt; }
+            th, td { border: 0.5pt solid #666 !important; padding: 3pt 5pt !important; }
+            th { font-weight: 700; }
+            .table-responsive { overflow: visible !important; }
+
+            .content {
+                background: none !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            /* --- Modules interactifs : le jeu disparait, le texte reste --- */
+            .module {
+                border: none !important;
+                border-radius: 0 !important;
+                margin: 8pt 0 !important;
+            }
+            .module-titre,
+            .module-corps { display: none !important; }
+            .module-papier {
+                display: block !important;
+                border-left: 2pt solid #000 !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 0 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* --- Hors sujet sur papier ------------------------------------ */
+            .action-buttons,
+            .games-section,
+            .plus-loin,
+            .accordion-icon,
+            .hero-image,
+            .section-image,
+            header::after {
+                display: none !important;
+            }
+
+            /* --- Bandeau de titre remis a plat ---------------------------- */
+            header {
+                background: none !important;
+                color: #000 !important;
+                margin: 0 0 14pt 0 !important;
+                padding: 0 0 8pt 0 !important;
+                border-bottom: 2pt solid #000;
+                border-radius: 0 !important;
+                text-align: left;
+            }
+            header h1 { font-size: 19pt; margin-bottom: 4pt; }
+            header p  { font-size: 10.5pt; opacity: 1; margin: 0; max-width: none; }
+
+            /* --- Chapeau et sommaire -------------------------------------- */
+            .intro,
+            .toc {
+                background: none !important;
+                border: none !important;
+                border-left: 2pt solid #000 !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 0 0 14pt 0 !important;
+                font-size: 10.5pt;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            .toc h2 {
+                font-size: 11.5pt;
+                border: none !important;
+                margin: 0 0 5pt 0 !important;
+                padding: 0 !important;
+            }
+            .toc ul { margin: 0 !important; padding: 0 0 0 12pt !important; }
+            .toc li { margin: 2pt 0 !important; }
+
+            /* --- Titres de partie ----------------------------------------- */
+            h2, .content h2 {
+                font-size: 14pt;
+                color: #000 !important;
+                border-bottom: 1pt solid #000;
+                padding-bottom: 3pt;
+                margin: 18pt 0 9pt 0 !important;
+                break-after: avoid;
+                page-break-after: avoid;
+            }
+
+            /* --- Accordeons : TOUS ouverts, sans chrome ------------------- */
+            .accordion-content,
+            .accordion-item.active .accordion-content {
+                max-height: none !important;
+                overflow: visible !important;
+                display: block !important;
+                background: none !important;
+            }
+
+            .accordion-item,
+            .accordion-item.active {
+                border: none !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                margin: 0 0 11pt 0 !important;
+                overflow: visible !important;
+            }
+
+            .accordion-header,
+            .accordion-item.active .accordion-header {
+                background: none !important;
+                color: #000 !important;
+                cursor: default;
+                display: block;
+                font-family: Georgia, 'Times New Roman', serif;
+                font-size: 11.5pt;
+                font-weight: 700;
+                padding: 0 0 3pt 0 !important;
+                border-bottom: 0.5pt solid #888;
+                break-after: avoid;
+                page-break-after: avoid;
+            }
+
+            .accordion-text { padding: 5pt 0 0 0 !important; line-height: 1.55; }
+
+            /* --- Neutralise les couleurs posees en style= dans le HTML ----- */
+            .accordion-text p,
+            .accordion-text li,
+            .accordion-text span,
+            .accordion-text strong,
+            .accordion-text em,
+            .intro, .intro *,
+            .toc a {
+                color: #000 !important;
+                background: none !important;
+                font-size: inherit !important;
+            }
+
+            /* Les paragraphes mis en avant par un aplat deviennent un filet */
+            .accordion-text p[style*="background"] {
+                border-left: 2pt solid #000 !important;
+                border-radius: 0 !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 7pt 0 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* --- Encadres : un filet, pas un aplat ------------------------ */
+            .warning-box,
+            .info-box,
+            .highlight-box,
+            .definition-box,
+            .key-point,
+            .card {
+                background: none !important;
+                border: none !important;
+                border-left: 2pt solid #000 !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 7pt 0 !important;
+                color: #000 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* --- Liens : l'adresse imprimee entre parentheses ------------- */
+            a { color: #000 !important; text-decoration: none; }
+            a[href^="http"]::after {
+                content: " (" attr(href) ")";
+                font-size: 8.5pt;
+                word-break: break-all;
+            }
+            .toc a::after { content: ""; }
+
+            ul, ol { margin-left: 14pt; }
+            li { margin-bottom: 2pt; }
+            p  { orphans: 3; widows: 3; margin-bottom: 6pt; }
+            table { break-inside: avoid; page-break-inside: avoid; }
+
+            footer {
+                border-top: 0.5pt solid #888;
+                margin-top: 16pt;
+                padding-top: 6pt;
+                font-size: 9pt;
+                color: #000 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Fake News et Esprit Critique</h1>
+        <p>Résumé du bilan pédagogique</p>
+    </header>
+
+    <div class="container">
+        <!-- Hero Image -->
+        <img src="images/breaking-news.png" alt="Fake News" class="hero-image">
+
+        <!-- Introduction -->
+        <div class="intro">
+            <strong>Objectif :</strong> Comprendre comment identifier une Fake News et développer un esprit critique face aux informations que nous recevons.
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h2>Table des matières</h2>
+            <ul>
+                <li><a href="#section-1">1. Définition d'une Fake News</a></li>
+                <li><a href="#section-2">2. Notre cerveau nous trompe</a></li>
+                <li><a href="#section-3">3. L'effet de cadrage</a></li>
+                <li><a href="#section-4">4. Comment réagir aux Fake News</a></li>
+                <li><a href="#section-5">5. Jeux et exercices</a></li>
+            </ul>
+        </div>
+
+        <!-- Content Sections -->
+        <div class="content">
+            <!-- Section 1: Définition -->
+            <h2 id="section-1">Définition d'une Fake News</h2>
+
+            <div class="accordion-item active">
+                <div class="accordion-header">
+                    <span>Qu'est-ce qu'une Fake News ?</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p><strong>Une Fake News est une information en contradiction avec l'état des connaissances sur un sujet.</strong></p>
+                        <p>Points clés :</p>
+                        <ul>
+                            <li>Elle parle de <strong>faits</strong>, pas d'opinions ou de ressentis (qui sont subjectifs)</li>
+                            <li>Elle est souvent partagée de <strong>bonne foi</strong>, par des personnes sincères</li>
+                            <li>Elle ne dépend pas de la crédulité ou la naïveté de celui qui la partage</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Différence : Information vraie vs Fake News</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p><strong>Attention :</strong> Une information, même vraie, peut quand même induire en erreur si :</p>
+                        <ul>
+                            <li>On <strong>oublie le contexte</strong></li>
+                            <li>On <strong>tronque</strong> quelques éléments</li>
+                            <li>On la présente de manière <strong>orientée ou biaisée</strong></li>
+                        </ul>
+                        <p>On appelle cela <strong>l'effet de cadrage</strong>. C'est un piège courant en communication !</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2 : Notre cerveau -->
+            <h2 id="section-2" style="margin-top: 40px;">Notre Cerveau Nous Trompe</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Nos sens déforment la réalité</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Nous ne pouvons pas <strong>toujours</strong> nous fier à nos sens : ils déforment la réalité en fonction de ce qui leur semble logique. C'est également le cas de notre perception des informations : une Fake News cohérente avec notre vision du monde nous paraîtra vraie.</p>
+                        <p>Deux illusions d'optique le montrent mieux qu'un long discours. Elles sont jouables ci-dessous.</p>
+
+                        <div class="module" data-module="illusions">
+                            <div class="module-titre">À essayer : deux illusions d'optique</div>
+                            <div class="module-corps">
+                                <p class="module-consigne"><strong>Les deux cercles oranges sont-ils de la même taille ?</strong> Cliquez sur un cercle bleu pour le faire disparaître, faites glisser un cercle orange pour l'amener sur l'autre.</p>
+                                <div class="illu-cadre"><iframe src="https://antoninatger.github.io/jeux/Ilusions%20d'optique/ebbinghaus.html" title="Illusion d'Ebbinghaus" loading="lazy"></iframe></div>
+                                <div class="module-actions"><a class="m-btn" href="https://antoninatger.github.io/jeux/Ilusions%20d'optique/ebbinghaus.html" target="_blank" rel="noopener">Ouvrir en plein écran</a></div>
+                                <p class="module-consigne" style="margin-top:22px"><strong>Les cases A et B sont-elles de la même couleur ?</strong> Le bouton de la page relie les deux cases par un ruban d'une seule teinte.</p>
+                                <div class="illu-cadre"><iframe src="https://antoninatger.github.io/jeux/Ilusions%20d'optique/adelson.html" title="Échiquier d'Adelson" loading="lazy"></iframe></div>
+                                <div class="module-actions">
+                                    <a class="m-btn" href="https://antoninatger.github.io/jeux/Ilusions%20d'optique/adelson.html" target="_blank" rel="noopener">Ouvrir en plein écran</a>
+                                    <a class="m-btn secondaire" href="https://antoninatger.github.io/jeux/Ilusions%20d'optique/" target="_blank" rel="noopener">Les onze illusions de la collection</a>
+                                </div>
+                                <div class="m-reponse" style="margin-top:18px">
+                                    <p>Dans les deux cas la réponse est oui, et dans les deux cas votre œil dit non.</p>
+                                    <p>Ebbinghaus : le cerveau ne perçoit jamais un objet isolément, il le compare à ce qui l'entoure. Nos yeux ne mesurent pas, ils comparent, et c'est le contexte qui dicte le verdict.</p>
+                                    <p>Adelson : le cerveau ne lit pas la lumière qui arrive à l'œil, il essaie de deviner la couleur réelle de l'objet. Voyant une ombre, il corrige. Cette correction est en général très utile, elle nous permet de reconnaître une feuille blanche au soleil comme à l'ombre. Ici, elle nous trompe.</p>
+                                    <p>Ce ne sont donc pas des erreurs de nos yeux, mais des interprétations de notre cerveau. Il fait exactement la même chose avec une information : il l'interprète selon le contexte dans lequel on la lui présente.</p>
+                                </div>
+                            </div>
+                            <div class="module-papier">
+                                <p><strong>Deux illusions d'optique.</strong> Dans l'illusion d'Ebbinghaus, deux cercles de diamètre rigoureusement identique paraissent de tailles différentes selon qu'ils sont entourés de grands ou de petits cercles : le cerveau ne mesure pas, il compare à l'entourage. Dans l'échiquier d'Adelson, une case claire placée dans l'ombre et une case sombre en pleine lumière ont exactement la même couleur à l'écran et paraissent pourtant très différentes : le cerveau ne lit pas la lumière reçue, il devine la couleur réelle en corrigeant l'effet de l'ombre. Ce ne sont pas des erreurs des yeux, ce sont des interprétations, et le cerveau en fait autant avec une information. Les deux illusions sont jouables sur antoninatger.github.io/jeux, rubrique Illusions d'optique.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Deux modes de pensée : intuitif et analytique</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Notre cerveau fonctionne de deux manières :</p>
+                        <ul>
+                            <li>Le mode <strong>intuitif</strong>, mode par défaut : rapide, efficace, économe, mais il produit des erreurs de raisonnement.</li>
+                            <li>Le mode <strong>analytique</strong> : plus contraignant, plus coûteux en énergie, mais il permet d'être rationnel.</li>
+                        </ul>
+                        <p>Le problème : <strong>sur les réseaux, nous fonctionnons surtout en intuitif</strong>. C'est ce qui nous fait croire des choses fausses.</p>
+
+                        <div class="module" data-module="crt">
+                            <div class="module-titre">À tester : votre mode par défaut</div>
+                            <div class="module-corps">
+                                <p class="module-consigne">Trois questions. Répondez vite, comme vous le feriez en faisant défiler un fil d'actualité.</p>
+                                <div id="crt-questions"></div>
+                                <div class="m-score" id="crt-score" hidden></div>
+                            </div>
+                            <div class="module-papier">
+                                <p><strong>Test des deux modes de pensée.</strong> Trois questions dont la réponse intuitive est fausse (une raquette et une balle coûtent 1,10 € au total, la raquette coûte 1 € de plus que la balle : la balle coûte 5 centimes, pas 10). Elles montrent que la réponse qui vient en premier n'est pas la bonne, et qu'il faut un effort volontaire pour passer en mode analytique. <em>(Version jouable sur la page en ligne.)</em></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>L'heuristique : conclure sans avoir tous les éléments</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>L'<strong>heuristique</strong> est la tendance du cerveau à tirer des conclusions même lorsqu'il ne dispose pas de tous les éléments d'une situation.</p>
+                        <p>C'est indispensable au quotidien : sans cela, traverser une rue demanderait une analyse complète de la circulation. Mais sur les réseaux, <strong>les informations sont presque toujours parcellaires</strong> : une photo sans son contexte, une phrase sortie d'un discours, un chiffre sans son point de comparaison.</p>
+                        <p>Le cerveau comble alors les trous tout seul, et arrive à des conclusions fausses, non par bêtise, mais parce qu'il lui manquait des morceaux.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Trois biais cognitifs à connaître</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Un <strong>biais cognitif</strong> est une erreur de raisonnement : le cerveau tient quelque chose pour vrai alors qu'il n'y a aucune raison que ce le soit.</p>
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 12px 0;"><strong>Le biais de popularité.</strong> Si une personne est populaire, nous avons tendance à aller dans son sens, même lorsqu'elle n'est pas légitime sur le sujet, et même quand elle dit n'importe quoi.</p>
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 12px 0;"><strong>Le biais émotionnel.</strong> Le cerveau favorise les informations qui lui procurent de l'émotion. Une Fake News émouvante est donc plus crue et mieux retenue. Les réseaux sociaux en raffolent : vraie ou fausse, une information émouvante crée de l'engagement.</p>
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 12px 0;"><strong>Le biais de confirmation.</strong> Le cerveau privilégie les informations qui confirment ce qu'il pense déjà, même si elles sont complètement fausses.</p>
+                        <img src="images/biais-cognitifs-illustration.jpg" alt="Biais cognitifs" class="section-image">
+
+                        <div class="module" data-module="biais">
+                            <div class="module-titre">À reconnaître : quel biais est à l'œuvre ?</div>
+                            <div class="module-corps">
+                                <p class="module-consigne">Cinq situations. À chaque fois, quel biais explique le mieux ce qui se passe ?</p>
+                                <div id="biais-questions"></div>
+                                <div class="m-score" id="biais-score" hidden></div>
+                            </div>
+                            <div class="module-papier">
+                                <p><strong>Exercice de reconnaissance des biais.</strong> Cinq situations à rattacher au biais de popularité, au biais émotionnel ou au biais de confirmation. <em>(Version jouable sur la page en ligne.)</em></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3 : Effet de cadrage -->
+            <h2 id="section-3" style="margin-top: 40px;">L'Effet de Cadrage</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Qu'est-ce que l'effet de cadrage ?</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>L'<strong>effet de cadrage</strong> (ou framing effect) est la manière dont une information est présentée, qui influence notre perception et nos décisions.</p>
+                        <p>Exemple :</p>
+                        <ul>
+                            <li><em>« Ce traitement a 90% de taux de réussite »</em></li>
+                            <li><em>« Ce traitement échoue dans 10% des cas »</em></li>
+                        </ul>
+                        <p>Les deux phrases disent la même chose, mais notre perception est différente ! La première semble plus positive.</p>
+                        <div class="module" data-module="cadrage">
+                            <div class="module-titre">À éprouver : le même fait, deux cadres</div>
+                            <div class="module-corps">
+                                <p class="module-consigne">Voici une information vraie. Choisissez la formulation qui vous semble la plus rassurante.</p>
+                                <div class="q-bloc">
+                                    <p class="q-enonce">Un laboratoire publie les résultats d'un traitement.</p>
+                                    <div class="q-choix">
+                                        <button type="button" class="q-opt" data-cadre="1">« Ce traitement a 90 % de taux de réussite. »</button>
+                                        <button type="button" class="q-opt" data-cadre="2">« Ce traitement échoue dans 10 % des cas. »</button>
+                                    </div>
+                                    <div class="q-retour" id="cadre-retour" hidden></div>
+                                </div>
+                                <hr style="border:none;border-top:1px solid var(--border);margin:20px 0">
+                                <p class="module-consigne">Le cadrage marche aussi sur les images. Celle-ci a été recadrée : il en manque le bas.</p>
+                                <div class="cadrage-zone">
+                                    <img src="images/cadrage-piege.jpg" alt="Photographie recadrée puis montrée en entier">
+                                    <div class="cadrage-cache" id="cadre-cache">bas de la photo masqué</div>
+                                </div>
+                                <div class="module-actions">
+                                    <button type="button" class="m-btn" id="cadre-btn">Montrer la photo entière</button>
+                                </div>
+                                <div class="m-reponse" id="cadre-rep" hidden>
+                                    <p>Rien n'a été truqué : aucune retouche, aucun mensonge. On a seulement <strong>choisi où couper</strong>. Et ce choix change ce que la photo raconte.</p>
+                                    <p>C'est pour cela qu'une information peut être <strong>entièrement vraie et malgré tout trompeuse</strong>. La question à se poser devant une image n'est pas seulement « est-elle authentique ? », mais « <strong>que ne me montre-t-on pas ?</strong> »</p>
+                                </div>
+                            </div>
+                            <div class="module-papier">
+                                <p><strong>Exercice de cadrage.</strong> « Ce traitement a 90 % de réussite » et « ce traitement échoue dans 10 % des cas » décrivent le même résultat, mais la première formulation rassure et la seconde inquiète. Le même mécanisme s'applique aux images : recadrer une photo, sans rien truquer, suffit à lui faire raconter autre chose. La question à se poser n'est pas seulement « est-ce authentique ? » mais « que ne me montre-t-on pas ? » <em>(Version jouable sur la page en ligne.)</em></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4 : Réaction aux Fake News -->
+            <h2 id="section-4" style="margin-top: 40px;">Comment Réagir aux Fake News</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>La règle des 2 secondes</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p><strong>Pour limiter notre réaction « intuitive » aux Fake News :</strong></p>
+                        <p style="font-size: 1.1rem; color: var(--primary); font-weight: 600;">
+                            Comptez jusqu'à deux avant de partager une information sur les réseaux !
+                        </p>
+                        <p>Deux secondes permettent de :</p>
+                        <ul>
+                            <li>Reconsidérer l'information</li>
+                            <li>Évaluer si le partage est nécessaire ou pas</li>
+                            <li>Activer une pensée critique</li>
+                        </ul>
+                        <div class="module" data-module="chrono">
+                            <div class="module-titre">À éprouver : les deux secondes</div>
+                            <div class="module-corps">
+                                <p class="module-consigne">Une information indignante vient d'apparaître dans votre fil. Votre pouce est au-dessus du bouton « partager ».</p>
+                                <div class="chrono" id="chrono-aff">2,0</div>
+                                <div class="module-actions">
+                                    <button type="button" class="m-btn" id="chrono-btn">Partager</button>
+                                </div>
+                                <div class="m-reponse" id="chrono-rep" hidden></div>
+                            </div>
+                            <div class="module-papier">
+                                <p><strong>L'exercice des deux secondes.</strong> Deux secondes suffisent à faire basculer du mode intuitif au mode analytique. Le temps d'attente n'est pas un délai technique : c'est l'espace dans lequel trois questions deviennent possibles : d'où vient cette information, qu'est-ce qu'elle me fait ressentir, et ai-je vraiment besoin de la partager. <em>(Version jouable sur la page en ligne.)</em></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Ai-je tout le contexte nécessaire ?</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p><strong>Le cerveau a besoin d'un contexte pour vérifier une information.</strong> Sans contexte, il ne peut pas juger : il comble les trous tout seul, et il les comble avec ce qui lui semble logique.</p>
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 12px 0;"><strong>Mais ce contexte peut être trompeur, ou tout simplement inexistant.</strong></p>
+                        <p>C'est le point commun de presque toutes les informations qui circulent mal. Rarement un mensonge complet. Le plus souvent un morceau de vrai, sorti de ce qui l'entourait :</p>
+                        <ul>
+                            <li>une <strong>photo recadrée</strong>, dont on ne voit plus ce qu'il y avait autour ;</li>
+                            <li>une <strong>vidéo coupée</strong>, dont on ignore ce qui s'est passé juste avant et juste après ;</li>
+                            <li>une <strong>phrase extraite</strong> d'un discours, séparée de celle qui la nuançait ;</li>
+                            <li>un <strong>chiffre sans point de comparaison</strong>, ni date, ni rapport à une population.</li>
+                        </ul>
+                        <p>En séance, la vidéo recadrée le montre d'un coup : tant qu'on ne voit que le cadre serré, on est certain de comprendre la scène. On dézoome, et la scène raconte autre chose. « Monsieur, c'est mal cadré ! » Un simple recadrage suffit à changer complètement ce qu'on croit voir.</p>
+
+                        <div class="module" data-module="contexte">
+                            <div class="module-titre">À exercer : qu'est-ce qui manque ?</div>
+                            <div class="module-corps">
+                                <p class="module-consigne">Trois informations. Aucune n'est fausse. Dans chaque cas, quel élément de contexte manque pour pouvoir en juger&nbsp;?</p>
+                                <div id="ctx-questions"></div>
+                                <div class="m-score" id="ctx-score" hidden></div>
+                            </div>
+                            <div class="module-papier">
+                                <p><strong>Exercice de contexte.</strong> Trois informations exactes mais inutilisables telles quelles : une hausse de 100 % sans le nombre de départ, une salle vide photographiée sans son horaire, une phrase de discours sans celle qui la suivait. À chaque fois, ce n'est pas le fait qui est faux, c'est le contexte qui manque.</p>
+                            </div>
+                        </div>
+
+                        <p><strong>Les quatre questions à se poser :</strong></p>
+                        <ul>
+                            <li>Que voit-on <strong>en dehors du cadre</strong> ?</li>
+                            <li>Que s'est-il passé <strong>avant et après</strong> ce qui m'est montré ?</li>
+                            <li>Ce chiffre, il est grand <strong>comparé à quoi</strong> ?</li>
+                            <li><strong>Qui parle</strong>, et à qui s'adressait-il au moment de le dire ?</li>
+                        </ul>
+                        <p>Aucune de ces questions ne demande d'être expert. Elles demandent seulement de ne pas conclure avant de les avoir posées.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Deux adages utiles à retenir</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p style="font-size: 1rem; background: var(--primary-light); padding: 15px; border-radius: 6px; margin-bottom: 15px;">
+                            <strong>« Si une information est trop belle pour être vraie, elle est probablement fausse »</strong>
+                        </p>
+                        <p>Les Fake News jouent souvent sur nos émotions positives ou négatives.</p>
+
+                        <p style="font-size: 1rem; background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 15px 0;">
+                            <strong>« Si on propose une solution très simple à un problème très complexe, généralement c'est une arnaque »</strong>
+                        </p>
+                        <p>Méfiez-vous des solutions miracle et des promesses trop simples !</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Quelle est ma position ? Le rôle des préjugés</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Devant une information, il est utile de se demander <strong>quelle est notre propre position</strong>. Nous ne sommes jamais neutres : nous avons des préjugés, des attentes, des sympathies.</p>
+                        <p>Ce n'est pas un défaut à corriger, c'est un fait à connaître. <strong>En avoir conscience est précisément ce qui permet de limiter nos biais cognitifs</strong> : on ne désactive pas un biais, mais on peut se souvenir qu'il est là au moment de juger.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>« Pourquoi est-ce que je crois ce que je crois ? »</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>C'est <strong>la</strong> question essentielle. Y répondre oblige à remonter à la source de ce qu'on tient pour vrai, et à constater que <strong>toutes les sources de connaissance ne se valent pas</strong>.</p>
+                        <p>Sur le réchauffement climatique, un film catastrophe n'a pas la même valeur que la parole d'un chercheur du domaine. Ce n'est pas une question d'opinion : c'est une question de méthode.</p>
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 12px 0;"><strong>Le consensus scientifique</strong> est une source relativement fiable : si l'immense majorité des scientifiques d'un domaine s'accorde sur un point, on peut généralement leur faire confiance.</p>
+                        <p>« Relativement » et « généralement » comptent : le consensus n'est pas une preuve absolue, et il évolue. Mais c'est le meilleur repère disponible pour qui n'est pas spécialiste.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Rester modeste</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p style="background: var(--primary-light); padding: 15px; border-radius: 6px; margin: 12px 0;"><strong>« L'ennemi de la connaissance n'est pas l'ignorance, mais l'illusion de la connaissance. »</strong><br><span style="font-size:.9rem">Stephen Hawking</span></p>
+                        <p>Admettre son ignorance sur un sujet n'est pas un aveu de faiblesse : c'est la condition pour écouter, apprendre et progresser. Celui qui croit déjà savoir n'a plus rien à apprendre, et c'est précisément lui que la désinformation atteint le plus facilement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Games Section -->
+        <div class="games-section">
+            <h3 id="section-5">Testez Vos Connaissances avec des Jeux Interactifs</h3>
+            <p style="margin-bottom: 20px;">Mettez en pratique ce que vous avez appris :</p>
+
+            <div class="games-grid">
+                <div class="game-card">
+                    <h4>Fake Blaster</h4>
+                    <p>Éliminez les Fake News en répondant correctement aux questions !</p>
+                    <a href="https://antoninatger.github.io/jeux/Arcade%20quizz/fake-blaster.html?serie=niveau1" class="game-btn" target="_blank" rel="noopener">Jouer →</a>
+                </div>
+
+                <div class="game-card">
+                    <h4>Fake News Defender</h4>
+                    <p>Défendez-vous contre les Fake News avec ce jeu de réflexes !</p>
+                    <a href="https://antoninatger.github.io/jeux/Arcade%20quizz/fakenews_defender.html?serie=niveau1" class="game-btn" target="_blank" rel="noopener">Jouer →</a>
+                </div>
+
+                <div class="game-card">
+                    <h4>QCM Classique</h4>
+                    <p>Questions à choix multiples pour tester votre compréhension.</p>
+                    <a href="https://antoninatger.github.io/jeux/Arcade%20quizz/qcm-classique.html?serie=niveau1" class="game-btn" target="_blank" rel="noopener">Jouer →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Aller plus loin : le jeu « Pas si vite ! » (bilans/pas-si-vite/) -->
+        <div class="plus-loin">
+            <div>
+                <h3>💬 Pas si vite !</h3>
+                <p>Des amis vous envoient une photo, une pub, un message… et se sont fait avoir. À vous de leur expliquer pourquoi, dans une vraie-fausse conversation : en choisissant la bonne réponse, ou en l'écrivant avec vos mots.</p>
+            </div>
+            <a href="pas-si-vite/?serie=niveau1" class="plus-loin-btn">Je veux aller plus loin pour tester mes connaissances →</a>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="window.print()">Exporter en PDF</button>
+            <a href="index.html" class="btn btn-secondary">Les autres bilans</a>
+            <a href="../" class="btn btn-secondary">Menu principal</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Créé par <strong>Antonin Atger</strong> | Collection de jeux pédagogiques sur l'esprit critique</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">Ressources : Jeux Arcade, Médiathèque du Cours</p>
+    </footer>
+
+    <script>
+        /* --- Accordeons -----------------------------------------------------
+           La hauteur ouverte est mesuree puis relachee a « none » : les
+           modules interactifs font grandir leur contenu apres coup (reponse
+           depliee, retour d'un quiz) et un plafond fixe les couperait. */
+        const accordionItems = document.querySelectorAll('.accordion-item');
+
+        function ouvrirAccordeon(item) {
+            const c = item.querySelector('.accordion-content');
+            item.classList.add('active');
+            c.style.maxHeight = c.scrollHeight + 'px';
+            c.addEventListener('transitionend', function fini(e) {
+                if (e.propertyName !== 'max-height') return;
+                c.removeEventListener('transitionend', fini);
+                if (item.classList.contains('active')) c.style.maxHeight = 'none';
+            });
+        }
+
+        function fermerAccordeon(item) {
+            const c = item.querySelector('.accordion-content');
+            c.style.maxHeight = c.scrollHeight + 'px';
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                item.classList.remove('active');
+                c.style.maxHeight = '0px';
+            }));
+        }
+
+        accordionItems.forEach(item => {
+            item.querySelector('.accordion-header').addEventListener('click', () => {
+                /* Chaque accordeon est independant. Refermer automatiquement les
+                   autres faisait remonter d'un coup tout ce qui etait au-dessus,
+                   et la page paraissait sauter. Ici seul le bloc clique bouge,
+                   et il grandit sous son propre titre : rien ne se deplace. */
+                if (item.classList.contains('active')) fermerAccordeon(item);
+                else ouvrirAccordeon(item);
+            });
+        });
+
+        // Smooth scrolling for TOC links
+        document.querySelectorAll('.toc a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        /* ===================================================================
+           MODULES INTERACTIFS
+           =================================================================== */
+
+        /* --- Boutons « Voir la reponse » ---------------------------------- */
+        document.querySelectorAll('[data-reveler]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var cible = document.getElementById(btn.dataset.reveler);
+                cible.hidden = !cible.hidden;
+                btn.textContent = cible.hidden ? 'Voir la réponse' : 'Masquer la réponse';
+            });
+        });
+
+
+
+        /* --- Questionnaires ------------------------------------------------ */
+        function construireQuiz(conteneurId, scoreId, questions, bilan) {
+            bilan = bilan || {
+                parfait: 'Sans faute. Le mode analytique a bien pris la main.',
+                imparfait: 'La réponse qui vient en premier n’est pas toujours la bonne : c’est tout le sujet.'
+            };
+            var zone = document.getElementById(conteneurId);
+            if (!zone) return;
+            var repondues = 0, justes = 0;
+
+            questions.forEach(function (q, i) {
+                var bloc = document.createElement('div');
+                bloc.className = 'q-bloc';
+
+                var enonce = document.createElement('p');
+                enonce.className = 'q-enonce';
+                enonce.textContent = (i + 1) + '. ' + q.enonce;
+                bloc.appendChild(enonce);
+
+                var choix = document.createElement('div');
+                choix.className = 'q-choix';
+
+                var retour = document.createElement('div');
+                retour.className = 'q-retour';
+                retour.hidden = true;
+
+                q.options.forEach(function (opt, j) {
+                    var b = document.createElement('button');
+                    b.type = 'button';
+                    b.className = 'q-opt';
+                    b.textContent = opt;
+                    b.addEventListener('click', function () {
+                        if (bloc.dataset.fait) return;
+                        bloc.dataset.fait = '1';
+                        repondues++;
+                        if (j === q.bonne) justes++;
+                        choix.querySelectorAll('.q-opt').forEach(function (autre, k) {
+                            autre.disabled = true;
+                            if (k === q.bonne) autre.classList.add('juste');
+                            else if (k === j) autre.classList.add('faux');
+                        });
+                        retour.innerHTML = q.explication;
+                        retour.hidden = false;
+                        if (repondues === questions.length) {
+                            var s = document.getElementById(scoreId);
+                            s.textContent = justes + ' / ' + questions.length + '. ' +
+                                (justes === questions.length ? bilan.parfait : bilan.imparfait);
+                            s.hidden = false;
+                        }
+                    });
+                    choix.appendChild(b);
+                });
+
+                bloc.appendChild(choix);
+                bloc.appendChild(retour);
+                zone.appendChild(bloc);
+            });
+        }
+
+        construireQuiz('crt-questions', 'crt-score', [
+            {
+                enonce: 'Une raquette et une balle coûtent 1,10 € au total. La raquette coûte 1 € de plus que la balle. Combien coûte la balle ?',
+                options: ['10 centimes', '5 centimes', '1,05 €'],
+                bonne: 1,
+                explication: '<strong>5 centimes.</strong> « 10 centimes » est la réponse qui vient toute seule, mais alors la raquette coûterait 1,10 €, et le total ferait 1,20 €. Avec 5 centimes : la raquette vaut 1,05 €, et le total tombe juste. La réponse intuitive était fausse.'
+            },
+            {
+                enonce: 'Cinq machines mettent 5 minutes à fabriquer 5 objets. Combien de temps faut-il à 100 machines pour fabriquer 100 objets ?',
+                options: ['100 minutes', '20 minutes', '5 minutes'],
+                bonne: 2,
+                explication: '<strong>5 minutes.</strong> Chaque machine met 5 minutes à faire un objet. Avec 100 machines qui travaillent en même temps, il faut toujours 5 minutes. Le « 100 » de la question attire l’œil et souffle « 100 minutes ».'
+            },
+            {
+                enonce: 'Des nénuphars doublent de surface chaque jour et couvrent tout le lac en 48 jours. Au bout de combien de jours couvrent-ils la moitié du lac ?',
+                options: ['24 jours', '47 jours', '12 jours'],
+                bonne: 1,
+                explication: '<strong>47 jours.</strong> Puisque la surface double chaque jour, la veille du jour où le lac est entièrement couvert, il l’est à moitié. « 24 » est la moitié de 48 : c’est une réponse de symétrie, pas de raisonnement.'
+            }
+        ]);
+
+        construireQuiz('biais-questions', 'biais-score', [
+            {
+                enonce: 'Un chanteur très suivi affirme qu’un complément alimentaire guérit la grippe. Beaucoup de ses abonnés le croient.',
+                options: ['Biais de popularité', 'Biais émotionnel', 'Biais de confirmation'],
+                bonne: 0,
+                explication: '<strong>Biais de popularité.</strong> Le chanteur n’a aucune légitimité médicale. C’est sa notoriété, pas sa compétence, qui emporte l’adhésion.'
+            },
+            {
+                enonce: 'Une photo d’enfant blessé circule avec une légende inventée. Elle est partagée des milliers de fois en une heure.',
+                options: ['Biais de popularité', 'Biais émotionnel', 'Biais de confirmation'],
+                bonne: 1,
+                explication: '<strong>Biais émotionnel.</strong> L’émotion court-circuite la vérification. Et les réseaux amplifient : vraie ou fausse, une information émouvante crée de l’engagement.'
+            },
+            {
+                enonce: 'Persuadé qu’un produit est dangereux, un internaute ne lit que les articles qui vont dans ce sens et ignore les autres.',
+                options: ['Biais de popularité', 'Biais émotionnel', 'Biais de confirmation'],
+                bonne: 2,
+                explication: '<strong>Biais de confirmation.</strong> Il ne cherche pas à savoir, il cherche à avoir raison. Les informations contraires sont écartées avant même d’être examinées.'
+            },
+            {
+                enonce: 'Un vidéaste de jeux vidéo donne son avis sur un vaccin. Ses abonnés le prennent au sérieux parce qu’ils l’apprécient.',
+                options: ['Biais de popularité', 'Biais émotionnel', 'Biais de confirmation'],
+                bonne: 0,
+                explication: '<strong>Biais de popularité.</strong> La sympathie et l’audience se transforment en autorité sur un sujet qui n’a rien à voir avec sa spécialité.'
+            },
+            {
+                enonce: 'Une information tombe : elle correspond exactement à ce que vous pensiez déjà. Vous la trouvez « logique » et la partagez sans la vérifier.',
+                options: ['Biais de popularité', 'Biais émotionnel', 'Biais de confirmation'],
+                bonne: 2,
+                explication: '<strong>Biais de confirmation.</strong> Le plus difficile à repérer, parce qu’il se déclenche précisément quand tout nous semble évident. C’est là qu’il faut se demander : pourquoi est-ce que je crois ce que je crois ?'
+            }
+        ]);
+
+        construireQuiz('ctx-questions', 'ctx-score', [
+            {
+                enonce: '« Les accidents mortels ont augmenté de 100 % sur cette route. » Le chiffre est exact.',
+                options: ['Le nombre de départ', 'Le nom de la route', 'L’auteur de l’étude'],
+                bonne: 0,
+                explication: '<strong>Le nombre de départ.</strong> Une hausse de 100 %, c’est un doublement : de 1 à 2 accidents, c’est déjà 100 %. Le pourcentage est vrai et ne dit rien tant qu’on ignore de combien on part. C’est la forme la plus courante du chiffre sorti de son contexte.'
+            },
+            {
+                enonce: 'Une photo montre la salle d’un meeting à moitié vide. Elle n’est pas retouchée.',
+                options: ['Le nom de l’orateur', 'L’heure à laquelle elle a été prise', 'La marque de l’appareil photo'],
+                bonne: 1,
+                explication: '<strong>L’heure.</strong> Une salle photographiée une heure avant l’ouverture est vide, et la photo est authentique. Le même lieu, une heure plus tard, raconte l’inverse. Rien n’est truqué : on a seulement choisi le moment, comme on choisit un cadrage.'
+            },
+            {
+                enonce: 'Un responsable politique déclare : « il faut supprimer ces aides ». La citation est exacte, mot pour mot.',
+                options: ['Sa date de naissance', 'Le nombre de personnes dans la salle', 'La phrase qui venait juste après'],
+                bonne: 2,
+                explication: '<strong>La phrase suivante.</strong> « … et les remplacer par un dispositif unique » change entièrement le sens. Une citation peut être rigoureusement fidèle et pourtant mensongère, simplement parce qu’on l’a coupée au bon endroit.'
+            }
+        ], {
+            parfait: 'Sans faute. Vous avez cherché ce qui manquait plutôt que de juger ce qui était montré.',
+            imparfait: 'Dans les trois cas l’information était vraie. C’est ce qui l’entourait qui avait disparu.'
+        });
+
+        /* --- Effet de cadrage ---------------------------------------------- */
+        (function () {
+            var retour = document.getElementById('cadre-retour');
+            if (!retour) return;
+            document.querySelectorAll('[data-cadre]').forEach(function (b, i, tous) {
+                b.addEventListener('click', function () {
+                    tous.forEach(function (x) { x.disabled = true; x.classList.remove('juste', 'faux'); });
+                    b.classList.add('juste');
+                    retour.innerHTML = '<strong>Les deux phrases décrivent exactement le même résultat.</strong> ' +
+                        'Aucune n’est fausse, aucune n’est plus vraie que l’autre, et pourtant la première rassure ' +
+                        'quand la seconde inquiète. C’est cela, l’effet de cadrage : ce n’est pas le fait qui change, ' +
+                        'c’est le cadre qu’on met autour.';
+                    retour.hidden = false;
+                });
+            });
+
+            var cache = document.getElementById('cadre-cache');
+            var btn = document.getElementById('cadre-btn');
+            var rep = document.getElementById('cadre-rep');
+            var zone = cache.parentNode;
+            function poser() { if (cache.dataset.ouvert !== '1') cache.style.height = Math.round(zone.clientHeight * 0.42) + 'px'; }
+            poser();
+            window.addEventListener('resize', poser);
+            new MutationObserver(poser).observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] });
+
+            btn.addEventListener('click', function () {
+                cache.dataset.ouvert = '1';
+                cache.style.height = '0px';
+                cache.textContent = '';
+                btn.disabled = true;
+                btn.style.opacity = '.5';
+                rep.hidden = false;
+            });
+        })();
+
+        /* --- Les deux secondes --------------------------------------------- */
+        (function () {
+            var btn = document.getElementById('chrono-btn');
+            if (!btn) return;
+            var aff = document.getElementById('chrono-aff');
+            var rep = document.getElementById('chrono-rep');
+            var minuteur = null;
+
+            btn.addEventListener('click', function () {
+                if (minuteur) return;
+                var reste = 2.0;
+                btn.disabled = true;
+                btn.style.opacity = '.5';
+                rep.hidden = true;
+                minuteur = setInterval(function () {
+                    reste = Math.max(0, reste - 0.1);
+                    aff.textContent = reste.toFixed(1).replace('.', ',');
+                    if (reste <= 0) {
+                        clearInterval(minuteur);
+                        minuteur = null;
+                        btn.disabled = false;
+                        btn.style.opacity = '';
+                        btn.textContent = 'Recommencer';
+                        rep.innerHTML = '<p><strong>Deux secondes. C’est tout ce que ça coûte.</strong></p>' +
+                            '<p>Et dans cet intervalle, trois questions deviennent possibles :</p>' +
+                            '<ul><li>D’où vient cette information ?</li>' +
+                            '<li>Qu’est-ce qu’elle me fait ressentir, et pourquoi maintenant ?</li>' +
+                            '<li>Ai-je vraiment besoin de la partager ?</li></ul>' +
+                            '<p>Ce délai ne sert à rien techniquement. Il sert à laisser le mode analytique prendre la main sur le mode intuitif.</p>';
+                        rep.hidden = false;
+                    }
+                }, 100);
+            });
+        })();
+
+        // Le premier accordeon est ouvert d'entree
+        if (accordionItems.length > 0) {
+            accordionItems[0].classList.remove('active');
+            ouvrirAccordeon(accordionItems[0]);
+        }
+    </script>
+</body>
+</html>

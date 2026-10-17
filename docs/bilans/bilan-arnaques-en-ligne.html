@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilan - Arnaques en ligne</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --primary-light: #dbeafe;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #ffffff;
+            --bg-light: #f9fafb;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --accent: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 40px 20px;
+            margin: 0 0 40px 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+        }
+
+        header h1 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            opacity: 0.95;
+        }
+
+        /* Hero Image */
+        .hero-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        /* Intro */
+        .intro {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            font-size: 1rem;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .toc h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin: 10px 0;
+        }
+
+        .toc a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            display: inline-block;
+            border-radius: 6px;
+        }
+
+        .toc a:hover {
+            background: var(--primary-light);
+            transform: translateX(5px);
+        }
+
+        /* Content */
+        .content {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .content h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        /* Accordion */
+        .accordion-item {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+        }
+
+        .accordion-header {
+            background: var(--bg-light);
+            padding: 18px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text);
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-header {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .accordion-header:hover {
+            background: var(--primary-light);
+        }
+
+        .accordion-icon {
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: white;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 2000px;
+        }
+
+        .accordion-text {
+            padding: 20px;
+            line-height: 1.8;
+        }
+
+        .accordion-text p {
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .accordion-text ul, .accordion-text ol {
+            margin: 15px 0 15px 25px;
+        }
+
+        .accordion-text li {
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+                .section-image {
+            display: block;
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            max-height: 520px;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+
+        /* Interactive Games */
+        .games-section {
+            background: linear-gradient(135deg, var(--accent) 0%, #fbbf24 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        .games-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--text);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .game-card h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .game-card p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .game-btn {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .game-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        /* Aller plus loin : le jeu « Pas si vite ! » */
+        .plus-loin {
+            background: #0e1621;
+            color: #eef2f8;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .plus-loin h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+
+        .plus-loin p {
+            color: #c3cfdf;
+            max-width: 560px;
+            line-height: 1.6;
+        }
+
+        .plus-loin-btn {
+            background: #25d366;
+            color: #06121c;
+            padding: 14px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .plus-loin-btn:hover {
+            transform: scale(1.04);
+            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+        }
+
+        /* Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--border);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-light);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            header {
+                padding: 30px 15px;
+                margin: 0 0 30px 0;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+                /* ===================================================================
+           MODULES INTERACTIFS
+           Chaque module est un bloc jouable (illusion, test, quiz). A
+           l'impression il disparait et laisse la place a son equivalent
+           texte (.module-papier), pour que le PDF reste un document lisible.
+           =================================================================== */
+        .module {
+            border: 2px solid var(--primary-light);
+            border-radius: 12px;
+            background: #fff;
+            margin: 22px 0;
+            overflow: hidden;
+        }
+
+        .module-titre {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: .95rem;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .module-corps { padding: 18px 16px; }
+
+        .module-consigne {
+            font-size: .95rem;
+            color: var(--text-light);
+            margin-bottom: 14px;
+        }
+
+        .module-papier { display: none; }
+
+        .illu-cadre {
+            position: relative;
+            aspect-ratio: 4 / 3;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #f3f4f6;
+            border: 1px solid var(--border);
+        }
+
+        .illu-cadre iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        a.m-btn { text-decoration: none; display: inline-block; }
+
+        .scene {
+            background: #f3f4f6;
+            border-radius: 10px;
+            padding: 10px;
+            touch-action: none;
+        }
+
+        .scene svg { display: block; width: 100%; height: auto; }
+
+        .module-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .m-btn {
+            font: inherit;
+            font-size: .9rem;
+            font-weight: 600;
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: 2px solid var(--primary);
+            background: var(--primary);
+            color: #fff;
+            cursor: pointer;
+            transition: background .2s, color .2s;
+        }
+
+        .m-btn:hover { background: var(--primary-dark); border-color: var(--primary-dark); }
+
+        .m-btn.secondaire { background: #fff; color: var(--primary); }
+        .m-btn.secondaire:hover { background: var(--primary-light); }
+
+        .m-reponse {
+            margin-top: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid var(--primary);
+            background: var(--bg-light);
+            border-radius: 0 8px 8px 0;
+            font-size: .95rem;
+        }
+
+        .m-reponse[hidden] { display: none; }
+
+        /* --- Questions a choix ------------------------------------------- */
+        .q-bloc + .q-bloc { margin-top: 20px; border-top: 1px solid var(--border); padding-top: 20px; }
+        .q-enonce { font-weight: 600; margin-bottom: 12px; }
+        .q-choix { display: grid; gap: 8px; }
+
+        .q-opt {
+            font: inherit;
+            font-size: .93rem;
+            text-align: left;
+            padding: 11px 14px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: #fff;
+            color: var(--text);
+            cursor: pointer;
+            transition: border-color .15s, background .15s;
+        }
+
+        .q-opt:hover:not(:disabled) { border-color: var(--primary); background: var(--primary-light); }
+        .q-opt:disabled { cursor: default; }
+        .q-opt.juste  { border-color: #16a34a; background: #dcfce7; font-weight: 600; }
+        .q-opt.faux   { border-color: #dc2626; background: #fee2e2; }
+
+        .q-retour {
+            margin-top: 10px;
+            font-size: .92rem;
+            padding: 10px 12px;
+            border-radius: 8px;
+            background: var(--bg-light);
+            border-left: 3px solid var(--primary);
+        }
+
+        .q-retour[hidden] { display: none; }
+
+        .m-score {
+            margin-top: 16px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        /* --- Cadrage : la photo qu'on recadre ----------------------------- */
+        .cadrage-zone { position: relative; max-width: 420px; margin: 0 auto; }
+        .cadrage-zone img { display: block; width: 100%; border-radius: 8px; }
+        .cadrage-cache {
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            background: #e5e7eb;
+            border-radius: 0 0 8px 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-light);
+            font-size: .85rem; font-weight: 600;
+            transition: height .5s ease;
+        }
+
+        /* --- Minuteur des 2 secondes -------------------------------------- */
+        .chrono {
+            font-size: 2.6rem;
+            font-weight: 800;
+            text-align: center;
+            color: var(--primary);
+            margin: 8px 0 4px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ===================================================================
+           IMPRESSION / EXPORT PDF
+           Le document papier n'est pas la page web en noir et blanc :
+           - tous les accordeons sont ouverts (sinon le PDF sortait vide) ;
+           - les photos et l'habillage d'interface disparaissent ;
+           - typographie de document : serif, noir sur blanc, sans aplats.
+           =================================================================== */
+        @media print {
+            @page {
+                size: A4;
+                margin: 18mm 16mm 20mm 16mm;
+            }
+
+            body {
+                background: #fff !important;
+                color: #000 !important;
+                font-family: Georgia, 'Times New Roman', serif;
+                font-size: 10.5pt;
+                line-height: 1.55;
+            }
+
+            .container { max-width: none; padding: 0; }
+
+            /* Document monochrome. Beaucoup de couleurs et d'aplats sont poses
+               en style= directement dans le HTML : on les neutralise tous d'un
+               coup, les regles de classe ci-dessous reposent ensuite les filets. */
+            *, *::before, *::after {
+                color: #000 !important;
+                background: none !important;
+                background-color: transparent !important;
+                box-shadow: none !important;
+                text-shadow: none !important;
+            }
+
+            /* Tout element mis en avant par un aplat devient un filet a gauche. */
+            .accordion-text [style*="background"],
+            .content [style*="background"] {
+                border-left: 2pt solid #000 !important;
+                border-radius: 0 !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 7pt 0 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            table { border-collapse: collapse; width: 100%; font-size: 9.5pt; }
+            th, td { border: 0.5pt solid #666 !important; padding: 3pt 5pt !important; }
+            th { font-weight: 700; }
+            .table-responsive { overflow: visible !important; }
+
+            .content {
+                background: none !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            /* --- Modules interactifs : le jeu disparait, le texte reste --- */
+            .module {
+                border: none !important;
+                border-radius: 0 !important;
+                margin: 8pt 0 !important;
+            }
+            .module-titre,
+            .module-corps { display: none !important; }
+            .module-papier {
+                display: block !important;
+                border-left: 2pt solid #000 !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 0 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* --- Hors sujet sur papier ------------------------------------ */
+            .action-buttons,
+            .games-section,
+            .plus-loin,
+            .accordion-icon,
+            .hero-image,
+            .section-image,
+            header::after {
+                display: none !important;
+            }
+
+            /* --- Bandeau de titre remis a plat ---------------------------- */
+            header {
+                background: none !important;
+                color: #000 !important;
+                margin: 0 0 14pt 0 !important;
+                padding: 0 0 8pt 0 !important;
+                border-bottom: 2pt solid #000;
+                border-radius: 0 !important;
+                text-align: left;
+            }
+            header h1 { font-size: 19pt; margin-bottom: 4pt; }
+            header p  { font-size: 10.5pt; opacity: 1; margin: 0; max-width: none; }
+
+            /* --- Chapeau et sommaire -------------------------------------- */
+            .intro,
+            .toc {
+                background: none !important;
+                border: none !important;
+                border-left: 2pt solid #000 !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 0 0 14pt 0 !important;
+                font-size: 10.5pt;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            .toc h2 {
+                font-size: 11.5pt;
+                border: none !important;
+                margin: 0 0 5pt 0 !important;
+                padding: 0 !important;
+            }
+            .toc ul { margin: 0 !important; padding: 0 0 0 12pt !important; }
+            .toc li { margin: 2pt 0 !important; }
+
+            /* --- Titres de partie ----------------------------------------- */
+            h2, .content h2 {
+                font-size: 14pt;
+                color: #000 !important;
+                border-bottom: 1pt solid #000;
+                padding-bottom: 3pt;
+                margin: 18pt 0 9pt 0 !important;
+                break-after: avoid;
+                page-break-after: avoid;
+            }
+
+            /* --- Accordeons : TOUS ouverts, sans chrome ------------------- */
+            .accordion-content,
+            .accordion-item.active .accordion-content {
+                max-height: none !important;
+                overflow: visible !important;
+                display: block !important;
+                background: none !important;
+            }
+
+            .accordion-item,
+            .accordion-item.active {
+                border: none !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                margin: 0 0 11pt 0 !important;
+                overflow: visible !important;
+            }
+
+            .accordion-header,
+            .accordion-item.active .accordion-header {
+                background: none !important;
+                color: #000 !important;
+                cursor: default;
+                display: block;
+                font-family: Georgia, 'Times New Roman', serif;
+                font-size: 11.5pt;
+                font-weight: 700;
+                padding: 0 0 3pt 0 !important;
+                border-bottom: 0.5pt solid #888;
+                break-after: avoid;
+                page-break-after: avoid;
+            }
+
+            .accordion-text { padding: 5pt 0 0 0 !important; line-height: 1.55; }
+
+            /* --- Neutralise les couleurs posees en style= dans le HTML ----- */
+            .accordion-text p,
+            .accordion-text li,
+            .accordion-text span,
+            .accordion-text strong,
+            .accordion-text em,
+            .intro, .intro *,
+            .toc a {
+                color: #000 !important;
+                background: none !important;
+                font-size: inherit !important;
+            }
+
+            /* Les paragraphes mis en avant par un aplat deviennent un filet */
+            .accordion-text p[style*="background"] {
+                border-left: 2pt solid #000 !important;
+                border-radius: 0 !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 7pt 0 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* --- Encadres : un filet, pas un aplat ------------------------ */
+            .warning-box,
+            .info-box,
+            .highlight-box,
+            .definition-box,
+            .key-point,
+            .card {
+                background: none !important;
+                border: none !important;
+                border-left: 2pt solid #000 !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                padding: 2pt 0 2pt 10pt !important;
+                margin: 7pt 0 !important;
+                color: #000 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* --- Liens : l'adresse imprimee entre parentheses ------------- */
+            a { color: #000 !important; text-decoration: none; }
+            a[href^="http"]::after {
+                content: " (" attr(href) ")";
+                font-size: 8.5pt;
+                word-break: break-all;
+            }
+            .toc a::after { content: ""; }
+
+            ul, ol { margin-left: 14pt; }
+            li { margin-bottom: 2pt; }
+            p  { orphans: 3; widows: 3; margin-bottom: 6pt; }
+            table { break-inside: avoid; page-break-inside: avoid; }
+
+            footer {
+                border-top: 0.5pt solid #888;
+                margin-top: 16pt;
+                padding-top: 6pt;
+                font-size: 9pt;
+                color: #000 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Arnaques en ligne</h1>
+        <p>Résumé du bilan pédagogique</p>
+    </header>
+
+    <div class="container">
+        <img src="images/arnaques-faux-mail-microsoft.png" alt="Faux mail « Microsoft » : virus sur votre appareil" class="hero-image">
+
+        <div class="intro">
+            <strong>Objectif :</strong> Comprendre comment fonctionnent les arnaques en ligne, pourquoi tout le monde peut s’y faire prendre, et adopter les bons réflexes.
+        </div>
+
+        <div class="toc">
+            <h2>Table des matières</h2>
+            <ul>
+                <li><a href="#section-1">1. Repérer une image générée par IA</a></li>
+                <li><a href="#section-2">2. Pourquoi peut-on se faire piéger ?</a></li>
+                <li><a href="#section-3">3. Les principales arnaques</a></li>
+                <li><a href="#section-4">4. Comment ne pas se faire avoir</a></li>
+                <li><a href="#section-5">5. QCM et jeux</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <h2 id="section-1">Repérer une image générée par IA</h2>
+
+            <div class="accordion-item active">
+                <div class="accordion-header">
+                    <span>Les images IA paraissent de plus en plus vraies</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Le pape en doudoune, Trump arrêté par la police, Macron au milieu des CRS, Trump qui serre la main de Poutine : toutes ces images ont été <strong>générées par IA</strong>. Elles vont devenir de plus en plus réalistes.</p>
+                        <p><strong>On ne peut donc pas se baser uniquement sur le fait qu’une image « paraît vraie ».</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Les six critères pour valider une information</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <ul>
+                            <li><strong>Fiabilité de la source</strong> : qui publie ?</li>
+                            <li><strong>Fiabilité de l’interlocuteur</strong> : qui me l’envoie ?</li>
+                            <li><strong>Niveau de preuves</strong> : qu’est-ce qui le montre ?</li>
+                            <li><strong>Plusieurs sources fiables en parlent</strong></li>
+                            <li><strong>Crédibilité de l’information</strong> : est-ce plausible ?</li>
+                            <li><strong>Commentaires et critiques</strong> de l’information</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>L’appel à l’émotion</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Si nous sommes <strong>émus</strong> par une information, nous avons davantage tendance à y croire, <strong>même si elle est fausse</strong>. Les escrocs le savent : bébés en détresse sur Facebook, déclaration d’amour, menace, urgence.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="section-2" style="margin-top: 40px;">Pourquoi peut-on se faire piéger ?</h2>
+
+            <div class="accordion-item active">
+                <div class="accordion-header">
+                    <span>L’histoire d’Anne et du faux Brad Pitt</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Anne, 53 ans, a perdu <strong>830 000 €</strong> entre 2023 et 2024 avec un faux Brad Pitt rencontré sur Instagram : faux messages, fausses photos générées par IA, faux médecin, faux douanier.</p>
+                        <p><strong>Ce n’est PAS la stupidité.</strong> Les escrocs s’appuient sur des mécanismes qui piègent tout le monde.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Les mécanismes qui nous piègent</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <ul>
+                            <li><strong>La solitude</strong> : quelqu’un s’intéresse enfin à nous.</li>
+                            <li><strong>La flatterie</strong> : « C’est Brad Pitt qui me parle, quand même ! »</li>
+                            <li><strong>Les fausses preuves</strong> et la caution d’un tiers, qui rassurent la victime.</li>
+                            <li><strong>Le biais d’engagement</strong> : une fois engagé dans une croyance, il est très difficile de revenir en arrière.</li>
+                            <li><strong>Les coûts irrécupérables</strong> : plus on a donné, plus il est dur d’arrêter.</li>
+                            <li><strong>La dissonance cognitive</strong> : quand un fait contredit nos croyances, on réinterprète le fait pour apaiser l’inconfort.</li>
+                            <li><strong>Le déni plausible</strong> : tant qu’on peut encore douter, on s’accroche à ce doute.</li>
+                            <li><strong>L’isolement</strong> : l’escroc éloigne la victime de ses proches.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Après l’arnaque : la double peine</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Une victime est une <strong>cible repérée</strong>. De faux « enquêteurs » ou de faux « agents du FBI » proposent de récupérer l’argent… contre paiement. Et la moquerie publique aggrave la honte, qui empêche d’en parler.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>« Pourquoi ça tombe sur moi ? »</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p><strong>Ça ne tombe pas sur vous</strong> : le même message part au hasard à des milliers de personnes. Il tombe juste pour celles qui attendent justement un colis, un appel de leur banque… On ne voit que ces cas-là : c’est le <strong>biais du survivant</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="section-3" style="margin-top: 40px;">Les principales arnaques</h2>
+
+            <div class="accordion-item active">
+                <div class="accordion-header">
+                    <span>L’arnaque sentimentale</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Un faux profil séduisant, souvent une célébrité, gagne votre confiance puis demande de l’argent.</p>
+                        <p><strong>Réflexes :</strong> chercher la photo avec une recherche par image (Google Lens), demander un appel vidéo, ne jamais envoyer d’argent, en parler à un proche.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Le chantage sexuel (sextorsion)</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Un faux mail prétend que votre webcam vous a filmé. Ou un faux profil échange des photos intimes, puis menace de les envoyer à vos amis.</p>
+                        <p><strong>Ne JAMAIS payer</strong> : ils ne s’arrêtent jamais. Ne rien envoyer de plus, bloquer, garder les preuves, en parler, appeler le <strong>3018</strong>, signaler sur Pharos et porter plainte.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Le phishing (hameçonnage)</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>L’escroc se fait passer pour un organisme connu (gendarmerie, Microsoft, impôts, banque) pour vous faire payer ou cliquer.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Le faux proche et la voix clonée</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>« Salut maman, c’est mon nouveau numéro » : un faux enfant demande de l’argent en urgence. Avec l’IA, quelques secondes d’enregistrement suffisent pour <strong>cloner une voix</strong>.</p>
+                        <p><strong>Réflexes :</strong> un mot de passe familial (« Tartiflette » : pas de mot, pas d’argent), raccrocher et rappeler sur le numéro habituel, poser une question piège, ne pas parler en premier face à un appel silencieux.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Le faux conseiller bancaire</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Le numéro affiché est celui de votre banque : il est usurpé. Le « conseiller » vous fait valider une opération dans l’appli, ou envoie un coursier chercher votre carte.</p>
+                        <p><strong>Réflexes :</strong> raccrocher, rappeler vous-même le numéro au dos de votre carte, ne donner ni code, ni carte, ni validation. Une banque ne vient jamais chercher votre carte.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Le « colis arrivé »</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Vérifiez bien que vous attendez un colis et que c’est le bon transporteur. Attention en période de fêtes, et pensez au biais du survivant.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Les faux sites administratifs</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Ils font payer une démarche gratuite ou peu chère (Crit’Air, carte grise, acte de naissance).</p>
+                        <p><strong>Réflexes :</strong> les sites de l’État finissent par <strong>.gouv.fr</strong> ; se méfier des premiers résultats « Sponsorisé » ; lire les petites lignes (abonnements cachés).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Les faux QR codes (quishing)</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Un faux QR code est collé par-dessus le vrai, sur un horodateur ou une borne de recharge.</p>
+                        <p><strong>Réflexes :</strong> toucher (autocollant, bord qui se décolle), lire l’adresse affichée avant de l’ouvrir, payer plutôt par l’appli officielle.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Les fausses publicités et les faux placements</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Faux articles de presse, vidéos truquées de célébrités : « il a fait fortune grâce à cette plateforme ».</p>
+                        <p><strong>Réflexes :</strong> une célébrité ne vend pas de placement ; consulter la liste noire de l’AMF ; « sans risque » et « rendement garanti » sont des signaux d’alerte.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="section-4" style="margin-top: 40px;">Comment ne pas se faire avoir</h2>
+
+            <div class="accordion-item active">
+                <div class="accordion-header">
+                    <span>Les signaux d’alerte</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <ul>
+                            <li>Les <strong>fautes d’orthographe</strong>.</li>
+                            <li>Les <strong>adresses mail étranges</strong> (banqueDefrance@c0mpte.com).</li>
+                            <li>L’<strong>adresse du lien ne correspond pas</strong> : passez la souris dessus, sans cliquer.</li>
+                            <li>Les <strong>moyens de paiement inhabituels</strong> : PCS, Transcash, Neosurf, crypto.</li>
+                            <li>L’<strong>urgence</strong> : si on vous dit que c’est urgent, ce n’est certainement pas le cas.</li>
+                            <li>Si c’est <strong>trop beau pour être vrai</strong>, c’est généralement faux.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Qui contacter ?</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <ul>
+                            <li><strong>3018</strong> : harcèlement et chantage en ligne chez les jeunes (appel, tchat, gratuit et anonyme).</li>
+                            <li><strong>Info Escroqueries</strong> : 0 805 805 817 (gratuit).</li>
+                            <li><strong>33700</strong> : transférer un SMS frauduleux.</li>
+                            <li><strong>internet-signalement.gouv.fr</strong> (Pharos) : signaler un contenu illicite.</li>
+                            <li><strong>cybermalveillance.gouv.fr</strong> : conseils et assistance aux victimes.</li>
+                            <li>Porter plainte au commissariat ou à la gendarmerie.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Soyons modestes !</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Tout le monde peut se faire avoir. En parler sans honte, c’est déjà se protéger, et protéger les autres.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="section-5" style="margin-top: 40px;">Testez vos connaissances</h2>
+
+            <div class="module" data-module="qcm-arnaques">
+                <div class="module-titre">QCM : avez-vous les bons réflexes ?</div>
+                <div class="module-corps">
+                    <p class="module-consigne">Huit questions sur la formation. Cliquez sur la réponse qui vous semble juste.</p>
+                    <div id="qcm-questions"></div>
+                    <div class="m-score" id="qcm-score" hidden></div>
+                </div>
+                <div class="module-papier">
+                    <p><strong>QCM.</strong> Huit questions sur les réflexes vus en formation. <em>(Version jouable sur la page en ligne.)</em></p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="games-section">
+            <h3>Jouez avec les vrais messages</h3>
+            <p style="margin-bottom: 20px;">Mettez en pratique ce que vous avez appris :</p>
+
+            <div class="games-grid">
+                <div class="game-card">
+                    <h4>Radar’naque</h4>
+                    <p>SMS, mails, appels : arnaque ou message fiable ? À vous de repérer les pièges.</p>
+                    <a href="https://antoninatger.github.io/jeux/radarnaque/" class="game-btn" target="_blank" rel="noopener">Jouer →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="window.print()">Exporter en PDF</button>
+            <a href="index.html" class="btn btn-secondary">Les autres bilans</a>
+            <a href="../" class="btn btn-secondary">Menu principal</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>Créé par <strong>Antonin Atger</strong> | Collection de jeux pédagogiques sur l'esprit critique</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">Ressources : Jeux Arcade, Médiathèque du Cours</p>
+    </footer>
+
+    <script>
+        /* --- Accordeons -----------------------------------------------------
+           La hauteur ouverte est mesuree puis relachee a « none » : les
+           modules interactifs font grandir leur contenu apres coup (reponse
+           depliee, retour d'un quiz) et un plafond fixe les couperait. */
+        const accordionItems = document.querySelectorAll('.accordion-item');
+
+        function ouvrirAccordeon(item) {
+            const c = item.querySelector('.accordion-content');
+            item.classList.add('active');
+            c.style.maxHeight = c.scrollHeight + 'px';
+            c.addEventListener('transitionend', function fini(e) {
+                if (e.propertyName !== 'max-height') return;
+                c.removeEventListener('transitionend', fini);
+                if (item.classList.contains('active')) c.style.maxHeight = 'none';
+            });
+        }
+
+        function fermerAccordeon(item) {
+            const c = item.querySelector('.accordion-content');
+            c.style.maxHeight = c.scrollHeight + 'px';
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                item.classList.remove('active');
+                c.style.maxHeight = '0px';
+            }));
+        }
+
+        accordionItems.forEach(item => {
+            item.querySelector('.accordion-header').addEventListener('click', () => {
+                /* Chaque accordeon est independant. Refermer automatiquement les
+                   autres faisait remonter d'un coup tout ce qui etait au-dessus,
+                   et la page paraissait sauter. Ici seul le bloc clique bouge,
+                   et il grandit sous son propre titre : rien ne se deplace. */
+                if (item.classList.contains('active')) fermerAccordeon(item);
+                else ouvrirAccordeon(item);
+            });
+        });
+
+        // Smooth scrolling for TOC links
+        document.querySelectorAll('.toc a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        /* ===================================================================
+           MODULES INTERACTIFS
+           =================================================================== */
+
+        /* --- Boutons « Voir la reponse » ---------------------------------- */
+        document.querySelectorAll('[data-reveler]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var cible = document.getElementById(btn.dataset.reveler);
+                cible.hidden = !cible.hidden;
+                btn.textContent = cible.hidden ? 'Voir la réponse' : 'Masquer la réponse';
+            });
+        });
+
+
+
+        /* --- Questionnaires ------------------------------------------------ */
+        function construireQuiz(conteneurId, scoreId, questions, bilan) {
+            bilan = bilan || {
+                parfait: 'Sans faute. Le mode analytique a bien pris la main.',
+                imparfait: 'La réponse qui vient en premier n’est pas toujours la bonne : c’est tout le sujet.'
+            };
+            var zone = document.getElementById(conteneurId);
+            if (!zone) return;
+            var repondues = 0, justes = 0;
+
+            questions.forEach(function (q, i) {
+                var bloc = document.createElement('div');
+                bloc.className = 'q-bloc';
+
+                var enonce = document.createElement('p');
+                enonce.className = 'q-enonce';
+                enonce.textContent = (i + 1) + '. ' + q.enonce;
+                bloc.appendChild(enonce);
+
+                var choix = document.createElement('div');
+                choix.className = 'q-choix';
+
+                var retour = document.createElement('div');
+                retour.className = 'q-retour';
+                retour.hidden = true;
+
+                q.options.forEach(function (opt, j) {
+                    var b = document.createElement('button');
+                    b.type = 'button';
+                    b.className = 'q-opt';
+                    b.textContent = opt;
+                    b.addEventListener('click', function () {
+                        if (bloc.dataset.fait) return;
+                        bloc.dataset.fait = '1';
+                        repondues++;
+                        if (j === q.bonne) justes++;
+                        choix.querySelectorAll('.q-opt').forEach(function (autre, k) {
+                            autre.disabled = true;
+                            if (k === q.bonne) autre.classList.add('juste');
+                            else if (k === j) autre.classList.add('faux');
+                        });
+                        retour.innerHTML = q.explication;
+                        retour.hidden = false;
+                        if (repondues === questions.length) {
+                            var s = document.getElementById(scoreId);
+                            s.textContent = justes + ' / ' + questions.length + '. ' +
+                                (justes === questions.length ? bilan.parfait : bilan.imparfait);
+                            s.hidden = false;
+                        }
+                    });
+                    choix.appendChild(b);
+                });
+
+                bloc.appendChild(choix);
+                bloc.appendChild(retour);
+                zone.appendChild(bloc);
+            });
+        }
+
+        construireQuiz('qcm-questions', 'qcm-score', [
+            {
+                "enonce": "Une photo paraît parfaitement réelle. Peut-on en conclure qu’elle est vraie ?",
+                "options": [
+                    "Oui, une IA laisse toujours des défauts visibles",
+                    "Non, il faut vérifier la source et chercher d’autres sources fiables",
+                    "Oui, si elle a beaucoup de partages"
+                ],
+                "bonne": 1,
+                "explication": "<strong>Non.</strong> Les images IA deviennent de plus en plus réalistes. Il faut s’appuyer sur les critères : source, interlocuteur, preuves, autres sources fiables, crédibilité, critiques."
+            },
+            {
+                "enonce": "Pourquoi Anne a-t-elle pu croire au faux Brad Pitt pendant plus d’un an ?",
+                "options": [
+                    "Parce qu’elle manquait d’intelligence",
+                    "Parce que des mécanismes comme la flatterie, l’engagement et la dissonance cognitive piègent tout le monde",
+                    "Parce que les photos étaient vraies"
+                ],
+                "bonne": 1,
+                "explication": "<strong>Ce n’est pas la stupidité.</strong> Solitude, flatterie, coûts irrécupérables, dissonance cognitive et isolement : les escrocs s’appuient sur des mécanismes universels."
+            },
+            {
+                "enonce": "Vous recevez un mail : « J’ai filmé votre webcam, payez 750 € en bitcoin sous 72 heures ». Que faites-vous ?",
+                "options": [
+                    "Je ne paie pas, je garde les preuves et je signale",
+                    "Je réponds pour négocier",
+                    "Je paie pour que ça s’arrête"
+                ],
+                "bonne": 0,
+                "explication": "<strong>Ne jamais payer</strong> : ils ne s’arrêtent jamais. Ce mail est envoyé à des milliers de personnes, souvent sans aucune vidéo."
+            },
+            {
+                "enonce": "« Salut maman, c’est mon nouveau numéro, j’ai besoin d’argent vite. » Le meilleur réflexe ?",
+                "options": [
+                    "Répondre au nouveau numéro pour avoir des détails",
+                    "Envoyer l’argent, c’est urgent",
+                    "Rappeler l’enfant sur son numéro habituel, ou demander le mot de passe familial"
+                ],
+                "bonne": 2,
+                "explication": "<strong>Rappelez sur le numéro habituel</strong>, même s’il « ne marche plus ». Et pas de mot de passe familial, pas d’argent."
+            },
+            {
+                "enonce": "Le numéro de votre banque s’affiche. Le « conseiller » veut envoyer un coursier chercher votre carte. Vrai ou arnaque ?",
+                "options": [
+                    "Arnaque : le numéro peut être usurpé et une banque ne vient jamais chercher votre carte",
+                    "Vrai, si le conseiller connaît votre nom",
+                    "Vrai, le numéro affiché le prouve"
+                ],
+                "bonne": 0,
+                "explication": "<strong>Arnaque.</strong> Le numéro affiché ne prouve rien. Raccrochez et rappelez vous-même le numéro inscrit au dos de votre carte."
+            },
+            {
+                "enonce": "Comment reconnaître le site officiel pour une vignette Crit’Air ?",
+                "options": [
+                    "C’est le premier résultat Google",
+                    "Il affiche un drapeau tricolore et le mot « officiel »",
+                    "Son adresse finit par .gouv.fr"
+                ],
+                "bonne": 2,
+                "explication": "<strong>.gouv.fr.</strong> Les premiers résultats sont souvent des annonces « Sponsorisé », et un drapeau ou le mot « officiel » ne prouvent rien."
+            },
+            {
+                "enonce": "Lequel de ces moyens de paiement doit vous alerter ?",
+                "options": [
+                    "Des coupons Transcash, PCS ou Neosurf",
+                    "Un chèque à un artisan que vous connaissez",
+                    "Une carte bancaire sur le site de votre banque"
+                ],
+                "bonne": 0,
+                "explication": "<strong>Les coupons et la crypto</strong> sont réclamés par les escrocs parce qu’ils sont difficiles à tracer et à récupérer."
+            },
+            {
+                "enonce": "Un QR code sur un horodateur paraît légèrement décollé. Que faire ?",
+                "options": [
+                    "Le scanner puis payer vite avant la fin du stationnement",
+                    "Le scanner quand même, c’est la mairie",
+                    "Ne pas le scanner, ou vérifier l’adresse affichée, et payer par l’appli officielle"
+                ],
+                "bonne": 2,
+                "explication": "<strong>Méfiance.</strong> Des faux QR codes sont collés sur les horodateurs et les bornes de recharge, à Nice, Marseille, Bergerac ou Lyon."
+            }
+        ], {
+            parfait: 'Sans faute : vous avez les bons réflexes.',
+            imparfait: 'Relisez les réponses : chaque réflexe peut éviter une arnaque.'
+        });
+
+        // Le premier accordeon est ouvert d'entree
+        if (accordionItems.length > 0) {
+            accordionItems[0].classList.remove('active');
+            ouvrirAccordeon(accordionItems[0]);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La magie des histoires</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared-deck.css">
+<style>
+/* Propre à cette intervention. Les règles qui suivent sont reprises de
+   formation-fake-news-niveau1 : ses diapos en série en ont besoin pour s’afficher pareil. */
+:root{--acc:#8b5cf6;--acc2:#38bdf8}
+:root[data-theme="light"]{
+  --bg:#f4f6fb; --bg2:#e8ecf5; --panel:#ffffff; --panel2:#eef1f8;
+  --acc:#b8720a; --acc2:#0369a1; --ok:#15803d; --ko:#dc2626;
+  --tx:#0f172a; --mu:#5b6472; --bord:rgba(15,23,42,.14);
+}
+body{background-image:radial-gradient(ellipse at 20% -10%, rgba(56,189,248,.12) 0%, transparent 55%), radial-gradient(ellipse at 90% 110%, rgba(245,185,66,.10) 0%, transparent 55%);transition:background-color .3s ease, color .3s ease}
+#topbar .brand{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+/* ── Cover ── */
+#s0 .logo{font-size:3rem;margin-bottom:6px;}
+#s0 h1{font-size:clamp(2rem,calc(6 * var(--vw1)),3.4rem);font-weight:800;
+  background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+#s0 .objectifs{list-style:none;margin-top:26px;display:flex;flex-direction:column;gap:10px;text-align:left;max-width:520px;}
+#s0 .objectifs li{background:var(--panel);border:1px solid var(--bord);border-radius:14px;padding:12px 18px;font-weight:700;
+  display:flex;align-items:center;gap:12px;}
+#s0 .objectifs li b{color:var(--acc);font-family:'Baloo 2',cursive;font-size:1.1rem;}
+/* ── Boutons génériques ── */
+.bigbtn{background:linear-gradient(135deg,var(--acc),#d99b1f);box-shadow:0 6px 22px rgba(245,185,66,.3)}
+/* ── Vidéos ── */
+/* Pas de largeur imposée : la vidéo garde son format d'origine (portrait ou paysage)
+   et n'est agrandie/réduite que par max-width/max-height, sans crop ni déformation. */
+.vidwrap{position:relative;display:inline-flex;max-width:calc(94 * var(--vw1));max-height:calc(64 * var(--vh1));border-radius:20px;overflow:hidden;border:1px solid var(--bord);
+  box-shadow:0 20px 50px rgba(0,0,0,.4);margin-top:10px;background:#000;}
+.vidwrap video{width:auto;max-width:calc(94 * var(--vw1));max-height:calc(64 * var(--vh1))}
+/* U7 (1er septembre) : niveau1 dimensionne ses videos par la HAUTEUR, la ou influenceurs et
+   niveau2 les dimensionnent par la largeur. Les deux partis se valent, mais celui-ci ne
+   cooperait pas avec un agrandissement a la poignee : le cadre grandissait, la video non,
+   bande noire a droite. Une largeur posee A LA MAIN sur le cadre (poignee ou cran, donc un
+   style en ligne) leve la regle : la video remplit son cadre. Sans largeur explicite, rien
+   ne change : les videos de niveau1 gardent exactement leur aspect. */
+.vidwrap[style*="width"]{max-height:none}
+.vidwrap[style*="width"] video{width:100%;max-width:none;max-height:none;height:auto}
+.vidwrap.wide{max-height:calc(74 * var(--vh1));}
+.vid-rotate-wrap{position:relative;display:inline-flex;}
+.vidwrap{transition:transform .3s ease;}
+/* !important nécessaire : la règle générique d'élévation des boutons (navigation) impose
+   position:relative avec une spécificité plus forte que ce sélecteur simple. */
+.rotate-btn{position:absolute!important;top:6px;right:6px;z-index:12!important;width:34px;height:34px;border-radius:50%;
+  background:rgba(17,24,39,.65);border:1px solid var(--bord);color:#fff;font-size:1.2rem;cursor:pointer;}
+.rotate-btn:hover{border-color:var(--acc2);}
+/* ── Sondage ── */
+.poll{display:flex;gap:20px;margin-top:30px;flex-wrap:wrap;justify-content:center;}
+.poll button:hover{transform:translateY(-3px);}
+.poll button.oui:hover,.poll button.oui.picked{border-color:var(--ok);background:rgba(62,207,142,.14);}
+.poll button.non:hover,.poll button.non.picked{border-color:var(--ko);background:rgba(247,95,95,.14);}
+.pbar-count{width:48px;background:var(--panel2);border:1px solid var(--bord);border-radius:8px;color:var(--tx);
+  padding:4px 6px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;text-align:center;}
+/* Mise en page de la diapo du quiz de vote : une diapo, pas un widget — les regles du
+   widget sont remontees dans shared-deck.css (etape W3). */
+#s6{padding-top:70px;}
+/* Le titre editable du barometre. Un identifiant ne se partage pas : ces trois regles
+   restent ici, le reste du barometre est remonte (etape W3). */
+#truth-title{cursor:text;border-radius:10px;padding:4px 10px;outline-offset:4px;}
+#truth-title:hover{background:rgba(255,255,255,.05);}
+#truth-title:focus-visible{outline:2px dashed var(--acc2);}
+/* ── Illusions (iframe) ── */
+.illu-frame{width:min(740px,calc(92 * var(--vw1)));height:min(calc(80 * var(--vh1)),660px);border-radius:18px;overflow:hidden;border:1px solid var(--bord);
+  box-shadow:0 20px 50px rgba(0,0,0,.4);background:#fff;margin-top:16px;}
+.illu-frame iframe{width:100%;height:100%;border:0;}
+.illu-frame:fullscreen{width:100vw;height:100vh;border-radius:0;}
+/* ── Conclusion ── */
+/* 21 septembre — « Enleve le "bloc", ne garde que le texte » : l'encadre .concl-box a
+   disparu de la diapo, ses trois regles avec. Reste la mise en valeur du mot CONTEXTE,
+   qui vivait dans le <span class="context"> du texte : l'ancienne regle visait « p.context »
+   (le paragraphe), jamais le span, et le mot n'a donc jamais ete colore. */
+#s10 .context{color:var(--acc);font-weight:800;}
+/* ── Navigation ── */
+#navzone-l,#navzone-r{position:fixed;top:52px;bottom:0;width:12%;z-index:10;cursor:pointer;background:transparent;}
+#navzone-l{left:0;}
+#navzone-r{right:0;}
+/* Les éléments interactifs des slides passent au-dessus des zones de clic latérales,
+   sinon un clic sur un élément proche du bord déclenche la navigation au lieu de l'action. */
+.slide.active :is(button,a,input,.flagcard,.flagcard-static,.persona,.dpoll,.alpha-grid,.danceq-item,.truth-track,video,iframe){position:relative;z-index:11;}
+#dots{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:20;
+  max-width:88vw;overflow-x:auto;flex-wrap:nowrap;justify-content:flex-start;padding:2px 4px;scrollbar-width:none;-ms-overflow-style:none;}
+#dots::-webkit-scrollbar{display:none;}
+#dots button{width:9px;height:9px;min-width:9px;border-radius:50%;border:none;background:var(--bord);cursor:pointer;padding:0;flex:none;}
+#dots button.active{background:var(--acc);width:22px;border-radius:6px;}
+#slide-counter{position:fixed;bottom:16px;left:18px;z-index:20;color:var(--mu);font-size:.78rem;font-weight:800;}
+#navctrl{position:fixed;bottom:14px;right:18px;display:flex;gap:8px;z-index:20;}
+#navctrl button{background:var(--panel);border:1px solid var(--bord);color:var(--tx);border-radius:10px;
+  width:38px;height:38px;font-size:1.1rem;cursor:pointer;}
+#navctrl button:hover{border-color:var(--acc2);}
+.reveal-btn:hover{background:rgba(56,189,248,.15)}
+.reveal-box.show{max-height:800px}
+.thune{font-family:'Baloo 2',cursive;font-weight:800;font-size:clamp(3rem,calc(12 * var(--vw1)),7rem);line-height:1;
+  background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.panneau-img{max-width:min(420px,calc(80 * var(--vw1)));width:100%;height:auto;filter:drop-shadow(0 10px 20px rgba(0,0,0,.35));}
+/* ── Flip cards drapeaux ── */
+.flag-grid{display:flex;gap:20px;margin-top:24px;flex-wrap:wrap;justify-content:center;}
+.flagcard:hover{border-color:var(--acc2);}
+.flagcard-static{background:var(--panel);border:1px solid var(--bord);border-radius:16px;padding:22px 26px;min-width:220px;text-align:center;cursor:pointer;transition:.15s;}
+.flagcard-static:hover{border-color:var(--acc2);}
+.flagcard-static .fname{font-family:'Baloo 2',cursive;font-weight:700;font-size:1.1rem;}
+.flagcard-static .swatches{display:none;}
+.flagcard-static.open .swatches{display:flex;}
+/* La photo du drapeau suit la meme mecanique que les pastilles de couleur : cachee tant
+   qu'on n'a pas clique, pour que la question garde son sens. C'est une .imgcard, donc
+   l'editeur lui offre ses crans de taille et ses poignees. */
+.flagcard-static .fanswer{display:none;}
+.flagcard-static.open .fanswer{display:block;margin:14px auto 0;max-width:260px;width:auto;}
+.swatches{display:flex;justify-content:center;gap:6px;margin-top:14px;}
+.sw{width:26px;height:18px;border-radius:3px;border:1px solid var(--bord);}
+/* ── Contenu sensible (gate) ── */
+.sensitive-gate{max-width:480px;width:calc(85 * var(--vw1));background:var(--panel);border:1px solid var(--ko);border-radius:16px;
+  padding:26px 24px;margin-top:16px;}
+.sensitive-gate video{display:none;width:100%;border-radius:10px;margin-top:10px;}
+.sensitive-gate.open video{display:block;}
+.riddle-visual{display:flex;justify-content:center;align-items:center;gap:14px;margin-bottom:18px;}
+.riddle-visual img{height:70px;width:auto;background:#fff;border-radius:10px;padding:8px;box-shadow:0 6px 14px rgba(0,0,0,.3);}
+/* Le raisonnement de la Lune (s20) : « juste des lignes qui apparaissent les unes apres les
+   autres ». Plus de cadre #reasoning-box ni de clic dessus — les lignes sont des .step, que
+   la fleche, la molette et les zones de clic revelent deja. */
+.reasoning-line{font-weight:700;font-size:1.1rem;line-height:1.7;}
+.reasoning-line.shown ~ .reasoning-line.shown{margin-top:6px;}
+/* ── Alphabet à l'envers ── */
+.alpha-grid{display:flex;flex-wrap:wrap;gap:10px;max-width:760px;justify-content:center;margin-top:28px;cursor:pointer;}
+.alpha-letter{width:44px;height:44px;border-radius:12px;background:var(--panel);border:1px solid var(--bord);
+  display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',cursive;font-size:1.25rem;font-weight:700;
+  color:transparent;transition:.25s;}
+.alpha-letter.shown{color:#2a1c02;background:var(--acc);border-color:var(--acc);transform:scale(1.08);}
+.compare-img{width:100%;height:90px;object-fit:contain;background:#fff;border-radius:10px;padding:8px;margin-bottom:12px;}
+.compare .col ul{color:var(--mu-diapo);font-size:.88rem;line-height:1.7;font-weight:600}
+/* ── Liens vers d'autres jeux ── */
+.gamelink{background:linear-gradient(135deg,var(--acc2),#1c8fc9);font-size:.95rem}
+/* ── Note médias non traduits (visible uniquement en anglais) ── */
+.media-note{margin-top:10px;font-size:.8rem;color:var(--mu-diapo);font-style:italic;}
+/* ── Personas (Hervé / Julie) ── */
+.persona-grid{display:flex;gap:20px;margin-top:22px;flex-wrap:wrap;justify-content:center;}
+.persona{width:250px}
+.persona:hover{border-color:var(--acc2);}
+/* ── Chips peur ── */
+.fear-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;max-width:820px;width:100%;margin-top:20px;}
+.admin-head button.primary{background:linear-gradient(135deg,var(--acc),#d99b1f)}
+/* ── Ajout de diapo (photo / vidéo / texte) ── */
+#addslide-modal .comments-modal-box{max-width:520px;text-align:left;}
+.addslide-field{margin-bottom:14px}
+.slide.editing [contenteditable="true"]{outline:2px dashed var(--acc2);outline-offset:4px;border-radius:6px;cursor:text;}
+.slide.editing [contenteditable="true"]:focus{outline-color:var(--acc);}
+.custom-slide .imgcard-full img,.custom-slide .vidwrap video{max-width:calc(94 * var(--vw1));max-height:calc(60 * var(--vh1));}
+.static-convert-hint{position:fixed;top:64px;left:50%;transform:translateX(-50%);z-index:150;
+  background:var(--panel);border:1px solid var(--bord);padding:9px 14px;border-radius:14px;
+  box-shadow:0 14px 34px rgba(0,0,0,.4);display:flex;gap:8px;align-items:center;font-size:.82rem;max-width:92vw;}
+.static-convert-hint button{background:linear-gradient(135deg,var(--acc),#d99b1f);color:#2a1c02;border:none;border-radius:9px;
+  padding:7px 12px;font-size:.8rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;}
+.step-toggle{position:absolute!important;z-index:5!important}
+.del-toggle{position:absolute!important;z-index:5!important}
+/* ── Masque de révélation partielle d'image (une zone "n'existe pas" jusqu'au clic suivant) ── */
+.mask-add-btn{position:absolute!important;z-index:5!important}
+.img-mask .mask-del{position:absolute!important;z-index:2!important}
+.media-reset-btn{position:absolute!important;z-index:6!important}
+.admin-edit-btn:hover{background:rgba(245,185,66,.15)}
+@media(max-width:640px){
+  .slide{padding:70px calc(6 * var(--vw1)) 90px;}
+  .poll{gap:12px;}
+  .poll button{padding:18px 26px;font-size:1.05rem;min-width:120px;}
+  .compare{gap:12px;}
+  .compare .col{width:100%;max-width:320px;}
+  #topbar{padding:0 10px;}
+  #topbar .brand{font-size:.82rem;max-width:40vw;}
+  #topbar .tools{gap:6px;}
+  #topbar button{padding:6px 8px;font-size:.72rem;}
+  #dots{gap:5px;max-width:60vw;}
+  #dots button{width:6px;height:6px;min-width:6px;}
+  #dots button.active{width:16px;}
+  #slide-counter{left:10px;bottom:14px;font-size:.7rem;}
+  #navctrl{right:10px;}
+  .admin-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));}
+  .admin-head{flex-wrap:wrap;height:auto;padding:10px;gap:8px;}
+  .admin-modal{padding:110px 12px 20px;}
+}
+
+  </style>
+</head>
+<body>
+
+<div id="topbar">
+  <span class="brand">✨ La magie des histoires</span>
+  <div class="tools">
+    <button id="btn-admin-grid" title="Toutes les diapos" onclick="Deck.openAdmin()">Toutes les diapos</button>
+    <button id="btn-dossier" hidden title="Donner au navigateur l’accès au dossier Cours : nécessaire pour les séries, les diapos liées et les médias" onclick="Deck.connecterDossier()">🔌 Connecter le dossier</button>
+    <button id="btn-fullscreen" title="Plein écran"><span class="t-fr">Plein écran</span><span class="t-en" hidden>Fullscreen</span></button>
+    <button id="btn-lang" title="Switch to English" onclick="Deck.toggleLang()">EN</button>
+  </div>
+</div>
+
+<div id="deck">
+
+  
+
+  <section class="slide short cover" id="s0">
+    <h1 data-pose="" data-off-x="80.72" data-off-y="0.00" style="left: 8.072%; top: 0%; width: 62.892%; max-width: none; font-size: 72.6493px;"><span class="t-fr">La magie des histoires</span><span class="t-en" hidden=""></span></h1>
+    <div class="imgcard step" data-pose="" data-off-x="390.792" data-off-y="418.333" style="left:39.079%;top:41.833%;width:17.063%;max-width:none"><img src="../medias/images/magie-001-1.png" alt="" loading="lazy"></div>
+    <div class="imgcard step" data-pose="" data-off-x="141.9" data-off-y="208.333" style="left:14.19%;top:20.833%;width:16.671%;max-width:none"><img src="../medias/images/magie-001-2.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-deja-qui-suis-je" data-serie="serie_5eb59a20-2c14-4ee4-af57-5465188ad478">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Déjà, qui suis-je ?</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard" data-pose="" data-off-x="403.047" data-off-y="190" style="left:40.305%;top:19%;width:23.199%;max-width:none"><img src="../medias/images/magie-002-3.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-comment-on-construit-une-histo" data-serie="serie_1a789a15-5f3d-4628-adc6-85ff4cf414ec">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Comment on construit une histoire ?</span><span class="t-en" hidden=""></span></h2>
+    <div class="forme forme-ovale" data-pose="" data-off-x="439.991" data-off-y="395" style="left:43.999%;top:39.5%;background-color:#5FCBEF;width:14.229%;height:28.167%;max-width:none"><span class="forme-texte" style="color:#1b1b1b;font-size:30px">Univers</span></div>
+    <div class="forme forme-ovale" data-pose="" data-off-x="506.813" data-off-y="576.667" style="left:50.681%;top:57.667%;background-color:#2E83C3;width:14.229%;height:28.167%;max-width:none"><span class="forme-texte" style="color:#ffffff;font-size:30px">Personnages</span></div>
+    <div class="forme forme-ovale" data-pose="" data-off-x="380.244" data-off-y="576.667" style="left:38.024%;top:57.667%;background-color:#2E946B;width:14.229%;height:28.167%;max-width:none"><span class="forme-texte" style="color:#ffffff;font-size:30px">Intrigue</span></div>
+  </section>
+
+  <section class="slide" id="magie-comment-on-construit-un-person" data-serie="serie_f647146c-1c08-4041-acbb-3731b9b6ac0c">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Comment on construit un personnage ?</span><span class="t-en" hidden=""></span></h2>
+    <p class="lead" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">Quels personnages te faut-il dans ton histoire ?</span><span class="t-en" hidden=""></span></p>
+  </section>
+
+  <section class="slide" id="magie-comment-on-construit-un-person-2" data-serie="serie_63192365-d09d-472c-a55c-5366696a3847">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Comment on construit un personnage ?</span><span class="t-en" hidden=""></span></h2>
+    <p class="lead" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">• Quels personnages il nous faut dans une histoire ?</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="127.308" data-off-y="374.518" style="left:12.731%;top:37.452%;width:59.127%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">• Le héros.</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="127.308" data-off-y="433.989" style="left:12.731%;top:43.399%;width:59.127%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">• Les méchants.</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="127.308" data-off-y="493.461" style="left:12.731%;top:49.346%;width:59.127%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">• Les personnages secondaires.</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="127.308" data-off-y="552.932" style="left:12.731%;top:55.293%;width:59.127%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">• Les autres…</span><span class="t-en" hidden=""></span></p>
+  </section>
+
+  <section class="slide" id="magie-d6" data-serie="serie_9c9f60c3-8c3b-4a48-a4d0-402c4a2b34f9">
+    <div class="imgcard" data-pose="" data-off-x="290.361" data-off-y="229.167" style="left:29.036%;top:22.917%;width:41.928%;max-width:none"><img src="../medias/images/magie-006-4.gif" alt="" loading="lazy"></div>
+    <p class="lead" data-pose="" data-off-x="138.11" data-off-y="63.333" style="left:13.811%;top:6.333%;width:11.319%;max-width:none;font-size:47px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Le Héros !</span><span class="t-en" hidden=""></span></p>
+  </section>
+
+  <section class="slide" id="magie-le-heros-moderne" data-serie="serie_fb52c451-0878-43af-a8ba-6d63a4922e03">
+    <h2 data-pose="" data-off-x="157.648" data-off-y="40.773" style="left:15.765%;top:4.077%;width:61.294%;max-width:none;font-size:61px"><span class="t-fr">Le héros moderne</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard" data-pose="" data-off-x="446.509" data-off-y="79.63" style="left:44.651%;top:7.963%;width:12.646%;max-width:none"><img src="../medias/images/magie-007-5.png" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="550.149" data-off-y="578.39" style="left:55.015%;top:57.839%;width:24.879%;max-width:none"><img src="../medias/images/magie-007-6.png" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="593.847" data-off-y="7.341" style="left:59.385%;top:0.734%;width:20.436%;max-width:none"><img src="../medias/images/magie-007-7.png" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="714.607" data-off-y="161.92" style="left:71.461%;top:16.192%;width:22.454%;max-width:none"><img src="../medias/images/magie-007-8.png" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="285.504" data-off-y="334.119" style="left:28.55%;top:33.412%;width:20.86%;max-width:none"><img src="../medias/images/magie-007-9.png" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="75.561" data-off-y="159.884" style="left:7.556%;top:15.988%;width:22.168%;max-width:none"><img src="../medias/images/magie-007-10.png" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="94.305" data-off-y="547.022" style="left:9.43%;top:54.702%;width:18.419%;max-width:none"><img src="../medias/images/magie-007-11.png" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="509.737" data-off-y="336.847" style="left:50.974%;top:33.685%;width:13.31%;max-width:none"><img src="../medias/images/magie-007-12.png" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="446.509" data-off-y="72.921" style="left:44.651%;top:7.292%;width:12.646%;max-width:none"><img src="../medias/images/magie-007-5.png" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="593.847" data-off-y="0.633" style="left:59.385%;top:0.063%;width:20.436%;max-width:none"><img src="../medias/images/magie-007-7.png" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="285.504" data-off-y="327.411" style="left:28.55%;top:32.741%;width:20.86%;max-width:none"><img src="../medias/images/magie-007-9.png" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="75.561" data-off-y="153.175" style="left:7.556%;top:15.318%;width:22.168%;max-width:none"><img src="../medias/images/magie-007-10.png" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="94.305" data-off-y="540.313" style="left:9.43%;top:54.031%;width:18.419%;max-width:none"><img src="../medias/images/magie-007-11.png" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-d8" data-serie="serie_b9afc9c6-b619-4733-a075-397c0bd04007">
+    <p class="lead" data-pose="" data-off-x="124.746" data-off-y="123.824" style="left:12.475%;top:12.382%;width:67.713%;max-width:none;font-size:54px;text-align:left"><span class="t-fr">Comment faire un héros attachant ?</span><span class="t-en" hidden=""></span></p>
+  </section>
+
+  <section class="slide" id="magie-on-suit-les-heros-au-quotidien">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">On suit les héros au quotidien</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard" data-pose="" data-off-x="299.718" data-off-y="246.337" style="left:29.972%;top:24.634%;width:40.056%;max-width:none"><img src="../medias/images/magie-009-13.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-les-emotions" data-serie="serie_3fc6d68d-91b2-4fdc-a114-ef0e5312f226">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Les émotions</span><span class="t-en" hidden=""></span></h2>
+    <div class="vidwrap" data-pose="" data-off-x="288.332" data-off-y="164.844" style="left:28.833%;top:16.484%;width:45.917%;max-width:none"><video src="../medias/video/magie-010-14.mp4" controls="" playsinline=""></video></div>
+  </section>
+
+  <section class="slide" id="magie-les-emotions-les-heros-sont-pr">
+    <h2 data-pose="" data-off-x="110.595" data-off-y="53.241" style="left:11.06%;top:5.324%;width:75.103%;max-width:none;font-size:61px"><span class="t-fr">Les émotions – les héros sont proches de nous</span><span class="t-en" hidden=""></span></h2>
+    <div class="vidwrap" data-pose="" data-off-x="205.153" data-off-y="186.921" style="left:20.515%;top:18.692%;width:56.072%;max-width:none"><video src="../medias/video/magie-011-15.mp4" controls="" playsinline=""></video></div>
+  </section>
+
+  <section class="slide" id="magie-comment-peut-on-s-identifier-a">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Comment peut-on s’identifier au héros ?</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+  <section class="slide" id="magie-everyman" data-serie="serie_590db8c6-0d2d-4581-a08c-751f13ab97bc">
+    <h2 data-pose="" data-off-x="159.22" data-off-y="76.005" style="left:15.922%;top:7.6%;width:61.294%;max-width:none;font-size:61px"><span class="t-fr">Everyman</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard" data-pose="" data-off-x="586.063" data-off-y="236.111" style="left:58.606%;top:23.611%;width:20.108%;max-width:none"><img src="../medias/images/magie-013-16.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-il-faut-que-son-quotidien-soit" data-serie="serie_590db8c6-0d2d-4581-a08c-751f13ab97bc">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Il faut que son quotidien soit proche de nous !</span><span class="t-en" hidden=""></span></h2>
+    <div class="vidwrap" data-pose="" data-off-x="169.535" data-off-y="268.772" style="left:16.953%;top:26.877%;width:60.997%;max-width:none"><video src="../medias/video/magie-014-17.mp4" controls="" playsinline=""></video></div>
+    <div class="speaker-notes" hidden="">On l’appelle « Your friendly neighbourgh spiderman ».</div>
+  </section>
+
+  <section class="slide" id="magie-il-ne-faut-pas-dire-qu-on-est">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Il ne faut pas dire qu’on est un héros, il faut le montrer ! Show don’t tell</span><span class="t-en" hidden=""></span></h2>
+    <div class="vidwrap" data-pose="" data-off-x="207.912" data-off-y="281.481" style="left:20.791%;top:28.148%;width:58.418%;max-width:none"><video src="../medias/video/magie-015-18.mp4" controls="" playsinline=""></video></div>
+  </section>
+
+  <section class="slide" id="magie-le-passe-tragique">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Le passé tragique !</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+  <section class="slide" id="magie-combien-de-personnages-disney">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Combien de personnages Disney possèdent encore leurs deux parents ?</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard" data-pose="" data-off-x="93.74" data-off-y="375.63" style="left: 9.374%; top: 37.563%; width: 36.192%; max-width: none;"><img src="../medias/images/magie-017-19.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-combien-de-personnages-de-mang">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Combien de personnages de manga ont encore leurs deux parents à la fin de l’histoire ?</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard" data-pose="" data-off-x="222.667" data-off-y="305.792" style="left:22.267%;top:30.579%;width:55.467%;max-width:none"><img src="../medias/images/magie-018-20.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-combien-de-super-heros-ont-enc">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Combien de super-héros ont encore leurs deux parents à la fin de l’histoire ?</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard" data-pose="" data-off-x="153.757" data-off-y="254.227" style="left:15.376%;top:25.423%;width:61.356%;max-width:none"><img src="../medias/images/magie-019-21.png" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-est-ce-qu-il-faut-forcement-un">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Est-ce qu’il faut forcément un héros ?</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard" data-pose="" data-off-x="280.403" data-off-y="227.644" style="left:28.04%;top:22.764%;width:39.604%;max-width:none"><img src="../medias/images/magie-020-22.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-qu-est-ce-qui-fait-un-bon-mech" data-serie="serie_87120576-1fea-4913-a9dc-81b8a6273c7f">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Qu’est-ce qui fait un bon méchant ?</span><span class="t-en" hidden=""></span></h2>
+    <p class="lead" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">• Selon vous ?</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="127.308" data-off-y="374.518" style="left:12.731%;top:37.452%;width:59.127%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">• Quel est votre méchant préféré ?</span><span class="t-en" hidden=""></span></p>
+  </section>
+
+  <section class="slide" id="magie-qu-est-ce-qui-fait-un-bon-mech-2" data-serie="serie_7fc093d1-57fd-492f-ae1d-9f7e749e7778">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Qu’est-ce qui fait un bon méchant ?</span><span class="t-en" hidden=""></span></h2>
+    <p class="lead" data-pose="" data-off-x="138.372" data-off-y="266.204" style="left:13.837%;top:26.62%;width:72.326%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">Deux types de méchants.</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="147.544" data-off-y="411.667" style="left:14.754%;top:41.167%;width:27.358%;max-width:none;font-size:34px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr"><b>Le méchant que l’on peut comprendre</b></span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="564.464" data-off-y="433.268" style="left:56.446%;top:43.327%;width:27.358%;max-width:none;font-size:34px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr"><b>Le méchant que l’on déteste</b></span><span class="t-en" hidden=""></span></p>
+    <div class="imgcard" data-pose="" data-off-x="532.925" data-off-y="538.212" style="left:53.293%;top:53.821%;width:26.884%;max-width:none"><img src="../medias/images/magie-022-23.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-essayez-de-classer-ces-differe" data-serie="serie_203bcaee-d9b6-48a6-a392-7b5aa0822d03">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Essayez de classer ces différents méchants !</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard" data-pose="" data-off-x="285.938" data-off-y="305.702" style="left:28.594%;top:30.57%;width:44.866%;max-width:none"><img src="../medias/images/magie-023-24.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-essayez-de-classer-ces-differe-2" data-serie="serie_203bcaee-d9b6-48a6-a392-7b5aa0822d03">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Essayez de classer ces différents méchants !</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard" data-pose="" data-off-x="281.419" data-off-y="281.481" style="left:28.142%;top:28.148%;width:45.189%;max-width:none"><img src="../medias/images/magie-024-25.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-essayez-de-classer-ces-differe-3" data-serie="serie_203bcaee-d9b6-48a6-a392-7b5aa0822d03">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Essayez de classer ces différents méchants !</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard" data-pose="" data-off-x="258.129" data-off-y="330.958" style="left:25.813%;top:33.096%;width:46.842%;max-width:none"><img src="../medias/images/magie-025-26.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-essayez-de-classer-ces-differe-4" data-serie="serie_203bcaee-d9b6-48a6-a392-7b5aa0822d03">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Essayez de classer ces différents méchants !</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard" data-pose="" data-off-x="245.779" data-off-y="281.481" style="left:24.578%;top:28.148%;width:47.382%;max-width:none"><img src="../medias/images/magie-026-27.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-essayez-de-classer-ces-differe-5" data-serie="serie_203bcaee-d9b6-48a6-a392-7b5aa0822d03">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Essayez de classer ces différents méchants !</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard" data-pose="" data-off-x="261.802" data-off-y="266.301" style="left:26.18%;top:26.63%;width:44.812%;max-width:none"><img src="../medias/images/magie-027-28.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-a-votre-tour" data-serie="serie_fcfbfbab-7f31-4ae3-a260-83d4626c0b44">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">A votre tour !</span><span class="t-en" hidden=""></span></h2>
+    <p class="lead" data-pose="" data-off-x="144.399" data-off-y="273.333" style="left:14.44%;top:27.333%;width:32.601%;max-width:none;font-size:40px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Méchants que l’on peut comprendre</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="586.214" data-off-y="273.333" style="left:58.621%;top:27.333%;width:30.25%;max-width:none;font-size:40px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Méchants que l’on adore détester</span><span class="t-en" hidden=""></span></p>
+  </section>
+
+  <section class="slide" id="magie-comment-ecrire-une-histoire-pr" data-serie="serie_f559de68-5ca7-456e-a9e8-4a14771dfb0c">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Comment écrire une histoire prenante ?</span><span class="t-en" hidden=""></span></h2>
+    <div class="forme forme-ovale" data-pose="" data-off-x="428.854" data-off-y="408.333" style="left:42.885%;top:40.833%;background-color:#2E946B;width:17.387%;height:35.333%;max-width:none"><span class="forme-texte" style="color:#ffffff;font-size:30px">Intrigue</span></div>
+  </section>
+
+  <section class="slide" id="magie-comment-devient-on-un-heros" data-serie="serie_8bd20a30-f8f8-440d-a350-fb1c2fa11f9e">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Comment devient-on un héros ?</span><span class="t-en" hidden=""></span></h2>
+    <div class="imgcard" data-pose="" data-off-x="329.144" data-off-y="352.778" style="left:32.914%;top:35.278%;width:24.882%;max-width:none"><img src="../medias/images/magie-030-29.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-d31" data-serie="serie_ade64e20-abc1-4ec1-a243-9e749890e7ee">
+    <div class="forme forme-ovale" data-pose="" data-off-x="285.216" data-off-y="96.728" style="left:28.522%;top:9.673%;background-color:#FFFFFF;width:39.703%;height:80.654%;max-width:none"></div>
+    <p class="lead" data-pose="" data-off-x="526.366" data-off-y="42.874" style="left:52.637%;top:4.287%;width:17.633%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Héros est chez lui</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="404.44" data-off-y="342.324" style="left:40.444%;top:34.232%;width:25.465%;max-width:none;font-size:47px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr"><b>Le cycle du héros</b></span><span class="t-en" hidden=""></span></p>
+  </section>
+
+  <section class="slide" id="magie-d32" data-serie="serie_ade64e20-abc1-4ec1-a243-9e749890e7ee">
+    <p class="lead" data-pose="" data-off-x="120.736" data-off-y="35.944" style="left:12.074%;top:3.594%;width:72.326%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">Le héros tranquille chez lui :</span><span class="t-en" hidden=""></span></p>
+    <div class="imgcard" data-pose="" data-off-x="638.743" data-off-y="99.305" style="left:63.874%;top:9.931%;width:14.42%;max-width:none"><img src="../medias/images/magie-032-30.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="142.088" data-off-y="126.105" style="left:14.209%;top:12.61%;width:29.503%;max-width:none"><img src="../medias/images/magie-032-31.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="142.088" data-off-y="561.557" style="left:14.209%;top:56.156%;width:30.073%;max-width:none"><img src="../medias/images/magie-032-32.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="590.931" data-off-y="500" style="left:59.093%;top:50%;width:25.306%;max-width:none"><img src="../medias/images/magie-032-33.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-d33" data-serie="serie_2dc754ce-b032-41d1-a1ab-6fcebd7c89ca">
+    <div class="forme forme-ovale" data-pose="" data-off-x="285.216" data-off-y="96.728" style="left:28.522%;top:9.673%;background-color:#FFFFFF;width:39.703%;height:80.654%;max-width:none"></div>
+    <p class="lead" data-pose="" data-off-x="526.366" data-off-y="42.874" style="left:52.637%;top:4.287%;width:17.633%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Héros est chez lui</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="667.969" data-off-y="115.925" style="left:66.797%;top:11.593%;width:16.398%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Un messager arrive, et l’invite à l’aventure et la recherche d’un objet d’un but / l’elixir.</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="683.749" data-off-y="435.185" style="left:68.375%;top:43.518%;width:17.44%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Le héros refuse</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="662.721" data-off-y="682.122" style="left:66.272%;top:68.212%;width:21.646%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Finalement, le héros accepte !</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="441.956" data-off-y="910.905" style="left:44.196%;top:91.091%;width:20.912%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Péripéties</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="143.816" data-off-y="771.851" style="left:14.382%;top:77.185%;width:19.485%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Le messager /mentor meurt</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="404.44" data-off-y="342.324" style="left:40.444%;top:34.232%;width:25.465%;max-width:none;font-size:47px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr"><b>Le cycle du héros</b></span><span class="t-en" hidden=""></span></p>
+  </section>
+
+  <section class="slide" id="magie-d35" data-serie="serie_1f9eca7d-ff2d-4a42-a897-b23d425c46ff">
+    <p class="lead" data-pose="" data-off-x="191.552" data-off-y="95.309" style="left:19.155%;top:9.531%;width:72.326%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">• Le messager arrive/appel de l’aventure/</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="191.552" data-off-y="154.781" style="left:19.155%;top:15.478%;width:72.326%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">• refus du héros :</span><span class="t-en" hidden=""></span></p>
+    <div class="imgcard" data-pose="" data-off-x="653.315" data-off-y="73.447" style="left:65.331%;top:7.345%;width:14.578%;max-width:none"><img src="../medias/images/magie-035-34.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="158.288" data-off-y="231.358" style="left:15.829%;top:23.136%;width:24.623%;max-width:none"><img src="../medias/images/magie-035-35.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="138.372" data-off-y="606.25" style="left:13.837%;top:60.625%;width:32.756%;max-width:none"><img src="../medias/images/magie-035-36.gif" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="572.243" data-off-y="536.699" style="left:57.224%;top:53.67%;width:28.938%;max-width:none"><img src="../medias/images/magie-035-37.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-d37" data-serie="serie_b902a2dc-1405-4d4f-ab29-17f485bf7b4d">
+    <p class="lead" data-pose="" data-off-x="131.804" data-off-y="48.524" style="left:13.18%;top:4.852%;width:72.326%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">Le héros part à l’aventure :</span><span class="t-en" hidden=""></span></p>
+    <div class="imgcard" data-pose="" data-off-x="557.988" data-off-y="131.396" style="left:55.799%;top:13.14%;width:27.574%;max-width:none"><img src="../medias/images/magie-037-38.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="161.909" data-off-y="156.933" style="left:16.191%;top:15.693%;width:27.18%;max-width:none"><img src="../medias/images/magie-037-39.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="136.055" data-off-y="559.079" style="left:13.606%;top:55.908%;width:31.951%;max-width:none"><img src="../medias/images/magie-037-40.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="544.435" data-off-y="573.325" style="left:54.444%;top:57.332%;width:25.538%;max-width:none"><img src="../medias/images/magie-037-41.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-peripeties" data-serie="serie_ea8b95a8-0fb7-43a9-ab27-6a659019391b">
+    <div class="vidwrap" data-pose="" data-off-x="138.312" data-off-y="185.185" style="left:13.831%;top:18.519%;width:64.301%;max-width:none"><video src="../medias/video/magie-039-42.mp4" controls="" playsinline=""></video></div>
+    <h2 data-pose="" data-off-x="127.344" data-off-y="88.889" style="left:12.734%;top:8.889%;width:59.125%;max-width:none;font-size:61px"><span class="t-fr">Péripéties</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+  <section class="slide" id="magie-d41" data-serie="serie_6c9905a2-fd62-47fd-afc4-bdb950051163">
+    <p class="lead" data-pose="" data-off-x="133.798" data-off-y="44.398" style="left:13.38%;top:4.44%;width:72.326%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">Le messager / mentor meurt :</span><span class="t-en" hidden=""></span></p>
+    <div class="imgcard" data-pose="" data-off-x="588.147" data-off-y="142.893" style="left:58.815%;top:14.289%;width:27.533%;max-width:none"><img src="../medias/images/magie-041-43.png" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="127.372" data-off-y="142.894" style="left:12.737%;top:14.289%;width:27.843%;max-width:none"><img src="../medias/images/magie-041-44.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="512.262" data-off-y="608.078" style="left:51.226%;top:60.808%;width:37.605%;max-width:none"><img src="../medias/images/magie-041-45.jpg" alt="" loading="lazy"></div>
+    <p class="lead" data-pose="" data-off-x="229.756" data-off-y="725.065" style="left:22.976%;top:72.507%;width:24.051%;max-width:none;font-size:54px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr"><b>??</b></span><span class="t-en" hidden=""></span></p>
+  </section>
+
+  <section class="slide" id="magie-d42" data-serie="serie_32601807-d85a-499f-a3d5-a4b1bbbf6f2d">
+    <div class="forme forme-ovale" data-pose="" data-off-x="285.216" data-off-y="96.728" style="left:28.522%;top:9.673%;background-color:#FFFFFF;width:39.703%;height:80.654%;max-width:none"></div>
+    <p class="lead" data-pose="" data-off-x="526.366" data-off-y="42.874" style="left:52.637%;top:4.287%;width:17.633%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Héros est chez lui</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="667.969" data-off-y="115.925" style="left:66.797%;top:11.593%;width:16.398%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Un messager arrive, et l’invite à l’aventure et la recherche d’un objet d’un but / l’élixir.</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="683.749" data-off-y="435.185" style="left:68.375%;top:43.518%;width:17.44%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Le héros refuse</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="662.721" data-off-y="682.122" style="left:66.272%;top:68.212%;width:21.646%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Finalement, le héros accepte !</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="441.956" data-off-y="910.905" style="left:44.196%;top:91.091%;width:20.912%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Péripéties</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="143.816" data-off-y="771.851" style="left:14.382%;top:77.185%;width:19.485%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Le messager /mentor meurt</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="105.801" data-off-y="547.486" style="left:10.58%;top:54.749%;width:19.176%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Le héros manque de mourir/abandonne tout/tout semble perdu</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="99.435" data-off-y="375.675" style="left:9.943%;top:37.568%;width:20.449%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Le héros accepte son rôle d’élu</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="404.44" data-off-y="342.324" style="left:40.444%;top:34.232%;width:25.465%;max-width:none;font-size:47px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr"><b>Le cycle du héros</b></span><span class="t-en" hidden=""></span></p>
+  </section>
+
+  <section class="slide" id="magie-d43" data-serie="serie_03bc737d-3ca9-479d-acf7-43663f623585">
+    <p class="lead" data-pose="" data-off-x="128.088" data-off-y="38.95" style="left:12.809%;top:3.895%;width:72.326%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">Le héros manque de mourir :</span><span class="t-en" hidden=""></span></p>
+    <div class="imgcard" data-pose="" data-off-x="583.093" data-off-y="101.444" style="left:58.309%;top:10.144%;width:24.71%;max-width:none"><img src="../medias/images/magie-043-46.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="134.056" data-off-y="113.717" style="left:13.406%;top:11.372%;width:29.121%;max-width:none"><img src="../medias/images/magie-043-47.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="124.745" data-off-y="472.727" style="left:12.475%;top:47.273%;width:30.052%;max-width:none"><img src="../medias/images/magie-043-48.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="526.142" data-off-y="610.798" style="left:52.614%;top:61.08%;width:34.577%;max-width:none"><img src="../medias/images/magie-043-49.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-l-acceptation-de-son-statut" data-serie="serie_76bf0d6c-15af-417a-a819-31207a47b389">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">L’acceptation de son statut</span><span class="t-en" hidden=""></span></h2>
+    <div class="vidwrap" data-pose="" data-off-x="145.623" data-off-y="231.588" style="left:14.562%;top:23.159%;width:70.875%;max-width:none"><video src="../medias/video/magie-045-50.mp4" controls="" playsinline=""></video></div>
+  </section>
+
+  <section class="slide" id="magie-d46" data-serie="serie_eedc2386-f69b-4cbe-a8ee-0d863f66c0e9">
+    <div class="forme forme-ovale" data-pose="" data-off-x="285.216" data-off-y="96.728" style="left:28.522%;top:9.673%;background-color:#FFFFFF;width:39.703%;height:80.654%;max-width:none"></div>
+    <p class="lead" data-pose="" data-off-x="526.366" data-off-y="42.874" style="left:52.637%;top:4.287%;width:17.633%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Héros est chez lui</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="667.969" data-off-y="115.925" style="left:66.797%;top:11.593%;width:16.398%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Un messager arrive, et l’invite à l’aventure et la recherche d’un objet d’un but / l’élixir.</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="683.749" data-off-y="435.185" style="left:68.375%;top:43.518%;width:17.44%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Le héros refuse</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="662.721" data-off-y="682.122" style="left:66.272%;top:68.212%;width:21.646%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Finalement, le héros accepte !</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="441.956" data-off-y="910.905" style="left:44.196%;top:91.091%;width:20.912%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Péripéties</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="143.816" data-off-y="771.851" style="left:14.382%;top:77.185%;width:19.485%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Le messager /mentor meurt</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="105.801" data-off-y="547.486" style="left:10.58%;top:54.749%;width:19.176%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Le héros manque de mourir/abandonne tout/tout semble perdu</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="96.946" data-off-y="301.657" style="left:9.695%;top:30.166%;width:20.449%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Le héros accepte son rôle d’élu, s’en sort (ressucite) et détruit la menace / récupère l’objet convoité</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="189.289" data-off-y="39.38" style="left:18.929%;top:3.938%;width:22.996%;max-width:none;font-size:30px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Le héros rentre chez lui. L’environnement est le même mais lui a changé.</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="372.673" data-off-y="351.278" style="left:37.267%;top:35.128%;width:25.465%;max-width:none;font-size:47px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr"><b>Le cycle du héros</b></span><span class="t-en" hidden=""></span></p>
+  </section>
+
+  <section class="slide" id="magie-d47" data-serie="serie_22e46a7d-cc7b-4604-a816-e87919624b62">
+    <p class="lead" data-pose="" data-off-x="126.58" data-off-y="103.704" style="left:12.658%;top:10.37%;width:72.326%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">Le héros détruit la menace/gagne :</span><span class="t-en" hidden=""></span></p>
+    <div class="imgcard" data-pose="" data-off-x="545.977" data-off-y="203.494" style="left:54.598%;top:20.349%;width:32.741%;max-width:none"><img src="../medias/images/magie-047-51.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="134.997" data-off-y="192.657" style="left:13.5%;top:19.266%;width:31.167%;max-width:none"><img src="../medias/images/magie-047-52.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="173.006" data-off-y="611.989" style="left:17.301%;top:61.199%;width:21.001%;max-width:none"><img src="../medias/images/magie-047-53.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="614.613" data-off-y="593.826" style="left:61.461%;top:59.383%;width:19.654%;max-width:none"><img src="../medias/images/magie-047-54.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-d49" data-serie="serie_22e46a7d-cc7b-4604-a816-e87919624b62">
+    <p class="lead" data-pose="" data-off-x="127.319" data-off-y="35.901" style="left:12.732%;top:3.59%;width:72.326%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">Retour dans l’univers normal, transformé :</span><span class="t-en" hidden=""></span></p>
+    <div class="imgcard" data-pose="" data-off-x="592.579" data-off-y="168.762" style="left:59.258%;top:16.876%;width:28.797%;max-width:none"><img src="../medias/images/magie-049-55.png" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="152.38" data-off-y="155.06" style="left:15.238%;top:15.506%;width:28.226%;max-width:none"><img src="../medias/images/magie-049-56.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="132.947" data-off-y="567.638" style="left:13.295%;top:56.764%;width:29.754%;max-width:none"><img src="../medias/images/magie-049-57.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="579.079" data-off-y="602.622" style="left:57.908%;top:60.262%;width:28.797%;max-width:none"><img src="../medias/images/magie-049-58.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-qu-est-ce-qui-ne-va-pas-dans-c" data-serie="serie_fc26c310-6776-493d-ad28-4f85965c046d">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Qu’est-ce qui ne va pas dans cette histoire ?</span><span class="t-en" hidden=""></span></h2>
+    <p class="lead" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">• Une personne recherche une dague magique.</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="127.308" data-off-y="374.518" style="left:12.731%;top:37.452%;width:59.127%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">• Elle marche sans encombre pendant une dizaine de jours. Elle recherche une dague magique pour sauver son village.</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="127.308" data-off-y="476.941" style="left:12.731%;top:47.694%;width:59.127%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">• Elle affronte plusieurs monstres et trouve la dague. Elle rentre chez elle. Fin.</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="127.308" data-off-y="579.364" style="left:12.731%;top:57.936%;width:59.127%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">• Qu’est ce qu’il manque ?</span><span class="t-en" hidden=""></span></p>
+  </section>
+
+  <section class="slide" id="magie-c-est-quoi-le-rythme" data-serie="serie_8a2b2a2d-d8f6-40a0-ab1e-97b153d0af21">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">C’est quoi, le rythme ?</span><span class="t-en" hidden=""></span></h2>
+    <p class="lead" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">Action / calme.</span><span class="t-en" hidden=""></span></p>
+    <div class="imgcard" data-pose="" data-off-x="433.523" data-off-y="217.717" style="left:43.352%;top:21.772%;width:33.429%;max-width:none"><img src="../medias/images/magie-051-59.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-d52" data-serie="serie_8a2b2a2d-d8f6-40a0-ab1e-97b153d0af21">
+    <p class="lead" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">Tension / apaisement.</span><span class="t-en" hidden=""></span></p>
+    <div class="imgcard" data-pose="" data-off-x="403.072" data-off-y="329.837" style="left:40.307%;top:32.984%;width:39.307%;max-width:none"><img src="../medias/images/magie-052-60.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-rythme-3" data-serie="serie_8a2b2a2d-d8f6-40a0-ab1e-97b153d0af21">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Rythme / 3</span><span class="t-en" hidden=""></span></h2>
+    <p class="lead" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">L’humour / la tragédie.</span><span class="t-en" hidden=""></span></p>
+    <div class="imgcard" data-pose="" data-off-x="413.528" data-off-y="256.174" style="left:41.353%;top:25.617%;width:47.375%;max-width:none"><img src="../medias/images/magie-053-61.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-rythme-4" data-serie="serie_b7659873-7b86-407d-a77e-fc9b758d20a8">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Rythme 4/</span><span class="t-en" hidden=""></span></h2>
+    <p class="lead" data-pose="" data-off-x="117.151" data-off-y="231.848" style="left:11.715%;top:23.185%;width:72.326%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">Espoir / Désespoir.</span><span class="t-en" hidden=""></span></p>
+    <p class="lead" data-pose="" data-off-x="112.436" data-off-y="637.21" style="left:11.244%;top:63.721%;width:29.461%;max-width:none;font-size:40px;border:2px solid #5FCBEF;border-radius:6px;padding:4px 10px;text-align:center"><span class="t-fr">Avant tout succès, il y a un échec</span><span class="t-en" hidden=""></span></p>
+    <div class="imgcard" data-pose="" data-off-x="509.732" data-off-y="47.88" style="left:50.973%;top:4.788%;width:10.24%;max-width:none"><img src="../medias/images/magie-054-62.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="570.144" data-off-y="366.364" style="left:57.014%;top:36.636%;width:10.961%;max-width:none"><img src="../medias/images/magie-054-63.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="804.423" data-off-y="224.8" style="left:80.442%;top:22.48%;width:10.969%;max-width:none"><img src="../medias/images/magie-054-64.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="456.239" data-off-y="342.542" style="left:45.624%;top:34.254%;width:10.24%;max-width:none"><img src="../medias/images/magie-054-65.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="397.006" data-off-y="97.727" style="left:39.701%;top:9.773%;width:9.893%;max-width:none"><img src="../medias/images/magie-054-66.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="620.297" data-off-y="73.783" style="left:62.03%;top:7.378%;width:8.387%;max-width:none"><img src="../medias/images/magie-054-67.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="725.39" data-off-y="75.911" style="left:72.539%;top:7.591%;width:9.109%;max-width:none"><img src="../medias/images/magie-054-68.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="319.552" data-off-y="445.923" style="left:31.955%;top:44.592%;width:12.883%;max-width:none"><img src="../medias/images/magie-054-69.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="709.149" data-off-y="535.812" style="left:70.915%;top:53.581%;width:11.541%;max-width:none"><img src="../medias/images/magie-054-70.jpg" alt="" loading="lazy"></div>
+    <div class="imgcard" data-pose="" data-off-x="617.78" data-off-y="717.418" style="left:61.778%;top:71.742%;width:14.444%;max-width:none"><img src="../medias/images/magie-054-71.jpg" alt="" loading="lazy"></div>
+  </section>
+
+  <section class="slide" id="magie-d55" data-serie="serie_be00af99-d8cc-485c-aabe-d4720954d6ea">
+    <div class="vidwrap" data-pose="" data-off-x="185.65" data-off-y="315.046" style="left:18.565%;top:31.505%;width:47.464%;max-width:none"><video src="../medias/video/magie-055-72.mp4" controls="" playsinline=""></video></div>
+  </section>
+
+  <section class="slide" id="magie-exemple-avenger-infinity-war" data-serie="serie_be00af99-d8cc-485c-aabe-d4720954d6ea">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Exemple : Avenger Infinity war.</span><span class="t-en" hidden=""></span></h2>
+    <div class="vidwrap" data-pose="" data-off-x="287.522" data-off-y="233.333" style="left:28.752%;top:23.333%;width:42.496%;max-width:none"><video src="../medias/video/magie-056-73.mp4" controls="" playsinline=""></video></div>
+  </section>
+
+  <section class="slide" id="magie-d57" data-serie="serie_3321f1d8-4dc1-4054-a98a-202f56690574">
+    <div class="vidwrap" data-pose="" data-off-x="162.658" data-off-y="126.874" style="left:16.266%;top:12.687%;width:62.582%;max-width:none"><video src="../medias/video/magie-057-74.mp4" controls="" playsinline=""></video></div>
+  </section>
+
+  <section class="slide" id="magie-comment-creer-un-univers">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Comment créer un univers ?</span><span class="t-en" hidden=""></span></h2>
+    <div class="forme forme-ovale" data-pose="" data-off-x="413.262" data-off-y="261.133" style="left:41.326%;top:26.113%;background-color:#5FCBEF;width:14.229%;height:28.167%;max-width:none"><span class="forme-texte" style="color:#1b1b1b;font-size:30px">Univers</span></div>
+  </section>
+
+  <section class="slide" id="magie-on-commence-par-quoi">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">On commence par quoi ?</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+  <section class="slide" id="magie-deux-methodes" data-serie="serie_853af57b-85b6-41fb-af4f-c203eac938f9">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Deux méthodes</span><span class="t-en" hidden=""></span></h2>
+    <p class="lead" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">« Top Down »</span><span class="t-en" hidden=""></span></p>
+    <div class="forme forme-fleche-bas" data-pose="" data-off-x="455.583" data-off-y="383.657" style="left:45.558%;top:38.366%;background-color:#5FCBEF;width:8.883%;height:49.736%;max-width:none"></div>
+  </section>
+
+  <section class="slide" id="magie-deux-methodes-2">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Deux méthodes</span><span class="t-en" hidden=""></span></h2>
+    <p class="lead" data-pose="" data-off-x="127.308" data-off-y="315.047" style="left:12.731%;top:31.505%;width:59.127%;max-width:none;font-size:30px;text-align:left"><span class="t-fr">« Bottom Up »</span><span class="t-en" hidden=""></span></p>
+    <div class="forme forme-fleche-bas" data-pose="" data-off-x="455.583" data-off-y="383.657" style="left:45.558%;top:38.366%;background-color:#5FCBEF;width:8.883%;height:49.736%;max-width:none"></div>
+  </section>
+
+  <section class="slide" id="magie-comment-creer-un-univers-2" data-serie="serie_a0d8c011-b5e2-4a58-a87f-aaa46457a3fa">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Comment créer un univers ?</span><span class="t-en" hidden=""></span></h2>
+    <div class="forme forme-ovale" data-pose="" data-off-x="439.991" data-off-y="395" style="left:43.999%;top:39.5%;background-color:#5FCBEF;width:14.229%;height:28.167%;max-width:none"><span class="forme-texte" style="color:#1b1b1b;font-size:30px">Univers</span></div>
+    <div class="forme forme-ovale" data-pose="" data-off-x="506.813" data-off-y="576.667" style="left:50.681%;top:57.667%;background-color:#2E83C3;width:14.229%;height:28.167%;max-width:none"><span class="forme-texte" style="color:#ffffff;font-size:30px">Personnages</span></div>
+    <div class="forme forme-ovale" data-pose="" data-off-x="380.244" data-off-y="576.667" style="left:38.024%;top:57.667%;background-color:#2E946B;width:14.229%;height:28.167%;max-width:none"><span class="forme-texte" style="color:#ffffff;font-size:30px">Intrigue</span></div>
+  </section>
+
+  <section class="slide" id="magie-merci">
+    <h2 data-pose="" data-off-x="127.308" data-off-y="88.889" style="left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px"><span class="t-fr">Merci !</span><span class="t-en" hidden=""></span></h2>
+  </section>
+
+<!-- Slide finale : bilan de l'intervention (QR code) -->
+  <section class="slide short" id="s-bilan-qr" data-serie="serie_743edaf5-33f9-4668-ab8a-f0365b011093">
+    <p class="kicker" data-pose="" data-off-x="461.46" data-off-y="272.25" style="left: 46.146%; top: 27.225%;"><span class="t-fr">Après la séance</span><span class="t-en" hidden="">After the session</span></p>
+    <h2 data-pose="" data-off-x="344.92" data-off-y="303.09" style="left: 34.492%; top: 30.309%;"><span class="t-fr">Le bilan, les jeux, et votre retour</span><span class="t-en" hidden="">Summary, games, and your feedback</span></h2>
+    <p class="lead" data-pose="" data-off-x="302.6" data-off-y="375.76" style="left: 30.26%; top: 37.576%;"><span class="t-fr">Scannez ce QR code&nbsp;: vous pourrez donner votre retour, revoir le bilan de la formation ou rejouer aux jeux.</span><span class="t-en" hidden="">Scan this QR code: you can leave your feedback, review the session summary, or play the games again.</span></p>
+    
+  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhwAAAIcAQAAAACVhUrRAAAC80lEQVR42u2dUWrEMAxERS/g+9/SN3C7jSNp5JQW2p+it5SybDbvY2EYaSw7tn7/mgYECBAgQID8HGL+Gvcn4/Xhx/v9Zu3/16Xjljf7gxcQIP8LYi6HLZlP+VxvQjgjtOaXQkpoB0hj7VwO4nbjjlPc57pUbkE7QNCOyycuWYjFq8T4GtoBgnZUO+4vL9O5v+Y1G74DBMhzv5MCgR0LDAkY6HeAAAl1XC+3nm//0i1oB0hb7ZTU2vOBaG00fztu4YcF0lc7WxqWlngsiUij6f253452gHT2nWQ00ddEGmDlv7RCaAdI434nr+nskO1WSlRxtxNF/kbOBoSaLa1+bjfJizulfnMRTXwHSG/t6KhAtD8jajkZZiuJAdoB0rvf8ZGbbC5StuXqTkIGflggXfudNDUdMvHJAa/l7twgYjeyAiDtswKv1mJrw7QctT3YEP0OELRjaWp6hfVImHYuA9HvAKHfKbrQGEGsJ09ZTzJqIPhO2miwnlueXK3lGg/tAKHfkX5nWtaR6CWHBmgHSHPtDN1PfRRsUbnlGyNV4IcF0rXfmaEFk0G1uglORndY3wGCdlbqZcbTiE4R1FriWWgHSGPfiVOkcr9zHFBQDOj+Mj8skMZZQVHHUMfRtVGyAiBASlaQ53NkF08aYzMz6Y/QDpD2WUE5kSBv2yk9kWwdRTtAemcFMXiTBnLy9reSV8uxBmgHSO9+R46WyrsMTEJp/zB1RvywQBr7To7Opk6EnocYGP0OECBW91bXPaHmvmNl4xuzoEDwnRWb2qqCZj1IJxaDWN8Bgu/YsXBT8rSyvqNlG9oB0tl3JAQoXU86k82ejgxFO0Ba+45FX1OdJXvQqgftoh0grbWTn4NgVh6LUBZMw3eo2YCgnXHkA7PuTZDjdOh3gAD5Sjvl0aL5uLalEzvUbEDQzvHQNx2WPtofzmcDgnb0CKmyza3YUL1KzQaks3aslmTRzkyrp+UseXA8vgOks3Z++5pAgAABAgTIDyHv20VZl660GMAAAAAASUVORK5CYII=" alt="QR code vers la page antoninatger.github.io/interventions/retours" style="width: 200px; height: 200px; border-radius: 16px; background: rgb(255, 255, 255); padding: 10px; box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 30px; left: 44.805%; top: 47.267%;" data-pose="" data-off-x="448.05" data-off-y="472.67"><a href="https://antoninatger.github.io/interventions/retours/" target="_blank" rel="noopener" style="color: var(--acc2); font-weight: 800; font-size: 1.05rem; text-decoration: none; border-bottom: 2px solid var(--acc2); padding-bottom: 2px; width: 371.73px; left: 40.345%; top: 71.275%;" data-pose="" data-off-x="403.45" data-off-y="712.75">
+        <span class="t-fr">antoninatger.github.io/interventions/retours →</span><span class="t-en" hidden="">antoninatger.github.io/interventions/retours →</span>
+      </a></section>
+<script type="application/json" id="parcours-enregistres">{}</script>
+
+
+</div>
+
+<div id="navzone-l" aria-hidden="true"></div>
+<div id="navzone-r" aria-hidden="true"></div>
+<div id="dots"></div>
+<div id="navctrl">
+  <button id="btn-prev" title="Précédent (←)">‹</button>
+  <button id="btn-next" title="Suivant (→)">›</button>
+</div>
+
+<div id="admin-modal" class="admin-modal">
+  <div class="admin-head">
+    <h3>Mode Admin — diapos de la session</h3>
+    <span class="admin-count" id="admin-count"></span>
+    <div class="actions">
+      <select id="admin-selections" title="Parcours enregistrés" onchange="Deck.applySelectedPreset()"></select>
+      <button type="button" onclick="Deck.saveCurrentSelectionAs()">Enregistrer comme parcours…</button>
+      <button type="button" onclick="Deck.deleteSelectedPreset()">Supprimer le parcours</button>
+      <button type="button" onclick="Deck.openAddSlideModal()">Ajouter une diapo</button>
+      <button type="button" onclick="window.open('../media-browser.html','_blank')">Médiathèque (toutes formations)</button>
+      <button type="button" onclick="Deck.adminSelectAll()">Tout cocher</button>
+      <button type="button" onclick="Deck.adminSelectNone()">Tout décocher</button>
+      <button type="button" class="primary" onclick="Deck.adminSave()">Enregistrer la sélection</button>
+      <button type="button" id="admin-save-order" onclick="Deck.saveSlideOrder()">Enregistrer l'ordre dans le fichier</button>
+      <button type="button" onclick="Deck.adminClose()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-grid" id="admin-grid"></div>
+</div>
+
+<div id="admin-zoom-modal" class="admin-zoom-modal">
+  <button type="button" class="admin-zoom-close" onclick="Deck.adminZoomClose()">✕</button>
+  <div id="admin-zoom-box"></div>
+</div>
+
+<div id="admin-edit-modal" class="admin-edit-modal">
+  <div class="admin-edit-head">
+    <h3>Édition de la diapo</h3>
+    <span class="admin-edit-hint"></span>
+    <div class="actions">
+      <button type="button" onclick="Deck.addTextBlock()">Ajouter un texte</button>
+      <button type="button" onclick="Deck.addPhotoBlock()">Ajouter une photo</button>
+      <button type="button" onclick="Deck.addPollWidget()">Sondage</button>
+      <button type="button" onclick="Deck.addScaleWidget()">Échelle</button>
+      <button type="button" onclick="Deck.addPieChartWidget()">Camembert</button>
+      <button type="button" onclick="Deck.addHistogramWidget()">Histogramme</button>
+      <button type="button" onclick="Deck.addReponseWidget()">Réponses à écrire</button>
+      <button type="button" onclick="Deck.quickAddSlideAfterCurrent()">Ajouter une diapo après</button>
+      <button type="button" onclick="Deck.apporterUneDiapo()">⤵ Apporter une diapo</button>
+      <button type="button" onclick="Deck.closeSlideEditToGrid()">Toutes les diapos</button>
+      <button type="button" id="admin-edit-save" onclick="Deck.saveEditedSlide()">Enregistrer dans le fichier</button>
+      <button type="button" onclick="Deck.closeSlideEdit()">Fermer</button>
+    </div>
+  </div>
+  <div class="admin-edit-stage" id="admin-edit-stage"></div>
+</div>
+
+<div id="addslide-modal" class="addslide-modal">
+  <div class="addslide-modal-box">
+    <div class="addslide-modal-head">
+      <h3>Ajouter une diapo</h3>
+      <button type="button" onclick="Deck.closeAddSlideModal()">✕</button>
+    </div>
+    <div class="addslide-modal-body">
+      <div id="addslide-modeles" class="addslide-modeles"></div>
+      <div id="addslide-champs"></div>
+      <div class="addslide-field">
+        <label for="addslide-position">Position</label>
+        <select id="addslide-position" class="addslide-input"></select>
+      </div>
+      <div class="addslide-modal-actions">
+        <button type="button" class="primary" onclick="Deck.submitAddSlide()">Ajouter</button>
+        <button type="button" onclick="Deck.closeAddSlideModal()">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../shared-deck-engine.js"></script>
+<script src="../shared-widgets.js"></script>
+<script src="../shared-slide-templates.js"></script>
+<script src="app.js"></script>
+<script src="../shared-comments-theme.js"></script>
+</body>
+</html>
