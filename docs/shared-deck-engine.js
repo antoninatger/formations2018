@@ -1532,6 +1532,16 @@ function createDeckEngine(config) {
     if (k !== i) go(k);
   }
 
+  // Appui long sur un chevron double : tout au debut, ou tout a la fin, du cours. Depuis une
+  // branche, on remonte d'abord a la ligne principale : « la premiere page » est celle du cours.
+  const APPUI_LONG_SAUT_MS = 2000;
+  function sauterAuBout(sens) {
+    while (pileRetour.length) revenirDeBranche();
+    const seq = sequenceCourante();
+    const k = sens > 0 ? seq.length - 1 : 0;
+    if (k !== i) go(k);
+  }
+
   function buildDots() {
     dotsEl.innerHTML = '';
 
@@ -1625,7 +1635,35 @@ function createDeckEngine(config) {
       b.textContent = glyphe;
       b.title = quoi + ' \u2014 la diapo entière, sans jouer les animations';
       b.setAttribute('aria-label', quoi + ' sans jouer les animations');
-      b.addEventListener('click', ev => { ev.stopPropagation(); sauterDeDiapo(sens); });
+      b.addEventListener('click', ev => {
+        ev.stopPropagation();
+        // Le clic qui suit un appui long n'est pas un saut de plus : le geste est deja fait.
+        if (b._appuiLongFait) { b._appuiLongFait = false; return; }
+        sauterDeDiapo(sens);
+      });
+      // 10 novembre, Antonin : « quand je garde appuye la double fleche [...] ca ramene a
+      // la premiere page. Et la double fleche vers la droite, je la garde appuyee genre
+      // plus de 2 secondes, ca arrive a la fin. » Le bord se remplit pendant l'attente,
+      // pour qu'on sache que le geste est en cours ; lacher avant annule.
+      let minuteur = null;
+      const annuler = () => {
+        if (minuteur) { clearTimeout(minuteur); minuteur = null; }
+        b.classList.remove('nav-saut-charge');
+      };
+      b.addEventListener('pointerdown', ev => {
+        if (ev.button !== undefined && ev.button !== 0) return;
+        annuler();
+        b._appuiLongFait = false;
+        b.classList.add('nav-saut-charge');
+        minuteur = setTimeout(() => {
+          minuteur = null;
+          b.classList.remove('nav-saut-charge');
+          b._appuiLongFait = true;
+          sauterAuBout(sens);
+        }, APPUI_LONG_SAUT_MS);
+      });
+      ['pointerup', 'pointerleave', 'pointercancel'].forEach(t => b.addEventListener(t, annuler));
+      b.addEventListener('contextmenu', ev => ev.preventDefault());
       return b;
     };
     const filet = document.createElement('span');
@@ -5848,6 +5886,56 @@ function createDeckEngine(config) {
       if (voulu) v.style.setProperty('object-view-box', voulu);
       else { v.style.removeProperty('object-view-box'); if (!v.getAttribute('style')) v.removeAttribute('style'); }
     });
+    replisRecadrageVideo();
+  }
+
+  // ── Le recadrage vidéo sur Safari et Firefox (10 novembre) ──────────────────────────
+  // Antonin : « quand les images ont été croppées, le crop ne se retrouve pas » sur le site.
+  // Safari et Firefox ignorent object-view-box : ils montraient la vidéo entière. On y
+  // reproduit donc le même cadre autrement, SANS toucher à la vidéo ni à son style en
+  // ligne (rien de tout ça ne doit finir dans le fichier) : une feuille de style posée au
+  // démarrage, une règle par vidéo recadrée.
+  //   - aspect-ratio : la vidéo prend la forme de son cadre, comme avec object-view-box ;
+  //   - object-fit:fill : l'image entière y est étirée, donc déformée...
+  //   - ...et scale(sx, sy) la redresse en agrandissant la partie gardée jusqu'aux bords ;
+  //     l'origine est choisie pour que le haut-gauche du cadre arrive au haut-gauche ;
+  //   - clip-path coupe ce qui déborde (les marges retirées).
+  // Les contrôles natifs de la vidéo suivent l'agrandissement : ils restent utilisables.
+  // Chrome et Edge, qui connaissent object-view-box, ne passent jamais par là.
+  function replisRecadrageVideo() {
+    if (VD_RECADRE_OK) return;
+    const pc = v => (Math.round(v * 100000) / 1000) + '%';
+    const regles = [];
+    document.querySelectorAll('video[data-recadre-video]').forEach(v => {
+      const m = margesVideo(v);
+      const src = v.getAttribute('src');
+      if (margesNulles(m) || !src) return;
+      if (!v.videoWidth || !v.videoHeight) {
+        if (!v._repliRecadreAttend) {
+          v._repliRecadreAttend = true;
+          v.addEventListener('loadedmetadata', () => { v._repliRecadreAttend = false; replisRecadrageVideo(); }, { once: true });
+        }
+        return;
+      }
+      const gx = 1 - m.l - m.r, gy = 1 - m.t - m.b;
+      const ox = (m.l + m.r) > 0.0005 ? m.l / (m.l + m.r) : 0.5;
+      const oy = (m.t + m.b) > 0.0005 ? m.t / (m.t + m.b) : 0.5;
+      const sel = 'video[src="' + CSS.escape(src) + '"][data-recadre-video="'
+        + CSS.escape(v.getAttribute('data-recadre-video')) + '"]';
+      regles.push(sel + '{aspect-ratio:' + (v.videoWidth * gx).toFixed(2) + ' / ' + (v.videoHeight * gy).toFixed(2)
+        + '!important;object-view-box:none!important;object-fit:fill!important'
+        + ';transform-origin:' + pc(ox) + ' ' + pc(oy) + '!important'
+        + ';transform:scale(' + (1 / gx).toFixed(5) + ',' + (1 / gy).toFixed(5) + ')!important'
+        + ';clip-path:inset(' + [m.t, m.r, m.b, m.l].map(pc).join(' ') + ')!important}');
+    });
+    let feuille = document.getElementById('repli-recadrage-video');
+    if (!feuille) {
+      feuille = document.createElement('style');
+      feuille.id = 'repli-recadrage-video';
+      document.head.appendChild(feuille);
+    }
+    const texte = Array.from(new Set(regles)).join('\n');
+    if (feuille.textContent !== texte) feuille.textContent = texte;
   }
 
   function tempsVideoLisible(s) {
@@ -16429,6 +16517,9 @@ function createDeckEngine(config) {
   background:transparent;border:1px dashed var(--bord);color:var(--mu);cursor:pointer;
   font-size:1rem;line-height:1;padding:0;opacity:.75;transition:opacity .15s,color .15s,border-color .15s}
 #navctrl .nav-saut:hover{opacity:1;color:var(--acc2);border-color:var(--acc2)}
+#navctrl .nav-saut.nav-saut-charge{opacity:1;color:var(--acc2);border:1px solid var(--acc2);
+  box-shadow:inset 0 0 0 0 var(--acc2);animation:navSautCharge 2s linear forwards}
+@keyframes navSautCharge{to{box-shadow:inset 0 0 0 16px color-mix(in srgb,var(--acc2) 35%,transparent)}}
 #navctrl .nav-filet{width:1px;align-self:stretch;margin:4px 2px;background:var(--bord);opacity:.6}
 /* Les points rangés par défaut ; « ••• », tout à droite des flèches, les sort (14 octobre) */
 #dots.dots-caches{display:none!important}
@@ -18161,7 +18252,7 @@ body.presenter-view{overflow:auto;height:auto;background:var(--bg,#111827);color
 
   // ── Etape T3 — le jeu s'ouvre PAR-DESSUS le cours, et on revient a la diapo exacte ──
   // Choix d'Antonin : pas un nouvel onglet. C'est faisable et c'est deja prouve — les
-  // illusions de niveau1 (s8, s9) chargent « https://antoninatger.github.io/jeux/Ilusions d'optique/… » dans une
+  // illusions de niveau1 (s8, s9) chargent « ../../Jeux/Ilusions d'optique/… » dans une
   // <iframe> en file://, et cela marche.
   //
   // Le calque vit sur document.body, prefixe « ed- » comme toute affordance (R5) : rien
