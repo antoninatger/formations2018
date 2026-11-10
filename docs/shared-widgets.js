@@ -216,6 +216,50 @@
   letter-spacing:.04em;font-weight:800;}
 .ed-wreponse-entete span:nth-child(1),.ed-wreponse-entete span:nth-child(2){flex:2 1 130px;}
 .ed-wreponse-entete span:nth-child(3){flex:1 1 110px;}
+
+/* Vote par téléphone (22 octobre). Les téléphones votent, l'écran compte : les boutons
+   « Voter » et les cases du nombre n'ont plus de rôle. En nuage de mots, les options se
+   cachent (elles restent dans le fichier, pour revenir au sondage sans les retaper). */
+.wpoll[data-telephone] .wpoll-vote,.wpoll[data-telephone] .wpoll-count{display:none;}
+.wpoll[data-telephone="mots"] > .wpoll-opt,.wpoll[data-telephone="mots"] > .wpoll-add,
+.wpoll[data-telephone="mots"] > .wpoll-chiffres{display:none;}
+.wpoll[data-telephone="mots"]{width:min(860px,90vw);}
+.wpoll-mode.actif{border-style:solid;border-color:var(--acc);color:var(--tx);}
+.ed-wnuage{display:none;}
+.wpoll[data-telephone="mots"] > .ed-wnuage{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+  gap:6px 18px;min-height:170px;padding:8px 4px;}
+.ed-wnuage-mot{font-family:'Baloo 2',cursive;font-weight:800;line-height:1.05;cursor:pointer;
+  transition:font-size .4s ease,opacity .2s;animation:wnuage-entre .45s ease both;}
+.ed-wnuage-mot:hover{opacity:.55;text-decoration:line-through;}
+@keyframes wnuage-entre{from{opacity:0;transform:scale(.6);}to{opacity:1;transform:none;}}
+.ed-wnuage-vide{font-size:.85rem;color:var(--mu);text-align:center;}
+.wpoll-mode{margin-left:6px;}
+.wpoll[data-telephone="textes"] > .wpoll-opt,.wpoll[data-telephone="textes"] > .wpoll-add,
+.wpoll[data-telephone="textes"] > .wpoll-chiffres,.wpoll[data-telephone="textes"] > .wpoll-colonnes{display:none;}
+.wpoll[data-telephone="mots"] > .wpoll-colonnes{display:none;}
+.wpoll[data-telephone="textes"]{width:min(900px,90vw);}
+.wpoll[data-telephone="textes"] > .ed-wnuage{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;
+  gap:10px;min-height:150px;padding:6px 2px;max-height:56vh;overflow:auto;}
+.ed-wtexte{background:var(--panel);border:1px solid var(--bord);border-left:4px solid var(--acc);border-radius:10px;
+  padding:8px 14px;font-size:1.05rem;font-weight:600;line-height:1.3;max-width:100%;cursor:pointer;
+  animation:wnuage-entre .45s ease both;}
+.ed-wtexte:hover{opacity:.55;text-decoration:line-through;}
+.ed-wtexte b{font-family:'DM Mono',monospace;font-size:.8rem;color:var(--mu);margin-left:8px;}
+
+/* « Je préfère en bâton » (22 octobre) : le sondage en colonnes, le nombre au-dessus. */
+.wpoll[data-colonnes]{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center;gap:10px 26px;}
+.wpoll[data-colonnes] > .wpoll-opt{flex:0 1 150px;flex-direction:column-reverse;align-items:center;
+  flex-wrap:nowrap;margin:0;gap:8px;}
+.wpoll[data-colonnes] .wpoll-track{flex:0 0 auto;width:70px;min-width:0;height:190px;display:flex;align-items:flex-end;}
+.wpoll[data-colonnes] .wpoll-fill{width:100%;transition:height .4s ease;}
+.wpoll[data-colonnes] .wpoll-label{text-align:center;min-width:0;height:3.6em;box-sizing:border-box;display:flex;
+  align-items:center;justify-content:center;}
+.wpoll[data-colonnes] .wpoll-pct{min-width:0;text-align:center;font-size:1.05rem;}
+.wpoll[data-colonnes] > .wpoll-add,.wpoll[data-colonnes] > .wpoll-chiffres,.wpoll[data-colonnes] > .wpoll-mode,
+.wpoll[data-colonnes] > .wpoll-colonnes{flex:0 0 auto;}
+.wpoll-colonnes.actif{border-style:solid;border-color:var(--acc);color:var(--tx);}
+.ed-wpoll-total{flex:0 0 100%;text-align:center;font-size:.85rem;font-weight:700;color:var(--mu);margin-top:6px;}
+.wpoll:not([data-telephone="1"]) > .ed-wpoll-total{display:none;}
 `;
     document.head.appendChild(style);
   }
@@ -317,6 +361,43 @@
       syncPoll(wrap);
     });
     majChiffres();
+    const mode = document.createElement('button');
+    mode.type = 'button';
+    mode.className = 'wpoll-mode widget-ctl';
+    mode.title = 'Qui vote : vous, au bouton « Voter », ou le public, depuis son téléphone (un seul QR code pour toute la séance)';
+    const majMode = () => {
+      const m = pollTelephone(wrap);
+      mode.classList.toggle('actif', !!m);
+      mode.textContent = m === 'mots' ? '📱 Nuage de mots' : m === 'textes' ? '📱 Réponses libres'
+        : m ? '📱 Vote par téléphone' : '✋ Vote à la main';
+    };
+    mode.addEventListener('click', () => {
+      // Dans l'ordre : à la main → téléphones → nuage de mots → réponses libres → à la main.
+      const m = pollTelephone(wrap);
+      if (!m) wrap.dataset.telephone = '1';
+      else if (m === '1') wrap.dataset.telephone = 'mots';
+      else if (m === 'mots') wrap.dataset.telephone = 'textes';
+      else delete wrap.dataset.telephone;
+      majMode();
+      mountPoll(wrap);
+    });
+    majMode();
+    const colonnes = document.createElement('button');
+    colonnes.type = 'button';
+    colonnes.className = 'wpoll-colonnes widget-ctl';
+    colonnes.title = 'Barres couchées, ou colonnes debout';
+    const majColonnes = () => {
+      const on = !!wrap.dataset.colonnes;
+      colonnes.classList.toggle('actif', on);
+      colonnes.textContent = on ? '▮ Colonnes' : '▬ Barres';
+    };
+    colonnes.addEventListener('click', () => {
+      if (wrap.dataset.colonnes) delete wrap.dataset.colonnes;
+      else wrap.dataset.colonnes = '1';
+      majColonnes();
+      syncPoll(wrap);
+    });
+    majColonnes();
     const addBtn = document.createElement('button');
     addBtn.type = 'button';
     addBtn.className = 'wpoll-add widget-ctl';
@@ -329,6 +410,8 @@
     });
     wrap.appendChild(addBtn);
     wrap.appendChild(chiffres);
+    wrap.appendChild(mode);
+    wrap.appendChild(colonnes);
   }
 
   function buildPoll() {
@@ -353,11 +436,18 @@
     const total = opts.reduce((sum, o) => sum + (Number(o.querySelector('.wpoll-count').value) || 0), 0);
     opts.forEach(o => {
       const n = Number(o.querySelector('.wpoll-count').value) || 0;
-      o.querySelector('.wpoll-fill').style.width = total ? (n / total * 100) + '%' : '0%';
+      const part = total ? (n / total * 100) + '%' : '0%';
+      const fill = o.querySelector('.wpoll-fill');
+      if (wrap.dataset.colonnes) { fill.style.width = ''; fill.style.height = part; }
+      else { fill.style.height = ''; fill.style.width = part; }
       // Arrondi à l'entier : devant une salle, « 37,5 % » ne se lit pas mieux que « 38 % »,
       // et la somme des arrondis n'a pas à faire 100 — c'est un sondage, pas une comptabilité.
       const pct = assurerPollPct(o);
-      pct.textContent = total ? Math.round(n / total * 100) + ' %' : '';
+      // Par téléphone, le nombre de votants compte autant que la part : « je veux qu'on ait
+      // le nombre, bien sûr, de personnes qui votent ».
+      pct.textContent = pollTelephone(wrap) === '1'
+        ? (total ? n + ' · ' + Math.round(n / total * 100) + ' %' : '0')
+        : (total ? Math.round(n / total * 100) + ' %' : '');
     });
   }
 
@@ -375,6 +465,140 @@
       count.addEventListener('input', () => syncPoll(wrap));
     });
     syncPoll(wrap);
+    if (pollTelephone(wrap)) {
+      assurerNuage(wrap);
+      chargerVotePublic();
+      if (window.VotePublic) window.VotePublic.surveiller();
+    }
+  }
+
+  // ── Vote par téléphone (22 octobre) ────────────────────────────────────────────
+  // Antonin : « que le public vote via son téléphone […] il scanne une fois, et après la
+  // nouvelle question apparaît sur leur téléphone en fonction de la slide ». Le sondage
+  // garde sa forme ; un attribut dit qui vote : rien (à la main), "1" (les téléphones
+  // choisissent une option), "mots" (les téléphones envoient des mots, en nuage). La
+  // liaison, la salle et le QR code vivent dans shared-vote-public.js, chargé seulement
+  // quand une diapo en a besoin.
+  function pollTelephone(wrap) { return wrap.dataset.telephone || ''; }
+
+  // Les comptes viennent du relais : ils remplacent ceux de la case, comme un vote à la main.
+  function pollResultats(wrap, comptes, votants) {
+    const opts = Array.from(wrap.querySelectorAll(':scope > .wpoll-opt'));
+    opts.forEach((o, i) => { o.querySelector('.wpoll-count').value = String(comptes[i] || 0); });
+    syncPoll(wrap);
+    let t = wrap.querySelector(':scope > .ed-wpoll-total');
+    if (!t) {
+      t = document.createElement('div');
+      t.className = 'ed-wpoll-total';
+      wrap.appendChild(t);
+    }
+    const n = votants === undefined ? comptes.reduce((a, b) => a + (b || 0), 0) : votants;
+    t.textContent = n + ' vote' + (n > 1 ? 's' : '');
+  }
+
+  // Le nuage est un élément de l'éditeur (préfixe ed-) : il n'est jamais écrit dans le
+  // fichier. Ce que la salle a écrit un jour ne doit pas réapparaître devant la suivante.
+  function assurerNuage(wrap) {
+    let n = wrap.querySelector(':scope > .ed-wnuage');
+    if (!n) {
+      n = document.createElement('div');
+      n.className = 'ed-wnuage';
+      wrap.insertBefore(n, wrap.firstChild);
+    }
+    if (!n.childNodes.length) nuageVide(n);
+    return n;
+  }
+  function nuageVide(n) {
+    n.innerHTML = '';
+    if (!n.closest('.slide.editing')) return;
+    const v = document.createElement('div');
+    v.className = 'ed-wnuage-vide';
+    v.textContent = n.parentNode && pollTelephone(n.parentNode) === 'textes'
+      ? '📱 Les réponses envoyées par les téléphones s’afficheront ici. Un clic sur une réponse l’efface de l’écran.'
+      : '☁ Les mots envoyés par les téléphones s’afficheront ici. Un clic sur un mot l’efface de l’écran.';
+    n.appendChild(v);
+  }
+
+  // mots : [{mot, n}], du plus fréquent au moins fréquent. Les mots déjà là gardent leur
+  // élément (pas de clignotement à chaque vote), les nouveaux entrent en grossissant.
+  function nuageRendre(wrap, mots, masquer) {
+    const n = assurerNuage(wrap);
+    if (!mots.length) { nuageVide(n); return; }
+    if (pollTelephone(wrap) === 'textes') { textesRendre(n, mots, masquer); return; }
+    n.querySelectorAll('.ed-wtexte').forEach(e => e.remove());
+    n.querySelectorAll('.ed-wnuage-vide').forEach(e => e.remove());
+    const max = mots[0].n, min = mots[mots.length - 1].n;
+    const vus = new Map();
+    n.querySelectorAll('.ed-wnuage-mot').forEach(e => vus.set(e.dataset.mot, e));
+    const garder = new Set();
+    // Le plus fréquent au centre : on range en alternant à gauche et à droite.
+    const ordre = [];
+    mots.forEach((m, i) => { if (i % 2) ordre.push(m); else ordre.unshift(m); });
+    ordre.forEach((m, i) => {
+      let e = vus.get(m.mot);
+      if (!e) {
+        e = document.createElement('span');
+        e.className = 'ed-wnuage-mot';
+        e.dataset.mot = m.mot;
+        e.textContent = m.mot;
+        e.title = 'Cliquer pour effacer ce mot de l’écran';
+        e.addEventListener('click', () => { if (masquer) masquer(m.mot); e.remove(); });
+      }
+      const part = max === min ? 1 : (m.n - min) / (max - min);
+      e.style.fontSize = (1.1 + part * 2.6).toFixed(2) + 'rem';
+      e.style.color = seriesColor(mots.indexOf(m));
+      n.appendChild(e);
+      garder.add(m.mot);
+    });
+    vus.forEach((e, mot) => { if (!garder.has(mot)) e.remove(); });
+  }
+
+  function textesRendre(n, textes, masquer) {
+    n.querySelectorAll('.ed-wnuage-vide, .ed-wnuage-mot').forEach(e => e.remove());
+    const vus = new Map();
+    n.querySelectorAll('.ed-wtexte').forEach(e => vus.set(e.dataset.mot, e));
+    const garder = new Set();
+    textes.forEach(t => {
+      let e = vus.get(t.mot);
+      if (!e) {
+        e = document.createElement('div');
+        e.className = 'ed-wtexte';
+        e.dataset.mot = t.mot;
+        e.title = 'Cliquer pour effacer cette réponse de l’écran';
+        e.addEventListener('click', () => { if (masquer) masquer(t.mot); e.remove(); });
+        n.appendChild(e);
+      }
+      e.textContent = t.mot;
+      if (t.n > 1) { const b = document.createElement('b'); b.textContent = '×' + t.n; e.appendChild(b); }
+      garder.add(t.mot);
+    });
+    vus.forEach((e, mot) => { if (!garder.has(mot)) e.remove(); });
+  }
+
+  // Le QR code du vote, en widget : une place sur la diapo, rien d'autre dans le fichier.
+  function buildQrVote() {
+    const el = document.createElement('div');
+    el.className = 'wqr-vote';
+    el.dataset.widget = 'qr-vote';
+    return el;
+  }
+
+  // shared-vote-public.js et le QR code ne se chargent que là où un sondage est réglé
+  // « par téléphone ». Leur adresse se lit sur celle de ce fichier-ci : ils sont rangés à
+  // côté de lui, à la racine de Cours.
+  const BASE_WIDGETS = (document.currentScript && document.currentScript.src || '').replace(/[^/]*$/, '');
+  let votePublicCharge = false;
+  function chargerVotePublic() {
+    if (votePublicCharge || window.VotePublic) return;
+    votePublicCharge = true;
+    const ajouter = (nom, apres) => {
+      const s = document.createElement('script');
+      s.src = BASE_WIDGETS + nom;
+      s.onload = apres || null;
+      s.onerror = apres || null;
+      document.head.appendChild(s);
+    };
+    ajouter('vote-relais.js', () => ajouter('shared-vote-public.js'));
   }
 
   // ───────────────────── Échelle à curseur (zones révélées) ─────────────────────
@@ -1625,6 +1849,7 @@
     else if (type === 'piechart') mountPieChart(el);
     else if (type === 'histogram') mountHistogram(el);
     else if (type === 'reponse') mountReponse(el);
+    else if (type === 'qr-vote') { chargerVotePublic(); if (window.VotePublic) window.VotePublic.surveiller(); }
   }
 
   function mountAll(root) {
@@ -1638,7 +1863,10 @@
   // ont été retirés du HTML à la fermeture précédente (cf. teardownEditAffordances
   // dans shared-deck-engine.js).
   function setupEditControls(root) {
-    root.querySelectorAll('[data-widget="poll"]').forEach(attachPollEditControls);
+    root.querySelectorAll('[data-widget="poll"]').forEach(w => {
+      attachPollEditControls(w);
+      if (pollTelephone(w)) { const n = assurerNuage(w); if (!n.querySelector('.ed-wnuage-mot')) nuageVide(n); }
+    });
     root.querySelectorAll('[data-widget="scale"]').forEach(attachScaleEditControls);
     root.querySelectorAll('[data-widget="histogram"]').forEach(attachHistoEditControls);
     root.querySelectorAll('[data-widget="piechart"]').forEach(attachPieEditControls);
@@ -1695,5 +1923,6 @@
   function retraduire(root) { chaqueReponse(root, reponseTraduire); }
 
   window.SharedWidgets = { buildPoll, buildScale, buildPieChart, buildHistogram, buildReponse,
-    mountAll, setupEditControls, resetAll, figerLibelles, retraduire };
+    mountAll, setupEditControls, resetAll, figerLibelles, retraduire,
+    pollResultats, nuageRendre, pollTelephone, buildQrVote };
 })();

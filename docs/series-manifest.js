@@ -13,6 +13,9 @@ window.COURS_SERIES = {
   "group_fbc5eb40-3af3-46ba-af5c-a406d71170a4": {
    "nom": "Devinette éclair (raquette et balle)"
   },
+  "serie_6cfa7347-5e74-4181-ae7a-df04441ec887": {
+   "nom": "Devinette éclair : le calcul (raquette et balle)"
+  },
   "group_3a36f822-9c07-43cd-bbfa-3205f17ba315": {
    "nom": "Deux façons de penser (intuitif / analytique)"
   },
@@ -78,6 +81,9 @@ window.COURS_SERIES = {
   },
   "serie_8336c63a-c1e4-4fa4-a209-cd905354f608": {
    "nom": "De quelles couleurs sont ces drapeaux ?"
+  },
+  "serie_dab825c4-e74c-495f-9eaa-2d6ffb0488f8": {
+   "nom": "Patrouille : quel drapeau ? (animation)"
   },
   "serie_68740caf-9b83-4151-a849-eb7599a93d54": {
    "nom": "Vidéo sensible : l’alerte en Ukraine"
@@ -621,6 +627,9 @@ window.COURS_SERIES = {
   },
   "serie_85d128e2-8811-4043-8ebd-541dc02dd865": {
    "nom": "La liste des biais cognitifs"
+  },
+  "serie_fe31fd5e-3a92-40bc-9831-6650010dc087": {
+   "nom": "La Terre : ronde ou plate ? (animation)"
   }
  }
 };

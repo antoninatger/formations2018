@@ -453,6 +453,11 @@ function createDeckEngine(config) {
     ['apparaitre', 'Apparaître'], ['disparaitre', 'Disparaître'],
     ['deplacer', 'Déplacer'], ['grossir', 'Grossir'],
     ['diminuer', 'Diminuer'], ['clignoter', 'Clignoter'], ['couleur', 'Changer de couleur'],
+    // 10 novembre, Antonin : la conclusion « doit trembler un peu et grossir (pour montrer le
+    // renforcement) ». « Trembler » s'AJOUTE à ce que le bloc porte déjà (composite « add ») :
+    // posé au même palier qu'un « Grossir », il tremble pendant qu'il grossit, au lieu de
+    // l'écraser. Il ne tient rien à la fin : le bloc revient à sa place.
+    ['trembler', 'Trembler'],
   ];
 
   // ── Plusieurs animations pour un meme bloc (10 septembre) ──────────────────────────
@@ -616,6 +621,13 @@ function createDeckEngine(config) {
         return [{ transform: avec('scale(1)') }, { transform: avec('scale(' + (a.facteur || 0.6) + ')') }];
       case 'clignoter':
         return [{ opacity: 1 }, { opacity: .15 }, { opacity: 1 }, { opacity: .15 }, { opacity: 1 }];
+      // Pas de socle : ces images s'ajoutent à la transformation en cours (voir composite).
+      case 'trembler': {
+        const f = Number(a.force) || 6;
+        const pas = [[0, 0, 0], [-1, .3, -1.5], [1, -.4, 1.5], [-.8, .5, -1.2], [.8, -.3, 1.2],
+          [-.5, .2, -.8], [.5, -.2, .8], [-.2, .1, -.3], [0, 0, 0]];
+        return pas.map(([x, y, r]) => ({ transform: 'translate(' + (x * f) + 'px,' + (y * f) + 'px) rotate(' + r + 'deg)' }));
+      }
       case 'couleur':
         return [{ color: getComputedStyle(el).color, backgroundColor: getComputedStyle(el).backgroundColor },
           { color: a.couleur || '#f75f5f', backgroundColor: a.couleur || '#f75f5f' }];
@@ -654,8 +666,12 @@ function createDeckEngine(config) {
       easing: (a.effet === 'clignoter'
         || (a.effet === 'deplacer' && a.trace && a.trace.forme && a.trace.forme !== 'ligne'))
         ? 'linear' : 'ease-in-out',
-      fill: (a.effet === 'apparaitre' || a.effet === 'clignoter') ? 'none' : 'forwards',
+      fill: (a.effet === 'apparaitre' || a.effet === 'clignoter' || a.effet === 'trembler') ? 'none' : 'forwards',
+      // « Après » (10 novembre) : l'animation attend ce délai une fois son palier atteint.
+      // C'est ce qui enchaîne « la flèche arrive, PUIS la conclusion réagit » sur un seul clic.
+      delay: Math.max(0, Number(a.delai) || 0),
     };
+    if (a.effet === 'trembler') { options.composite = 'add'; options.easing = 'linear'; }
     const chemin = a.effet === 'deplacer' ? cheminDeLAnimation(a, options.duration) : null;
     if (chemin && chemin.length > 1) {
       // Le trace enregistre porte ses propres instants : on les rend au navigateur plutot
@@ -3102,6 +3118,12 @@ function createDeckEngine(config) {
     function refreshAdminCount() {
       const shown = slides.length - pendingHidden.size;
       countEl.textContent = `${shown} / ${slides.length} diapos sélectionnées`;
+      const appliquer = document.getElementById('admin-appliquer');
+      if (appliquer) {
+        const n = pendingHidden.size;
+        appliquer.textContent = n === 0 ? 'Montrer toutes les diapos'
+          : n === 1 ? 'Retirer la diapo décochée' : `Retirer les ${n} diapos décochées`;
+      }
       if (preparation1h) majPreparation1h();   // le bandeau « Version 1 h » compte aussi
     }
   }
@@ -3231,15 +3253,19 @@ function createDeckEngine(config) {
     if (!modal) return;
     const ordre = document.getElementById('admin-save-order');
     if (ordre) {
-      ordre.textContent = 'Enregistrer';
+      ordre.textContent = 'Enregistrer l’ordre';
       ordre.title = 'Écrire l’ordre des diapos dans le fichier de la formation';
     }
     modal.querySelectorAll('button[onclick]').forEach(b => {
       const action = b.getAttribute('onclick') || '';
       if (/Deck\.adminSave\(\)/.test(action)) {
-        b.textContent = 'Appliquer la sélection';
-        b.title = 'Ne montrer que les diapos cochées pendant cette séance (rien n’est écrit dans le fichier)';
-        b.classList.remove('primary');
+        // 3 novembre — Antonin : « Je veux un bouton très clair où je sais que si je clique
+        // dessus, les images que j'ai décochées ne sont pas dans la sélection. » Le libellé
+        // dit donc ce que fait le clic, avec le nombre de diapos décochées (refreshAdminCount).
+        b.id = 'admin-appliquer';
+        b.textContent = 'Retirer les diapos décochées';
+        b.title = 'Les diapos décochées ne seront plus montrées pendant la présentation';
+        b.classList.add('primary');
       } else if (/Deck\.saveCurrentSelectionAs\(\)/.test(action)) {
         b.textContent = 'Nouveau parcours…';
         b.title = 'Donner un nom aux diapos cochées (ex. « Séance 3 ») pour les retrouver plus tard';
@@ -3254,7 +3280,7 @@ function createDeckEngine(config) {
     if (ordre) {
       ordre.classList.toggle('primary', ordreNonEnregistre);
       // Pendant l'écriture, le bouton dit « Enregistrement… » puis le résultat : on n'y touche pas.
-      if (!ordre.disabled) ordre.textContent = ordreNonEnregistre ? 'Enregistrer le nouvel ordre' : 'Enregistrer';
+      if (!ordre.disabled) ordre.textContent = ordreNonEnregistre ? 'Enregistrer le nouvel ordre' : 'Enregistrer l’ordre';
     }
     const attente = document.querySelector('#admin-modal .ed-ordre-attente');
     if (attente) attente.hidden = !ordreNonEnregistre;
@@ -4367,6 +4393,12 @@ function createDeckEngine(config) {
 
     adminClose();
     majBoutonDuree();
+    const retirees = slides.length - visibleSlides().length;
+    montrerMessageEphemere(
+      retirees ? `${retirees} diapo${retirees > 1 ? 's' : ''} retirée${retirees > 1 ? 's' : ''} : ${slides.length - retirees} diapos dans la présentation.`
+               : `Toutes les diapos sont dans la présentation (${slides.length}).`,
+      retirees ? `${retirees} slide${retirees > 1 ? 's' : ''} removed: ${slides.length - retirees} slides in the presentation.`
+               : `All slides are in the presentation (${slides.length}).`);
   }
 
   // ── Parcours enregistrés (⚠️ 15) ──────────────────────────────────────────────────
@@ -6632,6 +6664,89 @@ function createDeckEngine(config) {
     }
   }
 
+  // ── Créer une diapo avec le texte du média (4 novembre 2026) ─────────────────────
+  // Le média vient d'être posé : on PROPOSE, on n'impose pas. Une barre en bas de l'écran
+  // (préfixe ed-, donc jamais enregistrée) : « Créer une diapo avec ce texte » pose une diapo
+  // juste après celle où l'on travaille — le même geste que le « + » — avec le texte dans
+  // une zone de texte, un paragraphe par ligne, prêt à être retouché.
+  let barreTexteMedia = null;
+  function fermerBarreTexteMedia() {
+    if (barreTexteMedia) barreTexteMedia.remove();
+    barreTexteMedia = null;
+  }
+
+  function remplirBlocTexte(fr, texte) {
+    const paras = String(texte || '').replace(/\r\n/g, '\n').split(/\n\s*\n/)
+      .map(p => p.trim()).filter(Boolean);
+    fr.textContent = '';
+    paras.forEach((p, k) => {
+      // Un seul retour entre deux paragraphes : chaque retour fait une « ligne » de la suite
+      // (apparition ligne à ligne), et une ligne vide serait une étape pour rien.
+      if (k) fr.appendChild(document.createElement('br'));
+      p.split('\n').forEach((ligne, j) => {
+        if (j) fr.appendChild(document.createElement('br'));
+        fr.appendChild(document.createTextNode(ligne));
+      });
+    });
+    majInvite(fr);
+  }
+
+  function creerDiapoAvecTexte(texte) {
+    const reference = editingSlide || sequenceCourante()[i];
+    if (!reference) return false;
+    creerDiapoApres(reference);
+    if (!editingSlide || editingSlide === reference) return false;
+    const blocs = Array.from(getEditableScope(editingSlide).querySelectorAll('p.lead > .t-fr.editable-text'));
+    const fr = blocs[blocs.length - 1];
+    if (!fr) return false;
+    remplirBlocTexte(fr, texte);
+    const p = fr.parentElement;
+    // Un long texte prend une taille plus petite : en « grand » il sortirait de la diapo.
+    // (Le cran se change ensuite à la barre S/M/L/XL, comme pour tout bloc.)
+    const longueur = String(texte).length;
+    if (longueur > 280) p.classList.remove('taille-l');
+    if (longueur > 700) p.classList.add('taille-s');
+    requestAnimationFrame(() => ramenerSousLesYeux(p));
+    return true;
+  }
+
+  function proposerDiapoTexte(texte, nomMedia) {
+    fermerBarreTexteMedia();
+    const barre = document.createElement('div');
+    barre.className = 'ed-texte-media';
+    barre.setAttribute('role', 'status');
+    const libelle = document.createElement('b');
+    libelle.textContent = '📝 Ce média a un texte';
+    const apercu = document.createElement('span');
+    apercu.className = 'ed-tm-apercu';
+    apercu.textContent = String(texte).replace(/\s+/g, ' ').trim();
+    apercu.title = String(texte).slice(0, 600);
+    const creer = document.createElement('button');
+    creer.type = 'button';
+    creer.className = 'ed-tm-creer';
+    creer.textContent = 'Créer une diapo avec ce texte';
+    creer.addEventListener('click', () => {
+      fermerBarreTexteMedia();
+      if (!creerDiapoAvecTexte(texte)) alert('La diapo n’a pas pu être créée : ouvrez d’abord une diapo, puis réessayez.');
+    });
+    const copier = document.createElement('button');
+    copier.type = 'button';
+    copier.textContent = 'Copier le texte';
+    copier.addEventListener('click', () => {
+      const fini = () => { copier.textContent = '✓ Copié'; };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texte).then(fini, () => {});
+    });
+    const non = document.createElement('button');
+    non.type = 'button';
+    non.textContent = '✕';
+    non.title = 'Non merci';
+    non.addEventListener('click', fermerBarreTexteMedia);
+    barre.append(libelle, apercu, creer, copier, non);
+    document.body.appendChild(barre);
+    barreTexteMedia = barre;
+    if (nomMedia) barre.setAttribute('data-media', nomMedia);
+  }
+
   function fermerMediatheque() {
     if (mediathequeEl) mediathequeEl.remove();
     mediathequeEl = null;
@@ -6840,6 +6955,78 @@ function createDeckEngine(config) {
       return z;
     }
 
+    // ── Le texte du média (4 novembre 2026) ─────────────────────────────────────────
+    // Antonin : « quand je charge une vidéo dans la médiathèque, moyen d'ajouter mon texte
+    // quelque part ? Ainsi quand j'inclus ensuite l'image ou la vidéo dans une formation,
+    // je peux réutiliser mon texte pour en faire une slide ».
+    // Le texte vit dans medias/etiquettes.json, sous « textes » ({ cle: texte }) : le même
+    // fichier, les mêmes garde-fous (dossier connecté, JSON lisible, écriture relue). Tous
+    // les écrivains du fichier réécrivent l'objet entier, la clé leur survit donc.
+    function texteDuMedia(cle) {
+      const t = etiq.obj && etiq.obj.textes && etiq.obj.textes[cle];
+      return typeof t === 'string' ? t : '';
+    }
+
+    async function enregistrerTexte(m, texte) {
+      if (etiq.illisible) {
+        dire('medias/etiquettes.json existe mais est illisible (JSON cassé) : le texte n’est pas enregistré. Rien n’a été modifié.');
+        return false;
+      }
+      if (!etiq.inscriptible) {
+        dire('Le dossier Cours n’est pas connecté : le texte ne peut pas être enregistré. Connectez-le d’abord. Rien n’a été modifié.');
+        return false;
+      }
+      const obj = etiq.obj || { etiquettes: {} };
+      if (!obj.etiquettes) obj.etiquettes = {};
+      if (!obj.textes || typeof obj.textes !== 'object') obj.textes = {};
+      const avant = obj.textes[m.cle];
+      const propre = String(texte || '').replace(/\r\n/g, '\n').trim();
+      if (propre) obj.textes[m.cle] = propre; else delete obj.textes[m.cle];
+      if (!(await ecrireEtiquettes(obj))) {
+        if (avant === undefined) delete obj.textes[m.cle]; else obj.textes[m.cle] = avant;
+        dire('Le texte de « ' + m.nom + ' » n’a PAS été enregistré dans medias/etiquettes.json : rien n’a changé.');
+        return false;
+      }
+      etiq.obj = obj;
+      etiq.table = obj.etiquettes;
+      dire(propre ? 'Texte de « ' + m.nom + ' » enregistré.' : 'Texte de « ' + m.nom + ' » retiré.');
+      return true;
+    }
+
+    function zoneTexte(m) {
+      const z = document.createElement('div');
+      z.className = 'ed-mt-texte';
+      const b = document.createElement('button');
+      b.type = 'button';
+      const majBouton = () => {
+        const plein = !!texteDuMedia(m.cle);
+        b.className = 'ed-mt-texte-btn' + (plein ? ' plein' : '');
+        b.textContent = plein ? '📝 Texte joint' : '📝 Ajouter un texte';
+        b.title = plein ? texteDuMedia(m.cle).slice(0, 300) : 'Joindre un texte à ce média, réutilisable en diapo';
+      };
+      majBouton();
+      let ouvert = null;
+      b.addEventListener('click', () => {
+        if (ouvert) { ouvert.remove(); ouvert = null; return; }
+        ouvert = document.createElement('div');
+        ouvert.className = 'ed-mt-texte';
+        const zone = document.createElement('textarea');
+        zone.value = texteDuMedia(m.cle);
+        zone.placeholder = 'Le texte qui accompagne ce média…';
+        const ok = document.createElement('button');
+        ok.type = 'button';
+        ok.textContent = 'Enregistrer le texte';
+        ok.addEventListener('click', async () => {
+          if (await enregistrerTexte(m, zone.value)) { majBouton(); ouvert.remove(); ouvert = null; }
+        });
+        ouvert.append(zone, ok);
+        z.appendChild(ouvert);
+        zone.focus();
+      });
+      z.appendChild(b);
+      return z;
+    }
+
     // U6 (1er septembre) : supprimer un media depuis la mediatheque. Le garde-fou : JAMAIS un
     // fichier encore reference par une diapo. La mediatheque connait l'usage par le manifeste
     // (les cinq formations) ; on regarde aussi la page ouverte, qui peut etre en avance sur
@@ -6941,8 +7128,10 @@ function createDeckEngine(config) {
         v.appendChild(vid);
       }
       v.addEventListener('click', () => {
+        const texte = texteDuMedia(m.cle);
         fermerMediatheque();
         if (opt.poser) opt.poser(m.chemin);
+        if (texte && opt.texteEnDiapo) proposerDiapoTexte(texte, m.nom);
       });
       const nom = document.createElement('div');
       nom.className = 'ed-mt-nom';
@@ -6959,7 +7148,7 @@ function createDeckEngine(config) {
       suppr.textContent = 'Supprimer';
       suppr.title = 'Supprimer ce fichier du dossier medias/ (refusé tant qu’une diapo l’utilise)';
       suppr.addEventListener('click', () => demanderSuppression(m, suppr));
-      c.append(v, nom, usage, zoneEtiquettes(m), suppr);
+      c.append(v, nom, usage, zoneEtiquettes(m), zoneTexte(m), suppr);
       return c;
     }
 
@@ -9949,7 +10138,7 @@ function createDeckEngine(config) {
     };
     // La médiathèque vient EN PREMIER : les 239 médias sont déjà rangés, et aller rechercher
     // sur le disque une image qui est là est le chemin le plus court vers un doublon.
-    ouvrirMediatheque({ accept: genre, poser, onImport: importerDuDisque });
+    ouvrirMediatheque({ accept: genre, poser, onImport: importerDuDisque, texteEnDiapo: true });
   }
 
   // L'ancien nom reste : quinze appels le portent, et une image se choisit toujours pareil.
@@ -10010,6 +10199,19 @@ function createDeckEngine(config) {
     scope.appendChild(el);
     window.SharedWidgets.mountAll(el);
     window.SharedWidgets.setupEditControls(scope);
+    poserWidgetEnVue(el);
+    addMediaTransformControls(el);
+    selectionnerBloc(el);
+  }
+  // Le QR code du vote du public (22 octobre) : « mets le QR code dans un widget, comme ça
+  // je peux le faire apparaître quand je veux ». Le widget ne porte que sa place : le QR, le
+  // code de la salle et l'adresse sont refaits à chaque ouverture par shared-vote-public.js.
+  function addQrVoteWidget() {
+    if (!editingSlide || !window.SharedWidgets || !window.SharedWidgets.buildQrVote) return;
+    const scope = getEditableScope(editingSlide);
+    const el = window.SharedWidgets.buildQrVote();
+    scope.appendChild(el);
+    window.SharedWidgets.mountAll(el);
     poserWidgetEnVue(el);
     addMediaTransformControls(el);
     selectionnerBloc(el);
@@ -13725,6 +13927,24 @@ function createDeckEngine(config) {
     });
     ligneRang.append(document.createTextNode('Au palier'), champRang);
     panel.appendChild(ligneRang);
+    // « Après … s » (10 novembre) : un délai avant que l'animation parte, une fois son
+    // palier atteint. Vide ou 0 : elle part tout de suite, comme avant.
+    const ligneDelai = document.createElement('label');
+    ligneDelai.className = 'an-row';
+    const champDelai = document.createElement('input');
+    champDelai.type = 'number';
+    champDelai.min = '0';
+    champDelai.step = '0.1';
+    champDelai.className = 'an-num';
+    champDelai.placeholder = 'tout de suite';
+    champDelai.value = Number(etat.delai) ? String(Number(etat.delai) / 1000) : '';
+    champDelai.title = 'Secondes d’attente avant que l’animation parte';
+    champDelai.addEventListener('change', () => {
+      const s = Math.max(0, Number(String(champDelai.value).replace(',', '.')) || 0);
+      ecrireAnim(el, { delai: s ? Math.round(s * 1000) : null });
+    });
+    ligneDelai.append(document.createTextNode('Après (s)'), champDelai);
+    panel.appendChild(ligneDelai);
 
     panel.appendChild(quand);
 
@@ -13771,7 +13991,7 @@ function createDeckEngine(config) {
         if (jeu) { try { jeu.cancel(); } catch (e) { /* déjà finie */ } }
         montrerCibleDeplacement(el);
       };
-      if (jeu) { jeu.onfinish = finir; setTimeout(finir, dureeDeLAnimation(a) + 400); }
+      if (jeu) { jeu.onfinish = finir; setTimeout(finir, dureeDeLAnimation(a) + (Number(a.delai) || 0) + 400); }
       else finir();
     });
     panel.appendChild(tester);
@@ -13985,6 +14205,11 @@ function createDeckEngine(config) {
     ['fleche', 'Flèche vers la droite'], ['fleche-gauche', 'Flèche vers la gauche'],
     ['fleche-haut', 'Flèche vers le haut'], ['fleche-bas', 'Flèche vers le bas'],
     ['ligne', 'Ligne droite'],
+    // 10 novembre : « une flèche en cercle (raisonnement circulaire) ». Trois flèches courbes qui,
+    // posées au même endroit et à la même taille, ferment un cercle ; une par palier.
+    ['cycle-1', 'Cercle en 3 flèches : la 1re (du haut vers le bas à droite)'],
+    ['cycle-2', 'Cercle en 3 flèches : la 2e (du bas à droite vers le bas à gauche)'],
+    ['cycle-3', 'Cercle en 3 flèches : la 3e (du bas à gauche vers le haut)'],
     // 10 septembre : « rajoute le phylactère (avec le choix de positionner la pointe, qui
     // indique qui parle, à droite ou à gauche) ». Deux entrées plutôt qu'un réglage caché,
     // comme les quatre flèches : le panneau les montre côte à côte, on choisit en voyant.
@@ -13998,6 +14223,7 @@ function createDeckEngine(config) {
   // un contour, mais sa pointe hérite du FOND. Vidée, la bulle perdrait sa pointe et
   // redeviendrait un rectangle arrondi — donc on ne propose pas de la vider.
   const FORMES_SANS_CONTOUR = ['fleche', 'fleche-gauche', 'fleche-haut', 'fleche-bas', 'ligne',
+    'cycle-1', 'cycle-2', 'cycle-3',
     'phylactere', 'phylactere-droite'];
   function formeCreuseable(el) {
     return !FORMES_SANS_CONTOUR.some(c => el.classList.contains('forme-' + c));
@@ -16715,6 +16941,7 @@ body.presenter-view{overflow:auto;height:auto;background:var(--bg,#111827);color
 .ed-formes .forme-fleche,.ed-formes .forme-fleche-gauche{width:26px;height:14px;}
 .ed-formes .forme-fleche-haut,.ed-formes .forme-fleche-bas{width:14px;height:26px;}
 .ed-formes .forme-ligne{width:26px;height:4px;border-radius:2px;}
+.ed-formes .forme-cycle-1,.ed-formes .forme-cycle-2,.ed-formes .forme-cycle-3{width:24px;height:24px;}
 .ed-formes .forme-phylactere,.ed-formes .forme-phylactere-droite{width:26px;height:16px;border-radius:5px;position:relative;}
 .ed-formes .forme-phylactere::after,.ed-formes .forme-phylactere-droite::after{width:8px;height:8px;bottom:-4px;border-radius:0 0 2px 0;}
 .ed-formes .forme-phylactere::after{left:5px;}
@@ -16871,6 +17098,21 @@ body.presenter-view{overflow:auto;height:auto;background:var(--bg,#111827);color
 .ed-mt-suppr:hover{opacity:1;border-color:var(--ko,#ef4444)!important;color:var(--ko,#ef4444);}
 .ed-mt-suppr.actif{opacity:1;background:var(--ko,#ef4444)!important;border-color:transparent!important;color:#fff;}
 .ed-mt-pied{display:flex;align-items:center;gap:10px;}
+.ed-mt-texte-btn{font-size:.66rem!important;padding:2px 6px!important;align-self:flex-start;opacity:.6;}
+.ed-mt-texte-btn.plein{opacity:1;border-color:var(--acc,#4f7cff)!important;}
+.ed-mt-texte{display:flex;flex-direction:column;gap:4px;}
+.ed-mt-texte textarea{width:100%;box-sizing:border-box;min-height:90px;resize:vertical;background:var(--panel2,#101a30);
+  color:inherit;font:inherit;font-size:.72rem;line-height:1.4;border:1px solid var(--bord,rgba(255,255,255,.28));border-radius:7px;padding:5px 7px;}
+.ed-mt-texte button{font-size:.66rem!important;padding:2px 8px!important;align-self:flex-start;}
+.ed-texte-media{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:100000;display:flex;
+  align-items:center;gap:10px;flex-wrap:wrap;max-width:min(680px,calc(100vw - 32px));box-sizing:border-box;
+  background:var(--panel,#16213a);color:var(--tx,#e8edf7);border:1px solid var(--acc,#4f7cff);border-radius:12px;
+  padding:10px 14px;box-shadow:0 10px 30px rgba(0,0,0,.35);font-size:.85rem;}
+.ed-texte-media .ed-tm-apercu{flex:1 1 220px;min-width:0;color:var(--mu,#93a1bd);font-size:.76rem;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ed-texte-media button{background:transparent;border:1px solid var(--bord,rgba(255,255,255,.28));color:inherit;
+  border-radius:9px;padding:6px 11px;cursor:pointer;font:inherit;font-size:.8rem;font-weight:700;}
+.ed-texte-media button.ed-tm-creer{background:var(--acc,#4f7cff);border-color:transparent;color:#fff;}
 .ed-mt-compte{flex:1;font-size:.78rem;color:var(--mu,#93a1bd);}
 
 /* Le recadrage : la photo en grand, un cadre a huit poignees, un apercu en direct
@@ -19162,7 +19404,7 @@ body.presenter-view{overflow:auto;height:auto;background:var(--bg,#111827);color
   // dans les fichiers atterrit dans « Autres » plutot que de disparaitre.
   const RAIL_GROUPES = [
     { titre: 'Ajouter', cle: 'ajouter', motifs: ['addTextBlock', 'addPhotoBlock', 'quickAddSlideAfterCurrent', 'apporterUneDiapo'] },
-    { titre: 'Widgets', cle: 'widgets', motifs: ['addPollWidget', 'addScaleWidget', 'addPieChartWidget', 'addHistogramWidget', 'addReponseWidget'] },
+    { titre: 'Widgets', cle: 'widgets', motifs: ['addPollWidget', 'addScaleWidget', 'addPieChartWidget', 'addHistogramWidget', 'addReponseWidget', 'addQrVoteWidget'] },
   ];
   const RAIL_HAUT = ['btn-annuler-edition'];
   const RAIL_BAS = ['admin-edit-save', 'btn-supprimer-diapo', 'btn-notes'];
@@ -19982,7 +20224,7 @@ body.presenter-view{overflow:auto;height:auto;background:var(--bg,#111827);color
     annulerDerniereModification, supprimerDiapoCourante,
     addTitleBlock, addPhotoBlock, addVideoBlock, revertCurrentToInteractive,
     ouvrirMediatheque, fermerMediatheque,
-    addPollWidget, addScaleWidget, addPieChartWidget, addHistogramWidget, addReponseWidget, addBiblioWidget,
+    addPollWidget, addScaleWidget, addPieChartWidget, addHistogramWidget, addReponseWidget, addQrVoteWidget, addBiblioWidget,
     quickAddSlideAfterCurrent, openAddSlideModal, closeAddSlideModal, submitAddSlide,
     applySelectedPreset, saveCurrentSelectionAs, deleteSelectedPreset,
     toggleNotesPanel, openPresenterWindow, toggleTopicsPanel
