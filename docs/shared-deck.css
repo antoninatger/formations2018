@@ -414,6 +414,17 @@ h1,h2,h3,.brand{font-family:'Baloo 2','Nunito',sans-serif}
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;text-align:center}
 .retourne-verso{transform:rotateY(180deg)}
 .retourne-face img,.retourne-face video{max-width:100%;max-height:100%;object-fit:contain;border-radius:10px}
+/* 10 novembre — « quand je retourne le bouton, il y a le chiffre inversé sur le texte ».
+   Safari (iPhone, iPad, Mac) ne respecte pas toujours backface-visibility : un texte
+   positionné sur une face (le chiffre des cartes-formes, en z-index:1) reste dessiné
+   à travers l'autre face, en miroir. On ne s'en remet donc plus à lui seul : à mi-tour
+   (0,3 s sur 0,6 s, quand la carte est vue par la tranche), la face qui part vers
+   l'arrière devient invisible. Ne vaut que pour les cartes à DEUX faces — le prisme
+   (trois faces et plus) ne pose jamais « tournee ». */
+.retourne-face{transition:visibility 0s linear .3s}
+.retourne.tournee > .retourne-inner > .retourne-face:first-child,
+.retourne:not(.tournee) > .retourne-inner:not(:has(> .retourne-face:nth-child(3))) > .retourne-face:nth-child(2){visibility:hidden}
+.slide.editing .retourne > .retourne-inner > .retourne-face{visibility:visible;transition:none}
 /* Ce qu'on pose sur une face tient dans la carte : les tailles par défaut d'une forme
    (120 à 240 px) ou d'une carte média dépasseraient, et overflow:hidden les couperait sans
    rien dire. Vaut aussi pour un bloc déjà sur la diapo que « ↻ Retourner » met au recto. */
