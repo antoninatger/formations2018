@@ -163,6 +163,9 @@ window.COURS_SERIES = {
   "serie_af0c97de-f89d-4cc3-a791-bd2a4b5765ac": {
    "nom": "Effet de halo"
   },
+  "serie_2c5f17c6-74d7-418e-b7bd-b5020a103a57": {
+   "nom": "Teddy Riner candidat (vidéo)"
+  },
   "serie_4a517f10-8b0b-48ea-ac39-bf9f3801d6de": {
    "nom": "Biais de popularité"
   },
