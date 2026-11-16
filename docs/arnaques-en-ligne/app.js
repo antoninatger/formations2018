@@ -1,8 +1,27 @@
 // Intervention créée avec « Nouvelle intervention ».
 // Tout le reste (quiz, sondages, jauges) s'ajoute par les modèles de diapo,
 // sans code : ce fichier n'a besoin de rien d'autre pour qu'une formation vive.
+// Diapos à duel de vidéos (17 novembre). Antonin : 1er clic, la vidéo de gauche se lance ;
+// 2e clic, celle de droite ; clic suivant, les étiquettes « Générée par IA » / « Vraie
+// vidéo » apparaissent. Chaque Flèche droite lance la première vidéo pas encore jouée
+// pendant cette visite ; quand toutes ont joué, la main revient au moteur (étiquettes,
+// puis diapo suivante). Une vidéo lancée à la main compte comme jouée (_dejaJouee, posé
+// par le moteur et remis à zéro à chaque arrivée sur la diapo).
+function videosAuClic(e, slide) {
+  if (e.key !== 'ArrowRight' || !slide || !slide.querySelector('.duel-video video')) return false;
+  const vids = Array.prototype.slice.call(slide.querySelectorAll('.duel-video video'));
+  const vid = vids.find(v => !v._dejaJouee && v.paused && !v.ended);
+  if (!vid) return false;
+  if (e.preventDefault) e.preventDefault();
+  vid._dejaJouee = true;
+  const p = vid.play();
+  if (p && typeof p.catch === 'function') p.catch(() => {});
+  return true;
+}
+
 const Deck = createDeckEngine({
   storagePrefix: 'arnenlig',
+  arrowOverride: videosAuClic,
 });
 window.Deck = Deck;
 Deck.init();
