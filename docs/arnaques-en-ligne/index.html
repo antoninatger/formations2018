@@ -382,6 +382,57 @@
 .ex-realite-titre{margin:0 0 4px;font-size:20px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#4ade80}
 /* Faux conseiller : l'appel à écouter (18 octobre). */
 .slide audio.appel-audio{display:block;width:900px;height:54px;margin:-14px auto 22px}
+/* Traque des faux messages (17 novembre). Antonin : remplacer les captures de fin de formation
+   par des mails et des SMS recréés, certains faux, certains vrais. Clic 1 : le verdict (croix
+   rouge ou coche verte) ; clics suivants : les indices surlignés, et pour un mail l’adresse
+   réelle du bouton en bas, comme au survol de la souris. */
+.tr-mail{width:1340px;background:#fff;color:#242424;border-radius:14px;text-align:left;font-family:'Segoe UI',Arial,sans-serif;box-shadow:0 18px 46px rgba(0,0,0,.5)}
+.tr-mail-objet{display:flex;align-items:center;gap:14px;padding:22px 140px 16px 32px;font-size:32px;font-weight:600;line-height:1.3;border-bottom:1px solid #e5e5e5}
+.tr-pastille{display:inline-block;vertical-align:middle;width:24px;height:24px;margin:-4px 14px 0 0;border-radius:50%;background:#e81123}
+.tr-mail-de{display:flex;align-items:center;gap:20px;padding:18px 32px 12px}
+.tr-avatar{flex:none;width:68px;height:68px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#dfe3e8;color:#555;font-size:28px;font-weight:600}
+.tr-ident{flex:1;display:flex;flex-direction:column;gap:4px;font-size:27px}
+.tr-a{font-size:23px;color:#616161}
+.tr-date{align-self:flex-end;font-size:22px;color:#616161;white-space:nowrap}
+.tr-pj{display:inline-flex;align-items:center;gap:12px;margin:2px 32px 4px;padding:10px 18px;border:1px solid #e0e0e0;border-radius:6px;font-size:24px}
+.tr-pj small{display:block;font-size:17px;color:#777}
+.tr-corps{padding:16px 32px 30px;font-size:27px;line-height:1.45}
+.tr-mail:has(.tr-survol) .tr-corps{padding-bottom:70px}
+.tr-corps p{margin:0}
+.tr-corps p+p{margin-top:14px}
+.tr-centre{text-align:center}
+.tr-grand{font-size:38px;font-weight:600;padding:40px 0 30px}
+.tr-gris{color:#707070;font-size:23px}
+.tr-lien{color:#0f5bd8;text-decoration:underline}
+.tr-bouton{display:inline-block;padding:14px 34px;border-radius:6px;background:#0b1f6e;color:#fff;font-weight:600}
+.tr-rouge{background:#e50914}
+.tr-netflix{font:800 50px/1 'Arial Black',Arial,sans-serif;color:#e50914;letter-spacing:1px}
+.tr-ms-logo{font-size:48px}
+.tr-ms-logo .ms-carres{grid-template-columns:24px 24px;gap:3px}
+.tr-ms-logo .ms-carres i{width:24px;height:24px}
+.tr-ms-titre{font-size:32px;font-weight:600;color:#9a9a9a}
+.tr-ms-menaces{font-size:30px;font-weight:700}
+.tr-survol{position:absolute;left:0;bottom:0;max-width:96%;padding:9px 18px;background:#f3f3f3;border:1px solid #bdbdbd;border-radius:0 8px 0 14px;font:22px/1.3 'Segoe UI',Arial,sans-serif;color:#1a1a1a;word-break:break-all}
+.tr-sms{width:900px;background:#000;color:#fff;border:3px solid #3a3a3c;border-radius:44px;padding:26px 36px 34px;text-align:left;font-family:-apple-system,'Segoe UI',Arial,sans-serif;box-shadow:0 18px 46px rgba(0,0,0,.6)}
+.tr-sms-tete{display:flex;align-items:center;gap:22px;padding:0 130px 20px 0;border-bottom:1px solid #2c2c2e}
+.tr-sms-retour{font-size:70px;line-height:.8;color:#0a84ff}
+.tr-sms-avatar{flex:none;width:76px;height:76px;border-radius:50%;background:#636366;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:600;color:#fff}
+.tr-sms-qui{font-size:40px;font-weight:700}
+.slide p.tr-sms-jour{margin:26px 0 18px;text-align:center;color:#8e8e93;font-size:25px}
+.tr-sms-bulle{width:fit-content;max-width:720px;padding:20px 28px;border-radius:32px;background:#3a3a3c;font-size:32px;line-height:1.4}
+.tr-sms-bulle p{margin:0}
+.tr-sms-bulle p+p{margin-top:16px}
+.tr-sms-bulle .tr-lien{color:#64a8ff;word-break:break-all}
+.slide p.tr-sms-heure{margin:10px 0 0 12px;font-size:21px;color:#8e8e93}
+.tr-sms mark.surligne.step.shown{color:#111}
+.tr-sms mark.surligne.step.shown .tr-lien{color:#0b3d91}
+.tr-verdict{position:absolute;top:-46px;right:-46px;width:150px;height:150px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(0,0,0,.55);z-index:3}
+.tr-verdict svg{width:100px;height:100px}
+.tr-verdict path{fill:none;stroke:#fff;stroke-width:13;stroke-linecap:round;stroke-linejoin:round}
+.tr-verdict.faux{background:#d93a40}
+.tr-verdict.vrai{background:#21a35b}
+.tr-verdict.step{transform:scale(.3) rotate(-25deg)}
+.tr-verdict.step.shown{transform:none;transition:opacity .25s ease,transform .45s cubic-bezier(.3,1.6,.5,1)}
 /* Projection sur grand écran (17 octobre). Antonin : « assure-toi que les photos, les vidéos
    et les textes soient assez gros pour être vus [...] sans que ce soit difforme ». Chaque diapo
    est agrandie D’UN SEUL BLOC (même facteur pour le texte, les images et leurs positions), donc
@@ -463,10 +514,6 @@
 #s-radar-faux-placement{scale:1.08;translate:0px -33px}
 #s-si-on-vous-dit-que-quelque-cho{scale:1.60;translate:0px -22px}
 #s-essayons-de-traquer-les-faux-e{scale:1.60;translate:0px -27px}
-#s-d51{scale:1.80;translate:0px 424px}
-#s-d52{scale:1.80;translate:0px 379px}
-#s-d53{scale:1.80;translate:0px 394px}
-#s-d54{scale:1.80;translate:0px 342px}
 #s38{scale:1.60;translate:0px -27px}
 #s-merci{scale:1.80;translate:0px 281px}
 #s-bilan-qr{scale:1.80;translate:0px -25px}
@@ -488,8 +535,20 @@
 #s-faux-sites-demarches-reperer-2{scale:1.19;translate:67px 10px}
 #s-faux-sites-demarches-reperer-3{scale:1.22;translate:6px 20px}
 #s-quishing-presse{scale:1.08;translate:0px -32px}
-#s-panthere-rose-ia{scale:1.80;translate:0px 308px}
+#s-panthere-rose-ia{scale:1.29;translate:0px 24px}
 #s-fausses-pubs-presse{scale:1.08;translate:0px -32px}
+#s-traque-temu{scale:1.32;translate:0px 0px}
+#s-traque-impots-vrai{scale:1.32;translate:0px 0px}
+#s-traque-colis-sms{scale:1.45;translate:0px 0px}
+#s-traque-doctolib-vrai{scale:1.45;translate:0px 0px}
+#s-traque-microsoft{scale:1.32;translate:0px 0px}
+#s-traque-ameli{scale:1.45;translate:0px 0px}
+#s-traque-code-banque-vrai{scale:1.45;translate:0px 0px}
+#s-traque-panneaux{scale:1.10;translate:0px 0px}
+#s-traque-antai{scale:1.45;translate:0px 0px}
+#s-traque-colissimo-vrai{scale:1.45;translate:0px 0px}
+#s-traque-netflix{scale:1.32;translate:0px 0px}
+#s-traque-faux-proche{scale:1.45;translate:0px 0px}
 /* fin projection */
   </style>
 </head>
@@ -549,9 +608,10 @@
 #s5 .crit-pos .retourne-recto p{font-size:84px;font-weight:800;line-height:1;color:#fff;text-shadow:none}
 #s5 .crit-pos .retourne-verso p{font-size:24px;font-weight:700;line-height:1.15;color:#1c1917;text-shadow:none}
 #s5 .attention{position:absolute;left:auto;right:150px;top:auto;bottom:120px}
+#s5 .crit-centre{cursor:pointer}
 .slide.editing#s5 .crit-roue{position:relative;top:auto}
 </style>
-    <div class="crit-roue"><svg class="crit-traits step" data-order="1" viewBox="0 0 1300 790" aria-hidden="true"><line x1="650" y1="395" x2="650" y2="105"/><line x1="650" y1="395" x2="1083" y2="250"/><line x1="650" y1="395" x2="1083" y2="540"/><line x1="650" y1="395" x2="650" y2="685"/><line x1="650" y1="395" x2="217" y2="540"/><line x1="650" y1="395" x2="217" y2="250"/></svg><div class="crit-centre"><h2><span class="t-fr">Quels sont les critères pour valider l'information&nbsp;?</span><span class="t-en" hidden="">What criteria help us validate information?</span></h2></div><div class="crit-pos step" data-order="1" style="left:542px;top:-3px" data-animation="{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[0,290,0],[0,0,700]]}"><div class="retourne" data-silhouette="cercle"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead"><span class="t-fr">1</span><span class="t-en" hidden="">1</span></p></div><div class="retourne-face retourne-verso"><p class="lead"><span class="t-fr">Fiabilité de la source</span><span class="t-en" hidden="">Reliability of the source</span></p></div></div></div></div><div class="crit-pos step" data-order="1" style="left:975px;top:142px" data-animation="{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[-433,145,0],[0,0,700]]}"><div class="retourne" data-silhouette="cercle"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead"><span class="t-fr">2</span><span class="t-en" hidden="">2</span></p></div><div class="retourne-face retourne-verso"><p class="lead"><span class="t-fr">Fiabilité de l'interlocuteur</span><span class="t-en" hidden="">Reliability of the speaker</span></p></div></div></div></div><div class="crit-pos step" data-order="1" style="left:975px;top:432px" data-animation="{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[-433,-145,0],[0,0,700]]}"><div class="retourne" data-silhouette="cercle"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead"><span class="t-fr">3</span><span class="t-en" hidden="">3</span></p></div><div class="retourne-face retourne-verso"><p class="lead"><span class="t-fr">Niveau de preuves</span><span class="t-en" hidden="">Level of evidence</span></p></div></div></div></div><div class="crit-pos step" data-order="1" style="left:542px;top:577px" data-animation="{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[0,-290,0],[0,0,700]]}"><div class="retourne" data-silhouette="cercle"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead"><span class="t-fr">4</span><span class="t-en" hidden="">4</span></p></div><div class="retourne-face retourne-verso"><p class="lead"><span class="t-fr">Plusieurs sources fiables en parlent</span><span class="t-en" hidden="">Several reliable sources report it</span></p></div></div></div></div><div class="crit-pos step" data-order="1" style="left:109px;top:432px" data-animation="{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[433,-145,0],[0,0,700]]}"><div class="retourne" data-silhouette="cercle"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead"><span class="t-fr">5</span><span class="t-en" hidden="">5</span></p></div><div class="retourne-face retourne-verso"><p class="lead"><span class="t-fr">Crédibilité de l'information</span><span class="t-en" hidden="">Credibility of the information</span></p></div></div></div></div><div class="crit-pos step" data-order="1" style="left:109px;top:142px" data-animation="{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[433,145,0],[0,0,700]]}"><div class="retourne" data-silhouette="cercle"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead"><span class="t-fr">6</span><span class="t-en" hidden="">6</span></p></div><div class="retourne-face retourne-verso"><p class="lead"><span class="t-fr">Commentaires et critiques de l'information</span><span class="t-en" hidden="">Comments and criticism of the information</span></p></div></div></div></div></div>
+    <div class="crit-roue"><svg class="crit-traits step" data-order="1" viewBox="0 0 1300 790" aria-hidden="true"><line x1="650" y1="395" x2="650" y2="105"/><line x1="650" y1="395" x2="1083" y2="250"/><line x1="650" y1="395" x2="1083" y2="540"/><line x1="650" y1="395" x2="650" y2="685"/><line x1="650" y1="395" x2="217" y2="540"/><line x1="650" y1="395" x2="217" y2="250"/></svg><div class="crit-centre" onclick="if(this.closest('.editing'))return;if(this.closest('section').querySelector('.crit-pos.step:not(.shown)'))Deck.next()"><h2><span class="t-fr">Quels sont les critères pour valider l'information&nbsp;?</span><span class="t-en" hidden="">What criteria help us validate information?</span></h2></div><div class="crit-pos step" data-order="1" style="left:542px;top:-3px" data-animation="{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[0,290,0],[0,0,700]]}"><div class="retourne" data-silhouette="cercle"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead"><span class="t-fr">1</span><span class="t-en" hidden="">1</span></p></div><div class="retourne-face retourne-verso"><p class="lead"><span class="t-fr">Fiabilité de la source</span><span class="t-en" hidden="">Reliability of the source</span></p></div></div></div></div><div class="crit-pos step" data-order="1" style="left:975px;top:142px" data-animation="{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[-433,145,0],[0,0,700]]}"><div class="retourne" data-silhouette="cercle"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead"><span class="t-fr">2</span><span class="t-en" hidden="">2</span></p></div><div class="retourne-face retourne-verso"><p class="lead"><span class="t-fr">Fiabilité de l'interlocuteur</span><span class="t-en" hidden="">Reliability of the speaker</span></p></div></div></div></div><div class="crit-pos step" data-order="1" style="left:975px;top:432px" data-animation="{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[-433,-145,0],[0,0,700]]}"><div class="retourne" data-silhouette="cercle"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead"><span class="t-fr">3</span><span class="t-en" hidden="">3</span></p></div><div class="retourne-face retourne-verso"><p class="lead"><span class="t-fr">Niveau de preuves</span><span class="t-en" hidden="">Level of evidence</span></p></div></div></div></div><div class="crit-pos step" data-order="1" style="left:542px;top:577px" data-animation="{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[0,-290,0],[0,0,700]]}"><div class="retourne" data-silhouette="cercle"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead"><span class="t-fr">4</span><span class="t-en" hidden="">4</span></p></div><div class="retourne-face retourne-verso"><p class="lead"><span class="t-fr">Plusieurs sources fiables en parlent</span><span class="t-en" hidden="">Several reliable sources report it</span></p></div></div></div></div><div class="crit-pos step" data-order="1" style="left:109px;top:432px" data-animation="{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[433,-145,0],[0,0,700]]}"><div class="retourne" data-silhouette="cercle"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead"><span class="t-fr">5</span><span class="t-en" hidden="">5</span></p></div><div class="retourne-face retourne-verso"><p class="lead"><span class="t-fr">Crédibilité de l'information</span><span class="t-en" hidden="">Credibility of the information</span></p></div></div></div></div><div class="crit-pos step" data-order="1" style="left:109px;top:142px" data-animation="{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[433,145,0],[0,0,700]]}"><div class="retourne" data-silhouette="cercle"><div class="retourne-inner"><div class="retourne-face retourne-recto"><p class="lead"><span class="t-fr">6</span><span class="t-en" hidden="">6</span></p></div><div class="retourne-face retourne-verso"><p class="lead"><span class="t-fr">Commentaires et critiques de l'information</span><span class="t-en" hidden="">Comments and criticism of the information</span></p></div></div></div></div></div>
     <p class="attention step" id="attention-txt" data-order="2"><span class="t-fr">Mais attention…</span><span class="t-en" hidden="">But be careful…</span></p>
   <div class="speaker-notes" hidden=""></div></section>
 
@@ -1069,13 +1129,178 @@ Aucun article ne montre de vraie photo d’un faux QR code collé (images de ban
 
   <section id="s-essayons-de-traquer-les-faux-e" class="slide short"><h2 data-pose="" data-off-x="321.9" data-off-y="476.87" style="left:32.19%;top:47.687%"><span class="t-fr">Essayons de traquer les faux emails !</span><span class="t-en" hidden=""></span></h2></section>
 
-  <section id="s-d51" class="slide"><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="125.55" style="left:39.091%;top:12.555%"><img src="../medias/images/arnaques-diapo-51.png" alt="" loading="lazy"></div></section>
+  <section id="s-traque-temu" class="slide">
+    <div class="tr-mail" data-pose="" data-off-x="151.95" data-off-y="285.79" style="left:15.195%;top:28.579%">
+      <span class="tr-verdict faux step" data-order="1" title="Faux"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M28 28 L72 72 M72 28 L28 72"/></svg></span>
+      <div class="tr-mail-objet"><span class="t-fr"><mark class="surligne step" data-order="2">_VousAvez-Gagné Une Boîte-mystère de--TEMU</mark></span><span class="t-en" hidden=""></span></div>
+      <div class="tr-mail-de"><span class="tr-avatar">?</span><div class="tr-ident"><span><span class="t-fr"><mark class="surligne step" data-order="3">*.CONFIRMATION_D’EXPEDITION#*&lt;noreply.LE.04@b8.9a.21.eb&gt;</mark></span><span class="t-en" hidden=""></span></span><span class="tr-a"><span class="t-fr">À : vous</span><span class="t-en" hidden=""></span></span></div><span class="tr-date">Dim 02/02/2025 17:59</span></div>
+      <div class="tr-pj"><svg viewBox="0 0 30 36" width="30" height="36" aria-hidden="true"><path d="M2 2h18l8 8v24H2z" fill="#fff" stroke="#777" stroke-width="2"/><circle cx="20" cy="26" r="7" fill="#fff" stroke="#c50f1f" stroke-width="2.5"/><path d="M15 31l10-10" stroke="#c50f1f" stroke-width="2.5"/></svg><span><mark class="surligne step" data-order="4">NQLRF.pdf</mark><small>284 octets</small></span></div>
+      <div class="tr-corps">
+        <p class="tr-centre tr-grand"><mark class="surligne step" data-order="5"><span class="tr-lien"><span class="t-fr">-VeuiLLez.ConFirmer La-Reception!!-</span><span class="t-en" hidden=""></span></span></mark></p>
+      </div>
+    </div>
+  <div class="speaker-notes" hidden="">FAUX. Recréé d’après la capture d’origine (arnaques-diapo-51.png, copie dans _to_delete). Clic 1 : la croix. Puis les indices : 2. l’objet (majuscules au hasard, tirets, « gagné » alors qu’on n’a rien joué) ; 3. l’expéditeur, qui n’a rien à voir avec Temu ; 4. une pièce jointe de 284 octets, vide : un appât ; 5. le seul contenu est un lien qui crie.</div>
+  </section>
 
-  <section id="s-d52" class="slide"><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="125.55" style="left:39.091%;top:12.555%"><img src="../medias/images/arnaques-diapo-52.png" alt="" loading="lazy"></div></section>
+  <section id="s-traque-impots-vrai" class="slide">
+    <div class="tr-mail" data-pose="" data-off-x="151.95" data-off-y="242.84" style="left:15.195%;top:24.284%">
+      <span class="tr-verdict vrai step" data-order="1" title="Vrai"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M24 53 L43 71 L78 31"/></svg></span>
+      <div class="tr-mail-objet"><span class="t-fr">Votre avis d’impôt sur les revenus est disponible</span><span class="t-en" hidden=""></span></div>
+      <div class="tr-mail-de"><span class="tr-avatar" style="background:#000091;color:#fff">DG</span><div class="tr-ident"><span><span class="t-fr">DGFiP <mark class="surligne step" data-order="2">&lt;ne-pas-repondre@dgfip.finances.gouv.fr&gt;</mark></span><span class="t-en" hidden=""></span></span><span class="tr-a"><span class="t-fr">À : vous</span><span class="t-en" hidden=""></span></span></div><span class="tr-date">Mer 30/07/2025 06:41</span></div>
+      <div class="tr-corps">
+        <p><span class="t-fr">Madame, Monsieur,</span><span class="t-en" hidden=""></span></p>
+        <p><span class="t-fr">Votre avis d’impôt sur les revenus de 2024 est disponible dans votre espace particulier, rubrique « Documents ».</span><span class="t-en" hidden=""></span></p>
+        <p><span class="t-fr">Pour le consulter, <mark class="surligne step" data-order="3">connectez-vous à votre espace particulier sur impots.gouv.fr</mark>.</span><span class="t-en" hidden=""></span></p>
+        <p class="tr-gris"><span class="t-fr">Ce courriel vous est adressé automatiquement, merci de ne pas y répondre.</span><span class="t-en" hidden=""></span></p>
+        <p><span class="t-fr">La Direction générale des Finances publiques</span><span class="t-en" hidden=""></span></p>
+      </div>
+    </div>
+  <div class="speaker-notes" hidden="">VRAI. Format typique du mail de la DGFiP quand l’avis d’impôt est en ligne (reconstitution, pas une capture : à remplacer par un vrai mail reçu si tu en as un). Clic 1 : la coche. 2. l’adresse se termine par « .gouv.fr ». 3. aucun lien à cliquer, aucun paiement : on vous dit d’aller vous-même sur impots.gouv.fr. Message à faire passer : un vrai mail ne demande rien d’urgent ; dans le doute, on tape soi-même l’adresse du site.</div>
+  </section>
 
-  <section id="s-d53" class="slide"><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="125.55" style="left:39.091%;top:12.555%"><img src="../medias/images/arnaques-diapo-53.png" alt="" loading="lazy"></div></section>
+  <section id="s-traque-colis-sms" class="slide">
+    <div class="tr-sms" data-pose="" data-off-x="266.23" data-off-y="218.06" style="left:26.623%;top:21.806%">
+      <span class="tr-verdict faux step" data-order="1" title="Faux"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M28 28 L72 72 M72 28 L28 72"/></svg></span>
+      <div class="tr-sms-tete"><span class="tr-sms-retour">‹</span><span class="tr-sms-avatar"><svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#d1d1d6"/><path d="M6 36c2-8 8-12 14-12s12 4 14 12z" fill="#d1d1d6"/></svg></span><span class="tr-sms-qui"><span class="t-fr"><mark class="surligne step" data-order="2">+33 7 45 13 81 31</mark></span><span class="t-en" hidden=""></span></span></div>
+      <p class="tr-sms-jour"><span class="t-fr">lundi 6 janvier</span><span class="t-en" hidden=""></span></p>
+      <div class="tr-sms-bulle">
+        <p><span class="t-fr">Bonjour, votre colis <mark class="surligne step" data-order="3">ne rentrait pas dans la boite</mark> aux lettres. <mark class="surligne step" data-order="4">Reagissez avant le 09/01/2025, sinon il sera renvoye</mark> : <mark class="surligne step" data-order="5"><span class="tr-lien">https://mon-relay-suivi.com</span></mark></span><span class="t-en" hidden=""></span></p>
+        <p><span class="t-fr"><mark class="surligne step" data-order="6">3e095272b3fe4c7996b</mark></span><span class="t-en" hidden=""></span></p>
+      </div>
+      <p class="tr-sms-heure">MMS · 6:37</p>
+    </div>
+  <div class="speaker-notes" hidden="">FAUX. Recréé d’après la capture d’origine (arnaques-diapo-54.jpg, copie dans _to_delete). Clic 1 : la croix. 2. un numéro de portable ordinaire, pas un transporteur ; 3. quel colis ? aucun nom de transporteur, aucun numéro de suivi ; 4. l’urgence (trois jours) et les accents manquants ; 5. le lien « mon-relay-suivi.com » imite Mondial Relay sans en être ; 6. un code sans sens, ajouté pour passer les filtres anti-spam.</div>
+  </section>
 
-  <section id="s-d54" class="slide"><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="125.55" style="left:39.091%;top:12.555%"><img src="../medias/images/arnaques-diapo-54.jpg" alt="" loading="lazy"></div></section>
+  <section id="s-traque-doctolib-vrai" class="slide">
+    <div class="tr-sms" data-pose="" data-off-x="266.23" data-off-y="276.43" style="left:26.623%;top:27.643%">
+      <span class="tr-verdict vrai step" data-order="1" title="Vrai"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M24 53 L43 71 L78 31"/></svg></span>
+      <div class="tr-sms-tete"><span class="tr-sms-retour">‹</span><span class="tr-sms-avatar">D</span><span class="tr-sms-qui"><span class="t-fr">Doctolib</span><span class="t-en" hidden=""></span></span></div>
+      <p class="tr-sms-jour"><span class="t-fr">mardi 18 novembre</span><span class="t-en" hidden=""></span></p>
+      <div class="tr-sms-bulle">
+        <p><span class="t-fr">Rappel : RDV le jeudi 20 novembre à 9h30 avec Dr Lefèvre, 12 rue des Lilas, Villeurbanne. Pour annuler ou déplacer : <mark class="surligne step" data-order="2"><span class="tr-lien">doctolib.fr</span></mark></span><span class="t-en" hidden=""></span></p>
+      </div>
+      <p class="tr-sms-heure">18:02</p>
+    </div>
+  <div class="speaker-notes" hidden="">VRAI. Rappel de rendez-vous typique (reconstitution : médecin et adresse inventés). Clic 1 : la coche. 2. le lien mène au vrai site, et on ne vous demande ni argent ni code. Nuance à dire à l’oral : c’est vrai parce que VOUS avez pris ce rendez-vous. Le nom d’expéditeur seul (« Doctolib ») ne prouve rien : il peut être usurpé.</div>
+  </section>
+
+  <section id="s-traque-microsoft" class="slide">
+    <div class="tr-mail" data-pose="" data-off-x="151.95" data-off-y="194.93" style="left:15.195%;top:19.493%">
+      <span class="tr-verdict faux step" data-order="1" title="Faux"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M28 28 L72 72 M72 28 L28 72"/></svg></span>
+      <div class="tr-mail-objet"><span class="t-fr"><span class="tr-pastille"></span><mark class="surligne step" data-order="4">DERNIER AVERTISSEMENT : Virus sur votre appareil 01/02/2025</mark></span><span class="t-en" hidden=""></span></div>
+      <div class="tr-mail-de"><span class="tr-avatar">?</span><div class="tr-ident"><span><span class="t-fr">Microsoft Support <mark class="surligne step" data-order="2">&lt;ne-pas-repondre@chronopost.fr&gt;</mark></span><span class="t-en" hidden=""></span></span><span class="tr-a"><span class="t-fr">À : vous</span><span class="t-en" hidden=""></span></span></div><span class="tr-date">Sam 01/02/2025 18:48</span></div>
+      <div class="tr-corps">
+        <p class="ms-logo tr-ms-logo" aria-label="Microsoft"><span class="ms-carres"><i></i><i></i><i></i><i></i></span>Microsoft</p>
+        <p class="tr-ms-titre"><span class="t-fr">DERNIER AVERTISSEMENT : Virus sur votre appareil 01/02/2025</span><span class="t-en" hidden=""></span></p>
+        <p><span class="t-fr"><mark class="surligne step" data-order="3">Cher/Chère antoninatger,</mark></span><span class="t-en" hidden=""></span></p>
+        <p><span class="t-fr">Notre système a détecté plusieurs menaces sur votre appareil qui posent de graves risques pour votre sécurité et votre vie privée. Une intervention immédiate est nécessaire pour résoudre ces vulnérabilités et protéger vos données.</span><span class="t-en" hidden=""></span></p>
+        <p class="tr-ms-menaces"><span class="t-fr">Menaces Identifiées</span><span class="t-en" hidden=""></span></p>
+      </div>
+    </div>
+  <div class="speaker-notes" hidden="">FAUX. Recréé d’après la capture d’origine (arnaques-diapo-52.png, copie dans _to_delete), sans la fenêtre d’impression ni ton adresse mail qui apparaissaient autour. Le corps complet de ce mail est déjà recréé plus haut (diapo « Virus sur Votre Appareil ») : ici on regarde l’en-tête. Clic 1 : la croix. 2. « Microsoft Support » écrit depuis une adresse… chronopost.fr ; 3. « Cher/Chère » + l’identifiant de l’adresse mail : ils ne connaissent pas votre nom ; 4. « DERNIER AVERTISSEMENT » : la peur et l’urgence.</div>
+  </section>
+
+  <section id="s-traque-ameli" class="slide">
+    <div class="tr-sms" data-pose="" data-off-x="266.23" data-off-y="251.65" style="left:26.623%;top:25.165%">
+      <span class="tr-verdict faux step" data-order="1" title="Faux"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M28 28 L72 72 M72 28 L28 72"/></svg></span>
+      <div class="tr-sms-tete"><span class="tr-sms-retour">‹</span><span class="tr-sms-avatar"><svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#d1d1d6"/><path d="M6 36c2-8 8-12 14-12s12 4 14 12z" fill="#d1d1d6"/></svg></span><span class="tr-sms-qui"><span class="t-fr"><mark class="surligne step" data-order="2">+33 6 44 28 19 07</mark></span><span class="t-en" hidden=""></span></span></div>
+      <p class="tr-sms-jour"><span class="t-fr">mercredi 12 novembre</span><span class="t-en" hidden=""></span></p>
+      <div class="tr-sms-bulle">
+        <p><span class="t-fr">Ameli : <mark class="surligne step" data-order="3">votre carte Vitale arrive a expiration</mark>. Pour eviter une interruption de vos remboursements, <mark class="surligne step" data-order="4">renouvelez-la avant le 14/11</mark> : <mark class="surligne step" data-order="5"><span class="tr-lien">https://ameli-renouvellement-vitale.com</span></mark></span><span class="t-en" hidden=""></span></p>
+      </div>
+      <p class="tr-sms-heure">09:14</p>
+    </div>
+  <div class="speaker-notes" hidden="">FAUX. Reconstitution d’un SMS très répandu. Clic 1 : la croix. 2. l’Assurance maladie n’écrit pas depuis un numéro de portable ; 3. la carte Vitale n’a pas de date d’expiration ; 4. l’urgence (deux jours) ; 5. le lien n’est pas ameli.fr. Le vrai site est ameli.fr, et l’Assurance maladie rappelle qu’elle ne demande jamais de coordonnées bancaires par SMS ou par mail.</div>
+  </section>
+
+  <section id="s-traque-code-banque-vrai" class="slide">
+    <div class="tr-sms" data-pose="" data-off-x="266.23" data-off-y="276.43" style="left:26.623%;top:27.643%">
+      <span class="tr-verdict vrai step" data-order="1" title="Vrai"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M24 53 L43 71 L78 31"/></svg></span>
+      <div class="tr-sms-tete"><span class="tr-sms-retour">‹</span><span class="tr-sms-avatar">CM</span><span class="tr-sms-qui"><span class="t-fr">Credit Mutuel</span><span class="t-en" hidden=""></span></span></div>
+      <p class="tr-sms-jour"><span class="t-fr">aujourd’hui</span><span class="t-en" hidden=""></span></p>
+      <div class="tr-sms-bulle">
+        <p><span class="t-fr">Votre code de validation pour l’achat de 34,90 EUR chez SNCF CONNECT est : 482913. <mark class="surligne step" data-order="2">Ne le communiquez jamais, même à votre conseiller.</mark></span><span class="t-en" hidden=""></span></p>
+      </div>
+      <p class="tr-sms-heure">14:27</p>
+    </div>
+  <div class="speaker-notes" hidden="">VRAI… à une condition : que vous soyez EN TRAIN de payer 34,90 € à SNCF Connect. Reconstitution (banque et montant choisis pour l’exemple). Clic 1 : la coche. 2. la banque elle-même dit de ne jamais donner ce code. Lien avec le faux conseiller : si quelqu’un au téléphone vous demande ce code « pour annuler une opération », c’est l’arnaque. Un code reçu sans avoir rien acheté = quelqu’un essaie de payer avec votre carte : appeler sa banque au numéro habituel.</div>
+  </section>
+
+  <section id="s-traque-panneaux" class="slide">
+    <div class="tr-mail" data-pose="" data-off-x="151.95" data-off-y="109.03" style="left:15.195%;top:10.903%">
+      <span class="tr-verdict faux step" data-order="1" title="Faux"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M28 28 L72 72 M72 28 L28 72"/></svg></span>
+      <div class="tr-mail-objet"><span class="t-fr">Installations de panneaux solaires à Lyon</span><span class="t-en" hidden=""></span></div>
+      <div class="tr-mail-de"><span class="tr-avatar">CR</span><div class="tr-ident"><span><span class="t-fr">Charlotte Robert<mark class="surligne step" data-order="2">&lt;charlotte.robert@shikisc.com&gt;</mark></span><span class="t-en" hidden=""></span></span><span class="tr-a"><span class="t-fr">À : vous</span><span class="t-en" hidden=""></span></span></div><span class="tr-date">Lun 03/02/2025 10:58</span></div>
+      <div class="tr-corps">
+        <p><span class="t-fr">Des spécialistes en <b>installations de panneaux solaires</b> seront présents à Lyon durant la période du 14 février au 14 mars à Lyon</span><span class="t-en" hidden=""></span></p>
+        <p><span class="t-fr">Leur objectif est de vous fournir des devis personnalisés et des informations détaillées sur les aides gouvernementales disponibles, <mark class="surligne step" data-order="3">en vigueur jusqu’au 01-01-2025</mark>.</span><span class="t-en" hidden=""></span></p>
+        <p><span class="t-fr"><mark class="surligne step" data-order="4">Nos équipes ne pourront pas faire face à toutes les demandes</mark>, il est <span class="tr-lien">donc conseillé de s’inscrire dès aujourd’hui</span> pour ne pas perdre l’opportunité.</span><span class="t-en" hidden=""></span></p>
+        <p><mark class="surligne step" data-order="5"><span class="tr-bouton"><span class="t-fr">Profitez des aides</span><span class="t-en" hidden=""></span></span></mark></p>
+        <p><span class="t-fr">Bien à vous,<br>Gestionnaire liste d’attente et RDV Energies<br>Charlotte Robert</span><span class="t-en" hidden=""></span></p>
+        <p><span class="tr-lien"><span class="t-fr">Se désabonner</span><span class="t-en" hidden=""></span></span></p>
+      </div>
+    </div>
+  <div class="speaker-notes" hidden="">FAUX. Recréé d’après la capture d’origine (arnaques-diapo-53.png, copie dans _to_delete). L’objet n’était pas visible sur la capture : celui-ci est inventé, à corriger si tu l’as. Clic 1 : la croix. 2. une adresse « shikisc.com » sans aucun rapport avec l’énergie ; 3. des aides « en vigueur jusqu’au 01-01-2025 »… dans un mail du 3 février 2025 ; 4. la fausse rareté ; 5. le bouton qui mène au formulaire où l’on donne ses coordonnées.</div>
+  </section>
+
+  <section id="s-traque-antai" class="slide">
+    <div class="tr-sms" data-pose="" data-off-x="266.23" data-off-y="251.65" style="left:26.623%;top:25.165%">
+      <span class="tr-verdict faux step" data-order="1" title="Faux"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M28 28 L72 72 M72 28 L28 72"/></svg></span>
+      <div class="tr-sms-tete"><span class="tr-sms-retour">‹</span><span class="tr-sms-avatar"><svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#d1d1d6"/><path d="M6 36c2-8 8-12 14-12s12 4 14 12z" fill="#d1d1d6"/></svg></span><span class="tr-sms-qui"><span class="t-fr"><mark class="surligne step" data-order="2">+33 7 56 02 44 18</mark></span><span class="t-en" hidden=""></span></span></div>
+      <p class="tr-sms-jour"><span class="t-fr">vendredi 7 novembre</span><span class="t-en" hidden=""></span></p>
+      <div class="tr-sms-bulle">
+        <p><span class="t-fr">ANTAI : avis de contravention non regle. Montant : 35 EUR. <mark class="surligne step" data-order="3">Sans paiement sous 48h, une majoration de 375 EUR sera appliquee</mark> : <mark class="surligne step" data-order="4"><span class="tr-lien">https://antai-gouv-paiement.fr</span></mark></span><span class="t-en" hidden=""></span></p>
+      </div>
+      <p class="tr-sms-heure">19:48</p>
+    </div>
+  <div class="speaker-notes" hidden="">FAUX. Reconstitution d’un SMS très répandu. Clic 1 : la croix. 2. un numéro de portable ; 3. la menace chiffrée et le délai très court ; 4. l’adresse contient « gouv » mais ne se termine pas par « .gouv.fr » : le vrai site est antai.gouv.fr. Une vraie amende arrive par courrier ou dans l’espace en ligne, pas par un SMS avec un lien de paiement.</div>
+  </section>
+
+  <section id="s-traque-colissimo-vrai" class="slide">
+    <div class="tr-sms" data-pose="" data-off-x="266.23" data-off-y="251.65" style="left:26.623%;top:25.165%">
+      <span class="tr-verdict vrai step" data-order="1" title="Vrai"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M24 53 L43 71 L78 31"/></svg></span>
+      <div class="tr-sms-tete"><span class="tr-sms-retour">‹</span><span class="tr-sms-avatar">LP</span><span class="tr-sms-qui"><span class="t-fr">LaPoste</span><span class="t-en" hidden=""></span></span></div>
+      <p class="tr-sms-jour"><span class="t-fr">jeudi 13 novembre</span><span class="t-en" hidden=""></span></p>
+      <div class="tr-sms-bulle">
+        <p><span class="t-fr">Colissimo : votre colis 6A21187459630 sera livré aujourd’hui entre 13h et 15h. Suivi et options : <mark class="surligne step" data-order="2"><span class="tr-lien">https://www.laposte.fr/outils/suivre-vos-envois?code=6A21187459630</span></mark></span><span class="t-en" hidden=""></span></p>
+      </div>
+      <p class="tr-sms-heure">08:05</p>
+    </div>
+  <div class="speaker-notes" hidden="">VRAI (reconstitution, numéro de colis inventé). Clic 1 : la coche. 2. le lien mène bien à laposte.fr, et il n’y a rien à payer. À dire à l’oral : vrai seulement si vous attendez un colis ; et pour être tranquille, on peut taper le numéro de suivi soi-même sur le site plutôt que de cliquer.</div>
+  </section>
+
+  <section id="s-traque-netflix" class="slide">
+    <div class="tr-mail" data-pose="" data-off-x="151.95" data-off-y="191.63" style="left:15.195%;top:19.163%">
+      <span class="tr-verdict faux step" data-order="1" title="Faux"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M28 28 L72 72 M72 28 L28 72"/></svg></span>
+      <div class="tr-mail-objet"><span class="t-fr">Votre abonnement a été suspendu</span><span class="t-en" hidden=""></span></div>
+      <div class="tr-mail-de"><span class="tr-avatar" style="background:#141414;color:#fff">N</span><div class="tr-ident"><span><span class="t-fr">Netflix <mark class="surligne step" data-order="2">&lt;service@netflix-abonnement-client.com&gt;</mark></span><span class="t-en" hidden=""></span></span><span class="tr-a"><span class="t-fr">À : vous</span><span class="t-en" hidden=""></span></span></div><span class="tr-date">Mar 11/11/2025 22:16</span></div>
+      <div class="tr-corps">
+        <p class="tr-netflix">NETFLIX</p>
+        <p><span class="t-fr"><mark class="surligne step" data-order="3">Bonjour,</mark></span><span class="t-en" hidden=""></span></p>
+        <p><span class="t-fr">Nous n’avons pas pu valider votre dernier paiement. Votre abonnement a été suspendu.</span><span class="t-en" hidden=""></span></p>
+        <p><span class="t-fr">Pour continuer à profiter de vos films et séries, mettez à jour vos informations de paiement <mark class="surligne step" data-order="4">sous 24 heures</mark>.</span><span class="t-en" hidden=""></span></p>
+        <p><span class="tr-bouton tr-rouge"><span class="t-fr">Mettre à jour le paiement</span><span class="t-en" hidden=""></span></span></p>
+        <p class="tr-gris"><span class="t-fr">L’équipe Netflix</span><span class="t-en" hidden=""></span></p>
+      </div>
+      <div class="tr-survol step" data-order="5">https://netflix-abonnement-client.com/maj-paiement/?id=88213&amp;r=fr</div>
+    </div>
+  <div class="speaker-notes" hidden="">FAUX. Reconstitution d’un modèle très répandu. Clic 1 : la croix. 2. l’adresse n’est pas netflix.com ; 3. « Bonjour, » sans votre nom ; 4. 24 heures pour agir ; 5. l’adresse réelle du bouton, comme elle s’affiche en bas de l’écran quand on passe la souris dessus (sans cliquer !). Réflexe : ouvrir soi-même l’application ou le site Netflix ; si le paiement a vraiment échoué, c’est écrit là.</div>
+  </section>
+
+  <section id="s-traque-faux-proche" class="slide">
+    <div class="tr-sms" data-pose="" data-off-x="266.23" data-off-y="251.65" style="left:26.623%;top:25.165%">
+      <span class="tr-verdict faux step" data-order="1" title="Faux"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M28 28 L72 72 M72 28 L28 72"/></svg></span>
+      <div class="tr-sms-tete"><span class="tr-sms-retour">‹</span><span class="tr-sms-avatar"><svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#d1d1d6"/><path d="M6 36c2-8 8-12 14-12s12 4 14 12z" fill="#d1d1d6"/></svg></span><span class="tr-sms-qui"><span class="t-fr"><mark class="surligne step" data-order="2">+33 7 81 90 23 56</mark></span><span class="t-en" hidden=""></span></span></div>
+      <p class="tr-sms-jour"><span class="t-fr">dimanche 16 novembre</span><span class="t-en" hidden=""></span></p>
+      <div class="tr-sms-bulle">
+        <p><span class="t-fr"><mark class="surligne step" data-order="3">Coucou maman</mark>, c’est moi, <mark class="surligne step" data-order="4">j’ai cassé mon téléphone</mark>, c’est mon nouveau numéro. Tu peux m’écrire sur WhatsApp ? <mark class="surligne step" data-order="5">J’ai un truc urgent à te demander</mark></span><span class="t-en" hidden=""></span></p>
+      </div>
+      <p class="tr-sms-heure">11:32</p>
+    </div>
+  <div class="speaker-notes" hidden="">FAUX. Reconstitution du « faux proche », vu plus tôt dans la formation. Clic 1 : la croix. 2. un numéro inconnu ; 3. « maman » sans prénom : le message part à des milliers de gens ; 4. l’excuse pour justifier le nouveau numéro ; 5. l’urgence, et la suite sera une demande d’argent. Réflexe : appeler son enfant sur l’ANCIEN numéro, ou poser une question que seul lui connaît.</div>
+  </section>
+
 
   <section class="slide short" id="s38" data-serie="serie_920270d3-c394-4def-9355-3c13fd109102">
     <h2 data-pose="" data-off-x="409.34" data-off-y="476.87" style="left:40.934%;top:47.687%"><span class="t-fr">Soyons modestes !</span><span class="t-en" hidden="">Let's stay humble!</span></h2>
