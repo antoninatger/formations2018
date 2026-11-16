@@ -865,7 +865,53 @@ Ancien texte de la diapo : Plus de 20 plaintes, depuis août 2025, rien que dans
     <button type="button" class="reveal-btn illu-fs-btn" data-target="#radar-s-radar-faux-conseiller"><span class="t-fr">Plein écran</span><span class="t-en" hidden="">Fullscreen</span></button>
   </section>
 
-  <section id="s-le-colis-arrive" class="slide"><h2 data-pose="" data-off-x="416.88" data-off-y="110.13" style="left:41.688%;top:11.013%"><span class="t-fr">Le «&nbsp;colis arrivé&nbsp;»</span><span class="t-en" hidden=""></span></h2><div class="imgcard" data-pose="" data-off-x="390.91" data-off-y="182.8" style="left:39.091%;top:18.28%"><img src="../medias/images/arnaques-le-colis-arrive-38.jpg" alt="" loading="lazy"></div></section>
+  <section id="s-le-colis-arrive" class="slide"><h2 data-pose="" data-off-x="416.88" data-off-y="110.13" style="left:41.688%;top:11.013%"><span class="t-fr">Le «&nbsp;colis arrivé&nbsp;»</span><span class="t-en" hidden=""></span></h2>
+    <style>
+#s-le-colis-arrive .faux-mr{width:1240px;background:#fff;color:#4a4a4a;border-radius:16px;overflow:hidden;text-align:center;font-family:'Segoe UI',Arial,sans-serif;box-shadow:0 18px 46px rgba(0,0,0,.5)}
+#s-le-colis-arrive.active .faux-mr{animation:faux-mr-arrive .7s cubic-bezier(.2,1.2,.4,1) both}
+@keyframes faux-mr-arrive{from{opacity:0;transform:translateY(120px) scale(.94)}to{opacity:1;transform:none}}
+#s-le-colis-arrive .faux-mr-logo{display:flex;align-items:center;gap:12px;padding:16px 34px 12px;color:#96154a;font-weight:700;font-size:24px;line-height:1;text-align:left}
+#s-le-colis-arrive .faux-mr-logo svg{width:52px;height:52px;flex:none}
+#s-le-colis-arrive .faux-mr-bandeau{display:flex;align-items:center;justify-content:center;gap:24px;margin:0 34px;padding:18px 20px;background:#ff4f80;color:#fff;font-size:34px;border-radius:0 0 50% 50% / 0 0 18px 18px}
+#s-le-colis-arrive .faux-mr-bandeau svg{width:58px;height:58px;flex:none}
+#s-le-colis-arrive.active .faux-mr-bandeau svg{animation:faux-mr-sourire 1.2s .7s ease both}
+@keyframes faux-mr-sourire{0%{transform:scale(0) rotate(-30deg)}60%{transform:scale(1.25) rotate(8deg)}100%{transform:none}}
+#s-le-colis-arrive .faux-mr-bandeau p{margin:0}
+#s-le-colis-arrive .faux-mr-corps{padding:14px 70px 10px;font-size:29px;line-height:1.32;color:#222}
+#s-le-colis-arrive .faux-mr-corps p{margin:0}
+#s-le-colis-arrive .faux-mr-bonjour{font-size:34px;font-weight:700;color:#4a4a4a;margin-bottom:6px!important}
+#s-le-colis-arrive .faux-mr-num{text-decoration:underline;text-decoration-color:#bbb}
+#s-le-colis-arrive .faux-mr-ligne-bouton{display:flex;align-items:center;justify-content:center;gap:30px;margin:12px 0 10px!important}
+#s-le-colis-arrive .faux-mr-bouton{display:inline-block;padding:12px 34px;border-radius:8px;background:#96154a;color:#fff;font-weight:700;text-decoration:underline}
+#s-le-colis-arrive .faux-mr-ligne-bouton svg{width:52px;height:52px}
+#s-le-colis-arrive .faux-mr-petit{font-size:24px;color:#4a4a4a}
+#s-le-colis-arrive .faux-mr-signe{font-size:24px;font-weight:700;margin-top:6px!important;color:#4a4a4a}
+#s-le-colis-arrive .faux-mr-pied{display:flex;align-items:center;justify-content:center;gap:22px;margin:10px 34px 18px;padding:10px 20px;background:#fde4ea;font-size:18px;white-space:nowrap;color:#555}
+#s-le-colis-arrive .faux-mr-store small{font-size:11px;font-weight:400;margin-right:4px}
+#s-le-colis-arrive .faux-mr-store{padding:5px 14px;border-radius:7px;background:#000;color:#fff;font-size:17px;font-weight:600;white-space:nowrap}
+#s-le-colis-arrive .faux-mr mark.surligne.step{color:inherit}
+#s-le-colis-arrive .faux-mr mark.surligne.step.shown{color:#1c1917;animation:faux-mr-pop .5s ease}
+@keyframes faux-mr-pop{0%{box-shadow:0 0 0 0 rgba(253,224,71,.9)}40%{transform:scale(1.06)}100%{box-shadow:0 0 0 18px rgba(253,224,71,0);transform:none}}
+#s-le-colis-arrive .faux-mr-bandeau mark.surligne.step.shown{display:inline-block;padding:0 8px}
+#s-le-colis-arrive mark.faux-mr-halo{display:inline-block;padding:8px;border-radius:14px}
+#s-le-colis-arrive mark.faux-mr-halo.shown{animation:faux-mr-halo 1.4s ease-out infinite}
+@keyframes faux-mr-halo{0%{box-shadow:0 0 0 0 rgba(253,224,71,.95)}100%{box-shadow:0 0 0 26px rgba(253,224,71,0)}}
+    </style>
+    <div class="faux-mr" data-pose="" data-off-x="177.08" data-off-y="180" style="left:17.708%;top:18%">
+      <div class="faux-mr-logo"><svg viewBox="0 0 52 52" aria-hidden="true"><rect width="52" height="52" rx="10" fill="#96154a"></rect><path d="M17 40V22a8 8 0 0 1 8-8h11v8H26v18z" fill="#fff"></path><circle cx="33" cy="36" r="4" fill="#fff"></circle></svg><span>Mondial<br>Relay</span></div>
+      <div class="faux-mr-bandeau"><svg viewBox="0 0 58 58" aria-hidden="true"><rect width="58" height="58" rx="12" fill="#fff"></rect><path d="M16 24q5 5 10 0M32 24q5 5 10 0" stroke="#ff4f80" stroke-width="3.5" fill="none" stroke-linecap="round"></path><path d="M20 35q9 9 18 0" stroke="#ff4f80" stroke-width="3.5" fill="none" stroke-linecap="round"></path></svg><p><span class="t-fr">Votre colis <mark class="surligne step" data-order="1"><b>a été conservé</b></mark></span><span class="t-en" hidden=""></span></p></div>
+      <div class="faux-mr-corps">
+        <p class="faux-mr-bonjour"><span class="t-fr">Bonjour,</span><span class="t-en" hidden=""></span></p>
+        <p><span class="t-fr">Votre colis <span class="faux-mr-num">FR4KL651ZPJ</span> qui vous a été envoyé <mark class="surligne step" data-order="2">ne respectait pas le poids indiqué</mark>, <mark class="surligne step" data-order="3">une reprogrammation vous sont alors demandés</mark> afin de pouvoir acheminer correctement votre colis.<br>Votre colis sera livré au plus vite.</span><span class="t-en" hidden=""></span></p>
+        <p class="faux-mr-ligne-bouton"><mark class="surligne step faux-mr-halo" data-order="4"><span class="faux-mr-bouton"><span class="t-fr">Suivre mon colis</span><span class="t-en" hidden=""></span></span></mark><svg viewBox="0 0 52 52" aria-hidden="true"><path d="M26 6l18 10v20L26 46 8 36V16z" fill="none" stroke="#96154a" stroke-width="2.5" stroke-linejoin="round"></path><path d="M8 16l18 10 18-10M26 26v20" fill="none" stroke="#96154a" stroke-width="2.5" stroke-linejoin="round"></path></svg></p>
+        <p class="faux-mr-petit"><span class="t-fr">Cet email constitue <mark class="surligne step" data-order="5"><b>votre preuve de dépôt.</b></mark>Gardez-le précieusement le temps de l’acheminement de votre colis.<br>Merci de votre confiance et à très vite pour d’autres colis !</span><span class="t-en" hidden=""></span></p>
+        <p class="faux-mr-signe"><span class="t-fr">L’équipe Mondial Relay</span><span class="t-en" hidden=""></span></p>
+      </div>
+      <div class="faux-mr-pied"><span class="t-fr">Téléchargez l’application Mondial Relay pour suivre tous vos colis en temps réel.</span><span class="t-en" hidden=""></span><span class="faux-mr-store"><small>DISPONIBLE SUR</small> Google Play</span><span class="faux-mr-store"><small>Télécharger dans</small> l’App Store</span></div>
+    </div>
+  <div class="speaker-notes" hidden="">Reconstitution de la capture d’origine (arnaques-le-colis-arrive-38.jpg, copie dans _to_delete), en vrai texte. Volontairement laissés de côté : la notification WhatsApp en haut de la capture (nom d’une personne réelle, sans rapport avec l’arnaque), le cadre du téléphone et le dessin du livreur en bas.
+Clics : 1. « a été conservé » (vague et inquiétant : conservé par qui, où ?). 2. « ne respectait pas le poids indiqué » (le prétexte : un problème qui n’est pas de votre faute mais que vous devez régler). 3. « une reprogrammation vous sont alors demandés » (faute d’accord). 4. le bouton « Suivre mon colis », qui pulse : c’est le piège, il mène au faux site. 5. « votre preuve de dépôt » (incohérent : vous êtes destinataire, vous n’avez rien déposé).</div>
+  </section>
 
   <section class="slide short" id="s-que-faire-colis">
     <p class="kicker"><span class="t-fr">Le « colis arrivé »</span><span class="t-en" hidden="">The “parcel delivered” scam</span></p>
