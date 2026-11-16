@@ -322,7 +322,10 @@
     if (!vignette) return;
     const slide = diapoActive();
     const qrPose = !!(slide && slide.querySelector('[data-widget="qr-vote"]'));
-    const montrer = !!derniere && !qrPose && !document.querySelector('.slide.editing');
+    // Dès qu'une formation a un vote par téléphone, le QR code est là dès la première
+    // diapo : le public scanne en arrivant, avant la première question.
+    const aDesVotes = !!document.querySelector('.wpoll[data-widget="poll"][data-telephone], [data-widget="qr-vote"]');
+    const montrer = aDesVotes && !qrPose && !document.querySelector('.slide.editing');
     vignette.hidden = !montrer;
     let etat;
     if (!RELAIS) etat = 'Relais pas encore en ligne';
