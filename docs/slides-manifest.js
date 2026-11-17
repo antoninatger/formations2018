@@ -8442,14 +8442,6 @@ window.COURS_DIAPOS = {
    "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">Les pyramides ont été construites par des esclaves.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-pyramides-ouvriers.jpg\" alt=\"Chantier des pyramides\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Faux, au moins en partie : les fouilles montrent des ouvriers logés, nourris et soignés, pas des esclaves.</div>\n  "
   },
   {
-   "id": "formation-fake-news-niveau2#masni-c2-ia-titre",
-   "titre": "Quelle photo est en IA, quelle photo est réelle ?",
-   "formation": "formation-fake-news-niveau2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide short divider-slide\" id=\"masni-c2-ia-titre\" data-serie=\"serie_6563614e-f141-4b70-a7ed-0918e9ea9358\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"261.04\" data-off-y=\"439.43\" style=\"left:26.104%;top:43.943%\"><span class=\"t-fr\">Quelle photo est en IA, quelle photo est réelle ?</span><span class=\"t-en\" hidden=\"\"></span></h2>\n  "
-  },
-  {
    "id": "formation-fake-news-niveau2#masni-c2-terre-365",
    "titre": "La Terre tourne autour du Soleil en 365 jours.",
    "formation": "formation-fake-news-niveau2",
