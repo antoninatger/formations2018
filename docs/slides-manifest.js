@@ -5859,11 +5859,11 @@ window.COURS_DIAPOS = {
   },
   {
    "id": "fake-news-6e-5e#s-blanc",
-   "titre": "Question…",
+   "titre": "De quelle couleur est la neige ?",
    "formation": "fake-news-6e-5e",
    "kind": "simple",
    "attrsRaw": "class=\"slide short\" id=\"s-blanc\" data-serie=\"serie_2d02b823-b04b-4f29-a8d5-3422cc68ac78\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"448.48\" data-off-y=\"440.98\" style=\"left:44.848%;top:44.098%\"><span class=\"t-fr\">Question…</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead step taille-xl\" data-pose=\"\" data-off-x=\"341.96\" data-off-y=\"513.65\" style=\"left:34.196%;top:51.365%\"><span class=\"t-fr\">Blanc blanc blanc blanc blanc blanc blanc</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"320\" data-off-y=\"440\" style=\"left:32%;top:44%;width:56%;max-width:none;text-align:center\"><span class=\"t-fr\">De quelle couleur est la neige ?</span><span class=\"t-en\" hidden=\"\">What colour is snow?</span></h2>\n  "
   },
   {
    "id": "fake-news-6e-5e#s-vache",
@@ -18003,11 +18003,11 @@ window.COURS_DIAPOS = {
   },
   {
    "id": "parcours-cm1-cm2#s-blanc",
-   "titre": "Question…",
+   "titre": "De quelle couleur est la neige ?",
    "formation": "parcours-cm1-cm2",
    "kind": "simple",
    "attrsRaw": "class=\"slide short\" id=\"s-blanc\" data-serie=\"serie_2d02b823-b04b-4f29-a8d5-3422cc68ac78\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"448.48\" data-off-y=\"440.98\" style=\"left:44.848%;top:44.098%\"><span class=\"t-fr\">Question…</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead step taille-xl\" data-pose=\"\" data-off-x=\"341.96\" data-off-y=\"513.65\" style=\"left:34.196%;top:51.365%\"><span class=\"t-fr\">Blanc blanc blanc blanc blanc blanc blanc</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"320\" data-off-y=\"440\" style=\"left:32%;top:44%;width:56%;max-width:none;text-align:center\"><span class=\"t-fr\">De quelle couleur est la neige ?</span><span class=\"t-en\" hidden=\"\">What colour is snow?</span></h2>\n  "
   },
   {
    "id": "parcours-cm1-cm2#s-vache",
