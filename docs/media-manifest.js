@@ -218,7 +218,9 @@ window.COURS_MEDIA = {
         "pape-francois-fausse-image.jpeg",
         "wald-bombardiers.jpg"
       ],
-      "videos": []
+      "videos": [
+        "faux-brad-pitt-la-provence.mp4"
+      ]
     },
     {
       "id": "atelier-ecrire-une-histoire",
