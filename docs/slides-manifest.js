@@ -29,7 +29,8 @@ window.COURS_DIAPOS = {
   "parcours-cm1-cm2": "Parcours Fake News & Esprit critique : CM1-CM2",
   "parler-a-un-complotiste": "Parler à un complotiste",
   "serie-liste-des-biais": "Série : la liste des biais cognitifs",
-  "entreprise": "Entreprise : enjeux de l’information"
+  "entreprise": "Entreprise : enjeux de l’information",
+  "reserve": "Réserve : diapos mises de côté"
  },
  "diapos": [
   {
@@ -7831,102 +7832,6 @@ window.COURS_DIAPOS = {
    "kind": "simple",
    "attrsRaw": "class=\"slide\" id=\"s5\" data-serie=\"serie_043e4a77-7a07-444d-9646-de128a43839f\"",
    "contentHtml": "\n    <style>\n#s5 .crit-roue{position:absolute;left:0;right:0;top:40px;margin:auto;width:1300px;height:790px}\n#s5 .crit-traits{position:absolute;inset:0;width:100%;height:100%}\n#s5 .crit-traits line{stroke:#7dd3fc;stroke-width:5;stroke-linecap:round;opacity:.7}\n#s5 .crit-centre{position:absolute;z-index:2;left:490px;top:235px;width:320px;height:320px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 35% 30%,#3b82f6,#1e3a8a);box-shadow:0 18px 50px rgba(0,0,0,.5);text-align:center}\n#s5 .crit-centre h2{position:static;margin:0;padding:0 34px;font-size:34px;line-height:1.2;color:#fff}\n#s5 .crit-pos{position:absolute;z-index:1;width:216px;height:216px}\n#s5 .crit-pos .retourne{width:216px;height:216px;margin:0}\n#s5 .crit-pos .retourne-face{box-shadow:0 10px 30px rgba(0,0,0,.45)}\n#s5 .crit-pos .retourne-recto{background:radial-gradient(circle at 35% 30%,#64748b,#1e293b)}\n#s5 .crit-pos .retourne-verso{background:radial-gradient(circle at 35% 30%,#fde68a,#f59e0b);padding:0 18px}\n#s5 .crit-pos .retourne-recto p{font-size:84px;font-weight:800;line-height:1;color:#fff;text-shadow:none}\n#s5 .crit-pos .retourne-verso p{font-size:24px;font-weight:700;line-height:1.15;color:#1c1917;text-shadow:none}\n#s5 .attention{position:absolute;left:auto;right:150px;top:auto;bottom:120px}\n#s5 .crit-centre{cursor:pointer}\n.slide.editing#s5 .crit-roue{position:relative;top:auto}\n</style>\n    <div class=\"crit-roue\"><svg class=\"crit-traits step\" data-order=\"1\" viewBox=\"0 0 1300 790\" aria-hidden=\"true\"><line x1=\"650\" y1=\"395\" x2=\"650\" y2=\"105\"/><line x1=\"650\" y1=\"395\" x2=\"1083\" y2=\"250\"/><line x1=\"650\" y1=\"395\" x2=\"1083\" y2=\"540\"/><line x1=\"650\" y1=\"395\" x2=\"650\" y2=\"685\"/><line x1=\"650\" y1=\"395\" x2=\"217\" y2=\"540\"/><line x1=\"650\" y1=\"395\" x2=\"217\" y2=\"250\"/></svg><div class=\"crit-centre\" onclick=\"if(this.closest('.editing'))return;if(this.closest('section').querySelector('.crit-pos.step:not(.shown)'))Deck.next()\"><h2><span class=\"t-fr\">Quels sont les critères pour valider l'information&nbsp;?</span><span class=\"t-en\" hidden=\"\">What criteria help us validate information?</span></h2></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:542px;top:-3px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[0,290,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">1</span><span class=\"t-en\" hidden=\"\">1</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Fiabilité de la source</span><span class=\"t-en\" hidden=\"\">Reliability of the source</span></p></div></div></div></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:975px;top:142px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[-433,145,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">2</span><span class=\"t-en\" hidden=\"\">2</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Fiabilité de l'interlocuteur</span><span class=\"t-en\" hidden=\"\">Reliability of the speaker</span></p></div></div></div></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:975px;top:432px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[-433,-145,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">3</span><span class=\"t-en\" hidden=\"\">3</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Niveau de preuves</span><span class=\"t-en\" hidden=\"\">Level of evidence</span></p></div></div></div></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:542px;top:577px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[0,-290,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">4</span><span class=\"t-en\" hidden=\"\">4</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Plusieurs sources fiables en parlent</span><span class=\"t-en\" hidden=\"\">Several reliable sources report it</span></p></div></div></div></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:109px;top:432px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[433,-145,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">5</span><span class=\"t-en\" hidden=\"\">5</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Crédibilité de l'information</span><span class=\"t-en\" hidden=\"\">Credibility of the information</span></p></div></div></div></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:109px;top:142px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[433,145,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">6</span><span class=\"t-en\" hidden=\"\">6</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Commentaires et critiques de l'information</span><span class=\"t-en\" hidden=\"\">Comments and criticism of the information</span></p></div></div></div></div></div>\n    <p class=\"attention step\" id=\"attention-txt\" data-order=\"2\"><span class=\"t-fr\">Mais attention…</span><span class=\"t-en\" hidden=\"\">But be careful…</span></p>\n  <div class=\"speaker-notes\" hidden=\"\"></div>"
-  },
-  {
-   "id": "formation-fake-news-niveau2#s3",
-   "titre": "Fiabilité de la source",
-   "formation": "formation-fake-news-niveau2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s3\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"121.02\" data-off-y=\"59.7\" style=\"left:12.102%;top:5.97%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Fiabilité de la source</span><span class=\"t-en\" hidden=\"\">Reliability of the source</span></h2>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"169.65\" data-off-y=\"185\" style=\"left:16.965%;top:18.5%;width:63.386%;max-width:none\"><img src=\"../medias/images/panama-papers-lemonde.jpg\" alt=\"Le Monde : « Panama papers », une plongée inédite dans la « boîte noire » des paradis fiscaux\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "formation-fake-news-niveau2#nv2-source-observateur",
-   "titre": "Fiabilité de la source",
-   "formation": "formation-fake-news-niveau2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"nv2-source-observateur\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"121.02\" data-off-y=\"59.7\" style=\"left:12.102%;top:5.97%;width:77.053%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Fiabilité de la source</span><span class=\"t-en\" hidden=\"\">Reliability of the source</span></h2>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"325.6\" data-off-y=\"140\" style=\"left:32.56%;top:14%;width:34.963%;max-width:none\"><img src=\"../medias/images/ogm-poisons-nouvelobs.jpg\" alt=\"Le Nouvel Observateur : « Oui, les OGM sont des poisons ! »\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "formation-fake-news-niveau2#s4",
-   "titre": "Fiabilité de l’interlocuteur.",
-   "formation": "formation-fake-news-niveau2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s4\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Fiabilité de l’interlocuteur.</span><span class=\"t-en\" hidden=\"\">Reliability of the speaker.</span></h2>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"196.48\" data-off-y=\"202\" style=\"left:19.648%;top:20.2%;width:57.014%;max-width:none\"><img src=\"../medias/images/giec-experts-panel.jpg\" alt=\"Les experts du GIEC en conférence\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "formation-fake-news-niveau2#nv2-interlocuteur-raoult",
-   "titre": "Fiabilité de l’interlocuteur.",
-   "formation": "formation-fake-news-niveau2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"nv2-interlocuteur-raoult\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Fiabilité de l’interlocuteur.</span><span class=\"t-en\" hidden=\"\">Reliability of the speaker.</span></h2>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"217.45\" data-off-y=\"240\" style=\"left:21.745%;top:24%;width:53.241%;max-width:none\"><img src=\"../medias/images/didier-raoult.jpg\" alt=\"Didier Raoult\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "formation-fake-news-niveau2#nv2-niveau-preuves",
-   "titre": "Niveau de preuves",
-   "formation": "formation-fake-news-niveau2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"nv2-niveau-preuves\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Niveau de preuves</span><span class=\"t-en\" hidden=\"\">Level of evidence</span></h2>\n    <p class=\"lead\" data-pose=\"\" data-off-x=\"143.66\" data-off-y=\"234.7\" style=\"left:14.366%;top:23.47%;width:61.709%;max-width:none;font-size:30px;text-align:left;\"><span class=\"t-fr\">Les preuves peuvent être fausses, falsifiées, ou faire aboutir à la mauvaise conclusion.</span><span class=\"t-en\" hidden=\"\">Evidence can be false, falsified, or lead to the wrong conclusion.</span></p>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"175.52\" data-off-y=\"303\" style=\"left:17.552%;top:30.3%;width:58.607%;max-width:none\"><img src=\"../medias/images/adn-experts-se-trompent-lemonde.png\" alt=\"Le Monde : « ADN : quand les \"experts\" se trompent »\" loading=\"lazy\"></div>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"233.38\" data-off-y=\"637\" style=\"left:23.338%;top:63.7%;width:47.037%;max-width:none\"><img src=\"../medias/images/adn-manipulation-titre.jpg\" alt=\"Des centaines d’affaires remises en cause ? Une médecin accusée de « manipulations » de preuves ADN\" loading=\"lazy\"></div>\n    <div class=\"speaker-notes\" hidden=\"\">https://www.bfmtv.com/police-justice/des-milliers-d-affaires-remises-en-cause-une-medecin-soupconnee-de-manipulations-de-preuves-adn_AN-202403170037.html\nhttps://www.lemonde.fr/technologies/article/2010/12/10/adn-quand-les-experts-se-trompent_1451949_651865.html</div>\n  "
-  },
-  {
-   "id": "formation-fake-news-niveau2#nv2-trump-xi",
-   "titre": "",
-   "formation": "formation-fake-news-niveau2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide short\" id=\"nv2-trump-xi\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
-   "contentHtml": "\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"337.27\" data-off-y=\"28\" style=\"left:33.727%;top:2.8%;width:32.546%;max-width:none;max-height:none\"><img src=\"../medias/images/trump-xi-jinping.jpg\" alt=\"Donald Trump et Xi Jinping\" loading=\"lazy\" style=\"max-height:none\"></div>\n  "
-  },
-  {
-   "id": "formation-fake-news-niveau2#s6",
-   "titre": "Beaucoup de sources en parlent.",
-   "formation": "formation-fake-news-niveau2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s6\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Beaucoup de sources en parlent.</span><span class=\"t-en\" hidden=\"\">Many sources report it.</span></h2>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"243.44\" data-off-y=\"260\" style=\"left:24.344%;top:26%;width:54.079%;max-width:none\"><img src=\"../medias/images/hoax-sport-suede.jpg\" alt=\"IOL : « Sex tournament: Sweden becomes the first country to make sex a sport »\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "formation-fake-news-niveau2#nv2-sources-dupont-ligonnes",
-   "titre": "Beaucoup de sources en parlent.",
-   "formation": "formation-fake-news-niveau2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"nv2-sources-dupont-ligonnes\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Beaucoup de sources en parlent.</span><span class=\"t-en\" hidden=\"\">Many sources report it.</span></h2>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"133.6\" data-off-y=\"273\" style=\"left:13.36%;top:27.3%;width:32.867%;max-width:none\"><img src=\"../medias/images/xavier-dupont-de-ligonnes.jpg\" alt=\"Le Parisien : Xavier Dupont de Ligonnès aurait été arrêté en Écosse\" loading=\"lazy\"></div>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"493.29\" data-off-y=\"293\" style=\"left:49.329%;top:29.3%;width:35.718%;max-width:none\"><img src=\"../medias/images/xavier-dupont-de-ligonnes-bfm.jpg\" alt=\"BFMTV : Xavier Dupont de Ligonnès arrêté à Glasgow\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "formation-fake-news-niveau2#s7",
-   "titre": "Crédibilité de l’information",
-   "formation": "formation-fake-news-niveau2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s7\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Crédibilité de l’information</span><span class=\"t-en\" hidden=\"\">Credibility of the information</span></h2>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"245.11\" data-off-y=\"202\" style=\"left:24.511%;top:20.2%;width:42.928%;max-width:none\"><img src=\"../medias/images/biscuits-vegan-hoax.jpg\" alt=\"La Vegan Society demande la fin des biscuits en forme d’animaux\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "formation-fake-news-niveau2#nv2-credibilite-meduse",
-   "titre": "Crédibilité de l’information",
-   "formation": "formation-fake-news-niveau2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"nv2-credibilite-meduse\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Crédibilité de l’information</span><span class=\"t-en\" hidden=\"\">Credibility of the information</span></h2>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"328.12\" data-off-y=\"255\" style=\"left:32.812%;top:25.5%;width:34.376%;max-width:none\"><img src=\"../medias/images/meduse-immortelle.jpg\" alt=\"Il existe une espèce de méduse immortelle\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "formation-fake-news-niveau2#s8",
-   "titre": "Quels sont les retours critiques ?",
-   "formation": "formation-fake-news-niveau2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s8\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Quels sont les retours critiques ?</span><span class=\"t-en\" hidden=\"\">What is the critical feedback?</span></h2>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"272.78\" data-off-y=\"200\" style=\"left:27.278%;top:20%;width:44.018%;max-width:none\"><img src=\"../medias/images/logos-fact-checking.png\" alt=\"Logos de sites de fact-checking\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "formation-fake-news-niveau2#nv2-retours-rsf",
-   "titre": "Quels sont les retours critiques ?",
-   "formation": "formation-fake-news-niveau2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"nv2-retours-rsf\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
-   "contentHtml": "\n    <style>\n#nv2-retours-rsf .tg-post{width:1000px;box-sizing:border-box;padding:22px 28px 18px;background:#182533;border-radius:18px;box-shadow:0 16px 40px rgba(0,0,0,.5);text-align:left;font-family:Roboto,Arial,Helvetica,sans-serif;color:#f5f5f5}\n#nv2-retours-rsf .tg-tete{display:flex;align-items:center;gap:16px}\n#nv2-retours-rsf .tg-ava{flex:none;width:62px;height:62px;border-radius:50%;background:#c0392b;color:#fff;display:flex;align-items:center;justify-content:center;font:700 24px Arial,sans-serif}\n#nv2-retours-rsf .tg-nom{font-size:26px;font-weight:700;color:#6ab3f3;line-height:1.2}\n#nv2-retours-rsf .tg-sous{font-size:18px;color:#8b9aa7}\n#nv2-retours-rsf .tg-texte{margin:16px 0 0;max-width:none;font-size:26px;line-height:1.45;color:#f5f5f5;font-weight:400}\n#nv2-retours-rsf .tg-trad{margin:16px 0 0;padding:12px 16px;border-left:4px solid #6ab3f3;background:rgba(106,179,243,.08);border-radius:6px;max-width:none;font-size:26px;line-height:1.45;color:#e8eef3;font-weight:400}\n#nv2-retours-rsf .tg-trad-tete{display:block;font-size:17px;font-weight:700;color:#6ab3f3;margin-bottom:4px}\n#nv2-retours-rsf .tg-pied{margin-top:10px;text-align:right;font-size:17px;color:#8b9aa7}\n</style>\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Quels sont les retours critiques ?</span><span class=\"t-en\" hidden=\"\">What is the critical feedback?</span></h2>\n    <div class=\"tg-post\" data-pose=\"\" data-off-x=\"175\" data-off-y=\"210\" style=\"left:17.5%;top:21%\"><div class=\"tg-tete\"><span class=\"tg-ava\">ВФ</span><span><span class=\"tg-nom\" style=\"display:block\">Война с фейками</span><span class=\"tg-sous\">Canal Telegram</span></span></div><p class=\"tg-texte\">Заметки о Буче появились сразу в нескольких зарубежных изданиях — похоже на спланированную медиакампанию. Учитывая, что войска покинули город 30 марта, где данные кадры были 4 дня? Их отсутствие лишь подтверждает фейк</p><p class=\"tg-trad\"><span class=\"t-fr\"><span class=\"tg-trad-tete\">Traduit du russe</span>Des articles sur Boutcha sont parus en même temps dans plusieurs médias étrangers&nbsp;: cela ressemble à une campagne médiatique planifiée. Sachant que les troupes ont quitté la ville le 30&nbsp;mars, où étaient ces images pendant 4&nbsp;jours&nbsp;? Leur absence ne fait que confirmer le fake.</span><span class=\"t-en\" hidden=\"\"><span class=\"tg-trad-tete\">Translated from Russian</span>Articles about Bucha appeared simultaneously in several foreign outlets: it looks like a planned media campaign. Given that the troops left the town on 30 March, where were these images for 4 days? Their absence only confirms the fake.</span></p><div class=\"tg-pied\">3 avril 2022</div></div>\n  <div class=\"speaker-notes\" hidden=\"\">Reconstitution d'un post réel de la chaîne Telegram « Война с фейками » (« La guerre contre les fakes »), créée la veille de l'invasion et qui se présente comme du fact-checking ; environ 700 000 abonnés ; post du 3 avril 2022, repartagé le jour même par le ministère russe de la Défense. Texte original cité par Meduza (3/4/2022) : https://meduza.io/news/2022/04/03/telegram-minoborony-rf-repostnul-propagandistskiy-kanal-nazvavshiy-kadry-s-telami-ubityh-v-buche-postanovochnymi-s-ofitsialnoy-pozitsiey-vedomstvo-do-sih-por-ne-vystupalo . La chaîne affirmait aussi que des corps « bougeaient » sur la vidéo (une main levée, un mort qui se relève dans le rétroviseur). Démentis : AFP (5/4/2022) : la « main » est une goutte d'eau sur le pare-brise, les corps sont au même endroit sur les photos du lendemain https://www.blick.ch/fr/monde/la-version-russe-mise-a-mal-non-la-decouverte-de-cadavres-a-boutcha-n-est-pas-une-mise-en-scene-id17379989.html ; Bellingcat (4/4/2022) https://www.bellingcat.com/news/2022/04/04/russias-bucha-facts-versus-the-evidence ; DFRLab (4/4/2022) https://www.atlanticcouncil.org/blogs/new-atlanticist/russian-war-report-kremlin-claims-bucha-massacre-was-staged-by-ukraine/ . Le phénomène : RSF, « Russie : quand le fact-checking devient le nouvel outil de la propagande du Kremlin » (24/6/2025) https://rsf.org/en/russia-fact-checking-kremlins-latest-propaganda-tool ; PolitiFact (8/8/2022) https://www.politifact.com/article/2022/aug/08/how-war-fakes-uses-fact-checking-spread-pro-russia/</div>"
   },
   {
    "id": "formation-fake-news-niveau2#nv2-criteres",
@@ -18999,6 +18904,102 @@ window.COURS_DIAPOS = {
    "kind": "simple",
    "attrsRaw": "class=\"slide short\" id=\"s-bilan-qr\" data-serie=\"serie_743edaf5-33f9-4668-ab8a-f0365b011093\"",
    "contentHtml": "\n    <p class=\"kicker\" data-pose=\"\" data-off-x=\"461.46\" data-off-y=\"272.25\" style=\"left: 46.146%; top: 27.225%;\"><span class=\"t-fr\">Après la séance</span><span class=\"t-en\" hidden=\"\">After the session</span></p>\n    <h2 data-pose=\"\" data-off-x=\"344.92\" data-off-y=\"303.09\" style=\"left: 34.492%; top: 30.309%;\"><span class=\"t-fr\">Le bilan, les jeux, et votre retour</span><span class=\"t-en\" hidden=\"\">Summary, games, and your feedback</span></h2>\n    <p class=\"lead\" data-pose=\"\" data-off-x=\"302.6\" data-off-y=\"375.76\" style=\"left: 30.26%; top: 37.576%;\"><span class=\"t-fr\">Scannez ce QR code&nbsp;: vous pourrez donner votre retour, revoir le bilan de la formation ou rejouer aux jeux.</span><span class=\"t-en\" hidden=\"\">Scan this QR code: you can leave your feedback, review the session summary, or play the games again.</span></p>\n    \n  <img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhwAAAIcAQAAAACVhUrRAAAC80lEQVR42u2dUWrEMAxERS/g+9/SN3C7jSNp5JQW2p+it5SybDbvY2EYaSw7tn7/mgYECBAgQID8HGL+Gvcn4/Xhx/v9Zu3/16Xjljf7gxcQIP8LYi6HLZlP+VxvQjgjtOaXQkpoB0hj7VwO4nbjjlPc57pUbkE7QNCOyycuWYjFq8T4GtoBgnZUO+4vL9O5v+Y1G74DBMhzv5MCgR0LDAkY6HeAAAl1XC+3nm//0i1oB0hb7ZTU2vOBaG00fztu4YcF0lc7WxqWlngsiUij6f253452gHT2nWQ00ddEGmDlv7RCaAdI434nr+nskO1WSlRxtxNF/kbOBoSaLa1+bjfJizulfnMRTXwHSG/t6KhAtD8jajkZZiuJAdoB0rvf8ZGbbC5StuXqTkIGflggXfudNDUdMvHJAa/l7twgYjeyAiDtswKv1mJrw7QctT3YEP0OELRjaWp6hfVImHYuA9HvAKHfKbrQGEGsJ09ZTzJqIPhO2miwnlueXK3lGg/tAKHfkX5nWtaR6CWHBmgHSHPtDN1PfRRsUbnlGyNV4IcF0rXfmaEFk0G1uglORndY3wGCdlbqZcbTiE4R1FriWWgHSGPfiVOkcr9zHFBQDOj+Mj8skMZZQVHHUMfRtVGyAiBASlaQ53NkF08aYzMz6Y/QDpD2WUE5kSBv2yk9kWwdRTtAemcFMXiTBnLy9reSV8uxBmgHSO9+R46WyrsMTEJp/zB1RvywQBr7To7Opk6EnocYGP0OECBW91bXPaHmvmNl4xuzoEDwnRWb2qqCZj1IJxaDWN8Bgu/YsXBT8rSyvqNlG9oB0tl3JAQoXU86k82ejgxFO0Ba+45FX1OdJXvQqgftoh0grbWTn4NgVh6LUBZMw3eo2YCgnXHkA7PuTZDjdOh3gAD5Sjvl0aL5uLalEzvUbEDQzvHQNx2WPtofzmcDgnb0CKmyza3YUL1KzQaks3aslmTRzkyrp+UseXA8vgOks3Z++5pAgAABAgTIDyHv20VZl660GMAAAAAASUVORK5CYII=\" alt=\"QR code vers la page antoninatger.github.io/interventions/retours\" style=\"width: 200px; height: 200px; border-radius: 16px; background: rgb(255, 255, 255); padding: 10px; box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 30px; left: 44.805%; top: 47.267%;\" data-pose=\"\" data-off-x=\"448.05\" data-off-y=\"472.67\"><a href=\"https://antoninatger.github.io/interventions/retours/\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--acc2); font-weight: 800; font-size: 1.05rem; text-decoration: none; border-bottom: 2px solid var(--acc2); padding-bottom: 2px; width: 371.73px; left: 40.345%; top: 71.275%;\" data-pose=\"\" data-off-x=\"403.45\" data-off-y=\"712.75\">\n        <span class=\"t-fr\">antoninatger.github.io/interventions/retours →</span><span class=\"t-en\" hidden=\"\">antoninatger.github.io/interventions/retours →</span>\n      </a>"
+  },
+  {
+   "id": "reserve#s3",
+   "titre": "Fiabilité de la source",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s3\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"121.02\" data-off-y=\"59.7\" style=\"left:12.102%;top:5.97%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Fiabilité de la source</span><span class=\"t-en\" hidden=\"\">Reliability of the source</span></h2>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"169.65\" data-off-y=\"185\" style=\"left:16.965%;top:18.5%;width:63.386%;max-width:none\"><img src=\"../medias/images/panama-papers-lemonde.jpg\" alt=\"Le Monde : « Panama papers », une plongée inédite dans la « boîte noire » des paradis fiscaux\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "reserve#nv2-source-observateur",
+   "titre": "Fiabilité de la source",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"nv2-source-observateur\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"121.02\" data-off-y=\"59.7\" style=\"left:12.102%;top:5.97%;width:77.053%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Fiabilité de la source</span><span class=\"t-en\" hidden=\"\">Reliability of the source</span></h2>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"325.6\" data-off-y=\"140\" style=\"left:32.56%;top:14%;width:34.963%;max-width:none\"><img src=\"../medias/images/ogm-poisons-nouvelobs.jpg\" alt=\"Le Nouvel Observateur : « Oui, les OGM sont des poisons ! »\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "reserve#s4",
+   "titre": "Fiabilité de l’interlocuteur.",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s4\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Fiabilité de l’interlocuteur.</span><span class=\"t-en\" hidden=\"\">Reliability of the speaker.</span></h2>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"196.48\" data-off-y=\"202\" style=\"left:19.648%;top:20.2%;width:57.014%;max-width:none\"><img src=\"../medias/images/giec-experts-panel.jpg\" alt=\"Les experts du GIEC en conférence\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "reserve#nv2-interlocuteur-raoult",
+   "titre": "Fiabilité de l’interlocuteur.",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"nv2-interlocuteur-raoult\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Fiabilité de l’interlocuteur.</span><span class=\"t-en\" hidden=\"\">Reliability of the speaker.</span></h2>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"217.45\" data-off-y=\"240\" style=\"left:21.745%;top:24%;width:53.241%;max-width:none\"><img src=\"../medias/images/didier-raoult.jpg\" alt=\"Didier Raoult\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "reserve#nv2-niveau-preuves",
+   "titre": "Niveau de preuves",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"nv2-niveau-preuves\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Niveau de preuves</span><span class=\"t-en\" hidden=\"\">Level of evidence</span></h2>\n    <p class=\"lead\" data-pose=\"\" data-off-x=\"143.66\" data-off-y=\"234.7\" style=\"left:14.366%;top:23.47%;width:61.709%;max-width:none;font-size:30px;text-align:left;\"><span class=\"t-fr\">Les preuves peuvent être fausses, falsifiées, ou faire aboutir à la mauvaise conclusion.</span><span class=\"t-en\" hidden=\"\">Evidence can be false, falsified, or lead to the wrong conclusion.</span></p>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"175.52\" data-off-y=\"303\" style=\"left:17.552%;top:30.3%;width:58.607%;max-width:none\"><img src=\"../medias/images/adn-experts-se-trompent-lemonde.png\" alt=\"Le Monde : « ADN : quand les \"experts\" se trompent »\" loading=\"lazy\"></div>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"233.38\" data-off-y=\"637\" style=\"left:23.338%;top:63.7%;width:47.037%;max-width:none\"><img src=\"../medias/images/adn-manipulation-titre.jpg\" alt=\"Des centaines d’affaires remises en cause ? Une médecin accusée de « manipulations » de preuves ADN\" loading=\"lazy\"></div>\n    <div class=\"speaker-notes\" hidden=\"\">https://www.bfmtv.com/police-justice/des-milliers-d-affaires-remises-en-cause-une-medecin-soupconnee-de-manipulations-de-preuves-adn_AN-202403170037.html\nhttps://www.lemonde.fr/technologies/article/2010/12/10/adn-quand-les-experts-se-trompent_1451949_651865.html</div>\n  "
+  },
+  {
+   "id": "reserve#nv2-trump-xi",
+   "titre": "",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide short\" id=\"nv2-trump-xi\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
+   "contentHtml": "\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"337.27\" data-off-y=\"28\" style=\"left:33.727%;top:2.8%;width:32.546%;max-width:none;max-height:none\"><img src=\"../medias/images/trump-xi-jinping.jpg\" alt=\"Donald Trump et Xi Jinping\" loading=\"lazy\" style=\"max-height:none\"></div>\n  "
+  },
+  {
+   "id": "reserve#s6",
+   "titre": "Beaucoup de sources en parlent.",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s6\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Beaucoup de sources en parlent.</span><span class=\"t-en\" hidden=\"\">Many sources report it.</span></h2>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"243.44\" data-off-y=\"260\" style=\"left:24.344%;top:26%;width:54.079%;max-width:none\"><img src=\"../medias/images/hoax-sport-suede.jpg\" alt=\"IOL : « Sex tournament: Sweden becomes the first country to make sex a sport »\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "reserve#nv2-sources-dupont-ligonnes",
+   "titre": "Beaucoup de sources en parlent.",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"nv2-sources-dupont-ligonnes\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Beaucoup de sources en parlent.</span><span class=\"t-en\" hidden=\"\">Many sources report it.</span></h2>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"133.6\" data-off-y=\"273\" style=\"left:13.36%;top:27.3%;width:32.867%;max-width:none\"><img src=\"../medias/images/xavier-dupont-de-ligonnes.jpg\" alt=\"Le Parisien : Xavier Dupont de Ligonnès aurait été arrêté en Écosse\" loading=\"lazy\"></div>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"493.29\" data-off-y=\"293\" style=\"left:49.329%;top:29.3%;width:35.718%;max-width:none\"><img src=\"../medias/images/xavier-dupont-de-ligonnes-bfm.jpg\" alt=\"BFMTV : Xavier Dupont de Ligonnès arrêté à Glasgow\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "reserve#s7",
+   "titre": "Crédibilité de l’information",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s7\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Crédibilité de l’information</span><span class=\"t-en\" hidden=\"\">Credibility of the information</span></h2>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"245.11\" data-off-y=\"202\" style=\"left:24.511%;top:20.2%;width:42.928%;max-width:none\"><img src=\"../medias/images/biscuits-vegan-hoax.jpg\" alt=\"La Vegan Society demande la fin des biscuits en forme d’animaux\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "reserve#nv2-credibilite-meduse",
+   "titre": "Crédibilité de l’information",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"nv2-credibilite-meduse\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Crédibilité de l’information</span><span class=\"t-en\" hidden=\"\">Credibility of the information</span></h2>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"328.12\" data-off-y=\"255\" style=\"left:32.812%;top:25.5%;width:34.376%;max-width:none\"><img src=\"../medias/images/meduse-immortelle.jpg\" alt=\"Il existe une espèce de méduse immortelle\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "reserve#s8",
+   "titre": "Quels sont les retours critiques ?",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s8\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Quels sont les retours critiques ?</span><span class=\"t-en\" hidden=\"\">What is the critical feedback?</span></h2>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"272.78\" data-off-y=\"200\" style=\"left:27.278%;top:20%;width:44.018%;max-width:none\"><img src=\"../medias/images/logos-fact-checking.png\" alt=\"Logos de sites de fact-checking\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "reserve#nv2-retours-rsf",
+   "titre": "Quels sont les retours critiques ?",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"nv2-retours-rsf\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
+   "contentHtml": "\n    <style>\n#nv2-retours-rsf .tg-post{width:1000px;box-sizing:border-box;padding:22px 28px 18px;background:#182533;border-radius:18px;box-shadow:0 16px 40px rgba(0,0,0,.5);text-align:left;font-family:Roboto,Arial,Helvetica,sans-serif;color:#f5f5f5}\n#nv2-retours-rsf .tg-tete{display:flex;align-items:center;gap:16px}\n#nv2-retours-rsf .tg-ava{flex:none;width:62px;height:62px;border-radius:50%;background:#c0392b;color:#fff;display:flex;align-items:center;justify-content:center;font:700 24px Arial,sans-serif}\n#nv2-retours-rsf .tg-nom{font-size:26px;font-weight:700;color:#6ab3f3;line-height:1.2}\n#nv2-retours-rsf .tg-sous{font-size:18px;color:#8b9aa7}\n#nv2-retours-rsf .tg-texte{margin:16px 0 0;max-width:none;font-size:26px;line-height:1.45;color:#f5f5f5;font-weight:400}\n#nv2-retours-rsf .tg-trad{margin:16px 0 0;padding:12px 16px;border-left:4px solid #6ab3f3;background:rgba(106,179,243,.08);border-radius:6px;max-width:none;font-size:26px;line-height:1.45;color:#e8eef3;font-weight:400}\n#nv2-retours-rsf .tg-trad-tete{display:block;font-size:17px;font-weight:700;color:#6ab3f3;margin-bottom:4px}\n#nv2-retours-rsf .tg-pied{margin-top:10px;text-align:right;font-size:17px;color:#8b9aa7}\n</style>\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Quels sont les retours critiques ?</span><span class=\"t-en\" hidden=\"\">What is the critical feedback?</span></h2>\n    <div class=\"tg-post\" data-pose=\"\" data-off-x=\"175\" data-off-y=\"210\" style=\"left:17.5%;top:21%\"><div class=\"tg-tete\"><span class=\"tg-ava\">ВФ</span><span><span class=\"tg-nom\" style=\"display:block\">Война с фейками</span><span class=\"tg-sous\">Canal Telegram</span></span></div><p class=\"tg-texte\">Заметки о Буче появились сразу в нескольких зарубежных изданиях — похоже на спланированную медиакампанию. Учитывая, что войска покинули город 30 марта, где данные кадры были 4 дня? Их отсутствие лишь подтверждает фейк</p><p class=\"tg-trad\"><span class=\"t-fr\"><span class=\"tg-trad-tete\">Traduit du russe</span>Des articles sur Boutcha sont parus en même temps dans plusieurs médias étrangers&nbsp;: cela ressemble à une campagne médiatique planifiée. Sachant que les troupes ont quitté la ville le 30&nbsp;mars, où étaient ces images pendant 4&nbsp;jours&nbsp;? Leur absence ne fait que confirmer le fake.</span><span class=\"t-en\" hidden=\"\"><span class=\"tg-trad-tete\">Translated from Russian</span>Articles about Bucha appeared simultaneously in several foreign outlets: it looks like a planned media campaign. Given that the troops left the town on 30 March, where were these images for 4 days? Their absence only confirms the fake.</span></p><div class=\"tg-pied\">3 avril 2022</div></div>\n  <div class=\"speaker-notes\" hidden=\"\">Reconstitution d'un post réel de la chaîne Telegram « Война с фейками » (« La guerre contre les fakes »), créée la veille de l'invasion et qui se présente comme du fact-checking ; environ 700 000 abonnés ; post du 3 avril 2022, repartagé le jour même par le ministère russe de la Défense. Texte original cité par Meduza (3/4/2022) : https://meduza.io/news/2022/04/03/telegram-minoborony-rf-repostnul-propagandistskiy-kanal-nazvavshiy-kadry-s-telami-ubityh-v-buche-postanovochnymi-s-ofitsialnoy-pozitsiey-vedomstvo-do-sih-por-ne-vystupalo . La chaîne affirmait aussi que des corps « bougeaient » sur la vidéo (une main levée, un mort qui se relève dans le rétroviseur). Démentis : AFP (5/4/2022) : la « main » est une goutte d'eau sur le pare-brise, les corps sont au même endroit sur les photos du lendemain https://www.blick.ch/fr/monde/la-version-russe-mise-a-mal-non-la-decouverte-de-cadavres-a-boutcha-n-est-pas-une-mise-en-scene-id17379989.html ; Bellingcat (4/4/2022) https://www.bellingcat.com/news/2022/04/04/russias-bucha-facts-versus-the-evidence ; DFRLab (4/4/2022) https://www.atlanticcouncil.org/blogs/new-atlanticist/russian-war-report-kremlin-claims-bucha-massacre-was-staged-by-ukraine/ . Le phénomène : RSF, « Russie : quand le fact-checking devient le nouvel outil de la propagande du Kremlin » (24/6/2025) https://rsf.org/en/russia-fact-checking-kremlins-latest-propaganda-tool ; PolitiFact (8/8/2022) https://www.politifact.com/article/2022/aug/08/how-war-fakes-uses-fact-checking-spread-pro-russia/</div>"
   }
  ],
  "series": [
