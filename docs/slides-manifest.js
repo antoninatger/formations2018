@@ -7786,6 +7786,510 @@ window.COURS_DIAPOS = {
    "contentHtml": "\n    <p class=\"kicker\" data-pose=\"\" data-off-x=\"461.46\" data-off-y=\"272.25\" style=\"left: 46.146%; top: 27.225%;\"><span class=\"t-fr\">Après la séance</span><span class=\"t-en\" hidden=\"\">After the session</span></p>\n    <h2 data-pose=\"\" data-off-x=\"344.92\" data-off-y=\"303.09\" style=\"left: 34.492%; top: 30.309%;\"><span class=\"t-fr\">Le bilan, les jeux, et votre retour</span><span class=\"t-en\" hidden=\"\">Summary, games, and your feedback</span></h2>\n    <p class=\"lead\" data-pose=\"\" data-off-x=\"302.6\" data-off-y=\"375.76\" style=\"left: 30.26%; top: 37.576%;\"><span class=\"t-fr\">Scannez ce QR code&nbsp;: vous pourrez donner votre retour, revoir le bilan de la formation ou rejouer aux jeux.</span><span class=\"t-en\" hidden=\"\">Scan this QR code: you can leave your feedback, review the session summary, or play the games again.</span></p>\n    \n  <img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhwAAAIcAQAAAACVhUrRAAAC80lEQVR42u2dUWrEMAxERS/g+9/SN3C7jSNp5JQW2p+it5SybDbvY2EYaSw7tn7/mgYECBAgQID8HGL+Gvcn4/Xhx/v9Zu3/16Xjljf7gxcQIP8LYi6HLZlP+VxvQjgjtOaXQkpoB0hj7VwO4nbjjlPc57pUbkE7QNCOyycuWYjFq8T4GtoBgnZUO+4vL9O5v+Y1G74DBMhzv5MCgR0LDAkY6HeAAAl1XC+3nm//0i1oB0hb7ZTU2vOBaG00fztu4YcF0lc7WxqWlngsiUij6f253452gHT2nWQ00ddEGmDlv7RCaAdI434nr+nskO1WSlRxtxNF/kbOBoSaLa1+bjfJizulfnMRTXwHSG/t6KhAtD8jajkZZiuJAdoB0rvf8ZGbbC5StuXqTkIGflggXfudNDUdMvHJAa/l7twgYjeyAiDtswKv1mJrw7QctT3YEP0OELRjaWp6hfVImHYuA9HvAKHfKbrQGEGsJ09ZTzJqIPhO2miwnlueXK3lGg/tAKHfkX5nWtaR6CWHBmgHSHPtDN1PfRRsUbnlGyNV4IcF0rXfmaEFk0G1uglORndY3wGCdlbqZcbTiE4R1FriWWgHSGPfiVOkcr9zHFBQDOj+Mj8skMZZQVHHUMfRtVGyAiBASlaQ53NkF08aYzMz6Y/QDpD2WUE5kSBv2yk9kWwdRTtAemcFMXiTBnLy9reSV8uxBmgHSO9+R46WyrsMTEJp/zB1RvywQBr7To7Opk6EnocYGP0OECBW91bXPaHmvmNl4xuzoEDwnRWb2qqCZj1IJxaDWN8Bgu/YsXBT8rSyvqNlG9oB0tl3JAQoXU86k82ejgxFO0Ba+45FX1OdJXvQqgftoh0grbWTn4NgVh6LUBZMw3eo2YCgnXHkA7PuTZDjdOh3gAD5Sjvl0aL5uLalEzvUbEDQzvHQNx2WPtofzmcDgnb0CKmyza3YUL1KzQaks3aslmTRzkyrp+UseXA8vgOks3Z++5pAgAABAgTIDyHv20VZl660GMAAAAAASUVORK5CYII=\" alt=\"QR code vers la page antoninatger.github.io/interventions/retours\" style=\"width: 200px; height: 200px; border-radius: 16px; background: rgb(255, 255, 255); padding: 10px; box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 30px; left: 44.805%; top: 47.267%;\" data-pose=\"\" data-off-x=\"448.05\" data-off-y=\"472.67\"><a href=\"https://antoninatger.github.io/interventions/retours/\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--acc2); font-weight: 800; font-size: 1.05rem; text-decoration: none; border-bottom: 2px solid var(--acc2); padding-bottom: 2px; width: 371.73px; left: 40.345%; top: 71.275%;\" data-pose=\"\" data-off-x=\"403.45\" data-off-y=\"712.75\">\n        <span class=\"t-fr\">antoninatger.github.io/interventions/retours →</span><span class=\"t-en\" hidden=\"\">antoninatger.github.io/interventions/retours →</span>\n      </a>"
   },
   {
+   "id": "entreprise#s0",
+   "titre": "Enjeux de l’information, impact de la désinformation.",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide short cover\" id=\"s0\"",
+   "contentHtml": "\n    <h1 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"300.00\" style=\"left:12.773%;top:30%;width:75%;max-width:none;text-align:left\"><span class=\"t-fr\">Enjeux de l’information, impact de la désinformation.</span><span class=\"t-en\" hidden=\"\"></span></h1><p class=\"lead taille-l\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"520.00\" style=\"left:12.773%;top:52%;text-align:left\"><span class=\"t-fr\">Antonin Atger | Raisonner mieux.</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
+  },
+  {
+   "id": "entreprise#s4",
+   "titre": "Qu'est-ce qu'une Fake News ?",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide short\" id=\"s4\" data-serie=\"serie_0ef36ff2-c740-4bcc-ad54-a47c803fb727\"",
+   "contentHtml": "\n    <p class=\"kicker\" data-pose=\"\" data-off-x=\"475.6\" data-off-y=\"400.88\" style=\"left: 47.56%; top: 40.088%; font-size: 18px;\"><span class=\"t-fr\">Définition</span><span class=\"t-en\" hidden=\"\">Definition</span></p>\n    <h2 data-pose=\"\" data-off-x=\"358.01\" data-off-y=\"431.72\" style=\"left: 35.801%; top: 43.172%; font-size: 48px;\" class=\"\"><span class=\"t-fr\">Qu'est-ce qu'une Fake News ?</span><span class=\"t-en\" hidden=\"\">What is a fake news story?</span></h2>\n    <p class=\"lead step\" data-pose=\"\" data-off-x=\"302.6\" data-off-y=\"504.38\" style=\"left: 30.26%; top: 50.438%; font-size: 28px;\"><span class=\"t-fr\">Une information qui est en contradiction avec l'état actuel des connaissances sur un sujet, partagée parfois de bonne foi, même si on ne peut pas la vérifier par nous-même.</span><span class=\"t-en\" hidden=\"\">A piece of information that contradicts the current state of knowledge on a topic, sometimes shared in good faith, even when we can't verify it ourselves.</span></p>\n  "
+  },
+  {
+   "id": "entreprise#masni-c3-n2-s11",
+   "titre": "Différentes « Fake News »",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"masni-c3-n2-s11\" data-serie=\"serie_f24a047a-c24d-44a8-a673-8cceee078bb9\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"373.61\" data-off-y=\"110.13\" style=\"left:37.361%;top:11.013%\"><span class=\"t-fr\">Différentes « Fake News »</span><span class=\"t-en\" hidden=\"\">Different kinds of \"fake news\"</span></h2>\n    <div class=\"compare\" data-pose=\"\" data-off-x=\"360.26\" data-off-y=\"193.81\" style=\"left:36.026%;top:19.381%\">\n      <div class=\"col sys1\">\n        <h3 class=\"step\" data-order=\"1\"><span class=\"t-fr\">Mésinformation</span><span class=\"t-en\" hidden=\"\">Misinformation</span></h3>\n        <p class=\"taille-l step\" data-order=\"3\"><span class=\"t-fr\">Une infox que l'on partage… mais que l'on croit vraie.</span><span class=\"t-en\" hidden=\"\">Fake news we share… while believing it's true.</span></p>\n      </div>\n      <div class=\"col sys2\">\n        <h3 class=\"step\" data-order=\"2\"><span class=\"t-fr\">Désinformation</span><span class=\"t-en\" hidden=\"\">Disinformation</span></h3>\n        <p class=\"taille-l step\" data-order=\"4\"><span class=\"t-fr\">Une infox que l'on partage… en sachant qu'elle est fausse.</span><span class=\"t-en\" hidden=\"\">Fake news we share… while knowing it's false.</span></p>\n      </div>\n    </div>\n    <p class=\"lead step\" data-order=\"5\" style=\"margin-top:20px;left:30.26%;top:39.205%\" data-pose=\"\" data-off-x=\"302.6\" data-off-y=\"392.05\"><span class=\"t-fr\">« Informations fallacieuses » (misleading news) : beaucoup moins identifiables qu'une Fake News pure et dure, et bien plus partagées, y compris par tous les médias.</span><span class=\"t-en\" hidden=\"\">\"Misleading news\": far less identifiable than outright fake news, and shared much more widely, including by the media themselves.</span></p>\n  "
+  },
+  {
+   "id": "entreprise#masni-c2-vrai-faux",
+   "titre": "Le réflexe : vrai, ou faux ?",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide short\" id=\"masni-c2-vrai-faux\" data-serie=\"serie_f45f0c12-c99c-446e-bd5a-768661479be1\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"377.81\" data-off-y=\"476.87\" style=\"left:37.781%;top:47.687%\"><span class=\"t-fr\">Le réflexe : vrai, ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-xl\" data-pose=\"\" data-off-x=\"150.0\" data-off-y=\"400.0\" style=\"left:15%;top:40%\"><span class=\"t-fr\">VRAI</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-xl\" data-pose=\"\" data-off-x=\"650.0\" data-off-y=\"400.0\" style=\"left:65%;top:40%\"><span class=\"t-fr\">FAUX</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
+  },
+  {
+   "id": "entreprise#s5",
+   "titre": "Quels sont les critères pour valider l'information ?",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s5\" data-serie=\"serie_043e4a77-7a07-444d-9646-de128a43839f\"",
+   "contentHtml": "\n    <style>\n#s5 .crit-roue{position:absolute;left:0;right:0;top:40px;margin:auto;width:1300px;height:790px}\n#s5 .crit-traits{position:absolute;inset:0;width:100%;height:100%}\n#s5 .crit-traits line{stroke:#7dd3fc;stroke-width:5;stroke-linecap:round;opacity:.7}\n#s5 .crit-centre{position:absolute;z-index:2;left:490px;top:235px;width:320px;height:320px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 35% 30%,#3b82f6,#1e3a8a);box-shadow:0 18px 50px rgba(0,0,0,.5);text-align:center}\n#s5 .crit-centre h2{position:static;margin:0;padding:0 34px;font-size:34px;line-height:1.2;color:#fff}\n#s5 .crit-pos{position:absolute;z-index:1;width:216px;height:216px}\n#s5 .crit-pos .retourne{width:216px;height:216px;margin:0}\n#s5 .crit-pos .retourne-face{box-shadow:0 10px 30px rgba(0,0,0,.45)}\n#s5 .crit-pos .retourne-recto{background:radial-gradient(circle at 35% 30%,#64748b,#1e293b)}\n#s5 .crit-pos .retourne-verso{background:radial-gradient(circle at 35% 30%,#fde68a,#f59e0b);padding:0 18px}\n#s5 .crit-pos .retourne-recto p{font-size:84px;font-weight:800;line-height:1;color:#fff;text-shadow:none}\n#s5 .crit-pos .retourne-verso p{font-size:24px;font-weight:700;line-height:1.15;color:#1c1917;text-shadow:none}\n#s5 .attention{position:absolute;left:auto;right:150px;top:auto;bottom:120px}\n#s5 .crit-centre{cursor:pointer}\n.slide.editing#s5 .crit-roue{position:relative;top:auto}\n</style>\n    <div class=\"crit-roue\"><svg class=\"crit-traits step\" data-order=\"1\" viewBox=\"0 0 1300 790\" aria-hidden=\"true\"><line x1=\"650\" y1=\"395\" x2=\"650\" y2=\"105\"/><line x1=\"650\" y1=\"395\" x2=\"1083\" y2=\"250\"/><line x1=\"650\" y1=\"395\" x2=\"1083\" y2=\"540\"/><line x1=\"650\" y1=\"395\" x2=\"650\" y2=\"685\"/><line x1=\"650\" y1=\"395\" x2=\"217\" y2=\"540\"/><line x1=\"650\" y1=\"395\" x2=\"217\" y2=\"250\"/></svg><div class=\"crit-centre\" onclick=\"if(this.closest('.editing'))return;if(this.closest('section').querySelector('.crit-pos.step:not(.shown)'))Deck.next()\"><h2><span class=\"t-fr\">Quels sont les critères pour valider l'information&nbsp;?</span><span class=\"t-en\" hidden=\"\">What criteria help us validate information?</span></h2></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:542px;top:-3px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[0,290,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">1</span><span class=\"t-en\" hidden=\"\">1</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Fiabilité de la source</span><span class=\"t-en\" hidden=\"\">Reliability of the source</span></p></div></div></div></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:975px;top:142px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[-433,145,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">2</span><span class=\"t-en\" hidden=\"\">2</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Fiabilité de l'interlocuteur</span><span class=\"t-en\" hidden=\"\">Reliability of the speaker</span></p></div></div></div></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:975px;top:432px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[-433,-145,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">3</span><span class=\"t-en\" hidden=\"\">3</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Niveau de preuves</span><span class=\"t-en\" hidden=\"\">Level of evidence</span></p></div></div></div></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:542px;top:577px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[0,-290,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">4</span><span class=\"t-en\" hidden=\"\">4</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Plusieurs sources fiables en parlent</span><span class=\"t-en\" hidden=\"\">Several reliable sources report it</span></p></div></div></div></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:109px;top:432px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[433,-145,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">5</span><span class=\"t-en\" hidden=\"\">5</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Crédibilité de l'information</span><span class=\"t-en\" hidden=\"\">Credibility of the information</span></p></div></div></div></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:109px;top:142px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[433,145,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">6</span><span class=\"t-en\" hidden=\"\">6</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Commentaires et critiques de l'information</span><span class=\"t-en\" hidden=\"\">Comments and criticism of the information</span></p></div></div></div></div></div>\n    <p class=\"attention step\" id=\"attention-txt\" data-order=\"2\"><span class=\"t-fr\">Mais attention…</span><span class=\"t-en\" hidden=\"\">But be careful…</span></p>\n  <div class=\"speaker-notes\" hidden=\"\"></div>"
+  },
+  {
+   "id": "entreprise#masni-c2-perception",
+   "titre": "Mais NOTRE perception du vrai et du faux dépend de beaucoup de paramètres",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"masni-c2-perception\" data-serie=\"serie_380f47a5-216a-4efc-ade8-d8445e8a59bc\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"261.04\" data-off-y=\"110.13\" style=\"left:26.104%;top:11.013%\"><span class=\"t-fr\">Mais NOTRE perception du vrai et du faux dépend de beaucoup de paramètres</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-l step\" data-pose=\"\" data-off-x=\"407.63\" data-off-y=\"240.06\" style=\"left:40.763%;top:24.006%\"><span class=\"t-fr\">Qu’est-ce que <b>je</b> juge crédible ?</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"1\" data-pose=\"\" data-off-x=\"343.75\" data-off-y=\"299.53\" style=\"left:34.375%;top:29.953%\"><span class=\"t-fr\">Ce que je juge crédible dépend de ce que je sais déjà,</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"2\" data-pose=\"\" data-off-x=\"452.74\" data-off-y=\"359\" style=\"left:45.274%;top:35.9%\"><span class=\"t-fr\">de qui me le dit,</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"3\" data-pose=\"\" data-off-x=\"407.98\" data-off-y=\"418.47\" style=\"left:40.798%;top:41.847%\"><span class=\"t-fr\">et de ce que j’ai envie de croire.</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
+  },
+  {
+   "id": "entreprise#masni-c2-credible-vrai",
+   "titre": "Crédible ≠ Vrai",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide short\" id=\"masni-c2-credible-vrai\" data-serie=\"serie_78c0490e-7b4b-4f41-8d7a-380c86fb787d\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"429.27\" data-off-y=\"425.11\" style=\"left:42.927%;top:42.511%\"><span class=\"t-fr\">Crédible ≠ Vrai</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-l step\" data-pose=\"\" data-off-x=\"302.6\" data-off-y=\"497.78\" style=\"left:30.26%;top:49.778%\"><span class=\"t-fr\">Une information peut être parfaitement crédible et complètement fausse. Et l’inverse aussi.</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
+  },
+  {
+   "id": "entreprise#s6-1",
+   "titre": "Emmanuel Macron est président de la République.",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"s6-1\" data-serie=\"serie_3ab7bd6c-1b14-4275-a81c-5f9b7bc04b2d\"",
+   "contentHtml": "\n    <p class=\"kicker\" style=\"left:45.01%;top:11.013%\" data-off-x=\"450.1\" data-off-y=\"110.13\" data-pose=\"\"><span class=\"t-fr\">Vrai ou faux ? (1/7)</span><span class=\"t-en\" hidden=\"\">True or false? (1/7)</span></p>\n    <h2 class=\"\" style=\"left:25.665%;top:14.097%\" data-off-x=\"256.65\" data-off-y=\"140.97\" data-pose=\"\"><span class=\"t-fr\">Emmanuel Macron est président de la République.</span><span class=\"t-en\" hidden=\"\">Emmanuel Macron is President of the Republic.</span></h2>\n    <div class=\"imgcard-full\" style=\"max-height: none;max-width: 360.648px;left:40.58%;top:27.282%;width:360.648px\" data-off-x=\"405.8\" data-off-y=\"272.82\" data-pose=\"\"><img src=\"../medias/images/macron-president.jpg\" alt=\"\" style=\"width: 100%; height: auto; max-width: none; max-height: none;\"><span class=\"vf-marque vf-vrai step\" title=\"Vrai\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M22 53 L42 72 L80 30\"/></svg></span></div>\n  "
+  },
+  {
+   "id": "entreprise#s6-2",
+   "titre": "Le plateau de Gizeh se trouve en Égypte.",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"s6-2\" data-serie=\"serie_3ab7bd6c-1b14-4275-a81c-5f9b7bc04b2d\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ? (2/7)</span><span class=\"t-en\" hidden>True or false? (2/7)</span></p>\n    <h2><span class=\"t-fr\">Le plateau de Gizeh se trouve en Égypte.</span><span class=\"t-en\" hidden>The Giza plateau is located in Egypt.</span></h2>\n    <div class=\"imgcard-full\"><img src=\"../medias/images/pyramides-gizeh.jpg\" alt=\"\"><span class=\"vf-marque vf-vrai step\" title=\"Vrai\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M22 53 L42 72 L80 30\"/></svg></span></div>\n  "
+  },
+  {
+   "id": "entreprise#s6-3",
+   "titre": "Le président a rencontré un alien.",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"s6-3\" data-serie=\"serie_3ab7bd6c-1b14-4275-a81c-5f9b7bc04b2d\"",
+   "contentHtml": "\n    <p class=\"kicker\" style=\"transform: translate(-8.44px, 0px);\" data-off-x=\"-8.44\" data-off-y=\"0\"><span class=\"t-fr\">Vrai ou faux ? (3/7)</span><span class=\"t-en\" hidden=\"\">True or false? (3/7)</span></p>\n    <h2 class=\"\" style=\"transform: translate(-8.44px, 0px);\" data-off-x=\"-8.44\" data-off-y=\"0\"><span class=\"t-fr\">Le président a rencontré un alien.</span><span class=\"t-en\" hidden=\"\">The president met an alien.</span></h2>\n    <div class=\"imgcard-full\" style=\"transform: translate(-8.44px, 0px);\" data-off-x=\"-8.44\" data-off-y=\"0\"><img src=\"../medias/images/macron-alien-ia.jpg\" alt=\"\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M26 26 L74 74 M74 26 L26 74\"/></svg></span></div>\n  "
+  },
+  {
+   "id": "entreprise#s6-4",
+   "titre": "Le soleil est une étoile.",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"s6-4\" data-serie=\"serie_3ab7bd6c-1b14-4275-a81c-5f9b7bc04b2d\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ? (4/7)</span><span class=\"t-en\" hidden>True or false? (4/7)</span></p>\n    <h2><span class=\"t-fr\">Le soleil est une étoile.</span><span class=\"t-en\" hidden>The sun is a star.</span></h2>\n    <div class=\"imgcard-full\"><img src=\"../medias/images/soleil-etoile.jpg\" alt=\"\"><span class=\"vf-marque vf-vrai step\" title=\"Vrai\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M22 53 L42 72 L80 30\"/></svg></span></div>\n  "
+  },
+  {
+   "id": "entreprise#s6-5",
+   "titre": "L'étoile du berger est une étoile.",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"s6-5\" data-serie=\"serie_3ab7bd6c-1b14-4275-a81c-5f9b7bc04b2d\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ? (5/7)</span><span class=\"t-en\" hidden>True or false? (5/7)</span></p>\n    <h2><span class=\"t-fr\">L'étoile du berger est une étoile.</span><span class=\"t-en\" hidden>The \"shepherd's star\" is a star.</span></h2>\n    <div class=\"imgcard-full\"><img src=\"../medias/images/etoile-berger-venus.jpg\" alt=\"\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M26 26 L74 74 M74 26 L26 74\"/></svg></span></div>\n  "
+  },
+  {
+   "id": "entreprise#masni-c2-chauves-souris",
+   "titre": "Les chauves-souris sont aveugles.",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-chauves-souris\" data-serie=\"serie_dd6605c2-fda3-44cb-b4ab-1ced3ec10d64\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">Les chauves-souris sont aveugles.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-chauve-souris.jpg\" alt=\"Une chauve-souris en vol\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Faux. Elles voient, et complètent leur vue par l’écholocation.</div>\n  "
+  },
+  {
+   "id": "entreprise#masni-c2-pieuvres",
+   "titre": "Les pieuvres ont trois cœurs.",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-pieuvres\" data-serie=\"serie_e56bbd59-5c9f-4d0c-9bfd-ef4b8bc8edaf\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">Les pieuvres ont trois cœurs.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-pieuvre.jpg\" alt=\"Une pieuvre\" loading=\"lazy\"><span class=\"vf-marque vf-vrai step\" title=\"Vrai\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M22 53 L42 72 L80 30\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Vrai. Un cœur principal, et un pour chacune de leurs deux branchies.</div>\n  "
+  },
+  {
+   "id": "entreprise#masni-c2-sushi",
+   "titre": "Le terme « sushi » désigne « poisson cru » en japonais.",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-sushi\" data-serie=\"serie_290cff5f-f4a4-471a-b093-9ac54e45fb91\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">Le terme « sushi » désigne « poisson cru » en japonais.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-sushi.jpg\" alt=\"Des sushis\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Faux. « Sushi » désigne le riz vinaigré. Le poisson cru, c’est le sashimi.</div>\n  "
+  },
+  {
+   "id": "entreprise#masni-c2-coriolis",
+   "titre": "L’eau tourbillonne dans un sens différent selon l’hémisphère (effet Coriolis).",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-coriolis\" data-serie=\"serie_ef07b431-03f9-471f-bef3-b1205fba45a2\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">L’eau tourbillonne dans un sens différent selon l’hémisphère (effet Coriolis).</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-lavabo-tourbillon.jpg\" alt=\"Un tourbillon d’eau dans un lavabo\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Faux à l’échelle d’un lavabo : la force de Coriolis y est négligeable devant la forme du bac et le mouvement initial de l’eau.</div>\n  "
+  },
+  {
+   "id": "entreprise#masni-c2-chats-fluo",
+   "titre": "Nous avons créé des chats fluorescents.",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-chats-fluo\" data-serie=\"serie_106dbe1f-fae1-44ac-ae8d-cb9898fedf47\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">Nous avons créé des chats fluorescents.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-chat-fluorescent.jpg\" alt=\"Un chat fluorescent\" loading=\"lazy\"><span class=\"vf-marque vf-vrai step\" title=\"Vrai\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M22 53 L42 72 L80 30\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Vrai. Des chats transgéniques fluorescents ont été produits en laboratoire, pour la recherche sur le sida félin.</div>\n  "
+  },
+  {
+   "id": "entreprise#masni-c2-mousse-nord",
+   "titre": "La mousse sur les arbres pousse toujours au nord.",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-mousse-nord\" data-serie=\"serie_a2e53519-1b5d-4713-b6fa-6e2497fcca6a\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">La mousse sur les arbres pousse toujours au nord.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-mousse-arbre.jpg\" alt=\"De la mousse sur un tronc d’arbre\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Faux. Elle pousse du côté le plus humide, qui dépend du relief, du vent et de l’ombre.</div>\n  "
+  },
+  {
+   "id": "entreprise#masni-c2-pyramides-et",
+   "titre": "Les pyramides ont été construites par des extra-terrestres.",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-pyramides-et\" data-serie=\"serie_5ef28757-d9d6-4489-b045-9b96c93d52db\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">Les pyramides ont été construites par des extra-terrestres.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-pyramides-extraterrestres.png\" alt=\"Illustration complotiste des pyramides\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Faux. Et c’est une théorie du complot de plein droit : elle suppose une dissimulation générale des égyptologues.</div>\n  "
+  },
+  {
+   "id": "entreprise#masni-c2-pyramides-esclaves",
+   "titre": "Les pyramides ont été construites par des esclaves.",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-pyramides-esclaves\" data-serie=\"serie_77791c4b-2ceb-457a-86ea-6b452be49737\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">Les pyramides ont été construites par des esclaves.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-pyramides-ouvriers.jpg\" alt=\"Chantier des pyramides\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Faux, au moins en partie : les fouilles montrent des ouvriers logés, nourris et soignés, pas des esclaves.</div>\n  "
+  },
+  {
+   "id": "entreprise#masni-c2-ia-titre",
+   "titre": "Quelle photo est en IA, quelle photo est réelle ?",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide short divider-slide\" id=\"masni-c2-ia-titre\" data-serie=\"serie_6563614e-f141-4b70-a7ed-0918e9ea9358\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"261.04\" data-off-y=\"439.43\" style=\"left:26.104%;top:43.943%\"><span class=\"t-fr\">Quelle photo est en IA, quelle photo est réelle ?</span><span class=\"t-en\" hidden=\"\"></span></h2>\n  "
+  },
+  {
+   "id": "entreprise#masni-c2-ia-1",
+   "titre": "Vraie photo, ou générée par IA ?",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide photo-ia\" id=\"masni-c2-ia-1\" data-serie=\"serie_5356ff4b-e784-4089-a18a-6ae45a2580a1\"",
+   "contentHtml": "\n    <h2><span class=\"t-fr\">Vraie photo, ou générée par IA ?</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-photo-ia-1.png\" alt=\"Un portrait ancien : vraie photo, ou générée par IA ?\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  "
+  },
+  {
+   "id": "entreprise#masni-c2-ia-2",
+   "titre": "Vraie photo, ou générée par IA ?",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide photo-ia\" id=\"masni-c2-ia-2\" data-serie=\"serie_3a78ce9b-5cf1-475d-95f6-9476b8e54efc\"",
+   "contentHtml": "\n    <h2><span class=\"t-fr\">Vraie photo, ou générée par IA ?</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-photo-ia-2.jpg\" alt=\"Une scène de rue : vraie photo, ou générée par IA ?\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  "
+  },
+  {
+   "id": "entreprise#masni-c2-ia-3",
+   "titre": "Vraie photo, ou générée par IA ?",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide photo-ia\" id=\"masni-c2-ia-3\" data-serie=\"serie_847e9aaf-5c40-44b1-a92c-66c910b13197\"",
+   "contentHtml": "\n    <h2><span class=\"t-fr\">Vraie photo, ou générée par IA ?</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/quiz-ia-flamant-rose-beach.png\" alt=\"Un flamant rose sur une plage : vraie photo, ou générée par IA ?\" loading=\"lazy\"><span class=\"vf-marque vf-vrai step\" title=\"Vrai\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M22 53 L42 72 L80 30\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Celle-ci est une vraie photo. Le plus difficile n’est pas de repérer l’IA : c’est d’accepter qu’on ne sait pas.</div>\n  "
+  },
+  {
+   "id": "entreprise#masni-c2-au-dela",
+   "titre": "Au-delà du vrai / faux",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide short divider-slide\" id=\"masni-c2-au-dela\" data-serie=\"serie_08b0c044-ed57-4045-b68a-100bbfe7c612\"",
+   "contentHtml": "\n    <div class=\"em\" data-pose=\"\" data-off-x=\"492.51\" data-off-y=\"430.62\" style=\"left:49.251%;top:43.062%\"><span class=\"t-fr\">2</span><span class=\"t-en\" hidden=\"\"></span></div><h2 data-pose=\"\" data-off-x=\"381.4\" data-off-y=\"514.32\" style=\"left:38.14%;top:51.432%\"><span class=\"t-fr\">Au-delà du vrai / faux</span><span class=\"t-en\" hidden=\"\"></span></h2>\n  "
+  },
+  {
+   "id": "entreprise#masni-c2-terre-365",
+   "titre": "La Terre tourne autour du Soleil en 365 jours.",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-terre-365\" data-serie=\"serie_5045dbd2-2a5c-4ac3-945a-f68450e39686\"",
+   "contentHtml": "\n    <h2><span class=\"t-fr\">La Terre tourne autour du Soleil en 365 jours.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-terre-soleil.png\" alt=\"La Terre et le Soleil\" loading=\"lazy\"><span class=\"vf-marque vf-presque step\" title=\"Presque\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path style=\"stroke:#f59e0b\" d=\"M18 40 C30 28 42 28 50 40 S70 52 82 40 M18 64 C30 52 42 52 50 64 S70 76 82 64\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Presque : 365,2422 jours. C’est pour cela qu’il existe des années bissextiles. « Vrai » et « faux » ne suffisent pas toujours.</div>\n  "
+  },
+  {
+   "id": "entreprise#masni-c2-terre-ronde",
+   "titre": "La Terre est ronde.",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-terre-ronde\" data-serie=\"serie_a47e0aa5-7b27-435f-9980-7bea4a47178c\"",
+   "contentHtml": "\n    <h2><span class=\"t-fr\">La Terre est ronde.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-terre-ronde.jpg\" alt=\"La Terre vue de l’espace\" loading=\"lazy\"><span class=\"vf-marque vf-presque step\" title=\"Presque\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path style=\"stroke:#f59e0b\" d=\"M18 40 C30 28 42 28 50 40 S70 52 82 40 M18 64 C30 52 42 52 50 64 S70 76 82 64\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Presque : c’est un géoïde, légèrement aplati aux pôles. L’approximation est utile, mais c’est une approximation.</div>\n  "
+  },
+  {
+   "id": "entreprise#masni-c2-respirer-avaler",
+   "titre": "On ne peut pas respirer et avaler en même temps.",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-respirer-avaler\" data-serie=\"serie_fd36ca8c-d62a-4df3-9944-9ffb5d927974\"",
+   "contentHtml": "\n    <h2><span class=\"t-fr\">On ne peut pas respirer et avaler en même temps.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-deglutition.jpg\" alt=\"Schéma de la déglutition\" loading=\"lazy\"><span class=\"vf-marque vf-presque step\" title=\"Presque\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path style=\"stroke:#f59e0b\" d=\"M18 40 C30 28 42 28 50 40 S70 52 82 40 M18 64 C30 52 42 52 50 64 S70 76 82 64\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Vrai chez l’adulte… mais faux chez le nourrisson, qui peut téter et respirer en même temps. Le contexte change la réponse.</div>\n  "
+  },
+  {
+   "id": "entreprise#masni-c2-chiens-transpirent",
+   "titre": "Les chiens ne transpirent pas.",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-chiens-transpirent\" data-serie=\"serie_a85fa043-826a-409c-9a8a-07c3cabd9b72\"",
+   "contentHtml": "\n    <h2><span class=\"t-fr\">Les chiens ne transpirent pas.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-chien.jpg\" alt=\"Un chien\" loading=\"lazy\"><span class=\"vf-marque vf-presque step\" title=\"Presque\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path style=\"stroke:#f59e0b\" d=\"M18 40 C30 28 42 28 50 40 S70 52 82 40 M18 64 C30 52 42 52 50 64 S70 76 82 64\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Presque : ils transpirent très peu, par les coussinets. Ils se refroidissent surtout en haletant.</div>\n  "
+  },
+  {
+   "id": "entreprise#s7",
+   "titre": "Distinguer une vraie information d'une fausse information n'est pas toujours facile !",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide short\" id=\"s7\" data-serie=\"serie_b5606e81-4c2a-4a91-affa-c71a3a6d0117\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"261.04\" data-off-y=\"422.93\" style=\"left:26.104%;top:42.293%\"><span class=\"t-fr\">Distinguer une vraie information d'une fausse information n'est pas toujours facile !</span><span class=\"t-en\" hidden=\"\">Telling real information from fake isn't always easy!</span></h2>\n    <p class=\"lead\" data-pose=\"\" data-off-x=\"379.62\" data-off-y=\"552.84\" style=\"left:37.962%;top:55.284%\"><span class=\"t-fr\">Et en plus… même nos yeux peuvent nous tromper.</span><span class=\"t-en\" hidden=\"\">And on top of that… even our eyes can fool us.</span></p>\n  "
+  },
+  {
+   "id": "entreprise#s11",
+   "titre": "Regardez bien",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s11\" data-serie=\"serie_38aca19c-7af7-4b66-a9fb-84bfa50f9520\"",
+   "contentHtml": "\n    <p class=\"kicker\" style=\"left: 47.065%; top: 11.239%;\" data-off-x=\"470.65\" data-off-y=\"112.39\" data-pose=\"\"><span class=\"t-fr\">Regardez bien</span><span class=\"t-en\" hidden=\"\">Watch closely</span></p>\n    \n    <p class=\"lead step\" data-order=\"1\" style=\"margin-top: 14px; left: 30.757%; top: 81.531%;\" data-off-x=\"307.57\" data-off-y=\"815.31\" data-pose=\"\"><span class=\"t-fr\">« Monsieur, c'est mal cadré ! » .</span><span class=\"t-en\" hidden=\"\">\"Sir, that's badly framed!\" A simple crop is enough to completely change what we think we're seeing.</span></p>\n  <div class=\"vid-rotate-wrap\" data-pose=\"\" data-off-x=\"294.4\" data-off-y=\"158.64\" style=\"width: 791.55px; left: 29.44%; top: 15.864%;\">\n        <div class=\"vidwrap\" id=\"cadrage-vidwrap1\" style=\"max-width: 791.561px; width: 791.561px; transform: translate(28.6px, -72.95px);\" data-off-x=\"28.6\" data-off-y=\"-72.95\"><video src=\"../medias/video/cadrage-rocketman.mp4\" controls=\"\" playsinline=\"\"></video></div>\n        <button type=\"button\" class=\"rotate-btn\" data-target=\"#cadrage-vidwrap1\" title=\"Pivoter d'un quart de tour\">⟳</button>\n      </div>"
+  },
+  {
+   "id": "entreprise#communiquer-d194",
+   "titre": "",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"communiquer-d194\" data-serie=\"serie_a91cbcd4-3164-4116-8701-d441e5fe4b16\"",
+   "contentHtml": "\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"291.552\" data-off-y=\"38.71\" style=\"left:29.155%;top:3.871%;width:41.69%;max-width:none\"><img src=\"../medias/images/communiquer-194-42.jpg\" alt=\"\" loading=\"lazy\"></div>\n    <div class=\"imgcard step\" data-pose=\"\" data-off-x=\"291.552\" data-off-y=\"38.71\" style=\"left:29.155%;top:3.871%;width:41.69%;max-width:none\"><img src=\"../medias/images/communiquer-194-42.jpg\" alt=\"\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "entreprise#s11b",
+   "titre": "Biais de cadrage",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide short\" id=\"s11b\" data-serie=\"serie_03f69558-9c13-4e87-a4c2-3ae4371e3714\"",
+   "contentHtml": "\n    <p class=\"kicker\" data-pose=\"\" data-off-x=\"50\" data-off-y=\"350\" style=\"left:5%;top:35%;width:90%;max-width:none;text-align:center;font-size:38px\"><span class=\"t-fr\">Définition</span><span class=\"t-en\" hidden=\"\">Definition</span></p>\n    <h2 data-pose=\"\" data-off-x=\"50\" data-off-y=\"415.0\" style=\"left:5%;top:41.5%;width:90%;max-width:none;text-align:center;font-size:54px\"><span class=\"t-fr\">Biais de cadrage</span><span class=\"t-en\" hidden=\"\">Framing bias</span></h2>\n    <p class=\"lead\" data-pose=\"\" data-off-x=\"150\" data-off-y=\"520\" style=\"left:15%;top:52%;font-size:34px;width:70%;max-width:none;text-align:center;line-height:1.45\"><span class=\"t-fr\">La manière dont une information est présentée, son « cadre », influence notre jugement, indépendamment du contenu réel de l'information.</span><span class=\"t-en\" hidden=\"\">The way information is presented, its \"frame\", shapes our judgement, regardless of the actual content.</span></p>\n  <div class=\"speaker-notes\" hidden=\"\">Test</div>"
+  },
+  {
+   "id": "entreprise#s-paul-1",
+   "titre": "#s-paul-1 .tw-scene{position:absolute;left:0;right:0;top:14px;margin:auto;width:",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s-paul-1\" data-serie=\"group_b7609409-f9cb-4eb7-82a3-7afa3bad2ea2\"",
+   "contentHtml": "\n    <style>\n#s-paul-1 .tw-scene{position:absolute;left:0;right:0;top:14px;margin:auto;width:1820px;height:870px;text-align:left;font-family:Arial,Helvetica,sans-serif}\n#s-paul-1 .tw-col{position:absolute;left:630px;top:0;width:560px;transition:left .6s ease}\n#s-paul-1 .tw-scene:has(.reveal-box.show) .tw-col{left:0}\n#s-paul-1 .tw-carte{box-sizing:border-box;padding:20px 22px 22px;background:#000;border:1px solid #2f3336;border-radius:18px;color:#e7e9ea;box-shadow:0 16px 40px rgba(0,0,0,.5)}\n#s-paul-1 .tw-tete{display:flex;align-items:center;gap:14px}\n#s-paul-1 .tw-logo{flex:none;width:60px;height:60px;border-radius:9px;display:block}\n#s-paul-1 .tw-ident{display:flex;flex-direction:column;line-height:1.2}\n#s-paul-1 .tw-nom{font-size:24px;font-weight:700;color:#e7e9ea;display:flex;align-items:center;gap:6px}\n#s-paul-1 .tw-badge{width:22px;height:22px}\n#s-paul-1 .tw-pseudo{font-size:20px;color:#71767b}\n#s-paul-1 .tw-suivre{margin-left:auto;padding:8px 22px;border-radius:30px;background:#eff3f4;color:#0f1419;font-size:19px;font-weight:700}\n#s-paul-1 .tw-points{margin-left:14px;color:#71767b;font-size:26px;line-height:1}\n#s-paul-1 .tw-texte{margin:14px 0 0;max-width:none;font-size:23px;line-height:1.35;color:#e7e9ea;font-weight:400}\n#s-paul-1 .tw-photo{display:block;width:100%;height:auto;margin-top:14px;border-radius:16px;border:1px solid #2f3336}\n#s-paul-1 .tw-voir{display:block;width:560px;margin:14px 0 0;padding:12px 0;border-radius:40px;border:1px solid #1d9bf0;background:#000;color:#1d9bf0;font:700 20px Arial,Helvetica,sans-serif;cursor:pointer}\n#s-paul-1 .tw-commentaires{position:absolute;left:600px;top:0;width:1220px;margin:0}\n#s-paul-1 .tw-commentaires.show{max-height:880px}\n#s-paul-1 .tw-liste{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px}\n#s-paul-1 .tw-com{display:flex;gap:12px;box-sizing:border-box;padding:12px 14px;background:#000;border:1px solid #2f3336;border-radius:14px;color:#e7e9ea;min-height:108px}\n#s-paul-1 .tw-ava{flex:none;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:20px}\n#s-paul-1 .tw-com-corps{min-width:0}\n#s-paul-1 .tw-com-tete{margin:0;max-width:none;font-size:17px;line-height:1.25;color:#e7e9ea}\n#s-paul-1 .tw-com-tete span{color:#71767b}\n#s-paul-1 .tw-com-texte{margin:4px 0 0;max-width:none;font-size:18px;line-height:1.3;color:#e7e9ea;font-weight:400}\n#s-paul-1 .tw-lien{color:#1d9bf0;text-decoration:none;font-weight:400}\n#s-paul-1 .tw-lien:hover{text-decoration:underline}\n</style>\n    <div class=\"tw-scene\"><div class=\"tw-col\"><div class=\"tw-carte\"><div class=\"tw-tete\"><img class=\"tw-logo\" src=\"../medias/images/logo-bfmtv.png\" alt=\"BFMTV\"><span class=\"tw-ident\"><span class=\"tw-nom\">BFMTV <svg class=\"tw-badge\" viewBox=\"0 0 22 22\" aria-hidden=\"true\"><path fill=\"#e2b719\" d=\"M20.4 11c0-1.4-.8-2.6-2-3.2.4-1.3.1-2.8-.9-3.8s-2.4-1.3-3.8-.9C13.1 1.9 11.9 1.1 10.5 1.1S7.9 1.9 7.3 3.1c-1.3-.4-2.8-.1-3.8.9s-1.3 2.4-.9 3.8C1.4 8.4.6 9.6.6 11s.8 2.6 2 3.2c-.4 1.3-.1 2.8.9 3.8s2.4 1.3 3.8.9c.6 1.2 1.8 2 3.2 2s2.6-.8 3.2-2c1.3.4 2.8.1 3.8-.9s1.3-2.4.9-3.8c1.2-.6 2-1.8 2-3.2z\"/><path fill=\"#000\" d=\"M9.2 15.2l-3.4-3.4 1.3-1.3 2.1 2.1 5-5 1.3 1.3z\"/></svg></span><span class=\"tw-pseudo\">@BFMTV</span></span><span class=\"tw-suivre\">Suivre</span><span class=\"tw-points\">⋮</span></div><p class=\"tw-texte\">💬\"J'ai tout perdu\"<br><br>À 82 ans, Paul va être expulsé de sa maison car ses belles-filles ont décidé de la vendre</p><img class=\"tw-photo\" src=\"../medias/images/paul-histoire-1-photo.jpg\" alt=\"Paul, 82 ans, interviewé par BFMTV\"></div><button type=\"button\" class=\"reveal-btn tw-voir\" onclick=\"Deck.revealBox('rb-s-paul-1-1')\"><span class=\"t-fr\">Voir les commentaires</span><span class=\"t-en\" hidden=\"\">Show comments</span></button></div><div class=\"reveal-box tw-commentaires\" id=\"rb-s-paul-1-1\"><div class=\"tw-liste\"><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#e11d48\">M</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Martine 🌻</b> <span>@martine_lili · 1 h</span></p><p class=\"tw-com-texte\">Honteux !!! Mettre un monsieur de 82 ans à la rue… Ces belles-filles sont des p*******s sans cœur 🤬</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#2563eb\">K</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Kévin</b> <span>@kev_du_94 · 1 h</span></p><p class=\"tw-com-texte\">Bande de s*****s. J'espère qu'elles vont tout perdre elles aussi</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#16a34a\">S</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Sandrine B.</b> <span>@sandrine_b · 58 min</span></p><p class=\"tw-com-texte\">Le pauvre… 😢 Il a travaillé toute sa vie pour cette maison et ces deux c*******s le jettent dehors</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#9333ea\">L</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Le Vrai Gaulois</b> <span>@vraigaulois · 55 min</span></p><p class=\"tw-com-texte\">Voilà la famille aujourd'hui. Plus aucun respect pour les anciens. Des o*****s, rien d'autre.</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#ea580c\">J</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Juju</b> <span>@juju_off · 52 min</span></p><p class=\"tw-com-texte\">Moi à sa place je les déshérite direct ces m*****s 😤</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#0891b2\">N</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Nathalie G.</b> <span>@nath_g62 · 50 min</span></p><p class=\"tw-com-texte\">Je pleure en voyant ça. Comment on peut faire ça à son beau-père ?? Elles n'ont aucune honte</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#ca8a04\">D</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Dédé du 13</b> <span>@dede13 · 47 min</span></p><p class=\"tw-com-texte\">Qu'elles viennent me dire ça en face, les p*****s 👊</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#db2777\">S</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Sophie</b> <span>@sophie_75 · 44 min</span></p><p class=\"tw-com-texte\">Partagez un max !!! Il faut que tout le monde sache ce que ces v*******s ont fait 🔁</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#4f46e5\">T</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Thomas</b> <span>@thomas_lit · 41 min</span></p><p class=\"tw-com-texte\">Attendez, en fait, on n'a pas tous les éléments… Lisez ça avant de vous énerver 👇<br><a href=\"#\" class=\"tw-lien\" onclick=\"if(!this.closest('.slide.editing')){Deck.next();}return false;\">francelive.fr/paul-82-ans-la-verite</a></p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#059669\">G</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Gégé</b> <span>@gerard_retraite · 39 min</span></p><p class=\"tw-com-texte\">Courage Paul ❤️ Et honte à ces deux c*******s, le karma va les rattraper</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#dc2626\">L</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Lucas</b> <span>@lucas_33 · 35 min</span></p><p class=\"tw-com-texte\">Elles mériteraient d'être expulsées à leur tour, on verra si elles rigolent 😡</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#7c3aed\">K</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Karine 🐾</b> <span>@karine_animo · 31 min</span></p><p class=\"tw-com-texte\">Dégoûtée de l'humanité. L'argent, toujours l'argent. Des r******s, ces bonnes femmes.</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#0d9488\">M</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>MaxPower</b> <span>@maxpower_off · 28 min</span></p><p class=\"tw-com-texte\">Quelqu'un a leurs noms ? Faut les afficher partout, ces s*****s 😠</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#b45309\">B</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Brigitte</b> <span>@brigitte_l · 25 min</span></p><p class=\"tw-com-texte\">Pauvre homme… 82 ans !! Où va le monde 😭😭</p></div></div></div></div></div>\n    <p class=\"lead media-note t-en\" hidden=\"\" style=\"\">This newspaper clipping is in French.</p>\n  "
+  },
+  {
+   "id": "entreprise#s-paul-2",
+   "titre": "This newspaper clipping is in French.",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s-paul-2\" data-serie=\"group_b7609409-f9cb-4eb7-82a3-7afa3bad2ea2\"",
+   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"393.5\" data-off-y=\"70\" style=\"left:39.35%;top:7%;max-width:none;max-height:none\"><img style=\"width:410px;height:auto;max-width:none;max-height:none\" src=\"../medias/images/paul-histoire-2--niveau1.jpg\" alt=\"Suite : le point de vue des filles de Paul\"></div>\n    <p class=\"lead media-note t-en\" hidden=\"\">This newspaper clipping is in French.</p>\n  "
+  },
+  {
+   "id": "entreprise#ent-mandon-titre",
+   "titre": "",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"ent-mandon-titre\"",
+   "contentHtml": "\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"195.00\" data-off-y=\"40.00\" style=\"left:19.5%;top:4%;width:61%;max-width:none\"><img src=\"../medias/images/entreprise-mandon-accepter-de-perdre-nos-enfants.jpg\" alt=\"\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "entreprise#ent-mandon-article",
+   "titre": "",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"ent-mandon-article\"",
+   "contentHtml": "\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"220.00\" data-off-y=\"60.00\" style=\"left:22%;top:6%;width:56%;max-width:none\"><img src=\"../medias/images/entreprise-mandon-article.png\" alt=\"\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "entreprise#s15",
+   "titre": "This video is in French.",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s15\" data-serie=\"serie_68740caf-9b83-4151-a849-eb7599a93d54\"",
+   "contentHtml": "\n    <div class=\"vidwrap\" data-pose=\"\" data-off-x=\"299.63\" data-off-y=\"133.53\" style=\"width: 819.031px; max-height: none; max-width: 819.031px; left: 29.963%; top: 13.353%;\"><video src=\"../medias/video/alerte-ukraine-sensible.mp4\" controls=\"\" playsinline=\"\" data-recadre-video=\"19 0 0 0\" style=\"object-view-box: inset(19% 0% 0%); width: 100%; height: auto; max-width: none; max-height: none;\"></video></div>\n    <p class=\"lead media-note t-en\" hidden=\"\" style=\"\">This video is in French.</p>\n  "
+  },
+  {
+   "id": "entreprise#ent-erreur-information-perception",
+   "titre": "L’erreur peut se trouver dans l’information,",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"ent-erreur-information-perception\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.70\" style=\"left:12.773%;top:9.57%;width:75%;max-width:none;text-align:left\"><span class=\"t-fr\">L’erreur peut se trouver dans l’information,</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard\" data-pose=\"\" data-off-x=\"100.00\" data-off-y=\"380.00\" style=\"left:10%;top:38%;width:33%;max-width:none\"><img src=\"../medias/images/entreprise-information.png\" alt=\"\" loading=\"lazy\"></div><p class=\"lead taille-xl step\" data-order=\"1\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"220.00\" style=\"left:12.773%;top:22%;width:75%;max-width:none;text-align:left\"><span class=\"t-fr\">ou dans notre perception.</span><span class=\"t-en\" hidden=\"\"></span></p><div class=\"imgcard step\" data-order=\"1\" data-pose=\"\" data-off-x=\"550.00\" data-off-y=\"380.00\" style=\"left:55%;top:38%;width:31%;max-width:none\"><img src=\"../medias/images/entreprise-cerveau.jpg\" alt=\"\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "entreprise#s26-2",
+   "titre": "Les autres manières de désinformer",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide divider-slide short\" id=\"s26-2\" data-serie=\"serie_51ef73f5-bc37-45be-a9ef-79dcefd12ebd\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"312.26\" data-off-y=\"473.93\" style=\"left:31.226%;top:47.393%\"><span class=\"t-fr\">Les autres manières de désinformer</span><span class=\"t-en\" hidden=\"\">Other ways to mislead</span></h2>\n  "
+  },
+  {
+   "id": "entreprise#masni-c3-n2-s27",
+   "titre": "Simuler la foule, simuler l'opinion",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"masni-c3-n2-s27\" data-serie=\"serie_09775910-932e-4f7f-b218-a23b2905a898\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"338.95\" data-off-y=\"112.56\" style=\"left: 33.895%; top: 11.256%;\"><span class=\"t-fr\">Simuler la foule, simuler l'opinion</span><span class=\"t-en\" hidden=\"\">Faking the crowd, faking opinion</span></h2>\n    \n  <div class=\"m-item\" data-pose=\"\" data-off-x=\"287.54\" data-off-y=\"190.74\" style=\"width: 197.5px; left: 28.754%; top: 19.074%;\"><img src=\"../medias/images/mcdo-osaka-foule.jpg\" alt=\"Foule devant un McDonald's à Osaka\"></div><div class=\"m-item\" data-pose=\"\" data-off-x=\"395.33\" data-off-y=\"190.74\" style=\"width: 197.5px; left: 39.533%; top: 19.074%;\"><img src=\"../medias/images/mcdo-osaka-titre.jpg\" alt=\"Titre : McDonald's admet avoir payé 1000 personnes\"></div><div class=\"m-item\" data-pose=\"\" data-off-x=\"503.12\" data-off-y=\"190.74\" style=\"width: 197.5px; left: 50.312%; top: 19.074%;\"><img src=\"../medias/images/lloyd-bentsen.jpg\" alt=\"Le sénateur Lloyd Bentsen\"></div><div class=\"m-item\" data-pose=\"\" data-off-x=\"610.9\" data-off-y=\"190.74\" style=\"width: 197.5px; left: 61.09%; top: 19.074%;\"><img src=\"../medias/images/telegram-silhouette.jpg\" alt=\"Silhouette avec smartphone Telegram\"></div>"
+  },
+  {
+   "id": "entreprise#masni-c3-n2-s28",
+   "titre": "L'Astroturfing",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"masni-c3-n2-s28\" data-serie=\"serie_b2edb0d8-e1a6-4eac-86e4-80450ef9c23b\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"432.55\" data-off-y=\"112.57\" style=\"left: 43.255%; top: 11.257%;\"><span class=\"t-fr\">L'Astroturfing</span><span class=\"t-en\" hidden=\"\">Astroturfing</span></h2>\n    <p class=\"lead\" data-pose=\"\" data-off-x=\"302.6\" data-off-y=\"185.24\" style=\"left: 30.26%; top: 18.524%;\"><span class=\"t-fr\">Une technique consistant à simuler un mouvement spontané ou populaire, à des fins politiques ou économiques, pour influencer l'opinion publique.</span><span class=\"t-en\" hidden=\"\">A technique that fakes a spontaneous or grassroots movement, for political or economic ends, to influence public opinion.</span></p>\n    \n    <p class=\"src\" data-pose=\"\" data-off-x=\"308.43\" data-off-y=\"545.92\" style=\"left: 30.843%; top: 54.592%;\"><span class=\"t-fr\">« AstroTurf » = la marque de pelouse synthétique utilisée dans les stades, un jeu de mots sur « grassroots movement » (mouvement de la base).</span><span class=\"t-en\" hidden=\"\">\"AstroTurf\" = the brand of synthetic lawn used in stadiums, a pun on \"grassroots movement\".</span></p>\n  <div class=\"imgcard small\" data-pose=\"\" data-off-x=\"340\" data-off-y=\"286.54\" style=\"width: 300px; left: 34%; top: 28.654%;\"><img src=\"../medias/images/astroturfing-illustration.jpg\" alt=\"Illustration de l'astroturfing\" loading=\"lazy\"></div><div class=\"imgcard small\" data-pose=\"\" data-off-x=\"504.16\" data-off-y=\"286.54\" style=\"width: 300px; left: 50.416%; top: 28.654%;\"><img src=\"../medias/images/astroturf-lettre-pere-noel.jpg\" alt=\"Lettres identiques envoyées en masse\" loading=\"lazy\"></div>"
+  },
+  {
+   "id": "entreprise#s29-2",
+   "titre": "",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide short\" id=\"s29-2\" data-serie=\"serie_56b43ec5-fb2d-4482-a65f-ade3960e4d16\"",
+   "contentHtml": "\n    <div class=\"vidwrap\" data-pose=\"\" data-off-x=\"352.38\" data-off-y=\"0\" style=\"left:35.238%;top:0%;width:24.41%;max-width:none;max-height:none\"><video src=\"../medias/video/transition-astroturfing-humour.mp4\" controls=\"\" playsinline=\"\" style=\"max-height:none\"></video></div>\n  "
+  },
+  {
+   "id": "entreprise#masni-c3-n2-s30",
+   "titre": "",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide short\" id=\"masni-c3-n2-s30\" data-serie=\"serie_084ce8ab-4d90-47fd-b0f0-e7c99e9869ca\"",
+   "contentHtml": "\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"390.91\" data-off-y=\"358.93\" style=\"left:39.091%;top:35.893%\"><img src=\"../medias/images/affiche-tabac-lucky-strike.png\" alt=\"Vieille publicité pour les cigarettes Lucky Strike\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "entreprise#s32e",
+   "titre": "La fabrique du doute",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s32e\" data-serie=\"serie_9eda9d86-ee26-46b3-aaf0-bbef6e27ff02\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"406.91\" data-off-y=\"99.12\" style=\"left:40.691%;top:9.912%\"><span class=\"t-fr\">La fabrique du doute</span><span class=\"t-en\" hidden=\"\">The manufacture of doubt</span></h2>\n    <p class=\"lead\" data-pose=\"\" data-off-x=\"261.04\" data-off-y=\"168.68\" style=\"left:26.104%;top:16.868%\"><span class=\"t-fr\">Une technique à l'origine employée par les industriels (le tabac, en particulier) pour noyer le poisson sur leurs activités, mais elle plaît beaucoup en politique aussi.</span><span class=\"t-en\" hidden=\"\">A technique originally used by industry (tobacco, in particular) to muddy the waters around their activities, but it's also very popular in politics.</span></p>\n    <div class=\"retourne\" data-silhouette=\"cercle\" data-pose=\"\" data-off-x=\"445.45\" data-off-y=\"236.78\" style=\"left:44.545%;top:23.678%;width:210px;height:210px;max-width:none\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\" style=\"background-color:#5FCBEF\"><p class=\"lead\" style=\"font-size:24px\"><span class=\"t-fr\">Invasion</span><span class=\"t-en\" hidden=\"\">Invasion</span></p></div><div class=\"retourne-face retourne-verso\" style=\"background-color:#FF0000\"><p class=\"lead\" style=\"font-size:24px\"><span class=\"t-fr\">Libération du peuple</span><span class=\"t-en\" hidden=\"\">Liberation of the people</span></p></div></div></div>\n    <div class=\"retourne\" data-silhouette=\"cercle\" data-pose=\"\" data-off-x=\"445.45\" data-off-y=\"483.48\" style=\"left:44.545%;top:48.348%;width:210px;height:210px;max-width:none\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\" style=\"background-color:#5FCBEF\"><p class=\"lead\" style=\"font-size:24px\"><span class=\"t-fr\">Attaque d'un pays souverain</span><span class=\"t-en\" hidden=\"\">Attack on a sovereign country</span></p></div><div class=\"retourne-face retourne-verso\" style=\"background-color:#FF0000\"><p class=\"lead\" style=\"font-size:24px\"><span class=\"t-fr\">Historiquement le même pays</span><span class=\"t-en\" hidden=\"\">Historically the same country</span></p></div></div></div>\n    <div class=\"retourne\" data-silhouette=\"cercle\" data-pose=\"\" data-off-x=\"445.45\" data-off-y=\"730.18\" style=\"left:44.545%;top:73.018%;width:210px;height:210px;max-width:none\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\" style=\"background-color:#5FCBEF\"><p class=\"lead\" style=\"font-size:24px\"><span class=\"t-fr\">Premiers à attaquer</span><span class=\"t-en\" hidden=\"\">First to attack</span></p></div><div class=\"retourne-face retourne-verso\" style=\"background-color:#FF0000\"><p class=\"lead\" style=\"font-size:24px\"><span class=\"t-fr\">Légitime défense</span><span class=\"t-en\" hidden=\"\">Self-defence</span></p></div></div></div>\n    <p class=\"lead step\" data-order=\"1\" style=\"margin-top:0;left:32.5%;top:52%;width:35%;max-width:none;text-align:center;background:var(--panel);padding:18px 26px;border-radius:14px;box-sizing:border-box\" data-pose=\"\" data-off-x=\"325\" data-off-y=\"520\"><span class=\"t-fr\">Chaque reformulation successive est un « contre-narratif », pas un mensonge nouveau, juste un mot différent pour le même événement.</span><span class=\"t-en\" hidden=\"\">Each successive reframing is a \"counter-narrative\", not a new lie, just a different word for the same event.</span></p>\n  "
+  },
+  {
+   "id": "entreprise#masni-c3-n2-s31",
+   "titre": "La Mute News",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide short\" id=\"masni-c3-n2-s31\" data-serie=\"serie_15d50d3f-0436-4cc6-a449-5f03c8247ec5\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"432.91\" data-off-y=\"451.54\" style=\"left:43.291%;top:45.154%\"><span class=\"t-fr\">La Mute News</span><span class=\"t-en\" hidden=\"\">Mute News</span></h2>\n    <p class=\"lead\" data-pose=\"\" data-off-x=\"361.5\" data-off-y=\"524.21\" style=\"left:36.15%;top:52.421%\"><span class=\"t-fr\">Ne PAS parler de certaines informations, ou PEU en parler.</span><span class=\"t-en\" hidden=\"\">NOT talking about certain information, or barely talking about it.</span></p>\n  "
+  },
+  {
+   "id": "entreprise#s31b",
+   "titre": "",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s31b\" data-serie=\"serie_31d62704-154c-4790-ae53-e3d354c72e04\"",
+   "contentHtml": "\n    \n  <div class=\"m-item\" data-pose=\"\" data-off-x=\"287.53\" data-off-y=\"122.96\" style=\"width: 266.66px; left: 28.753%; top: 12.296%;\"><img src=\"../medias/images/mute-news-ukraine.jpg\" alt=\"Couverture médiatique de l'Ukraine dans le temps\"></div><div class=\"m-item\" data-pose=\"\" data-off-x=\"431.26\" data-off-y=\"122.96\" style=\"width: 266.67px; left: 43.126%; top: 12.296%;\"><img src=\"../medias/images/mute-news-gaza.jpg\" alt=\"Couverture médiatique de Gaza\"></div><div class=\"m-item\" data-pose=\"\" data-off-x=\"574.97\" data-off-y=\"122.96\" style=\"width: 266.66px; left: 57.497%; top: 12.296%;\"><img src=\"../medias/images/mute-news-soudan.jpg\" alt=\"Couverture médiatique du Soudan\"></div>"
+  },
+  {
+   "id": "entreprise#ent-mais-alors-pourquoi",
+   "titre": "Mais alors : pourquoi ?",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide short divider-slide\" id=\"ent-mais-alors-pourquoi\"",
+   "contentHtml": "\n    <div class=\"em\" data-pose=\"\" data-off-x=\"485.00\" data-off-y=\"360.00\" style=\"left:48.5%;top:36%\"><span class=\"t-fr\">4</span><span class=\"t-en\" hidden=\"\"></span></div><h2 data-pose=\"\" data-off-x=\"300.00\" data-off-y=\"500.00\" style=\"left:30%;top:50%;width:40%;max-width:none;text-align:center\"><span class=\"t-fr\">Mais alors : pourquoi ?</span><span class=\"t-en\" hidden=\"\"></span></h2>\n  "
+  },
+  {
+   "id": "entreprise#ent-radicalite-reseaux",
+   "titre": "Mise en bouche : pourquoi tant de radicalité sur les réseaux sociaux ?",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"ent-radicalite-reseaux\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.70\" style=\"left:12.773%;top:9.57%;width:72%;max-width:none;font-size:56px;text-align:left\"><span class=\"t-fr\">Mise en bouche : pourquoi tant de radicalité sur les réseaux sociaux ?</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-xl step\" data-order=\"1\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"270.00\" style=\"left:12.773%;top:27%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Espace d’expression alternatif.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-xl step\" data-order=\"2\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"358.00\" style=\"left:12.773%;top:35.8%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Les gens les plus motivés vont occuper davantage d’espace.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-xl step\" data-order=\"3\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"446.00\" style=\"left:12.773%;top:44.6%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Les personnes refusant ces sujets vont s’éloigner des réseaux.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-xl step\" data-order=\"4\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"534.00\" style=\"left:12.773%;top:53.4%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Les contenus impactants sont les plus viraux.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-xl step\" data-order=\"5\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"622.00\" style=\"left:12.773%;top:62.2%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Le conflit génère de l’engagement.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-xl step\" data-order=\"6\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"710.00\" style=\"left:12.773%;top:71%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Certains sujets polarisants sont un CHOIX des plateformes.</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
+  },
+  {
+   "id": "entreprise#s32",
+   "titre": "Les croix de David",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s32\" data-serie=\"serie_166e2af6-30b6-4004-9b7d-226ea8caa276\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Les croix de David</span><span class=\"t-en\" hidden=\"\">The Stars of David</span></h2>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"204.87\" data-off-y=\"201\" style=\"left:20.487%;top:20.1%;width:43.683%;max-width:none\"><img src=\"../medias/images/etoiles-david-tags-photo.jpg\" alt=\"Étoiles de David taguées sur un mur à Paris\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "entreprise#nv2-tete-de-porc",
+   "titre": "#nv2-tete-de-porc .chp{max-width:none} #nv2-tete-de-porc .chp-piste{position:rel",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide short\" id=\"nv2-tete-de-porc\" data-serie=\"serie_5504b356-6fd5-473f-a7bb-1ecd7cefea51\"",
+   "contentHtml": "\n    <style>\n#nv2-tete-de-porc .chp{max-width:none}\n#nv2-tete-de-porc .chp-piste{position:relative;height:96px}\n#nv2-tete-de-porc .chp-fond,#nv2-tete-de-porc .chp-rempli{position:absolute;left:0;top:30px;height:8px;border-radius:4px}\n#nv2-tete-de-porc .chp-fond{right:0;background:rgba(255,255,255,.18)}\n#nv2-tete-de-porc .chp-rempli{background:linear-gradient(90deg,var(--acc2),var(--acc))}\n#nv2-tete-de-porc .chp-rempli.step{transform:none;transition:width .6s ease,opacity .4s ease}\n#nv2-tete-de-porc .chp-point{position:absolute;top:24px;width:20px;height:20px;margin-left:-10px;border-radius:50%;background:#3a4560;border:3px solid rgba(255,255,255,.35)}\n#nv2-tete-de-porc .chp-date{position:absolute;top:32px;left:50%;translate:-50% 0;white-space:nowrap;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:32px;color:var(--acc2)}\n#nv2-tete-de-porc .chp-curseur{position:absolute;top:12px;width:44px;height:44px;margin-left:-22px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 8px rgba(255,255,255,.15),0 6px 18px rgba(0,0,0,.5)}\n#nv2-tete-de-porc .chp-curseur.step{transform:none}\n#nv2-tete-de-porc .chp-curseur.step.shown:has(~ .chp-curseur.step.shown){visibility:hidden}\n#nv2-tete-de-porc .chp-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:22px;align-items:start}\n#nv2-tete-de-porc .chp-col{display:flex;flex-direction:column;gap:14px}\n#nv2-tete-de-porc .chp-art{display:block;padding:12px 16px 14px;background:#fff;color:#141414;border-radius:12px;text-align:left;box-shadow:0 12px 30px rgba(0,0,0,.45)}\n#nv2-tete-de-porc .chp-art.step{transform:translateY(70px);transition:opacity .45s ease,transform .6s cubic-bezier(.2,.9,.3,1)}\n#nv2-tete-de-porc .chp-art.step.shown{transform:none}\n#nv2-tete-de-porc .chp-art.shown:nth-child(2){transition-delay:.3s}\n#nv2-tete-de-porc .chp-art.shown:nth-child(3){transition-delay:.6s}\n#nv2-tete-de-porc .chp-art.shown:nth-child(4){transition-delay:.9s}\n#nv2-tete-de-porc .chp-media{display:block;margin-bottom:6px;font:700 15px/1.2 Arial,Helvetica,sans-serif;color:#555}\n#nv2-tete-de-porc .chp-media b{letter-spacing:.6px;text-transform:uppercase;color:#b3261e}\n#nv2-tete-de-porc .chp-titre{display:block;font:700 21px/1.25 Georgia,'Times New Roman',serif}\n#nv2-tete-de-porc > .imgcard{transition:opacity .4s ease}\n#nv2-tete-de-porc:has(.chp-curseur.shown) > .imgcard{opacity:0;pointer-events:none}\n#nv2-tete-de-porc .chp.step{transform:none}\n</style>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"188.1\" data-off-y=\"182\" style=\"left:18.81%;top:18.2%;width:58.691%;max-width:none\"><img src=\"../medias/images/communiquer-221-56.jpg\" alt=\"Une tête de porc déposée sur le trottoir\" loading=\"lazy\"></div>\n    <div class=\"chp step\" data-order=\"1\" data-pose=\"\" data-off-x=\"25\" data-off-y=\"50\" style=\"left:2.5%;top:5%;width:95%\"><div class=\"chp-piste\"><div class=\"chp-fond\"></div><div class=\"chp-rempli step\" data-order=\"1\" style=\"width:12.500%\"></div><div class=\"chp-rempli step\" data-order=\"2\" style=\"width:37.500%\"></div><div class=\"chp-rempli step\" data-order=\"3\" style=\"width:62.500%\"></div><div class=\"chp-rempli step\" data-order=\"4\" style=\"width:87.500%\"></div><div class=\"chp-point\" style=\"left:12.500%\"><span class=\"chp-date\"><span class=\"t-fr\">9 sept. 2025</span><span class=\"t-en\" hidden=\"\">9 Sep 2025</span></span></div><div class=\"chp-point\" style=\"left:37.500%\"><span class=\"chp-date\"><span class=\"t-fr\">10 sept. 2025</span><span class=\"t-en\" hidden=\"\">10 Sep 2025</span></span></div><div class=\"chp-point\" style=\"left:62.500%\"><span class=\"chp-date\"><span class=\"t-fr\">Fin sept. 2025</span><span class=\"t-en\" hidden=\"\">Late Sep 2025</span></span></div><div class=\"chp-point\" style=\"left:87.500%\"><span class=\"chp-date\"><span class=\"t-fr\">2026</span><span class=\"t-en\" hidden=\"\">2026</span></span></div><div class=\"chp-curseur step\" data-order=\"1\" style=\"left:12.500%\"></div><div class=\"chp-curseur step\" data-order=\"2\" style=\"left:37.500%\"></div><div class=\"chp-curseur step\" data-order=\"3\" style=\"left:62.500%\"></div><div class=\"chp-curseur step\" data-order=\"4\" style=\"left:87.500%\"></div></div><div class=\"chp-cols\"><div class=\"chp-col\"><div class=\"chp-art step\" data-order=\"1\"><span class=\"chp-media\"><b>franceinfo</b> · 9 sept. 2025</span><span class=\"chp-titre\">Au moins neuf têtes de cochon ont été découvertes devant des mosquées en Ile-de-France</span></div><div class=\"chp-art step\" data-order=\"1\"><span class=\"chp-media\"><b>BFMTV</b> · 9 sept. 2025</span><span class=\"chp-titre\">« Une lâcheté insondable » : Bruno Retailleau fait part de son « indignation » après la découverte de têtes de cochon devant des mosquées</span></div><div class=\"chp-art step\" data-order=\"1\"><span class=\"chp-media\"><b>20 Minutes</b> · 9 sept. 2025</span><span class=\"chp-titre\">« L’islamophobie se déchaîne » à cause de Retailleau, accuse Mélenchon</span></div><div class=\"chp-art step\" data-order=\"1\"><span class=\"chp-media\"><b>Le Monde</b> · 9 sept. 2025</span><span class=\"chp-titre\">Des têtes de cochon devant plusieurs mosquées, « une nouvelle et triste étape dans la montée de la haine antimusulmane »</span></div></div><div class=\"chp-col\"><div class=\"chp-art step\" data-order=\"2\"><span class=\"chp-media\"><b>BFMTV</b> · 10 sept. 2025</span><span class=\"chp-titre\">Têtes de porc décapitées devant des mosquées : ingérence russe ou action coordonnée de l’ultradroite ?</span></div><div class=\"chp-art step\" data-order=\"2\"><span class=\"chp-media\"><b>RTL</b> · 10 sept. 2025</span><span class=\"chp-titre\">Têtes de cochon devant les mosquées : l’ingérence étrangère confirmée, plusieurs suspects en fuite</span></div></div><div class=\"chp-col\"><div class=\"chp-art step\" data-order=\"3\"><span class=\"chp-media\"><b>Le Monde</b> · 27 sept. 2025</span><span class=\"chp-titre\">Têtes de cochon devant des mosquées : l’enquête privilégie la piste du renseignement militaire russe</span></div><div class=\"chp-art step\" data-order=\"3\"><span class=\"chp-media\"><b>TF1 Info</b> · 29 sept. 2025</span><span class=\"chp-titre\">Têtes de cochon devant des mosquées d’Ile-de-France : 11 arrestations en Serbie</span></div></div><div class=\"chp-col\"><div class=\"chp-art step\" data-order=\"4\"><span class=\"chp-media\"><b>La Croix</b> · 6 mars 2026</span><span class=\"chp-titre\">Têtes de cochons devant des mosquées en France : trois Serbes condamnés dans leur pays</span></div><div class=\"chp-art step\" data-order=\"4\"><span class=\"chp-media\"><b>BFMTV</b> · 20 mars 2026</span><span class=\"chp-titre\">Têtes de cochon devant des mosquées, peinture verte sur des lieux juifs : comment les services secrets russes ont voulu déstabiliser la France</span></div><div class=\"chp-art step\" data-order=\"4\"><span class=\"chp-media\"><b>France 24</b> · 26 mai 2026</span><span class=\"chp-titre\">Têtes de cochon, projets d’ingérence : ce que révèlent des documents sur les opérations russes en France</span></div></div></div></div>\n  <div class=\"speaker-notes\" hidden=\"\">D'abord la photo ; à chaque flèche, le curseur avance d'une date et les articles de cette période montent. Titres relevés sur les sites le 17/11/2026.\n9 sept. 2025 : franceinfo https://www.franceinfo.fr/france/ile-de-france/plusieurs-tetes-de-cochon-decouvertes-devant-des-mosquees-a-paris-et-en-banlieue-bruno-retailleau-denonce-un-acte-d-une-lachete-insondable_7482145.html ; BFMTV https://www.bfmtv.com/police-justice/une-lachete-insondable-bruno-retailleau-fait-part-de-son-indignation-apres-la-decouverte-de-tetes-de-cochon-devant-des-mosquees_AD-202509090508.html ; 20 Minutes https://www.20minutes.fr/politique/4172041-20250909-islamophobie-dechaine-cause-retailleau-accuse-melenchon-apres-decouverte-tetes-cochon ; Le Monde https://www.lemonde.fr/societe/article/2025/09/09/des-tetes-de-cochon-devant-plusieurs-mosquees-une-nouvelle-et-triste-etape-dans-la-montee-de-la-haine-antimusulmane_6640168_3224.html\n10 sept. 2025 (le parquet annonce que les têtes ont été déposées par des étrangers repartis à l'étranger) : BFMTV https://www.bfmtv.com/police-justice/tetes-de-porc-decapitees-devant-des-mosquees-ingerence-russe-ou-action-coordonnee-de-l-ultradroite_AV-202509100390.html ; RTL https://www.rtl.fr/actu/justice-faits-divers/tetes-de-cochon-devant-les-mosquees-l-ingerence-etrangere-confirmee-plusieurs-suspects-en-fuite-7900539897\nFin sept. 2025 : Le Monde https://www.lemonde.fr/societe/article/2025/09/27/tetes-de-cochon-devant-des-mosquees-l-enquete-privilegie-la-piste-du-renseignement-militaire-russe_6643121_3224.html ; TF1 Info https://www.tf1info.fr/justice-faits-divers/tetes-de-cochon-devant-des-mosquees-d-ile-de-france-11-arrestations-en-serbie-annonce-l-interieur-2397545.html\n2026 : La Croix https://www.la-croix.com/international/tetes-de-cochons-devant-des-mosquees-en-france-trois-serbes-condamnes-dans-leur-pays-20260306 ; BFMTV https://www.bfmtv.com/police-justice/info-bfmtv-tetes-de-cochon-devant-des-mosquees-peinture-verte-sur-des-lieux-juifs-comment-les-services-secrets-russes-ont-voulu-destabiliser-la-france_AN-202603200783.html ; France 24 https://www.france24.com/fr/france/20260526-t%C3%AAtes-de-cochon-projets-d-ing%C3%A9rence-ce-que-r%C3%A9v%C3%A8lent-des-documents-sur-les-op%C3%A9rations-russes-en-france . Les documents de la Social Design Agency (« Report on Operation Pig's Head ») ont été révélés par Le Monde et l'OCCRP le 24 mai 2026.</div>\n  "
+  },
+  {
+   "id": "entreprise#masni-c3-n2-s33",
+   "titre": "Le cycle de la polarisation",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"masni-c3-n2-s33\" data-serie=\"serie_1d77c275-0667-4fe4-af18-84909de21f7a\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"374.95\" data-off-y=\"110.13\" style=\"left:37.495%;top:11.013%\"><span class=\"t-fr\">Le cycle de la polarisation</span><span class=\"t-en\" hidden=\"\">The polarisation cycle</span></h2>\n    <p class=\"lead\" data-pose=\"\" data-off-x=\"302.6\" data-off-y=\"182.8\" style=\"left:30.26%;top:18.28%\"><span class=\"t-fr\">Le même engrenage se répète, quel que soit l'élément déclencheur (attaque terroriste, incident impliquant des agents étrangers, manifestations nationales…).</span><span class=\"t-en\" hidden=\"\">The same mechanism repeats, whatever the trigger (a terrorist attack, an incident involving foreign agents, national protests…).</span></p>\n    <div class=\"flow-chain\" data-pose=\"\" data-off-x=\"266.23\" data-off-y=\"277.51\" style=\"left:26.623%;top:27.751%\">\n      <div class=\"fbox\"><span class=\"t-fr\">Incident déclencheur</span><span class=\"t-en\" hidden=\"\">Triggering incident</span></div><span class=\"farr\">→</span>\n      <div class=\"fbox\"><span class=\"t-fr\">Politiciens et médias réagissent</span><span class=\"t-en\" hidden=\"\">Politicians and media react</span></div><span class=\"farr\">→</span>\n      <div class=\"fbox\"><span class=\"t-fr\">Les réseaux sociaux s'emballent</span><span class=\"t-en\" hidden=\"\">Social media goes into overdrive</span></div><span class=\"farr\">→</span>\n      <div class=\"fbox\"><span class=\"t-fr\">Les fermes de troll amplifient</span><span class=\"t-en\" hidden=\"\">Troll farms amplify it</span></div><span class=\"farr\">→</span>\n      <div class=\"fbox\"><span class=\"t-fr\">Propos radicaux et polarisants renforcés</span><span class=\"t-en\" hidden=\"\">Radical, polarising rhetoric reinforced</span></div><span class=\"farr\">→</span>\n      <div class=\"fbox\"><span class=\"t-fr\">La société devient plus divisée</span><span class=\"t-en\" hidden=\"\">Society becomes more divided</span></div>\n    </div>\n  "
+  },
+  {
+   "id": "entreprise#masni-c3-cycle-variantes",
+   "titre": "Le même cycle, quel que soit le déclencheur",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"masni-c3-cycle-variantes\" data-serie=\"serie_b1c540db-bb02-4908-a644-c9841fcc4227\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"288.79\" data-off-y=\"110.13\" style=\"left:28.879%;top:11.013%\"><span class=\"t-fr\">Le même cycle, quel que soit le déclencheur</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-l step\" data-order=\"1\" data-pose=\"\" data-off-x=\"302.6\" data-off-y=\"182.8\" style=\"left:30.26%;top:18.28%\"><span class=\"t-fr\">Des agents étrangers provoquent un incident… ou bien une attaque terroriste, ou bien des manifestations nationales.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"2\" data-pose=\"\" data-off-x=\"405.31\" data-off-y=\"286.32\" style=\"left:40.531%;top:28.632%\"><span class=\"t-fr\">Politiciens et médias réagissent.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"3\" data-pose=\"\" data-off-x=\"302.6\" data-off-y=\"345.79\" style=\"left:30.26%;top:34.579%\"><span class=\"t-fr\">Les médias sociaux réagissent, et amplifient les propos les plus radicaux.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"4\" data-pose=\"\" data-off-x=\"358.75\" data-off-y=\"449.32\" style=\"left:35.875%;top:44.932%\"><span class=\"t-fr\">Les fermes de trolls augmentent le phénomène.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"5\" data-pose=\"\" data-off-x=\"390.45\" data-off-y=\"508.79\" style=\"left:39.045%;top:50.879%\"><span class=\"t-fr\">La société devient davantage divisée.</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
+  },
+  {
+   "id": "entreprise#ent-quels-buts",
+   "titre": "Quels buts ?",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"ent-quels-buts\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.70\" style=\"left:12.773%;top:9.57%;width:72%;max-width:none;font-size:56px;text-align:left\"><span class=\"t-fr\">Quels buts ?</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-xl step\" data-order=\"1\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"270.00\" style=\"left:12.773%;top:27%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Créer du doute.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-xl step\" data-order=\"2\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"365.00\" style=\"left:12.773%;top:36.5%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Fragiliser le soutien à des décisions nationales.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-xl step\" data-order=\"3\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"460.00\" style=\"left:12.773%;top:46%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Fracturer la société.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-xl step\" data-order=\"4\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"555.00\" style=\"left:12.773%;top:55.5%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Polariser la société.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-xl step\" data-order=\"5\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"650.00\" style=\"left:12.773%;top:65%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Mettre en avant des intérêts spécifiques.</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
+  },
+  {
+   "id": "entreprise#ent-que-peut-on-faire",
+   "titre": "4 - Que peut-on faire ?",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"ent-que-peut-on-faire\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.70\" style=\"left:12.773%;top:9.57%;width:72%;max-width:none;font-size:56px;text-align:left\"><span class=\"t-fr\">4 - Que peut-on faire ?</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-xl step\" data-order=\"1\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"300.00\" style=\"left:12.773%;top:30%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Modestie épistémique.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-xl step\" data-order=\"2\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"440.00\" style=\"left:12.773%;top:44%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Suspension de jugement.</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
+  },
+  {
+   "id": "entreprise#ent-quand-je-m-informe",
+   "titre": "Quand je m’informe",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"ent-quand-je-m-informe\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.70\" style=\"left:12.773%;top:9.57%;width:72%;max-width:none;font-size:56px;text-align:left\"><span class=\"t-fr\">Quand je m’informe</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-xl step\" data-order=\"1\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"270.00\" style=\"left:12.773%;top:27%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Ai-je de bonnes raisons de croire ce que je crois ?</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-xl step\" data-order=\"2\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"365.00\" style=\"left:12.773%;top:36.5%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Ai-je tous les éléments ?</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-xl step\" data-order=\"3\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"460.00\" style=\"left:12.773%;top:46%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Puis-je reconnaître quand je me trompe ?</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-xl step\" data-order=\"4\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"555.00\" style=\"left:12.773%;top:55.5%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Est-il absolument indispensable que je donne mon avis ?</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
+  },
+  {
+   "id": "entreprise#ent-xkcd",
+   "titre": "",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"ent-xkcd\"",
+   "contentHtml": "\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"330.00\" data-off-y=\"80.00\" style=\"left:33%;top:8%;width:34%;max-width:none\"><img src=\"../medias/images/xkcd-someone-is-wrong-on-the-internet.jpg\" alt=\"\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "entreprise#ent-quand-je-reagis",
+   "titre": "Quand je réagis",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"ent-quand-je-reagis\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.70\" style=\"left:12.773%;top:9.57%;width:72%;max-width:none;font-size:56px;text-align:left\"><span class=\"t-fr\">Quand je réagis</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-xl step\" data-order=\"1\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"260.00\" style=\"left:12.773%;top:26%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Quel est mon but ?</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-xl step\" data-order=\"2\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"345.00\" style=\"left:12.773%;top:34.5%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Quel impact aura mon propos ? Est-ce vraiment l’impact que je souhaite ?</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-xl step\" data-order=\"3\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"430.00\" style=\"left:12.773%;top:43%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Ai-je conscience du sens :</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"4\" data-pose=\"\" data-off-x=\"157.73\" data-off-y=\"515.00\" style=\"left:15.773%;top:51.5%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Locutoire (ce que je dis).</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"5\" data-pose=\"\" data-off-x=\"157.73\" data-off-y=\"600.00\" style=\"left:15.773%;top:60%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Illocutoire (ce que je sous-entends).</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"6\" data-pose=\"\" data-off-x=\"157.73\" data-off-y=\"685.00\" style=\"left:15.773%;top:68.5%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Perlocutoire (l’impact qu’auront mes propos).</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
+  },
+  {
+   "id": "entreprise#ent-bonnes-nouvelles",
+   "titre": "Les bonnes nouvelles",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"ent-bonnes-nouvelles\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.70\" style=\"left:12.773%;top:9.57%;width:72%;max-width:none;font-size:56px;text-align:left\"><span class=\"t-fr\">Les bonnes nouvelles</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-xl step\" data-order=\"1\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"300.00\" style=\"left:12.773%;top:30%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Depuis 30 ans, comment a évolué la tolérance des Français ?</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-xl step\" data-order=\"2\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"440.00\" style=\"left:12.773%;top:44%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Comment a évolué la mortalité infantile dans le monde ?</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
+  },
+  {
+   "id": "entreprise#ent-changement-paradigme",
+   "titre": "N’oublions pas le changement de paradigme !",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"ent-changement-paradigme\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.70\" style=\"left:12.773%;top:9.57%;width:72%;max-width:none;font-size:56px;text-align:left\"><span class=\"t-fr\">N’oublions pas le changement de paradigme !</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-xl step\" data-order=\"1\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"300.00\" style=\"left:12.773%;top:30%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Avant, les Fake News et les théories du complot étaient totalement acceptées.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-xl step\" data-order=\"2\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"440.00\" style=\"left:12.773%;top:44%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">C’est notre prise de conscience qui les rend plus visibles en ce moment.</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
+  },
+  {
+   "id": "entreprise#ent-prise-de-conscience",
+   "titre": "Prise de conscience des enjeux.",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"ent-prise-de-conscience\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.70\" style=\"left:12.773%;top:9.57%;width:72%;max-width:none;font-size:56px;text-align:left\"><span class=\"t-fr\">Prise de conscience des enjeux.</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-xl step\" data-order=\"1\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"270.00\" style=\"left:12.773%;top:27%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">La connaissance est une arme ! Le fait de savoir ce qui est en jeu nous permet justement d’agir.</span><span class=\"t-en\" hidden=\"\"></span></p><div class=\"imgcard step\" data-order=\"2\" data-pose=\"\" data-off-x=\"400.00\" data-off-y=\"420.00\" style=\"left:40%;top:42%;width:20%;max-width:none\"><img src=\"../medias/images/entreprise-plume-et-epee.png\" alt=\"\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "entreprise#ent-merci",
+   "titre": "Merci !",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"ent-merci\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"440.00\" data-off-y=\"95.70\" style=\"left:44%;top:9.57%\"><span class=\"t-fr\">Merci !</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard\" data-pose=\"\" data-off-x=\"385.00\" data-off-y=\"250.00\" style=\"left:38.5%;top:25%;width:23%;max-width:none\"><img src=\"../medias/images/entreprise-qr-merci.png\" alt=\"\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "entreprise#s-bilan-qr",
+   "titre": "Le bilan, les jeux, et votre retour",
+   "formation": "entreprise",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide short\" id=\"s-bilan-qr\" data-serie=\"serie_743edaf5-33f9-4668-ab8a-f0365b011093\"",
+   "contentHtml": "\n    <p class=\"kicker\" data-pose=\"\" data-off-x=\"461.46\" data-off-y=\"272.25\" style=\"left: 46.146%; top: 27.225%;\"><span class=\"t-fr\">Après la séance</span><span class=\"t-en\" hidden=\"\">After the session</span></p>\n    <h2 data-pose=\"\" data-off-x=\"344.92\" data-off-y=\"303.09\" style=\"left: 34.492%; top: 30.309%;\"><span class=\"t-fr\">Le bilan, les jeux, et votre retour</span><span class=\"t-en\" hidden=\"\">Summary, games, and your feedback</span></h2>\n    <p class=\"lead\" data-pose=\"\" data-off-x=\"302.6\" data-off-y=\"375.76\" style=\"left: 30.26%; top: 37.576%;\"><span class=\"t-fr\">Scannez ce QR code&nbsp;: vous pourrez donner votre retour, revoir le bilan de la formation ou rejouer aux jeux.</span><span class=\"t-en\" hidden=\"\">Scan this QR code: you can leave your feedback, review the session summary, or play the games again.</span></p>\n    \n  <img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhwAAAIcAQAAAACVhUrRAAAC80lEQVR42u2dUWrEMAxERS/g+9/SN3C7jSNp5JQW2p+it5SybDbvY2EYaSw7tn7/mgYECBAgQID8HGL+Gvcn4/Xhx/v9Zu3/16Xjljf7gxcQIP8LYi6HLZlP+VxvQjgjtOaXQkpoB0hj7VwO4nbjjlPc57pUbkE7QNCOyycuWYjFq8T4GtoBgnZUO+4vL9O5v+Y1G74DBMhzv5MCgR0LDAkY6HeAAAl1XC+3nm//0i1oB0hb7ZTU2vOBaG00fztu4YcF0lc7WxqWlngsiUij6f253452gHT2nWQ00ddEGmDlv7RCaAdI434nr+nskO1WSlRxtxNF/kbOBoSaLa1+bjfJizulfnMRTXwHSG/t6KhAtD8jajkZZiuJAdoB0rvf8ZGbbC5StuXqTkIGflggXfudNDUdMvHJAa/l7twgYjeyAiDtswKv1mJrw7QctT3YEP0OELRjaWp6hfVImHYuA9HvAKHfKbrQGEGsJ09ZTzJqIPhO2miwnlueXK3lGg/tAKHfkX5nWtaR6CWHBmgHSHPtDN1PfRRsUbnlGyNV4IcF0rXfmaEFk0G1uglORndY3wGCdlbqZcbTiE4R1FriWWgHSGPfiVOkcr9zHFBQDOj+Mj8skMZZQVHHUMfRtVGyAiBASlaQ53NkF08aYzMz6Y/QDpD2WUE5kSBv2yk9kWwdRTtAemcFMXiTBnLy9reSV8uxBmgHSO9+R46WyrsMTEJp/zB1RvywQBr7To7Opk6EnocYGP0OECBW91bXPaHmvmNl4xuzoEDwnRWb2qqCZj1IJxaDWN8Bgu/YsXBT8rSyvqNlG9oB0tl3JAQoXU86k82ejgxFO0Ba+45FX1OdJXvQqgftoh0grbWTn4NgVh6LUBZMw3eo2YCgnXHkA7PuTZDjdOh3gAD5Sjvl0aL5uLalEzvUbEDQzvHQNx2WPtofzmcDgnb0CKmyza3YUL1KzQaks3aslmTRzkyrp+UseXA8vgOks3Z++5pAgAABAgTIDyHv20VZl660GMAAAAAASUVORK5CYII=\" alt=\"QR code vers la page antoninatger.github.io/interventions/retours\" style=\"width: 200px; height: 200px; border-radius: 16px; background: rgb(255, 255, 255); padding: 10px; box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 30px; left: 44.805%; top: 47.267%;\" data-pose=\"\" data-off-x=\"448.05\" data-off-y=\"472.67\"><a href=\"https://antoninatger.github.io/interventions/retours/\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--acc2); font-weight: 800; font-size: 1.05rem; text-decoration: none; border-bottom: 2px solid var(--acc2); padding-bottom: 2px; width: 371.73px; left: 40.345%; top: 71.275%;\" data-pose=\"\" data-off-x=\"403.45\" data-off-y=\"712.75\">\n        <span class=\"t-fr\">antoninatger.github.io/interventions/retours →</span><span class=\"t-en\" hidden=\"\">antoninatger.github.io/interventions/retours →</span>\n      </a>"
+  },
+  {
    "id": "formation-fake-news-niveau2#s0",
    "titre": "Désinformation, au-delà de la Fake News",
    "formation": "formation-fake-news-niveau2",
@@ -7832,6 +8336,150 @@ window.COURS_DIAPOS = {
    "kind": "simple",
    "attrsRaw": "class=\"slide\" id=\"s5\" data-serie=\"serie_043e4a77-7a07-444d-9646-de128a43839f\"",
    "contentHtml": "\n    <style>\n#s5 .crit-roue{position:absolute;left:0;right:0;top:40px;margin:auto;width:1300px;height:790px}\n#s5 .crit-traits{position:absolute;inset:0;width:100%;height:100%}\n#s5 .crit-traits line{stroke:#7dd3fc;stroke-width:5;stroke-linecap:round;opacity:.7}\n#s5 .crit-centre{position:absolute;z-index:2;left:490px;top:235px;width:320px;height:320px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 35% 30%,#3b82f6,#1e3a8a);box-shadow:0 18px 50px rgba(0,0,0,.5);text-align:center}\n#s5 .crit-centre h2{position:static;margin:0;padding:0 34px;font-size:34px;line-height:1.2;color:#fff}\n#s5 .crit-pos{position:absolute;z-index:1;width:216px;height:216px}\n#s5 .crit-pos .retourne{width:216px;height:216px;margin:0}\n#s5 .crit-pos .retourne-face{box-shadow:0 10px 30px rgba(0,0,0,.45)}\n#s5 .crit-pos .retourne-recto{background:radial-gradient(circle at 35% 30%,#64748b,#1e293b)}\n#s5 .crit-pos .retourne-verso{background:radial-gradient(circle at 35% 30%,#fde68a,#f59e0b);padding:0 18px}\n#s5 .crit-pos .retourne-recto p{font-size:84px;font-weight:800;line-height:1;color:#fff;text-shadow:none}\n#s5 .crit-pos .retourne-verso p{font-size:24px;font-weight:700;line-height:1.15;color:#1c1917;text-shadow:none}\n#s5 .attention{position:absolute;left:auto;right:150px;top:auto;bottom:120px}\n#s5 .crit-centre{cursor:pointer}\n.slide.editing#s5 .crit-roue{position:relative;top:auto}\n</style>\n    <div class=\"crit-roue\"><svg class=\"crit-traits step\" data-order=\"1\" viewBox=\"0 0 1300 790\" aria-hidden=\"true\"><line x1=\"650\" y1=\"395\" x2=\"650\" y2=\"105\"/><line x1=\"650\" y1=\"395\" x2=\"1083\" y2=\"250\"/><line x1=\"650\" y1=\"395\" x2=\"1083\" y2=\"540\"/><line x1=\"650\" y1=\"395\" x2=\"650\" y2=\"685\"/><line x1=\"650\" y1=\"395\" x2=\"217\" y2=\"540\"/><line x1=\"650\" y1=\"395\" x2=\"217\" y2=\"250\"/></svg><div class=\"crit-centre\" onclick=\"if(this.closest('.editing'))return;if(this.closest('section').querySelector('.crit-pos.step:not(.shown)'))Deck.next()\"><h2><span class=\"t-fr\">Quels sont les critères pour valider l'information&nbsp;?</span><span class=\"t-en\" hidden=\"\">What criteria help us validate information?</span></h2></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:542px;top:-3px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[0,290,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">1</span><span class=\"t-en\" hidden=\"\">1</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Fiabilité de la source</span><span class=\"t-en\" hidden=\"\">Reliability of the source</span></p></div></div></div></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:975px;top:142px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[-433,145,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">2</span><span class=\"t-en\" hidden=\"\">2</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Fiabilité de l'interlocuteur</span><span class=\"t-en\" hidden=\"\">Reliability of the speaker</span></p></div></div></div></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:975px;top:432px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[-433,-145,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">3</span><span class=\"t-en\" hidden=\"\">3</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Niveau de preuves</span><span class=\"t-en\" hidden=\"\">Level of evidence</span></p></div></div></div></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:542px;top:577px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[0,-290,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">4</span><span class=\"t-en\" hidden=\"\">4</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Plusieurs sources fiables en parlent</span><span class=\"t-en\" hidden=\"\">Several reliable sources report it</span></p></div></div></div></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:109px;top:432px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[433,-145,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">5</span><span class=\"t-en\" hidden=\"\">5</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Crédibilité de l'information</span><span class=\"t-en\" hidden=\"\">Credibility of the information</span></p></div></div></div></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:109px;top:142px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[433,145,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">6</span><span class=\"t-en\" hidden=\"\">6</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Commentaires et critiques de l'information</span><span class=\"t-en\" hidden=\"\">Comments and criticism of the information</span></p></div></div></div></div></div>\n    <p class=\"attention step\" id=\"attention-txt\" data-order=\"2\"><span class=\"t-fr\">Mais attention…</span><span class=\"t-en\" hidden=\"\">But be careful…</span></p>\n  <div class=\"speaker-notes\" hidden=\"\"></div>"
+  },
+  {
+   "id": "formation-fake-news-niveau2#s6-1",
+   "titre": "Emmanuel Macron est président de la République.",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"s6-1\" data-serie=\"serie_3ab7bd6c-1b14-4275-a81c-5f9b7bc04b2d\"",
+   "contentHtml": "\n    <p class=\"kicker\" style=\"left:45.01%;top:11.013%\" data-off-x=\"450.1\" data-off-y=\"110.13\" data-pose=\"\"><span class=\"t-fr\">Vrai ou faux ? (1/7)</span><span class=\"t-en\" hidden=\"\">True or false? (1/7)</span></p>\n    <h2 class=\"\" style=\"left:25.665%;top:14.097%\" data-off-x=\"256.65\" data-off-y=\"140.97\" data-pose=\"\"><span class=\"t-fr\">Emmanuel Macron est président de la République.</span><span class=\"t-en\" hidden=\"\">Emmanuel Macron is President of the Republic.</span></h2>\n    <div class=\"imgcard-full\" style=\"max-height: none;max-width: 360.648px;left:40.58%;top:27.282%;width:360.648px\" data-off-x=\"405.8\" data-off-y=\"272.82\" data-pose=\"\"><img src=\"../medias/images/macron-president.jpg\" alt=\"\" style=\"width: 100%; height: auto; max-width: none; max-height: none;\"><span class=\"vf-marque vf-vrai step\" title=\"Vrai\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M22 53 L42 72 L80 30\"/></svg></span></div>\n  "
+  },
+  {
+   "id": "formation-fake-news-niveau2#s6-2",
+   "titre": "Le plateau de Gizeh se trouve en Égypte.",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"s6-2\" data-serie=\"serie_3ab7bd6c-1b14-4275-a81c-5f9b7bc04b2d\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ? (2/7)</span><span class=\"t-en\" hidden>True or false? (2/7)</span></p>\n    <h2><span class=\"t-fr\">Le plateau de Gizeh se trouve en Égypte.</span><span class=\"t-en\" hidden>The Giza plateau is located in Egypt.</span></h2>\n    <div class=\"imgcard-full\"><img src=\"../medias/images/pyramides-gizeh.jpg\" alt=\"\"><span class=\"vf-marque vf-vrai step\" title=\"Vrai\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M22 53 L42 72 L80 30\"/></svg></span></div>\n  "
+  },
+  {
+   "id": "formation-fake-news-niveau2#s6-3",
+   "titre": "Le président a rencontré un alien.",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"s6-3\" data-serie=\"serie_3ab7bd6c-1b14-4275-a81c-5f9b7bc04b2d\"",
+   "contentHtml": "\n    <p class=\"kicker\" style=\"transform: translate(-8.44px, 0px);\" data-off-x=\"-8.44\" data-off-y=\"0\"><span class=\"t-fr\">Vrai ou faux ? (3/7)</span><span class=\"t-en\" hidden=\"\">True or false? (3/7)</span></p>\n    <h2 class=\"\" style=\"transform: translate(-8.44px, 0px);\" data-off-x=\"-8.44\" data-off-y=\"0\"><span class=\"t-fr\">Le président a rencontré un alien.</span><span class=\"t-en\" hidden=\"\">The president met an alien.</span></h2>\n    <div class=\"imgcard-full\" style=\"transform: translate(-8.44px, 0px);\" data-off-x=\"-8.44\" data-off-y=\"0\"><img src=\"../medias/images/macron-alien-ia.jpg\" alt=\"\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M26 26 L74 74 M74 26 L26 74\"/></svg></span></div>\n  "
+  },
+  {
+   "id": "formation-fake-news-niveau2#s6-4",
+   "titre": "Le soleil est une étoile.",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"s6-4\" data-serie=\"serie_3ab7bd6c-1b14-4275-a81c-5f9b7bc04b2d\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ? (4/7)</span><span class=\"t-en\" hidden>True or false? (4/7)</span></p>\n    <h2><span class=\"t-fr\">Le soleil est une étoile.</span><span class=\"t-en\" hidden>The sun is a star.</span></h2>\n    <div class=\"imgcard-full\"><img src=\"../medias/images/soleil-etoile.jpg\" alt=\"\"><span class=\"vf-marque vf-vrai step\" title=\"Vrai\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M22 53 L42 72 L80 30\"/></svg></span></div>\n  "
+  },
+  {
+   "id": "formation-fake-news-niveau2#s6-5",
+   "titre": "L'étoile du berger est une étoile.",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"s6-5\" data-serie=\"serie_3ab7bd6c-1b14-4275-a81c-5f9b7bc04b2d\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ? (5/7)</span><span class=\"t-en\" hidden>True or false? (5/7)</span></p>\n    <h2><span class=\"t-fr\">L'étoile du berger est une étoile.</span><span class=\"t-en\" hidden>The \"shepherd's star\" is a star.</span></h2>\n    <div class=\"imgcard-full\"><img src=\"../medias/images/etoile-berger-venus.jpg\" alt=\"\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M26 26 L74 74 M74 26 L26 74\"/></svg></span></div>\n  "
+  },
+  {
+   "id": "formation-fake-news-niveau2#masni-c2-chauves-souris",
+   "titre": "Les chauves-souris sont aveugles.",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-chauves-souris\" data-serie=\"serie_dd6605c2-fda3-44cb-b4ab-1ced3ec10d64\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">Les chauves-souris sont aveugles.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-chauve-souris.jpg\" alt=\"Une chauve-souris en vol\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Faux. Elles voient, et complètent leur vue par l’écholocation.</div>\n  "
+  },
+  {
+   "id": "formation-fake-news-niveau2#masni-c2-pieuvres",
+   "titre": "Les pieuvres ont trois cœurs.",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-pieuvres\" data-serie=\"serie_e56bbd59-5c9f-4d0c-9bfd-ef4b8bc8edaf\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">Les pieuvres ont trois cœurs.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-pieuvre.jpg\" alt=\"Une pieuvre\" loading=\"lazy\"><span class=\"vf-marque vf-vrai step\" title=\"Vrai\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M22 53 L42 72 L80 30\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Vrai. Un cœur principal, et un pour chacune de leurs deux branchies.</div>\n  "
+  },
+  {
+   "id": "formation-fake-news-niveau2#masni-c2-sushi",
+   "titre": "Le terme « sushi » désigne « poisson cru » en japonais.",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-sushi\" data-serie=\"serie_290cff5f-f4a4-471a-b093-9ac54e45fb91\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">Le terme « sushi » désigne « poisson cru » en japonais.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-sushi.jpg\" alt=\"Des sushis\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Faux. « Sushi » désigne le riz vinaigré. Le poisson cru, c’est le sashimi.</div>\n  "
+  },
+  {
+   "id": "formation-fake-news-niveau2#masni-c2-coriolis",
+   "titre": "L’eau tourbillonne dans un sens différent selon l’hémisphère (effet Coriolis).",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-coriolis\" data-serie=\"serie_ef07b431-03f9-471f-bef3-b1205fba45a2\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">L’eau tourbillonne dans un sens différent selon l’hémisphère (effet Coriolis).</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-lavabo-tourbillon.jpg\" alt=\"Un tourbillon d’eau dans un lavabo\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Faux à l’échelle d’un lavabo : la force de Coriolis y est négligeable devant la forme du bac et le mouvement initial de l’eau.</div>\n  "
+  },
+  {
+   "id": "formation-fake-news-niveau2#masni-c2-chats-fluo",
+   "titre": "Nous avons créé des chats fluorescents.",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-chats-fluo\" data-serie=\"serie_106dbe1f-fae1-44ac-ae8d-cb9898fedf47\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">Nous avons créé des chats fluorescents.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-chat-fluorescent.jpg\" alt=\"Un chat fluorescent\" loading=\"lazy\"><span class=\"vf-marque vf-vrai step\" title=\"Vrai\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M22 53 L42 72 L80 30\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Vrai. Des chats transgéniques fluorescents ont été produits en laboratoire, pour la recherche sur le sida félin.</div>\n  "
+  },
+  {
+   "id": "formation-fake-news-niveau2#masni-c2-mousse-nord",
+   "titre": "La mousse sur les arbres pousse toujours au nord.",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-mousse-nord\" data-serie=\"serie_a2e53519-1b5d-4713-b6fa-6e2497fcca6a\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">La mousse sur les arbres pousse toujours au nord.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-mousse-arbre.jpg\" alt=\"De la mousse sur un tronc d’arbre\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Faux. Elle pousse du côté le plus humide, qui dépend du relief, du vent et de l’ombre.</div>\n  "
+  },
+  {
+   "id": "formation-fake-news-niveau2#masni-c2-pyramides-et",
+   "titre": "Les pyramides ont été construites par des extra-terrestres.",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-pyramides-et\" data-serie=\"serie_5ef28757-d9d6-4489-b045-9b96c93d52db\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">Les pyramides ont été construites par des extra-terrestres.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-pyramides-extraterrestres.png\" alt=\"Illustration complotiste des pyramides\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Faux. Et c’est une théorie du complot de plein droit : elle suppose une dissimulation générale des égyptologues.</div>\n  "
+  },
+  {
+   "id": "formation-fake-news-niveau2#masni-c2-pyramides-esclaves",
+   "titre": "Les pyramides ont été construites par des esclaves.",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-pyramides-esclaves\" data-serie=\"serie_77791c4b-2ceb-457a-86ea-6b452be49737\"",
+   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">Les pyramides ont été construites par des esclaves.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-pyramides-ouvriers.jpg\" alt=\"Chantier des pyramides\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Faux, au moins en partie : les fouilles montrent des ouvriers logés, nourris et soignés, pas des esclaves.</div>\n  "
+  },
+  {
+   "id": "formation-fake-news-niveau2#masni-c2-ia-titre",
+   "titre": "Quelle photo est en IA, quelle photo est réelle ?",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide short divider-slide\" id=\"masni-c2-ia-titre\" data-serie=\"serie_6563614e-f141-4b70-a7ed-0918e9ea9358\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"261.04\" data-off-y=\"439.43\" style=\"left:26.104%;top:43.943%\"><span class=\"t-fr\">Quelle photo est en IA, quelle photo est réelle ?</span><span class=\"t-en\" hidden=\"\"></span></h2>\n  "
+  },
+  {
+   "id": "formation-fake-news-niveau2#masni-c2-terre-365",
+   "titre": "La Terre tourne autour du Soleil en 365 jours.",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-terre-365\" data-serie=\"serie_5045dbd2-2a5c-4ac3-945a-f68450e39686\"",
+   "contentHtml": "\n    <h2><span class=\"t-fr\">La Terre tourne autour du Soleil en 365 jours.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-terre-soleil.png\" alt=\"La Terre et le Soleil\" loading=\"lazy\"><span class=\"vf-marque vf-presque step\" title=\"Presque\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path style=\"stroke:#f59e0b\" d=\"M18 40 C30 28 42 28 50 40 S70 52 82 40 M18 64 C30 52 42 52 50 64 S70 76 82 64\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Presque : 365,2422 jours. C’est pour cela qu’il existe des années bissextiles. « Vrai » et « faux » ne suffisent pas toujours.</div>\n  "
+  },
+  {
+   "id": "formation-fake-news-niveau2#masni-c2-terre-ronde",
+   "titre": "La Terre est ronde.",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-terre-ronde\" data-serie=\"serie_a47e0aa5-7b27-435f-9980-7bea4a47178c\"",
+   "contentHtml": "\n    <h2><span class=\"t-fr\">La Terre est ronde.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-terre-ronde.jpg\" alt=\"La Terre vue de l’espace\" loading=\"lazy\"><span class=\"vf-marque vf-presque step\" title=\"Presque\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path style=\"stroke:#f59e0b\" d=\"M18 40 C30 28 42 28 50 40 S70 52 82 40 M18 64 C30 52 42 52 50 64 S70 76 82 64\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Presque : c’est un géoïde, légèrement aplati aux pôles. L’approximation est utile, mais c’est une approximation.</div>\n  "
+  },
+  {
+   "id": "formation-fake-news-niveau2#masni-c2-respirer-avaler",
+   "titre": "On ne peut pas respirer et avaler en même temps.",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-respirer-avaler\" data-serie=\"serie_fd36ca8c-d62a-4df3-9944-9ffb5d927974\"",
+   "contentHtml": "\n    <h2><span class=\"t-fr\">On ne peut pas respirer et avaler en même temps.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-deglutition.jpg\" alt=\"Schéma de la déglutition\" loading=\"lazy\"><span class=\"vf-marque vf-presque step\" title=\"Presque\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path style=\"stroke:#f59e0b\" d=\"M18 40 C30 28 42 28 50 40 S70 52 82 40 M18 64 C30 52 42 52 50 64 S70 76 82 64\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Vrai chez l’adulte… mais faux chez le nourrisson, qui peut téter et respirer en même temps. Le contexte change la réponse.</div>\n  "
+  },
+  {
+   "id": "formation-fake-news-niveau2#masni-c2-chiens-transpirent",
+   "titre": "Les chiens ne transpirent pas.",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-chiens-transpirent\" data-serie=\"serie_a85fa043-826a-409c-9a8a-07c3cabd9b72\"",
+   "contentHtml": "\n    <h2><span class=\"t-fr\">Les chiens ne transpirent pas.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-chien.jpg\" alt=\"Un chien\" loading=\"lazy\"><span class=\"vf-marque vf-presque step\" title=\"Presque\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path style=\"stroke:#f59e0b\" d=\"M18 40 C30 28 42 28 50 40 S70 52 82 40 M18 64 C30 52 42 52 50 64 S70 76 82 64\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Presque : ils transpirent très peu, par les coussinets. Ils se refroidissent surtout en haletant.</div>\n  "
   },
   {
    "id": "formation-fake-news-niveau2#nv2-criteres",
@@ -8007,7 +8655,7 @@ window.COURS_DIAPOS = {
    "formation": "formation-fake-news-niveau2",
    "kind": "simple",
    "attrsRaw": "class=\"slide\" id=\"s32e\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">La fabrique du doute</span><span class=\"t-en\" hidden=\"\">The manufacture of doubt</span></h2>\n    <div class=\"retourne\" data-silhouette=\"cercle\" data-pose=\"\" data-off-x=\"208.83\" data-off-y=\"250\" style=\"left:20.883%;top:25%;width:320px;height:320px;max-width:none\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\" style=\"background-color:#5FCBEF\"><p class=\"lead\" style=\"font-size:30px\"><span class=\"t-fr\">Invasion</span><span class=\"t-en\" hidden=\"\">Invasion</span></p></div><div class=\"retourne-face retourne-verso\" style=\"background-color:#FF0000\"><p class=\"lead\" style=\"font-size:30px\"><span class=\"t-fr\">Libération du peuple</span><span class=\"t-en\" hidden=\"\">Liberation of the people</span></p></div></div></div>\n    <div class=\"retourne\" data-silhouette=\"cercle\" data-pose=\"\" data-off-x=\"416.62\" data-off-y=\"250\" style=\"left:41.662%;top:25%;width:320px;height:320px;max-width:none\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\" style=\"background-color:#5FCBEF\"><p class=\"lead\" style=\"font-size:30px\"><span class=\"t-fr\">Attaque d’un pays souverain</span><span class=\"t-en\" hidden=\"\">Attack on a sovereign country</span></p></div><div class=\"retourne-face retourne-verso\" style=\"background-color:#FF0000\"><p class=\"lead\" style=\"font-size:30px\"><span class=\"t-fr\">Historiquement nous sommes le même pays</span><span class=\"t-en\" hidden=\"\">Historically we are the same country</span></p></div></div></div>\n    <div class=\"retourne\" data-silhouette=\"cercle\" data-pose=\"\" data-off-x=\"624.42\" data-off-y=\"250\" style=\"left:62.442%;top:25%;width:320px;height:320px;max-width:none\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\" style=\"background-color:#5FCBEF\"><p class=\"lead\" style=\"font-size:30px\"><span class=\"t-fr\">Premiers à attaquer</span><span class=\"t-en\" hidden=\"\">First to attack</span></p></div><div class=\"retourne-face retourne-verso\" style=\"background-color:#FF0000\"><p class=\"lead\" style=\"font-size:30px\"><span class=\"t-fr\">Légitime défense</span><span class=\"t-en\" hidden=\"\">Self-defence</span></p></div></div></div>\n    <div class=\"forme forme-rectangle step\" data-order=\"1\" data-pose=\"\" data-off-x=\"274.88\" data-off-y=\"680\" style=\"left:27.488%;top:68%;background-color:#FFC000;width:45.024%;height:19.3%;max-width:none;isolation:isolate\"><span class=\"forme-texte\" style=\"color:#ffffff;font-size:54px\"><span class=\"t-fr\">Contre narratif</span><span class=\"t-en\" hidden=\"\">Counter-narrative</span></span></div>\n    <div class=\"speaker-notes\" hidden=\"\">Russia: Denial of human rights abuses. \nhttps://www.politico.eu/article/russia-ukraine-disinformation-nato-united-states-special-forces-winter-olympics-moscow-kremlin-kyiv/\nNATO will supposedly attack Russia at the upcoming Winter Olympics.\nhttps://news-front.info/2022/01/14/ukraina-gotovit-vooruzhennuyu-provokatsiyu-v-donbasse-vo-vremya-olimpiady-dmitriy-solonnikov/\nDebate around RT, Russia Today.</div>\n  "
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">La fabrique du doute</span><span class=\"t-en\" hidden=\"\">The manufacture of doubt</span></h2>\n    <div class=\"retourne\" data-silhouette=\"cercle\" data-pose=\"\" data-off-x=\"440.26\" data-off-y=\"165.20\" style=\"left:44.026%;top:16.520%;width:230px;height:230px;max-width:none\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\" style=\"background-color:#5FCBEF\"><p class=\"lead\" style=\"font-size:26px\"><span class=\"t-fr\">Invasion</span><span class=\"t-en\" hidden=\"\">Invasion</span></p></div><div class=\"retourne-face retourne-verso\" style=\"background-color:#FF0000\"><p class=\"lead\" style=\"font-size:26px\"><span class=\"t-fr\">Libération du peuple</span><span class=\"t-en\" hidden=\"\">Liberation of the people</span></p></div></div></div>\n    <div class=\"retourne\" data-silhouette=\"cercle\" data-pose=\"\" data-off-x=\"440.26\" data-off-y=\"438.33\" style=\"left:44.026%;top:43.833%;width:230px;height:230px;max-width:none\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\" style=\"background-color:#5FCBEF\"><p class=\"lead\" style=\"font-size:26px\"><span class=\"t-fr\">Attaque d’un pays souverain</span><span class=\"t-en\" hidden=\"\">Attack on a sovereign country</span></p></div><div class=\"retourne-face retourne-verso\" style=\"background-color:#FF0000\"><p class=\"lead\" style=\"font-size:26px\"><span class=\"t-fr\">Historiquement nous sommes le même pays</span><span class=\"t-en\" hidden=\"\">Historically we are the same country</span></p></div></div></div>\n    <div class=\"retourne\" data-silhouette=\"cercle\" data-pose=\"\" data-off-x=\"440.26\" data-off-y=\"711.45\" style=\"left:44.026%;top:71.145%;width:230px;height:230px;max-width:none\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\" style=\"background-color:#5FCBEF\"><p class=\"lead\" style=\"font-size:26px\"><span class=\"t-fr\">Premiers à attaquer</span><span class=\"t-en\" hidden=\"\">First to attack</span></p></div><div class=\"retourne-face retourne-verso\" style=\"background-color:#FF0000\"><p class=\"lead\" style=\"font-size:26px\"><span class=\"t-fr\">Légitime défense</span><span class=\"t-en\" hidden=\"\">Self-defence</span></p></div></div></div>\n    <div class=\"forme forme-rectangle step\" data-order=\"1\" data-pose=\"\" data-off-x=\"300\" data-off-y=\"468.6\" style=\"left:30%;top:46.86%;background-color:#FFC000;width:40%;height:19.3%;max-width:none;isolation:isolate\"><span class=\"forme-texte\" style=\"color:#ffffff;font-size:54px\"><span class=\"t-fr\">Contre narratif</span><span class=\"t-en\" hidden=\"\">Counter-narrative</span></span></div>\n    <div class=\"speaker-notes\" hidden=\"\">Russia: Denial of human rights abuses. \nhttps://www.politico.eu/article/russia-ukraine-disinformation-nato-united-states-special-forces-winter-olympics-moscow-kremlin-kyiv/\nNATO will supposedly attack Russia at the upcoming Winter Olympics.\nhttps://news-front.info/2022/01/14/ukraina-gotovit-vooruzhennuyu-provokatsiyu-v-donbasse-vo-vremya-olimpiady-dmitriy-solonnikov/\nDebate around RT, Russia Today.</div>\n  "
   },
   {
    "id": "formation-fake-news-niveau2#s31",
@@ -18408,502 +19056,6 @@ window.COURS_DIAPOS = {
    "kind": "simple",
    "attrsRaw": "class=\"slide\" id=\"biais-liste-nouveaux-groupe\" data-serie=\"serie_85d128e2-8811-4043-8ebd-541dc02dd865\"",
    "contentHtml": "<h2 data-pose=\"\" data-off-x=\"100\" data-off-y=\"90\" style=\"left:10%;top:9%;width:80%;max-width:none;font-size:56px\"><span class=\"t-fr\">Nouveaux biais : le groupe et les autres</span><span class=\"t-en\" hidden=\"\"></span></h2><ul data-pose=\"\" data-off-x=\"100\" data-off-y=\"230\" style=\"left:10%;top:23%;width:38%;max-width:none;font-size:34px;text-align:left\"><li><span class=\"t-fr\">Favoritisme de groupe</span><span class=\"t-en\" hidden=\"\"></span></li><li><span class=\"t-fr\">Homogénéité de l’exogroupe</span><span class=\"t-en\" hidden=\"\"></span></li><li><span class=\"t-fr\">Pensée de groupe</span><span class=\"t-en\" hidden=\"\"></span></li><li><span class=\"t-fr\">Effet Pygmalion</span><span class=\"t-en\" hidden=\"\"></span></li></ul><ul data-pose=\"\" data-off-x=\"520\" data-off-y=\"230\" style=\"left:52%;top:23%;width:38%;max-width:none;font-size:34px;text-align:left\"><li><span class=\"t-fr\">Effet Benjamin Franklin</span><span class=\"t-en\" hidden=\"\"></span></li><li><span class=\"t-fr\">Biais d’automatisation</span><span class=\"t-en\" hidden=\"\"></span></li><li><span class=\"t-fr\">Biais de projection</span><span class=\"t-en\" hidden=\"\"></span></li></ul>"
-  },
-  {
-   "id": "entreprise#s0",
-   "titre": "Enjeux de l’information, impact de la désinformation.",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide short cover\" id=\"s0\"",
-   "contentHtml": "\n    <h1 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"300.00\" style=\"left:12.773%;top:30%;width:75%;max-width:none;text-align:left\"><span class=\"t-fr\">Enjeux de l’information, impact de la désinformation.</span><span class=\"t-en\" hidden=\"\"></span></h1><p class=\"lead taille-l\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"520.00\" style=\"left:12.773%;top:52%;text-align:left\"><span class=\"t-fr\">Antonin Atger | Raisonner mieux.</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
-  },
-  {
-   "id": "entreprise#s4",
-   "titre": "Qu'est-ce qu'une Fake News ?",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide short\" id=\"s4\" data-serie=\"serie_0ef36ff2-c740-4bcc-ad54-a47c803fb727\"",
-   "contentHtml": "\n    <p class=\"kicker\" data-pose=\"\" data-off-x=\"475.6\" data-off-y=\"400.88\" style=\"left: 47.56%; top: 40.088%; font-size: 18px;\"><span class=\"t-fr\">Définition</span><span class=\"t-en\" hidden=\"\">Definition</span></p>\n    <h2 data-pose=\"\" data-off-x=\"358.01\" data-off-y=\"431.72\" style=\"left: 35.801%; top: 43.172%; font-size: 48px;\" class=\"\"><span class=\"t-fr\">Qu'est-ce qu'une Fake News ?</span><span class=\"t-en\" hidden=\"\">What is a fake news story?</span></h2>\n    <p class=\"lead step\" data-pose=\"\" data-off-x=\"302.6\" data-off-y=\"504.38\" style=\"left: 30.26%; top: 50.438%; font-size: 28px;\"><span class=\"t-fr\">Une information qui est en contradiction avec l'état actuel des connaissances sur un sujet, partagée parfois de bonne foi, même si on ne peut pas la vérifier par nous-même.</span><span class=\"t-en\" hidden=\"\">A piece of information that contradicts the current state of knowledge on a topic, sometimes shared in good faith, even when we can't verify it ourselves.</span></p>\n  "
-  },
-  {
-   "id": "entreprise#masni-c3-n2-s11",
-   "titre": "Différentes « Fake News »",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"masni-c3-n2-s11\" data-serie=\"serie_f24a047a-c24d-44a8-a673-8cceee078bb9\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"373.61\" data-off-y=\"110.13\" style=\"left:37.361%;top:11.013%\"><span class=\"t-fr\">Différentes « Fake News »</span><span class=\"t-en\" hidden=\"\">Different kinds of \"fake news\"</span></h2>\n    <div class=\"compare\" data-pose=\"\" data-off-x=\"360.26\" data-off-y=\"193.81\" style=\"left:36.026%;top:19.381%\">\n      <div class=\"col sys1\">\n        <h3 class=\"step\" data-order=\"1\"><span class=\"t-fr\">Mésinformation</span><span class=\"t-en\" hidden=\"\">Misinformation</span></h3>\n        <p class=\"taille-l step\" data-order=\"3\"><span class=\"t-fr\">Une infox que l'on partage… mais que l'on croit vraie.</span><span class=\"t-en\" hidden=\"\">Fake news we share… while believing it's true.</span></p>\n      </div>\n      <div class=\"col sys2\">\n        <h3 class=\"step\" data-order=\"2\"><span class=\"t-fr\">Désinformation</span><span class=\"t-en\" hidden=\"\">Disinformation</span></h3>\n        <p class=\"taille-l step\" data-order=\"4\"><span class=\"t-fr\">Une infox que l'on partage… en sachant qu'elle est fausse.</span><span class=\"t-en\" hidden=\"\">Fake news we share… while knowing it's false.</span></p>\n      </div>\n    </div>\n    <p class=\"lead step\" data-order=\"5\" style=\"margin-top:20px;left:30.26%;top:39.205%\" data-pose=\"\" data-off-x=\"302.6\" data-off-y=\"392.05\"><span class=\"t-fr\">« Informations fallacieuses » (misleading news) : beaucoup moins identifiables qu'une Fake News pure et dure, et bien plus partagées, y compris par tous les médias.</span><span class=\"t-en\" hidden=\"\">\"Misleading news\": far less identifiable than outright fake news, and shared much more widely, including by the media themselves.</span></p>\n  "
-  },
-  {
-   "id": "entreprise#masni-c2-vrai-faux",
-   "titre": "Le réflexe : vrai, ou faux ?",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide short\" id=\"masni-c2-vrai-faux\" data-serie=\"serie_f45f0c12-c99c-446e-bd5a-768661479be1\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"377.81\" data-off-y=\"476.87\" style=\"left:37.781%;top:47.687%\"><span class=\"t-fr\">Le réflexe : vrai, ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-xl\" data-pose=\"\" data-off-x=\"150.0\" data-off-y=\"400.0\" style=\"left:15%;top:40%\"><span class=\"t-fr\">VRAI</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-xl\" data-pose=\"\" data-off-x=\"650.0\" data-off-y=\"400.0\" style=\"left:65%;top:40%\"><span class=\"t-fr\">FAUX</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
-  },
-  {
-   "id": "entreprise#s5",
-   "titre": "Quels sont les critères pour valider l'information ?",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s5\" data-serie=\"serie_043e4a77-7a07-444d-9646-de128a43839f\"",
-   "contentHtml": "\n    <style>\n#s5 .crit-roue{position:absolute;left:0;right:0;top:40px;margin:auto;width:1300px;height:790px}\n#s5 .crit-traits{position:absolute;inset:0;width:100%;height:100%}\n#s5 .crit-traits line{stroke:#7dd3fc;stroke-width:5;stroke-linecap:round;opacity:.7}\n#s5 .crit-centre{position:absolute;z-index:2;left:490px;top:235px;width:320px;height:320px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 35% 30%,#3b82f6,#1e3a8a);box-shadow:0 18px 50px rgba(0,0,0,.5);text-align:center}\n#s5 .crit-centre h2{position:static;margin:0;padding:0 34px;font-size:34px;line-height:1.2;color:#fff}\n#s5 .crit-pos{position:absolute;z-index:1;width:216px;height:216px}\n#s5 .crit-pos .retourne{width:216px;height:216px;margin:0}\n#s5 .crit-pos .retourne-face{box-shadow:0 10px 30px rgba(0,0,0,.45)}\n#s5 .crit-pos .retourne-recto{background:radial-gradient(circle at 35% 30%,#64748b,#1e293b)}\n#s5 .crit-pos .retourne-verso{background:radial-gradient(circle at 35% 30%,#fde68a,#f59e0b);padding:0 18px}\n#s5 .crit-pos .retourne-recto p{font-size:84px;font-weight:800;line-height:1;color:#fff;text-shadow:none}\n#s5 .crit-pos .retourne-verso p{font-size:24px;font-weight:700;line-height:1.15;color:#1c1917;text-shadow:none}\n#s5 .attention{position:absolute;left:auto;right:150px;top:auto;bottom:120px}\n#s5 .crit-centre{cursor:pointer}\n.slide.editing#s5 .crit-roue{position:relative;top:auto}\n</style>\n    <div class=\"crit-roue\"><svg class=\"crit-traits step\" data-order=\"1\" viewBox=\"0 0 1300 790\" aria-hidden=\"true\"><line x1=\"650\" y1=\"395\" x2=\"650\" y2=\"105\"/><line x1=\"650\" y1=\"395\" x2=\"1083\" y2=\"250\"/><line x1=\"650\" y1=\"395\" x2=\"1083\" y2=\"540\"/><line x1=\"650\" y1=\"395\" x2=\"650\" y2=\"685\"/><line x1=\"650\" y1=\"395\" x2=\"217\" y2=\"540\"/><line x1=\"650\" y1=\"395\" x2=\"217\" y2=\"250\"/></svg><div class=\"crit-centre\" onclick=\"if(this.closest('.editing'))return;if(this.closest('section').querySelector('.crit-pos.step:not(.shown)'))Deck.next()\"><h2><span class=\"t-fr\">Quels sont les critères pour valider l'information&nbsp;?</span><span class=\"t-en\" hidden=\"\">What criteria help us validate information?</span></h2></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:542px;top:-3px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[0,290,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">1</span><span class=\"t-en\" hidden=\"\">1</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Fiabilité de la source</span><span class=\"t-en\" hidden=\"\">Reliability of the source</span></p></div></div></div></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:975px;top:142px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[-433,145,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">2</span><span class=\"t-en\" hidden=\"\">2</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Fiabilité de l'interlocuteur</span><span class=\"t-en\" hidden=\"\">Reliability of the speaker</span></p></div></div></div></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:975px;top:432px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[-433,-145,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">3</span><span class=\"t-en\" hidden=\"\">3</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Niveau de preuves</span><span class=\"t-en\" hidden=\"\">Level of evidence</span></p></div></div></div></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:542px;top:577px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[0,-290,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">4</span><span class=\"t-en\" hidden=\"\">4</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Plusieurs sources fiables en parlent</span><span class=\"t-en\" hidden=\"\">Several reliable sources report it</span></p></div></div></div></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:109px;top:432px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[433,-145,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">5</span><span class=\"t-en\" hidden=\"\">5</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Crédibilité de l'information</span><span class=\"t-en\" hidden=\"\">Credibility of the information</span></p></div></div></div></div><div class=\"crit-pos step\" data-order=\"1\" style=\"left:109px;top:142px\" data-animation=\"{&quot;effet&quot;:&quot;deplacer&quot;,&quot;duree&quot;:700,&quot;chemin&quot;:[[433,145,0],[0,0,700]]}\"><div class=\"retourne\" data-silhouette=\"cercle\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\"><p class=\"lead\"><span class=\"t-fr\">6</span><span class=\"t-en\" hidden=\"\">6</span></p></div><div class=\"retourne-face retourne-verso\"><p class=\"lead\"><span class=\"t-fr\">Commentaires et critiques de l'information</span><span class=\"t-en\" hidden=\"\">Comments and criticism of the information</span></p></div></div></div></div></div>\n    <p class=\"attention step\" id=\"attention-txt\" data-order=\"2\"><span class=\"t-fr\">Mais attention…</span><span class=\"t-en\" hidden=\"\">But be careful…</span></p>\n  <div class=\"speaker-notes\" hidden=\"\"></div>"
-  },
-  {
-   "id": "entreprise#masni-c2-perception",
-   "titre": "Mais NOTRE perception du vrai et du faux dépend de beaucoup de paramètres",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"masni-c2-perception\" data-serie=\"serie_380f47a5-216a-4efc-ade8-d8445e8a59bc\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"261.04\" data-off-y=\"110.13\" style=\"left:26.104%;top:11.013%\"><span class=\"t-fr\">Mais NOTRE perception du vrai et du faux dépend de beaucoup de paramètres</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-l step\" data-pose=\"\" data-off-x=\"407.63\" data-off-y=\"240.06\" style=\"left:40.763%;top:24.006%\"><span class=\"t-fr\">Qu’est-ce que <b>je</b> juge crédible ?</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"1\" data-pose=\"\" data-off-x=\"343.75\" data-off-y=\"299.53\" style=\"left:34.375%;top:29.953%\"><span class=\"t-fr\">Ce que je juge crédible dépend de ce que je sais déjà,</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"2\" data-pose=\"\" data-off-x=\"452.74\" data-off-y=\"359\" style=\"left:45.274%;top:35.9%\"><span class=\"t-fr\">de qui me le dit,</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"3\" data-pose=\"\" data-off-x=\"407.98\" data-off-y=\"418.47\" style=\"left:40.798%;top:41.847%\"><span class=\"t-fr\">et de ce que j’ai envie de croire.</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
-  },
-  {
-   "id": "entreprise#masni-c2-credible-vrai",
-   "titre": "Crédible ≠ Vrai",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide short\" id=\"masni-c2-credible-vrai\" data-serie=\"serie_78c0490e-7b4b-4f41-8d7a-380c86fb787d\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"429.27\" data-off-y=\"425.11\" style=\"left:42.927%;top:42.511%\"><span class=\"t-fr\">Crédible ≠ Vrai</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-l step\" data-pose=\"\" data-off-x=\"302.6\" data-off-y=\"497.78\" style=\"left:30.26%;top:49.778%\"><span class=\"t-fr\">Une information peut être parfaitement crédible et complètement fausse. Et l’inverse aussi.</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
-  },
-  {
-   "id": "entreprise#s6-2",
-   "titre": "Le plateau de Gizeh se trouve en Égypte.",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"s6-2\" data-serie=\"serie_3ab7bd6c-1b14-4275-a81c-5f9b7bc04b2d\"",
-   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ? (2/7)</span><span class=\"t-en\" hidden>True or false? (2/7)</span></p>\n    <h2><span class=\"t-fr\">Le plateau de Gizeh se trouve en Égypte.</span><span class=\"t-en\" hidden>The Giza plateau is located in Egypt.</span></h2>\n    <div class=\"imgcard-full\"><img src=\"../medias/images/pyramides-gizeh.jpg\" alt=\"\"><span class=\"vf-marque vf-vrai step\" title=\"Vrai\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M22 53 L42 72 L80 30\"/></svg></span></div>\n  "
-  },
-  {
-   "id": "entreprise#s6-3",
-   "titre": "Le président a rencontré un alien.",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"s6-3\" data-serie=\"serie_3ab7bd6c-1b14-4275-a81c-5f9b7bc04b2d\"",
-   "contentHtml": "\n    <p class=\"kicker\" style=\"transform: translate(-8.44px, 0px);\" data-off-x=\"-8.44\" data-off-y=\"0\"><span class=\"t-fr\">Vrai ou faux ? (3/7)</span><span class=\"t-en\" hidden=\"\">True or false? (3/7)</span></p>\n    <h2 class=\"\" style=\"transform: translate(-8.44px, 0px);\" data-off-x=\"-8.44\" data-off-y=\"0\"><span class=\"t-fr\">Le président a rencontré un alien.</span><span class=\"t-en\" hidden=\"\">The president met an alien.</span></h2>\n    <div class=\"imgcard-full\" style=\"transform: translate(-8.44px, 0px);\" data-off-x=\"-8.44\" data-off-y=\"0\"><img src=\"../medias/images/macron-alien-ia.jpg\" alt=\"\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M26 26 L74 74 M74 26 L26 74\"/></svg></span></div>\n  "
-  },
-  {
-   "id": "entreprise#s6-4",
-   "titre": "Le soleil est une étoile.",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"s6-4\" data-serie=\"serie_3ab7bd6c-1b14-4275-a81c-5f9b7bc04b2d\"",
-   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ? (4/7)</span><span class=\"t-en\" hidden>True or false? (4/7)</span></p>\n    <h2><span class=\"t-fr\">Le soleil est une étoile.</span><span class=\"t-en\" hidden>The sun is a star.</span></h2>\n    <div class=\"imgcard-full\"><img src=\"../medias/images/soleil-etoile.jpg\" alt=\"\"><span class=\"vf-marque vf-vrai step\" title=\"Vrai\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M22 53 L42 72 L80 30\"/></svg></span></div>\n  "
-  },
-  {
-   "id": "entreprise#s6-5",
-   "titre": "L'étoile du berger est une étoile.",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"s6-5\" data-serie=\"serie_3ab7bd6c-1b14-4275-a81c-5f9b7bc04b2d\"",
-   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ? (5/7)</span><span class=\"t-en\" hidden>True or false? (5/7)</span></p>\n    <h2><span class=\"t-fr\">L'étoile du berger est une étoile.</span><span class=\"t-en\" hidden>The \"shepherd's star\" is a star.</span></h2>\n    <div class=\"imgcard-full\"><img src=\"../medias/images/etoile-berger-venus.jpg\" alt=\"\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M26 26 L74 74 M74 26 L26 74\"/></svg></span></div>\n  "
-  },
-  {
-   "id": "entreprise#masni-c2-chauves-souris",
-   "titre": "Les chauves-souris sont aveugles.",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-chauves-souris\" data-serie=\"serie_dd6605c2-fda3-44cb-b4ab-1ced3ec10d64\"",
-   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">Les chauves-souris sont aveugles.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-chauve-souris.jpg\" alt=\"Une chauve-souris en vol\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Faux. Elles voient, et complètent leur vue par l’écholocation.</div>\n  "
-  },
-  {
-   "id": "entreprise#masni-c2-pieuvres",
-   "titre": "Les pieuvres ont trois cœurs.",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-pieuvres\" data-serie=\"serie_e56bbd59-5c9f-4d0c-9bfd-ef4b8bc8edaf\"",
-   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">Les pieuvres ont trois cœurs.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-pieuvre.jpg\" alt=\"Une pieuvre\" loading=\"lazy\"><span class=\"vf-marque vf-vrai step\" title=\"Vrai\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M22 53 L42 72 L80 30\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Vrai. Un cœur principal, et un pour chacune de leurs deux branchies.</div>\n  "
-  },
-  {
-   "id": "entreprise#masni-c2-sushi",
-   "titre": "Le terme « sushi » désigne « poisson cru » en japonais.",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-sushi\" data-serie=\"serie_290cff5f-f4a4-471a-b093-9ac54e45fb91\"",
-   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">Le terme « sushi » désigne « poisson cru » en japonais.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-sushi.jpg\" alt=\"Des sushis\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Faux. « Sushi » désigne le riz vinaigré. Le poisson cru, c’est le sashimi.</div>\n  "
-  },
-  {
-   "id": "entreprise#masni-c2-coriolis",
-   "titre": "L’eau tourbillonne dans un sens différent selon l’hémisphère (effet Coriolis).",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-coriolis\" data-serie=\"serie_ef07b431-03f9-471f-bef3-b1205fba45a2\"",
-   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">L’eau tourbillonne dans un sens différent selon l’hémisphère (effet Coriolis).</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-lavabo-tourbillon.jpg\" alt=\"Un tourbillon d’eau dans un lavabo\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Faux à l’échelle d’un lavabo : la force de Coriolis y est négligeable devant la forme du bac et le mouvement initial de l’eau.</div>\n  "
-  },
-  {
-   "id": "entreprise#masni-c2-chats-fluo",
-   "titre": "Nous avons créé des chats fluorescents.",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-chats-fluo\" data-serie=\"serie_106dbe1f-fae1-44ac-ae8d-cb9898fedf47\"",
-   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">Nous avons créé des chats fluorescents.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-chat-fluorescent.jpg\" alt=\"Un chat fluorescent\" loading=\"lazy\"><span class=\"vf-marque vf-vrai step\" title=\"Vrai\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M22 53 L42 72 L80 30\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Vrai. Des chats transgéniques fluorescents ont été produits en laboratoire, pour la recherche sur le sida félin.</div>\n  "
-  },
-  {
-   "id": "entreprise#masni-c2-mousse-nord",
-   "titre": "La mousse sur les arbres pousse toujours au nord.",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-mousse-nord\" data-serie=\"serie_a2e53519-1b5d-4713-b6fa-6e2497fcca6a\"",
-   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">La mousse sur les arbres pousse toujours au nord.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-mousse-arbre.jpg\" alt=\"De la mousse sur un tronc d’arbre\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Faux. Elle pousse du côté le plus humide, qui dépend du relief, du vent et de l’ombre.</div>\n  "
-  },
-  {
-   "id": "entreprise#masni-c2-pyramides-et",
-   "titre": "Les pyramides ont été construites par des extra-terrestres.",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-pyramides-et\" data-serie=\"serie_5ef28757-d9d6-4489-b045-9b96c93d52db\"",
-   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">Les pyramides ont été construites par des extra-terrestres.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-pyramides-extraterrestres.png\" alt=\"Illustration complotiste des pyramides\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Faux. Et c’est une théorie du complot de plein droit : elle suppose une dissimulation générale des égyptologues.</div>\n  "
-  },
-  {
-   "id": "entreprise#masni-c2-pyramides-esclaves",
-   "titre": "Les pyramides ont été construites par des esclaves.",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-pyramides-esclaves\" data-serie=\"serie_77791c4b-2ceb-457a-86ea-6b452be49737\"",
-   "contentHtml": "\n    <p class=\"kicker\"><span class=\"t-fr\">Vrai ou faux ?</span><span class=\"t-en\" hidden=\"\"></span></p><h2><span class=\"t-fr\">Les pyramides ont été construites par des esclaves.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-pyramides-ouvriers.jpg\" alt=\"Chantier des pyramides\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Faux, au moins en partie : les fouilles montrent des ouvriers logés, nourris et soignés, pas des esclaves.</div>\n  "
-  },
-  {
-   "id": "entreprise#masni-c2-ia-titre",
-   "titre": "Quelle photo est en IA, quelle photo est réelle ?",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide short divider-slide\" id=\"masni-c2-ia-titre\" data-serie=\"serie_6563614e-f141-4b70-a7ed-0918e9ea9358\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"261.04\" data-off-y=\"439.43\" style=\"left:26.104%;top:43.943%\"><span class=\"t-fr\">Quelle photo est en IA, quelle photo est réelle ?</span><span class=\"t-en\" hidden=\"\"></span></h2>\n  "
-  },
-  {
-   "id": "entreprise#masni-c2-ia-1",
-   "titre": "Vraie photo, ou générée par IA ?",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide photo-ia\" id=\"masni-c2-ia-1\" data-serie=\"serie_5356ff4b-e784-4089-a18a-6ae45a2580a1\"",
-   "contentHtml": "\n    <h2><span class=\"t-fr\">Vraie photo, ou générée par IA ?</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-photo-ia-1.png\" alt=\"Un portrait ancien : vraie photo, ou générée par IA ?\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  "
-  },
-  {
-   "id": "entreprise#masni-c2-ia-2",
-   "titre": "Vraie photo, ou générée par IA ?",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide photo-ia\" id=\"masni-c2-ia-2\" data-serie=\"serie_3a78ce9b-5cf1-475d-95f6-9476b8e54efc\"",
-   "contentHtml": "\n    <h2><span class=\"t-fr\">Vraie photo, ou générée par IA ?</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-photo-ia-2.jpg\" alt=\"Une scène de rue : vraie photo, ou générée par IA ?\" loading=\"lazy\"><span class=\"vf-marque vf-faux step\" title=\"Faux\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M28 28 L72 72 M72 28 L28 72\"/></svg></span></div>\n  "
-  },
-  {
-   "id": "entreprise#masni-c2-ia-3",
-   "titre": "Vraie photo, ou générée par IA ?",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide photo-ia\" id=\"masni-c2-ia-3\" data-serie=\"serie_847e9aaf-5c40-44b1-a92c-66c910b13197\"",
-   "contentHtml": "\n    <h2><span class=\"t-fr\">Vraie photo, ou générée par IA ?</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/quiz-ia-flamant-rose-beach.png\" alt=\"Un flamant rose sur une plage : vraie photo, ou générée par IA ?\" loading=\"lazy\"><span class=\"vf-marque vf-vrai step\" title=\"Vrai\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M22 53 L42 72 L80 30\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Celle-ci est une vraie photo. Le plus difficile n’est pas de repérer l’IA : c’est d’accepter qu’on ne sait pas.</div>\n  "
-  },
-  {
-   "id": "entreprise#masni-c2-au-dela",
-   "titre": "Au-delà du vrai / faux",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide short divider-slide\" id=\"masni-c2-au-dela\" data-serie=\"serie_08b0c044-ed57-4045-b68a-100bbfe7c612\"",
-   "contentHtml": "\n    <div class=\"em\" data-pose=\"\" data-off-x=\"492.51\" data-off-y=\"430.62\" style=\"left:49.251%;top:43.062%\"><span class=\"t-fr\">2</span><span class=\"t-en\" hidden=\"\"></span></div><h2 data-pose=\"\" data-off-x=\"381.4\" data-off-y=\"514.32\" style=\"left:38.14%;top:51.432%\"><span class=\"t-fr\">Au-delà du vrai / faux</span><span class=\"t-en\" hidden=\"\"></span></h2>\n  "
-  },
-  {
-   "id": "entreprise#masni-c2-terre-365",
-   "titre": "La Terre tourne autour du Soleil en 365 jours.",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-terre-365\" data-serie=\"serie_5045dbd2-2a5c-4ac3-945a-f68450e39686\"",
-   "contentHtml": "\n    <h2><span class=\"t-fr\">La Terre tourne autour du Soleil en 365 jours.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-terre-soleil.png\" alt=\"La Terre et le Soleil\" loading=\"lazy\"><span class=\"vf-marque vf-presque step\" title=\"Presque\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path style=\"stroke:#f59e0b\" d=\"M18 40 C30 28 42 28 50 40 S70 52 82 40 M18 64 C30 52 42 52 50 64 S70 76 82 64\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Presque : 365,2422 jours. C’est pour cela qu’il existe des années bissextiles. « Vrai » et « faux » ne suffisent pas toujours.</div>\n  "
-  },
-  {
-   "id": "entreprise#masni-c2-terre-ronde",
-   "titre": "La Terre est ronde.",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-terre-ronde\" data-serie=\"serie_a47e0aa5-7b27-435f-9980-7bea4a47178c\"",
-   "contentHtml": "\n    <h2><span class=\"t-fr\">La Terre est ronde.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-terre-ronde.jpg\" alt=\"La Terre vue de l’espace\" loading=\"lazy\"><span class=\"vf-marque vf-presque step\" title=\"Presque\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path style=\"stroke:#f59e0b\" d=\"M18 40 C30 28 42 28 50 40 S70 52 82 40 M18 64 C30 52 42 52 50 64 S70 76 82 64\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Presque : c’est un géoïde, légèrement aplati aux pôles. L’approximation est utile, mais c’est une approximation.</div>\n  "
-  },
-  {
-   "id": "entreprise#masni-c2-respirer-avaler",
-   "titre": "On ne peut pas respirer et avaler en même temps.",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-respirer-avaler\" data-serie=\"serie_fd36ca8c-d62a-4df3-9944-9ffb5d927974\"",
-   "contentHtml": "\n    <h2><span class=\"t-fr\">On ne peut pas respirer et avaler en même temps.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-deglutition.jpg\" alt=\"Schéma de la déglutition\" loading=\"lazy\"><span class=\"vf-marque vf-presque step\" title=\"Presque\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path style=\"stroke:#f59e0b\" d=\"M18 40 C30 28 42 28 50 40 S70 52 82 40 M18 64 C30 52 42 52 50 64 S70 76 82 64\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Vrai chez l’adulte… mais faux chez le nourrisson, qui peut téter et respirer en même temps. Le contexte change la réponse.</div>\n  "
-  },
-  {
-   "id": "entreprise#masni-c2-chiens-transpirent",
-   "titre": "Les chiens ne transpirent pas.",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide quiz-vrai-faux\" id=\"masni-c2-chiens-transpirent\" data-serie=\"serie_a85fa043-826a-409c-9a8a-07c3cabd9b72\"",
-   "contentHtml": "\n    <h2><span class=\"t-fr\">Les chiens ne transpirent pas.</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard-full\"><img src=\"../medias/images/masni-chien.jpg\" alt=\"Un chien\" loading=\"lazy\"><span class=\"vf-marque vf-presque step\" title=\"Presque\"><svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path style=\"stroke:#f59e0b\" d=\"M18 40 C30 28 42 28 50 40 S70 52 82 40 M18 64 C30 52 42 52 50 64 S70 76 82 64\"/></svg></span></div>\n  <div class=\"speaker-notes\" hidden=\"\">Réponse : Presque : ils transpirent très peu, par les coussinets. Ils se refroidissent surtout en haletant.</div>\n  "
-  },
-  {
-   "id": "entreprise#s7",
-   "titre": "Distinguer une vraie information d'une fausse information n'est pas toujours facile !",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide short\" id=\"s7\" data-serie=\"serie_b5606e81-4c2a-4a91-affa-c71a3a6d0117\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"261.04\" data-off-y=\"422.93\" style=\"left:26.104%;top:42.293%\"><span class=\"t-fr\">Distinguer une vraie information d'une fausse information n'est pas toujours facile !</span><span class=\"t-en\" hidden=\"\">Telling real information from fake isn't always easy!</span></h2>\n    <p class=\"lead\" data-pose=\"\" data-off-x=\"379.62\" data-off-y=\"552.84\" style=\"left:37.962%;top:55.284%\"><span class=\"t-fr\">Et en plus… même nos yeux peuvent nous tromper.</span><span class=\"t-en\" hidden=\"\">And on top of that… even our eyes can fool us.</span></p>\n  "
-  },
-  {
-   "id": "entreprise#s11",
-   "titre": "Regardez bien",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s11\" data-serie=\"serie_38aca19c-7af7-4b66-a9fb-84bfa50f9520\"",
-   "contentHtml": "\n    <p class=\"kicker\" style=\"left: 47.065%; top: 11.239%;\" data-off-x=\"470.65\" data-off-y=\"112.39\" data-pose=\"\"><span class=\"t-fr\">Regardez bien</span><span class=\"t-en\" hidden=\"\">Watch closely</span></p>\n    \n    <p class=\"lead step\" data-order=\"1\" style=\"margin-top: 14px; left: 30.757%; top: 81.531%;\" data-off-x=\"307.57\" data-off-y=\"815.31\" data-pose=\"\"><span class=\"t-fr\">« Monsieur, c'est mal cadré ! » .</span><span class=\"t-en\" hidden=\"\">\"Sir, that's badly framed!\" A simple crop is enough to completely change what we think we're seeing.</span></p>\n  <div class=\"vid-rotate-wrap\" data-pose=\"\" data-off-x=\"294.4\" data-off-y=\"158.64\" style=\"width: 791.55px; left: 29.44%; top: 15.864%;\">\n        <div class=\"vidwrap\" id=\"cadrage-vidwrap1\" style=\"max-width: 791.561px; width: 791.561px; transform: translate(28.6px, -72.95px);\" data-off-x=\"28.6\" data-off-y=\"-72.95\"><video src=\"../medias/video/cadrage-rocketman.mp4\" controls=\"\" playsinline=\"\"></video></div>\n        <button type=\"button\" class=\"rotate-btn\" data-target=\"#cadrage-vidwrap1\" title=\"Pivoter d'un quart de tour\">⟳</button>\n      </div>"
-  },
-  {
-   "id": "entreprise#communiquer-d194",
-   "titre": "",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"communiquer-d194\" data-serie=\"serie_a91cbcd4-3164-4116-8701-d441e5fe4b16\"",
-   "contentHtml": "\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"291.552\" data-off-y=\"38.71\" style=\"left:29.155%;top:3.871%;width:41.69%;max-width:none\"><img src=\"../medias/images/communiquer-194-42.jpg\" alt=\"\" loading=\"lazy\"></div>\n    <div class=\"imgcard step\" data-pose=\"\" data-off-x=\"291.552\" data-off-y=\"38.71\" style=\"left:29.155%;top:3.871%;width:41.69%;max-width:none\"><img src=\"../medias/images/communiquer-194-42.jpg\" alt=\"\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "entreprise#s11b",
-   "titre": "Biais de cadrage",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide short\" id=\"s11b\" data-serie=\"serie_03f69558-9c13-4e87-a4c2-3ae4371e3714\"",
-   "contentHtml": "\n    <p class=\"kicker\" data-pose=\"\" data-off-x=\"50\" data-off-y=\"350\" style=\"left:5%;top:35%;width:90%;max-width:none;text-align:center;font-size:38px\"><span class=\"t-fr\">Définition</span><span class=\"t-en\" hidden=\"\">Definition</span></p>\n    <h2 data-pose=\"\" data-off-x=\"50\" data-off-y=\"415.0\" style=\"left:5%;top:41.5%;width:90%;max-width:none;text-align:center;font-size:54px\"><span class=\"t-fr\">Biais de cadrage</span><span class=\"t-en\" hidden=\"\">Framing bias</span></h2>\n    <p class=\"lead\" data-pose=\"\" data-off-x=\"150\" data-off-y=\"520\" style=\"left:15%;top:52%;font-size:34px;width:70%;max-width:none;text-align:center;line-height:1.45\"><span class=\"t-fr\">La manière dont une information est présentée, son « cadre », influence notre jugement, indépendamment du contenu réel de l'information.</span><span class=\"t-en\" hidden=\"\">The way information is presented, its \"frame\", shapes our judgement, regardless of the actual content.</span></p>\n  <div class=\"speaker-notes\" hidden=\"\">Test</div>"
-  },
-  {
-   "id": "entreprise#s-paul-1",
-   "titre": "#s-paul-1 .tw-scene{position:absolute;left:0;right:0;top:14px;margin:auto;width:",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-paul-1\" data-serie=\"group_b7609409-f9cb-4eb7-82a3-7afa3bad2ea2\"",
-   "contentHtml": "\n    <style>\n#s-paul-1 .tw-scene{position:absolute;left:0;right:0;top:14px;margin:auto;width:1820px;height:870px;text-align:left;font-family:Arial,Helvetica,sans-serif}\n#s-paul-1 .tw-col{position:absolute;left:630px;top:0;width:560px;transition:left .6s ease}\n#s-paul-1 .tw-scene:has(.reveal-box.show) .tw-col{left:0}\n#s-paul-1 .tw-carte{box-sizing:border-box;padding:20px 22px 22px;background:#000;border:1px solid #2f3336;border-radius:18px;color:#e7e9ea;box-shadow:0 16px 40px rgba(0,0,0,.5)}\n#s-paul-1 .tw-tete{display:flex;align-items:center;gap:14px}\n#s-paul-1 .tw-logo{flex:none;width:60px;height:60px;border-radius:9px;display:block}\n#s-paul-1 .tw-ident{display:flex;flex-direction:column;line-height:1.2}\n#s-paul-1 .tw-nom{font-size:24px;font-weight:700;color:#e7e9ea;display:flex;align-items:center;gap:6px}\n#s-paul-1 .tw-badge{width:22px;height:22px}\n#s-paul-1 .tw-pseudo{font-size:20px;color:#71767b}\n#s-paul-1 .tw-suivre{margin-left:auto;padding:8px 22px;border-radius:30px;background:#eff3f4;color:#0f1419;font-size:19px;font-weight:700}\n#s-paul-1 .tw-points{margin-left:14px;color:#71767b;font-size:26px;line-height:1}\n#s-paul-1 .tw-texte{margin:14px 0 0;max-width:none;font-size:23px;line-height:1.35;color:#e7e9ea;font-weight:400}\n#s-paul-1 .tw-photo{display:block;width:100%;height:auto;margin-top:14px;border-radius:16px;border:1px solid #2f3336}\n#s-paul-1 .tw-voir{display:block;width:560px;margin:14px 0 0;padding:12px 0;border-radius:40px;border:1px solid #1d9bf0;background:#000;color:#1d9bf0;font:700 20px Arial,Helvetica,sans-serif;cursor:pointer}\n#s-paul-1 .tw-commentaires{position:absolute;left:600px;top:0;width:1220px;margin:0}\n#s-paul-1 .tw-commentaires.show{max-height:880px}\n#s-paul-1 .tw-liste{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px}\n#s-paul-1 .tw-com{display:flex;gap:12px;box-sizing:border-box;padding:12px 14px;background:#000;border:1px solid #2f3336;border-radius:14px;color:#e7e9ea;min-height:108px}\n#s-paul-1 .tw-ava{flex:none;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:20px}\n#s-paul-1 .tw-com-corps{min-width:0}\n#s-paul-1 .tw-com-tete{margin:0;max-width:none;font-size:17px;line-height:1.25;color:#e7e9ea}\n#s-paul-1 .tw-com-tete span{color:#71767b}\n#s-paul-1 .tw-com-texte{margin:4px 0 0;max-width:none;font-size:18px;line-height:1.3;color:#e7e9ea;font-weight:400}\n#s-paul-1 .tw-lien{color:#1d9bf0;text-decoration:none;font-weight:400}\n#s-paul-1 .tw-lien:hover{text-decoration:underline}\n</style>\n    <div class=\"tw-scene\"><div class=\"tw-col\"><div class=\"tw-carte\"><div class=\"tw-tete\"><img class=\"tw-logo\" src=\"../medias/images/logo-bfmtv.png\" alt=\"BFMTV\"><span class=\"tw-ident\"><span class=\"tw-nom\">BFMTV <svg class=\"tw-badge\" viewBox=\"0 0 22 22\" aria-hidden=\"true\"><path fill=\"#e2b719\" d=\"M20.4 11c0-1.4-.8-2.6-2-3.2.4-1.3.1-2.8-.9-3.8s-2.4-1.3-3.8-.9C13.1 1.9 11.9 1.1 10.5 1.1S7.9 1.9 7.3 3.1c-1.3-.4-2.8-.1-3.8.9s-1.3 2.4-.9 3.8C1.4 8.4.6 9.6.6 11s.8 2.6 2 3.2c-.4 1.3-.1 2.8.9 3.8s2.4 1.3 3.8.9c.6 1.2 1.8 2 3.2 2s2.6-.8 3.2-2c1.3.4 2.8.1 3.8-.9s1.3-2.4.9-3.8c1.2-.6 2-1.8 2-3.2z\"/><path fill=\"#000\" d=\"M9.2 15.2l-3.4-3.4 1.3-1.3 2.1 2.1 5-5 1.3 1.3z\"/></svg></span><span class=\"tw-pseudo\">@BFMTV</span></span><span class=\"tw-suivre\">Suivre</span><span class=\"tw-points\">⋮</span></div><p class=\"tw-texte\">💬\"J'ai tout perdu\"<br><br>À 82 ans, Paul va être expulsé de sa maison car ses belles-filles ont décidé de la vendre</p><img class=\"tw-photo\" src=\"../medias/images/paul-histoire-1-photo.jpg\" alt=\"Paul, 82 ans, interviewé par BFMTV\"></div><button type=\"button\" class=\"reveal-btn tw-voir\" onclick=\"Deck.revealBox('rb-s-paul-1-1')\"><span class=\"t-fr\">Voir les commentaires</span><span class=\"t-en\" hidden=\"\">Show comments</span></button></div><div class=\"reveal-box tw-commentaires\" id=\"rb-s-paul-1-1\"><div class=\"tw-liste\"><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#e11d48\">M</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Martine 🌻</b> <span>@martine_lili · 1 h</span></p><p class=\"tw-com-texte\">Honteux !!! Mettre un monsieur de 82 ans à la rue… Ces belles-filles sont des p*******s sans cœur 🤬</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#2563eb\">K</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Kévin</b> <span>@kev_du_94 · 1 h</span></p><p class=\"tw-com-texte\">Bande de s*****s. J'espère qu'elles vont tout perdre elles aussi</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#16a34a\">S</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Sandrine B.</b> <span>@sandrine_b · 58 min</span></p><p class=\"tw-com-texte\">Le pauvre… 😢 Il a travaillé toute sa vie pour cette maison et ces deux c*******s le jettent dehors</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#9333ea\">L</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Le Vrai Gaulois</b> <span>@vraigaulois · 55 min</span></p><p class=\"tw-com-texte\">Voilà la famille aujourd'hui. Plus aucun respect pour les anciens. Des o*****s, rien d'autre.</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#ea580c\">J</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Juju</b> <span>@juju_off · 52 min</span></p><p class=\"tw-com-texte\">Moi à sa place je les déshérite direct ces m*****s 😤</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#0891b2\">N</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Nathalie G.</b> <span>@nath_g62 · 50 min</span></p><p class=\"tw-com-texte\">Je pleure en voyant ça. Comment on peut faire ça à son beau-père ?? Elles n'ont aucune honte</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#ca8a04\">D</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Dédé du 13</b> <span>@dede13 · 47 min</span></p><p class=\"tw-com-texte\">Qu'elles viennent me dire ça en face, les p*****s 👊</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#db2777\">S</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Sophie</b> <span>@sophie_75 · 44 min</span></p><p class=\"tw-com-texte\">Partagez un max !!! Il faut que tout le monde sache ce que ces v*******s ont fait 🔁</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#4f46e5\">T</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Thomas</b> <span>@thomas_lit · 41 min</span></p><p class=\"tw-com-texte\">Attendez, en fait, on n'a pas tous les éléments… Lisez ça avant de vous énerver 👇<br><a href=\"#\" class=\"tw-lien\" onclick=\"if(!this.closest('.slide.editing')){Deck.next();}return false;\">francelive.fr/paul-82-ans-la-verite</a></p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#059669\">G</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Gégé</b> <span>@gerard_retraite · 39 min</span></p><p class=\"tw-com-texte\">Courage Paul ❤️ Et honte à ces deux c*******s, le karma va les rattraper</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#dc2626\">L</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Lucas</b> <span>@lucas_33 · 35 min</span></p><p class=\"tw-com-texte\">Elles mériteraient d'être expulsées à leur tour, on verra si elles rigolent 😡</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#7c3aed\">K</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Karine 🐾</b> <span>@karine_animo · 31 min</span></p><p class=\"tw-com-texte\">Dégoûtée de l'humanité. L'argent, toujours l'argent. Des r******s, ces bonnes femmes.</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#0d9488\">M</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>MaxPower</b> <span>@maxpower_off · 28 min</span></p><p class=\"tw-com-texte\">Quelqu'un a leurs noms ? Faut les afficher partout, ces s*****s 😠</p></div></div><div class=\"tw-com\"><span class=\"tw-ava\" style=\"background:#b45309\">B</span><div class=\"tw-com-corps\"><p class=\"tw-com-tete\"><b>Brigitte</b> <span>@brigitte_l · 25 min</span></p><p class=\"tw-com-texte\">Pauvre homme… 82 ans !! Où va le monde 😭😭</p></div></div></div></div></div>\n    <p class=\"lead media-note t-en\" hidden=\"\" style=\"\">This newspaper clipping is in French.</p>\n  "
-  },
-  {
-   "id": "entreprise#s-paul-2",
-   "titre": "This newspaper clipping is in French.",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-paul-2\" data-serie=\"group_b7609409-f9cb-4eb7-82a3-7afa3bad2ea2\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"393.5\" data-off-y=\"70\" style=\"left:39.35%;top:7%;max-width:none;max-height:none\"><img style=\"width:410px;height:auto;max-width:none;max-height:none\" src=\"../medias/images/paul-histoire-2--niveau1.jpg\" alt=\"Suite : le point de vue des filles de Paul\"></div>\n    <p class=\"lead media-note t-en\" hidden=\"\">This newspaper clipping is in French.</p>\n  "
-  },
-  {
-   "id": "entreprise#ent-mandon-titre",
-   "titre": "",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"ent-mandon-titre\"",
-   "contentHtml": "\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"195.00\" data-off-y=\"40.00\" style=\"left:19.5%;top:4%;width:61%;max-width:none\"><img src=\"../medias/images/entreprise-mandon-accepter-de-perdre-nos-enfants.jpg\" alt=\"\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "entreprise#ent-mandon-article",
-   "titre": "",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"ent-mandon-article\"",
-   "contentHtml": "\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"220.00\" data-off-y=\"60.00\" style=\"left:22%;top:6%;width:56%;max-width:none\"><img src=\"../medias/images/entreprise-mandon-article.png\" alt=\"\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "entreprise#s15",
-   "titre": "This video is in French.",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s15\" data-serie=\"serie_68740caf-9b83-4151-a849-eb7599a93d54\"",
-   "contentHtml": "\n    <div class=\"vidwrap\" data-pose=\"\" data-off-x=\"299.63\" data-off-y=\"133.53\" style=\"width: 819.031px; max-height: none; max-width: 819.031px; left: 29.963%; top: 13.353%;\"><video src=\"../medias/video/alerte-ukraine-sensible.mp4\" controls=\"\" playsinline=\"\" data-recadre-video=\"19 0 0 0\" style=\"object-view-box: inset(19% 0% 0%); width: 100%; height: auto; max-width: none; max-height: none;\"></video></div>\n    <p class=\"lead media-note t-en\" hidden=\"\" style=\"\">This video is in French.</p>\n  "
-  },
-  {
-   "id": "entreprise#ent-erreur-information-perception",
-   "titre": "L’erreur peut se trouver dans l’information,",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"ent-erreur-information-perception\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.70\" style=\"left:12.773%;top:9.57%;width:75%;max-width:none;text-align:left\"><span class=\"t-fr\">L’erreur peut se trouver dans l’information,</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard\" data-pose=\"\" data-off-x=\"100.00\" data-off-y=\"380.00\" style=\"left:10%;top:38%;width:33%;max-width:none\"><img src=\"../medias/images/entreprise-information.png\" alt=\"\" loading=\"lazy\"></div><p class=\"lead taille-xl step\" data-order=\"1\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"220.00\" style=\"left:12.773%;top:22%;width:75%;max-width:none;text-align:left\"><span class=\"t-fr\">ou dans notre perception.</span><span class=\"t-en\" hidden=\"\"></span></p><div class=\"imgcard step\" data-order=\"1\" data-pose=\"\" data-off-x=\"550.00\" data-off-y=\"380.00\" style=\"left:55%;top:38%;width:31%;max-width:none\"><img src=\"../medias/images/entreprise-cerveau.jpg\" alt=\"\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "entreprise#s26-2",
-   "titre": "Les autres manières de désinformer",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide divider-slide short\" id=\"s26-2\" data-serie=\"serie_51ef73f5-bc37-45be-a9ef-79dcefd12ebd\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"312.26\" data-off-y=\"473.93\" style=\"left:31.226%;top:47.393%\"><span class=\"t-fr\">Les autres manières de désinformer</span><span class=\"t-en\" hidden=\"\">Other ways to mislead</span></h2>\n  "
-  },
-  {
-   "id": "entreprise#masni-c3-n2-s27",
-   "titre": "Simuler la foule, simuler l'opinion",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"masni-c3-n2-s27\" data-serie=\"serie_09775910-932e-4f7f-b218-a23b2905a898\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"338.95\" data-off-y=\"112.56\" style=\"left: 33.895%; top: 11.256%;\"><span class=\"t-fr\">Simuler la foule, simuler l'opinion</span><span class=\"t-en\" hidden=\"\">Faking the crowd, faking opinion</span></h2>\n    \n  <div class=\"m-item\" data-pose=\"\" data-off-x=\"287.54\" data-off-y=\"190.74\" style=\"width: 197.5px; left: 28.754%; top: 19.074%;\"><img src=\"../medias/images/mcdo-osaka-foule.jpg\" alt=\"Foule devant un McDonald's à Osaka\"></div><div class=\"m-item\" data-pose=\"\" data-off-x=\"395.33\" data-off-y=\"190.74\" style=\"width: 197.5px; left: 39.533%; top: 19.074%;\"><img src=\"../medias/images/mcdo-osaka-titre.jpg\" alt=\"Titre : McDonald's admet avoir payé 1000 personnes\"></div><div class=\"m-item\" data-pose=\"\" data-off-x=\"503.12\" data-off-y=\"190.74\" style=\"width: 197.5px; left: 50.312%; top: 19.074%;\"><img src=\"../medias/images/lloyd-bentsen.jpg\" alt=\"Le sénateur Lloyd Bentsen\"></div><div class=\"m-item\" data-pose=\"\" data-off-x=\"610.9\" data-off-y=\"190.74\" style=\"width: 197.5px; left: 61.09%; top: 19.074%;\"><img src=\"../medias/images/telegram-silhouette.jpg\" alt=\"Silhouette avec smartphone Telegram\"></div>"
-  },
-  {
-   "id": "entreprise#masni-c3-n2-s28",
-   "titre": "L'Astroturfing",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"masni-c3-n2-s28\" data-serie=\"serie_b2edb0d8-e1a6-4eac-86e4-80450ef9c23b\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"432.55\" data-off-y=\"112.57\" style=\"left: 43.255%; top: 11.257%;\"><span class=\"t-fr\">L'Astroturfing</span><span class=\"t-en\" hidden=\"\">Astroturfing</span></h2>\n    <p class=\"lead\" data-pose=\"\" data-off-x=\"302.6\" data-off-y=\"185.24\" style=\"left: 30.26%; top: 18.524%;\"><span class=\"t-fr\">Une technique consistant à simuler un mouvement spontané ou populaire, à des fins politiques ou économiques, pour influencer l'opinion publique.</span><span class=\"t-en\" hidden=\"\">A technique that fakes a spontaneous or grassroots movement, for political or economic ends, to influence public opinion.</span></p>\n    \n    <p class=\"src\" data-pose=\"\" data-off-x=\"308.43\" data-off-y=\"545.92\" style=\"left: 30.843%; top: 54.592%;\"><span class=\"t-fr\">« AstroTurf » = la marque de pelouse synthétique utilisée dans les stades, un jeu de mots sur « grassroots movement » (mouvement de la base).</span><span class=\"t-en\" hidden=\"\">\"AstroTurf\" = the brand of synthetic lawn used in stadiums, a pun on \"grassroots movement\".</span></p>\n  <div class=\"imgcard small\" data-pose=\"\" data-off-x=\"340\" data-off-y=\"286.54\" style=\"width: 300px; left: 34%; top: 28.654%;\"><img src=\"../medias/images/astroturfing-illustration.jpg\" alt=\"Illustration de l'astroturfing\" loading=\"lazy\"></div><div class=\"imgcard small\" data-pose=\"\" data-off-x=\"504.16\" data-off-y=\"286.54\" style=\"width: 300px; left: 50.416%; top: 28.654%;\"><img src=\"../medias/images/astroturf-lettre-pere-noel.jpg\" alt=\"Lettres identiques envoyées en masse\" loading=\"lazy\"></div>"
-  },
-  {
-   "id": "entreprise#s29-2",
-   "titre": "",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide short\" id=\"s29-2\" data-serie=\"serie_56b43ec5-fb2d-4482-a65f-ade3960e4d16\"",
-   "contentHtml": "\n    <div class=\"vidwrap\" data-pose=\"\" data-off-x=\"352.38\" data-off-y=\"0\" style=\"left:35.238%;top:0%;width:24.41%;max-width:none;max-height:none\"><video src=\"../medias/video/transition-astroturfing-humour.mp4\" controls=\"\" playsinline=\"\" style=\"max-height:none\"></video></div>\n  "
-  },
-  {
-   "id": "entreprise#masni-c3-n2-s30",
-   "titre": "",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide short\" id=\"masni-c3-n2-s30\" data-serie=\"serie_084ce8ab-4d90-47fd-b0f0-e7c99e9869ca\"",
-   "contentHtml": "\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"390.91\" data-off-y=\"358.93\" style=\"left:39.091%;top:35.893%\"><img src=\"../medias/images/affiche-tabac-lucky-strike.png\" alt=\"Vieille publicité pour les cigarettes Lucky Strike\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "entreprise#s32e",
-   "titre": "La fabrique du doute",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s32e\" data-serie=\"serie_9eda9d86-ee26-46b3-aaf0-bbef6e27ff02\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"406.91\" data-off-y=\"99.12\" style=\"left:40.691%;top:9.912%\"><span class=\"t-fr\">La fabrique du doute</span><span class=\"t-en\" hidden=\"\">The manufacture of doubt</span></h2>\n    <p class=\"lead\" data-pose=\"\" data-off-x=\"261.04\" data-off-y=\"168.68\" style=\"left:26.104%;top:16.868%\"><span class=\"t-fr\">Une technique à l'origine employée par les industriels (le tabac, en particulier) pour noyer le poisson sur leurs activités, mais elle plaît beaucoup en politique aussi.</span><span class=\"t-en\" hidden=\"\">A technique originally used by industry (tobacco, in particular) to muddy the waters around their activities, but it's also very popular in politics.</span></p>\n    <div class=\"retourne\" data-silhouette=\"cercle\" data-pose=\"\" data-off-x=\"445.45\" data-off-y=\"236.78\" style=\"left:44.545%;top:23.678%;width:210px;height:210px;max-width:none\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\" style=\"background-color:#5FCBEF\"><p class=\"lead\" style=\"font-size:24px\"><span class=\"t-fr\">Invasion</span><span class=\"t-en\" hidden=\"\">Invasion</span></p></div><div class=\"retourne-face retourne-verso\" style=\"background-color:#FF0000\"><p class=\"lead\" style=\"font-size:24px\"><span class=\"t-fr\">Libération du peuple</span><span class=\"t-en\" hidden=\"\">Liberation of the people</span></p></div></div></div>\n    <div class=\"retourne\" data-silhouette=\"cercle\" data-pose=\"\" data-off-x=\"445.45\" data-off-y=\"483.48\" style=\"left:44.545%;top:48.348%;width:210px;height:210px;max-width:none\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\" style=\"background-color:#5FCBEF\"><p class=\"lead\" style=\"font-size:24px\"><span class=\"t-fr\">Attaque d'un pays souverain</span><span class=\"t-en\" hidden=\"\">Attack on a sovereign country</span></p></div><div class=\"retourne-face retourne-verso\" style=\"background-color:#FF0000\"><p class=\"lead\" style=\"font-size:24px\"><span class=\"t-fr\">Historiquement le même pays</span><span class=\"t-en\" hidden=\"\">Historically the same country</span></p></div></div></div>\n    <div class=\"retourne\" data-silhouette=\"cercle\" data-pose=\"\" data-off-x=\"445.45\" data-off-y=\"730.18\" style=\"left:44.545%;top:73.018%;width:210px;height:210px;max-width:none\"><div class=\"retourne-inner\"><div class=\"retourne-face retourne-recto\" style=\"background-color:#5FCBEF\"><p class=\"lead\" style=\"font-size:24px\"><span class=\"t-fr\">Premiers à attaquer</span><span class=\"t-en\" hidden=\"\">First to attack</span></p></div><div class=\"retourne-face retourne-verso\" style=\"background-color:#FF0000\"><p class=\"lead\" style=\"font-size:24px\"><span class=\"t-fr\">Légitime défense</span><span class=\"t-en\" hidden=\"\">Self-defence</span></p></div></div></div>\n    <p class=\"lead step\" data-order=\"1\" style=\"margin-top:0;left:32.5%;top:52%;width:35%;max-width:none;text-align:center;background:var(--panel);padding:18px 26px;border-radius:14px;box-sizing:border-box\" data-pose=\"\" data-off-x=\"325\" data-off-y=\"520\"><span class=\"t-fr\">Chaque reformulation successive est un « contre-narratif », pas un mensonge nouveau, juste un mot différent pour le même événement.</span><span class=\"t-en\" hidden=\"\">Each successive reframing is a \"counter-narrative\", not a new lie, just a different word for the same event.</span></p>\n  "
-  },
-  {
-   "id": "entreprise#masni-c3-n2-s31",
-   "titre": "La Mute News",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide short\" id=\"masni-c3-n2-s31\" data-serie=\"serie_15d50d3f-0436-4cc6-a449-5f03c8247ec5\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"432.91\" data-off-y=\"451.54\" style=\"left:43.291%;top:45.154%\"><span class=\"t-fr\">La Mute News</span><span class=\"t-en\" hidden=\"\">Mute News</span></h2>\n    <p class=\"lead\" data-pose=\"\" data-off-x=\"361.5\" data-off-y=\"524.21\" style=\"left:36.15%;top:52.421%\"><span class=\"t-fr\">Ne PAS parler de certaines informations, ou PEU en parler.</span><span class=\"t-en\" hidden=\"\">NOT talking about certain information, or barely talking about it.</span></p>\n  "
-  },
-  {
-   "id": "entreprise#s31b",
-   "titre": "",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s31b\" data-serie=\"serie_31d62704-154c-4790-ae53-e3d354c72e04\"",
-   "contentHtml": "\n    \n  <div class=\"m-item\" data-pose=\"\" data-off-x=\"287.53\" data-off-y=\"122.96\" style=\"width: 266.66px; left: 28.753%; top: 12.296%;\"><img src=\"../medias/images/mute-news-ukraine.jpg\" alt=\"Couverture médiatique de l'Ukraine dans le temps\"></div><div class=\"m-item\" data-pose=\"\" data-off-x=\"431.26\" data-off-y=\"122.96\" style=\"width: 266.67px; left: 43.126%; top: 12.296%;\"><img src=\"../medias/images/mute-news-gaza.jpg\" alt=\"Couverture médiatique de Gaza\"></div><div class=\"m-item\" data-pose=\"\" data-off-x=\"574.97\" data-off-y=\"122.96\" style=\"width: 266.66px; left: 57.497%; top: 12.296%;\"><img src=\"../medias/images/mute-news-soudan.jpg\" alt=\"Couverture médiatique du Soudan\"></div>"
-  },
-  {
-   "id": "entreprise#ent-mais-alors-pourquoi",
-   "titre": "Mais alors : pourquoi ?",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide short divider-slide\" id=\"ent-mais-alors-pourquoi\"",
-   "contentHtml": "\n    <div class=\"em\" data-pose=\"\" data-off-x=\"485.00\" data-off-y=\"360.00\" style=\"left:48.5%;top:36%\"><span class=\"t-fr\">4</span><span class=\"t-en\" hidden=\"\"></span></div><h2 data-pose=\"\" data-off-x=\"300.00\" data-off-y=\"500.00\" style=\"left:30%;top:50%;width:40%;max-width:none;text-align:center\"><span class=\"t-fr\">Mais alors : pourquoi ?</span><span class=\"t-en\" hidden=\"\"></span></h2>\n  "
-  },
-  {
-   "id": "entreprise#ent-radicalite-reseaux",
-   "titre": "Mise en bouche : pourquoi tant de radicalité sur les réseaux sociaux ?",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"ent-radicalite-reseaux\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.70\" style=\"left:12.773%;top:9.57%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Mise en bouche : pourquoi tant de radicalité sur les réseaux sociaux ?</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-l step\" data-order=\"1\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"300.00\" style=\"left:12.773%;top:30%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Espace d’expression alternatif.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"2\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"375.00\" style=\"left:12.773%;top:37.5%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Les gens les plus motivés vont occuper davantage d’espace.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"3\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"450.00\" style=\"left:12.773%;top:45%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Les personnes refusant ces sujets vont s’éloigner des réseaux.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"4\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"525.00\" style=\"left:12.773%;top:52.5%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Les contenus impactants sont les plus viraux.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"5\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"600.00\" style=\"left:12.773%;top:60%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Le conflit génère de l’engagement.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"6\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"675.00\" style=\"left:12.773%;top:67.5%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Certains sujets polarisants sont un CHOIX des plateformes.</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
-  },
-  {
-   "id": "entreprise#s32",
-   "titre": "Les croix de David",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s32\" data-serie=\"serie_166e2af6-30b6-4004-9b7d-226ea8caa276\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Les croix de David</span><span class=\"t-en\" hidden=\"\">The Stars of David</span></h2>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"204.87\" data-off-y=\"201\" style=\"left:20.487%;top:20.1%;width:43.683%;max-width:none\"><img src=\"../medias/images/etoiles-david-tags-photo.jpg\" alt=\"Étoiles de David taguées sur un mur à Paris\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "entreprise#nv2-tete-de-porc",
-   "titre": "#nv2-tete-de-porc .chp{max-width:none} #nv2-tete-de-porc .chp-piste{position:rel",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide short\" id=\"nv2-tete-de-porc\" data-serie=\"serie_5504b356-6fd5-473f-a7bb-1ecd7cefea51\"",
-   "contentHtml": "\n    <style>\n#nv2-tete-de-porc .chp{max-width:none}\n#nv2-tete-de-porc .chp-piste{position:relative;height:96px}\n#nv2-tete-de-porc .chp-fond,#nv2-tete-de-porc .chp-rempli{position:absolute;left:0;top:30px;height:8px;border-radius:4px}\n#nv2-tete-de-porc .chp-fond{right:0;background:rgba(255,255,255,.18)}\n#nv2-tete-de-porc .chp-rempli{background:linear-gradient(90deg,var(--acc2),var(--acc))}\n#nv2-tete-de-porc .chp-rempli.step{transform:none;transition:width .6s ease,opacity .4s ease}\n#nv2-tete-de-porc .chp-point{position:absolute;top:24px;width:20px;height:20px;margin-left:-10px;border-radius:50%;background:#3a4560;border:3px solid rgba(255,255,255,.35)}\n#nv2-tete-de-porc .chp-date{position:absolute;top:32px;left:50%;translate:-50% 0;white-space:nowrap;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:32px;color:var(--acc2)}\n#nv2-tete-de-porc .chp-curseur{position:absolute;top:12px;width:44px;height:44px;margin-left:-22px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 8px rgba(255,255,255,.15),0 6px 18px rgba(0,0,0,.5)}\n#nv2-tete-de-porc .chp-curseur.step{transform:none}\n#nv2-tete-de-porc .chp-curseur.step.shown:has(~ .chp-curseur.step.shown){visibility:hidden}\n#nv2-tete-de-porc .chp-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:22px;align-items:start}\n#nv2-tete-de-porc .chp-col{display:flex;flex-direction:column;gap:14px}\n#nv2-tete-de-porc .chp-art{display:block;padding:12px 16px 14px;background:#fff;color:#141414;border-radius:12px;text-align:left;box-shadow:0 12px 30px rgba(0,0,0,.45)}\n#nv2-tete-de-porc .chp-art.step{transform:translateY(70px);transition:opacity .45s ease,transform .6s cubic-bezier(.2,.9,.3,1)}\n#nv2-tete-de-porc .chp-art.step.shown{transform:none}\n#nv2-tete-de-porc .chp-art.shown:nth-child(2){transition-delay:.3s}\n#nv2-tete-de-porc .chp-art.shown:nth-child(3){transition-delay:.6s}\n#nv2-tete-de-porc .chp-art.shown:nth-child(4){transition-delay:.9s}\n#nv2-tete-de-porc .chp-media{display:block;margin-bottom:6px;font:700 15px/1.2 Arial,Helvetica,sans-serif;color:#555}\n#nv2-tete-de-porc .chp-media b{letter-spacing:.6px;text-transform:uppercase;color:#b3261e}\n#nv2-tete-de-porc .chp-titre{display:block;font:700 21px/1.25 Georgia,'Times New Roman',serif}\n#nv2-tete-de-porc > .imgcard{transition:opacity .4s ease}\n#nv2-tete-de-porc:has(.chp-curseur.shown) > .imgcard{opacity:0;pointer-events:none}\n#nv2-tete-de-porc .chp.step{transform:none}\n</style>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"188.1\" data-off-y=\"182\" style=\"left:18.81%;top:18.2%;width:58.691%;max-width:none\"><img src=\"../medias/images/communiquer-221-56.jpg\" alt=\"Une tête de porc déposée sur le trottoir\" loading=\"lazy\"></div>\n    <div class=\"chp step\" data-order=\"1\" data-pose=\"\" data-off-x=\"25\" data-off-y=\"50\" style=\"left:2.5%;top:5%;width:95%\"><div class=\"chp-piste\"><div class=\"chp-fond\"></div><div class=\"chp-rempli step\" data-order=\"1\" style=\"width:12.500%\"></div><div class=\"chp-rempli step\" data-order=\"2\" style=\"width:37.500%\"></div><div class=\"chp-rempli step\" data-order=\"3\" style=\"width:62.500%\"></div><div class=\"chp-rempli step\" data-order=\"4\" style=\"width:87.500%\"></div><div class=\"chp-point\" style=\"left:12.500%\"><span class=\"chp-date\"><span class=\"t-fr\">9 sept. 2025</span><span class=\"t-en\" hidden=\"\">9 Sep 2025</span></span></div><div class=\"chp-point\" style=\"left:37.500%\"><span class=\"chp-date\"><span class=\"t-fr\">10 sept. 2025</span><span class=\"t-en\" hidden=\"\">10 Sep 2025</span></span></div><div class=\"chp-point\" style=\"left:62.500%\"><span class=\"chp-date\"><span class=\"t-fr\">Fin sept. 2025</span><span class=\"t-en\" hidden=\"\">Late Sep 2025</span></span></div><div class=\"chp-point\" style=\"left:87.500%\"><span class=\"chp-date\"><span class=\"t-fr\">2026</span><span class=\"t-en\" hidden=\"\">2026</span></span></div><div class=\"chp-curseur step\" data-order=\"1\" style=\"left:12.500%\"></div><div class=\"chp-curseur step\" data-order=\"2\" style=\"left:37.500%\"></div><div class=\"chp-curseur step\" data-order=\"3\" style=\"left:62.500%\"></div><div class=\"chp-curseur step\" data-order=\"4\" style=\"left:87.500%\"></div></div><div class=\"chp-cols\"><div class=\"chp-col\"><div class=\"chp-art step\" data-order=\"1\"><span class=\"chp-media\"><b>franceinfo</b> · 9 sept. 2025</span><span class=\"chp-titre\">Au moins neuf têtes de cochon ont été découvertes devant des mosquées en Ile-de-France</span></div><div class=\"chp-art step\" data-order=\"1\"><span class=\"chp-media\"><b>BFMTV</b> · 9 sept. 2025</span><span class=\"chp-titre\">« Une lâcheté insondable » : Bruno Retailleau fait part de son « indignation » après la découverte de têtes de cochon devant des mosquées</span></div><div class=\"chp-art step\" data-order=\"1\"><span class=\"chp-media\"><b>20 Minutes</b> · 9 sept. 2025</span><span class=\"chp-titre\">« L’islamophobie se déchaîne » à cause de Retailleau, accuse Mélenchon</span></div><div class=\"chp-art step\" data-order=\"1\"><span class=\"chp-media\"><b>Le Monde</b> · 9 sept. 2025</span><span class=\"chp-titre\">Des têtes de cochon devant plusieurs mosquées, « une nouvelle et triste étape dans la montée de la haine antimusulmane »</span></div></div><div class=\"chp-col\"><div class=\"chp-art step\" data-order=\"2\"><span class=\"chp-media\"><b>BFMTV</b> · 10 sept. 2025</span><span class=\"chp-titre\">Têtes de porc décapitées devant des mosquées : ingérence russe ou action coordonnée de l’ultradroite ?</span></div><div class=\"chp-art step\" data-order=\"2\"><span class=\"chp-media\"><b>RTL</b> · 10 sept. 2025</span><span class=\"chp-titre\">Têtes de cochon devant les mosquées : l’ingérence étrangère confirmée, plusieurs suspects en fuite</span></div></div><div class=\"chp-col\"><div class=\"chp-art step\" data-order=\"3\"><span class=\"chp-media\"><b>Le Monde</b> · 27 sept. 2025</span><span class=\"chp-titre\">Têtes de cochon devant des mosquées : l’enquête privilégie la piste du renseignement militaire russe</span></div><div class=\"chp-art step\" data-order=\"3\"><span class=\"chp-media\"><b>TF1 Info</b> · 29 sept. 2025</span><span class=\"chp-titre\">Têtes de cochon devant des mosquées d’Ile-de-France : 11 arrestations en Serbie</span></div></div><div class=\"chp-col\"><div class=\"chp-art step\" data-order=\"4\"><span class=\"chp-media\"><b>La Croix</b> · 6 mars 2026</span><span class=\"chp-titre\">Têtes de cochons devant des mosquées en France : trois Serbes condamnés dans leur pays</span></div><div class=\"chp-art step\" data-order=\"4\"><span class=\"chp-media\"><b>BFMTV</b> · 20 mars 2026</span><span class=\"chp-titre\">Têtes de cochon devant des mosquées, peinture verte sur des lieux juifs : comment les services secrets russes ont voulu déstabiliser la France</span></div><div class=\"chp-art step\" data-order=\"4\"><span class=\"chp-media\"><b>France 24</b> · 26 mai 2026</span><span class=\"chp-titre\">Têtes de cochon, projets d’ingérence : ce que révèlent des documents sur les opérations russes en France</span></div></div></div></div>\n  <div class=\"speaker-notes\" hidden=\"\">D'abord la photo ; à chaque flèche, le curseur avance d'une date et les articles de cette période montent. Titres relevés sur les sites le 17/11/2026.\n9 sept. 2025 : franceinfo https://www.franceinfo.fr/france/ile-de-france/plusieurs-tetes-de-cochon-decouvertes-devant-des-mosquees-a-paris-et-en-banlieue-bruno-retailleau-denonce-un-acte-d-une-lachete-insondable_7482145.html ; BFMTV https://www.bfmtv.com/police-justice/une-lachete-insondable-bruno-retailleau-fait-part-de-son-indignation-apres-la-decouverte-de-tetes-de-cochon-devant-des-mosquees_AD-202509090508.html ; 20 Minutes https://www.20minutes.fr/politique/4172041-20250909-islamophobie-dechaine-cause-retailleau-accuse-melenchon-apres-decouverte-tetes-cochon ; Le Monde https://www.lemonde.fr/societe/article/2025/09/09/des-tetes-de-cochon-devant-plusieurs-mosquees-une-nouvelle-et-triste-etape-dans-la-montee-de-la-haine-antimusulmane_6640168_3224.html\n10 sept. 2025 (le parquet annonce que les têtes ont été déposées par des étrangers repartis à l'étranger) : BFMTV https://www.bfmtv.com/police-justice/tetes-de-porc-decapitees-devant-des-mosquees-ingerence-russe-ou-action-coordonnee-de-l-ultradroite_AV-202509100390.html ; RTL https://www.rtl.fr/actu/justice-faits-divers/tetes-de-cochon-devant-les-mosquees-l-ingerence-etrangere-confirmee-plusieurs-suspects-en-fuite-7900539897\nFin sept. 2025 : Le Monde https://www.lemonde.fr/societe/article/2025/09/27/tetes-de-cochon-devant-des-mosquees-l-enquete-privilegie-la-piste-du-renseignement-militaire-russe_6643121_3224.html ; TF1 Info https://www.tf1info.fr/justice-faits-divers/tetes-de-cochon-devant-des-mosquees-d-ile-de-france-11-arrestations-en-serbie-annonce-l-interieur-2397545.html\n2026 : La Croix https://www.la-croix.com/international/tetes-de-cochons-devant-des-mosquees-en-france-trois-serbes-condamnes-dans-leur-pays-20260306 ; BFMTV https://www.bfmtv.com/police-justice/info-bfmtv-tetes-de-cochon-devant-des-mosquees-peinture-verte-sur-des-lieux-juifs-comment-les-services-secrets-russes-ont-voulu-destabiliser-la-france_AN-202603200783.html ; France 24 https://www.france24.com/fr/france/20260526-t%C3%AAtes-de-cochon-projets-d-ing%C3%A9rence-ce-que-r%C3%A9v%C3%A8lent-des-documents-sur-les-op%C3%A9rations-russes-en-france . Les documents de la Social Design Agency (« Report on Operation Pig's Head ») ont été révélés par Le Monde et l'OCCRP le 24 mai 2026.</div>\n  "
-  },
-  {
-   "id": "entreprise#masni-c3-n2-s33",
-   "titre": "Le cycle de la polarisation",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"masni-c3-n2-s33\" data-serie=\"serie_1d77c275-0667-4fe4-af18-84909de21f7a\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"374.95\" data-off-y=\"110.13\" style=\"left:37.495%;top:11.013%\"><span class=\"t-fr\">Le cycle de la polarisation</span><span class=\"t-en\" hidden=\"\">The polarisation cycle</span></h2>\n    <p class=\"lead\" data-pose=\"\" data-off-x=\"302.6\" data-off-y=\"182.8\" style=\"left:30.26%;top:18.28%\"><span class=\"t-fr\">Le même engrenage se répète, quel que soit l'élément déclencheur (attaque terroriste, incident impliquant des agents étrangers, manifestations nationales…).</span><span class=\"t-en\" hidden=\"\">The same mechanism repeats, whatever the trigger (a terrorist attack, an incident involving foreign agents, national protests…).</span></p>\n    <div class=\"flow-chain\" data-pose=\"\" data-off-x=\"266.23\" data-off-y=\"277.51\" style=\"left:26.623%;top:27.751%\">\n      <div class=\"fbox\"><span class=\"t-fr\">Incident déclencheur</span><span class=\"t-en\" hidden=\"\">Triggering incident</span></div><span class=\"farr\">→</span>\n      <div class=\"fbox\"><span class=\"t-fr\">Politiciens et médias réagissent</span><span class=\"t-en\" hidden=\"\">Politicians and media react</span></div><span class=\"farr\">→</span>\n      <div class=\"fbox\"><span class=\"t-fr\">Les réseaux sociaux s'emballent</span><span class=\"t-en\" hidden=\"\">Social media goes into overdrive</span></div><span class=\"farr\">→</span>\n      <div class=\"fbox\"><span class=\"t-fr\">Les fermes de troll amplifient</span><span class=\"t-en\" hidden=\"\">Troll farms amplify it</span></div><span class=\"farr\">→</span>\n      <div class=\"fbox\"><span class=\"t-fr\">Propos radicaux et polarisants renforcés</span><span class=\"t-en\" hidden=\"\">Radical, polarising rhetoric reinforced</span></div><span class=\"farr\">→</span>\n      <div class=\"fbox\"><span class=\"t-fr\">La société devient plus divisée</span><span class=\"t-en\" hidden=\"\">Society becomes more divided</span></div>\n    </div>\n  "
-  },
-  {
-   "id": "entreprise#masni-c3-cycle-variantes",
-   "titre": "Le même cycle, quel que soit le déclencheur",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"masni-c3-cycle-variantes\" data-serie=\"serie_b1c540db-bb02-4908-a644-c9841fcc4227\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"288.79\" data-off-y=\"110.13\" style=\"left:28.879%;top:11.013%\"><span class=\"t-fr\">Le même cycle, quel que soit le déclencheur</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-l step\" data-order=\"1\" data-pose=\"\" data-off-x=\"302.6\" data-off-y=\"182.8\" style=\"left:30.26%;top:18.28%\"><span class=\"t-fr\">Des agents étrangers provoquent un incident… ou bien une attaque terroriste, ou bien des manifestations nationales.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"2\" data-pose=\"\" data-off-x=\"405.31\" data-off-y=\"286.32\" style=\"left:40.531%;top:28.632%\"><span class=\"t-fr\">Politiciens et médias réagissent.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"3\" data-pose=\"\" data-off-x=\"302.6\" data-off-y=\"345.79\" style=\"left:30.26%;top:34.579%\"><span class=\"t-fr\">Les médias sociaux réagissent, et amplifient les propos les plus radicaux.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"4\" data-pose=\"\" data-off-x=\"358.75\" data-off-y=\"449.32\" style=\"left:35.875%;top:44.932%\"><span class=\"t-fr\">Les fermes de trolls augmentent le phénomène.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"5\" data-pose=\"\" data-off-x=\"390.45\" data-off-y=\"508.79\" style=\"left:39.045%;top:50.879%\"><span class=\"t-fr\">La société devient davantage divisée.</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
-  },
-  {
-   "id": "entreprise#ent-quels-buts",
-   "titre": "Quels buts ?",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"ent-quels-buts\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.70\" style=\"left:12.773%;top:9.57%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Quels buts ?</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-l step\" data-order=\"1\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"240.00\" style=\"left:12.773%;top:24%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Créer du doute.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"2\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"315.00\" style=\"left:12.773%;top:31.5%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Fragiliser le soutien à des décisions nationales.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"3\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"390.00\" style=\"left:12.773%;top:39%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Fracturer la société.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"4\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"465.00\" style=\"left:12.773%;top:46.5%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Polariser la société.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"5\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"540.00\" style=\"left:12.773%;top:54%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Mettre en avant des intérêts spécifiques.</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
-  },
-  {
-   "id": "entreprise#ent-que-peut-on-faire",
-   "titre": "4 - Que peut-on faire ?",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"ent-que-peut-on-faire\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.70\" style=\"left:12.773%;top:9.57%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">4 - Que peut-on faire ?</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-l step\" data-order=\"1\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"280.00\" style=\"left:12.773%;top:28%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Modestie épistémique.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"2\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"400.00\" style=\"left:12.773%;top:40%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Suspension de jugement.</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
-  },
-  {
-   "id": "entreprise#ent-quand-je-m-informe",
-   "titre": "Quand je m’informe",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"ent-quand-je-m-informe\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.70\" style=\"left:12.773%;top:9.57%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Quand je m’informe</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-l step\" data-order=\"1\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"240.00\" style=\"left:12.773%;top:24%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Ai-je de bonnes raisons de croire ce que je crois ?</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"2\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"315.00\" style=\"left:12.773%;top:31.5%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Ai-je tous les éléments ?</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"3\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"390.00\" style=\"left:12.773%;top:39%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Puis-je reconnaître quand je me trompe ?</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"4\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"465.00\" style=\"left:12.773%;top:46.5%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Est-il absolument indispensable que je donne mon avis ?</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
-  },
-  {
-   "id": "entreprise#ent-xkcd",
-   "titre": "",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"ent-xkcd\"",
-   "contentHtml": "\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"330.00\" data-off-y=\"80.00\" style=\"left:33%;top:8%;width:34%;max-width:none\"><img src=\"../medias/images/xkcd-someone-is-wrong-on-the-internet.jpg\" alt=\"\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "entreprise#ent-quand-je-reagis",
-   "titre": "Quand je réagis",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"ent-quand-je-reagis\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.70\" style=\"left:12.773%;top:9.57%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Quand je réagis</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-l step\" data-order=\"1\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"240.00\" style=\"left:12.773%;top:24%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Quel est mon but ?</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"2\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"310.00\" style=\"left:12.773%;top:31%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Quel impact aura mon propos ? Est-ce vraiment l’impact que je souhaite ?</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"3\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"380.00\" style=\"left:12.773%;top:38%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Ai-je conscience du sens :</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead step\" data-order=\"4\" data-pose=\"\" data-off-x=\"157.73\" data-off-y=\"450.00\" style=\"left:15.773%;top:45%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Locutoire (ce que je dis).</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead step\" data-order=\"5\" data-pose=\"\" data-off-x=\"157.73\" data-off-y=\"520.00\" style=\"left:15.773%;top:52%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Illocutoire (ce que je sous-entends).</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead step\" data-order=\"6\" data-pose=\"\" data-off-x=\"157.73\" data-off-y=\"590.00\" style=\"left:15.773%;top:59%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Perlocutoire (l’impact qu’auront mes propos).</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
-  },
-  {
-   "id": "entreprise#ent-bonnes-nouvelles",
-   "titre": "Les bonnes nouvelles",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"ent-bonnes-nouvelles\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.70\" style=\"left:12.773%;top:9.57%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Les bonnes nouvelles</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-l step\" data-order=\"1\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"280.00\" style=\"left:12.773%;top:28%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Depuis 30 ans, comment a évolué la tolérance des Français ?</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"2\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"400.00\" style=\"left:12.773%;top:40%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Comment a évolué la mortalité infantile dans le monde ?</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
-  },
-  {
-   "id": "entreprise#ent-changement-paradigme",
-   "titre": "N’oublions pas le changement de paradigme !",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"ent-changement-paradigme\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.70\" style=\"left:12.773%;top:9.57%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">N’oublions pas le changement de paradigme !</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-l step\" data-order=\"1\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"280.00\" style=\"left:12.773%;top:28%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Avant, les Fake News et les théories du complot étaient totalement acceptées.</span><span class=\"t-en\" hidden=\"\"></span></p><p class=\"lead taille-l step\" data-order=\"2\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"400.00\" style=\"left:12.773%;top:40%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">C’est notre prise de conscience qui les rend plus visibles en ce moment.</span><span class=\"t-en\" hidden=\"\"></span></p>\n  "
-  },
-  {
-   "id": "entreprise#ent-prise-de-conscience",
-   "titre": "Prise de conscience des enjeux.",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"ent-prise-de-conscience\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.70\" style=\"left:12.773%;top:9.57%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">Prise de conscience des enjeux.</span><span class=\"t-en\" hidden=\"\"></span></h2><p class=\"lead taille-l step\" data-order=\"1\" data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"240.00\" style=\"left:12.773%;top:24%;width:70%;max-width:none;text-align:left\"><span class=\"t-fr\">La connaissance est une arme ! Le fait de savoir ce qui est en jeu nous permet justement d’agir.</span><span class=\"t-en\" hidden=\"\"></span></p><div class=\"imgcard step\" data-order=\"2\" data-pose=\"\" data-off-x=\"400.00\" data-off-y=\"420.00\" style=\"left:40%;top:42%;width:20%;max-width:none\"><img src=\"../medias/images/entreprise-plume-et-epee.png\" alt=\"\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "entreprise#ent-merci",
-   "titre": "Merci !",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"ent-merci\"",
-   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"440.00\" data-off-y=\"95.70\" style=\"left:44%;top:9.57%\"><span class=\"t-fr\">Merci !</span><span class=\"t-en\" hidden=\"\"></span></h2><div class=\"imgcard\" data-pose=\"\" data-off-x=\"385.00\" data-off-y=\"250.00\" style=\"left:38.5%;top:25%;width:23%;max-width:none\"><img src=\"../medias/images/entreprise-qr-merci.png\" alt=\"\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "entreprise#s-bilan-qr",
-   "titre": "Le bilan, les jeux, et votre retour",
-   "formation": "entreprise",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide short\" id=\"s-bilan-qr\" data-serie=\"serie_743edaf5-33f9-4668-ab8a-f0365b011093\"",
-   "contentHtml": "\n    <p class=\"kicker\" data-pose=\"\" data-off-x=\"461.46\" data-off-y=\"272.25\" style=\"left: 46.146%; top: 27.225%;\"><span class=\"t-fr\">Après la séance</span><span class=\"t-en\" hidden=\"\">After the session</span></p>\n    <h2 data-pose=\"\" data-off-x=\"344.92\" data-off-y=\"303.09\" style=\"left: 34.492%; top: 30.309%;\"><span class=\"t-fr\">Le bilan, les jeux, et votre retour</span><span class=\"t-en\" hidden=\"\">Summary, games, and your feedback</span></h2>\n    <p class=\"lead\" data-pose=\"\" data-off-x=\"302.6\" data-off-y=\"375.76\" style=\"left: 30.26%; top: 37.576%;\"><span class=\"t-fr\">Scannez ce QR code&nbsp;: vous pourrez donner votre retour, revoir le bilan de la formation ou rejouer aux jeux.</span><span class=\"t-en\" hidden=\"\">Scan this QR code: you can leave your feedback, review the session summary, or play the games again.</span></p>\n    \n  <img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhwAAAIcAQAAAACVhUrRAAAC80lEQVR42u2dUWrEMAxERS/g+9/SN3C7jSNp5JQW2p+it5SybDbvY2EYaSw7tn7/mgYECBAgQID8HGL+Gvcn4/Xhx/v9Zu3/16Xjljf7gxcQIP8LYi6HLZlP+VxvQjgjtOaXQkpoB0hj7VwO4nbjjlPc57pUbkE7QNCOyycuWYjFq8T4GtoBgnZUO+4vL9O5v+Y1G74DBMhzv5MCgR0LDAkY6HeAAAl1XC+3nm//0i1oB0hb7ZTU2vOBaG00fztu4YcF0lc7WxqWlngsiUij6f253452gHT2nWQ00ddEGmDlv7RCaAdI434nr+nskO1WSlRxtxNF/kbOBoSaLa1+bjfJizulfnMRTXwHSG/t6KhAtD8jajkZZiuJAdoB0rvf8ZGbbC5StuXqTkIGflggXfudNDUdMvHJAa/l7twgYjeyAiDtswKv1mJrw7QctT3YEP0OELRjaWp6hfVImHYuA9HvAKHfKbrQGEGsJ09ZTzJqIPhO2miwnlueXK3lGg/tAKHfkX5nWtaR6CWHBmgHSHPtDN1PfRRsUbnlGyNV4IcF0rXfmaEFk0G1uglORndY3wGCdlbqZcbTiE4R1FriWWgHSGPfiVOkcr9zHFBQDOj+Mj8skMZZQVHHUMfRtVGyAiBASlaQ53NkF08aYzMz6Y/QDpD2WUE5kSBv2yk9kWwdRTtAemcFMXiTBnLy9reSV8uxBmgHSO9+R46WyrsMTEJp/zB1RvywQBr7To7Opk6EnocYGP0OECBW91bXPaHmvmNl4xuzoEDwnRWb2qqCZj1IJxaDWN8Bgu/YsXBT8rSyvqNlG9oB0tl3JAQoXU86k82ejgxFO0Ba+45FX1OdJXvQqgftoh0grbWTn4NgVh6LUBZMw3eo2YCgnXHkA7PuTZDjdOh3gAD5Sjvl0aL5uLalEzvUbEDQzvHQNx2WPtofzmcDgnb0CKmyza3YUL1KzQaks3aslmTRzkyrp+UseXA8vgOks3Z++5pAgAABAgTIDyHv20VZl660GMAAAAAASUVORK5CYII=\" alt=\"QR code vers la page antoninatger.github.io/interventions/retours\" style=\"width: 200px; height: 200px; border-radius: 16px; background: rgb(255, 255, 255); padding: 10px; box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 30px; left: 44.805%; top: 47.267%;\" data-pose=\"\" data-off-x=\"448.05\" data-off-y=\"472.67\"><a href=\"https://antoninatger.github.io/interventions/retours/\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--acc2); font-weight: 800; font-size: 1.05rem; text-decoration: none; border-bottom: 2px solid var(--acc2); padding-bottom: 2px; width: 371.73px; left: 40.345%; top: 71.275%;\" data-pose=\"\" data-off-x=\"403.45\" data-off-y=\"712.75\">\n        <span class=\"t-fr\">antoninatger.github.io/interventions/retours →</span><span class=\"t-en\" hidden=\"\">antoninatger.github.io/interventions/retours →</span>\n      </a>"
   },
   {
    "id": "reserve#s3",
