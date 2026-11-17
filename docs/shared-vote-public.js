@@ -14,6 +14,12 @@
    téléphones est le titre de la diapo, et les réponses sont les options du sondage : rien
    n'est à écrire en plus.
 
+   17 novembre : Antonin trouvait la vignette trop grande et toujours là. Elle est désormais
+   cachée au départ ; le bouton « 📱 QR code » de la barre du haut la fait apparaître (en
+   grand d'abord, pour le scan), puis elle reste en petit à gauche sur chaque diapo, jusqu'à
+   ce qu'on la masque (même bouton, ou sa petite croix). Le choix est gardé d'une formation
+   à l'autre sur cet ordinateur.
+
    À l'écran, rien n'est ajouté à la diapo elle-même. Une vignette se pose dans le coin tant
    que la diapo porte une question : le QR code, le code, le nombre de téléphones branchés.
    Un clic dessus (ou la touche Q, sur n'importe quelle diapo) l'agrandit pour le premier
@@ -207,15 +213,19 @@
   function injecterStyles() {
     const st = document.createElement('style');
     st.textContent = `
-.vp-vignette{position:fixed;left:18px;bottom:72px;z-index:60;display:flex;align-items:center;gap:12px;
-  background:#fff;color:#111;border-radius:14px;padding:8px 14px 8px 8px;box-shadow:0 8px 28px rgba(0,0,0,.35);
+.vp-vignette{position:fixed;left:14px;bottom:64px;z-index:60;display:flex;align-items:center;gap:8px;
+  background:#fff;color:#111;border-radius:10px;padding:5px 22px 5px 5px;box-shadow:0 8px 28px rgba(0,0,0,.35);
   cursor:pointer;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;user-select:none;}
 .vp-vignette[hidden],.vp-grand[hidden]{display:none !important;}
-.vp-vignette .vp-qr{width:92px;height:92px;}
+.vp-vignette .vp-qr{width:58px;height:58px;}
 .vp-vignette .vp-qr svg,.vp-grand .vp-qr svg{width:100%;height:100%;display:block;}
-.vp-vignette .vp-code{font-size:1.5rem;font-weight:800;letter-spacing:.12em;line-height:1;}
+.vp-vignette .vp-code{font-size:1rem;font-weight:800;letter-spacing:.12em;line-height:1;}
 .vp-vignette .vp-n,.vp-grand .vp-n{font-size:.85rem;color:#555;margin-top:6px;}
 .vp-hors{color:#b3261e !important;}
+.vp-vignette .vp-n{font-size:.7rem;margin-top:3px;}
+.vp-vignette .vp-masquer{position:absolute;top:2px;right:4px;border:0;background:none;color:#888;font-size:14px;line-height:1;cursor:pointer;padding:2px;}
+.vp-vignette .vp-masquer:hover{color:#111;}
+#topbar .vp-bouton.vp-actif{border-color:var(--acc2);color:var(--acc2);}
 .wqr-vote{display:inline-flex;flex-direction:column;align-items:center;gap:6px;background:#fff;color:#111;
   border-radius:16px;padding:12px 14px 10px;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;cursor:pointer;}
 .wqr-vote .vp-qr{width:200px;height:200px;}
@@ -239,16 +249,45 @@
     document.head.appendChild(st);
   }
 
-  let vignette = null, grand = null, qrDe = '';
+  let vignette = null, grand = null, qrDe = '', bouton = null;
+  const CLE_VIGNETTE = 'vote-public-vignette';
+  let vignetteVoulue = false;
+  try { vignetteVoulue = localStorage.getItem(CLE_VIGNETTE) === '1'; } catch (e) { /* stockage indisponible */ }
+  function montrerVignette(oui) {
+    vignetteVoulue = !!oui;
+    try { localStorage.setItem(CLE_VIGNETTE, oui ? '1' : '0'); } catch (e) { /* tant pis */ }
+    if (oui && !actif) demarrer();
+    majVignette();
+  }
   function construire() {
     injecterStyles();
     vignette = document.createElement('div');
     vignette.className = 'vp-vignette';
     vignette.hidden = true;
     vignette.title = 'Agrandir le QR code (touche Q)';
-    vignette.innerHTML = '<div class="vp-qr"></div><div><div class="vp-code"></div><div class="vp-n"></div></div>';
-    vignette.addEventListener('click', () => ouvrirGrand(true));
+    vignette.innerHTML = '<div class="vp-qr"></div><div><div class="vp-code"></div><div class="vp-n"></div></div>'
+      + '<button type="button" class="vp-masquer" title="Masquer le QR code">✕</button>';
+    vignette.addEventListener('click', e => {
+      if (e.target.closest('.vp-masquer')) { e.stopPropagation(); montrerVignette(false); return; }
+      ouvrirGrand(true);
+    });
     document.body.appendChild(vignette);
+
+    // Le bouton de la barre du haut : montre (en grand d'abord) ou masque le QR code.
+    const outils = document.querySelector('#topbar .tools');
+    if (outils) {
+      bouton = document.createElement('button');
+      bouton.type = 'button';
+      bouton.className = 'vp-bouton';
+      bouton.hidden = true;
+      bouton.textContent = '📱 QR code';
+      bouton.title = 'Afficher ou masquer le QR code du vote par téléphone';
+      bouton.addEventListener('click', () => {
+        if (vignetteVoulue) montrerVignette(false);
+        else { montrerVignette(true); ouvrirGrand(true); }
+      });
+      outils.insertBefore(bouton, outils.firstChild);
+    }
 
     grand = document.createElement('div');
     grand.className = 'vp-grand';
@@ -322,11 +361,12 @@
     if (!vignette) return;
     const slide = diapoActive();
     const qrPose = !!(slide && slide.querySelector('[data-widget="qr-vote"]'));
-    // Dès qu'une formation a un vote par téléphone, le QR code est là dès la première
-    // diapo : le public scanne en arrivant, avant la première question.
+    // Le QR code ne vient que si on l'a demandé (bouton « 📱 QR code ») ; il reste alors sur
+    // toutes les diapos, sauf celles qui posent déjà un QR code, et sauf en édition.
     const aDesVotes = !!document.querySelector('.wpoll[data-widget="poll"][data-telephone], [data-widget="qr-vote"]');
-    const montrer = aDesVotes && !qrPose && !document.querySelector('.slide.editing');
+    const montrer = aDesVotes && vignetteVoulue && !qrPose && !document.querySelector('.slide.editing');
     vignette.hidden = !montrer;
+    if (bouton) { bouton.hidden = !aDesVotes; bouton.classList.toggle('vp-actif', vignetteVoulue); }
     let etat;
     if (!RELAIS) etat = 'Relais pas encore en ligne';
     else if (!enLigne) etat = 'Pas de connexion au relais…';
