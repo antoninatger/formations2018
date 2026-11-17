@@ -201,11 +201,11 @@ window.COURS_DIAPOS = {
   },
   {
    "id": "arnaques-en-ligne#s-faux-brad-pitt-video",
-   "titre": "Plein écran Fullscreen Vidéo de La Provence, 14 janvier 2025. Si elle ne se lanc",
+   "titre": "Plein écran Fullscreen Vidéo de La Provence, 14 janvier 2025. Fichier medias/vid",
    "formation": "arnaques-en-ligne",
    "kind": "simple",
    "attrsRaw": "class=\"slide\" id=\"s-faux-brad-pitt-video\"",
-   "contentHtml": "\n    \n    <div class=\"illu-frame video-frame\" id=\"video-faux-brad-pitt\"><iframe src=\"https://www.youtube-nocookie.com/embed/iY2niQaN6iI?rel=0\" title=\"Un faux Brad Pitt arnaque une femme de 830 000 euros (La Provence)\" loading=\"lazy\" allow=\"autoplay; encrypted-media; picture-in-picture; fullscreen\" allowfullscreen=\"\" referrerpolicy=\"strict-origin-when-cross-origin\"></iframe></div>\n    <button type=\"button\" class=\"reveal-btn illu-fs-btn\" data-target=\"#video-faux-brad-pitt\"><span class=\"t-fr\">Plein écran</span><span class=\"t-en\" hidden=\"\">Fullscreen</span></button>\n  <div class=\"speaker-notes\" hidden=\"\">Vidéo de La Provence, 14 janvier 2025. Si elle ne se lance pas : https://www.youtube.com/watch?v=iY2niQaN6iI</div>\n  "
+   "contentHtml": "\n    \n    <div class=\"illu-frame video-frame\" id=\"video-faux-brad-pitt\"><video src=\"../medias/video/faux-brad-pitt-la-provence.mp4\" controls=\"\" playsinline=\"\" preload=\"metadata\"></video></div>\n    <button type=\"button\" class=\"reveal-btn illu-fs-btn\" data-target=\"#video-faux-brad-pitt\"><span class=\"t-fr\">Plein écran</span><span class=\"t-en\" hidden=\"\">Fullscreen</span></button>\n  <div class=\"speaker-notes\" hidden=\"\">Vidéo de La Provence, 14 janvier 2025. Fichier medias/video/faux-brad-pitt-la-provence.mp4, téléchargé le 17/11/2026 depuis https://www.youtube.com/watch?v=iY2niQaN6iI</div>\n  "
   },
   {
    "id": "arnaques-en-ligne#s-brad-pitt-deroule",
