@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vérifier une image : la recherche inversée</title>
+<!--
+  Démo cliquable (17 novembre 2026), à la place des 13 captures « Vérifier le contexte ».
+  Anton : « un truc beaucoup plus dynamique où tu peux faire des actions au sein des slides ».
+  Le parcours, en version simplifiée : clic droit sur la photo du tweet → Enregistrer l'image
+  sous… → l'image arrive sur le bureau → Google Images → l'appareil photo → on dépose l'image
+  (glisser depuis le bureau, ou « importer un fichier ») → les correspondances → France 3,
+  15 juillet 2018 : la Coupe du monde. Le bouton ↺ recommence.
+  Images : medias/images/arc-triomphe-foule-2018.jpg (photo du tweet) et recherche-inversee-12.png
+  (la publication de France 3). Date de l'article de France 3 vérifiée le 17/11/2026 :
+  https://france3-regions.francetvinfo.fr/paris-ile-de-france/paris/france-championne-du-monde-paris-delire-1513023.html
+-->
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;background:#0f1724;color:#111}
+#scene{position:absolute;inset:0;background:linear-gradient(160deg,#1d4e89,#123257 55%,#0d2440);overflow:hidden}
+/* ── Le bureau ── */
+#bureau{position:absolute;left:0;right:0;bottom:0;height:86px;background:rgba(10,20,36,.72);backdrop-filter:blur(4px);display:flex;align-items:center;gap:16px;padding:0 18px;z-index:5}
+#bureau .lib{color:#cfe0f5;font-size:14px;font-weight:600;letter-spacing:.3px}
+.fichier{display:flex;flex-direction:column;align-items:center;gap:4px;width:92px;color:#fff;font-size:12px;text-align:center;cursor:grab;user-select:none;opacity:0;transform:scale(.4);transition:opacity .35s,transform .45s cubic-bezier(.3,1.6,.5,1)}
+.fichier.la{opacity:1;transform:none}
+.fichier img{width:64px;height:48px;object-fit:cover;border-radius:4px;border:2px solid #fff;box-shadow:0 3px 10px rgba(0,0,0,.5)}
+.fichier.tire{cursor:grabbing;opacity:.55}
+/* ── Fenêtres ── */
+.fenetre{position:absolute;background:#fff;border-radius:10px;box-shadow:0 24px 60px rgba(0,0,0,.55);overflow:hidden;opacity:0;transform:translateY(18px) scale(.98);pointer-events:none;transition:opacity .35s,transform .35s}
+.fenetre.la{opacity:1;transform:none;pointer-events:auto}
+.barre{height:34px;background:#eef1f5;border-bottom:1px solid #d9dee6;display:flex;align-items:center;gap:7px;padding:0 12px;font-size:13px;color:#444}
+.barre i{width:11px;height:11px;border-radius:50%;display:inline-block}
+.barre i:nth-child(1){background:#ff5f57}.barre i:nth-child(2){background:#febc2e}.barre i:nth-child(3){background:#28c840}
+.barre .url{margin-left:14px;flex:1;background:#fff;border:1px solid #d9dee6;border-radius:12px;padding:3px 12px;color:#555;font-size:12.5px}
+/* ── Le tweet ── */
+#f-tweet{left:50%;top:22px;width:min(640px,86%);margin-left:max(-320px,-43%)}
+.tweet{padding:16px 20px 12px}
+.tweet .tete{display:flex;align-items:center;gap:10px}
+.tweet .ava{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#b04a6f,#6b2d5c)}
+.tweet .nom{font-weight:700;font-size:15px}.tweet .pseudo{color:#5b6672;font-size:14px}
+.tweet .texte{font-size:19px;margin:10px 0}
+.tweet .photo{position:relative;border-radius:14px;overflow:hidden;cursor:context-menu}
+.tweet .photo img{display:block;width:100%;max-height:calc(100vh - 290px);object-fit:cover}
+.tweet .quand{color:#5b6672;font-size:13px;margin-top:8px}
+/* ── Menu contextuel ── */
+#menu{position:absolute;z-index:20;background:#fff;border:1px solid #c9ced6;border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,.35);padding:5px 0;font-size:14px;min-width:250px;display:none}
+#menu div{padding:7px 18px;cursor:default;color:#222}
+#menu div:hover{background:#e8f0fe}
+#menu .bon{font-weight:600}
+#menu hr{border:0;border-top:1px solid #e3e6ea;margin:4px 0}
+/* ── Enregistrer sous ── */
+#f-enregistrer{left:50%;top:70px;width:min(620px,86%);margin-left:max(-310px,-43%);z-index:10}
+.dial{display:flex;height:220px}
+.dial .gauche{width:170px;background:#f6f7f9;border-right:1px solid #e3e6ea;padding:10px 0;font-size:14px}
+.dial .gauche div{padding:6px 16px}.dial .gauche .sel{background:#dce8fb;font-weight:600}
+.dial .droite{flex:1;padding:14px;color:#888;font-size:13px}
+.dial-bas{border-top:1px solid #e3e6ea;padding:12px 16px;display:flex;align-items:center;gap:10px;font-size:14px}
+.dial-bas input{flex:1;font:inherit;padding:6px 8px;border:1px solid #b9c0ca;border-radius:4px}
+.btn{font:inherit;font-size:14px;padding:7px 16px;border-radius:6px;border:1px solid #b9c0ca;background:#f4f5f7;cursor:pointer}
+.btn.prim{background:#1a73e8;border-color:#1a73e8;color:#fff;font-weight:600}
+/* ── Google Images ── */
+#f-google{left:4%;right:4%;top:18px;bottom:104px}
+.g-page{position:absolute;top:34px;left:0;right:0;bottom:0;overflow:hidden}
+.g-accueil{display:flex;flex-direction:column;align-items:center;padding-top:7vh}
+.logo{font:500 64px/1 "Product Sans","Segoe UI",Arial,sans-serif;letter-spacing:-2px}
+.logo b{font-weight:500}.logo .c1{color:#4285f4}.logo .c2{color:#ea4335}.logo .c3{color:#fbbc05}.logo .c4{color:#34a853}
+.logo small{font-size:18px;color:#4285f4;letter-spacing:0;margin-left:4px}
+.recherche{margin-top:26px;width:min(580px,80%);height:48px;border:1px solid #dfe1e5;border-radius:24px;display:flex;align-items:center;padding:0 16px;gap:10px;box-shadow:0 1px 6px rgba(32,33,36,.18)}
+.recherche .vide{flex:1}
+.recherche .cam{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.recherche .cam:hover{background:#eef3fd}
+.pulse{animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(26,115,232,.55)}50%{box-shadow:0 0 0 10px rgba(26,115,232,0)}}
+.depot{margin-top:18px;width:min(580px,80%);border:1px solid #dfe1e5;border-radius:14px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.12);display:none}
+.depot.la{display:block}
+.zone{border:2px dashed #b9c6db;border-radius:10px;background:#f8faff;height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#5f6368;font-size:15px;transition:background .2s,border-color .2s}
+.zone.dessus{background:#e8f0fe;border-color:#1a73e8}
+.zone a{color:#1a73e8;text-decoration:underline;cursor:pointer}
+/* sélecteur de fichier */
+#f-choix{left:50%;top:120px;width:min(520px,80%);margin-left:max(-260px,-40%);z-index:12}
+.choix-liste{padding:14px;display:flex;gap:14px;min-height:130px}
+.choix-liste .fichier{opacity:1;transform:none;color:#222;cursor:pointer;border-radius:6px;padding:6px}
+.choix-liste .fichier:hover{background:#e8f0fe}
+/* résultats */
+.g-resultats{display:none;padding:18px 26px;height:100%}
+.g-resultats.la{display:flex;gap:26px}
+.g-resultats .source{width:28%;min-width:180px}
+.g-resultats .source img{width:100%;border-radius:10px;border:1px solid #dfe1e5}
+.g-resultats .source p{font-size:13px;color:#5f6368;margin:6px 0 0}
+.g-resultats .grille{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-content:start}
+.g-resultats h3{grid-column:1/-1;margin:0 0 2px;font-size:18px;font-weight:500;color:#202124}
+.carte{border-radius:10px;overflow:hidden;cursor:pointer;transition:transform .2s;opacity:0;transform:translateY(16px)}
+.carte.la{opacity:1;transform:none;transition:opacity .4s,transform .4s}
+.carte:hover{transform:translateY(-3px)}
+.carte img{width:100%;height:120px;object-fit:cover;display:block;border-radius:10px}
+.carte .site{font-size:12px;color:#5f6368;margin-top:6px;display:flex;align-items:center;gap:6px}
+.carte .site i{width:16px;height:16px;border-radius:50%;display:inline-block;flex:none}
+.carte .titre{font-size:14px;color:#1a0dab;margin-top:2px;line-height:1.3}
+.carte .date{font-size:13px;color:#188038;font-weight:600;margin-top:3px}
+.chargement{display:none;position:absolute;inset:0;align-items:center;justify-content:center;background:rgba(255,255,255,.85)}
+.chargement.la{display:flex}
+.roue{width:44px;height:44px;border:4px solid #dfe1e5;border-top-color:#1a73e8;border-radius:50%;animation:tourne .8s linear infinite}
+@keyframes tourne{to{transform:rotate(360deg)}}
+/* la publication de France 3 */
+#f-source{left:50%;top:14px;width:min(560px,84%);margin-left:max(-280px,-42%);bottom:100px;z-index:14}
+#f-source .contenu{position:absolute;top:34px;left:0;right:0;bottom:0;overflow:auto;background:#f0f2f5;display:flex;justify-content:center}
+#f-source img{max-width:100%;height:auto;align-self:flex-start}
+/* recommencer */
+#recommencer{position:absolute;right:14px;top:12px;z-index:30;font:600 15px "Segoe UI",sans-serif;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.4);border-radius:18px;padding:6px 14px;cursor:pointer}
+#recommencer:hover{background:rgba(255,255,255,.28)}
+</style>
+</head>
+<body>
+<div id="scene">
+  <button id="recommencer" type="button" title="Recommencer la démo">↺</button>
+
+  <!-- 1. Le tweet -->
+  <div class="fenetre" id="f-tweet">
+    <div class="barre"><i></i><i></i><i></i><span class="url">twitter.com/Tikitoq</span></div>
+    <div class="tweet">
+      <div class="tete"><div class="ava"></div><div><div class="nom">Miranda Veracruz De La Hoya Cardinal</div><div class="pseudo">@Tikitoq</div></div></div>
+      <div class="texte">Sérieusement ?!</div>
+      <div class="photo" id="photo"><img src="../medias/images/arc-triomphe-foule-2018.jpg" alt="Une foule immense autour de l'Arc de Triomphe" draggable="false"></div>
+      <div class="quand">11:22 PM · 15 mars 2020 · Twitter Web App</div>
+    </div>
+  </div>
+  <div id="menu">
+    <div>Ouvrir l'image dans un nouvel onglet</div>
+    <div class="bon" id="m-enregistrer">Enregistrer l'image sous…</div>
+    <div>Copier l'image</div>
+    <div>Copier l'adresse de l'image</div>
+    <hr>
+    <div>Inspecter</div>
+  </div>
+
+  <!-- 2. Enregistrer sous -->
+  <div class="fenetre" id="f-enregistrer">
+    <div class="barre">Enregistrer sous</div>
+    <div class="dial">
+      <div class="gauche"><div>Accès rapide</div><div class="sel">🖥️ Bureau</div><div>📄 Documents</div><div>⬇️ Téléchargements</div><div>🖼️ Images</div></div>
+      <div class="droite">Bureau</div>
+    </div>
+    <div class="dial-bas">Nom du fichier : <input id="nom" value="photo foule.jpg"><button class="btn prim" id="b-enregistrer" type="button">Enregistrer</button><button class="btn" id="b-annuler" type="button">Annuler</button></div>
+  </div>
+
+  <!-- 3. Google Images -->
+  <div class="fenetre" id="f-google">
+    <div class="barre"><i></i><i></i><i></i><span class="url">images.google.fr</span></div>
+    <div class="g-page">
+      <div class="g-accueil" id="g-accueil">
+        <div class="logo"><b class="c1">G</b><b class="c2">o</b><b class="c3">o</b><b class="c1">g</b><b class="c4">l</b><b class="c2">e</b><small>images</small></div>
+        <div class="recherche"><svg width="20" height="20" viewBox="0 0 24 24"><path fill="#9aa0a6" d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><span class="vide"></span>
+          <span class="cam pulse" id="cam" title="Recherche par image"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#4285f4" d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4z"/><path fill="#34a853" d="M9 2 7.17 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-3.17L15 2H9zm3 15a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/></svg></span></div>
+        <div class="depot" id="depot">
+          <div class="zone" id="zone"><svg width="42" height="42" viewBox="0 0 24 24"><path fill="#9aa0a6" d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2zM8.5 13.5l2.5 3 3.5-4.5 4.5 6H5l3.5-4.5z"/></svg>
+            <div>Faites glisser une image ici ou <a id="importer">importez un fichier</a></div></div>
+        </div>
+      </div>
+      <div class="g-resultats" id="g-resultats">
+        <div class="source"><img src="../medias/images/arc-triomphe-foule-2018.jpg" alt=""><p>photo foule.jpg</p></div>
+        <div class="grille">
+          <h3>Correspondances visuelles</h3>
+          <div class="carte" id="c-france3"><img src="../medias/images/arc-triomphe-foule-2018.jpg" alt=""><div class="site"><i style="background:#1e5bd8"></i>France 3 Paris Île-de-France</div><div class="titre">La France championne du monde : Paris en délire !</div><div class="date">15 juillet 2018</div></div>
+          <div class="carte"><img src="../medias/images/arc-triomphe-foule-2018.jpg" alt="" style="object-position:30% 60%"><div class="site"><i style="background:#1d9bf0"></i>Twitter</div><div class="titre">salut (@YOLOAVANTOUT)</div></div>
+          <div class="carte"><img src="../medias/images/arc-triomphe-foule-2018.jpg" alt="" style="object-position:70% 40%"><div class="site"><i style="background:#c0392b"></i>Nordpresse</div><div class="titre">Confinement - Grand rassemblement de…</div></div>
+        </div>
+      </div>
+      <div class="chargement" id="chargement"><div class="roue"></div></div>
+    </div>
+  </div>
+  <div class="fenetre" id="f-choix">
+    <div class="barre">Ouvrir · Bureau</div>
+    <div class="choix-liste"><div class="fichier" id="choix-fichier"><img src="../medias/images/arc-triomphe-foule-2018.jpg" alt=""><span>photo foule.jpg</span></div></div>
+  </div>
+
+  <!-- 4. La source -->
+  <div class="fenetre" id="f-source">
+    <div class="barre"><i></i><i></i><i></i><span class="url">facebook.com/france3paris</span></div>
+    <div class="contenu"><img src="../medias/images/recherche-inversee-12.png" alt="Publication de France 3 Paris Île-de-France : les Champs-Élysées bondés après la victoire de la France en Coupe du monde"></div>
+  </div>
+
+  <!-- Le bureau -->
+  <div id="bureau"><span class="lib">Bureau</span>
+    <div class="fichier" id="fichier" draggable="true"><img src="../medias/images/arc-triomphe-foule-2018.jpg" alt=""><span>photo foule.jpg</span></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var menu = $('menu');
+  function montrer(id, oui) { $(id).classList.toggle('la', oui !== false); }
+  function depart() {
+    ['f-enregistrer', 'f-google', 'f-choix', 'f-source'].forEach(function (id) { montrer(id, false); });
+    montrer('f-tweet'); menu.style.display = 'none';
+    $('fichier').classList.remove('la');
+    $('depot').classList.remove('la'); $('g-accueil').style.display = '';
+    $('g-resultats').classList.remove('la'); $('chargement').classList.remove('la');
+    Array.prototype.forEach.call(document.querySelectorAll('.carte'), function (c) { c.classList.remove('la'); });
+    $('cam').classList.add('pulse');
+  }
+  // 1. Clic droit (ou clic) sur la photo : le menu
+  function ouvrirMenu(e) {
+    e.preventDefault();
+    var r = $('scene').getBoundingClientRect();
+    menu.style.display = 'block';
+    var x = Math.min(e.clientX - r.left, r.width - menu.offsetWidth - 8), y = Math.min(e.clientY - r.top, r.height - menu.offsetHeight - 8);
+    menu.style.left = x + 'px'; menu.style.top = y + 'px';
+  }
+  $('photo').addEventListener('contextmenu', ouvrirMenu);
+  $('photo').addEventListener('click', ouvrirMenu);
+  document.addEventListener('click', function (e) { if (!menu.contains(e.target) && !$('photo').contains(e.target)) menu.style.display = 'none'; });
+  // 2. Enregistrer l'image sous… → la boîte, puis le bureau
+  $('m-enregistrer').addEventListener('click', function () { menu.style.display = 'none'; montrer('f-enregistrer'); });
+  $('b-annuler').addEventListener('click', function () { montrer('f-enregistrer', false); });
+  $('b-enregistrer').addEventListener('click', function () {
+    montrer('f-enregistrer', false);
+    $('fichier').querySelector('span').textContent = $('nom').value || 'photo foule.jpg';
+    $('fichier').classList.add('la');
+    setTimeout(function () { montrer('f-tweet', false); montrer('f-google'); }, 900);
+  });
+  // 3. Google Images : l'appareil photo, puis on dépose l'image
+  $('cam').addEventListener('click', function () { $('cam').classList.remove('pulse'); $('depot').classList.add('la'); });
+  $('importer').addEventListener('click', function () { montrer('f-choix'); });
+  $('choix-fichier').addEventListener('click', function () { montrer('f-choix', false); chercher(); });
+  var zone = $('zone');
+  $('fichier').addEventListener('dragstart', function (e) { e.dataTransfer.setData('text/plain', 'photo'); this.classList.add('tire'); });
+  $('fichier').addEventListener('dragend', function () { this.classList.remove('tire'); });
+  zone.addEventListener('dragover', function (e) { e.preventDefault(); zone.classList.add('dessus'); });
+  zone.addEventListener('dragleave', function () { zone.classList.remove('dessus'); });
+  zone.addEventListener('drop', function (e) { e.preventDefault(); zone.classList.remove('dessus'); chercher(); });
+  function chercher() {
+    $('chargement').classList.add('la');
+    setTimeout(function () {
+      $('chargement').classList.remove('la');
+      $('g-accueil').style.display = 'none';
+      $('g-resultats').classList.add('la');
+      Array.prototype.forEach.call(document.querySelectorAll('.carte'), function (c, i) { setTimeout(function () { c.classList.add('la'); }, 250 + i * 350); });
+    }, 1300);
+  }
+  // 4. Le premier résultat : France 3, la Coupe du monde 2018
+  $('c-france3').addEventListener('click', function () { montrer('f-source'); });
+  $('f-source').addEventListener('click', function () { montrer('f-source', false); });
+  $('recommencer').addEventListener('click', depart);
+  depart();
+})();
+</script>
+</body>
+</html>

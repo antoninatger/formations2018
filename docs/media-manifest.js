@@ -2136,7 +2136,8 @@ window.COURS_MEDIA = {
         "tortue.png",
         "tweet-bob-terre-plate.jpg",
         "vache-dessin.jpg",
-        "vice-versa-emotions.jpg"
+        "vice-versa-emotions.jpg",
+        "arc-triomphe-foule-2018.jpg"
       ],
       "videos": [
         "cadrage-creature-plage.mp4",

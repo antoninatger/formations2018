@@ -2618,12 +2618,12 @@ window.COURS_DIAPOS = {
    "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"127.308\" data-off-y=\"88.889\" style=\"left:12.731%;top:8.889%;width:59.127%;max-width:none;font-size:61px\"><span class=\"t-fr\">Le 16 mai 2022, remaniement ministériel</span><span class=\"t-en\" hidden=\"\"></span></h2>\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"298.83\" data-off-y=\"218.152\" style=\"left:29.883%;top:21.815%;width:40.234%;max-width:none\"><img src=\"../medias/images/communiquer-061-12.png\" alt=\"\" loading=\"lazy\"></div>\n  "
   },
   {
-   "id": "communiquer-efficacement#encadrants-d20",
-   "titre": "",
+   "id": "communiquer-efficacement#s-verifier-image-demo",
+   "titre": "Plein écran Fullscreen Démo cliquable (17/11/2026), à la place des 13 captures. ",
    "formation": "communiquer-efficacement",
    "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"encadrants-d20\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard ppt-img\" data-pose=\"\" data-off-x=\"300.569\" data-off-y=\"66.915\" style=\"left:30.057%;top:6.692%;width:42.174%;max-width:none;\"><img src=\"../medias/images/foule-arc-triomphe-hors-contexte.png\" alt=\"\" loading=\"lazy\" style=\"aspect-ratio:6131757/6184783\"></div>\n  "
+   "attrsRaw": "class=\"slide\" id=\"s-verifier-image-demo\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
+   "contentHtml": "\n    <div class=\"illu-frame\" id=\"illu-frame-verifier-image\" data-pose=\"\" data-off-x=\"90\" data-off-y=\"40\" style=\"left:9%;top:4%;width:82%;max-width:none;height:84%;max-height:none\"><iframe src=\"../demos/verifier-une-image.html\" title=\"Vérifier une image : la recherche inversée\" loading=\"lazy\"></iframe></div>\n    <button type=\"button\" class=\"reveal-btn illu-fs-btn\" data-target=\"#illu-frame-verifier-image\" data-pose=\"\" data-off-x=\"467.39\" data-off-y=\"900\" style=\"left:46.739%;top:90%\"><span class=\"t-fr\">Plein écran</span><span class=\"t-en\" hidden=\"\">Fullscreen</span></button>\n    <div class=\"speaker-notes\" hidden=\"\">Démo cliquable (17/11/2026), à la place des 13 captures. Clic droit (ou clic) sur la photo du tweet → « Enregistrer l'image sous… » → Enregistrer : l'image arrive sur le bureau, en bas. Google Images s'ouvre : clic sur l'appareil photo, puis glisser l'image du bureau dans le cadre (ou « importez un fichier »). Les correspondances : la même photo publiée plusieurs fois ; la première, France 3 Paris Île-de-France, 15 juillet 2018, la victoire de la France en Coupe du monde. Un clic ouvre la publication. ↺ en haut à droite : recommencer. Les 13 anciennes captures sont dans la formation « Réserve ».</div>\n  "
   },
   {
    "id": "communiquer-efficacement#communiquer-effet-koulechov",
@@ -4730,12 +4730,12 @@ window.COURS_DIAPOS = {
    "contentHtml": "\n    <h2 class=\"ppt-titre\" data-pose=\"\" data-off-x=\"127.308\" data-off-y=\"88.889\" style=\"left:12.731%;top:8.889%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;font-size:60.533px;line-height:1.2;text-align:left;color:var(--acc);\"><span class=\"t-fr\"><b>Actions à effectuer</b></span><span class=\"t-en\" hidden=\"\"></span></h2>\n    <ul class=\"ppt-texte\" data-pose=\"\" data-off-x=\"127.308\" data-off-y=\"315.047\" style=\"left:12.731%;top:31.505%;width:59.127%;max-width:none;padding:6.053px 12.107px 6.053px 12.107px;\"><li data-puce=\"▸\" style=\"font-size:30.267px;line-height:1.2;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px\"><span class=\"t-fr\">Remonter à la source.</span><span class=\"t-en\" hidden=\"\"></span></li><li data-puce=\"▸\" style=\"font-size:30.267px;line-height:1.2;margin-top:16.815px;padding-left:45.4px;text-indent:-45.4px;text-align:left;--puce:var(--acc);--retrait:45.4px\"><span class=\"t-fr\">Vérifier le contexte</span><span class=\"t-en\" hidden=\"\"></span></li><li data-puce=\"▸\" style=\"font-size:26.904px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px\"><span class=\"t-fr\">Date</span><span class=\"t-en\" hidden=\"\"></span></li><li data-puce=\"▸\" style=\"font-size:26.904px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px\"><span class=\"t-fr\">Lieu</span><span class=\"t-en\" hidden=\"\"></span></li><li data-puce=\"▸\" style=\"font-size:26.904px;line-height:1.2;margin-top:16.815px;padding-left:98.367px;text-indent:-37.833px;text-align:left;--puce:var(--acc);--retrait:37.833px\"><span class=\"t-fr\">Contexte général.</span><span class=\"t-en\" hidden=\"\"></span></li></ul>\n  "
   },
   {
-   "id": "esprit-critique-encadrants#encadrants-d20",
-   "titre": "",
+   "id": "esprit-critique-encadrants#s-verifier-image-demo",
+   "titre": "Plein écran Fullscreen Démo cliquable (17/11/2026), à la place des 13 captures. ",
    "formation": "esprit-critique-encadrants",
    "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"encadrants-d20\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard ppt-img\" data-pose=\"\" data-off-x=\"300.569\" data-off-y=\"66.915\" style=\"left:30.057%;top:6.692%;width:42.174%;max-width:none;\"><img src=\"../medias/images/foule-arc-triomphe-hors-contexte.png\" alt=\"\" loading=\"lazy\" style=\"aspect-ratio:6131757/6184783\"></div>\n  "
+   "attrsRaw": "class=\"slide\" id=\"s-verifier-image-demo\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
+   "contentHtml": "\n    <div class=\"illu-frame\" id=\"illu-frame-verifier-image\" data-pose=\"\" data-off-x=\"90\" data-off-y=\"40\" style=\"left:9%;top:4%;width:82%;max-width:none;height:84%;max-height:none\"><iframe src=\"../demos/verifier-une-image.html\" title=\"Vérifier une image : la recherche inversée\" loading=\"lazy\"></iframe></div>\n    <button type=\"button\" class=\"reveal-btn illu-fs-btn\" data-target=\"#illu-frame-verifier-image\" data-pose=\"\" data-off-x=\"467.39\" data-off-y=\"900\" style=\"left:46.739%;top:90%\"><span class=\"t-fr\">Plein écran</span><span class=\"t-en\" hidden=\"\">Fullscreen</span></button>\n    <div class=\"speaker-notes\" hidden=\"\">Démo cliquable (17/11/2026), à la place des 13 captures. Clic droit (ou clic) sur la photo du tweet → « Enregistrer l'image sous… » → Enregistrer : l'image arrive sur le bureau, en bas. Google Images s'ouvre : clic sur l'appareil photo, puis glisser l'image du bureau dans le cadre (ou « importez un fichier »). Les correspondances : la même photo publiée plusieurs fois ; la première, France 3 Paris Île-de-France, 15 juillet 2018, la victoire de la France en Coupe du monde. Un clic ouvre la publication. ↺ en haut à droite : recommencer. Les 13 anciennes captures sont dans la formation « Réserve ».</div>\n  "
   },
   {
    "id": "esprit-critique-encadrants#encadrants-d21",
@@ -6066,108 +6066,12 @@ window.COURS_DIAPOS = {
    "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"404.2\" data-off-y=\"476.87\" style=\"left:40.42%;top:47.687%\"><span class=\"t-fr\">Vérifier le contexte.</span><span class=\"t-en\" hidden=\"\"></span></h2>\n  "
   },
   {
-   "id": "fake-news-6e-5e#encadrants-d20",
-   "titre": "",
+   "id": "fake-news-6e-5e#s-verifier-image-demo",
+   "titre": "Plein écran Fullscreen Démo cliquable (17/11/2026), à la place des 13 captures. ",
    "formation": "fake-news-6e-5e",
    "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"encadrants-d20\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard ppt-img\" data-pose=\"\" data-off-x=\"300.569\" data-off-y=\"66.915\" style=\"left:30.057%;top:6.692%;width:42.174%;max-width:none;\"><img src=\"../medias/images/foule-arc-triomphe-hors-contexte.png\" alt=\"\" loading=\"lazy\" style=\"aspect-ratio:6131757/6184783\"></div>\n  "
-  },
-  {
-   "id": "fake-news-6e-5e#s-recherche-inversee-1",
-   "titre": "",
-   "formation": "fake-news-6e-5e",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-1\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"204.99\" data-off-y=\"121.15\" style=\"left:20.499%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-01.png\" alt=\"Recherche inversée d’image, étape 1\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "fake-news-6e-5e#s-recherche-inversee-2",
-   "titre": "",
-   "formation": "fake-news-6e-5e",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-2\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"203.71\" data-off-y=\"121.15\" style=\"left:20.371%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-02.png\" alt=\"Recherche inversée d’image, étape 2\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "fake-news-6e-5e#s-recherche-inversee-3",
-   "titre": "",
-   "formation": "fake-news-6e-5e",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-3\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"269.25\" data-off-y=\"121.15\" style=\"left:26.925%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-03.png\" alt=\"Recherche inversée d’image, étape 3\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "fake-news-6e-5e#s-recherche-inversee-4",
-   "titre": "",
-   "formation": "fake-news-6e-5e",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-4\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"245.73\" data-off-y=\"121.15\" style=\"left:24.573%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-04.png\" alt=\"Recherche inversée d’image, étape 4\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "fake-news-6e-5e#s-recherche-inversee-5",
-   "titre": "",
-   "formation": "fake-news-6e-5e",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-5\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"389.61\" data-off-y=\"121.15\" style=\"left:38.961%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-05.png\" alt=\"Recherche inversée d’image, étape 5\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "fake-news-6e-5e#s-recherche-inversee-6",
-   "titre": "",
-   "formation": "fake-news-6e-5e",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-6\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"116.36\" data-off-y=\"121.15\" style=\"left:11.636%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-06.png\" alt=\"Recherche inversée d’image, étape 6\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "fake-news-6e-5e#s-recherche-inversee-7",
-   "titre": "",
-   "formation": "fake-news-6e-5e",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-7\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"215.64\" data-off-y=\"121.15\" style=\"left:21.564%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-07.png\" alt=\"Recherche inversée d’image, étape 7\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "fake-news-6e-5e#s-recherche-inversee-8",
-   "titre": "",
-   "formation": "fake-news-6e-5e",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-8\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"269.19\" data-off-y=\"121.15\" style=\"left:26.919%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-08.png\" alt=\"Recherche inversée d’image, étape 8\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "fake-news-6e-5e#s-recherche-inversee-9",
-   "titre": "",
-   "formation": "fake-news-6e-5e",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-9\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"320.41\" data-off-y=\"121.15\" style=\"left:32.041%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-09.png\" alt=\"Recherche inversée d’image, étape 9\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "fake-news-6e-5e#s-recherche-inversee-10",
-   "titre": "",
-   "formation": "fake-news-6e-5e",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-10\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"53.8\" data-off-y=\"121.15\" style=\"left:5.38%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-10.png\" alt=\"Recherche inversée d’image, étape 10\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "fake-news-6e-5e#s-recherche-inversee-11",
-   "titre": "",
-   "formation": "fake-news-6e-5e",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-11\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"213.65\" data-off-y=\"121.15\" style=\"left:21.365%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-11.png\" alt=\"Recherche inversée d’image, étape 11\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "fake-news-6e-5e#s-recherche-inversee-12",
-   "titre": "",
-   "formation": "fake-news-6e-5e",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-12\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"364.76\" data-off-y=\"121.15\" style=\"left:36.476%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-12.png\" alt=\"Recherche inversée d’image, étape 12\" loading=\"lazy\"></div>\n  "
+   "attrsRaw": "class=\"slide\" id=\"s-verifier-image-demo\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
+   "contentHtml": "\n    <div class=\"illu-frame\" id=\"illu-frame-verifier-image\" data-pose=\"\" data-off-x=\"90\" data-off-y=\"40\" style=\"left:9%;top:4%;width:82%;max-width:none;height:84%;max-height:none\"><iframe src=\"../demos/verifier-une-image.html\" title=\"Vérifier une image : la recherche inversée\" loading=\"lazy\"></iframe></div>\n    <button type=\"button\" class=\"reveal-btn illu-fs-btn\" data-target=\"#illu-frame-verifier-image\" data-pose=\"\" data-off-x=\"467.39\" data-off-y=\"900\" style=\"left:46.739%;top:90%\"><span class=\"t-fr\">Plein écran</span><span class=\"t-en\" hidden=\"\">Fullscreen</span></button>\n    <div class=\"speaker-notes\" hidden=\"\">Démo cliquable (17/11/2026), à la place des 13 captures. Clic droit (ou clic) sur la photo du tweet → « Enregistrer l'image sous… » → Enregistrer : l'image arrive sur le bureau, en bas. Google Images s'ouvre : clic sur l'appareil photo, puis glisser l'image du bureau dans le cadre (ou « importez un fichier »). Les correspondances : la même photo publiée plusieurs fois ; la première, France 3 Paris Île-de-France, 15 juillet 2018, la victoire de la France en Coupe du monde. Un clic ouvre la publication. ↺ en haut à droite : recommencer. Les 13 anciennes captures sont dans la formation « Réserve ».</div>\n  "
   },
   {
    "id": "fake-news-6e-5e#s-compter-1",
@@ -18042,108 +17946,12 @@ window.COURS_DIAPOS = {
    "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"404.2\" data-off-y=\"476.87\" style=\"left:40.42%;top:47.687%\"><span class=\"t-fr\">Vérifier le contexte.</span><span class=\"t-en\" hidden=\"\"></span></h2>\n  "
   },
   {
-   "id": "parcours-cm1-cm2#encadrants-d20",
-   "titre": "",
+   "id": "parcours-cm1-cm2#s-verifier-image-demo",
+   "titre": "Plein écran Fullscreen Démo cliquable (17/11/2026), à la place des 13 captures. ",
    "formation": "parcours-cm1-cm2",
    "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"encadrants-d20\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard ppt-img\" data-pose=\"\" data-off-x=\"300.569\" data-off-y=\"66.915\" style=\"left:30.057%;top:6.692%;width:42.174%;max-width:none;\"><img src=\"../medias/images/foule-arc-triomphe-hors-contexte.png\" alt=\"\" loading=\"lazy\" style=\"aspect-ratio:6131757/6184783\"></div>\n  "
-  },
-  {
-   "id": "parcours-cm1-cm2#s-recherche-inversee-1",
-   "titre": "",
-   "formation": "parcours-cm1-cm2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-1\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"204.99\" data-off-y=\"121.15\" style=\"left:20.499%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-01.png\" alt=\"Recherche inversée d’image, étape 1\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "parcours-cm1-cm2#s-recherche-inversee-2",
-   "titre": "",
-   "formation": "parcours-cm1-cm2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-2\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"203.71\" data-off-y=\"121.15\" style=\"left:20.371%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-02.png\" alt=\"Recherche inversée d’image, étape 2\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "parcours-cm1-cm2#s-recherche-inversee-3",
-   "titre": "",
-   "formation": "parcours-cm1-cm2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-3\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"269.25\" data-off-y=\"121.15\" style=\"left:26.925%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-03.png\" alt=\"Recherche inversée d’image, étape 3\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "parcours-cm1-cm2#s-recherche-inversee-4",
-   "titre": "",
-   "formation": "parcours-cm1-cm2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-4\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"245.73\" data-off-y=\"121.15\" style=\"left:24.573%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-04.png\" alt=\"Recherche inversée d’image, étape 4\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "parcours-cm1-cm2#s-recherche-inversee-5",
-   "titre": "",
-   "formation": "parcours-cm1-cm2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-5\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"389.61\" data-off-y=\"121.15\" style=\"left:38.961%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-05.png\" alt=\"Recherche inversée d’image, étape 5\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "parcours-cm1-cm2#s-recherche-inversee-6",
-   "titre": "",
-   "formation": "parcours-cm1-cm2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-6\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"116.36\" data-off-y=\"121.15\" style=\"left:11.636%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-06.png\" alt=\"Recherche inversée d’image, étape 6\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "parcours-cm1-cm2#s-recherche-inversee-7",
-   "titre": "",
-   "formation": "parcours-cm1-cm2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-7\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"215.64\" data-off-y=\"121.15\" style=\"left:21.564%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-07.png\" alt=\"Recherche inversée d’image, étape 7\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "parcours-cm1-cm2#s-recherche-inversee-8",
-   "titre": "",
-   "formation": "parcours-cm1-cm2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-8\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"269.19\" data-off-y=\"121.15\" style=\"left:26.919%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-08.png\" alt=\"Recherche inversée d’image, étape 8\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "parcours-cm1-cm2#s-recherche-inversee-9",
-   "titre": "",
-   "formation": "parcours-cm1-cm2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-9\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"320.41\" data-off-y=\"121.15\" style=\"left:32.041%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-09.png\" alt=\"Recherche inversée d’image, étape 9\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "parcours-cm1-cm2#s-recherche-inversee-10",
-   "titre": "",
-   "formation": "parcours-cm1-cm2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-10\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"53.8\" data-off-y=\"121.15\" style=\"left:5.38%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-10.png\" alt=\"Recherche inversée d’image, étape 10\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "parcours-cm1-cm2#s-recherche-inversee-11",
-   "titre": "",
-   "formation": "parcours-cm1-cm2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-11\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"213.65\" data-off-y=\"121.15\" style=\"left:21.365%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-11.png\" alt=\"Recherche inversée d’image, étape 11\" loading=\"lazy\"></div>\n  "
-  },
-  {
-   "id": "parcours-cm1-cm2#s-recherche-inversee-12",
-   "titre": "",
-   "formation": "parcours-cm1-cm2",
-   "kind": "simple",
-   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-12\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
-   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"364.76\" data-off-y=\"121.15\" style=\"left:36.476%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-12.png\" alt=\"Recherche inversée d’image, étape 12\" loading=\"lazy\"></div>\n  "
+   "attrsRaw": "class=\"slide\" id=\"s-verifier-image-demo\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
+   "contentHtml": "\n    <div class=\"illu-frame\" id=\"illu-frame-verifier-image\" data-pose=\"\" data-off-x=\"90\" data-off-y=\"40\" style=\"left:9%;top:4%;width:82%;max-width:none;height:84%;max-height:none\"><iframe src=\"../demos/verifier-une-image.html\" title=\"Vérifier une image : la recherche inversée\" loading=\"lazy\"></iframe></div>\n    <button type=\"button\" class=\"reveal-btn illu-fs-btn\" data-target=\"#illu-frame-verifier-image\" data-pose=\"\" data-off-x=\"467.39\" data-off-y=\"900\" style=\"left:46.739%;top:90%\"><span class=\"t-fr\">Plein écran</span><span class=\"t-en\" hidden=\"\">Fullscreen</span></button>\n    <div class=\"speaker-notes\" hidden=\"\">Démo cliquable (17/11/2026), à la place des 13 captures. Clic droit (ou clic) sur la photo du tweet → « Enregistrer l'image sous… » → Enregistrer : l'image arrive sur le bureau, en bas. Google Images s'ouvre : clic sur l'appareil photo, puis glisser l'image du bureau dans le cadre (ou « importez un fichier »). Les correspondances : la même photo publiée plusieurs fois ; la première, France 3 Paris Île-de-France, 15 juillet 2018, la victoire de la France en Coupe du monde. Un clic ouvre la publication. ↺ en haut à droite : recommencer. Les 13 anciennes captures sont dans la formation « Réserve ».</div>\n  "
   },
   {
    "id": "parcours-cm1-cm2#s12",
@@ -19144,6 +18952,110 @@ window.COURS_DIAPOS = {
    "kind": "simple",
    "attrsRaw": "class=\"slide\" id=\"nv2-retours-rsf\" data-serie=\"serie_0823c10a-c4af-4233-80e6-d43a05f1c0c0\"",
    "contentHtml": "\n    <style>\n#nv2-retours-rsf .tg-post{width:1000px;box-sizing:border-box;padding:22px 28px 18px;background:#182533;border-radius:18px;box-shadow:0 16px 40px rgba(0,0,0,.5);text-align:left;font-family:Roboto,Arial,Helvetica,sans-serif;color:#f5f5f5}\n#nv2-retours-rsf .tg-tete{display:flex;align-items:center;gap:16px}\n#nv2-retours-rsf .tg-ava{flex:none;width:62px;height:62px;border-radius:50%;background:#c0392b;color:#fff;display:flex;align-items:center;justify-content:center;font:700 24px Arial,sans-serif}\n#nv2-retours-rsf .tg-nom{font-size:26px;font-weight:700;color:#6ab3f3;line-height:1.2}\n#nv2-retours-rsf .tg-sous{font-size:18px;color:#8b9aa7}\n#nv2-retours-rsf .tg-texte{margin:16px 0 0;max-width:none;font-size:26px;line-height:1.45;color:#f5f5f5;font-weight:400}\n#nv2-retours-rsf .tg-trad{margin:16px 0 0;padding:12px 16px;border-left:4px solid #6ab3f3;background:rgba(106,179,243,.08);border-radius:6px;max-width:none;font-size:26px;line-height:1.45;color:#e8eef3;font-weight:400}\n#nv2-retours-rsf .tg-trad-tete{display:block;font-size:17px;font-weight:700;color:#6ab3f3;margin-bottom:4px}\n#nv2-retours-rsf .tg-pied{margin-top:10px;text-align:right;font-size:17px;color:#8b9aa7}\n</style>\n    <h2 data-pose=\"\" data-off-x=\"127.73\" data-off-y=\"95.7\" style=\"left:12.773%;top:9.57%;width:59.11%;max-width:none;font-size:61px;text-align:left\"><span class=\"t-fr\">Quels sont les retours critiques ?</span><span class=\"t-en\" hidden=\"\">What is the critical feedback?</span></h2>\n    <div class=\"tg-post\" data-pose=\"\" data-off-x=\"175\" data-off-y=\"210\" style=\"left:17.5%;top:21%\"><div class=\"tg-tete\"><span class=\"tg-ava\">ВФ</span><span><span class=\"tg-nom\" style=\"display:block\">Война с фейками</span><span class=\"tg-sous\">Canal Telegram</span></span></div><p class=\"tg-texte\">Заметки о Буче появились сразу в нескольких зарубежных изданиях — похоже на спланированную медиакампанию. Учитывая, что войска покинули город 30 марта, где данные кадры были 4 дня? Их отсутствие лишь подтверждает фейк</p><p class=\"tg-trad\"><span class=\"t-fr\"><span class=\"tg-trad-tete\">Traduit du russe</span>Des articles sur Boutcha sont parus en même temps dans plusieurs médias étrangers&nbsp;: cela ressemble à une campagne médiatique planifiée. Sachant que les troupes ont quitté la ville le 30&nbsp;mars, où étaient ces images pendant 4&nbsp;jours&nbsp;? Leur absence ne fait que confirmer le fake.</span><span class=\"t-en\" hidden=\"\"><span class=\"tg-trad-tete\">Translated from Russian</span>Articles about Bucha appeared simultaneously in several foreign outlets: it looks like a planned media campaign. Given that the troops left the town on 30 March, where were these images for 4 days? Their absence only confirms the fake.</span></p><div class=\"tg-pied\">3 avril 2022</div></div>\n  <div class=\"speaker-notes\" hidden=\"\">Reconstitution d'un post réel de la chaîne Telegram « Война с фейками » (« La guerre contre les fakes »), créée la veille de l'invasion et qui se présente comme du fact-checking ; environ 700 000 abonnés ; post du 3 avril 2022, repartagé le jour même par le ministère russe de la Défense. Texte original cité par Meduza (3/4/2022) : https://meduza.io/news/2022/04/03/telegram-minoborony-rf-repostnul-propagandistskiy-kanal-nazvavshiy-kadry-s-telami-ubityh-v-buche-postanovochnymi-s-ofitsialnoy-pozitsiey-vedomstvo-do-sih-por-ne-vystupalo . La chaîne affirmait aussi que des corps « bougeaient » sur la vidéo (une main levée, un mort qui se relève dans le rétroviseur). Démentis : AFP (5/4/2022) : la « main » est une goutte d'eau sur le pare-brise, les corps sont au même endroit sur les photos du lendemain https://www.blick.ch/fr/monde/la-version-russe-mise-a-mal-non-la-decouverte-de-cadavres-a-boutcha-n-est-pas-une-mise-en-scene-id17379989.html ; Bellingcat (4/4/2022) https://www.bellingcat.com/news/2022/04/04/russias-bucha-facts-versus-the-evidence ; DFRLab (4/4/2022) https://www.atlanticcouncil.org/blogs/new-atlanticist/russian-war-report-kremlin-claims-bucha-massacre-was-staged-by-ukraine/ . Le phénomène : RSF, « Russie : quand le fact-checking devient le nouvel outil de la propagande du Kremlin » (24/6/2025) https://rsf.org/en/russia-fact-checking-kremlins-latest-propaganda-tool ; PolitiFact (8/8/2022) https://www.politifact.com/article/2022/aug/08/how-war-fakes-uses-fact-checking-spread-pro-russia/</div>"
+  },
+  {
+   "id": "reserve#encadrants-d20",
+   "titre": "",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"encadrants-d20\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
+   "contentHtml": "\n    <div class=\"imgcard ppt-img\" data-pose=\"\" data-off-x=\"300.569\" data-off-y=\"66.915\" style=\"left:30.057%;top:6.692%;width:42.174%;max-width:none;\"><img src=\"../medias/images/foule-arc-triomphe-hors-contexte.png\" alt=\"\" loading=\"lazy\" style=\"aspect-ratio:6131757/6184783\"></div>\n  "
+  },
+  {
+   "id": "reserve#s-recherche-inversee-1",
+   "titre": "",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-1\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
+   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"204.99\" data-off-y=\"121.15\" style=\"left:20.499%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-01.png\" alt=\"Recherche inversée d’image, étape 1\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "reserve#s-recherche-inversee-2",
+   "titre": "",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-2\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
+   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"203.71\" data-off-y=\"121.15\" style=\"left:20.371%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-02.png\" alt=\"Recherche inversée d’image, étape 2\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "reserve#s-recherche-inversee-3",
+   "titre": "",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-3\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
+   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"269.25\" data-off-y=\"121.15\" style=\"left:26.925%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-03.png\" alt=\"Recherche inversée d’image, étape 3\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "reserve#s-recherche-inversee-4",
+   "titre": "",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-4\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
+   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"245.73\" data-off-y=\"121.15\" style=\"left:24.573%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-04.png\" alt=\"Recherche inversée d’image, étape 4\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "reserve#s-recherche-inversee-5",
+   "titre": "",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-5\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
+   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"389.61\" data-off-y=\"121.15\" style=\"left:38.961%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-05.png\" alt=\"Recherche inversée d’image, étape 5\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "reserve#s-recherche-inversee-6",
+   "titre": "",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-6\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
+   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"116.36\" data-off-y=\"121.15\" style=\"left:11.636%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-06.png\" alt=\"Recherche inversée d’image, étape 6\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "reserve#s-recherche-inversee-7",
+   "titre": "",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-7\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
+   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"215.64\" data-off-y=\"121.15\" style=\"left:21.564%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-07.png\" alt=\"Recherche inversée d’image, étape 7\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "reserve#s-recherche-inversee-8",
+   "titre": "",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-8\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
+   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"269.19\" data-off-y=\"121.15\" style=\"left:26.919%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-08.png\" alt=\"Recherche inversée d’image, étape 8\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "reserve#s-recherche-inversee-9",
+   "titre": "",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-9\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
+   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"320.41\" data-off-y=\"121.15\" style=\"left:32.041%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-09.png\" alt=\"Recherche inversée d’image, étape 9\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "reserve#s-recherche-inversee-10",
+   "titre": "",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-10\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
+   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"53.8\" data-off-y=\"121.15\" style=\"left:5.38%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-10.png\" alt=\"Recherche inversée d’image, étape 10\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "reserve#s-recherche-inversee-11",
+   "titre": "",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-11\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
+   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"213.65\" data-off-y=\"121.15\" style=\"left:21.365%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-11.png\" alt=\"Recherche inversée d’image, étape 11\" loading=\"lazy\"></div>\n  "
+  },
+  {
+   "id": "reserve#s-recherche-inversee-12",
+   "titre": "",
+   "formation": "reserve",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"s-recherche-inversee-12\" data-serie=\"serie_c7fbcaf9-8e9f-452c-a4c7-0d399ade686b\"",
+   "contentHtml": "\n    <div class=\"imgcard-full\" data-pose=\"\" data-off-x=\"364.76\" data-off-y=\"121.15\" style=\"left:36.476%;top:12.115%\"><img src=\"../medias/images/recherche-inversee-12.png\" alt=\"Recherche inversée d’image, étape 12\" loading=\"lazy\"></div>\n  "
   }
  ],
  "series": [
