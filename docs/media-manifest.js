@@ -2171,6 +2171,20 @@ window.COURS_MEDIA = {
       "videos": [
         "complotiste-018-3.mp4"
       ]
+    },
+    {
+      "id": "entreprise",
+      "label": "Entreprise : enjeux de l’information",
+      "images": [
+        "entreprise-mandon-accepter-de-perdre-nos-enfants.jpg",
+        "entreprise-mandon-article.png",
+        "entreprise-information.png",
+        "entreprise-cerveau.jpg",
+        "xkcd-someone-is-wrong-on-the-internet.jpg",
+        "entreprise-plume-et-epee.png",
+        "entreprise-qr-merci.png"
+      ],
+      "videos": []
     }
   ]
 };

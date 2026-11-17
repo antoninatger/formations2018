@@ -633,6 +633,93 @@ window.COURS_SERIES = {
   },
   "serie_fe31fd5e-3a92-40bc-9831-6650010dc087": {
    "nom": "La Terre : ronde ou plate ? (animation)"
+  },
+  "serie_f24a047a-c24d-44a8-a673-8cceee078bb9": {
+   "nom": "Différentes « Fake News » Mésinformation Une infox que l'on "
+  },
+  "serie_f45f0c12-c99c-446e-bd5a-768661479be1": {
+   "nom": "Le réflexe : vrai, ou faux ? VRAI FAUX"
+  },
+  "serie_380f47a5-216a-4efc-ade8-d8445e8a59bc": {
+   "nom": "Mais NOTRE perception du vrai et du faux dépend de beaucoup "
+  },
+  "serie_78c0490e-7b4b-4f41-8d7a-380c86fb787d": {
+   "nom": "Crédible ≠ Vrai Une information peut être parfaitement crédi"
+  },
+  "serie_dd6605c2-fda3-44cb-b4ab-1ced3ec10d64": {
+   "nom": "Vrai ou faux ? Les chauves-souris sont aveugles. Vrai Voter "
+  },
+  "serie_e56bbd59-5c9f-4d0c-9bfd-ef4b8bc8edaf": {
+   "nom": "Vrai ou faux ? Les pieuvres ont trois cœurs. Vrai Voter Faux"
+  },
+  "serie_290cff5f-f4a4-471a-b093-9ac54e45fb91": {
+   "nom": "Vrai ou faux ? Le terme « sushi » désigne « poisson cru » en"
+  },
+  "serie_ef07b431-03f9-471f-bef3-b1205fba45a2": {
+   "nom": "Vrai ou faux ? L’eau tourbillonne dans un sens différent sel"
+  },
+  "serie_106dbe1f-fae1-44ac-ae8d-cb9898fedf47": {
+   "nom": "Vrai ou faux ? Nous avons créé des chats fluorescents. Vrai "
+  },
+  "serie_a2e53519-1b5d-4713-b6fa-6e2497fcca6a": {
+   "nom": "Vrai ou faux ? La mousse sur les arbres pousse toujours au n"
+  },
+  "serie_5ef28757-d9d6-4489-b045-9b96c93d52db": {
+   "nom": "Vrai ou faux ? Les pyramides ont été construites par des ext"
+  },
+  "serie_77791c4b-2ceb-457a-86ea-6b452be49737": {
+   "nom": "Vrai ou faux ? Les pyramides ont été construites par des esc"
+  },
+  "serie_6563614e-f141-4b70-a7ed-0918e9ea9358": {
+   "nom": "Quelle photo est en IA, quelle photo est réelle ?"
+  },
+  "serie_5356ff4b-e784-4089-a18a-6ae45a2580a1": {
+   "nom": "Vraie photo, ou générée par IA ? Vraie photo Voter Générée p"
+  },
+  "serie_3a78ce9b-5cf1-475d-95f6-9476b8e54efc": {
+   "nom": "Vraie photo, ou générée par IA ? Vraie photo Voter Générée p"
+  },
+  "serie_847e9aaf-5c40-44b1-a92c-66c910b13197": {
+   "nom": "Vraie photo, ou générée par IA ? Vraie photo Voter Générée p"
+  },
+  "serie_08b0c044-ed57-4045-b68a-100bbfe7c612": {
+   "nom": "2 Au-delà du vrai / faux"
+  },
+  "serie_5045dbd2-2a5c-4ac3-945a-f68450e39686": {
+   "nom": "La Terre tourne autour du Soleil en 365 jours. Vrai Voter Fa"
+  },
+  "serie_a47e0aa5-7b27-435f-9980-7bea4a47178c": {
+   "nom": "La Terre est ronde. Vrai Voter Faux Voter Presque : c’est un"
+  },
+  "serie_fd36ca8c-d62a-4df3-9944-9ffb5d927974": {
+   "nom": "On ne peut pas respirer et avaler en même temps. Vrai Voter "
+  },
+  "serie_a85fa043-826a-409c-9a8a-07c3cabd9b72": {
+   "nom": "Les chiens ne transpirent pas. Vrai Voter Faux Voter Presque"
+  },
+  "serie_a91cbcd4-3164-4116-8701-d441e5fe4b16": {
+   "nom": "Image : communiquer-194-42"
+  },
+  "serie_09775910-932e-4f7f-b218-a23b2905a898": {
+   "nom": "Simuler la foule, simuler l'opinion"
+  },
+  "serie_b2edb0d8-e1a6-4eac-86e4-80450ef9c23b": {
+   "nom": "L'Astroturfing Une technique consistant à simuler un mouveme"
+  },
+  "serie_084ce8ab-4d90-47fd-b0f0-e7c99e9869ca": {
+   "nom": "Image : affiche-tabac-lucky-strike"
+  },
+  "serie_15d50d3f-0436-4cc6-a449-5f03c8247ec5": {
+   "nom": "La Mute News Ne PAS parler de certaines informations, ou PEU"
+  },
+  "serie_166e2af6-30b6-4004-9b7d-226ea8caa276": {
+   "nom": "Les croix de David"
+  },
+  "serie_1d77c275-0667-4fe4-af18-84909de21f7a": {
+   "nom": "Le cycle de la polarisation Le même engrenage se répète, que"
+  },
+  "serie_b1c540db-bb02-4908-a644-c9841fcc4227": {
+   "nom": "Le même cycle, quel que soit le déclencheur Des agents étran"
   }
  }
 };
