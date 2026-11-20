@@ -119,6 +119,26 @@ h1,h2,h3,.brand{font-family:'Baloo 2','Nunito',sans-serif}
 #topbar .tools{display:flex;gap:10px;align-items:center}
 #topbar button{background:var(--panel);border:1px solid var(--bord);color:var(--tx);border-radius:10px;padding:7px 12px;font-size:.85rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif}
 #topbar button:hover{border-color:var(--acc2)}
+/* Bandeau replié (20 novembre). Antonin : « je n'aime pas trop la ligne avec tous les
+   boutons en haut ». En haut à droite : un bouton ☰ qui déplie les options en colonne,
+   et une icône plein écran juste dessous. La classe est posée par le moteur
+   (replierBandeau) : une page qui ne charge pas le moteur garde l'ancien bandeau.
+   Préfixe html : passe devant les réglages #topbar du <style> de chaque formation. */
+html #topbar.bandeau-replie{left:auto;right:14px;top:12px;height:auto;padding:0;background:none;
+  flex-direction:column;align-items:flex-end;justify-content:flex-start;gap:8px}
+html #topbar.bandeau-replie .bandeau-icone{width:38px;height:38px;padding:0;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;line-height:1;
+  opacity:.55;transition:opacity .15s}
+html #topbar.bandeau-replie .bandeau-icone:hover,html #topbar.bandeau-replie.options-ouvertes #btn-options{opacity:1}
+html #topbar.bandeau-replie .bandeau-icone svg{width:18px;height:18px}
+html #topbar.bandeau-replie .tools{display:none;position:absolute;top:0;right:48px;flex-direction:column;
+  align-items:stretch;gap:6px;padding:12px;min-width:230px;max-height:calc(100vh - 24px);overflow:auto;
+  background:var(--panel);border:1px solid var(--bord);border-radius:14px;box-shadow:0 14px 34px rgba(0,0,0,.45)}
+html #topbar.bandeau-replie.options-ouvertes .tools{display:flex}
+html #topbar.bandeau-replie .tools > button{text-align:left;white-space:nowrap;padding:8px 12px;font-size:.85rem}
+html #topbar.bandeau-replie .tools > [hidden]{display:none}
+html #topbar.bandeau-replie .tools > .brand{order:-99;max-width:none;white-space:normal;font-size:.95rem;
+  padding:0 4px 4px;overflow:visible}
 /* La toile est centree dans la fenetre et reduite d’un seul scale. --toile-k est calcule
    par le moteur (ajusterToile) au chargement et a chaque changement de taille : CSS ne
    sait pas diviser une longueur par une longueur. Il vit sur <html>, jamais dans la diapo :

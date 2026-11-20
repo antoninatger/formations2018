@@ -116,7 +116,9 @@ body{transition:background-color .3s ease,color .3s ease;}
     panel.appendChild(textarea);
     wrap.appendChild(btn);
     wrap.appendChild(panel);
-    document.body.appendChild(wrap);
+    // Le bouton 💬 « Laisser un commentaire sur cette diapo » n'est plus posé sur la page
+    // (Antonin, 20 novembre : « j'en ai plus besoin »). « Commentaires », dans les options,
+    // montre toujours ceux déjà laissés.
 
     let currentId = null;
     let saveTimer = null;

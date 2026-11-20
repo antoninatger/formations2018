@@ -20073,6 +20073,56 @@ body.presenter-view{overflow:auto;height:auto;background:var(--bg,#111827);color
     return b;
   }
 
+  // Bandeau replié (Antonin, 20 novembre) : « je n'aime pas trop la ligne avec tous les
+  // boutons en haut ». Il ne reste en haut à droite qu'un petit bouton ☰, qui déplie la
+  // liste des options (les mêmes boutons qu'avant, rangés en colonne), et juste dessous
+  // une icône plein écran. Les boutons ne changent pas de place dans le DOM : ils restent
+  // dans #topbar .tools, que d'autres scripts (thème, commentaires, QR code) remplissent à
+  // leur rythme. Seul le plein écran sort de la liste. La mise en page est dans
+  // shared-deck.css, sous #topbar.bandeau-replie : une page sans ce moteur garde l'ancienne.
+  function replierBandeau(tools) {
+    const barre = tools.closest('#topbar');
+    if (!barre || barre.classList.contains('bandeau-replie')) return;
+    barre.classList.add('bandeau-replie');
+    const ouvrir = document.createElement('button');
+    ouvrir.type = 'button';
+    ouvrir.id = 'btn-options';
+    ouvrir.className = 'bandeau-icone';
+    ouvrir.title = 'Options';
+    ouvrir.setAttribute('aria-expanded', 'false');
+    ouvrir.textContent = '☰';
+    barre.insertBefore(ouvrir, tools);
+    const plein = document.getElementById('btn-fullscreen');
+    if (plein) {
+      plein.classList.add('bandeau-icone');
+      plein.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"'
+        + ' stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+        + '<path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg>';
+      barre.insertBefore(plein, tools);
+    }
+    // Le titre de la formation passe en tête de la liste dépliée.
+    const titre = barre.querySelector(':scope > .brand');
+    if (titre) tools.insertBefore(titre, tools.firstChild);
+    function poser(ouvert) {
+      barre.classList.toggle('options-ouvertes', ouvert);
+      ouvrir.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+    }
+    ouvrir.addEventListener('click', e => {
+      e.stopPropagation();
+      poser(!barre.classList.contains('options-ouvertes'));
+    });
+    // Un clic ailleurs referme la liste ; un clic DANS la liste la laisse ouverte, pour
+    // que les fenêtres accrochées à un bouton (Visio, durée) gardent leur ancre.
+    document.addEventListener('click', e => {
+      if (!barre.classList.contains('options-ouvertes')) return;
+      if (barre.contains(e.target)) return;
+      poser(false);
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && barre.classList.contains('options-ouvertes')) poser(false);
+    });
+  }
+
   // Boutons injectés en JS (comme le thème/commentaires de shared-comments-theme.js) plutôt que
   // dupliqués dans les 5 index.html : "Vue présentateur" dans le bandeau du haut, "Notes" dans
   // la barre d'outils de l'éditeur.
@@ -20100,13 +20150,8 @@ body.presenter-view{overflow:auto;height:auto;background:var(--bg,#111827);color
       tools.appendChild(btn);
       tools.appendChild(creerBoutonVisio());
 
-      const topicsBtn = document.createElement('button');
-      topicsBtn.type = 'button';
-      topicsBtn.id = 'btn-topics';
-      topicsBtn.title = 'Pense-bête : sujets/techniques à ajouter plus tard';
-      topicsBtn.textContent = 'Sujet à ajouter';
-      topicsBtn.addEventListener('click', toggleTopicsPanel);
-      tools.appendChild(topicsBtn);
+      // « Sujet à ajouter » a quitté le bandeau le 20 novembre (Antonin : « sujet ajouté, tu
+      // supprimes »). Le panneau et ses notes restent dans le code, sans bouton pour l'ouvrir.
 
       // Second bouton « Notes », dans le bandeau : écrire une note ne doit pas obliger
       // à ouvrir le mode Admin (cf. toggleNotesPanel).
@@ -20118,16 +20163,10 @@ body.presenter-view{overflow:auto;height:auto;background:var(--bg,#111827);color
       notesBtn.addEventListener('click', toggleNotesPanel);
       tools.appendChild(notesBtn);
 
-      // « Sources » vit a cote de « Notes », et pour la meme raison : chercher un article
-      // et en poser le lien dans la note ne modifie pas la diapo. Le bouton est donc la
-      // sur CHAQUE diapo, en presentation comme en edition, sans ouvrir l'editeur.
-      const sourcesBtn = document.createElement('button');
-      sourcesBtn.type = 'button';
-      sourcesBtn.id = 'btn-sources-top';
-      sourcesBtn.title = 'Chercher un article dans la bibliothèque et poser son lien dans les notes';
-      sourcesBtn.textContent = 'Sources';
-      sourcesBtn.addEventListener('click', () => ouvrirPanneauSources(sourcesBtn));
-      tools.appendChild(sourcesBtn);
+      // « Sources » a quitté le bandeau le 20 novembre (Antonin : « les sources, tu vas
+      // supprimer »). « Trouver des sources » reste dans le panneau des notes.
+
+      replierBandeau(tools);
     }
     const editorActions = document.querySelector('#admin-edit-modal .actions');
     if (editorActions) {
