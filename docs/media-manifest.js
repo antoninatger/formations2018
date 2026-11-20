@@ -938,7 +938,7 @@ window.COURS_MEDIA = {
     },
     {
       "id": "formation-fake-news-niveau2",
-      "label": "Désinformation, au-delà de la Fake News — Niveau 2",
+      "label": "Désinformation : comment manipuler l'opinion — Niveau 2",
       "images": [
         "actu-2026-10-18-vous-condamnez-les-violences.jpg",
         "11-septembre-world-trade-center.jpg",

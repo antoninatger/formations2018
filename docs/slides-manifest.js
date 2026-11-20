@@ -14,7 +14,7 @@ window.COURS_DIAPOS = {
   "fictions-et-esprit-critique": "Les fictions permettent-elles de développer l’esprit critique ?",
   "formation-fake-news-influenceurs": "Fake News et esprit critique : Les influenceurs",
   "formation-fake-news-niveau1": "Fake News et esprit critique : Niveau 1",
-  "formation-fake-news-niveau2": "Désinformation, au-delà de la Fake News : Niveau 2",
+  "formation-fake-news-niveau2": "Désinformation : comment manipuler l'opinion : Niveau 2",
   "formation-raisonnements-fallacieux": "Les raisonnements fallacieux",
   "formation-rhetorique-niveau3": "Rhétorique et esprit critique : Niveau 3",
   "harcelement-scolaire": "Harcèlement scolaire",
@@ -8195,11 +8195,11 @@ window.COURS_DIAPOS = {
   },
   {
    "id": "formation-fake-news-niveau2#s0",
-   "titre": "Désinformation, au-delà de la Fake News",
+   "titre": "Désinformation : comment manipuler l'opinion",
    "formation": "formation-fake-news-niveau2",
    "kind": "simple",
    "attrsRaw": "class=\"slide short\" id=\"s0\"",
-   "contentHtml": "\n    <h1 data-pose=\"\" data-off-x=\"184.75\" data-off-y=\"346.7\" style=\"left:18.475%;top:34.67%;width:53.409%;max-width:none;font-size:91px;text-align:right\"><span class=\"t-fr\">Désinformation, au-delà de la Fake News</span><span class=\"t-en\" hidden=\"\">Disinformation, Beyond Fake News</span></h1>\n  "
+   "contentHtml": "\n    <h1 data-pose=\"\" data-off-x=\"184.75\" data-off-y=\"346.7\" style=\"left:18.475%;top:34.67%;width:53.409%;max-width:none;font-size:91px;text-align:right\"><span class=\"t-fr\">Désinformation : comment manipuler l'opinion</span><span class=\"t-en\" hidden=\"\">Disinformation: How to Manipulate Public Opinion</span></h1>\n  "
   },
   {
    "id": "formation-fake-news-niveau2#s1",
@@ -13535,7 +13535,7 @@ window.COURS_DIAPOS = {
    "formation": "masni-politique-complotisme",
    "kind": "simple",
    "attrsRaw": "class=\"slide short cover\" id=\"s0\"",
-   "contentHtml": "\n    <h1 data-pose=\"\" data-off-x=\"338.96\" data-off-y=\"242.29\" style=\"left:33.896%;top:24.229%\"><span class=\"t-fr\">Politique et complotisme</span><span class=\"t-en\" hidden=\"\"></span></h1><p class=\"lead taille-l\" data-pose=\"\" data-off-x=\"432.01\" data-off-y=\"354.63\" style=\"left:43.201%;top:35.463%\"><span class=\"t-fr\">MASNI · Antonin Atger</span><span class=\"t-en\" hidden=\"\"></span></p><ul class=\"objectifs\" data-pose=\"\" data-off-x=\"403.81\" data-off-y=\"427.31\" style=\"left:40.381%;top:42.731%\"><li><span class=\"t-fr\"><b>1.</b> Qu’est-ce qu’une théorie du complot ?</span><span class=\"t-en\" hidden=\"\"></span></li><li><span class=\"t-fr\"><b>2.</b> Fake News, complotisme et esprit critique.</span><span class=\"t-en\" hidden=\"\"></span></li><li><span class=\"t-fr\"><b>3.</b> Désinformation : au-delà de la Fake News.</span><span class=\"t-en\" hidden=\"\"></span></li><li><span class=\"t-fr\"><b>4.</b> La rhétorique au service du complotisme.</span><span class=\"t-en\" hidden=\"\"></span></li><li><span class=\"t-fr\"><b>5.</b> Les liens entre politique et complotisme.</span><span class=\"t-en\" hidden=\"\"></span></li></ul>\n  <div class=\"wqr-vote\" data-widget=\"qr-vote\" data-pose=\"\" data-off-x=\"780\" data-off-y=\"300\" style=\"left:78%;top:30%\"></div>\n  "
+   "contentHtml": "\n    <h1 data-pose=\"\" data-off-x=\"338.96\" data-off-y=\"242.29\" style=\"left:33.896%;top:24.229%\"><span class=\"t-fr\">Politique et complotisme</span><span class=\"t-en\" hidden=\"\"></span></h1><p class=\"lead taille-l\" data-pose=\"\" data-off-x=\"432.01\" data-off-y=\"354.63\" style=\"left:43.201%;top:35.463%\"><span class=\"t-fr\">MASNI · Antonin Atger</span><span class=\"t-en\" hidden=\"\"></span></p><ul class=\"objectifs\" data-pose=\"\" data-off-x=\"403.81\" data-off-y=\"427.31\" style=\"left:40.381%;top:42.731%\"><li><span class=\"t-fr\"><b>1.</b> Qu’est-ce qu’une théorie du complot ?</span><span class=\"t-en\" hidden=\"\"></span></li><li><span class=\"t-fr\"><b>2.</b> Fake News, complotisme et esprit critique.</span><span class=\"t-en\" hidden=\"\"></span></li><li><span class=\"t-fr\"><b>3.</b> Désinformation : comment manipuler l'opinion.</span><span class=\"t-en\" hidden=\"\"></span></li><li><span class=\"t-fr\"><b>4.</b> La rhétorique au service du complotisme.</span><span class=\"t-en\" hidden=\"\"></span></li><li><span class=\"t-fr\"><b>5.</b> Les liens entre politique et complotisme.</span><span class=\"t-en\" hidden=\"\"></span></li></ul>\n  <div class=\"wqr-vote\" data-widget=\"qr-vote\" data-pose=\"\" data-off-x=\"780\" data-off-y=\"300\" style=\"left:78%;top:30%\"></div>\n  "
   },
   {
    "id": "masni-politique-complotisme#masni-cours-1",
@@ -14787,11 +14787,11 @@ window.COURS_DIAPOS = {
   },
   {
    "id": "masni-politique-complotisme#masni-cours-3",
-   "titre": "Désinformation : au-delà de la Fake News",
+   "titre": "Désinformation : comment manipuler l'opinion",
    "formation": "masni-politique-complotisme",
    "kind": "simple",
    "attrsRaw": "class=\"slide short divider-slide\" id=\"masni-cours-3\"",
-   "contentHtml": "\n    <div class=\"em\" data-pose=\"\" data-off-x=\"457.02\" data-off-y=\"430.62\" style=\"left:45.702%;top:43.062%\"><span class=\"t-fr\">Cours 3</span><span class=\"t-en\" hidden=\"\"></span></div><h2 data-pose=\"\" data-off-x=\"270.03\" data-off-y=\"514.32\" style=\"left:27.003%;top:51.432%\"><span class=\"t-fr\">Désinformation : au-delà de la Fake News</span><span class=\"t-en\" hidden=\"\"></span></h2>\n  "
+   "contentHtml": "\n    <div class=\"em\" data-pose=\"\" data-off-x=\"457.02\" data-off-y=\"430.62\" style=\"left:45.702%;top:43.062%\"><span class=\"t-fr\">Cours 3</span><span class=\"t-en\" hidden=\"\"></span></div><h2 data-pose=\"\" data-off-x=\"270.03\" data-off-y=\"514.32\" style=\"left:27.003%;top:51.432%\"><span class=\"t-fr\">Désinformation : comment manipuler l'opinion</span><span class=\"t-en\" hidden=\"\"></span></h2>\n  "
   },
   {
    "id": "masni-politique-complotisme#masni-c3-n2-s1",
