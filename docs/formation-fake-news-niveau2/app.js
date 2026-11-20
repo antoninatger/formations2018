@@ -35,3 +35,39 @@ Deck.init();
   new MutationObserver(maj).observe(deck, { subtree: true, attributes: true, attributeFilter: ['class'], childList: true });
   maj();
 })();
+
+// « Comment convaincre l'opinion ? » (20 novembre). Antonin : « si je pousse le curseur à
+// droite, il y a plusieurs rouges qui se retournent qui deviennent bleus […] à gauche,
+// plusieurs bleus qui deviennent rouges ». Le curseur va de -10 à 10 ; chaque cran retourne
+// deux ronds, dans l'ordre que porte leur data-o. Les classes posées ici sont de l'état :
+// elles sont recalculées depuis le curseur, remis au milieu à chaque arrivée sur la diapo.
+// Tout passe par document et #deck : l'éditeur peut remplacer la section en enregistrant.
+(function () {
+  function diapo() { return document.getElementById('nv2-manipuler-opinion'); }
+  function maj(d) {
+    var c = d && d.querySelector('.mo-curseur'); if (!c) return;
+    var v = Number(c.value) || 0;
+    d.querySelectorAll('.mo-r[data-o]').forEach(function (r) {
+      r.classList.toggle('mo-vers-bleu', Number(r.dataset.o) < v * 2);
+    });
+    d.querySelectorAll('.mo-b[data-o]').forEach(function (b) {
+      b.classList.toggle('mo-vers-rouge', Number(b.dataset.o) < -v * 2);
+    });
+  }
+  document.addEventListener('input', function (e) {
+    if (e.target.classList && e.target.classList.contains('mo-curseur')) maj(e.target.closest('section.slide'));
+  });
+  // Lâché, le curseur rend le clavier : les flèches doivent continuer de changer de diapo.
+  document.addEventListener('change', function (e) {
+    if (e.target.classList && e.target.classList.contains('mo-curseur')) e.target.blur();
+  });
+  var etaitActive = false;
+  function arrivee() {
+    var d = diapo(); var active = !!(d && d.classList.contains('active'));
+    if (active && !etaitActive) { var c = d.querySelector('.mo-curseur'); if (c) c.value = 0; maj(d); }
+    etaitActive = active;
+  }
+  var deck = document.getElementById('deck');
+  if (deck) new MutationObserver(arrivee).observe(deck, { subtree: true, attributes: true, attributeFilter: ['class'] });
+  maj(diapo()); arrivee();
+})();
