@@ -30,6 +30,14 @@
    rescanner. Au-delà, ou avec « Nouveau groupe », un nouveau code est tiré, et les
    téléphones du groupe précédent ne reçoivent plus rien.
 
+   21 novembre : Antonin, « s'il y a l'option téléphone, les gens pourront voter par
+   téléphone. Si c'est la version juste présentation, il n'y a pas de curseur, ce sera à
+   main levée ». Les barres d'un vote par téléphone (data-telephone="1") ne s'affichent donc
+   qu'en VERSION TÉLÉPHONE : quand le QR code a été demandé (bouton « 📱 QR code »), ou dès
+   qu'un téléphone est branché. Sinon, version présentation seule : <html> porte la classe
+   vp-sans-telephone et les barres sont masquées (jamais en édition). Les nuages de mots et
+   les murs de réponses ne bougent pas. Rien n'est écrit dans les diapos.
+
    Chargé par shared-widgets.js, seulement là où un sondage est réglé « par téléphone ».
    Ne fait rien dans la fenêtre du présentateur (?presenter=1). */
 (function () {
@@ -217,6 +225,7 @@
   background:#fff;color:#111;border-radius:10px;padding:5px 22px 5px 5px;box-shadow:0 8px 28px rgba(0,0,0,.35);
   cursor:pointer;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;user-select:none;}
 .vp-vignette[hidden],.vp-grand[hidden]{display:none !important;}
+html.vp-sans-telephone .slide:not(.editing) .wpoll[data-widget="poll"][data-telephone="1"]{display:none !important;}
 .vp-vignette .vp-qr{width:58px;height:58px;}
 .vp-vignette .vp-qr svg,.vp-grand .vp-qr svg{width:100%;height:100%;display:block;}
 .vp-vignette .vp-code{font-size:1rem;font-weight:800;letter-spacing:.12em;line-height:1;}
@@ -357,7 +366,14 @@
     });
   }
 
+  // Version téléphone (QR code demandé, ou un téléphone branché) ou présentation seule.
+  function majVersion() {
+    const telephone = vignetteVoulue || nbPublic > 0;
+    document.documentElement.classList.toggle('vp-sans-telephone', !telephone);
+  }
+
   function majVignette() {
+    majVersion();
     if (!vignette) return;
     const slide = diapoActive();
     const qrPose = !!(slide && slide.querySelector('[data-widget="qr-vote"]'));
