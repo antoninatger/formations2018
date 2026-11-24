@@ -223,6 +223,26 @@ body{background-image:radial-gradient(ellipse at 20% -10%, rgba(34,211,238,.12) 
 .slide .forme .ppt-forme-texte{font-family:var(--ppt-police);display:flex;flex-direction:column;align-items:stretch;justify-content:center;text-align:center;font-weight:400;line-height:1.2}
 .slide .forme .ppt-forme-texte>span{display:block}
 </style>
+<style>
+/* Jeu « Vraie photo ou IA ? » (18 octobre), juste après « Repérer une image en IA ».
+   Antonin : « le jeu pour deviner quelle photo est vraie, quelle photo est IA (on finit par les
+   deux vidéos de Will Smith) ». Dessiné directement à la taille du grand écran : pas d'agrandissement. */
+.slide.jeu-ia{padding:40px 90px 80px}
+.slide.jeu-ia h2{font-size:60px;max-width:none}
+.duel-ia{display:flex;gap:56px;justify-content:center;align-items:center;margin-top:22px}
+.duel-ia figure{position:relative;margin:0}
+.duel-carte img{display:block;height:560px;width:auto;max-width:840px;border-radius:16px;border:1px solid var(--bord);box-shadow:0 16px 40px rgba(0,0,0,.35)}
+.duel-portraits .duel-carte img{height:580px}
+.duel-carte .lettre,.duel-carte .verdict,.duel-video figcaption{font-family:'Baloo 2',sans-serif;line-height:1.15}
+.duel-carte .lettre{position:absolute;top:14px;left:14px;width:68px;height:68px;border-radius:50%;display:grid;place-items:center;background:var(--acc);color:#fff;font-size:42px;font-weight:800;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+.duel-carte .verdict{position:absolute;left:0;right:0;bottom:20px;margin:auto;width:max-content;padding:8px 24px;border-radius:12px;font-size:40px;font-weight:800;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.45)}
+.duel-carte .verdict.vraie{background:#21a35b}
+.duel-carte .verdict.ia{background:#d93a40}
+.duel-video figcaption{font-size:44px;font-weight:800;color:var(--acc);margin-bottom:10px}
+.duel-video video{display:block;height:580px;width:auto;border-radius:16px;background:#000;box-shadow:0 16px 40px rgba(0,0,0,.35)}
+.duel-video.carre video{width:580px}
+.slide p.lead.jeu-ia-reponse{font-size:38px;max-width:none;margin-top:22px;line-height:1.3;color:var(--txt,inherit)}
+</style>
 </head>
 <body>
 
@@ -792,6 +812,26 @@ Debate around RT, Russia Today.</div>
     <div class="imgcard" data-pose="" data-off-x="175.52" data-off-y="252" style="left:17.552%;top:25.2%;width:62.296%;max-width:none"><img src="../medias/images/masni-c5-delegitimer-1.png" alt="Le Monde : « L’Iran accuse les services de renseignement français d’ingérence dans les manifestations antirégime, la France dément des "déclarations mensongères" »" loading="lazy"></div>
     <img src="../medias/images/logo-le-monde.png" alt="Le Monde" data-pose="" data-off-x="385.13" data-off-y="50" style="left:38.513%;top:5%;width:20.374%;max-width:none;height:auto;max-height:none">
   </section>
+
+<!-- 24 nov. 2026, Antonin : « la série de questions sur photo IA ou pas IA […] tu en mettes une itération […] et tu me retrouves dans la médiathèque la vidéo de Macron […] et tu rajoutes une slide qui s’appelle la dividende du menteur ». Les trois diapos du jeu sont en série avec « Arnaques en ligne ». -->
+  <section class="slide jeu-ia" id="s-jeu-ia-flamants" data-serie="serie_fe8a16f2-d2c5-4cf1-ac9d-16b071908971"><h2><span class="t-fr">Laquelle est générée par IA ?</span><span class="t-en" hidden="">Which one is AI-generated?</span></h2><div class="duel-ia"><figure class="duel-carte"><img src="../medias/images/quiz-ia-flamant-rose-beach.png" alt="Photo A : un flamant rose sur une plage, la tête cachée" loading="lazy"><span class="lettre">A</span><span class="verdict vraie step" data-order="1"><span class="t-fr">Vraie photo</span><span class="t-en" hidden="">Real photo</span></span></figure><figure class="duel-carte"><img src="../medias/images/quiz-ia-flamant-rose.jpg" alt="Photo B : un flamant rose dans l’eau, la tête cachée" loading="lazy"><span class="lettre">B</span><span class="verdict ia step" data-order="1"><span class="t-fr">Générée par IA</span><span class="t-en" hidden="">AI-generated</span></span></figure></div></section>
+
+  <section class="slide jeu-ia" id="s-jeu-ia-portraits" data-serie="serie_2d86980c-cc5e-4091-a2d8-6b91e71aca62"><h2><span class="t-fr">Laquelle est générée par IA ?</span><span class="t-en" hidden="">Which one is AI-generated?</span></h2><div class="duel-ia duel-portraits"><figure class="duel-carte"><img src="../medias/images/masni-photo-ia-1.png" alt="Photo A : un portrait ancien de deux femmes" loading="lazy"><span class="lettre">A</span><span class="verdict ia step" data-order="1"><span class="t-fr">Générée par IA</span><span class="t-en" hidden="">AI-generated</span></span></figure><figure class="duel-carte"><img src="../medias/images/masni-photo-ia-2.jpg" alt="Photo B : des acteurs sur un tournage, devant un fond vert" loading="lazy"><span class="lettre">B</span><span class="verdict ia step" data-order="1"><span class="t-fr">Générée par IA</span><span class="t-en" hidden="">AI-generated</span></span></figure></div></section>
+
+  <section class="slide jeu-ia" id="s-jeu-ia-will-smith" data-serie="serie_863d50a3-ca7d-45c9-938e-5c0c0fa23b44"><h2 class="" style=""><span class="t-fr">Et en vidéo ? « Will Smith mange des spaghettis »</span><span class="t-en" hidden="">And on video? “Will Smith eating spaghetti”</span></h2><div class="duel-ia"><figure class="duel-video carre"><figcaption><span class="t-fr">2023</span><span class="t-en" hidden="">2023</span></figcaption><video src="../medias/video/will-smith-spaghetti-ia-2023.mp4" controls="" playsinline="" preload="metadata" class="" style=""></video><span class="verdict ia step" data-order="1"><span class="t-fr">Générée par IA</span><span class="t-en" hidden="">AI-generated</span></span></figure><figure class="duel-video portrait"><figcaption><span class="t-fr">Aujourd’hui</span><span class="t-en" hidden="">Today</span></figcaption><video src="../medias/video/will-smith-spaghetti-ia-recente.mp4" controls="" playsinline="" preload="metadata" class="" style="transform: translate(0px, -7.43px); object-view-box: inset(19.1% 0% 19.8%);" data-off-x="0" data-off-y="-7.43" data-recadre-video="19.1 0 19.8 0"></video><span class="verdict vraie step" data-order="1"><span class="t-fr">Vraie vidéo</span><span class="t-en" hidden="">Real video</span></span></figure></div></section>
+
+<!-- La vidéo de l’avion (Hanoï) : Brigitte Macron repousse Emmanuel Macron -->
+  <section class="slide" id="nv2-macron-avion">
+    <div class="vidwrap ppt-video" data-pose="" data-off-x="318.724" data-off-y="88.889" style="left:31.872%;top:8.889%;width:36.255%;max-width:none;aspect-ratio:5271247/4972006;"><video src="../medias/video/avion-video-virale-elysee.mp4" controls="" playsinline="" preload="metadata"></video></div>
+    <div class="speaker-notes" hidden="">La vidéo de la descente d’avion à Hanoï (mai 2025) : Brigitte Macron repousse le visage d’Emmanuel Macron. Avant de reconnaître la scène, l’entourage du président a d’abord parlé d’une vidéo manipulée. Transition vers le dividende du menteur.</div>
+  </section>
+
+<!-- Le dividende du menteur -->
+  <section class="slide divider-slide short" id="nv2-dividende-menteur">
+    <h2 data-pose="" data-off-x="80.78" data-off-y="445" style="left:8.078%;top:44.5%;width:83.844%;max-width:none;text-align:center"><span class="t-fr">Le dividende du menteur</span><span class="t-en" hidden="">The liar’s dividend</span></h2>
+    <div class="speaker-notes" hidden="">Le dividende du menteur : puisque tout le monde sait qu’on peut fabriquer des photos et des vidéos en IA, on peut faire passer une vraie information pour un faux (« c’est un montage, c’est de l’IA ») et désavouer ainsi de vraies informations. Exemple : la vidéo de l’avion qu’on vient de voir.</div>
+  </section>
+
 
 <!-- PPT 50 : Les croix de David -->
   <section class="slide" id="s32" data-serie="serie_166e2af6-30b6-4004-9b7d-226ea8caa276">

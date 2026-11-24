@@ -63,7 +63,7 @@ window.COURS_DIAPOS = {
    "titre": "Laquelle est générée par IA ?",
    "formation": "arnaques-en-ligne",
    "kind": "simple",
-   "attrsRaw": "class=\"slide jeu-ia\" id=\"s-jeu-ia-flamants\"",
+   "attrsRaw": "class=\"slide jeu-ia\" id=\"s-jeu-ia-flamants\" data-serie=\"serie_fe8a16f2-d2c5-4cf1-ac9d-16b071908971\"",
    "contentHtml": "<h2><span class=\"t-fr\">Laquelle est générée par IA ?</span><span class=\"t-en\" hidden=\"\">Which one is AI-generated?</span></h2><div class=\"duel-ia\"><figure class=\"duel-carte\"><img src=\"../medias/images/quiz-ia-flamant-rose-beach.png\" alt=\"Photo A : un flamant rose sur une plage, la tête cachée\" loading=\"lazy\"><span class=\"lettre\">A</span><span class=\"verdict vraie step\" data-order=\"1\"><span class=\"t-fr\">Vraie photo</span><span class=\"t-en\" hidden=\"\">Real photo</span></span></figure><figure class=\"duel-carte\"><img src=\"../medias/images/quiz-ia-flamant-rose.jpg\" alt=\"Photo B : un flamant rose dans l’eau, la tête cachée\" loading=\"lazy\"><span class=\"lettre\">B</span><span class=\"verdict ia step\" data-order=\"1\"><span class=\"t-fr\">Générée par IA</span><span class=\"t-en\" hidden=\"\">AI-generated</span></span></figure></div>"
   },
   {
@@ -71,7 +71,7 @@ window.COURS_DIAPOS = {
    "titre": "Laquelle est générée par IA ?",
    "formation": "arnaques-en-ligne",
    "kind": "simple",
-   "attrsRaw": "class=\"slide jeu-ia\" id=\"s-jeu-ia-portraits\"",
+   "attrsRaw": "class=\"slide jeu-ia\" id=\"s-jeu-ia-portraits\" data-serie=\"serie_2d86980c-cc5e-4091-a2d8-6b91e71aca62\"",
    "contentHtml": "<h2><span class=\"t-fr\">Laquelle est générée par IA ?</span><span class=\"t-en\" hidden=\"\">Which one is AI-generated?</span></h2><div class=\"duel-ia duel-portraits\"><figure class=\"duel-carte\"><img src=\"../medias/images/masni-photo-ia-1.png\" alt=\"Photo A : un portrait ancien de deux femmes\" loading=\"lazy\"><span class=\"lettre\">A</span><span class=\"verdict ia step\" data-order=\"1\"><span class=\"t-fr\">Générée par IA</span><span class=\"t-en\" hidden=\"\">AI-generated</span></span></figure><figure class=\"duel-carte\"><img src=\"../medias/images/masni-photo-ia-2.jpg\" alt=\"Photo B : des acteurs sur un tournage, devant un fond vert\" loading=\"lazy\"><span class=\"lettre\">B</span><span class=\"verdict ia step\" data-order=\"1\"><span class=\"t-fr\">Générée par IA</span><span class=\"t-en\" hidden=\"\">AI-generated</span></span></figure></div>"
   },
   {
@@ -79,7 +79,7 @@ window.COURS_DIAPOS = {
    "titre": "Et en vidéo ? « Will Smith mange des spaghettis »",
    "formation": "arnaques-en-ligne",
    "kind": "simple",
-   "attrsRaw": "class=\"slide jeu-ia\" id=\"s-jeu-ia-will-smith\"",
+   "attrsRaw": "class=\"slide jeu-ia\" id=\"s-jeu-ia-will-smith\" data-serie=\"serie_863d50a3-ca7d-45c9-938e-5c0c0fa23b44\"",
    "contentHtml": "<h2 class=\"\" style=\"\"><span class=\"t-fr\">Et en vidéo ? « Will Smith mange des spaghettis »</span><span class=\"t-en\" hidden=\"\">And on video? “Will Smith eating spaghetti”</span></h2><div class=\"duel-ia\"><figure class=\"duel-video carre\"><figcaption><span class=\"t-fr\">2023</span><span class=\"t-en\" hidden=\"\">2023</span></figcaption><video src=\"../medias/video/will-smith-spaghetti-ia-2023.mp4\" controls=\"\" playsinline=\"\" preload=\"metadata\" class=\"\" style=\"\"></video><span class=\"verdict ia step\" data-order=\"1\"><span class=\"t-fr\">Générée par IA</span><span class=\"t-en\" hidden=\"\">AI-generated</span></span></figure><figure class=\"duel-video portrait\"><figcaption><span class=\"t-fr\">Aujourd’hui</span><span class=\"t-en\" hidden=\"\">Today</span></figcaption><video src=\"../medias/video/will-smith-spaghetti-ia-recente.mp4\" controls=\"\" playsinline=\"\" preload=\"metadata\" class=\"\" style=\"transform: translate(0px, -7.43px); object-view-box: inset(19.1% 0% 19.8%);\" data-off-x=\"0\" data-off-y=\"-7.43\" data-recadre-video=\"19.1 0 19.8 0\"></video><span class=\"verdict vraie step\" data-order=\"1\"><span class=\"t-fr\">Vraie vidéo</span><span class=\"t-en\" hidden=\"\">Real video</span></span></figure></div>"
   },
   {
@@ -8681,6 +8681,46 @@ window.COURS_DIAPOS = {
    "kind": "simple",
    "attrsRaw": "class=\"slide\" id=\"s36\"",
    "contentHtml": "\n    <div class=\"imgcard\" data-pose=\"\" data-off-x=\"175.52\" data-off-y=\"252\" style=\"left:17.552%;top:25.2%;width:62.296%;max-width:none\"><img src=\"../medias/images/masni-c5-delegitimer-1.png\" alt=\"Le Monde : « L’Iran accuse les services de renseignement français d’ingérence dans les manifestations antirégime, la France dément des \"déclarations mensongères\" »\" loading=\"lazy\"></div>\n    <img src=\"../medias/images/logo-le-monde.png\" alt=\"Le Monde\" data-pose=\"\" data-off-x=\"385.13\" data-off-y=\"50\" style=\"left:38.513%;top:5%;width:20.374%;max-width:none;height:auto;max-height:none\">\n  "
+  },
+  {
+   "id": "formation-fake-news-niveau2#s-jeu-ia-flamants",
+   "titre": "Laquelle est générée par IA ?",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide jeu-ia\" id=\"s-jeu-ia-flamants\" data-serie=\"serie_fe8a16f2-d2c5-4cf1-ac9d-16b071908971\"",
+   "contentHtml": "<h2><span class=\"t-fr\">Laquelle est générée par IA ?</span><span class=\"t-en\" hidden=\"\">Which one is AI-generated?</span></h2><div class=\"duel-ia\"><figure class=\"duel-carte\"><img src=\"../medias/images/quiz-ia-flamant-rose-beach.png\" alt=\"Photo A : un flamant rose sur une plage, la tête cachée\" loading=\"lazy\"><span class=\"lettre\">A</span><span class=\"verdict vraie step\" data-order=\"1\"><span class=\"t-fr\">Vraie photo</span><span class=\"t-en\" hidden=\"\">Real photo</span></span></figure><figure class=\"duel-carte\"><img src=\"../medias/images/quiz-ia-flamant-rose.jpg\" alt=\"Photo B : un flamant rose dans l’eau, la tête cachée\" loading=\"lazy\"><span class=\"lettre\">B</span><span class=\"verdict ia step\" data-order=\"1\"><span class=\"t-fr\">Générée par IA</span><span class=\"t-en\" hidden=\"\">AI-generated</span></span></figure></div>"
+  },
+  {
+   "id": "formation-fake-news-niveau2#s-jeu-ia-portraits",
+   "titre": "Laquelle est générée par IA ?",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide jeu-ia\" id=\"s-jeu-ia-portraits\" data-serie=\"serie_2d86980c-cc5e-4091-a2d8-6b91e71aca62\"",
+   "contentHtml": "<h2><span class=\"t-fr\">Laquelle est générée par IA ?</span><span class=\"t-en\" hidden=\"\">Which one is AI-generated?</span></h2><div class=\"duel-ia duel-portraits\"><figure class=\"duel-carte\"><img src=\"../medias/images/masni-photo-ia-1.png\" alt=\"Photo A : un portrait ancien de deux femmes\" loading=\"lazy\"><span class=\"lettre\">A</span><span class=\"verdict ia step\" data-order=\"1\"><span class=\"t-fr\">Générée par IA</span><span class=\"t-en\" hidden=\"\">AI-generated</span></span></figure><figure class=\"duel-carte\"><img src=\"../medias/images/masni-photo-ia-2.jpg\" alt=\"Photo B : des acteurs sur un tournage, devant un fond vert\" loading=\"lazy\"><span class=\"lettre\">B</span><span class=\"verdict ia step\" data-order=\"1\"><span class=\"t-fr\">Générée par IA</span><span class=\"t-en\" hidden=\"\">AI-generated</span></span></figure></div>"
+  },
+  {
+   "id": "formation-fake-news-niveau2#s-jeu-ia-will-smith",
+   "titre": "Et en vidéo ? « Will Smith mange des spaghettis »",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide jeu-ia\" id=\"s-jeu-ia-will-smith\" data-serie=\"serie_863d50a3-ca7d-45c9-938e-5c0c0fa23b44\"",
+   "contentHtml": "<h2 class=\"\" style=\"\"><span class=\"t-fr\">Et en vidéo ? « Will Smith mange des spaghettis »</span><span class=\"t-en\" hidden=\"\">And on video? “Will Smith eating spaghetti”</span></h2><div class=\"duel-ia\"><figure class=\"duel-video carre\"><figcaption><span class=\"t-fr\">2023</span><span class=\"t-en\" hidden=\"\">2023</span></figcaption><video src=\"../medias/video/will-smith-spaghetti-ia-2023.mp4\" controls=\"\" playsinline=\"\" preload=\"metadata\" class=\"\" style=\"\"></video><span class=\"verdict ia step\" data-order=\"1\"><span class=\"t-fr\">Générée par IA</span><span class=\"t-en\" hidden=\"\">AI-generated</span></span></figure><figure class=\"duel-video portrait\"><figcaption><span class=\"t-fr\">Aujourd’hui</span><span class=\"t-en\" hidden=\"\">Today</span></figcaption><video src=\"../medias/video/will-smith-spaghetti-ia-recente.mp4\" controls=\"\" playsinline=\"\" preload=\"metadata\" class=\"\" style=\"transform: translate(0px, -7.43px); object-view-box: inset(19.1% 0% 19.8%);\" data-off-x=\"0\" data-off-y=\"-7.43\" data-recadre-video=\"19.1 0 19.8 0\"></video><span class=\"verdict vraie step\" data-order=\"1\"><span class=\"t-fr\">Vraie vidéo</span><span class=\"t-en\" hidden=\"\">Real video</span></span></figure></div>"
+  },
+  {
+   "id": "formation-fake-news-niveau2#nv2-macron-avion",
+   "titre": "La vidéo de la descente d’avion à Hanoï (mai 2025) : Brigitte Macron repousse le",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide\" id=\"nv2-macron-avion\"",
+   "contentHtml": "\n    <div class=\"vidwrap ppt-video\" data-pose=\"\" data-off-x=\"318.724\" data-off-y=\"88.889\" style=\"left:31.872%;top:8.889%;width:36.255%;max-width:none;aspect-ratio:5271247/4972006;\"><video src=\"../medias/video/avion-video-virale-elysee.mp4\" controls=\"\" playsinline=\"\" preload=\"metadata\"></video></div>\n    <div class=\"speaker-notes\" hidden=\"\">La vidéo de la descente d’avion à Hanoï (mai 2025) : Brigitte Macron repousse le visage d’Emmanuel Macron. Avant de reconnaître la scène, l’entourage du président a d’abord parlé d’une vidéo manipulée. Transition vers le dividende du menteur.</div>\n  "
+  },
+  {
+   "id": "formation-fake-news-niveau2#nv2-dividende-menteur",
+   "titre": "Le dividende du menteur",
+   "formation": "formation-fake-news-niveau2",
+   "kind": "simple",
+   "attrsRaw": "class=\"slide divider-slide short\" id=\"nv2-dividende-menteur\"",
+   "contentHtml": "\n    <h2 data-pose=\"\" data-off-x=\"80.78\" data-off-y=\"445\" style=\"left:8.078%;top:44.5%;width:83.844%;max-width:none;text-align:center\"><span class=\"t-fr\">Le dividende du menteur</span><span class=\"t-en\" hidden=\"\">The liar’s dividend</span></h2>\n    <div class=\"speaker-notes\" hidden=\"\">Le dividende du menteur : puisque tout le monde sait qu’on peut fabriquer des photos et des vidéos en IA, on peut faire passer une vraie information pour un faux (« c’est un montage, c’est de l’IA ») et désavouer ainsi de vraies informations. Exemple : la vidéo de l’avion qu’on vient de voir.</div>\n  "
   },
   {
    "id": "formation-fake-news-niveau2#s32",
@@ -19580,6 +19620,27 @@ window.COURS_DIAPOS = {
   }
  ],
  "series": [
+  {
+   "id": "serie_fe8a16f2-d2c5-4cf1-ac9d-16b071908971",
+   "nom": "IA ou pas IA ? Les flamants roses",
+   "diapos": [
+    "arnaques-en-ligne#s-jeu-ia-flamants"
+   ]
+  },
+  {
+   "id": "serie_2d86980c-cc5e-4091-a2d8-6b91e71aca62",
+   "nom": "IA ou pas IA ? Les deux photos",
+   "diapos": [
+    "arnaques-en-ligne#s-jeu-ia-portraits"
+   ]
+  },
+  {
+   "id": "serie_863d50a3-ca7d-45c9-938e-5c0c0fa23b44",
+   "nom": "IA ou pas IA ? Will Smith et les spaghettis",
+   "diapos": [
+    "arnaques-en-ligne#s-jeu-ia-will-smith"
+   ]
+  },
   {
    "id": "serie_043e4a77-7a07-444d-9646-de128a43839f",
    "nom": "Quels sont les critères pour valider l’information ?",

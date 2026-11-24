@@ -720,6 +720,15 @@ window.COURS_SERIES = {
   },
   "serie_b1c540db-bb02-4908-a644-c9841fcc4227": {
    "nom": "Le même cycle, quel que soit le déclencheur Des agents étran"
+  },
+  "serie_fe8a16f2-d2c5-4cf1-ac9d-16b071908971": {
+   "nom": "IA ou pas IA ? Les flamants roses"
+  },
+  "serie_2d86980c-cc5e-4091-a2d8-6b91e71aca62": {
+   "nom": "IA ou pas IA ? Les deux photos"
+  },
+  "serie_863d50a3-ca7d-45c9-938e-5c0c0fa23b44": {
+   "nom": "IA ou pas IA ? Will Smith et les spaghettis"
   }
  }
 };
