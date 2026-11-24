@@ -106,9 +106,46 @@ window.VOTE_MODES = true;
 // un second la libère. Rien n'est enregistré : c'est l'état de la séance.
 document.addEventListener('click', function (e) {
   var c = e.target.closest && e.target.closest('#nv2-vaccins-titres .vt-carte');
-  if (!c || c.closest('.slide.editing')) return;
+  if (!c || c.closest('.slide.editing') || c.closest('[data-ed-valide]')) return;
   c.classList.toggle('vt-choisie');
 });
+
+// Le bouton « Valider » du jeu des titres (24 novembre au soir). Antonin : « on va mettre un
+// bouton valider, et toutes ces vignettes qui ne sont pas validées disparaissent, et les
+// vignettes qu'on a validées se mettent en fil, les unes sous les autres. » Le bouton et
+// l'état (data-ed-valide) ne sont jamais enregistrés ; un second clic remet la grille.
+(function () {
+  var st = document.createElement('style');
+  st.textContent =
+    '.ed-vt-valider{position:absolute;left:50%;transform:translateX(-50%);bottom:3%;z-index:4;padding:12px 30px;border:0;border-radius:14px;background:#e8860c;color:#1c1105;font:800 30px/1 "Baloo 2",Nunito,sans-serif;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.4)}' +
+    '.ed-vt-valider:hover{filter:brightness(1.08)}' +
+    '.slide.editing .ed-vt-valider{display:none}' +
+    '#nv2-vaccins-titres[data-ed-valide] .vt-carte:not(.vt-choisie){display:none}' +
+    '#nv2-vaccins-titres[data-ed-valide] .vt-grille{grid-template-columns:minmax(0,1150px);justify-content:center;gap:16px}' +
+    '#nv2-vaccins-titres[data-ed-valide] .vt-carte{flex-direction:row;gap:22px;min-height:0;padding:16px 26px;font-size:30px;cursor:default;animation:edFil .45s ease both}' +
+    '#nv2-vaccins-titres[data-ed-valide] .vt-carte:hover{transform:none}' +
+    '@keyframes edFil{from{opacity:0;transform:translateY(14px)}}';
+  document.head.appendChild(st);
+  function poser() {
+    var s = document.getElementById('nv2-vaccins-titres');
+    if (!s || s.querySelector('.ed-vt-valider')) return;
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'ed-vt-valider';
+    b.textContent = 'Valider';
+    b.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var on = !s.hasAttribute('data-ed-valide');
+      if (on) s.setAttribute('data-ed-valide', ''); else s.removeAttribute('data-ed-valide');
+      b.textContent = on ? 'Revenir' : 'Valider';
+      b.blur();
+    });
+    s.appendChild(b);
+  }
+  poser();
+  var deck = document.getElementById('deck');
+  if (deck) new MutationObserver(poser).observe(deck, { childList: true, subtree: true });
+})();
 
 // Les questions écrites du mode « 💻 Chacun son PC » (24 novembre), posées par
 // ../shared-vote-public.js. Les réponses s'affichent dans des zones « ed- », jamais
