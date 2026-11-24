@@ -38,6 +38,29 @@
    vp-sans-telephone et les barres sont masquées (jamais en édition). Les nuages de mots et
    les murs de réponses ne bougent pas. Rien n'est écrit dans les diapos.
 
+   23 novembre, les TROIS MODES (prototype, seulement là où la formation pose
+   window.VOTE_MODES = true avant de charger ce fichier ; ailleurs rien ne change).
+   Antonin : « je veux pouvoir switcher sur trois options. La première, c'est une
+   présentation sur projecteur […] La deuxième, c'est que téléphone, donc tu montres le
+   QR code […] Et la troisième, c'est si les intervenants sont derrière chacun un PC […]
+   soit pour voter, donc oui, non, soit mettre un message, soit mettre un emoji ».
+   Le bouton « 📱 QR code » devient alors trois boutons dans le bandeau :
+     🖥️ Projecteur   rien ne se branche, tout se fait à main levée (comme avant) ;
+     📱 Téléphones   le QR code, les votes sur les téléphones ;
+     💻 Chacun son PC  la même page, ouverte par un lien (à coller dans le chat de la visio
+                     ou à taper), avec en plus des emojis et des messages, qui passent à
+                     l'écran quelques secondes, par-dessus la diapo, sans rien y écrire.
+   Le VOTE ÉCLAIR, en mode Téléphones ou PC : sur une diapo « Vrai ou faux ? »
+   (.quiz-vrai-faux), la question part toute seule avec Vrai / Faux ; sur n'importe quelle
+   autre diapo, la touche V ouvre (ou referme) un vote Oui / Non. La question est le titre de
+   la diapo ; les résultats s'affichent dans un petit cadre en bas à droite, hors de la diapo.
+
+   24 novembre, les QUESTIONS D'UNE FORMATION : une formation peut poser ses propres questions
+   (window.VOTE_QUESTIONS, une liste de fonctions (diapo, mode) → null ou { cle, type, titre,
+   afficher(resultats) }). Elles passent avant le vote éclair ; c'est la formation qui dit
+   où et comment montrer les réponses (afficher), dans un élément de préfixe ed- (jamais écrit
+   dans le fichier). VotePublic.masquer(texte) retire une réponse de l'écran.
+
    Chargé par shared-widgets.js, seulement là où un sondage est réglé « par téléphone ».
    Ne fait rien dans la fenêtre du présentateur (?presenter=1). */
 (function () {
@@ -50,6 +73,15 @@
   const GARDE = 45 * 60 * 1000;
   const LETTRES = 'ABCDEFGHJKLMNPQRSTUVWXYZ';   // ni I ni O : ils se confondent avec 1 et 0
   const BASE = (document.currentScript && document.currentScript.src || '').replace(/[^/]*$/, '');
+  const MODES = !!window.VOTE_MODES;
+  const CLE_MODE = 'vote-public-mode';
+  let mode = 'projecteur';
+  if (MODES) {
+    try { const m = localStorage.getItem(CLE_MODE); if (m === 'telephone' || m === 'pc') mode = m; } catch (e) { /* stockage indisponible */ }
+  }
+  // Vote éclair : une diapo « Vrai ou faux ? » en porte un d'office ; la touche V l'ajoute
+  // (ou le retire) sur la diapo en cours. id de diapo → true / false.
+  const eclairs = new Map();
 
   // ── La salle ───────────────────────────────────────────────────────────────
   function hasard(n, alphabet) {
@@ -94,6 +126,7 @@
       ecrireSalle();
       // Le relais a pu oublier la question (salle neuve, relais redémarré) : on la redit.
       if (derniere !== undefined) envoyer({ t: 'question', q: derniere });
+      if (MODES) envoyer({ t: 'reglages', reactions: mode === 'pc' });
       majVignette();
     };
     w.onmessage = e => {
@@ -106,6 +139,8 @@
       }
       if (m.t === 'public') { nbPublic = m.n; majVignette(); }
       else if (m.t === 'resultats') { resultats.set(m.qid, m); appliquer(m); majVignette(); }
+      else if (m.t === 'emoji' && MODES && mode === 'pc') lancerEmoji(m.emoji);
+      else if (m.t === 'message' && MODES && mode === 'pc') montrerMessage(m.texte);
     };
     w.onclose = () => {
       if (ws === w) ws = null;
@@ -149,10 +184,42 @@
     const h2 = candidats.find(h => /^H[12]$/.test(h.tagName));
     return texteDe(avant && /^H[1-3]$/.test(avant.tagName) ? avant : (h2 || avant || candidats[0]));
   }
+  function eclairDe(slide) {
+    if (!MODES || mode === 'projecteur') return null;
+    const vf = slide.classList.contains('quiz-vrai-faux');
+    const voulu = eclairs.has(slide.id) ? eclairs.get(slide.id) : vf;
+    if (!voulu) return null;
+    // Un titre sur une carte qui se retourne : la face visible (recto, ou verso une fois tournée).
+    const visible = h => {
+      const r = h.closest('.retourne');
+      if (!r) return true;
+      return r.classList.contains('tournee') ? !!h.closest('.retourne-verso') : !!h.closest('.retourne-recto');
+    };
+    const titre = texteDe(Array.from(slide.querySelectorAll('h1, h2, h3')).find(h => !h.closest('[class*="ed-"]') && visible(h)))
+      || texteDe(slide.querySelector('.kicker'));
+    const id = location.pathname.replace(/\/index\.html$/, '/') + '#' + (slide.id || '') + '~eclair';
+    return { id, type: 'choix', titre, options: vf ? ['Vrai', 'Faux'] : ['Oui', 'Non'] };
+  }
+  function questionPerso(slide) {
+    if (!MODES || mode === 'projecteur') return null;
+    for (const fn of (window.VOTE_QUESTIONS || [])) {
+      let r = null;
+      try { r = fn(slide, mode); } catch (e) { console.error(e); }
+      if (!r) continue;
+      const id = location.pathname.replace(/\/index\.html$/, '/') + '#' + (slide.id || '') + '~' + r.cle;
+      return { q: { id, type: r.type || 'textes', titre: r.titre || '', options: r.options || [] }, afficher: r.afficher };
+    }
+    return null;
+  }
   function questionDe(slide) {
     if (!slide || slide.classList.contains('editing')) return { q: null, wrap: null };
+    if (MODES && mode === 'projecteur') return { q: null, wrap: null };
     const wrap = widgetsTelephone(slide)[0];
-    if (!wrap) return { q: null, wrap: null };
+    if (!wrap) {
+      const p = questionPerso(slide);
+      if (p) return { q: p.q, wrap: null, perso: p };
+      return { q: eclairDe(slide), wrap: null };
+    }
     const libre = wrap.dataset.telephone === 'mots' || wrap.dataset.telephone === 'textes';
     const options = libre ? [] : Array.from(wrap.querySelectorAll(':scope > .wpoll-opt > .wpoll-label')).map(texteDe);
     if (!libre && !options.length) return { q: null, wrap: null };
@@ -161,11 +228,12 @@
     return { q: { id, type: libre ? wrap.dataset.telephone : 'choix', titre: titreDe(slide, wrap), options }, wrap };
   }
 
-  let wrapEnCours = null;
+  let wrapEnCours = null, persoEnCours = null;
   function verifier() {
     if (!actif) return;
-    const { q, wrap } = questionDe(diapoActive());
+    const { q, wrap, perso } = questionDe(diapoActive());
     wrapEnCours = wrap;
+    persoEnCours = perso || null;
     if (JSON.stringify(q) !== JSON.stringify(derniere)) {
       derniere = q;
       envoyer({ t: 'question', q });
@@ -174,6 +242,8 @@
         // Une question neuve part de zéro à l'écran, en attendant les comptes du relais.
         const r = resultats.get(q.id);
         if (r) appliquer(r);
+        else if (persoEnCours) persoEnCours.afficher({ mots: [], votants: 0 });
+        else if (!wrap) majEclair({ comptes: q.options.map(() => 0), votants: 0 });
         else if (q.type !== 'choix') window.SharedWidgets.nuageRendre(wrap, [], masquer);
         else window.SharedWidgets.pollResultats(wrap, q.options.map(() => 0), 0);
       }
@@ -181,6 +251,8 @@
     majVignette();
   }
   function appliquer(m) {
+    if (derniere && m.qid === derniere.id && persoEnCours) { persoEnCours.afficher(m); return; }
+    if (derniere && m.qid === derniere.id && !wrapEnCours) { majEclair(m); return; }
     if (!derniere || m.qid !== derniere.id || !wrapEnCours || !window.SharedWidgets) return;
     if (m.type !== 'choix') window.SharedWidgets.nuageRendre(wrapEnCours, m.mots, masquer);
     else window.SharedWidgets.pollResultats(wrapEnCours, m.comptes, m.votants);
@@ -254,14 +326,52 @@ html.vp-sans-telephone .slide:not(.editing) .wpoll[data-widget="poll"][data-tele
 .vp-grand button{font:inherit;font-size:.85rem;border:1px solid #ccc;background:#f4f4f4;color:#333;
   border-radius:10px;padding:6px 12px;cursor:pointer;}
 .vp-grand button:hover{background:#e8e8e8;}
+.vp-modes{display:inline-flex;gap:0 !important;border-radius:10px;overflow:hidden;border:1px solid var(--bord)}
+#topbar .vp-modes button{border:0;border-radius:0;margin:0;white-space:nowrap}
+#topbar .vp-modes button+button{border-left:1px solid var(--bord)}
+#topbar .vp-modes button.vp-actif{background:var(--acc2);color:#0b1220}
+.vp-eclair{position:fixed;right:80px;bottom:64px;z-index:60;width:300px;background:#fff;color:#111;border-radius:14px;
+  padding:12px 16px 12px;box-shadow:0 8px 28px rgba(0,0,0,.35);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.vp-eclair[hidden],.vp-messages:empty{display:none !important}
+.vp-eclair .vp-ligne{display:grid;grid-template-columns:52px 1fr 34px;align-items:center;gap:8px;margin:5px 0;font-weight:700;font-size:.95rem}
+.vp-eclair .vp-barre{height:16px;border-radius:8px;background:#eceff4;overflow:hidden}
+.vp-eclair .vp-barre i{display:block;height:100%;width:0;border-radius:8px;transition:width .5s ease}
+.vp-eclair .vp-ligne:nth-child(1) .vp-barre i{background:#2563eb}
+.vp-eclair .vp-ligne:nth-child(2) .vp-barre i{background:#dc2626}
+.vp-eclair .vp-ligne span:last-child{text-align:right}
+.vp-eclair .vp-total{font-size:.75rem;color:#666;margin-top:4px}
+.vp-emoji{position:fixed;bottom:40px;z-index:2147482000;font-size:46px;line-height:1;pointer-events:none;
+  animation:vp-monte 3.2s ease-out forwards;font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif}
+@keyframes vp-monte{0%{transform:translate(0,0) scale(.6);opacity:0}10%{opacity:1;transform:translate(0,-30px) scale(1.1)}
+  100%{transform:translate(var(--dx),-62vh) scale(1);opacity:0}}
+.vp-messages{position:fixed;right:18px;top:70px;z-index:2147482000;width:min(380px,40vw);display:flex;flex-direction:column;gap:8px;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.vp-message{background:#fff;color:#111;border-radius:14px;padding:10px 14px;font-size:1.05rem;line-height:1.35;cursor:pointer;
+  box-shadow:0 8px 28px rgba(0,0,0,.35);animation:vp-arrive .35s ease;transition:opacity .6s ease}
+.vp-message::before{content:'💬 ';}
+.vp-message.vp-part{opacity:0}
+@keyframes vp-arrive{from{transform:translateX(40px);opacity:0}}
+.vp-grand .vp-consigne{display:none}
+/* Mode « Chacun son PC » (24 novembre) : pas de QR code, l'adresse à taper, en grand. */
+.vp-grand.vp-pc .vp-qr,.vp-vignette.vp-pc .vp-qr{display:none}
+.vp-grand.vp-pc .vp-consigne{display:block;font-size:clamp(1.1rem,2.2vw,1.6rem);color:#555;margin-bottom:6px}
+.vp-grand.vp-pc .vp-carte{padding:46px 60px 30px}
+.vp-grand.vp-pc .vp-adresse{font-size:clamp(1.8rem,4.6vw,4rem);font-weight:800;color:#111;margin-top:0;word-break:normal;white-space:nowrap}
+.vp-grand.vp-pc .vp-code{font-size:clamp(1.1rem,2vw,1.5rem);font-weight:600;letter-spacing:.04em;color:#555;margin-top:10px}
+.vp-vignette.vp-pc{padding:8px 26px 8px 14px}
+.vp-vignette.vp-pc .vp-code{display:none}
+.vp-vignette.vp-pc .vp-lien-court{font-size:1rem;font-weight:800;color:#111;margin-top:0}
+.vp-grand .vp-lien[hidden],.vp-vignette .vp-lien-court[hidden]{display:none}
+.vp-vignette .vp-lien-court{font-size:.72rem;color:#333;margin-top:3px;white-space:nowrap}
 `;
     document.head.appendChild(st);
   }
 
-  let vignette = null, grand = null, qrDe = '', bouton = null;
+  let vignette = null, grand = null, qrDe = '', bouton = null, boutonsModes = null, eclair = null, messages = null;
   const CLE_VIGNETTE = 'vote-public-vignette';
   let vignetteVoulue = false;
   try { vignetteVoulue = localStorage.getItem(CLE_VIGNETTE) === '1'; } catch (e) { /* stockage indisponible */ }
+  if (MODES) vignetteVoulue = mode !== 'projecteur';
   function montrerVignette(oui) {
     vignetteVoulue = !!oui;
     try { localStorage.setItem(CLE_VIGNETTE, oui ? '1' : '0'); } catch (e) { /* tant pis */ }
@@ -274,7 +384,7 @@ html.vp-sans-telephone .slide:not(.editing) .wpoll[data-widget="poll"][data-tele
     vignette.className = 'vp-vignette';
     vignette.hidden = true;
     vignette.title = 'Agrandir le QR code (touche Q)';
-    vignette.innerHTML = '<div class="vp-qr"></div><div><div class="vp-code"></div><div class="vp-n"></div></div>'
+    vignette.innerHTML = '<div class="vp-qr"></div><div><div class="vp-code"></div><div class="vp-lien-court" hidden></div><div class="vp-n"></div></div>'
       + '<button type="button" class="vp-masquer" title="Masquer le QR code">✕</button>';
     vignette.addEventListener('click', e => {
       if (e.target.closest('.vp-masquer')) { e.stopPropagation(); montrerVignette(false); return; }
@@ -283,8 +393,20 @@ html.vp-sans-telephone .slide:not(.editing) .wpoll[data-widget="poll"][data-tele
     document.body.appendChild(vignette);
 
     // Le bouton de la barre du haut : montre (en grand d'abord) ou masque le QR code.
+    // Avec les trois modes, ce sont trois boutons à la place.
     const outils = document.querySelector('#topbar .tools');
-    if (outils) {
+    if (outils && MODES) {
+      boutonsModes = document.createElement('div');
+      boutonsModes.className = 'vp-modes';
+      boutonsModes.innerHTML = '<button type="button" data-mode="projecteur" title="Présentation sur projecteur : rien ne se branche, on vote à main levée">🖥️ Projecteur</button>'
+        + '<button type="button" data-mode="telephone" title="Le public vote avec son téléphone (QR code)">📱 Téléphones</button>'
+        + '<button type="button" data-mode="pc" title="Chacun derrière un PC : un lien à ouvrir, votes, emojis et messages">💻 Chacun son PC</button>';
+      boutonsModes.addEventListener('click', e => {
+        const b = e.target.closest('button[data-mode]');
+        if (b) choisirMode(b.dataset.mode);
+      });
+      outils.insertBefore(boutonsModes, outils.firstChild);
+    } else if (outils) {
       bouton = document.createElement('button');
       bouton.type = 'button';
       bouton.className = 'vp-bouton';
@@ -301,13 +423,21 @@ html.vp-sans-telephone .slide:not(.editing) .wpoll[data-widget="poll"][data-tele
     grand = document.createElement('div');
     grand.className = 'vp-grand';
     grand.hidden = true;
-    grand.innerHTML = '<div class="vp-carte"><div class="vp-qr"></div><div class="vp-adresse"></div>'
+    grand.innerHTML = '<div class="vp-carte"><div class="vp-consigne">Sur votre ordinateur, ouvrez&nbsp;:</div><div class="vp-qr"></div><div class="vp-adresse"></div>'
       + '<div class="vp-code"></div><div class="vp-n"></div><div class="vp-actions">'
+      + '<button type="button" class="vp-lien" hidden title="Copier le lien, à coller dans le chat de la visio">📋 Copier le lien</button>'
       + '<button type="button" class="vp-remettre" title="Effacer les réponses à la question de cette diapo">↺ Remettre cette question à zéro</button>'
       + '<button type="button" class="vp-nouveau" title="Tirer un nouveau code : les téléphones du groupe précédent ne recevront plus rien">Nouveau groupe</button>'
       + '<button type="button" class="vp-fermer">Fermer (Échap)</button></div></div>';
     grand.addEventListener('click', e => { if (e.target === grand) ouvrirGrand(false); });
     grand.querySelector('.vp-fermer').addEventListener('click', () => ouvrirGrand(false));
+    grand.querySelector('.vp-lien').addEventListener('click', e => {
+      const b = e.currentTarget;
+      const fini = () => { b.textContent = '✓ Lien copié'; setTimeout(() => { b.textContent = '📋 Copier le lien'; }, 2000); };
+      const lien = RELAIS && salle ? adresseTelephone() : '';
+      if (!lien) return;
+      if (navigator.clipboard) navigator.clipboard.writeText(lien).then(fini, () => {});
+    });
     grand.querySelector('.vp-remettre').addEventListener('click', () => {
       if (!derniere) return;
       if (!confirm('Effacer toutes les réponses à cette question ?')) return;
@@ -324,6 +454,19 @@ html.vp-sans-telephone .slide:not(.editing) .wpoll[data-widget="poll"][data-tele
     });
     document.body.appendChild(grand);
 
+    if (MODES) {
+      eclair = document.createElement('div');
+      eclair.className = 'vp-eclair';
+      eclair.hidden = true;
+      eclair.innerHTML = '<div class="vp-ligne"><span></span><div class="vp-barre"><i></i></div><span>0</span></div>'
+        + '<div class="vp-ligne"><span></span><div class="vp-barre"><i></i></div><span>0</span></div><div class="vp-total"></div>';
+      document.body.appendChild(eclair);
+      messages = document.createElement('div');
+      messages.className = 'vp-messages';
+      messages.addEventListener('click', e => { const m = e.target.closest('.vp-message'); if (m) m.remove(); });
+      document.body.appendChild(messages);
+    }
+
     // En capture, avant le diaporama : Échap ferme le grand QR sans quitter une branche,
     // et Q ne doit pas atteindre une diapo. On laisse passer tout ce qui s'écrit.
     document.addEventListener('keydown', e => {
@@ -334,6 +477,16 @@ html.vp-sans-telephone .slide:not(.editing) .wpoll[data-widget="poll"][data-tele
         if (document.querySelector('.slide.editing')) return;
         e.preventDefault(); e.stopPropagation();
         ouvrirGrand(grand.hidden);
+      }
+      if (MODES && mode !== 'projecteur' && (e.key === 'v' || e.key === 'V') && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        const t = e.target;
+        if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+        if (document.querySelector('.slide.editing')) return;
+        const slide = diapoActive();
+        if (!slide || widgetsTelephone(slide).length) return;
+        e.preventDefault(); e.stopPropagation();
+        eclairs.set(slide.id, !eclairDe(slide));
+        bientot();
       }
     }, true);
   }
@@ -368,7 +521,7 @@ html.vp-sans-telephone .slide:not(.editing) .wpoll[data-widget="poll"][data-tele
 
   // Version téléphone (QR code demandé, ou un téléphone branché) ou présentation seule.
   function majVersion() {
-    const telephone = vignetteVoulue || nbPublic > 0;
+    const telephone = MODES ? mode !== 'projecteur' : (vignetteVoulue || nbPublic > 0);
     document.documentElement.classList.toggle('vp-sans-telephone', !telephone);
   }
 
@@ -379,20 +532,31 @@ html.vp-sans-telephone .slide:not(.editing) .wpoll[data-widget="poll"][data-tele
     const qrPose = !!(slide && slide.querySelector('[data-widget="qr-vote"]'));
     // Le QR code ne vient que si on l'a demandé (bouton « 📱 QR code ») ; il reste alors sur
     // toutes les diapos, sauf celles qui posent déjà un QR code, et sauf en édition.
-    const aDesVotes = !!document.querySelector('.wpoll[data-widget="poll"][data-telephone], [data-widget="qr-vote"]');
+    const aDesVotes = MODES || !!document.querySelector('.wpoll[data-widget="poll"][data-telephone], [data-widget="qr-vote"]');
     const montrer = aDesVotes && vignetteVoulue && !qrPose && !document.querySelector('.slide.editing');
     vignette.hidden = !montrer;
     if (bouton) { bouton.hidden = !aDesVotes; bouton.classList.toggle('vp-actif', vignetteVoulue); }
+    if (boutonsModes) boutonsModes.querySelectorAll('button').forEach(b => b.classList.toggle('vp-actif', b.dataset.mode === mode));
+    if (eclair) eclair.hidden = !(derniere && !wrapEnCours && !persoEnCours && mode !== 'projecteur' && !document.querySelector('.slide.editing'));
+    grand.querySelector('.vp-lien').hidden = !(MODES && mode === 'pc');
+    const pc = MODES && mode === 'pc';
+    grand.classList.toggle('vp-pc', pc);
+    vignette.classList.toggle('vp-pc', pc);
+    vignette.title = pc ? 'Agrandir l’adresse (touche Q)' : 'Agrandir le QR code (touche Q)';
+    const court = vignette.querySelector('.vp-lien-court');
+    court.hidden = !(MODES && mode === 'pc' && RELAIS && salle);
+    if (!court.hidden) court.textContent = adresseTelephone().replace(/^https?:\/\//, '');
     let etat;
     if (!RELAIS) etat = 'Relais pas encore en ligne';
     else if (!enLigne) etat = 'Pas de connexion au relais…';
     else {
       const r = derniere && resultats.get(derniere.id);
-      etat = '📱 ' + nbPublic + (r ? ' · ' + r.votants + ' réponse' + (r.votants > 1 ? 's' : '') : '');
+      etat = (MODES && mode === 'pc' ? '💻 ' : '📱 ') + nbPublic + (r ? ' · ' + r.votants + ' réponse' + (r.votants > 1 ? 's' : '') : '');
     }
     const code = salle ? salle.code : '····';
     vignette.querySelector('.vp-code').textContent = code;
     grand.querySelector('.vp-code').textContent = code;
+    if (MODES && mode === 'pc' && salle && RELAIS) grand.querySelector('.vp-code').textContent = 'ou ' + RELAIS.replace(/^https?:\/\//, '') + ', puis le code ' + salle.code;
     vignette.querySelectorAll('.vp-n').forEach(n => { n.textContent = etat; n.classList.toggle('vp-hors', !enLigne); });
     grand.querySelectorAll('.vp-n').forEach(n => { n.textContent = etat; n.classList.toggle('vp-hors', !enLigne); });
     grand.querySelector('.vp-adresse').textContent = RELAIS && salle ? adresseTelephone().replace(/^https?:\/\//, '') : '';
@@ -410,6 +574,58 @@ html.vp-sans-telephone .slide:not(.editing) .wpoll[data-widget="poll"][data-tele
     }
   }
 
+  // ── Les trois modes (window.VOTE_MODES) ────────────────────────────────────
+  function choisirMode(m) {
+    mode = m;
+    try { localStorage.setItem(CLE_MODE, m); } catch (e) { /* tant pis */ }
+    vignetteVoulue = m !== 'projecteur';
+    if (m !== 'projecteur' && !actif) demarrer();
+    envoyer({ t: 'reglages', reactions: m === 'pc' });
+    if (m !== 'pc' && messages) messages.textContent = '';
+    if (m !== 'projecteur') ouvrirGrand(true); else ouvrirGrand(false);
+    bientot();
+  }
+
+  function majEclair(m) {
+    if (!eclair || !derniere) return;
+    const lignes = eclair.querySelectorAll('.vp-ligne');
+    const max = Math.max(1, m.votants || 0);
+    derniere.options.forEach((o, i) => {
+      const l = lignes[i]; if (!l) return;
+      const n = (m.comptes && m.comptes[i]) || 0;
+      l.firstElementChild.textContent = o;
+      l.querySelector('i').style.width = Math.round(100 * n / max) + '%';
+      l.lastElementChild.textContent = n;
+    });
+    const n = m.votants || 0;
+    eclair.querySelector('.vp-total').textContent = n + ' vote' + (n > 1 ? 's' : '') + ' · touche V pour fermer';
+    majVignette();
+  }
+
+  function lancerEmoji(em) {
+    const e = document.createElement('div');
+    e.className = 'vp-emoji';
+    e.textContent = em;
+    e.style.right = (4 + Math.random() * 22) + 'vw';
+    e.style.setProperty('--dx', Math.round((Math.random() - 0.5) * 120) + 'px');
+    document.body.appendChild(e);
+    setTimeout(() => e.remove(), 3400);
+    // Pas plus de 30 à la fois : une salle enthousiaste ne doit pas cacher la diapo.
+    const tous = document.querySelectorAll('.vp-emoji');
+    if (tous.length > 30) tous[0].remove();
+  }
+
+  function montrerMessage(texte) {
+    if (!messages) return;
+    const d = document.createElement('div');
+    d.className = 'vp-message';
+    d.title = 'Cliquer pour effacer';
+    d.textContent = texte;
+    messages.appendChild(d);
+    while (messages.children.length > 4) messages.firstElementChild.remove();
+    setTimeout(() => { d.classList.add('vp-part'); setTimeout(() => d.remove(), 700); }, 20000);
+  }
+
   // ── Mise en route ──────────────────────────────────────────────────────────
   function demarrer() {
     if (actif) return;
@@ -420,6 +636,9 @@ html.vp-sans-telephone .slide:not(.editing) .wpoll[data-widget="poll"][data-tele
     new MutationObserver(recs => {
       for (const r of recs) {
         if (r.target.classList && r.target.classList.contains('slide')) { bientot(); return; }
+        // Une formation qui pose ses questions (window.VOTE_QUESTIONS) peut les lier à un clic
+        // (une étape qui apparaît, une carte qui se retourne) : tout changement de classe compte.
+        if (window.VOTE_QUESTIONS && r.type === 'attributes' && r.attributeName === 'class') { bientot(); return; }
         if (r.type === 'childList' || r.attributeName === 'data-telephone') { bientot(); return; }
       }
     }).observe(deck, { attributes: true, attributeFilter: ['class', 'data-telephone'], subtree: true, childList: true });
@@ -430,6 +649,7 @@ html.vp-sans-telephone .slide:not(.editing) .wpoll[data-widget="poll"][data-tele
 
   // Appelé par shared-widgets.js à chaque montage d'un sondage « par téléphone ».
   function surveiller() {
+    if (MODES) { if (mode !== 'projecteur') demarrer(); else majVignette(); return; }
     if (!document.querySelector('.wpoll[data-widget="poll"][data-telephone], [data-widget="qr-vote"]')) return;
     demarrer();
   }
@@ -444,5 +664,5 @@ html.vp-sans-telephone .slide:not(.editing) .wpoll[data-widget="poll"][data-tele
     surveiller();
   });
 
-  window.VotePublic = { surveiller, ouvrirGrand, etat: () => ({ salle, enLigne, nbPublic, question: derniere }) };
+  window.VotePublic = { surveiller, ouvrirGrand, masquer, mode: () => mode, etat: () => ({ salle, enLigne, nbPublic, question: derniere }) };
 })();
