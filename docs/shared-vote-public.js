@@ -38,8 +38,8 @@
    vp-sans-telephone et les barres sont masquées (jamais en édition). Les nuages de mots et
    les murs de réponses ne bougent pas. Rien n'est écrit dans les diapos.
 
-   23 novembre, les TROIS MODES (prototype, seulement là où la formation pose
-   window.VOTE_MODES = true avant de charger ce fichier ; ailleurs rien ne change).
+   23 novembre, les TROIS MODES (window.VOTE_MODES = true ; depuis le 24 novembre,
+   shared-widgets.js le pose sur toutes les formations, sauf si l'une pose false).
    Antonin : « je veux pouvoir switcher sur trois options. La première, c'est une
    présentation sur projecteur […] La deuxième, c'est que téléphone, donc tu montres le
    QR code […] Et la troisième, c'est si les intervenants sont derrière chacun un PC […]
@@ -217,7 +217,8 @@
     const wrap = widgetsTelephone(slide)[0];
     if (!wrap) {
       const p = questionPerso(slide);
-      if (p) return { q: p.q, wrap: null, perso: p };
+      // Sans afficher(), les résultats d'un vote à choix vont dans le cadre du vote éclair.
+      if (p) return { q: p.q, wrap: null, perso: p.afficher ? p : null };
       return { q: eclairDe(slide), wrap: null };
     }
     const libre = wrap.dataset.telephone === 'mots' || wrap.dataset.telephone === 'textes';
@@ -330,14 +331,17 @@ html.vp-sans-telephone .slide:not(.editing) .wpoll[data-widget="poll"][data-tele
 #topbar .vp-modes button{border:0;border-radius:0;margin:0;white-space:nowrap}
 #topbar .vp-modes button+button{border-left:1px solid var(--bord)}
 #topbar .vp-modes button.vp-actif{background:var(--acc2);color:#0b1220}
-.vp-eclair{position:fixed;right:80px;bottom:64px;z-index:60;width:300px;background:#fff;color:#111;border-radius:14px;
+.vp-eclair{position:fixed;right:80px;bottom:64px;z-index:60;width:360px;background:#fff;color:#111;border-radius:14px;
   padding:12px 16px 12px;box-shadow:0 8px 28px rgba(0,0,0,.35);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 .vp-eclair[hidden],.vp-messages:empty{display:none !important}
-.vp-eclair .vp-ligne{display:grid;grid-template-columns:52px 1fr 34px;align-items:center;gap:8px;margin:5px 0;font-weight:700;font-size:.95rem}
+.vp-eclair .vp-ligne{display:grid;grid-template-columns:minmax(52px,max-content) 1fr 34px;align-items:center;gap:8px;margin:5px 0;font-weight:700;font-size:.95rem}
 .vp-eclair .vp-barre{height:16px;border-radius:8px;background:#eceff4;overflow:hidden}
 .vp-eclair .vp-barre i{display:block;height:100%;width:0;border-radius:8px;transition:width .5s ease}
 .vp-eclair .vp-ligne:nth-child(1) .vp-barre i{background:#2563eb}
 .vp-eclair .vp-ligne:nth-child(2) .vp-barre i{background:#dc2626}
+.vp-eclair .vp-ligne:nth-child(3) .vp-barre i{background:#d97706}
+.vp-eclair .vp-ligne:nth-child(4) .vp-barre i{background:#16a34a}
+.vp-eclair .vp-ligne[hidden]{display:none}
 .vp-eclair .vp-ligne span:last-child{text-align:right}
 .vp-eclair .vp-total{font-size:.75rem;color:#666;margin-top:4px}
 .vp-emoji{position:fixed;bottom:40px;z-index:2147482000;font-size:46px;line-height:1;pointer-events:none;
@@ -471,6 +475,8 @@ html.vp-sans-telephone .slide:not(.editing) .wpoll[data-widget="poll"][data-tele
     // et Q ne doit pas atteindre une diapo. On laisse passer tout ce qui s'écrit.
     document.addEventListener('keydown', e => {
       if (!grand.hidden && e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); ouvrirGrand(false); return; }
+      // Avec les trois modes, avancer ou reculer referme le grand QR code (et la touche agit).
+      if (MODES && !grand.hidden && /^(ArrowRight|ArrowLeft|ArrowDown|ArrowUp|PageDown|PageUp| |Enter)$/.test(e.key)) ouvrirGrand(false);
       if ((e.key === 'q' || e.key === 'Q') && !e.ctrlKey && !e.metaKey && !e.altKey) {
         const t = e.target;
         if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
@@ -533,7 +539,10 @@ html.vp-sans-telephone .slide:not(.editing) .wpoll[data-widget="poll"][data-tele
     // Le QR code ne vient que si on l'a demandé (bouton « 📱 QR code ») ; il reste alors sur
     // toutes les diapos, sauf celles qui posent déjà un QR code, et sauf en édition.
     const aDesVotes = MODES || !!document.querySelector('.wpoll[data-widget="poll"][data-telephone], [data-widget="qr-vote"]');
-    const montrer = aDesVotes && vignetteVoulue && !qrPose && !document.querySelector('.slide.editing');
+    // Avec les trois modes (24 novembre), pas de vignette : Antonin, « je veux pas qu'il soit
+    // là en permanence et je ne veux pas avoir à fermer à la main ». Le grand QR code vient
+    // au clic sur Téléphones (ou PC), et repart tout seul à la diapo ou au clic suivant.
+    const montrer = !MODES && aDesVotes && vignetteVoulue && !qrPose && !document.querySelector('.slide.editing');
     vignette.hidden = !montrer;
     if (bouton) { bouton.hidden = !aDesVotes; bouton.classList.toggle('vp-actif', vignetteVoulue); }
     if (boutonsModes) boutonsModes.querySelectorAll('button').forEach(b => b.classList.toggle('vp-actif', b.dataset.mode === mode));
@@ -588,7 +597,14 @@ html.vp-sans-telephone .slide:not(.editing) .wpoll[data-widget="poll"][data-tele
 
   function majEclair(m) {
     if (!eclair || !derniere) return;
-    const lignes = eclair.querySelectorAll('.vp-ligne');
+    // Autant de lignes que d'options (2 pour Vrai/Faux, jusqu'à 4 ailleurs).
+    let lignes = eclair.querySelectorAll('.vp-ligne');
+    while (lignes.length < derniere.options.length) {
+      const l = lignes[0].cloneNode(true);
+      eclair.insertBefore(l, eclair.querySelector('.vp-total'));
+      lignes = eclair.querySelectorAll('.vp-ligne');
+    }
+    lignes.forEach((l, i) => { l.hidden = i >= derniere.options.length; });
     const max = Math.max(1, m.votants || 0);
     derniere.options.forEach((o, i) => {
       const l = lignes[i]; if (!l) return;

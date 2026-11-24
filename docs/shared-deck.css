@@ -1255,6 +1255,10 @@ html #topbar.bandeau-replie .tools > .brand{order:-99;max-width:none;white-space
 /* Avec un sondage sous l'image, l'image laisse la place aux barres et à leurs libellés. */
 .slide.quiz-vrai-faux:has(.wpoll) .imgcard-full,
 .slide.quiz-vrai-faux:has(.wpoll) .imgcard-full img{max-height:calc(40 * var(--vh1))}
+/* 24 novembre, Antonin : « tu vas grossir toutes ces photos » (Vrai ou faux ? des diapos 7 à 23
+   du Niveau 2, dans toutes les formations qui les portent) : la diapo porte photo-grande. */
+.slide.quiz-vrai-faux.photo-grande:not(:has(.wpoll)) .imgcard-full,
+.slide.quiz-vrai-faux.photo-grande:not(:has(.wpoll)) .imgcard-full img{max-height:calc(74 * var(--vh1))}
 .vf-marque{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:2}
 .vf-marque svg{width:min(70%,70vh);height:auto;aspect-ratio:1;max-height:90%;overflow:visible}
 .vf-marque path{fill:none;stroke-width:14;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px rgba(0,0,0,.65))}

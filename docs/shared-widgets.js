@@ -589,7 +589,7 @@
   const BASE_WIDGETS = (document.currentScript && document.currentScript.src || '').replace(/[^/]*$/, '');
   let votePublicCharge = false;
   function chargerVotePublic() {
-    if (votePublicCharge || window.VotePublic) return;
+    if (votePublicCharge || window.VotePublic || document.querySelector('script[src$="shared-vote-public.js"]')) return;
     votePublicCharge = true;
     const ajouter = (nom, apres) => {
       const s = document.createElement('script');
@@ -1921,6 +1921,16 @@
     });
   }
   function retraduire(root) { chaqueReponse(root, reponseTraduire); }
+
+  // Les trois modes partout (24 novembre). Antonin : « Applique les 3 options projection,
+  // ordinateur individuel et téléphone de partout, sur toutes les formations ». Sur toute
+  // page de formation (un #deck), les boutons 🖥️ / 📱 / 💻 sont là, sans attendre qu'un
+  // sondage soit réglé par téléphone. Une formation peut s'en passer : window.VOTE_MODES = false.
+  ready(function () {
+    if (!document.getElementById('deck') || window.VOTE_MODES === false) return;
+    window.VOTE_MODES = true;
+    chargerVotePublic();
+  });
 
   window.SharedWidgets = { buildPoll, buildScale, buildPieChart, buildHistogram, buildReponse,
     mountAll, setupEditControls, resetAll, figerLibelles, retraduire,
