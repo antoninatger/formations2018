@@ -514,7 +514,10 @@ window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
   function titres(slide) {
     return Array.prototype.map.call(slide.querySelectorAll('.vt-carte'), function (c) {
       var t = c.querySelector('.vt-titre .t-fr') || c.querySelector('.vt-titre') || c;
-      return t.textContent.replace(/\s+/g, ' ').trim();
+      // 25 novembre : « Mets si l'info est vraie ou fausse » sur la page des élèves aussi.
+      var v = c.querySelector('.vt-verdict .t-fr') || c.querySelector('.vt-verdict');
+      var verdict = v ? v.textContent.replace(/\s+/g, ' ').trim() : '';
+      return t.textContent.replace(/\s+/g, ' ').trim() + (verdict ? ' (' + verdict + ')' : '');
     });
   }
   window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
