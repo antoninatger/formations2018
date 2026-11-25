@@ -162,7 +162,7 @@ document.addEventListener('click', function (e) {
     '.ed-props:empty{display:none}' +
     '.ed-props span{background:rgba(255,255,255,.94);color:#14161c;border-radius:12px;padding:6px 12px;font:600 20px/1.3 Nunito,sans-serif;cursor:pointer;animation:edPropArrive .35s ease}' +
     '@keyframes edPropArrive{from{opacity:0;transform:translateY(8px)}}' +
-    '#s11:has(.step[data-order="3"].shown) .ed-props-mes,#s11:has(.step[data-order="4"].shown) .ed-props-des{opacity:0;pointer-events:none}' +
+    '#s11:has(.step[data-order="3"].shown) .ed-props-mes,#s11:has(.step[data-order="4"].shown) .ed-props-des,#s11:not(:has(.step[data-order="2"].shown)) .ed-props-des{opacity:0;pointer-events:none}' +
     '.slide.editing .ed-props{display:none}' +
     '#nv2-manipuler-opinion:not(:has(.mo-titre.tournee)) .ed-props-mo{opacity:0}';
   document.head.appendChild(st);
@@ -196,13 +196,18 @@ document.addEventListener('click', function (e) {
     return !!(el && el.classList.contains('shown'));
   }
   window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
-    function (slide, mode) {
-      if (mode !== 'pc' || slide.id !== 's11') return null;
-      if (montre(slide, 2) && !montre(slide, 4)) return { cle: 'desinformation', titre: 'Désinformation : votre définition ?',
-        afficher: function (m) { remplir(zone(slide, 'ed-props-des', 'left:16.462%;top:68.5%;width:70%;height:26%'), m); } };
-      if (montre(slide, 1) && !montre(slide, 3) && !montre(slide, 2)) return { cle: 'mesinformation', titre: 'Mésinformation : votre définition ?',
-        afficher: function (m) { remplir(zone(slide, 'ed-props-mes', 'left:16.462%;top:39.5%;width:70%;height:20.5%'), m); } };
-      return null;
+    // 25 novembre, Antonin : « je vais être sûr que dans le vote, ils aient une case
+    // désinformation, une case mésinformation. Et comme ça, moi, ça remplira les deux zones. »
+    // Une seule question à deux cases, ouverte du 1er clic jusqu'à la définition de la
+    // désinformation ; chaque réponse va sous son titre.
+    function (slide) {
+      if (slide.id !== 's11' || !montre(slide, 1) || montre(slide, 4)) return null;
+      return { cle: 'definitions', titre: 'Votre définition', champs: ['Mésinformation', 'Désinformation'],
+        afficher: function (m) {
+          var mots = (m && m.mots) || [];
+          remplir(zone(slide, 'ed-props-mes', 'left:16.462%;top:39.5%;width:70%;height:20.5%'), { mots: mots.filter(function (x) { return !x.champ; }) });
+          remplir(zone(slide, 'ed-props-des', 'left:16.462%;top:68.5%;width:70%;height:26%'), { mots: mots.filter(function (x) { return x.champ === 1; }) });
+        } };
     }
   ]);
 })();
@@ -302,9 +307,21 @@ document.addEventListener('click', function (e) {
 window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
   function (slide) {
     if (slide.id !== 's15') return null;
-    var deux = slide.querySelector('.tw-carte.step[data-order="2"]');
-    if (!deux || !deux.classList.contains('shown')) return null;
-    return { cle: 'description', type: 'choix', titre: 'Quelle est la bonne description de la vidéo ?', options: ['Patriote Éveillé', 'Le Fil Métro'] };
+    function vu(n) { var t = slide.querySelector('.tw-carte.step[data-order="' + n + '"]'); return !!(t && t.classList.contains('shown')); }
+    // 25 novembre : « une fois que je rajoute Info sans filtre et Justice pour elles, tu crées
+    // un nouveau vote où ils doivent voter soit pour Info sans filtre, soit Justice pour elles ».
+    if (vu(4)) return { cle: 'description-2', type: 'choix', titre: 'Et maintenant, quelle est la bonne description ?', options: ['Info Sans Filtre', 'Justice pour elles'] };
+    if (vu(2) && !vu(3)) return { cle: 'description', type: 'choix', titre: 'Quelle est la bonne description de la vidéo ?', options: ['Patriote Éveillé', 'Le Fil Métro'] };
+    return null;
+  },
+  // Diapo 33, le tweet de Noël (25 novembre). Antonin : « ils peuvent voter avant et après que
+  // je clique pour changer d'information, pour dire si c'est positif, négatif ou neutre ».
+  // Deux votes distincts : un pour chaque version du tweet.
+  function (slide) {
+    if (slide.id !== 's16') return null;
+    var v = slide.querySelector('.tw-zone-tweet .pct-value');
+    var apres = !!(v && v.textContent.indexOf('64') < 0);
+    return { cle: apres ? 'ton-apres' : 'ton-avant', type: 'choix', titre: 'Cette information est-elle positive, négative ou neutre ?', options: ['Positive', 'Négative', 'Neutre'] };
   }
 ]);
 
@@ -383,7 +400,9 @@ window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
   }
   window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
     function (slide) {
-      if (slide.id !== 'nv2-manipuler-opinion' || !slide.querySelector('.mo-titre.tournee')) return null;
+      // Ouverte dès l'arrivée sur la diapo (25 novembre) ; les idées s'affichent à l'écran
+      // une fois le titre retourné.
+      if (slide.id !== 'nv2-manipuler-opinion') return null;
       return { cle: 'manipuler', titre: 'Comment manipuler l’opinion ? Vos idées',
         afficher: function (m) { remplirMo(slide, m); } };
     }
@@ -477,6 +496,40 @@ window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
     function (slide) {
       if (!slide.matches('.mo-leviers[data-bonnes]')) return null;
       return { cle: 'levier-' + slide.id, type: 'choix', titre: 'Quel levier est utilisé ici ?', options: NOMS };
+    }
+  ]);
+})();
+
+// Diapo 36, le jeu des titres en mode 📱 / 💻 (25 novembre). Antonin : « je voudrais que les
+// élèves puissent sélectionner eux-mêmes de leur page les vignettes qui leur semblent
+// pertinentes ». Chacun coche sur sa page autant de titres qu'il veut ; à l'écran, chaque
+// vignette porte le nombre d'élèves qui l'ont choisie (pastille « ed- », jamais enregistrée).
+(function () {
+  var st = document.createElement('style');
+  st.textContent =
+    '#nv2-vaccins-titres .vt-carte{position:relative}' +
+    '.ed-vt-n{position:absolute;top:-12px;right:-12px;min-width:40px;height:40px;padding:0 8px;border-radius:999px;background:#2563eb;color:#fff;font:800 22px/40px Nunito,sans-serif;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.4);pointer-events:none;animation:edPropArrive .3s ease}' +
+    '.slide.editing .ed-vt-n,#nv2-vaccins-titres[data-ed-valide] .ed-vt-n{display:none}';
+  document.head.appendChild(st);
+  function titres(slide) {
+    return Array.prototype.map.call(slide.querySelectorAll('.vt-carte'), function (c) {
+      var t = c.querySelector('.vt-titre .t-fr') || c.querySelector('.vt-titre') || c;
+      return t.textContent.replace(/\s+/g, ' ').trim();
+    });
+  }
+  window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
+    function (slide) {
+      if (slide.id !== 'nv2-vaccins-titres' || slide.hasAttribute('data-ed-valide')) return null;
+      return { cle: 'titres', type: 'selection', titre: 'Quelles informations vas-tu choisir ?', options: titres(slide),
+        afficher: function (m) {
+          var comptes = (m && m.comptes) || [];
+          slide.querySelectorAll('.vt-carte').forEach(function (c, i) {
+            var b = c.querySelector('.ed-vt-n'), n = comptes[i] || 0;
+            if (!n) { if (b) b.remove(); return; }
+            if (!b) { b = document.createElement('span'); b.className = 'ed-vt-n'; c.appendChild(b); }
+            b.textContent = n;
+          });
+        } };
     }
   ]);
 })();

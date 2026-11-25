@@ -207,7 +207,11 @@
       try { r = fn(slide, mode); } catch (e) { console.error(e); }
       if (!r) continue;
       const id = location.pathname.replace(/\/index\.html$/, '/') + '#' + (slide.id || '') + '~' + r.cle;
-      return { q: { id, type: r.type || 'textes', titre: r.titre || '', options: r.options || [] }, afficher: r.afficher };
+      const q = { id, type: r.type || 'textes', titre: r.titre || '', options: r.options || [] };
+      // 25 novembre : une question écrite peut avoir plusieurs cases (« Mésinformation »,
+      // « Désinformation ») ; chaque réponse revient avec le numéro de sa case (champ).
+      if (r.champs) q.champs = r.champs;
+      return { q, afficher: r.afficher };
     }
     return null;
   }
@@ -465,6 +469,7 @@ html.vp-sans-telephone .slide:not(.editing) .wpoll[data-widget="poll"][data-tele
       eclair.innerHTML = '<div class="vp-ligne"><span></span><div class="vp-barre"><i></i></div><span>0</span></div>'
         + '<div class="vp-ligne"><span></span><div class="vp-barre"><i></i></div><span>0</span></div><div class="vp-total"></div>';
       document.body.appendChild(eclair);
+      deplacable(eclair);
       messages = document.createElement('div');
       messages.className = 'vp-messages';
       messages.addEventListener('click', e => { const m = e.target.closest('.vp-message'); if (m) m.remove(); });
@@ -593,6 +598,45 @@ html.vp-sans-telephone .slide:not(.editing) .wpoll[data-widget="poll"][data-tele
     if (m !== 'pc' && messages) messages.textContent = '';
     if (m !== 'projecteur') ouvrirGrand(true); else ouvrirGrand(false);
     bientot();
+  }
+
+  // Le petit cadre des résultats se déplace à la souris (25 novembre). Antonin : « je vais
+  // pouvoir le déplacer parce que des fois il masque une information importante ». La place
+  // choisie est gardée dans ce navigateur, pour toutes les diapos et toutes les formations.
+  const CLE_PLACE = 'vote-public-place-cadre';
+  function deplacable(el) {
+    function poser(x, y) {
+      const w = el.offsetWidth || 360, h = el.offsetHeight || 90;
+      x = Math.max(0, Math.min(innerWidth - w, x)); y = Math.max(0, Math.min(innerHeight - h, y));
+      el.style.left = x + 'px'; el.style.top = y + 'px'; el.style.right = 'auto'; el.style.bottom = 'auto';
+      return [x, y];
+    }
+    try {
+      const p = JSON.parse(localStorage.getItem(CLE_PLACE) || 'null');
+      if (p && isFinite(p[0]) && isFinite(p[1])) poser(p[0], p[1]);
+    } catch (e) { /* stockage indisponible */ }
+    el.style.cursor = 'move';
+    el.style.touchAction = 'none';
+    el.title = 'Glisser pour déplacer';
+    el.addEventListener('pointerdown', e => {
+      if (e.button !== 0) return;
+      e.preventDefault(); e.stopPropagation();
+      const r = el.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+      let fin = [r.left, r.top];
+      try { el.setPointerCapture(e.pointerId); } catch (x) { /* rien */ }
+      const bouger = ev => { fin = poser(ev.clientX - dx, ev.clientY - dy); };
+      const lacher = () => {
+        el.removeEventListener('pointermove', bouger);
+        el.removeEventListener('pointerup', lacher);
+        el.removeEventListener('pointercancel', lacher);
+        try { localStorage.setItem(CLE_PLACE, JSON.stringify(fin.map(Math.round))); } catch (x) { /* rien */ }
+      };
+      el.addEventListener('pointermove', bouger);
+      el.addEventListener('pointerup', lacher);
+      el.addEventListener('pointercancel', lacher);
+    });
+    // Un clic sur le cadre ne doit pas faire avancer la diapo.
+    el.addEventListener('click', e => e.stopPropagation());
   }
 
   function majEclair(m) {
