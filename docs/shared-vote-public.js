@@ -51,7 +51,8 @@
                      ou à taper), avec en plus des emojis et des messages, qui passent à
                      l'écran quelques secondes, par-dessus la diapo, sans rien y écrire.
    Le VOTE ÉCLAIR, en mode Téléphones ou PC : sur une diapo « Vrai ou faux ? »
-   (.quiz-vrai-faux), la question part toute seule avec Vrai / Faux ; sur n'importe quelle
+   (.quiz-vrai-faux), la question part toute seule avec Vrai / Faux (et sur le jeu « Laquelle
+   est générée par IA ? », .jeu-ia, avec Photo A / Photo B / Les deux) ; sur n'importe quelle
    autre diapo, la touche V ouvre (ou referme) un vote Oui / Non. La question est le titre de
    la diapo ; les résultats s'affichent dans un petit cadre en bas à droite, hors de la diapo.
 
@@ -187,7 +188,10 @@
   function eclairDe(slide) {
     if (!MODES || mode === 'projecteur') return null;
     const vf = slide.classList.contains('quiz-vrai-faux');
-    const voulu = eclairs.has(slide.id) ? eclairs.get(slide.id) : vf;
+    // 25 novembre, Antonin : « Sur les photos en IA, mets le vote aussi ». Le jeu « Laquelle
+    // est générée par IA ? » (.jeu-ia) : on vote pour la photo A, la B, ou les deux.
+    const ia = slide.classList.contains('jeu-ia') ? optionsIA(slide) : null;
+    const voulu = eclairs.has(slide.id) ? eclairs.get(slide.id) : (vf || !!ia);
     if (!voulu) return null;
     // Un titre sur une carte qui se retourne : la face visible (recto, ou verso une fois tournée).
     const visible = h => {
@@ -198,7 +202,15 @@
     const titre = texteDe(Array.from(slide.querySelectorAll('h1, h2, h3')).find(h => !h.closest('[class*="ed-"]') && visible(h)))
       || texteDe(slide.querySelector('.kicker'));
     const id = location.pathname.replace(/\/index\.html$/, '/') + '#' + (slide.id || '') + '~eclair';
-    return { id, type: 'choix', titre, options: vf ? ['Vrai', 'Faux'] : ['Oui', 'Non'] };
+    return { id, type: 'choix', titre, options: ia || (vf ? ['Vrai', 'Faux'] : ['Oui', 'Non']) };
+  }
+  function optionsIA(slide) {
+    const noms = Array.from(slide.querySelectorAll('.duel-ia > figure')).map(f => {
+      const l = f.querySelector('.lettre');
+      if (l) return 'Photo ' + texteDe(l);
+      return texteDe(f.querySelector('figcaption .t-fr') || f.querySelector('figcaption'));
+    }).filter(Boolean);
+    return noms.length >= 2 ? noms.concat('Les deux') : null;
   }
   function questionPerso(slide) {
     if (!MODES || mode === 'projecteur') return null;
