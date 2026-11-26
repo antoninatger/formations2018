@@ -729,6 +729,63 @@ window.COURS_SERIES = {
   },
   "serie_863d50a3-ca7d-45c9-938e-5c0c0fa23b44": {
    "nom": "IA ou pas IA ? Will Smith et les spaghettis"
+  },
+  "serie_5b2e9244-b5b9-4f5d-9aea-cf1fb1138d37": {
+   "nom": "Niveau 2 · Qu’est-ce qu’une Fake News ?"
+  },
+  "serie_91d62bb5-dbb9-4952-82cb-28268e586920": {
+   "nom": "Niveau 2 · Limite du concept"
+  },
+  "serie_7df614a2-dc1d-4055-ac9a-f044cfdc9ece": {
+   "nom": "Niveau 2 · Le biais de cadrage (tweets du métro)"
+  },
+  "serie_eceb3a01-d931-4c84-b398-0172a13d50c3": {
+   "nom": "Niveau 2 · Désinformer sans fake news : les vaccins et Fox News"
+  },
+  "serie_cf0726aa-bf18-46cd-9708-b729bee78cfc": {
+   "nom": "Niveau 2 · Comment convaincre / manipuler l’opinion"
+  },
+  "serie_39f152e7-751a-49f4-bdde-e897b236bd8f": {
+   "nom": "Niveau 2 · Simuler la foule, l’astroturfing"
+  },
+  "serie_4032a4f9-3115-4473-b070-0dd3acc452e2": {
+   "nom": "Niveau 2 · La fabrique du doute"
+  },
+  "serie_bcca56f2-e797-4709-9d32-7bca6f9951ac": {
+   "nom": "Niveau 2 · La Mute News et la mise à l’agenda"
+  },
+  "serie_abc63d48-6df1-4c33-8d88-4502bd4f7e78": {
+   "nom": "Niveau 2 · L’usage politique de la désinformation"
+  },
+  "serie_7b146ae6-778d-4fad-8f16-a7de1a1dc1bd": {
+   "nom": "Niveau 2 · Le dividende du menteur"
+  },
+  "serie_690b0632-f3da-4c47-970c-8d3bd2848918": {
+   "nom": "Niveau 2 · Les étoiles de David"
+  },
+  "serie_ed9fd9b5-7fe8-4f0f-8081-5dc95447abda": {
+   "nom": "Niveau 2 · Le cycle de la polarisation"
+  },
+  "serie_3290ba0d-dc96-4e45-a57a-eaf9ecf319f4": {
+   "nom": "Niveau 2 · Complot ou pas ? Colin Powell, les biolabs"
+  },
+  "serie_badbd893-b831-4204-b093-693c75ef8460": {
+   "nom": "Niveau 2 · Le milliard d’or"
+  },
+  "serie_9fe3f505-de1f-4d12-a14d-9d77f9830d8a": {
+   "nom": "Niveau 2 · L’impact de l’information, même vraie"
+  },
+  "serie_8cba7df2-6797-4d47-baa2-3fd6706d7bd9": {
+   "nom": "Fixe… ou en mouvement ? (illusion des points)"
+  },
+  "serie_855ee429-779d-436b-a4b0-ae0bf0cbe876": {
+   "nom": "Quatre articles : vrai ou faux ?"
+  },
+  "serie_251a7f48-3c06-4b1c-bb01-8e4ad80a41cc": {
+   "nom": "Bagayoko : la version longue"
+  },
+  "serie_fdbe89a6-b8b7-42dd-b01a-d26a676f2ece": {
+   "nom": "Émotion : positive, négative ou neutre ?"
   }
  }
 };

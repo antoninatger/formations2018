@@ -162,7 +162,7 @@ document.addEventListener('click', function (e) {
     '.ed-props:empty{display:none}' +
     '.ed-props span{background:rgba(255,255,255,.94);color:#14161c;border-radius:12px;padding:6px 12px;font:600 20px/1.3 Nunito,sans-serif;cursor:pointer;animation:edPropArrive .35s ease}' +
     '@keyframes edPropArrive{from{opacity:0;transform:translateY(8px)}}' +
-    '#s11:has(.step[data-order="3"].shown) .ed-props-mes,#s11:has(.step[data-order="4"].shown) .ed-props-des,#s11:not(:has(.step[data-order="2"].shown)) .ed-props-des{opacity:0;pointer-events:none}' +
+    '#nv2-s11:has(.step[data-order="3"].shown) .ed-props-mes,#nv2-s11:has(.step[data-order="4"].shown) .ed-props-des,#nv2-s11:not(:has(.step[data-order="2"].shown)) .ed-props-des{opacity:0;pointer-events:none}' +
     '.slide.editing .ed-props{display:none}' +
     '#nv2-manipuler-opinion:not(:has(.mo-titre.tournee)) .ed-props-mo{opacity:0}';
   document.head.appendChild(st);
@@ -201,7 +201,7 @@ document.addEventListener('click', function (e) {
     // Une seule question à deux cases, ouverte du 1er clic jusqu'à la définition de la
     // désinformation ; chaque réponse va sous son titre.
     function (slide) {
-      if (slide.id !== 's11' || !montre(slide, 1) || montre(slide, 4)) return null;
+      if (slide.id !== 'nv2-s11' || !montre(slide, 1) || montre(slide, 4)) return null;
       return { cle: 'definitions', titre: 'Votre définition', champs: ['Mésinformation', 'Désinformation'],
         afficher: function (m) {
           var mots = (m && m.mots) || [];
@@ -306,7 +306,7 @@ document.addEventListener('click', function (e) {
 // Téléphones ou PC ; les résultats vont dans le petit cadre en bas à droite.
 window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
   function (slide) {
-    if (slide.id !== 's15') return null;
+    if (slide.id !== 'nv2-s15') return null;
     function vu(n) { var t = slide.querySelector('.tw-carte.step[data-order="' + n + '"]'); return !!(t && t.classList.contains('shown')); }
     // 25 novembre : « une fois que je rajoute Info sans filtre et Justice pour elles, tu crées
     // un nouveau vote où ils doivent voter soit pour Info sans filtre, soit Justice pour elles ».
