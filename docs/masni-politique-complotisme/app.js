@@ -24,8 +24,79 @@
   });
 })();
 
+// Repris de formation-fake-news-niveau1/app.js (26 novembre) : la diapo « Récitez
+// l'alphabet à l'envers » (s-alpha, en série) a besoin de ce code pour ses lettres.
+// ── Alphabet à rebours (Z -> A) : seule diapo au sens de flèches inversé ──
+let alphaCtl = null;
+
+function buildAlphabet() {
+  const slideEl = document.getElementById('s-alpha');
+  const grid = document.getElementById('alpha-grid');
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  letters.forEach(L => {
+    const span = document.createElement('span');
+    span.className = 'alpha-letter';
+    span.textContent = L;
+    grid.appendChild(span);
+  });
+  const boxes = Array.from(grid.children);
+  let revealedCount = 0;
+
+  function revealNext() {
+    if (revealedCount >= boxes.length) return false;
+    const idx = boxes.length - 1 - revealedCount;
+    boxes[idx].classList.add('shown');
+    revealedCount++;
+    return true;
+  }
+  function retreat() {
+    if (revealedCount <= 0) return false;
+    revealedCount--;
+    const idx = boxes.length - 1 - revealedCount;
+    boxes[idx].classList.remove('shown');
+    return true;
+  }
+  function isDone() { return revealedCount >= boxes.length; }
+  function isAtStart() { return revealedCount <= 0; }
+  function reset() {
+    revealedCount = 0;
+    boxes.forEach(b => b.classList.remove('shown'));
+  }
+
+  grid.addEventListener('click', revealNext);
+
+  return { slideEl, revealNext, isDone, isAtStart, retreat, reset };
+}
+
+// Cas particulier : sur la diapo alphabet, les lettres se révèlent de Z vers A, mais
+// les flèches gardent leur sens habituel — DROITE fait avancer (une lettre de plus,
+// puis la diapo suivante quand l'alphabet est complet), GAUCHE fait reculer (une lettre
+// de moins, puis la diapo précédente quand il n'en reste aucune). Le sens inversé
+// d'origine bloquait la navigation : la flèche droite ne faisait que retirer des lettres
+// et ne permettait jamais de quitter la diapo.
+function alphabetArrowOverride(e, activeSlide) {
+  if (!alphaCtl || activeSlide !== alphaCtl.slideEl || activeSlide.classList.contains('static-active')) return false;
+  if (e.key === 'ArrowRight') {
+    e.preventDefault();
+    if (!alphaCtl.isDone()) { alphaCtl.revealNext(); return true; }
+    Deck.next();
+    return true;
+  }
+  if (e.key === 'ArrowLeft') {
+    e.preventDefault();
+    if (!alphaCtl.isAtStart()) { alphaCtl.retreat(); return true; }
+    Deck.prev();
+    return true;
+  }
+  return false;
+}
+
 const Deck = createDeckEngine({
   storagePrefix: 'masni',
+  complexSlideIds: new Set(['s-alpha']),
+  arrowOverride: alphabetArrowOverride,
+  onInit() { alphaCtl = buildAlphabet(); },
+  onRestart() { if (alphaCtl) alphaCtl.reset(); },
   playPausedVideoOnAdvance: true,
   lightboxToutesImages: true,   // beaucoup de figures d'études : un clic les ouvre en grand
   extraEditCandidateSelectors: [
@@ -769,6 +840,56 @@ window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
             saisie.value = x.mot;
             valider.click();
           });
+        } };
+    }
+  ]);
+})();
+
+
+// « Quel sophisme reconnaissez-vous ? » (cours 4, 26 novembre). Antonin : oui à un vote à
+// réponse libre. Chacun écrit le sophisme qu'il reconnaît ; les réponses s'affichent à droite
+// de l'écran, hors de la diapo (zone « ed- », jamais enregistrée). Un clic sur une réponse
+// l'efface. La bonne réponse reste celle qu'on fait apparaître au clic, comme avant.
+(function () {
+  var IDS = ['masni-c4-reperer-1', 'masni-c4-reperer-2', 'masni-c4-reperer-3', 'masni-c4-reperer-4'];
+  var st = document.createElement('style');
+  st.textContent =
+    '.ed-props-soph{position:fixed;z-index:12;right:1vw;top:12vh;width:22vw;max-height:76vh;overflow:hidden;' +
+    'display:flex;flex-direction:column;gap:8px;pointer-events:auto}' +
+    'body:has(.slide.editing) .ed-props-soph{display:none}' +
+    '.ed-props-soph span{background:rgba(255,255,255,.92);color:#111827;border-radius:12px;padding:8px 14px;' +
+    "font:700 20px 'Nunito',sans-serif;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.25)}";
+  document.head.appendChild(st);
+  function zone() {
+    var z = document.querySelector('.ed-props-soph');
+    if (!z) {
+      z = document.createElement('div');
+      z.className = 'ed-props-soph';
+      z.addEventListener('click', function (e) {
+        var s = e.target.closest('span');
+        if (s && window.VotePublic && window.VotePublic.masquer) { window.VotePublic.masquer(s.textContent); s.remove(); }
+      });
+      document.body.appendChild(z);
+    }
+    return z;
+  }
+  function majVisibilite() {
+    var a = document.querySelector('#deck section.slide.active');
+    var z = document.querySelector('.ed-props-soph');
+    if (z) z.style.display = a && IDS.indexOf(a.id) >= 0 ? '' : 'none';
+  }
+  new MutationObserver(majVisibilite).observe(document.getElementById('deck'), { subtree: true, attributes: true, attributeFilter: ['class'] });
+  window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
+    function (slide) {
+      if (IDS.indexOf(slide.id) < 0) return null;
+      var h = slide.querySelector('h2 .t-fr, h2');
+      return { cle: 'sophisme', type: 'textes', titre: h ? h.textContent.trim() : 'Quel sophisme reconnaissez-vous ?',
+        afficher: function (m) {
+          var z = zone(); z.textContent = '';
+          ((m && m.mots) || []).slice().reverse().forEach(function (x) {
+            var s = document.createElement('span'); s.textContent = x.mot; z.appendChild(s);
+          });
+          majVisibilite();
         } };
     }
   ]);

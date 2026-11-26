@@ -786,6 +786,21 @@ window.COURS_SERIES = {
   },
   "serie_fdbe89a6-b8b7-42dd-b01a-d26a676f2ece": {
    "nom": "Émotion : positive, négative ou neutre ?"
+  },
+  "serie_faa49b40-4155-4bf9-b1d2-b7aaf770e9d9": {
+   "nom": "Récitez l’alphabet à l’envers"
+  },
+  "serie_a617f497-6b14-45f4-ad8a-6e7d709a0e8a": {
+   "nom": "Est-ce que je dis la vérité ? Les deux manières de raisonner"
+  },
+  "serie_365829ee-219c-475a-8158-5cd338c9f1bb": {
+   "nom": "Niveau 2 · Vrai et faux se mélangent"
+  },
+  "serie_bd544601-bd6e-44fd-8df3-5487c01496a2": {
+   "nom": "« They’re eating the pets »"
+  },
+  "serie_49e0e858-536e-4608-9f88-f9fffa14c240": {
+   "nom": "Rhétorique · exercices de discours"
   }
  }
 };
