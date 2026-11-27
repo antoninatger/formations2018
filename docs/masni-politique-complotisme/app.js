@@ -1195,7 +1195,7 @@ window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
   window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
     function (slide) {
       if (slide.id !== ID) return null;
-      return { cle: 'groupes', titre: 'Donnez l’exemple d’un groupe et d’un autre groupe', champs: ['Un groupe', 'Un autre groupe'],
+      return { cle: 'groupes', titre: 'Donnez l’exemple d’un groupe et d’un autre groupe', champs: ['Un groupe', 'Un autre groupe'], ensemble: true,
         afficher: function (m) {
           var mots = (m && m.mots) || [];
           distants[0] = mots.filter(function (x) { return !x.champ; }).map(function (x) { return x.mot; });
