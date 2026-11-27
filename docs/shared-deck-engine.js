@@ -1903,6 +1903,7 @@ function createDeckEngine(config) {
     numeroRendu++;
     const vSlides = sequenceCourante();
     const current = vSlides[i];
+    if (current && current.querySelector('[data-sommaire-ligne]')) majSommaires(document, current);
     noterDiapoDansAdresse(current);
     // Une retouche rapide laissee en plan sur la diapo qu'on quitte : on la referme en
     // RENDANT le texte d'origine. Rien n'a ete enregistre — laisser la correction a
@@ -18252,7 +18253,7 @@ body.presenter-view{overflow:auto;height:auto;background:var(--bg,#111827);color
 
   // ── Etape T3 — le jeu s'ouvre PAR-DESSUS le cours, et on revient a la diapo exacte ──
   // Choix d'Antonin : pas un nouvel onglet. C'est faisable et c'est deja prouve — les
-  // illusions de niveau1 (s8, s9) chargent « ../../Jeux/Ilusions d'optique/… » dans une
+  // illusions de niveau1 (s8, s9) chargent « https://antoninatger.github.io/jeux/Ilusions d'optique/… » dans une
   // <iframe> en file://, et cela marche.
   //
   // Le calque vit sur document.body, prefixe « ed- » comme toute affordance (R5) : rien
@@ -19434,7 +19435,109 @@ body.presenter-view{overflow:auto;height:auto;background:var(--bg,#111827);color
     });
   }
 
+  // ── Sommaire automatique (27 novembre) ──────────────────────────────────────────
+  // Demande d'Anton : « si je modifie le titre dans le cours, le titre est modifié dans le
+  // sommaire ». Le sommaire n'est donc plus tapé deux fois : chaque ligne marquée
+  // data-sommaire-ligne reçoit, dans l'ordre, le titre d'une PARTIE du cours. Une partie est
+  // une diapo de séparation (.divider-slide) dont l'étiquette (.em) dit « Cours 3 »,
+  // « Séance 2 », « Partie 1 »... ou qui porte data-partie. Son titre est son h2.
+  // - Les lignes existantes gardent leur mise en forme, leur place et leur animation ; seul
+  //   le texte change. Un numéro en gras en tête (<b>1.</b>) est renuméroté, une puce « • »
+  //   est gardée.
+  // - Une partie en plus : la dernière ligne est copiée, posée un cran plus bas (le même
+  //   écart qu'entre les deux dernières lignes) et apparaît au clic suivant si elle était
+  //   animée. Une partie en moins : la ligne en trop est retirée.
+  // - Aucun titre de partie trouvé : on ne touche à rien.
+  // Le sommaire est recalculé à l'ouverture et à chaque passage sur la diapo, donc un titre
+  // corrigé dans l'éditeur s'y voit tout de suite, et l'enregistrement l'écrit dans le fichier.
+  const RE_ETIQUETTE_PARTIE = /^\s*(cours|s[ée]ance|partie|chapitre|module)\s*\d+\s*$/i;
+  function partiesDuCours(racine) {
+    const deck = (racine || document).querySelector('#deck') || racine || document;
+    const parties = [];
+    deck.querySelectorAll('section.slide.divider-slide').forEach(s => {
+      let estPartie = s.hasAttribute('data-partie');
+      if (!estPartie) {
+        const em = s.querySelector('.em');
+        const fr = em && (em.querySelector('.t-fr') || em);
+        estPartie = !!(fr && RE_ETIQUETTE_PARTIE.test(fr.textContent || ''));
+      }
+      if (!estPartie) return;
+      const h = s.querySelector('h2, h1');
+      if (!h) return;
+      const fr = h.querySelector('.t-fr');
+      const en = h.querySelector('.t-en');
+      const texteFr = ((fr || h).textContent || '').replace(/\s+/g, ' ').trim();
+      if (!texteFr) return;
+      parties.push({ fr: texteFr, en: en ? (en.textContent || '').replace(/\s+/g, ' ').trim() : '' });
+    });
+    return parties;
+  }
+  function ecrireLigneSommaire(span, texte, numero) {
+    if (!span) return;
+    const premier = span.firstElementChild;
+    const numeroGras = premier && premier.tagName === 'B' && /^\s*\d+\s*[.)]?\s*$/.test(premier.textContent)
+      && span.firstChild === premier ? premier : null;
+    if (numeroGras) {
+      numeroGras.textContent = numeroGras.textContent.replace(/\d+/, String(numero));
+      while (numeroGras.nextSibling) numeroGras.nextSibling.remove();
+      span.appendChild(document.createTextNode(' ' + texte));
+      return;
+    }
+    const puce = /^\s*([•·\-–—]\s*)/.exec(span.textContent || '');
+    span.textContent = (puce ? puce[1] : '') + texte;
+  }
+  function decalerLigne(el, ecartTop, ecartOrdre) {
+    const top = parseFloat(el.style.top);
+    if (ecartTop && !isNaN(top)) {
+      const nouveau = Math.round((top + ecartTop) * 1000) / 1000;
+      el.style.top = nouveau + '%';
+      if (el.hasAttribute('data-off-y')) el.setAttribute('data-off-y', String(Math.round(nouveau * 10 * 100) / 100));
+    }
+    if (ecartOrdre && el.dataset.order !== undefined && !isNaN(Number(el.dataset.order))) {
+      el.dataset.order = String(Number(el.dataset.order) + ecartOrdre);
+    }
+  }
+  function majSommaire(slideEl, parties) {
+    const lignes = Array.from(slideEl.querySelectorAll('[data-sommaire-ligne]'));
+    if (!lignes.length || !parties.length) return;
+    while (lignes.length > parties.length) lignes.pop().remove();
+    while (lignes.length < parties.length) {
+      const derniere = lignes[lignes.length - 1];
+      const avant = lignes[lignes.length - 2];
+      const ecartTop = avant ? (parseFloat(derniere.style.top) - parseFloat(avant.style.top)) : 6;
+      const ecartOrdre = (avant && derniere.dataset.order !== undefined && avant.dataset.order !== undefined)
+        ? (Number(derniere.dataset.order) - Number(avant.dataset.order)) : 1;
+      const copie = derniere.cloneNode(true);
+      copie.classList.remove('shown');
+      decalerLigne(copie, isNaN(ecartTop) ? 0 : ecartTop, ecartOrdre || 1);
+      derniere.after(copie);
+      lignes.push(copie);
+    }
+    lignes.forEach((ligne, k) => {
+      const p = parties[k];
+      const fr = ligne.querySelector('.t-fr');
+      const en = ligne.querySelector('.t-en');
+      if (fr) ecrireLigneSommaire(fr, p.fr, k + 1);
+      else ecrireLigneSommaire(ligne, p.fr, k + 1);
+      if (en && p.en) ecrireLigneSommaire(en, p.en, k + 1);
+    });
+  }
+  function majSommaires(racine, seulement) {
+    try {
+      const parties = partiesDuCours(racine || document);
+      if (!parties.length) return;
+      const diapos = seulement ? [seulement]
+        : Array.from((racine || document).querySelectorAll('section.slide')).filter(s => s.querySelector('[data-sommaire-ligne]'));
+      diapos.forEach(s => {
+        if (!s || !s.querySelector('[data-sommaire-ligne]')) return;
+        if (s.classList.contains('editing') || s.closest('.editing')) return;
+        majSommaire(s, parties);
+      });
+    } catch (e) { /* un sommaire qui ne se calcule pas ne doit jamais bloquer le cours */ }
+  }
+
   function init() {
+    majSommaires(document);
     if (new URLSearchParams(location.search).has('presenter')) { initPresenterView(); return; }
     injectPresenterStyles();
     buildDots();
