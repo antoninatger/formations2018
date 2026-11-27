@@ -920,7 +920,7 @@ window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
   document.head.appendChild(feuille);
   var ZONE = { g: 155, d: 1770, h: 40, b: 880 };
   var PLAFOND = 1.5;
-  var EXCLUES = '.wreponse, .wpoll[data-telephone="textes"], .wpoll[data-telephone="mots"], .ed-props-soph, iframe';
+  var EXCLUES = '.wreponse, .wpoll[data-telephone="textes"], .wpoll[data-telephone="mots"], .ed-props-soph, iframe, [class*="duel"]';
 
   function horsContenu(el) {
     var c = typeof el.className === 'string' ? el.className : '';
