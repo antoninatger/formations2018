@@ -985,3 +985,48 @@ window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
   bientot();
   window.Agrandir = { calculer: calculer, bientot: bientot, effacer: function () { feuille.textContent = ''; } };
 })();
+
+// Le jeu des 4 manières de débattre (27 novembre). Un clic sur l'étiquette d'un personnage fait défiler
+// les rôles, un clic sur la flèche fait défiler les sens ; « Valider avec la classe » corrige.
+// Rien n'est enregistré : c'est l'état de la séance. Les bonnes réponses sont dans data-bon.
+(function () {
+  var ROLES = ['', 'Orateur', 'Interlocuteur', 'Auditoire', 'Auditoire = Interlocuteur', 'Orateur et interlocuteur'];
+  var SENS = [['', '?'], ['convainc', '→'], ['s’influencent', '⇄'], ['convaincre le public', '↓'], ['joute verbale', '⚔']];
+  function poserFleche(b, v) {
+    var k = 0; SENS.forEach(function (x, i) { if (x[0] === v) k = i; });
+    b.setAttribute('data-val', SENS[k][0]);
+    b.querySelector('b').textContent = SENS[k][1];
+    b.querySelector('small').textContent = SENS[k][0] || 'sens';
+  }
+  function poserRole(b, v) { b.setAttribute('data-val', v); b.textContent = v || '?'; }
+  window.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('.jeu-debat button, .jd-valider');
+    if (!b || b.closest('.slide.editing')) return;
+    e.stopPropagation(); e.preventDefault();
+    var slide = b.closest('section.slide'), jeu = slide.querySelector('.jeu-debat');
+    if (b.classList.contains('jd-valider')) {
+      if (jeu.hasAttribute('data-valide')) {          // second clic : on recommence
+        jeu.removeAttribute('data-valide');
+        jeu.querySelectorAll('.jd-role').forEach(function (r) { poserRole(r, ''); r.parentNode.classList.remove('jd-ok', 'jd-ko'); });
+        jeu.querySelectorAll('.jd-fleche').forEach(function (f) { poserFleche(f, ''); f.parentNode.classList.remove('jd-ok', 'jd-ko'); });
+        b.textContent = 'Valider avec la classe'; return;
+      }
+      jeu.setAttribute('data-valide', '');
+      jeu.querySelectorAll('.jd-role, .jd-fleche').forEach(function (x) {
+        var ok = x.getAttribute('data-val') === x.getAttribute('data-bon');
+        x.parentNode.classList.toggle('jd-ok', ok); x.parentNode.classList.toggle('jd-ko', !ok);
+        x.parentNode.querySelector('.jd-verdict').textContent = ok ? '✓' : '✗';
+        if (!ok) { if (x.classList.contains('jd-fleche')) poserFleche(x, x.getAttribute('data-bon')); else poserRole(x, x.getAttribute('data-bon')); }
+      });
+      b.textContent = 'Recommencer'; return;
+    }
+    if (jeu.hasAttribute('data-valide')) return;
+    if (b.classList.contains('jd-fleche')) {
+      var k = 0; SENS.forEach(function (x, i) { if (x[0] === b.getAttribute('data-val')) k = i; });
+      poserFleche(b, SENS[(k + 1) % SENS.length][0]);
+    } else {
+      var i = ROLES.indexOf(b.getAttribute('data-val'));
+      poserRole(b, ROLES[(i + 1) % ROLES.length]);
+    }
+  }, true);
+})();
