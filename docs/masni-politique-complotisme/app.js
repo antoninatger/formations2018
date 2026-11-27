@@ -1087,3 +1087,121 @@ window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
   }
   setInterval(maj, 400);
 })();
+
+
+// Diapo 31, les sphères In-group / Out-group (27 novembre). Antonin : « créer soit au
+// téléphone, soit à slide, un exemple d'un groupe et d'un autre groupe. Et ils doivent à
+// chaque fois remplir les deux. Et ça va apparaître sur les deux sphères ».
+// Sur la diapo : deux cases et « Ajouter » (actif seulement quand les deux sont remplies).
+// Au téléphone ou au PC : une question à deux cases. Les exemples s'affichent dans les
+// sphères (zones « ed- », jamais enregistrées) ; un clic sur un exemple l'efface.
+(function () {
+  var ID = 'masni-c1-in-out-group';
+  var st = document.createElement('style');
+  st.textContent =
+    '.ed-grp-liste{position:absolute;z-index:3;display:flex;flex-wrap:wrap;justify-content:center;align-content:flex-start;gap:6px 8px;overflow:hidden}' +
+    '.ed-grp-liste span{background:rgba(255,255,255,.95);color:#14161c;border-radius:12px;padding:4px 11px;font:700 19px/1.25 Nunito,sans-serif;cursor:pointer;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;animation:edGrpArrive .35s ease}' +
+    '@keyframes edGrpArrive{from{opacity:0;transform:scale(.85)}}' +
+    '#' + ID + ' .forme-rond .forme-texte{transition:transform .4s ease}' +
+    '#' + ID + ':has(.ed-grp-liste span) .forme-rond .forme-texte{transform:translateY(-95px)}' +
+    '.ed-grp-form{position:absolute;left:50%;top:70.5%;transform:translateX(-50%);z-index:4;display:flex;gap:14px;align-items:center}' +
+    '.ed-grp-form input{width:280px;padding:10px 16px;border-radius:12px;border:2px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font:600 21px Nunito,sans-serif;outline:none}' +
+    '.ed-grp-form input:focus{border-color:rgba(255,255,255,.7)}' +
+    '.ed-grp-form input::placeholder{color:rgba(255,255,255,.55)}' +
+    '.ed-grp-form button{padding:11px 24px;border:0;border-radius:12px;background:#e8860c;color:#1c1105;font:800 24px/1 "Baloo 2",Nunito,sans-serif;cursor:pointer}' +
+    '.ed-grp-form button:disabled{opacity:.4;cursor:default}' +
+    '.slide.editing .ed-grp-liste,.slide.editing .ed-grp-form{display:none}';
+  document.head.appendChild(st);
+
+  var locaux = [[], []];      // exemples tapés sur la diapo : [in-group, out-group]
+  var distants = [[], []];    // exemples venus des téléphones / PC
+  function listes(slide) {
+    var r = [];
+    for (var k = 0; k < 2; k++) {
+      var z = slide.querySelector('.ed-grp-' + k);
+      if (!z) {
+        z = document.createElement('div');
+        z.className = 'ed-grp-liste ed-grp-' + k;
+        z.style.cssText = 'left:0;top:0;width:0;height:0';
+        (function (k) {
+          z.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var s = e.target.closest('span');
+            if (!s) return;
+            var mot = s.textContent, i = locaux[k].indexOf(mot);
+            if (i >= 0) locaux[k].splice(i, 1);
+            else if (window.VotePublic && window.VotePublic.masquer) window.VotePublic.masquer(mot);
+            distants[k] = distants[k].filter(function (x) { return x !== mot; });
+            dessiner(slide);
+          });
+        })(k);
+        slide.appendChild(z);
+      }
+      // Chaque liste tient dans le bas de sa sphère, quelle que soit la place de la sphère.
+      var sph = slide.querySelectorAll('.forme-rond')[k];
+      if (sph) {
+        var w = sph.offsetWidth, h = sph.offsetHeight;
+        z.style.left = (sph.offsetLeft + w * 0.13) + 'px';
+        z.style.top = (sph.offsetTop + h * 0.38) + 'px';
+        z.style.width = (w * 0.74) + 'px';
+        z.style.height = (h * 0.44) + 'px';
+      }
+      r.push(z);
+    }
+    return r;
+  }
+  function dessiner(slide) {
+    listes(slide).forEach(function (z, k) {
+      z.textContent = '';
+      // Les plus récents d'abord : ce qui ne tient pas dans la sphère est caché en bas.
+      locaux[k].concat(distants[k]).reverse().forEach(function (mot) {
+        var s = document.createElement('span');
+        s.textContent = mot;
+        s.title = mot;
+        z.appendChild(s);
+      });
+    });
+  }
+  function poser() {
+    var slide = document.getElementById(ID);
+    if (!slide || slide.querySelector('.ed-grp-form')) return;
+    var f = document.createElement('form');
+    f.className = 'ed-grp-form';
+    f.setAttribute('autocomplete', 'off');
+    f.innerHTML = '<input type="text" maxlength="60" placeholder="Un groupe" aria-label="Un groupe">' +
+      '<input type="text" maxlength="60" placeholder="Un autre groupe" aria-label="Un autre groupe">' +
+      '<button type="submit" disabled>Ajouter</button>';
+    var a = f.querySelectorAll('input')[0], b = f.querySelectorAll('input')[1], ok = f.querySelector('button');
+    function maj() { ok.disabled = !(a.value.trim() && b.value.trim()); }
+    f.addEventListener('input', maj);
+    ['click', 'pointerdown', 'mousedown', 'keydown', 'keyup'].forEach(function (ev) {
+      f.addEventListener(ev, function (e) { e.stopPropagation(); });
+    });
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var x = a.value.trim(), y = b.value.trim();
+      if (!x || !y) return;
+      locaux[0].push(x); locaux[1].push(y);
+      a.value = ''; b.value = ''; maj(); a.focus();
+      dessiner(slide);
+    });
+    slide.appendChild(f);
+    listes(slide);
+  }
+  poser();
+  var deck = document.getElementById('deck');
+  if (deck) new MutationObserver(poser).observe(deck, { childList: true, subtree: true });
+
+  window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
+    function (slide) {
+      if (slide.id !== ID) return null;
+      return { cle: 'groupes', titre: 'Donnez l’exemple d’un groupe et d’un autre groupe', champs: ['Un groupe', 'Un autre groupe'],
+        afficher: function (m) {
+          var mots = (m && m.mots) || [];
+          distants[0] = mots.filter(function (x) { return !x.champ; }).map(function (x) { return x.mot; });
+          distants[1] = mots.filter(function (x) { return x.champ === 1; }).map(function (x) { return x.mot; });
+          dessiner(slide);
+        } };
+    }
+  ]);
+})();
