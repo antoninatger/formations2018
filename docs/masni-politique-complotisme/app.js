@@ -1205,3 +1205,48 @@ window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
     }
   ]);
 })();
+
+
+// Diapo 53, « Les gens qui s'endorment avec les chaussures… Pourquoi ? » (27 novembre).
+// Antonin : « Est-ce que tu peux commenter sur une page ou le téléphone ? ». En mode
+// Téléphones ou PC, chacun écrit son explication ; les réponses s'affichent sous la boîte
+// (zone « ed- », jamais enregistrée). Un clic sur une réponse l'efface.
+(function () {
+  var ID = 's1-2';
+  var st = document.createElement('style');
+  st.textContent =
+    '.ed-pq{position:absolute;left:20%;top:52%;width:60%;height:28%;z-index:3;display:flex;flex-wrap:wrap;justify-content:center;align-content:flex-start;gap:8px 10px;overflow:hidden}' +
+    '.ed-pq span{background:rgba(255,255,255,.94);color:#14161c;border-radius:12px;padding:6px 13px;font:600 20px/1.3 Nunito,sans-serif;cursor:pointer;animation:edPqArrive .35s ease}' +
+    '@keyframes edPqArrive{from{opacity:0;transform:translateY(8px)}}' +
+    '.slide.editing .ed-pq{display:none}';
+  document.head.appendChild(st);
+  function zone(slide) {
+    var z = slide.querySelector('.ed-pq');
+    if (!z) {
+      z = document.createElement('div');
+      z.className = 'ed-pq';
+      z.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var s = e.target.closest('span');
+        if (s && window.VotePublic && window.VotePublic.masquer) { window.VotePublic.masquer(s.textContent); s.remove(); }
+      });
+      slide.appendChild(z);
+    }
+    return z;
+  }
+  window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
+    function (slide) {
+      if (slide.id !== ID || !document.getElementById('masni-c1-causalite-chaussures')) return null;
+      return { cle: 'pourquoi', titre: 'Pourquoi ?',
+        afficher: function (m) {
+          var z = zone(slide);
+          z.textContent = '';
+          ((m && m.mots) || []).slice().reverse().forEach(function (x) {
+            var s = document.createElement('span');
+            s.textContent = x.mot;
+            z.appendChild(s);
+          });
+        } };
+    }
+  ]);
+})();
