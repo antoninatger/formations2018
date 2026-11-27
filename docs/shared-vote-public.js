@@ -223,6 +223,8 @@
       // 25 novembre : une question écrite peut avoir plusieurs cases (« Mésinformation »,
       // « Désinformation ») ; chaque réponse revient avec le numéro de sa case (champ).
       if (r.champs) q.champs = r.champs;
+      // 27 novembre : ensemble = toutes les cases doivent etre remplies pour envoyer.
+      if (r.champs && r.ensemble) q.ensemble = true;
       return { q, afficher: r.afficher };
     }
     return null;
