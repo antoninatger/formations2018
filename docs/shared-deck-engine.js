@@ -20001,7 +20001,7 @@ body.presenter-view{overflow:auto;height:auto;background:var(--bg,#111827);color
     conseil.className = 'vp-conseil';
     const note = document.createElement('p');
     note.className = 'vp-note';
-    note.textContent = 'Le rappel s’affiche au lancement de la première vidéo. Choix retenu pour les prochaines fois.';
+    note.textContent = 'Aucun rappel ne s’affiche pendant la présentation. Choix retenu pour les prochaines fois.';
     const rendre = () => {
       choix.querySelectorAll('button').forEach(b => b.classList.toggle('actif', b.dataset.v === modeVisioSeance));
       conseil.textContent = modeVisioSeance ? VISIO_OUTILS[modeVisioSeance].conseil : 'Mode visio désactivé : aucun rappel.';
@@ -20053,9 +20053,14 @@ body.presenter-view{overflow:auto;height:auto;background:var(--bg,#111827);color
     document.body.appendChild(d);
     setTimeout(() => { if (d.parentNode) d.remove(); }, 9000);
   }
-  // La première vidéo d'une diapo lancée pendant la séance déclenche le rappel, une fois.
+  // Plus de rappel automatique (Antonin, 27 novembre) : « le bouton Teams pendant un partage
+  // [...] que je dois fermer manuellement, c'est insupportable. Je sais bien qu'il faut
+  // optimiser s'il y a un souci. » Le conseil reste lisible dans le panneau 📡 Visio, sur
+  // demande ; plus rien ne s'affiche tout seul au lancement d'une vidéo.
+  const VISIO_RAPPEL_AUTO = false;
+  // La première vidéo d'une diapo lancée pendant la séance déclenchait le rappel, une fois.
   // EN CAPTURE : « play » ne bouillonne pas. La fenêtre « Couper · recadrer » n'en est pas.
-  document.addEventListener('play', ev => {
+  if (VISIO_RAPPEL_AUTO) document.addEventListener('play', ev => {
     const v = ev.target;
     if (!modeVisioSeance || visioRappelFait || !v || v.tagName !== 'VIDEO') return;
     if (!v.closest('.slide') || v.closest('.ed-vdecoupe')) return;
