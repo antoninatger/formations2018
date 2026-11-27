@@ -1030,3 +1030,60 @@ window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
     }
   }, true);
 })();
+
+// Le QR code toujours là, en mode Téléphones (27 novembre au soir). Antonin : « quand je mets
+// en mode projecteur […] le QR code il apparaît jamais pour téléphone, sauf quand je clique sur
+// menu téléphone […] Et après il disparaît […] Il n'y a pas de QR code en permanence. »
+// Une fois « 📱 Téléphones » choisi, un QR code encadré (comme sur la diapo de titre) reste en
+// bas à gauche sur chaque diapo où l'on vote. Un clic dessus l'agrandit (comme la touche Q).
+// Il est pris dans la vignette du moteur de vote : rien n'est écrit dans les diapos.
+(function () {
+  var st = document.createElement('style');
+  st.textContent =
+    '.ed-qr-coin{position:fixed;left:16px;bottom:64px;z-index:40;display:flex;flex-direction:column;align-items:center;gap:2px;' +
+    'background:#fff;color:#111;border-radius:14px;padding:10px 10px 8px;box-shadow:0 10px 30px rgba(0,0,0,.45);cursor:pointer;font-family:Nunito,sans-serif}' +
+    '.ed-qr-coin[hidden]{display:none}' +
+    '.ed-qr-coin .ed-qr-svg{width:150px;height:150px}.ed-qr-coin .ed-qr-svg svg{width:100%;height:100%;display:block}' +
+    '.ed-qr-coin .ed-qr-code{font:800 26px/1 "Baloo 2",Nunito,sans-serif;letter-spacing:.14em}' +
+    '.ed-qr-coin .ed-qr-n{font-size:13px;color:#555}';
+  document.head.appendChild(st);
+  var coin = null;
+  function voteIci(slide) {
+    if (slide.querySelector('[data-widget="qr-vote"]')) return false;   // la diapo pose déjà son QR code
+    if (slide.querySelector('.wpoll[data-telephone]') || slide.matches('.quiz-vrai-faux, .jeu-ia')) return true;
+    var qs = window.VOTE_QUESTIONS || [];
+    for (var i = 0; i < qs.length; i++) { try { if (qs[i](slide, 'telephone')) return true; } catch (e) {} }
+    return false;
+  }
+  function maj() {
+    var mode = '';
+    try { mode = localStorage.getItem('vote-public-mode') || ''; } catch (e) {}
+    var slide = document.querySelector('section.slide.active');
+    var vig = document.querySelector('.vp-vignette');
+    var grand = document.querySelector('.vp-grand');
+    var svg = vig && vig.querySelector('.vp-qr svg');
+    var montrer = mode === 'telephone' && !document.documentElement.classList.contains('vp-sans-telephone') &&
+      slide && !slide.classList.contains('editing') && !document.querySelector('.slide.editing') &&
+      !(grand && !grand.hidden) && svg && voteIci(slide);
+    if (!coin) {
+      if (!montrer) return;
+      coin = document.createElement('div');
+      coin.className = 'ed-qr-coin';
+      coin.title = 'Agrandir le QR code (touche Q)';
+      coin.innerHTML = '<div class="ed-qr-svg"></div><div class="ed-qr-code"></div><div class="ed-qr-n"></div>';
+      coin.addEventListener('click', function (e) {
+        e.stopPropagation();
+        document.dispatchEvent(new KeyboardEvent('keydown', { key: 'q', bubbles: true }));
+      });
+      document.body.appendChild(coin);
+    }
+    coin.hidden = !montrer;
+    if (!montrer) return;
+    var s = coin.querySelector('.ed-qr-svg');
+    if (s.getAttribute('data-de') !== svg.outerHTML.length + '') { s.innerHTML = svg.outerHTML; s.setAttribute('data-de', svg.outerHTML.length + ''); }
+    var code = vig.querySelector('.vp-code'), n = vig.querySelector('.vp-n');
+    coin.querySelector('.ed-qr-code').textContent = code ? code.textContent : '';
+    coin.querySelector('.ed-qr-n').textContent = n ? n.textContent : '';
+  }
+  setInterval(maj, 400);
+})();
