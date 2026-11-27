@@ -47,7 +47,7 @@
     'parcours-cm1-cm2':                     { theme: 'esprit',     publics: ['primaire'] },
     'parler-a-un-complotiste':              { theme: 'dialogue',   publics: ['adultes'] },
     'comment-convaincre-un-climatosceptique': { theme: 'dialogue', publics: ['adultes', 'lycee'] },
-    'masni-politique-complotisme':          { theme: 'dialogue',   publics: ['sup'] },
+    'masni-politique-complotisme':          { theme: 'esprit',     publics: ['sup'] },
     'esprit-critique-encadrants':           { theme: 'dialogue',   publics: ['pros'] },
     'communiquer-efficacement':             { theme: 'dialogue',   publics: ['pros', 'adultes'] },
     'arnaques-en-ligne':                    { theme: 'prevention', publics: ['lycee', 'adultes'] },

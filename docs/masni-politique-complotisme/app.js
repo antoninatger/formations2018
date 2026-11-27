@@ -171,6 +171,8 @@ Deck.init();
   // La diapo et sa photo, si la diapo n'en porte qu'une, seule dans son cadre.
   function photoDe(slide) {
     if (!slide.id || slide.classList.contains('editing')) return null;
+    // Les diapos « Complot, ou théorie du complot ? » ont leur propre mise en page (27 novembre).
+    if (slide.classList.contains('quiz-complot')) return null;
     if (slide.querySelector('video, iframe, canvas, svg image')) return null;
     var imgs = slide.querySelectorAll('img');
     if (imgs.length !== 1) return null;
@@ -195,6 +197,7 @@ Deck.init();
   function calculer(slide) {
     var p = photoDe(slide);
     if (!p) return;
+    if (window.Agrandir) window.Agrandir.effacer();
     var id = slide.id;
     if (regles[id]) { delete regles[id]; ecrire(); }
     var nw = p.img.naturalWidth, nh = p.img.naturalHeight;
@@ -269,6 +272,7 @@ Deck.init();
     css += sel + ' > ' + classe + ' > img{width:100%!important;height:auto!important;max-width:none!important;max-height:none!important}';
     regles[id] = css;
     ecrire();
+    if (window.Agrandir) window.Agrandir.bientot();
   }
 
   function active() { return deck.querySelector('section.slide.active'); }
@@ -893,4 +897,91 @@ window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
         } };
     }
   ]);
+})();
+
+// Textes et photos plus grands (27 novembre).
+// Antonin : « tous les textes, quand c'est possible, doivent être plus grands » ; « de manière
+// générale, photo plus grande, texte plus grand ».
+// À l'affichage de chaque diapo, tout son contenu (textes, photos, schémas) est agrandi d'un même
+// facteur, autour de son centre, jusqu'à remplir la zone sûre de l'écran (la bande 16:9 du milieu,
+// que la projection ne coupe jamais) : rien ne se chevauche qui ne se chevauchait pas, rien ne
+// sort de la page. Plafond : une fois et demie. Une diapo déjà pleine ne bouge pas.
+// Affichage seulement : rien n'est écrit dans les diapos (une feuille de style du document,
+// recalculée à chaque diapo), les diapos de série restent identiques dans les autres formations,
+// et le mode édition montre la diapo telle qu'elle est enregistrée.
+// Laissées telles quelles : les diapos dont le contenu grandit pendant la séance (réponses
+// tapées, nuages de mots), celles qui ont leur propre mise en page (alphabet, sophismes, quiz
+// « complot ou théorie du complot »).
+(function () {
+  var deck = document.getElementById('deck');
+  if (!deck) return;
+  var feuille = document.createElement('style');
+  feuille.id = 'ed-agrandir';
+  document.head.appendChild(feuille);
+  var ZONE = { g: 155, d: 1770, h: 40, b: 880 };
+  var PLAFOND = 1.5;
+  var EXCLUES = '.wreponse, .wpoll[data-telephone="textes"], .wpoll[data-telephone="mots"], .ed-props-soph, iframe';
+
+  function horsContenu(el) {
+    var c = typeof el.className === 'string' ? el.className : '';
+    return /(^|\s)(ed-|widget-ctl|slide-comment|speaker-notes)/.test(c) || el.tagName === 'SCRIPT' || el.tagName === 'STYLE';
+  }
+  function boite(slide) {
+    var sr = slide.getBoundingClientRect();
+    var k = sr.width / slide.offsetWidth || 1;
+    var b = null;
+    function ajouter(el) {
+      if (horsContenu(el) || el.hidden) return;
+      var cs = getComputedStyle(el);
+      if (cs.display === 'none' || cs.visibility === 'hidden' || cs.position === 'fixed') return;
+      var r = el.getBoundingClientRect();
+      if (r.width > 1 && r.height > 1) {
+        var x1 = (r.left - sr.left) / k, y1 = (r.top - sr.top) / k, x2 = (r.right - sr.left) / k, y2 = (r.bottom - sr.top) / k;
+        b = b ? { x1: Math.min(b.x1, x1), y1: Math.min(b.y1, y1), x2: Math.max(b.x2, x2), y2: Math.max(b.y2, y2) } : { x1: x1, y1: y1, x2: x2, y2: y2 };
+      }
+      if (cs.overflow === 'visible') Array.prototype.forEach.call(el.children, ajouter);
+    }
+    Array.prototype.forEach.call(slide.children, ajouter);
+    return b;
+  }
+  function calculer(slide) {
+    feuille.textContent = '';
+    if (!slide || !slide.id || slide.classList.contains('editing') || slide.classList.contains('quiz-complot')) return;
+    if (slide.id === 's-alpha' || slide.querySelector(EXCLUES)) return;
+    void slide.offsetWidth;
+    var b = boite(slide);
+    if (!b) return;
+    var w = b.x2 - b.x1, h = b.y2 - b.y1;
+    var zw = ZONE.d - ZONE.g, zh = ZONE.b - ZONE.h;
+    var f = Math.min(PLAFOND, zw / w, zh / h);
+    if (!(f > 1.04)) return;
+    f = Math.floor(f * 100) / 100;
+    var C = { x: slide.offsetWidth / 2, y: slide.offsetHeight / 2 };
+    var c = { x: (b.x1 + b.x2) / 2, y: (b.y1 + b.y2) / 2 };
+    function borne(v, mi, ma) { return Math.max(mi, Math.min(ma, v)); }
+    var cx = borne(C.x + f * (c.x - C.x), ZONE.g + f * w / 2, ZONE.d - f * w / 2);
+    var cy = borne(C.y + f * (c.y - C.y), ZONE.h + f * h / 2, ZONE.b - f * h / 2);
+    var tx = Math.round(cx - C.x - f * (c.x - C.x)), ty = Math.round(cy - C.y - f * (c.y - C.y));
+    feuille.textContent = '#deck #' + CSS.escape(slide.id) + '.active:not(.editing){scale:' + f + ';translate:' + tx + 'px ' + ty + 'px;transform-origin:50% 50%}';
+  }
+  function active() { return deck.querySelector('section.slide.active'); }
+  var prevu = false;
+  function bientot() {
+    if (prevu) return;
+    prevu = true;
+    // Après « les photos à la taille de l'écran », qui place les photos au même moment.
+    requestAnimationFrame(function () { requestAnimationFrame(function () { prevu = false; calculer(active()); }); });
+  }
+  var derniere = null, enEdition = false;
+  new MutationObserver(function () {
+    var s = active();
+    var ed = !!(s && s.classList.contains('editing'));
+    if (s !== derniere || ed !== enEdition) { derniere = s; enEdition = ed; bientot(); }
+  }).observe(deck, { subtree: true, attributes: true, attributeFilter: ['class'] });
+  new MutationObserver(bientot).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  deck.addEventListener('load', function (e) { if (e.target.tagName === 'IMG' && e.target.closest('section.slide.active')) bientot(); }, true);
+  window.addEventListener('resize', bientot);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(bientot);
+  bientot();
+  window.Agrandir = { calculer: calculer, bientot: bientot, effacer: function () { feuille.textContent = ''; } };
 })();
