@@ -1096,16 +1096,17 @@ window.VOTE_QUESTIONS = (window.VOTE_QUESTIONS || []).concat([
 // Au téléphone ou au PC : une question à deux cases. Les exemples s'affichent dans les
 // sphères (zones « ed- », jamais enregistrées) ; un clic sur un exemple l'efface.
 (function () {
-  var ID = 'masni-c1-in-out-group';
+  var ID = 'masni-c1-groupe-social';
   var st = document.createElement('style');
   st.textContent =
     '.ed-grp-liste{position:absolute;z-index:3;display:flex;flex-wrap:wrap;justify-content:center;align-content:flex-start;gap:6px 8px;overflow:hidden}' +
     '.ed-grp-liste span{background:rgba(255,255,255,.95);color:#14161c;border-radius:12px;padding:4px 11px;font:700 19px/1.25 Nunito,sans-serif;cursor:pointer;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;animation:edGrpArrive .35s ease}' +
     '@keyframes edGrpArrive{from{opacity:0;transform:scale(.85)}}' +
     '#' + ID + ' .forme-rond .forme-texte{transition:transform .4s ease}' +
-    '#' + ID + ':has(.ed-grp-liste span) .forme-rond .forme-texte{transform:translateY(-95px)}' +
-    '.ed-grp-form{position:absolute;left:50%;top:70.5%;transform:translateX(-50%);z-index:4;display:flex;gap:14px;align-items:center}' +
-    '.ed-grp-form input{width:280px;padding:10px 16px;border-radius:12px;border:2px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font:600 21px Nunito,sans-serif;outline:none}' +
+    '#' + ID + ':has(.ed-grp-liste span) .forme-rond .forme-texte{transform:translateY(-72px)}' +
+    '#' + ID + ':not(:has(.gs-out.shown)) .ed-grp-form{visibility:hidden}' +
+    '.ed-grp-form{position:absolute;left:50%;top:55%;transform:translateX(-50%);z-index:4;display:flex;flex-direction:column;gap:12px;align-items:stretch}' +
+    '.ed-grp-form input{width:300px;box-sizing:border-box;padding:10px 16px;border-radius:12px;border:2px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font:600 21px Nunito,sans-serif;outline:none}' +
     '.ed-grp-form input:focus{border-color:rgba(255,255,255,.7)}' +
     '.ed-grp-form input::placeholder{color:rgba(255,255,255,.55)}' +
     '.ed-grp-form button{padding:11px 24px;border:0;border-radius:12px;background:#e8860c;color:#1c1105;font:800 24px/1 "Baloo 2",Nunito,sans-serif;cursor:pointer}' +
